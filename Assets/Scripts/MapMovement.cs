@@ -5,58 +5,44 @@ using UnityEngine.SceneManagement;
 
 public class MapMovement : MonoBehaviour
 {
-    public int numLocations = 3;
-
+    // Set size of and add locations in the Inspector
     public GameObject[] locations;
-    public GameObject player;
-
     public int playerLocation;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameObject player;
+
+    private void Start()
     {
-        
+        player = this.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //go through locatons array
-        player.transform.position = locations[playerLocation].transform.position + new Vector3(0, 1, 0);
-
-
-
-        //select with < and  > and move to that direction
+        // Change the player's location with < and >
         if (Input.GetKeyDown(","))
         {
-            if (playerLocation == 0)
-            {
-                playerLocation = 2;
-            }
-
-            else playerLocation--;
-            
-          
+            playerLocation--;
         }
-
         if (Input.GetKeyDown("."))
         {
-            if (playerLocation == 2)
-            {
-                playerLocation = 0;
-            }
-
-            else playerLocation++;
+            playerLocation++;
+        }
+        if (playerLocation < 0)
+        {
+            playerLocation = locations.Length - 1;
+        }
+        else if (playerLocation > locations.Length - 1)
+        {
+            playerLocation = 0;
         }
 
+        // Move the player to the scene corresponding to the location they are at
         if (Input.GetKeyDown("space"))
         {
-
-
-            SceneManager.LoadScene(locations[playerLocation].name);
-
+            SceneManager.LoadScene(locations[playerLocation].GetComponent<MapMarker>().mapName);
         }
 
-        //once confirmed with space, move to that scene
+        // Move the player on top of the marker for the location they are currently at
+        player.transform.position = locations[playerLocation].transform.position + new Vector3(0, 1, 0);
     }
 }

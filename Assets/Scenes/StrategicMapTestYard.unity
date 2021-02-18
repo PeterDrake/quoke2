@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 1806253919}
   - component: {fileID: 1806253923}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Rolling Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 2513952019019553134, guid: 4cfd6281551084e2287607787853426a,
         type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: Exit To Map Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cfd6281551084e2287607787853426a, type: 3}
