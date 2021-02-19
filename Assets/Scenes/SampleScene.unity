@@ -374,6 +374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683206923}
+  - component: {fileID: 683206926}
   - component: {fileID: 683206925}
   - component: {fileID: 683206924}
   m_Layer: 5
@@ -443,6 +444,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683206922}
   m_CullTransparentMesh: 0
+--- !u!114 &683206926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683206922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Label to mark where the water meter is.
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +560,7 @@ GameObject:
   - component: {fileID: 843290213}
   - component: {fileID: 843290215}
   - component: {fileID: 843290214}
+  - component: {fileID: 843290216}
   m_Layer: 5
   m_Name: TimeLabel
   m_TagString: Untagged
@@ -613,6 +628,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843290212}
   m_CullTransparentMesh: 0
+--- !u!114 &843290216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843290212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Label for how much time is left.
 --- !u!1 &861343893
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861343894}
+  - component: {fileID: 861343895}
   m_Layer: 5
   m_Name: WaterMeter
   m_TagString: Untagged
@@ -651,6 +680,19 @@ RectTransform:
   m_AnchoredPosition: {x: -92.502625, y: -33}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &861343895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861343893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: 'Parent of all gameobjects regarding the water meter. '
 --- !u!1 &870661249
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870661250}
+  - component: {fileID: 870661253}
   - component: {fileID: 870661252}
   - component: {fileID: 870661251}
   m_Layer: 5
@@ -729,6 +772,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870661249}
   m_CullTransparentMesh: 0
+--- !u!114 &870661253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870661249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Gameobject to show that the player has drank purified water.
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515264396}
+  - component: {fileID: 1515264399}
   - component: {fileID: 1515264398}
   - component: {fileID: 1515264397}
   m_Layer: 5
@@ -1051,6 +1108,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515264395}
   m_CullTransparentMesh: 0
+--- !u!114 &1515264399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515264395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Shows the amount of hours left to complete this task and stop meter from
+    going down.
 --- !u!1 &1561898865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1133,7 @@ GameObject:
   - component: {fileID: 1561898866}
   - component: {fileID: 1561898868}
   - component: {fileID: 1561898867}
+  - component: {fileID: 1561898869}
   m_Layer: 5
   m_Name: PoopCheck
   m_TagString: Untagged
@@ -1129,6 +1201,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561898865}
   m_CullTransparentMesh: 0
+--- !u!114 &1561898869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561898865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Gameobject to show that the player has built a pit latrine.
 --- !u!1 &1843861067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1225,7 @@ GameObject:
   - component: {fileID: 1843861068}
   - component: {fileID: 1843861070}
   - component: {fileID: 1843861069}
+  - component: {fileID: 1843861071}
   m_Layer: 5
   m_Name: PoopValue
   m_TagString: Untagged
@@ -1207,6 +1293,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843861067}
   m_CullTransparentMesh: 0
+--- !u!114 &1843861071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843861067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Shows the amount of hours left to complete this task and stop meter from
+    going down.
 --- !u!1 &1927303632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1318,7 @@ GameObject:
   - component: {fileID: 1927303633}
   - component: {fileID: 1927303635}
   - component: {fileID: 1927303634}
+  - component: {fileID: 1927303636}
   m_Layer: 5
   m_Name: TimeValue
   m_TagString: Untagged
@@ -1285,6 +1386,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927303632}
   m_CullTransparentMesh: 0
+--- !u!114 &1927303636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927303632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: The amount of hours left in the game.
 --- !u!1 &2137383906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2137383907}
+  - component: {fileID: 2137383910}
   - component: {fileID: 2137383909}
   - component: {fileID: 2137383908}
   m_Layer: 5
@@ -1363,3 +1478,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137383906}
   m_CullTransparentMesh: 0
+--- !u!114 &2137383910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137383906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Label to mark where the poop meter is.
