@@ -29,8 +29,6 @@ public class Movement : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.back,Vector3.up);
         }
         
-        
-        
     }
     
     
