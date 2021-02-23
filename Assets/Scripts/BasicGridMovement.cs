@@ -15,6 +15,7 @@ public class BasicGridMovement : MonoBehaviour
     static string[] collisionLayers = {};
     int layersToCollideWith;
 
+
     // Start is called before the first frame update
     void Start()
     {
