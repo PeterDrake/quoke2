@@ -18,7 +18,6 @@ public class MeterControl : MonoBehaviour
 
     public Text PoopLevelDisplay;
     public Text WaterLevelDisplay;
-    public Text TimeDisplay;
 
     void Start()
     {
@@ -74,7 +73,6 @@ public class MeterControl : MonoBehaviour
     {
         PoopLevelDisplay.text = poopTimeLeft.ToString();
         WaterLevelDisplay.text = waterTimeLeft.ToString();
-        TimeDisplay.text = totalTimeInHours.ToString();
     }
 
     void Update()
