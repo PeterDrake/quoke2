@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,11 +130,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 61313770}
+  - component: {fileID: 61313772}
+  - component: {fileID: 61313771}
   - component: {fileID: 61313769}
   - component: {fileID: 61313768}
   - component: {fileID: 61313767}
   m_Layer: 0
-  m_Name: yard
+  m_Name: Yard Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,12 +210,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61313766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.03, y: -0.3, z: 0.09}
+  m_LocalPosition: {x: 4, y: -0.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &61313771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61313766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4d79e6c8a0a5740bb0ff0ebbe7859b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: StrategicMapTestYard
+--- !u!114 &61313772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61313766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: This marker marks the yard. It holds the location for the player to move
+    to on the screen and the name of the map that is the yard.
 --- !u!1 &299102059
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +255,7 @@ GameObject:
   - component: {fileID: 299102061}
   - component: {fileID: 299102060}
   m_Layer: 0
-  m_Name: yardSign
+  m_Name: Yard Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,12 +271,12 @@ TextMesh:
   m_GameObject: {fileID: 299102059}
   m_Text: yard
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: 0.15
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 15
+  m_FontSize: 100
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -300,13 +329,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299102059}
-  m_LocalRotation: {x: 0.7104819, y: -0, z: -0, w: 0.7037155}
-  m_LocalPosition: {x: 2.42, y: 2.32, z: 2.48}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: 2.42, y: 0.92, z: 2.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 90.548004, y: -0.000015258789, z: -0.000015258789}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!1 &377690497
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,9 +348,8 @@ GameObject:
   - component: {fileID: 377690500}
   - component: {fileID: 377690499}
   - component: {fileID: 377690498}
-  - component: {fileID: 377690502}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,28 +424,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377690497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &377690502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377690497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1962a2b01682434cbbdf91eb809e985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numLocations: 3
-  locations: []
-  player: {fileID: 0}
-  playerLocation: 0
 --- !u!1 &703957549
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +442,7 @@ GameObject:
   - component: {fileID: 703957551}
   - component: {fileID: 703957550}
   m_Layer: 0
-  m_Name: schoolSign
+  m_Name: School Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,12 +458,12 @@ TextMesh:
   m_GameObject: {fileID: 703957549}
   m_Text: school
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: 0.15
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 13
+  m_FontSize: 100
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -504,13 +516,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703957549}
-  m_LocalRotation: {x: 0.6415309, y: -0, z: -0, w: 0.7670973}
-  m_LocalPosition: {x: -5.14, y: 1.05, z: 2.74}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: -6.5, y: 1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 79.812004, y: 0, z: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!1 &706154299
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,12 +624,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872222377}
+  - component: {fileID: 872222378}
   - component: {fileID: 872222376}
   - component: {fileID: 872222375}
   - component: {fileID: 872222374}
-  - component: {fileID: 872222378}
+  - component: {fileID: 872222379}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,13 +704,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872222373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 0.55, z: -0.78}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &872222378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872222373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: This cube represents the player in the strategic map. The attached MapMovement
+    script handles the player's movement and all of the logic of this scene.
+--- !u!114 &872222379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -709,12 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1962a2b01682434cbbdf91eb809e985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLocations: 3
   locations:
   - {fileID: 1423463688}
   - {fileID: 1179890770}
   - {fileID: 61313766}
-  player: {fileID: 872222373}
   playerLocation: 0
 --- !u!1 &941481649
 GameObject:
@@ -728,7 +753,7 @@ GameObject:
   - component: {fileID: 941481651}
   - component: {fileID: 941481650}
   m_Layer: 0
-  m_Name: parkSign
+  m_Name: Park Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,12 +771,12 @@ TextMesh:
 
 '
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: 0.15
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 15
+  m_FontSize: 100
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -804,13 +829,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941481649}
-  m_LocalRotation: {x: 0.6580298, y: -0, z: -0, w: 0.7529919}
-  m_LocalPosition: {x: -1.16, y: 1.6775141, z: 5.314984}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: -1.64, y: 1, z: 5.314984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 82.3, y: 0, z: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!1 &1179890770
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,11 +845,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1179890774}
+  - component: {fileID: 1179890776}
+  - component: {fileID: 1179890775}
   - component: {fileID: 1179890773}
   - component: {fileID: 1179890772}
   - component: {fileID: 1179890771}
   m_Layer: 0
-  m_Name: park
+  m_Name: Park Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,12 +925,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179890770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -0.3, z: 3.5}
+  m_LocalPosition: {x: 0, y: -0.3, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179890775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179890770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4d79e6c8a0a5740bb0ff0ebbe7859b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: StrategicMapTestPark
+--- !u!114 &1179890776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179890770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: This marker marks the park. It holds the location for the player to move
+    to on the screen and the name of the map that is the park.
 --- !u!1 &1423463688
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,11 +967,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423463692}
+  - component: {fileID: 1423463694}
+  - component: {fileID: 1423463693}
   - component: {fileID: 1423463691}
   - component: {fileID: 1423463690}
   - component: {fileID: 1423463689}
   m_Layer: 0
-  m_Name: school
+  m_Name: School Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -991,12 +1047,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423463688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.35, y: -0.3, z: 0.18}
+  m_LocalPosition: {x: -4, y: -0.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423463693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423463688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4d79e6c8a0a5740bb0ff0ebbe7859b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: StrategicMapTestSchool
+--- !u!114 &1423463694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423463688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: This marker marks the school. It holds the location for the player to move
+    to on the screen and the name of the map that is the school.
 --- !u!1 &1898081781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898081781}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 11.72, z: 1.21}
+  m_LocalPosition: {x: 0, y: 12, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
