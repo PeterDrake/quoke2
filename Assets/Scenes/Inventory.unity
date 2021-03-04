@@ -308,9 +308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34, type: 3}
-  newSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
   slots: []
+  currentSlot: 0
 --- !u!4 &276753287
 Transform:
   m_ObjectHideFlags: 0
@@ -375,9 +376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldSprite: {fileID: 0}
-  newSprite: {fileID: 0}
+  unselectedSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
   slots: []
+  currentSlot: 0
 --- !u!114 &702399399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,9 +467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldSprite: {fileID: 0}
-  newSprite: {fileID: 0}
+  unselectedSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
   slots: []
+  currentSlot: 0
 --- !u!114 &1012152000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,9 +632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldSprite: {fileID: 0}
-  newSprite: {fileID: 0}
+  unselectedSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
   slots: []
+  currentSlot: 0
 --- !u!114 &1624005019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,9 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldSprite: {fileID: 0}
-  newSprite: {fileID: 0}
+  unselectedSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
   slots: []
+  currentSlot: 0
 --- !u!114 &1788865220
 MonoBehaviour:
   m_ObjectHideFlags: 0
