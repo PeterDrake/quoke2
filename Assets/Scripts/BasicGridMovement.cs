@@ -12,7 +12,7 @@ public class BasicGridMovement : MonoBehaviour
     public Transform movePoint;
     public bool moving;
 
-    static string[] collisionLayers = {};
+    static string[] collisionLayers = {"Wall"};
     int layersToCollideWith;
 
 
@@ -21,6 +21,8 @@ public class BasicGridMovement : MonoBehaviour
     {
         layersToCollideWith = LayerMask.GetMask(collisionLayers);
 
+        Debug.Log(layersToCollideWith);
+        
         moving = false;
 
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
@@ -38,6 +40,9 @@ public class BasicGridMovement : MonoBehaviour
                 // Get all things in the space on the grid the player is trying to move to
                 Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.5f, 0f),
                     0.2f, layersToCollideWith);
+
+                // Debug.Log(hitColliders.Length);
+                
                 // If nothing is occupying that space
                 if (hitColliders.Length == 0)
                 {
