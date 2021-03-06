@@ -15,6 +15,7 @@ public class BasicGridMovement : MonoBehaviour
     static string[] collisionLayers = {"Wall"};
     int layersToCollideWith;
 
+    public GameObject check;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class BasicGridMovement : MonoBehaviour
         moving = false;
 
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
+
+        check.transform.position = transform.position;
     }
 
     // Update is called once per frame
@@ -38,11 +41,12 @@ public class BasicGridMovement : MonoBehaviour
             if (Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
                 // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.5f, 0f),
+                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f),
                     0.2f, layersToCollideWith);
-
-                // Debug.Log(hitColliders.Length);
                 
+                // Debug.Log(hitColliders.Length);
+                check.transform.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+
                 // If nothing is occupying that space
                 if (hitColliders.Length == 0)
                 {
@@ -58,8 +62,11 @@ public class BasicGridMovement : MonoBehaviour
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
                 // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.5f, Input.GetAxisRaw("Vertical") * 0.5f),
+                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")),
                     0.2f, layersToCollideWith);
+
+                check.transform.position = movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+    
                 // If nothing is occupying that space
                 if (hitColliders.Length == 0)
                 {
