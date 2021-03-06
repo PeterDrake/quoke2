@@ -10,26 +10,24 @@ public class BasicGridMovement : MonoBehaviour
 
     public float moveSpeed = 5f;
     public Transform movePoint;
-    public bool moving;
+    public bool isMoving;
 
     static string[] collisionLayers = {"Wall"};
     int layersToCollideWith;
 
-    public GameObject check;
+    public GameObject visualCheck;
+    private int numberOfCollidersFound;
 
     // Start is called before the first frame update
     void Start()
     {
         layersToCollideWith = LayerMask.GetMask(collisionLayers);
-
         Debug.Log(layersToCollideWith);
-        
-        moving = false;
-
+        isMoving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
-
-        check.transform.position = transform.position;
+        visualCheck.transform.position = transform.position;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -40,49 +38,66 @@ public class BasicGridMovement : MonoBehaviour
         {
             if (Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f),
-                    0.2f, layersToCollideWith);
-                
-                // Debug.Log(hitColliders.Length);
-                check.transform.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-
-                // If nothing is occupying that space
-                if (hitColliders.Length == 0)
-                {
-                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
-                    moving = true;
-                }
-                else
-                {
-                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
-                }
+                numberOfCollidersFound = findColliders("Horizontal");
+                moveHorizontally();           
             }
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")),
-                    0.2f, layersToCollideWith);
-
-                check.transform.position = movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
-    
-                // If nothing is occupying that space
-                if (hitColliders.Length == 0)
-                {
-                    movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
-                    transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
-                    moving = true;
-                }
-                else
-                {
-                    transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
-                }
+                numberOfCollidersFound = findColliders("Vertical");
+                moveVertically(); 
             }
             else
             {
-                moving = false;
+                isMoving = false;
             }
         }
+    }
+
+    //returns number of colliders stored in hitCollider array while using OverlapSphere function in specific direction
+    int findColliders(string direction)
+    {
+        Collider[] hitColliders = null;
+
+        if (direction == "Horizontal")
+        {   
+            hitColliders = Physics.OverlapSphere(movePoint.position + 
+                new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .5f, layersToCollideWith);
+
+            //visually moves greensphere to show location of OverlapSphere function above
+            visualCheck.transform.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+        }
+
+        else if (direction == "Vertical")
+        {
+            hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")),
+                    0.5f, layersToCollideWith);
+
+            //visually moves greensphere to shows location of OverlapSphere function above
+            visualCheck.transform.position = movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+        }
+        return hitColliders.Length;    
+
+    }
+
+    // Will face direction of movement & if no colliders are found in direction, will update movePoint to new positioning in horizontal direction
+    void moveHorizontally()
+    {
+        if (numberOfCollidersFound == 0)
+        {
+            movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            isMoving = true;
+        }
+        transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
+    }
+
+    // Will face direction of movement & if no colliders are found in direction, will update movePoint to new positioning in vertical direction
+    void moveVertically()
+    {
+        if (numberOfCollidersFound == 0)
+        {
+            movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+            isMoving = true;
+        }
+        transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
     }
 }
