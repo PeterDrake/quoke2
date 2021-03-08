@@ -17,7 +17,6 @@ public class BasicGridMovement : MonoBehaviour
     private Collider[] hitColliders;
     private int numberOfCollidersFound;
 
-
     public List<GameObject> collectables;
 
     // Start is called before the first frame update
@@ -55,7 +54,7 @@ public class BasicGridMovement : MonoBehaviour
             }
         }
         
-        // //when space bar is pressed, last item collected is dropped infront of player
+        // //when space bar is pressed, last item collected is dropped near
         if (Input.GetKeyDown(KeyCode.Space)){
             if (collectables.Count > 0)
             {

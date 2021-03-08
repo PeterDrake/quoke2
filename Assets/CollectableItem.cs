@@ -10,7 +10,7 @@ public class CollectableItem : MonoBehaviour
         layers = LayerMask.GetMask("Collectables");
     }
 
-    //when collided with the player will pick up object and add it to collectable list in movement script
+    //Used to pick up items. When collided with the player will pick up object and add it to collectable list in movement script
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player")){
@@ -20,19 +20,20 @@ public class CollectableItem : MonoBehaviour
         }
     }
 
-    //Used to drop items. Will drop behind, if object is already there will drop in front
+    //Used to drop items. Will drop behind, if object is already there will drop in front of player 
     public void DropItem()
     {       
         Debug.Log("dropped off item");
         GameObject player = GameObject.FindWithTag("Player");
         Collider[] objectsInWay = Physics.OverlapSphere(player.transform.position + (player.transform.forward * -1), 0.4f, layers);
-        //if there is already a collider behind player, drop item in front of player or else drop it behind player
         if (objectsInWay.Length > 0){
+            // drops item in front of player
             transform.position = player.transform.position + (player.transform.forward);
             player.GetComponent<BasicGridMovement>().collectables.Remove(this.gameObject);
         }
         else 
         {
+            //drops item behind player
             transform.position = player.transform.position + (player.transform.forward*-1);
             player.GetComponent<BasicGridMovement>().collectables.Remove(this.gameObject);
         }
