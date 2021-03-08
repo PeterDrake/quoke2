@@ -71,7 +71,7 @@ public class BasicGridMovement : MonoBehaviour
         if (direction == "Horizontal")
         {   
             hitColliders = Physics.OverlapSphere(movePoint.position + 
-                new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .5f, layersToCollideWith);
+                new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.4f, layersToCollideWith);
 
             //visually moves greensphere to show location of OverlapSphere function above
             visualCheck.transform.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
@@ -79,8 +79,8 @@ public class BasicGridMovement : MonoBehaviour
 
         else if (direction == "Vertical")
         {
-            hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")),
-                    0.5f, layersToCollideWith);
+            hitColliders = Physics.OverlapSphere(movePoint.position + 
+            new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), 0.4f, layersToCollideWith);
 
             //visually moves greensphere to shows location of OverlapSphere function above
             visualCheck.transform.position = movePoint.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
