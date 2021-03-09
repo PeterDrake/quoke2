@@ -19,9 +19,7 @@ public class MovementRevised : MonoBehaviour
     void Start()
     {
         layersToCollideWith = LayerMask.GetMask("Wall");
-
         Debug.Log("Mask: " + layersToCollideWith);
-
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
@@ -40,8 +38,6 @@ public class MovementRevised : MonoBehaviour
                     movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
                     0.2f, layersToCollideWith);
 
-                Debug.Log(hitColliders.Length);
-                
                 // If nothing is occupying that space
                 if (hitColliders.Length == 0)
                 {

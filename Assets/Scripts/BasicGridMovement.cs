@@ -34,8 +34,7 @@ public class BasicGridMovement : MonoBehaviour
 
         return hitColliders.Length != 0;
     }
-    
-    
+
     // Update is called once per frame
     void Update()
     {
