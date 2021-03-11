@@ -1,36 +1,226 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking.Types;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class Selector : MonoBehaviour
 {
-    public Sprite oldSprite;
-    public Sprite newSprite;
+    public Sprite unselectedSprite;
+    public Sprite selectedSprite;
+    public Sprite fullUnselectedSprite;
+    public Sprite fullSelectedSprite;
+    public GameObject[] slots;
+    public int currentSlot;
+    public bool[] fullSlot;
 
-    void ChangeSprite(Sprite sprite)
-    {
-        oldSprite = sprite; 
-    }
-    
     // Start is called before the first frame update
     void Start()
     {
-        // Slot 1 selected
+        //WHY?!?!??!?!??!! WHY DOES IT NEED TO BE INITIALIZED HERE?!?!?!
+        fullSlot = new bool[5];
+        
+        //Load sprites
+        selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
+        unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
+        fullSelectedSprite = Resources.Load<Sprite>("FullSelectedSlot 1");
+        fullUnselectedSprite = Resources.Load<Sprite>("FullUnselectedSlot 1");
+        
+        //locate GameObjecs with "slots" tag.
+        slots = GameObject.FindGameObjectsWithTag("Slots");
+        slots[0].GetComponent<Image>().sprite = selectedSprite;
+
+        currentSlot = 0;
+
+        //Check if any slots are full. If they are full, change sprite
+        for (int i = 0; i < 5; i++)
+        {
+            //if slot is full
+            if (fullSlot[i])
+            {
+                // if currentSlot is selected, then change currentSlot to fullSelectedSprite. Otherwise, change fullUnselectedSprite
+                if (currentSlot == i)
+                {
+                    slots[i].GetComponent<Image>().sprite = fullSelectedSprite;
+                }
+                else
+                {
+                    slots[i].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                
+            }
+            //if slot is empty
+            else
+            {
+                // if currentSlot is selected, then change currentSlot to selectedSprite. Otherwise, change unselectedSprite
+                if (currentSlot == i)
+                {
+                    slots[i].GetComponent<Image>().sprite = selectedSprite;
+                }
+                else
+                {
+                    slots[i].GetComponent<Image>().sprite = unselectedSprite;
+                }
+            }
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If user presses 1, select this slot
-        // Else if user presses 2 - n, select that other slot
+        //If spacebar is pressed, fill/empty selected slot
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (fullSlot[currentSlot])
+            {
+                slots[currentSlot].GetComponent<Image>().sprite = selectedSprite;
+                fullSlot[currentSlot] = false;
+            }
+            else
+            {
+                slots[currentSlot].GetComponent<Image>().sprite = fullSelectedSprite;
+                fullSlot[currentSlot] = true;
+            }
+        }
+        
+        // If user presses 1
         if(Input.GetKey(KeyCode.Alpha1))
         {
-            ChangeSprite(newSprite);
+            //Selecting slot 1
+            //If slot is full, change sprite to fullSelectedSprite. Otherwise, change to selectedSprite
+            if (fullSlot[0])
+            {
+                slots[0].GetComponent<Image>().sprite = fullSelectedSprite;
+            }
+            else
+            {
+                slots[0].GetComponent<Image>().sprite = selectedSprite;
+            }
+            
+            //Selecting a new slot
+            //If currentSlot is not index 0
+            if (currentSlot != 0)
+            {
+                //If currentSlot is full, change to fullUnselectedSprite. Otherwise change to unselectedSprite
+                if (fullSlot[currentSlot])
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                else
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+                }
+                
+                //Change currentSlot to index 0
+                currentSlot = 0;
+            }
+        }
+        
+        
+        if(Input.GetKey(KeyCode.Alpha2))
+        {
+            if (fullSlot[1])
+            {
+                slots[1].GetComponent<Image>().sprite = fullSelectedSprite;
+            }
+            else
+            {
+                slots[1].GetComponent<Image>().sprite = selectedSprite;
+            }
+            
+            if (currentSlot != 1)
+            {
+                if (fullSlot[currentSlot])
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                else
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+                }
+                
+                currentSlot = 1;
+            }
+        }
+        if(Input.GetKey(KeyCode.Alpha3))
+        {
+            if (fullSlot[2])
+            {
+                slots[2].GetComponent<Image>().sprite = fullSelectedSprite;
+            }
+            else
+            {
+                slots[2].GetComponent<Image>().sprite = selectedSprite;
+            }
+            
+            if (currentSlot != 2)
+            {
+                if (fullSlot[currentSlot])
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                else
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+                }
+                
+                currentSlot = 2;
+            }
+        }
+        if(Input.GetKey(KeyCode.Alpha4))
+        {
+            if (fullSlot[3])
+            {
+                slots[3].GetComponent<Image>().sprite = fullSelectedSprite;
+            }
+            else
+            {
+                slots[3].GetComponent<Image>().sprite = selectedSprite;
+            }
+            
+            if (currentSlot != 3)
+            {
+                if (fullSlot[currentSlot])
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                else
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+                }
+                
+                currentSlot = 3;
+            }
+        }
+        if(Input.GetKey(KeyCode.Alpha5))
+        {
+            if (fullSlot[4])
+            {
+                slots[4].GetComponent<Image>().sprite = fullSelectedSprite;
+            }
+            else
+            {
+                slots[4].GetComponent<Image>().sprite = selectedSprite;
+            }
+            
+            if (currentSlot != 4)
+            {
+                if (fullSlot[currentSlot])
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+                }
+                else
+                {
+                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+                }
+                
+                currentSlot = 4;
+            }
         }
     }
-
-   
 
 }
