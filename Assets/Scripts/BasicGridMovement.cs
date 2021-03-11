@@ -16,6 +16,7 @@ public class BasicGridMovement : MonoBehaviour
     //make a new layer for NPC 
     int layersToCollideWith;
 
+    public GameObject check;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class BasicGridMovement : MonoBehaviour
         Debug.Log(layersToCollideWith);
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
+
+        check.transform.position = transform.position;
     }
 
     private bool ObstacleInDirection(float x, float z)
@@ -59,7 +62,7 @@ public class BasicGridMovement : MonoBehaviour
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
                 // // If nothing is occupying that space
-                if (!ObstacleInDirection(Input.GetAxisRaw("Vertical"), 0.0f))
+                if (!ObstacleInDirection(Input.GetAxisRaw("Vertical"), 0.0f)) 
                 {
                     movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
