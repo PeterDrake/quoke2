@@ -24,6 +24,33 @@ public class MovementRevised : MonoBehaviour
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
 
+    /**
+     * Check for obstacle on the Horizontal Direction
+     */
+    private bool ObstacleInDirectionOne(float x, float z)
+    {
+        // Get all things in the space on the grid the player is trying to move to
+        Collider[] hitColliders = Physics.OverlapSphere(
+            movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
+            0.2f, layersToCollideWith);
+
+        return hitColliders.Length != 0;
+    }
+    
+    /**
+     * Check for obstacle on the Vertical Direction
+     */
+    private bool ObstacleInDirectionTwo(float x, float z)
+    {
+        // Get all things in the space on the grid the player is trying to move to
+        Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
+            0.2f, layersToCollideWith);
+
+        return hitColliders.Length != 0;
+    }
+    
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -33,38 +60,34 @@ public class MovementRevised : MonoBehaviour
         {
             if (Math.Abs(Input.GetAxisRaw("Horizontal")) >= 1f)
             {
-                // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(
-                    movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
-                    0.2f, layersToCollideWith);
 
-                // If nothing is occupying that space
-                if (hitColliders.Length == 0)
+                // Check if something occupying the space
+                if (ObstacleInDirectionOne(Input.GetAxisRaw("Horizontal"), 0.0f))
+                {
+                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
+                  
+                }
+                else
                 {
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                     moving = true;
-                }
-                else
-                {
-                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
+                    
                 }
             }
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) >= 1f)
             {
-                // Get all things in the space on the grid the player is trying to move to
-                Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
-                    0.2f, layersToCollideWith);
-                // If nothing is occupying that space
-                if (hitColliders.Length == 0)
+                // Check if something occupying the space
+                if (ObstacleInDirectionTwo(Input.GetAxisRaw("Vertical"),0.0f))
+                {
+                    transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
+                   
+                }
+                else
                 {
                     movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                     moving = true;
-                }
-                else
-                {
-                    transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                 }
             }
             else
