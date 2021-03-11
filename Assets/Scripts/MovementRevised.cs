@@ -23,10 +23,8 @@ public class MovementRevised : MonoBehaviour
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
-
-    /**
-     * Check for obstacle on the Horizontal Direction
-     */
+    
+    ///Returns true if there is an obstacle in Horizontal Direction
     private bool ObstacleInDirectionOne(float x, float z)
     {
         // Get all things in the space on the grid the player is trying to move to
@@ -37,9 +35,7 @@ public class MovementRevised : MonoBehaviour
         return hitColliders.Length != 0;
     }
     
-    /**
-     * Check for obstacle on the Vertical Direction
-     */
+    ///Returns true if there is an obstacle in Vertical Direction
     private bool ObstacleInDirectionTwo(float x, float z)
     {
         // Get all things in the space on the grid the player is trying to move to
