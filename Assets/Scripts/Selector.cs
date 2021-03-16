@@ -36,7 +36,7 @@ public class Selector : MonoBehaviour
         currentSlot = 0;
 
         //Check if any slots are full. If they are full, change sprite
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             //if slot is full
             if (fullSlot[i])
@@ -71,6 +71,11 @@ public class Selector : MonoBehaviour
 
     void changeSlot(int slotNumber)
     {
+        if (slotNumber < 0 || slotNumber >= slots.Length)
+        {
+            return;
+        }
+
         if (fullSlot[slotNumber])
         {
             slots[slotNumber].GetComponent<Image>().sprite = fullSelectedSprite;
@@ -137,6 +142,11 @@ public class Selector : MonoBehaviour
         if(Input.GetKey(KeyCode.Alpha5))
         {
             changeSlot(4);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha9))
+        {
+            changeSlot(8);
         }
     }
 
