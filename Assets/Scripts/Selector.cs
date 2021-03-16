@@ -20,7 +20,7 @@ public class Selector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //WHY?!?!??!?!??!! WHY DOES IT NEED TO BE INITIALIZED HERE?!?!?!
+        
         fullSlot = new bool[5];
         
         //Load sprites
@@ -69,6 +69,32 @@ public class Selector : MonoBehaviour
 
     }
 
+    void changeSlot(int slotNumber)
+    {
+        if (fullSlot[slotNumber])
+        {
+            slots[slotNumber].GetComponent<Image>().sprite = fullSelectedSprite;
+        }
+        else
+        {
+            slots[slotNumber].GetComponent<Image>().sprite = selectedSprite;
+        }
+            
+        if (currentSlot != slotNumber)
+        {
+            if (fullSlot[currentSlot])
+            {
+                slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
+            }
+            else
+            {
+                slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
+            }
+                
+            currentSlot = slotNumber;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -90,136 +116,27 @@ public class Selector : MonoBehaviour
         // If user presses 1
         if(Input.GetKey(KeyCode.Alpha1))
         {
-            //Selecting slot 1
-            //If slot is full, change sprite to fullSelectedSprite. Otherwise, change to selectedSprite
-            if (fullSlot[0])
-            {
-                slots[0].GetComponent<Image>().sprite = fullSelectedSprite;
-            }
-            else
-            {
-                slots[0].GetComponent<Image>().sprite = selectedSprite;
-            }
-            
-            //Selecting a new slot
-            //If currentSlot is not index 0
-            if (currentSlot != 0)
-            {
-                //If currentSlot is full, change to fullUnselectedSprite. Otherwise change to unselectedSprite
-                if (fullSlot[currentSlot])
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                else
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-                }
-                
-                //Change currentSlot to index 0
-                currentSlot = 0;
-            }
+            changeSlot(0);
         }
-        
         
         if(Input.GetKey(KeyCode.Alpha2))
         {
-            if (fullSlot[1])
-            {
-                slots[1].GetComponent<Image>().sprite = fullSelectedSprite;
-            }
-            else
-            {
-                slots[1].GetComponent<Image>().sprite = selectedSprite;
-            }
-            
-            if (currentSlot != 1)
-            {
-                if (fullSlot[currentSlot])
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                else
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-                }
-                
-                currentSlot = 1;
-            }
+            changeSlot(1);
         }
+        
         if(Input.GetKey(KeyCode.Alpha3))
         {
-            if (fullSlot[2])
-            {
-                slots[2].GetComponent<Image>().sprite = fullSelectedSprite;
-            }
-            else
-            {
-                slots[2].GetComponent<Image>().sprite = selectedSprite;
-            }
-            
-            if (currentSlot != 2)
-            {
-                if (fullSlot[currentSlot])
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                else
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-                }
-                
-                currentSlot = 2;
-            }
+            changeSlot(2);
         }
+        
         if(Input.GetKey(KeyCode.Alpha4))
         {
-            if (fullSlot[3])
-            {
-                slots[3].GetComponent<Image>().sprite = fullSelectedSprite;
-            }
-            else
-            {
-                slots[3].GetComponent<Image>().sprite = selectedSprite;
-            }
-            
-            if (currentSlot != 3)
-            {
-                if (fullSlot[currentSlot])
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                else
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-                }
-                
-                currentSlot = 3;
-            }
+            changeSlot(3);
         }
+        
         if(Input.GetKey(KeyCode.Alpha5))
         {
-            if (fullSlot[4])
-            {
-                slots[4].GetComponent<Image>().sprite = fullSelectedSprite;
-            }
-            else
-            {
-                slots[4].GetComponent<Image>().sprite = selectedSprite;
-            }
-            
-            if (currentSlot != 4)
-            {
-                if (fullSlot[currentSlot])
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                else
-                {
-                    slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-                }
-                
-                currentSlot = 4;
-            }
+            changeSlot(4);
         }
     }
 
