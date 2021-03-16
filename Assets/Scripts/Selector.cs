@@ -16,12 +16,16 @@ public class Selector : MonoBehaviour
     public GameObject[] slots;
     public int currentSlot;
     public bool[] fullSlot;
+    public KeyCode[] validInputs;
 
     // Start is called before the first frame update
     void Start()
     {
         
         fullSlot = new bool[5];
+
+        // This would only allow for 10 inventory slots max
+        validInputs = new []{KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
         
         //Load sprites
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
@@ -117,37 +121,15 @@ public class Selector : MonoBehaviour
                 fullSlot[currentSlot] = true;
             }
         }
-        
-        // If user presses 1
-        if(Input.GetKey(KeyCode.Alpha1))
+
+        for (int i = 0; i < slots.Length; i++)
         {
-            changeSlot(0);
-        }
-        
-        if(Input.GetKey(KeyCode.Alpha2))
-        {
-            changeSlot(1);
-        }
-        
-        if(Input.GetKey(KeyCode.Alpha3))
-        {
-            changeSlot(2);
-        }
-        
-        if(Input.GetKey(KeyCode.Alpha4))
-        {
-            changeSlot(3);
-        }
-        
-        if(Input.GetKey(KeyCode.Alpha5))
-        {
-            changeSlot(4);
+            if (Input.GetKey(validInputs[i]))
+            {
+                changeSlot(i);
+            }
         }
 
-        if (Input.GetKey(KeyCode.Alpha9))
-        {
-            changeSlot(8);
-        }
     }
 
 }
