@@ -9,124 +9,111 @@ using Image = UnityEngine.UI.Image;
 
 public class Selector : MonoBehaviour
 {
-    public Sprite unselectedSprite;
-    public Sprite selectedSprite;
-    public Sprite fullUnselectedSprite;
-    public Sprite fullSelectedSprite;
-    public GameObject[] slots;
     public int currentSlot;
-    public bool[] fullSlot;
-    public KeyCode[] validInputs;
+    public Sprite itemImage;
+
+    private Sprite unselectedSprite;
+    private Sprite selectedSprite;
+    private GameObject[] slots;
+    private GameObject[] items;
+    private KeyCode[] validInputs;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        fullSlot = new bool[5];
-
         // This would only allow for 10 inventory slots max
         validInputs = new []{KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
         
         //Load sprites
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
-        fullSelectedSprite = Resources.Load<Sprite>("FullSelectedSlot 1");
-        fullUnselectedSprite = Resources.Load<Sprite>("FullUnselectedSlot 1");
         
         //locate GameObjecs with "slots" tag.
         slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
 
-        currentSlot = 0;
-
-        //Check if any slots are full. If they are full, change sprite
-        for (int i = 0; i < slots.Length; i++)
+        //locate Gameobjects with "InventoryItems" tag and sets all of them unactive in scene
+        items = GameObject.FindGameObjectsWithTag("InventoryItems");
+        foreach (GameObject item in items)
         {
-            //if slot is full
-            if (fullSlot[i])
-            {
-                // if currentSlot is selected, then change currentSlot to fullSelectedSprite. Otherwise, change fullUnselectedSprite
-                if (currentSlot == i)
-                {
-                    slots[i].GetComponent<Image>().sprite = fullSelectedSprite;
-                }
-                else
-                {
-                    slots[i].GetComponent<Image>().sprite = fullUnselectedSprite;
-                }
-                
-            }
-            //if slot is empty
-            else
-            {
-                // if currentSlot is selected, then change currentSlot to selectedSprite. Otherwise, change unselectedSprite
-                if (currentSlot == i)
-                {
-                    slots[i].GetComponent<Image>().sprite = selectedSprite;
-                }
-                else
-                {
-                    slots[i].GetComponent<Image>().sprite = unselectedSprite;
-                }
-            }
+            item.SetActive(false);
         }
 
+        //sets first selected slot to be 0
+        currentSlot = 0;
     }
 
-    void changeSlot(int slotNumber)
+    // changes slot background of specific slotNumber to selected sprite 
+    void SelectSlotNumber(int slotNumber)
     {
         if (slotNumber < 0 || slotNumber >= slots.Length)
         {
             return;
         }
 
-        if (fullSlot[slotNumber])
-        {
-            slots[slotNumber].GetComponent<Image>().sprite = fullSelectedSprite;
-        }
-        else
-        {
-            slots[slotNumber].GetComponent<Image>().sprite = selectedSprite;
-        }
+        slots[slotNumber].GetComponent<Image>().sprite = selectedSprite;
+
             
         if (currentSlot != slotNumber)
         {
-            if (fullSlot[currentSlot])
-            {
-                slots[currentSlot].GetComponent<Image>().sprite = fullUnselectedSprite;
-            }
-            else
-            {
-                slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-            }
-                
+            slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
             currentSlot = slotNumber;
         }
     }
 
+    // removes item at specific slotNumber by deactivating it from scene
+    void RemoveItemFromInventory(int slotNumber)
+    {
+        if (items[slotNumber].activeSelf)
+        {
+            items[slotNumber].SetActive(false);        
+        }
+    }
+
+    // finds next empty spot and if there is changes sprite to that item's sprite
+    void AddItemToInventory(Sprite itemSprite)
+    {
+        int nextSpot = FindNextEmptySpot();
+        if (nextSpot >= 0)
+        {
+            items[nextSpot].SetActive(true);
+            items[nextSpot].GetComponent<Image>().sprite = itemSprite;
+        }
+
+    }
+
+    //goes through all the slots to find the first deactivated item and returns that slot number
+    int FindNextEmptySpot()
+    {
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if (!items[i].activeSelf)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
     // Update is called once per frame
     void Update()
     {
-        //If spacebar is pressed, fill/empty selected slot
+        //If spacebar is pressed, empty selected slot
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (fullSlot[currentSlot])
-            {
-                slots[currentSlot].GetComponent<Image>().sprite = selectedSprite;
-                fullSlot[currentSlot] = false;
-            }
-            else
-            {
-                slots[currentSlot].GetComponent<Image>().sprite = fullSelectedSprite;
-                fullSlot[currentSlot] = true;
-            }
+            RemoveItemFromInventory(currentSlot);
+        }
+
+        //if B key is pressed, add a item to the inventory
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            AddItemToInventory(itemImage);
         }
 
         for (int i = 0; i < slots.Length; i++)
         {
             if (Input.GetKey(validInputs[i]))
             {
-                changeSlot(i);
+                SelectSlotNumber(i);
             }
         }
 
