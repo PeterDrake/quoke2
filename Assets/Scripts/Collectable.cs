@@ -15,17 +15,16 @@ public class Collectable : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter is called");
         if (other.CompareTag("Player"))
         {
             Debug.Log("Ran into item");
+            GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
     void Update()
     {
-        //if B key is pressed, add a item to the inventory
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
-        }
+        
     }
 }
