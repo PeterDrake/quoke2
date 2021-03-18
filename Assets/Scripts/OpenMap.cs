@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OpenMap : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OpenMap: Collision");
         SceneManager.LoadScene("StrategicMap");
     }
 }
