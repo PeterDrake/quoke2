@@ -16,6 +16,7 @@ public class Selector : MonoBehaviour
     private Sprite selectedSprite;
     private GameObject[] slots;
     private GameObject[] items;
+    private GameObject player;
     private KeyCode[] validInputs;
 
     // Start is called before the first frame update
@@ -44,6 +45,8 @@ public class Selector : MonoBehaviour
 
         //sets first selected slot to be 0
         currentSlot = 0;
+
+        player = GameObject.FindWithTag("Player");
     }
 
     // changes slot background of specific slotNumber to selected sprite 
@@ -69,7 +72,8 @@ public class Selector : MonoBehaviour
     {
         if (items[slotNumber].activeSelf)
         {
-            // inventory[slotNumber].SetActive(true);  //need this to drop and make object active in scene
+            inventory[slotNumber].SetActive(true);
+            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward * 2);
             inventory[slotNumber] = null;
             items[slotNumber].SetActive(false);  
 
