@@ -7,7 +7,6 @@ public class OpenMap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OpenMap: Collision");
         SceneManager.LoadScene("StrategicMap");
     }
 }
