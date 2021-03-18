@@ -10,7 +10,7 @@ using Image = UnityEngine.UI.Image;
 public class Selector : MonoBehaviour
 {
     public int currentSlot;
-    public Sprite itemImage;
+    public GameObject[] inventory;
 
     private Sprite unselectedSprite;
     private Sprite selectedSprite;
@@ -32,8 +32,11 @@ public class Selector : MonoBehaviour
         slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
 
-        //locate Gameobjects with "InventoryItems" tag and sets all of them unactive in scene
-        items = GameObject.FindGameObjectsWithTag("InventoryItems");
+        //locate Gameobjects with "InventoryItems" tag 
+        items = GameObject.FindGameObjectsWithTag("SlotItems");
+
+        //starts the game with an empty inventory
+        inventory = new GameObject[slots.Length];
         foreach (GameObject item in items)
         {
             item.SetActive(false);
@@ -61,23 +64,28 @@ public class Selector : MonoBehaviour
         }
     }
 
-    // removes item at specific slotNumber by deactivating it from scene
+    // removes item at specific slotNumber by deactivating its image from 
     void RemoveItemFromInventory(int slotNumber)
     {
         if (items[slotNumber].activeSelf)
         {
-            items[slotNumber].SetActive(false);        
+            // inventory[slotNumber].SetActive(true);  //need this to drop and make object active in scene
+            inventory[slotNumber] = null;
+            items[slotNumber].SetActive(false);  
+
         }
     }
 
     // finds next empty spot and if there is changes sprite to that item's sprite
-    void AddItemToInventory(Sprite itemSprite)
+    public void AddItemToInventory(GameObject collectable)
     {
         int nextSpot = FindNextEmptySpot();
         if (nextSpot >= 0)
         {
             items[nextSpot].SetActive(true);
-            items[nextSpot].GetComponent<Image>().sprite = itemSprite;
+            items[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
+            inventory[nextSpot] = collectable;
+            // collectable.SetActive(false);    // need this to only pick up object once
         }
 
     }
@@ -101,12 +109,6 @@ public class Selector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RemoveItemFromInventory(currentSlot);
-        }
-
-        //if B key is pressed, add a item to the inventory
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            AddItemToInventory(itemImage);
         }
 
         for (int i = 0; i < slots.Length; i++)
