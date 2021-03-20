@@ -5,16 +5,12 @@ using UnityEngine.UI;
 
 public class MeterControl : MonoBehaviour
 {
-    public bool metersEnabled = true;
-
-    public bool HasWaterStored;
-    // 12 with stored water, 3 without
-    private int StoredWaterTime = 12;
-
     public int totalTimeInHours;
     public float HourEquivalent = 1;
     public int poopTimeLeft;
     public int waterTimeLeft;
+
+    public bool isStrategicMap = false;
 
     public GameObject PoopTaskCheck;
     public GameObject WaterTaskCheck;
@@ -24,39 +20,18 @@ public class MeterControl : MonoBehaviour
 
     void Start()
     {
-        if (metersEnabled)
+        poopTimeLeft = GlobalControls.PoopTimeLeft;
+        waterTimeLeft = GlobalControls.WaterTimeLeft;
+        if (GlobalControls.MetersEnabled && !isStrategicMap)
         {
-            poopTimeLeft = GlobalControls.PoopTimeLeft - 1;
-            waterTimeLeft = GlobalControls.WaterTimeLeft - 1;
+            poopTimeLeft--;
+            waterTimeLeft--;
             GlobalControls.PoopTimeLeft = poopTimeLeft;
             GlobalControls.WaterTimeLeft = waterTimeLeft;
-            /*if (HasWaterStored)
-            {
-                waterTimeLeft = StoredWaterTime;
-            }*/
-            PoopTaskCheck.SetActive(GlobalControls.PoopTaskCompleted);
-            WaterTaskCheck.SetActive(GlobalControls.WaterTaskCompleted);
-            UpdateVisualText();
-            //StartCoroutine(nameof(MeterCountdown));
         }
-    }
-
-    //Method to run meters down using HourEquivalent variable to convert realtime "seconds" into playtime "hours"
-    private IEnumerator MeterCountdown(){
-        while (totalTimeInHours > 0)
-        {
-            yield return new WaitForSeconds(HourEquivalent);
-            if (!GlobalControls.PoopTaskCompleted && poopTimeLeft > 0)
-            {
-                poopTimeLeft--;
-            }
-            if (!GlobalControls.WaterTaskCompleted && waterTimeLeft > 0)
-            {
-                waterTimeLeft--;
-            }
-            totalTimeInHours--;
-            UpdateVisualText();
-        }
+        PoopTaskCheck.SetActive(GlobalControls.PoopTaskCompleted);
+        WaterTaskCheck.SetActive(GlobalControls.WaterTaskCompleted);
+        UpdateVisualText();
     }
 
     //Used to check off meter on canvas & reset meter
@@ -92,11 +67,5 @@ public class MeterControl : MonoBehaviour
         {
             CheckTaskAsDone("water");
         }
-
-
-
     }
-
-
-
 }
