@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // See https://www.youtube.com/watch?v=mbzXIOKZurA on grid movement
 
@@ -12,8 +13,9 @@ public class MovementRevised : MonoBehaviour
     public Transform movePoint;
     public bool moving;
     
-    static string[] collisionLayers = {"Wall"};
+    
     int layersToCollideWith;
+    int layersToCollideWithNPC;
     
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class MovementRevised : MonoBehaviour
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
-    
+
     ///Returns true if there is an obstacle in Horizontal Direction
     private bool ObstacleInDirectionOne(float x, float z)
     {
