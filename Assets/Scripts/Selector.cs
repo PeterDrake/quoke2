@@ -70,13 +70,13 @@ public class Selector : MonoBehaviour
         }
     }
 
-    // removes item at specific slotNumber by deactivating its image from 
+    // removes item at specific slotNumber and sets item one grid unit in front of the player
     void RemoveItemFromInventory(int slotNumber)
     {
         if (items[slotNumber].activeSelf)
         {
             inventory[slotNumber].SetActive(true);
-            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward * 2);
+            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
             inventory[slotNumber] = null;
             items[slotNumber].SetActive(false);  
 

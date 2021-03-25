@@ -291,9 +291,9 @@ GameObject:
   - component: {fileID: 68395194}
   - component: {fileID: 68395193}
   - component: {fileID: 68395192}
-  - component: {fileID: 68395191}
   - component: {fileID: 68395195}
   - component: {fileID: 68395196}
+  - component: {fileID: 68395191}
   m_Layer: 0
   m_Name: ItemPickupTest
   m_TagString: Untagged
@@ -301,8 +301,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &68395191
-CapsuleCollider:
+--- !u!65 &68395191
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -311,10 +311,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.9094243
-  m_Height: 14.378252
-  m_Direction: 1
-  m_Center: {x: 0.03277838, y: 0.000001844233, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0.00000005960465, y: -4.994273e-14, z: -0.00000008940696}
 --- !u!23 &68395192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -370,7 +369,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68395190}
   m_LocalRotation: {x: -0.25239968, y: -0.2523997, z: 0.6605259, w: 0.66052586}
-  m_LocalPosition: {x: 2.59, y: 0.26, z: 7.48}
+  m_LocalPosition: {x: 0, y: 0.5, z: 3}
   m_LocalScale: {x: 1, y: 0.1265, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -508,9 +507,9 @@ GameObject:
   - component: {fileID: 332706036}
   - component: {fileID: 332706035}
   - component: {fileID: 332706034}
-  - component: {fileID: 332706033}
   - component: {fileID: 332706032}
   - component: {fileID: 332706031}
+  - component: {fileID: 332706033}
   m_Layer: 0
   m_Name: ItemPickupTest (1)
   m_TagString: Untagged
@@ -547,8 +546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!136 &332706033
-CapsuleCollider:
+--- !u!65 &332706033
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -557,10 +556,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.9094243
-  m_Height: 14.378252
-  m_Direction: 1
-  m_Center: {x: 0.03277838, y: 0.000001844233, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0.00000005960465, y: -4.994273e-14, z: -0.00000008940696}
 --- !u!23 &332706034
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -616,7 +614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332706030}
   m_LocalRotation: {x: -0.25239968, y: -0.2523997, z: 0.6605259, w: 0.66052586}
-  m_LocalPosition: {x: -4.82, y: 0.26, z: 11.79}
+  m_LocalPosition: {x: 3, y: 0.5, z: 8}
   m_LocalScale: {x: 1, y: 0.1265, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -857,9 +855,9 @@ GameObject:
   - component: {fileID: 1868711039}
   - component: {fileID: 1868711038}
   - component: {fileID: 1868711037}
-  - component: {fileID: 1868711036}
   - component: {fileID: 1868711035}
   - component: {fileID: 1868711034}
+  - component: {fileID: 1868711036}
   m_Layer: 0
   m_Name: ItemPickupTest (2)
   m_TagString: Untagged
@@ -896,8 +894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!136 &1868711036
-CapsuleCollider:
+--- !u!65 &1868711036
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -906,10 +904,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.9094243
-  m_Height: 14.378252
-  m_Direction: 1
-  m_Center: {x: 0.03277838, y: 0.000001844233, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0.00000005960465, y: -4.994273e-14, z: -0.00000008940696}
 --- !u!23 &1868711037
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -965,7 +962,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868711033}
   m_LocalRotation: {x: -0.25239968, y: -0.2523997, z: 0.6605259, w: 0.66052586}
-  m_LocalPosition: {x: -5.38, y: 0.26, z: 4.71}
+  m_LocalPosition: {x: -5, y: 0.5, z: 5}
   m_LocalScale: {x: 1, y: 0.1265, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
