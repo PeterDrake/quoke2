@@ -17,14 +17,17 @@ public class Selector : MonoBehaviour
     private GameObject[] slots;
     private GameObject[] items;
     private GameObject player;
-    private KeyCode[] validInputs;
+    
+    // This would only allow for 10 inventory slots max
+    // If more than 10 slots are needed, add the KeyCodes you want associated with those slots to validInputs here
+    private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        // This would only allow for 10 inventory slots max
-        validInputs = new []{KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-        
+
         //Load sprites
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");

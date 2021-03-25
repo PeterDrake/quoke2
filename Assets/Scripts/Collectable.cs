@@ -11,7 +11,11 @@ public class Collectable : MonoBehaviour
 
     }
 
-    //REPLACE with OnTriggerEnter(Collider other) method to incorporate movement
+    /*
+     * The Collectable script should be attached to any object you want to be an inventory item.
+     * Both the player and the item must have a collider, and the item should also have a Rigidbody.
+     * Make sure to uncheck the "Use Gravity" box in the Rigidbody options or else the item will fall
+     */
 
     void OnTriggerEnter(Collider other)
     {
