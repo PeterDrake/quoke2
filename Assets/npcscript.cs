@@ -7,27 +7,35 @@ using UnityEngine.SceneManagement;
 
 public class npcscript : MonoBehaviour
 {
-    
+    /// <summary>
+    /// List of the Scenes 
+    /// </summary>
     private List<string> sceneHistory = new List<string>();  //running history of scenes
     //The last string in the list is always the current scene running
 
     
+    /// <summary>
+    /// Starts the Scene in ever Load and keeps the gameObject alive
+    /// </summary>
     void Start()
     {
         sceneHistory.Add(SceneManager.GetActiveScene().name);
         DontDestroyOnLoad(this.gameObject);  //Allow this object to persist between scene changes
+
     }
-    
-    
+
+    /// <On Collision with the gameObject we Load new Scene>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other )
     {
         if (other.gameObject.tag == "Player")
         {
-            LoadScene(SceneManager.GetActiveScene().name);
+            LoadScene("npcScreen");
         }
         
     }
 
+    /// Update brings back the previous scene when player presses the escape key
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -36,16 +44,18 @@ public class npcscript : MonoBehaviour
         }
     }
     
+    /// <We Loead newScene and add it to our sceneHistory>
+    /// <param name="newScene"></param>
     
     public void LoadScene(string newScene)
     {
         sceneHistory.Add(newScene);
-        SceneManager.LoadScene(newScene);
+        SceneManager.LoadScene(newScene,LoadSceneMode.Additive);
     }
  
-    //Call this whenever you want to load the previous scene
-    //It will remove the current scene from the history and then load the new last scene in the history
-    //It will return false if we have not moved between scenes enough to have stored a previous scene in the history
+    ///Call this whenever you want to load the previous scene
+    ///It will remove the current scene from the history and then load the new last scene in the history
+    ///It will return false if we have not moved between scenes enough to have stored a previous scene in the history
     public bool PreviousScene()
     {
         bool returnValue = false;
@@ -53,9 +63,8 @@ public class npcscript : MonoBehaviour
         {
             returnValue = true;
             sceneHistory.RemoveAt(sceneHistory.Count -1);
-            SceneManager.LoadScene(sceneHistory[sceneHistory.Count -1]);
+            SceneManager.UnloadSceneAsync("npcScreen");  // Reloads the game where the player entered the new Scene
         }
- 
         return returnValue;
     }
 }
