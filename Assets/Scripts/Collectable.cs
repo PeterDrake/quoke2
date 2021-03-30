@@ -11,13 +11,27 @@ public class Collectable : MonoBehaviour
 
     }
 
-    //REPLACE with OnTriggerEnter(Collider other) method to incorporate movement
+    /*
+     * The Collectable script should be attached to any game object you want to be an inventory item.
+     * Both the player and the item must have a collider, and the item should also have a Rigidbody.
+     * The collider on the item must have the "Is Trigger" box checked.
+     * A very small (0.1 for all sizes) box collider on the item worked best in testing.
+     * Make sure to uncheck the "Use Gravity" box in the Rigidbody options or else the item will fall!
+     * Finally, make sure items are aligned with the grid properly when you place the game object
+     */
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("OnTriggerEnter is called");
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Ran into item");
+            GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
+    }
     void Update()
     {
-        //if B key is pressed, add a item to the inventory
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
-        }
+        
     }
 }
