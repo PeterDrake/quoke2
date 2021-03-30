@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
-// TODO: We should add feature that stops the game while we are in NPC Screen!!!
+// https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
+// TODO: We should add feature that freezes the background of the game while we are in NPC Screen!!!
+/// An Idea: https://answers.unity.com/questions/249886/time-freeze-pause-game.html
+/// https://answers.unity.com/questions/594607/enabledisable-script-on-different-gameobject.html
 
 public class npcscript : MonoBehaviour
 {
@@ -69,5 +71,8 @@ public class npcscript : MonoBehaviour
         }
         return returnValue;
     }
+    
+    
+    
 
 }
