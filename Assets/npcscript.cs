@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+//https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
+// TODO: We should add feature that stops the game while we are in NPC Screen!!!
 
 public class npcscript : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class npcscript : MonoBehaviour
 
     }
 
-    /// <On Collision with the gameObject we Load new Scene>
+    /// On Collision with the gameObject we Load new Scene
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other )
     {
@@ -32,7 +33,7 @@ public class npcscript : MonoBehaviour
         {
             LoadScene("npcScreen");
         }
-        
+       
     }
 
     /// Update brings back the previous scene when player presses the escape key
@@ -44,7 +45,8 @@ public class npcscript : MonoBehaviour
         }
     }
     
-    /// <We Loead newScene and add it to our sceneHistory>
+    
+    /// Load newScene and add it to sceneHistory
     /// <param name="newScene"></param>
     
     public void LoadScene(string newScene)
@@ -67,4 +69,5 @@ public class npcscript : MonoBehaviour
         }
         return returnValue;
     }
+
 }
