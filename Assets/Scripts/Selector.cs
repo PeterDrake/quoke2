@@ -10,11 +10,16 @@ using Image = UnityEngine.UI.Image;
 public class Selector : MonoBehaviour
 {
     public int currentSlot;
+    
+    // inventory holds the actual gameObjects which represent items in the world, that can be picked up and set down
     public GameObject[] inventory;
 
     private Sprite unselectedSprite;
     private Sprite selectedSprite;
     private GameObject[] slots;
+    // items represents an array of empty game objects, one attached to each slot.
+    // An item gameObject is set to active if that slot is full, and inactive if it is empty.
+    // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
     private GameObject[] items;
     private GameObject player;
     
@@ -32,11 +37,11 @@ public class Selector : MonoBehaviour
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
         
-        //locate GameObjecs with "slots" tag.
+        //locate GameObjects with "slots" tag.
         slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
 
-        //locate Gameobjects with "InventoryItems" tag 
+        //locate GameObjects with "SlotItems" tag 
         items = GameObject.FindGameObjectsWithTag("SlotItems");
 
         //starts the game with an empty inventory
@@ -112,12 +117,13 @@ public class Selector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If spacebar is pressed, empty selected slot
+        //If spacebar is pressed, run RemoveItemFromInventory on currently selected slot
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RemoveItemFromInventory(currentSlot);
         }
-
+        
+        // If the user presses a key that is one of the valid inputs for slot selection, select that slot
         for (int i = 0; i < slots.Length; i++)
         {
             if (Input.GetKey(validInputs[i]))
