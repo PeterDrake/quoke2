@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<convoForest>
+	
+
+	<demetrius>
+		<dem0>
+			<!--playerText string array-->
+			<playerOptions>
+				<option>Im saying this</option>
+				<option>you said what</option>
+				<option>Yes</option>
+			</playerOptions>
+
+			<!--npcText string-->
+			<npcText> StoP! youve violated the law</npcText>
+		</dem0>
+
+		<dem1>
+			blah
+			blah
+			just words
+			
+		</dem1>
+
+
+	</demetrius>
+
+
+	<fred>
+		<node>
+			<!--playerText string array-->
+			<playerOptions>
+				<option>Im saying this</option>
+				<option>you said what</option>
+				<option>Yes</option>
+			</playerOptions>
+
+			<!--npcText string-->
+			<npcText> StoP! youve violated the law</npcText>
+		</node>
+
+		<node>
+			blah
+			blah
+			just words
+			
+		</node>
+	</fred>
+
+
+
+</convoForest>
