@@ -37,13 +37,23 @@ public class npcscript : MonoBehaviour
         }
        
     }
-
+ 
     /// Update brings back the previous scene when player presses the escape key
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
             PreviousScene();
+        }
+        
+        // The code I worked outside of class!!! 
+        if (sceneHistory.Count < 2)
+        {
+            GameObject.Find("Player").GetComponent<MovementRevised>().enabled = true;   
+        }
+        else
+        {
+            GameObject.Find("Player").GetComponent<MovementRevised>().enabled = false;
         }
     }
     
