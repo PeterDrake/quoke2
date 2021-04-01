@@ -17,16 +17,16 @@ public class NPCScreenInteractor : MonoBehaviour
     public string[] npcArray;
     public Button[] buttons;
     public GameObject npcText;
-    //private XmlDocument convoFile = new XmlDocument();
+    private XmlDocument convoFile = new XmlDocument();
     
     
     
         // Start is called before the first frame update
         private void Start()
         {
-            //convoFile.Load(@"Assets/Resources/TestTree.txt");
-            //XmlNode root = convoFile.FirstChild;
-            //XmlNode convoNode = root.FirstChild;
+            convoFile.Load(@"Assets/Resources/TestTree.txt");
+            XmlNode root = convoFile.FirstChild;
+            XmlNode convoNode = root.FirstChild;
             npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
             textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
             buttons = new[] {button1, button2, button3};
