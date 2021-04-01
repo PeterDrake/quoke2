@@ -16,11 +16,11 @@ public class Selector : MonoBehaviour
 
     private Sprite unselectedSprite;
     private Sprite selectedSprite;
-    private GameObject[] slots;
+    public GameObject[] slots;
     // items represents an array of empty game objects, one attached to each slot.
     // An item gameObject is set to active if that slot is full, and inactive if it is empty.
     // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
-    private GameObject[] items;
+    public GameObject[] items;
     private GameObject player;
     
     // This would only allow for 10 inventory slots max
@@ -38,11 +38,11 @@ public class Selector : MonoBehaviour
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
         
         //locate GameObjects with "slots" tag.
-        slots = GameObject.FindGameObjectsWithTag("Slots");
+        //slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
 
         //locate GameObjects with "SlotItems" tag 
-        items = GameObject.FindGameObjectsWithTag("SlotItems");
+        //items = GameObject.FindGameObjectsWithTag("SlotItems");
 
         //starts the game with an empty inventory
         inventory = new GameObject[slots.Length];
