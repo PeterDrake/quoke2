@@ -16,6 +16,10 @@ public class Selector : MonoBehaviour
 
     private Sprite unselectedSprite;
     private Sprite selectedSprite;
+    
+    // The arrays for slots and items are public, and the objects must be manually associated in the Unity editor.
+    // Select the Selector object and look under the script component to see the arrays.
+    // Set the size of both arrays to the number of slots, then select the appropriate GameObjects in the right order.
     public GameObject[] slots;
     // items represents an array of empty game objects, one attached to each slot.
     // An item gameObject is set to active if that slot is full, and inactive if it is empty.
@@ -37,12 +41,7 @@ public class Selector : MonoBehaviour
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
         
-        //locate GameObjects with "slots" tag.
-        //slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
-
-        //locate GameObjects with "SlotItems" tag 
-        //items = GameObject.FindGameObjectsWithTag("SlotItems");
 
         //starts the game with an empty inventory
         inventory = new GameObject[slots.Length];
