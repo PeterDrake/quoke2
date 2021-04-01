@@ -39,6 +39,7 @@ public class npcscript : MonoBehaviour
     }
  
     /// Update brings back the previous scene when player presses the escape key
+    /// Freezes the background if the player enters NPC screen
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -46,7 +47,6 @@ public class npcscript : MonoBehaviour
             PreviousScene();
         }
         
-        // The code I worked outside of class!!! 
         if (sceneHistory.Count < 2)
         {
             GameObject.Find("Player").GetComponent<MovementRevised>().enabled = true;   
