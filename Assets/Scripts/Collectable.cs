@@ -27,7 +27,6 @@ public class Collectable : MonoBehaviour
         {
             Debug.Log("Ran into item");
             GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
-            this.gameObject.SetActive(false);
         }
     }
     void Update()

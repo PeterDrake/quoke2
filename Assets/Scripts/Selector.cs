@@ -96,6 +96,7 @@ public class Selector : MonoBehaviour
             items[nextSpot].SetActive(true);
             items[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
             inventory[nextSpot] = collectable;
+            collectable.SetActive(false);
             // collectable.SetActive(false);    // need this to only pick up object once
         }
 
