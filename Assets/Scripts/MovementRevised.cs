@@ -15,12 +15,11 @@ public class MovementRevised : MonoBehaviour
     
     
     int layersToCollideWith;
-    int layersToCollideWithNPC;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        layersToCollideWith = LayerMask.GetMask("Wall");
+        layersToCollideWith = LayerMask.GetMask("Wall", "NPC");
         Debug.Log("Mask: " + layersToCollideWith);
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
