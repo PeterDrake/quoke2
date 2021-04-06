@@ -26,6 +26,8 @@ public class Selector : MonoBehaviour
     // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
     public GameObject[] items;
     private GameObject player;
+
+    private int invalidItemSpaces;
     
     // This would only allow for 10 inventory slots max
     // If more than 10 slots are needed, add the KeyCodes you want associated with those slots to validInputs here
@@ -54,6 +56,8 @@ public class Selector : MonoBehaviour
         currentSlot = 0;
 
         player = GameObject.FindWithTag("Player");
+
+        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC");
     }
 
     // changes slot background of specific slotNumber to selected sprite 
@@ -77,14 +81,18 @@ public class Selector : MonoBehaviour
     // removes item at specific slotNumber and sets item one grid unit in front of the player
     void RemoveItemFromInventory(int slotNumber)
     {
-        if (items[slotNumber].activeSelf)
+        if (!Physics.Raycast(player.transform.position, player.transform.forward, 1f, invalidItemSpaces))
         {
-            inventory[slotNumber].SetActive(true);
-            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
-            inventory[slotNumber] = null;
-            items[slotNumber].SetActive(false);  
+            if (items[slotNumber].activeSelf)
+            {
+                inventory[slotNumber].SetActive(true);
+                inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
+                inventory[slotNumber] = null;
+                items[slotNumber].SetActive(false);  
 
+            }
         }
+        
     }
 
     // finds next empty spot and if there is changes sprite to that item's sprite
