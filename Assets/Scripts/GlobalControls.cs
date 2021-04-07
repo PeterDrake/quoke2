@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class GlobalControls
 {
+    private static int noStoredWaterTime = 3;
     /* poopTimeLeft and waterTimeLeft should be set to initial values after the quake,
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
@@ -14,7 +15,7 @@ public static class GlobalControls
     private static bool poopTaskCompleted = false;
     private static bool waterTaskCompleted = false;
 
-    private static int noStoredWaterTime = 3;
+    
 
     public static bool MetersEnabled
     {
