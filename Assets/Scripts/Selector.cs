@@ -81,6 +81,7 @@ public class Selector : MonoBehaviour
     // removes item at specific slotNumber and sets item one grid unit in front of the player
     void RemoveItemFromInventory(int slotNumber)
     {
+        // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
         if (!Physics.Raycast(player.transform.position, player.transform.forward, 1f, invalidItemSpaces))
         {
             if (items[slotNumber].activeSelf)
@@ -105,7 +106,6 @@ public class Selector : MonoBehaviour
             items[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
             inventory[nextSpot] = collectable;
             collectable.SetActive(false);
-            // collectable.SetActive(false);    // need this to only pick up object once
         }
 
     }
