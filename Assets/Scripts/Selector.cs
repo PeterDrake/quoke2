@@ -16,12 +16,18 @@ public class Selector : MonoBehaviour
 
     private Sprite unselectedSprite;
     private Sprite selectedSprite;
-    private GameObject[] slots;
+    
+    // The arrays for slots and items are public, and the objects must be manually associated in the Unity editor.
+    // Select the Selector object and look under the script component to see the arrays.
+    // Set the size of both arrays to the number of slots, then select the appropriate GameObjects in the right order.
+    public GameObject[] slots;
     // items represents an array of empty game objects, one attached to each slot.
     // An item gameObject is set to active if that slot is full, and inactive if it is empty.
     // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
-    private GameObject[] items;
+    public GameObject[] items;
     private GameObject player;
+
+    private int invalidItemSpaces;
     
     // This would only allow for 10 inventory slots max
     // If more than 10 slots are needed, add the KeyCodes you want associated with those slots to validInputs here
@@ -37,12 +43,7 @@ public class Selector : MonoBehaviour
         selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
         unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
         
-        //locate GameObjects with "slots" tag.
-        slots = GameObject.FindGameObjectsWithTag("Slots");
         slots[0].GetComponent<Image>().sprite = selectedSprite;
-
-        //locate GameObjects with "SlotItems" tag 
-        items = GameObject.FindGameObjectsWithTag("SlotItems");
 
         //starts the game with an empty inventory
         inventory = new GameObject[slots.Length];
@@ -55,6 +56,8 @@ public class Selector : MonoBehaviour
         currentSlot = 0;
 
         player = GameObject.FindWithTag("Player");
+
+        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC");
     }
 
     // changes slot background of specific slotNumber to selected sprite 
@@ -78,14 +81,19 @@ public class Selector : MonoBehaviour
     // removes item at specific slotNumber and sets item one grid unit in front of the player
     void RemoveItemFromInventory(int slotNumber)
     {
-        if (items[slotNumber].activeSelf)
+        // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
+        if (!Physics.Raycast(player.transform.position, player.transform.forward, 1f, invalidItemSpaces))
         {
-            inventory[slotNumber].SetActive(true);
-            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
-            inventory[slotNumber] = null;
-            items[slotNumber].SetActive(false);  
+            if (items[slotNumber].activeSelf)
+            {
+                inventory[slotNumber].SetActive(true);
+                inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
+                inventory[slotNumber] = null;
+                items[slotNumber].SetActive(false);  
 
+            }
         }
+        
     }
 
     // finds next empty spot and if there is changes sprite to that item's sprite
@@ -97,7 +105,7 @@ public class Selector : MonoBehaviour
             items[nextSpot].SetActive(true);
             items[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
             inventory[nextSpot] = collectable;
-            // collectable.SetActive(false);    // need this to only pick up object once
+            collectable.SetActive(false);
         }
 
     }
