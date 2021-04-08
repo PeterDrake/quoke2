@@ -5,6 +5,8 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Linq;
+using Object = System.Object;
 
 public class NPCScreenInteractor : MonoBehaviour
 {
@@ -24,14 +26,34 @@ public class NPCScreenInteractor : MonoBehaviour
         // Start is called before the first frame update
         private void Start()
         {
-            convoFile.Load(@"Assets/Resources/TestTree.txt");
-            XmlNode root = convoFile.FirstChild;
-            XmlNode convoNode = root.FirstChild;
+
+            convoFile.Load("Assets/Resources/TestTree.txt");
+            
+            var file = new Dictionary<string, convoNode>();
+            foreach (XmlNode node in convoFile.LastChild)
+            {
+                foreach (XmlNode nodeSection in node)
+                {
+                    file.Add(nodeSection.Value, new convoNode(nodeSection));
+                    Debug.Log(node.Value);
+                }
+
+            }
+            
+           
+            
+            
             npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
             textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
             buttons = new[] {button1, button2, button3};
         }
 
+/*
+        private void Awake()
+        {
+            throw new NotImplementedException();
+        }
+*/
         void Update()
     {
         
