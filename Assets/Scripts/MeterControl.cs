@@ -24,10 +24,16 @@ public class MeterControl : MonoBehaviour
         waterTimeLeft = GlobalControls.WaterTimeLeft;
         if (GlobalControls.MetersEnabled && !isStrategicMap)
         {
-            poopTimeLeft--;
-            waterTimeLeft--;
-            GlobalControls.PoopTimeLeft = poopTimeLeft;
-            GlobalControls.WaterTimeLeft = waterTimeLeft;
+            if (!GlobalControls.PoopTaskCompleted)
+            {
+                poopTimeLeft--;
+                GlobalControls.PoopTimeLeft = poopTimeLeft;
+            }
+            if (!GlobalControls.WaterTaskCompleted)
+            {
+                waterTimeLeft--;
+                GlobalControls.WaterTimeLeft = waterTimeLeft;
+            }
         }
         PoopTaskCheck.SetActive(GlobalControls.PoopTaskCompleted);
         WaterTaskCheck.SetActive(GlobalControls.WaterTaskCompleted);
