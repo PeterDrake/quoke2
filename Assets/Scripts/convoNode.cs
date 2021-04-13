@@ -5,36 +5,49 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-
+using System.Linq;
+using Object = System.Object;
 
 public class convoNode
 {
     public convoNode(XmlNode xml)
     {
-        foreach (XmlNode sectionInfo in xml)
+        IEnumerator sectionInfoEnumerator = xml.GetEnumerator();
+        sectionInfoEnumerator.MoveNext();
+        
+        
+        XmlElement playerArrayElement = (XmlElement) sectionInfoEnumerator.Current;
+        IEnumerator playerOptionsEnumerator = playerArrayElement.GetEnumerator();
+        playerArray = new List<string>();
+        while (playerOptionsEnumerator.MoveNext())
         {
-            if (sectionInfo.Value != null)
-            {
-                npcText = sectionInfo.Value;
-            }
-
-            playerArray = new List<string>();
-            
-            foreach (XmlNode playerOptions in sectionInfo.FirstChild)
-            {
-                playerArray.Add(playerOptions.Value);
-
-            }
-            nextNode = new List<string>();
-            foreach (XmlNode playerOptions in sectionInfo.LastChild)
-            {
-                nextNode.Add(playerOptions.Value);
-
-            }
-            //file.Add(tree.Name, tree.Value);
+           XmlElement playerOptionsElement = (XmlElement) playerOptionsEnumerator.Current;
+           playerArray.Add(playerOptionsElement.InnerXml);
         }
         
+        sectionInfoEnumerator.MoveNext();
+
+        XmlElement keyArrayElement = (XmlElement) sectionInfoEnumerator.Current;
+        IEnumerator keyOptionsEnumerator = keyArrayElement.GetEnumerator();
+        nextNode = new List<string>();
+        while (keyOptionsEnumerator.MoveNext())
+        {
+            XmlElement keyOptionsElement = (XmlElement) keyOptionsEnumerator.Current;
+            nextNode.Add(keyOptionsElement.InnerXml);
+        }
+
+        sectionInfoEnumerator.MoveNext();
+
+        XmlElement npcElement = (XmlElement) sectionInfoEnumerator.Current;
+
+        npcText = npcElement.InnerXml;
+
+
+
+
     }
+    
+    
     //array of what player can say here
     public List<string> playerArray;
     //array of next nodes based on what player says
