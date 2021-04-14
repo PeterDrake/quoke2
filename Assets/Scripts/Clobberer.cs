@@ -5,8 +5,10 @@
 /// </summary>
 public class Clobberer : MonoBehaviour
 {
+    // whether a clobberer is able to kill a player or not with a normal death message
     public new bool enabled;
-    public new bool aftershock;
+    // whether a clobberer is able to kill a player with the aftershock death message
+    public bool aftershock;
 
     private void OnCollisionEnter(Collision other)
     {

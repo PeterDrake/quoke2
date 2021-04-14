@@ -5,11 +5,6 @@ using UnityEngine.Events;
 using Cinemachine;
 using Random = UnityEngine.Random;
 
-/// <summary>
-/// Handles the earthquake, falling object calls, effects, information, etc.
-/// 
-/// This script was copied from the first quake game.
-/// </summary>
 public class QuakeManager : MonoBehaviour
 {
     public static QuakeManager Instance;
@@ -23,9 +18,9 @@ public class QuakeManager : MonoBehaviour
     public CinemachineVirtualCamera VirtualCamera;
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
 
-    public float ShakeDuration;
-    public float ShakeAmplitude;
-    public float ShakeFrequency;
+    public float ShakeDuration = 1f;
+    public float ShakeAmplitude = 5f;
+    public float ShakeFrequency = 5f;
 
     private float ShakeElapsedTime = 0f;
 
@@ -63,6 +58,11 @@ public class QuakeManager : MonoBehaviour
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
     //[TextArea] [SerializeField] private string textAfterQuake;
+
+
+    // scripts can 'subscribe' to this Event to have their functions called when the earthquake begins
+    // so, when implemented, we will subscribe sound/other effects to this event
+    public UnityEvent OnQuake;
 
 
     private void Awake()
@@ -220,6 +220,8 @@ public class QuakeManager : MonoBehaviour
         quakeStartTurn = currentTurn;
         firstQuakeCompleted = true;
 
+        OnQuake.Invoke(); // every function subscribed to OnQuake is called here
+
         //_informationCanvas.ChangeText(textOnQuake);
 
         StartCoroutine(ShakeIt());
@@ -237,6 +239,11 @@ public class QuakeManager : MonoBehaviour
 
         StopCoroutine(nameof(ShakeIt));
         underCoverTurn = currentTurn;
+
+        foreach (Clobberer c in clobberers)
+        {
+            c.enabled = false;
+        }
 
         //_informationCanvas.ChangeText(textAfterQuake);
         //Systems.Objectives.Satisfy("SURVIVEQUAKE");

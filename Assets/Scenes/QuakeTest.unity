@@ -1401,6 +1401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1346464608}
+  - component: {fileID: 1346464609}
   - component: {fileID: 1346464607}
   m_Layer: 0
   m_Name: QuakeManager
@@ -1445,6 +1446,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1346464609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346464606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: 'Handles the earthquake and camera shake effect.
+
+    The QuakeManager
+    script was adapted from the QuakeManager script from the first quake game.'
 --- !u!1 &1353063841
 GameObject:
   m_ObjectHideFlags: 0
