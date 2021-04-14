@@ -20,13 +20,7 @@ public class QuakeManager : MonoBehaviour
     [Space]
     [Space]
 
-    [Tooltip("How long after starting before the earthquake goes off?")]
-    [SerializeField] private float TimeBeforeQuake = 15f;
 
-    [Tooltip("How long after the first quake before aftershock?")]
-    [SerializeField] private float AftershockTime = 10f;
-
-    //----Camera Shake Options---
     [Header("Camera Shake Options")]
     // Cinemachine Shake
     public CinemachineVirtualCamera VirtualCamera;
@@ -43,40 +37,45 @@ public class QuakeManager : MonoBehaviour
     public bool _leaveSatisfied;
 
     public string leaveHouse = "LEAVEHOUSE";
-    //--------------------
 
 
-    [TextArea] [SerializeField] private string textOnQuake;
-    [TextArea] [SerializeField] private string textAfterQuake;
-
-    // Game object which will be disabled after quake
-    [SerializeField] private GameObject enableDoors;
-
-    [SerializeField] private GameObject frontDoor;
-    //added 49
-    [SerializeField] private GameObject backDoor;
-    //added 51
-    [SerializeField] private GameObject bedroomDoor;
-
+    // door shaking objects
     private GameObject[] doors;
     private Rigidbody[] bodies;
     private Clobberer[] clobberers;
+    
 
-    [HideInInspector] public bool Quaking;
+    private bool quaking;
 
     public byte quakes; //times quaked 
-
-    private bool _inQuakeZone; // is player in a zone where the quake can happen?
-    public bool _inSafeZone; // is the player safe (under the table)?
-
-    private bool _countdownFinished;
-    private float entranceGracePeriod = 2f;
-    private float _timeTillQuake;
 
     [SerializeField] private float _minimumShakes = 1;
     private bool quakeOverride;
 
     //private InformationCanvas _informationCanvas;
+    //[TextArea] [SerializeField] private string textOnQuake;
+    //[TextArea] [SerializeField] private string textAfterQuake;
+
+    public int currentTurn = 0;
+
+    [Tooltip("How many moves can the player make before the earthquake goes off?")]
+    public int turnsTillQuakeStart = 5;
+    private int initialTurn;
+    private int quakeStartTurn;
+    private bool isQuakeTime = false;
+    private bool firstQuakeCompleted = false;
+
+    [Tooltip("How many moves can the player make during the earthquake before they die?")]
+    public int turnsTillDeath = 5;
+    private int underCoverTurn;
+    public float secondsUnderCover = 5f;
+    private bool isUnderCover = false;
+
+    [Tooltip("How many moves can the player make after the earthquake before they die?")]
+    public int turnsTillAftershock = 5;
+    private int exitHouseTurn;
+    private bool exitedHouse = false;
+    private bool isAftershockTime = false;
 
     private void Awake()
     {
@@ -88,7 +87,7 @@ public class QuakeManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(QuakeCountdown), TimeBeforeQuake);
+        StartCoroutine(nameof(TurnCounter), 0);
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
@@ -96,35 +95,59 @@ public class QuakeManager : MonoBehaviour
 
         //_informationCanvas = GameObject.Find("MiniGameClose").transform.Find("GUI").GetComponent<GuiDisplayer>().GetBanner();
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+
+        initialTurn = currentTurn;
     }
 
     void Update()
     {
-        if ((_countdownFinished && !Quaking && (quakeOverride || _inQuakeZone)) || (adminMode && Input.GetKeyDown("p")))
+        if (!isQuakeTime && !firstQuakeCompleted)
+        {
+            CheckForQuakeStart();
+        } 
+        else if (quaking)
+        {
+            if (!isUnderCover)
+            {
+                CheckForQuakeDeath();
+                CheckForUnderCover();
+            }
+        } 
+        else if (!quaking && !exitedHouse)
+        {
+            CheckForAftershockStart();
+        }
+
+        //if ((_countdownFinished && !Quaking && (quakeOverride || _inQuakeZone)) || (adminMode && Input.GetKeyDown("p")))
+        if ((isQuakeTime && !quaking) || (adminMode && Input.GetKeyDown("p")))
         {
             TriggerQuake();
         }
     }
 
-    // Starts a countdown of 'time' seconds. When the countdown finishes, the earthquake will happen
-    public void TriggerCountdown(float time)
+    // purely for test purposes until turn counting in player movement is implemented
+    private IEnumerator TurnCounter(int startingTurn)
     {
-        _countdownFinished = false;
-        StopCoroutine(nameof(QuakeCountdown));
-        StartCoroutine(nameof(QuakeCountdown), time);
-    }
-
-    // the actual countdown
-    private IEnumerator QuakeCountdown(float CountdownTime)
-    {
-        _timeTillQuake = CountdownTime;
-        while (_timeTillQuake > 0)
+        currentTurn = startingTurn;
+        while (currentTurn >= 0)
         {
             yield return new WaitForSeconds(1f);
-            _timeTillQuake--;
-            if (showCountdown) Debug.Log("Time Till Quake: " + _timeTillQuake);
+            currentTurn++;
+            if (showCountdown) Debug.Log("Turn: " + currentTurn);
         }
-        _countdownFinished = true;
+    }
+
+    private IEnumerator UnderCoverCountdown(float CountdownTime)
+    {
+        float timeLeftInCover = CountdownTime;
+        while (timeLeftInCover > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            timeLeftInCover--;
+            if (showCountdown) Debug.Log("Time Left In Cover: " + timeLeftInCover);
+        }
+
+        StopQuake();
     }
 
     // flaps each of the doors for the given duration
@@ -158,41 +181,58 @@ public class QuakeManager : MonoBehaviour
             ShakeCamera(ShakeDuration, ShakeAmplitude, ShakeFrequency);
             StartCoroutine(FlapDoors(ShakeDuration));
             yield return new WaitForSeconds(ShakeDuration);
-            // if the player is in the safezone, and the earthquake has gone long enough, stop it 
-            if (_inSafeZone && shakes >= _minimumShakes)
-            {
-                break;
-            }
 
             shakes++;
         }
-
-        StopQuake();
-
-        frontDoor.GetComponent<Clobberer>().enabled = false;
-        //added 189
-        backDoor.GetComponent<Clobberer>().enabled = false;
-        //added 193
-        bedroomDoor.GetComponent<Clobberer>().enabled = false;
-        bedroomDoor.GetComponent<Clobberer>().aftershock = true;
 
         //_informationCanvas.ChangeText(textAfterQuake);
         //Systems.Objectives.Satisfy("SURVIVEQUAKE");
         //Systems.Objectives.Register(QuakeManager.Instance.leaveHouse, () => _leaveSatisfied = true);
 
-        enableDoors.SetActive(false); // allow player to exit house
-        
+        //enableDoors.SetActive(false); // allow player to exit house
+
         quakes++;
+    }
+
+    public void CheckForQuakeStart()
+    {
+        if (currentTurn >= initialTurn + turnsTillQuakeStart)
+        {
+            isQuakeTime = true;
+        }
+    }
+
+    public void CheckForUnderCover()
+    {
+        //TODO add cover implementation
+        isUnderCover = true;
+        StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
+    }
+
+    public void CheckForQuakeDeath()
+    {
+        if (currentTurn >= quakeStartTurn + turnsTillDeath)
+        {
+            //TODO
+        }
+    }
+
+    public void CheckForAftershockStart()
+    {
+        if (currentTurn >= underCoverTurn + turnsTillAftershock)
+        {
+            isAftershockTime = true;
+        }
     }
 
     public void TriggerQuake()
     {
-        if (Quaking) return;
+        if (quaking) return;
 
-        Quaking = true;
+        quaking = true;
 
-        StopCoroutine(nameof(QuakeCountdown));
-        StopCoroutine(nameof(AftershockTime));
+        quakeStartTurn = currentTurn;
+        firstQuakeCompleted = true;
 
         //_informationCanvas.ChangeText(textOnQuake);
 
@@ -201,42 +241,16 @@ public class QuakeManager : MonoBehaviour
 
     public void StopQuake()
     {
-        if (!Quaking || quakes > 0) return;
+        if (!quaking || quakes > 0) return;
 
         virtualCameraNoise.m_AmplitudeGain = 0f;
         ShakeElapsedTime = 0f;
 
-        Quaking = false;
+        isQuakeTime = false;
+        quaking = false;
 
-        TriggerCountdown(AftershockTime);
-    }
-
-    public void InSafeZone(bool status)
-    {
-        _inSafeZone = status;
-    }
-
-    public void PlayerInQuakeZone(bool status)
-    {
-
-        Debug.Log("Grace Period" + entranceGracePeriod);
-        if (quakes > 0 && status == false)
-        {
-            TriggerCountdown(entranceGracePeriod);
-        }
-        if (status && (_countdownFinished || _timeTillQuake < entranceGracePeriod) && (_inQuakeZone != status))
-            TriggerCountdown(entranceGracePeriod);
-
-        _inQuakeZone = status;
-    }
-
-    public void ManualTriggerAftershock(float gracePeroid)
-    {
-        if (quakes > 0)
-        {
-            quakeOverride = true;
-            TriggerCountdown(gracePeroid);
-        }
+        StopCoroutine(nameof(ShakeIt));
+        underCoverTurn = currentTurn;
     }
 
     public void ShakeCamera(float duration, float amplitude, float frequency)
