@@ -272,7 +272,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0.5}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.5, z: 0.5}
+  m_ConnectedAnchor: {x: 0, y: -0.4, z: 0.5}
   m_UseSpring: 1
   m_Spring:
     spring: 10
@@ -1423,20 +1423,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adminMode: 1
   showCountdown: 1
-  TimeBeforeQuake: 300
-  AftershockTime: 100
   VirtualCamera: {fileID: 2033525790}
-  ShakeDuration: 10
+  ShakeDuration: 1
   ShakeAmplitude: 5
   ShakeFrequency: 5
-  _leaveSatisfied: 0
-  leaveHouse: LEAVEHOUSE
-  textOnQuake: 
-  textAfterQuake: 
-  Quaking: 0
-  quakes: 0
-  _inSafeZone: 0
-  _minimumShakes: 1
+  turnsTillQuakeStart: 5
+  turnsTillDeath: 5
+  secondsUnderCover: 5
+  turnsTillAftershock: 5
 --- !u!4 &1346464608
 Transform:
   m_ObjectHideFlags: 0
