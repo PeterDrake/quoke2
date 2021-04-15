@@ -9,6 +9,8 @@ public class QuakeManager : MonoBehaviour
 {
     public static QuakeManager Instance;
 
+    public QuakeSafeZoneManager quakeSafeZoneManager;
+
     [Header("Admin Tools")]
     [SerializeField] private bool adminMode = true;
     [SerializeField] private bool showCountdown = true;
@@ -110,10 +112,15 @@ public class QuakeManager : MonoBehaviour
             {
                 StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
                 hasBeenUnderCover = true;
+                // unlock all the doors so the player can get out
+                foreach (Clobberer c in clobberers)
+                {
+                    c.locked = false;
+                }
             }
         } 
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
-        else if (!quaking && !exitedHouse && !isAftershockTime)
+        else if (!quaking && !quakeSafeZoneManager.playerInSafeZone && !isAftershockTime)
         {
             CheckForAftershockStart();
         }
@@ -206,6 +213,8 @@ public class QuakeManager : MonoBehaviour
         {
             isAftershockTime = true;
             Debug.Log("Aftershock!");
+            //TODO kill player
+            Debug.Log("You were killed in an aftershock!");
         }
     }
 

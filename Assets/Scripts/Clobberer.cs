@@ -9,6 +9,14 @@ public class Clobberer : MonoBehaviour
     public new bool enabled;
     // whether a clobberer is able to kill a player with the aftershock death message
     public bool aftershock;
+    public bool locked;
+
+    public GameObject doorLock;
+
+    private void Update()
+    {
+        doorLock.GetComponent<BoxCollider>().enabled = locked;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
