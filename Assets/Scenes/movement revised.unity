@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1167,9 +1167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d67f641c4242c9befea9106caca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHead: {fileID: 2123840302}
   moveSpeed: 5
   movePoint: {fileID: 122677955}
   moving: 0
+  crouching: 0
+  isUnderTable: 0
 --- !u!1 &1621849456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3752473254860711293, guid: 16fac13f3301cd34eba1b1eba5d06af0,
