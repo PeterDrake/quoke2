@@ -13,10 +13,10 @@ public class convoNode
     public convoNode(XmlNode xml)
     {
         IEnumerator sectionInfoEnumerator = xml.GetEnumerator();
+        
         sectionInfoEnumerator.MoveNext();
-        
-        
-        XmlElement playerArrayElement = (XmlElement) sectionInfoEnumerator.Current;
+
+        XmlElement playerArrayElement = (XmlElement) sectionInfoEnumerator.Current; //this block of code will put the text options for the player into appropriate nodes
         IEnumerator playerOptionsEnumerator = playerArrayElement.GetEnumerator();
         playerArray = new List<string>();
         while (playerOptionsEnumerator.MoveNext())
@@ -27,7 +27,7 @@ public class convoNode
         
         sectionInfoEnumerator.MoveNext();
 
-        XmlElement keyArrayElement = (XmlElement) sectionInfoEnumerator.Current;
+        XmlElement keyArrayElement = (XmlElement) sectionInfoEnumerator.Current; //This block of code will put the node keys into the appropriate nodes
         IEnumerator keyOptionsEnumerator = keyArrayElement.GetEnumerator();
         nextNode = new List<string>();
         while (keyOptionsEnumerator.MoveNext())
@@ -38,7 +38,7 @@ public class convoNode
 
         sectionInfoEnumerator.MoveNext();
 
-        XmlElement npcElement = (XmlElement) sectionInfoEnumerator.Current;
+        XmlElement npcElement = (XmlElement) sectionInfoEnumerator.Current; // these two lines will attach the appropriate npc text to the corresponding node
 
         npcText = npcElement.InnerXml;
 

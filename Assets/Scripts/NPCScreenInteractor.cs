@@ -27,9 +27,9 @@ public class NPCScreenInteractor : MonoBehaviour
         // Start is called before the first frame update
         private void Start()
         {
-            //buttons = new[] {button1, button2, button3};
             
-            convoFile.Load("Assets/Resources/TestTree.txt");
+            
+            convoFile.Load("Assets/Resources/TestTree.txt"); //Paste the path of the xml file you want to look at here
             
            
             foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
@@ -41,10 +41,10 @@ public class NPCScreenInteractor : MonoBehaviour
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
+                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text
             }
 
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
+            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
             
             
            
@@ -84,18 +84,18 @@ public class NPCScreenInteractor : MonoBehaviour
         
         if (Input.GetKeyDown("space"))
         {
-            currentNode = forest[currentNode.nextNode[cursorLocation]];
+            currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
+                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
             }
 
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
+            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
             
 
         }
-        //we can use the below comment to display text on our buttons through an array of strings,
+        
 
         
     }
