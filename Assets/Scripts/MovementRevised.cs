@@ -15,7 +15,6 @@ public class MovementRevised : MonoBehaviour
     public bool moving;
     public bool crouching;
     
-    
     int layersToCollideWith;
 
     // Start is called before the first frame update
@@ -71,6 +70,7 @@ public class MovementRevised : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(GlobalControls.TurnNumber);
         // Movement
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -89,7 +89,7 @@ public class MovementRevised : MonoBehaviour
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                     moving = true;
-                    
+                    GlobalControls.TurnNumber++;
                 }
             }
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) >= 1f)
@@ -105,6 +105,7 @@ public class MovementRevised : MonoBehaviour
                     movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                     moving = true;
+                    GlobalControls.TurnNumber++;
                 }
             }
             else

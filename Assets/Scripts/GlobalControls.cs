@@ -15,7 +15,7 @@ public static class GlobalControls
     private static bool poopTaskCompleted = false;
     private static bool waterTaskCompleted = false;
 
-    
+    private static int turnNumber = 0;
 
     public static bool MetersEnabled
     {
@@ -74,6 +74,18 @@ public static class GlobalControls
         set
         {
             waterTaskCompleted = value;
+        }
+    }
+
+    public static int TurnNumber
+    {
+        get
+        {
+            return turnNumber;
+        }
+        set
+        {
+            turnNumber = value;
         }
     }
 }
