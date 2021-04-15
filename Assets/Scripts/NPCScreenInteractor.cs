@@ -20,6 +20,7 @@ public class NPCScreenInteractor : MonoBehaviour
     public string[] npcArray;
     public Button[] buttons;
     public GameObject npcText;
+    private String npcName;
     private XmlDocument convoFile = new XmlDocument();
     public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
     public convoNode currentNode;
@@ -37,7 +38,7 @@ public class NPCScreenInteractor : MonoBehaviour
                 forest.Add(node.Name, new convoNode(node));
             }
 
-            currentNode = forest["dem0"]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
+            currentNode = forest[npcName]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
@@ -51,6 +52,11 @@ public class NPCScreenInteractor : MonoBehaviour
             npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
             textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
            
+        }
+
+        public void getNpcName(String name)
+        {
+            npcName = name;
         }
 
 

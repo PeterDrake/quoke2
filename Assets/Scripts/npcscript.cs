@@ -28,6 +28,7 @@ public class npcscript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             LoadScene("npcScreen");
+            GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>().getNpcName(this.gameObject.name);
         }
        
     }
