@@ -10,7 +10,7 @@ public class Clobberer : MonoBehaviour
     // whether a clobberer is able to kill a player with the aftershock death message
     public bool aftershock;
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (enabled && other.gameObject.CompareTag("Player"))
         {

@@ -79,7 +79,7 @@ public class QuakeManager : MonoBehaviour
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
-        clobberers = Array.ConvertAll(doors, d => d.GetComponent(typeof(Clobberer)) as Clobberer);
+        clobberers = Array.ConvertAll(doors, d => d.transform.parent.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
 
         //_informationCanvas = GameObject.Find("MiniGameClose").transform.Find("GUI").GetComponent<GuiDisplayer>().GetBanner();
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
