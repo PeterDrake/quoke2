@@ -14,7 +14,8 @@ public class MovementRevised : MonoBehaviour
     public Transform movePoint;
     public bool moving;
     public bool crouching;
-    
+    public bool isUnderTable;
+
     int layersToCollideWith;
 
     // Start is called before the first frame update
@@ -70,7 +71,6 @@ public class MovementRevised : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GlobalControls.TurnNumber);
         // Movement
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -115,6 +115,17 @@ public class MovementRevised : MonoBehaviour
         }
 
         Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, layersToCollideWith);
+        // Tell us if the player is currently under a table
+        if (tableCheckColliders.Length != 0)
+        {
+            isUnderTable = true;
+        }
+        else
+        {
+            isUnderTable = false;
+        }
+
+        // Tell us if the player is crouching by holding the key, or forced to because they are under a table
         if (Input.GetKey(KeyCode.C) || tableCheckColliders.Length != 0)
         {
             crouching = true;

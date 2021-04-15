@@ -239,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327178031}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a165e59947d7be143be9a154650faf45, type: 3}
   m_Name: 
@@ -250,10 +250,10 @@ MonoBehaviour:
   ShakeDuration: 1
   ShakeAmplitude: 5
   ShakeFrequency: 5
-  turnsTillQuakeStart: 5
-  turnsTillDeath: 5
+  turnsTillQuakeStart: 10
+  turnsTillDeath: 10
   secondsUnderCover: 5
-  turnsTillAftershock: 5
+  turnsTillAftershock: 15
   OnQuake:
     m_PersistentCalls:
       m_Calls: []
@@ -943,7 +943,7 @@ MonoBehaviour:
   movePoint: {fileID: 1825297809}
   moving: 0
   crouching: 0
-  turnNumber: 0
+  isUnderTable: 0
 --- !u!65 &920298252
 BoxCollider:
   m_ObjectHideFlags: 0

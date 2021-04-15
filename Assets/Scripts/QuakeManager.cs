@@ -39,6 +39,7 @@ public class QuakeManager : MonoBehaviour
     [Tooltip("How many seconds should the earthquake last after the player has reached cover?")]
     public float secondsUnderCover = 5f;
     private bool isUnderCover = false;
+    private bool hasBeenUnderCover = false;
 
     [Tooltip("How many moves can the player make after the earthquake before they die?")]
     public int turnsTillAftershock = 5;
@@ -53,7 +54,9 @@ public class QuakeManager : MonoBehaviour
     private Clobberer[] clobberers;
     
     private bool quaking;
-    private int currentTurn = 0;
+
+    private GameObject player;
+    private MovementRevised movementScript;
 
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
@@ -75,7 +78,8 @@ public class QuakeManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(TurnCounter), 0);
+        player = GameObject.FindGameObjectWithTag("Player");
+        movementScript = player.GetComponent<MovementRevised>();
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
@@ -84,7 +88,7 @@ public class QuakeManager : MonoBehaviour
         //_informationCanvas = GameObject.Find("MiniGameClose").transform.Find("GUI").GetComponent<GuiDisplayer>().GetBanner();
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
-        initialTurn = currentTurn;
+        initialTurn = GlobalControls.TurnNumber;
     }
 
     void Update()
@@ -102,6 +106,11 @@ public class QuakeManager : MonoBehaviour
                 CheckForQuakeDeath();
                 CheckForUnderCover();
             }
+            else if (!hasBeenUnderCover)
+            {
+                StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
+                hasBeenUnderCover = true;
+            }
         } 
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
         else if (!quaking && !exitedHouse && !isAftershockTime)
@@ -113,18 +122,6 @@ public class QuakeManager : MonoBehaviour
         if ((isQuakeTime && !quaking) || (adminMode && Input.GetKeyDown("p"))|| (isAftershockTime && !quaking))
         {
             TriggerQuake();
-        }
-    }
-
-    // purely for test purposes until turn counting in player movement is implemented
-    private IEnumerator TurnCounter(int startingTurn)
-    {
-        currentTurn = startingTurn;
-        while (currentTurn >= 0)
-        {
-            yield return new WaitForSeconds(1f);
-            currentTurn++;
-            if (showCountdown) Debug.Log("Turn: " + currentTurn);
         }
     }
 
@@ -179,7 +176,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForQuakeStart()
     {
-        if (currentTurn >= initialTurn + turnsTillQuakeStart)
+        if (GlobalControls.TurnNumber >= initialTurn + turnsTillQuakeStart)
         {
             isQuakeTime = true;
             Debug.Log("Earthquake!");
@@ -188,23 +185,24 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForUnderCover()
     {
-        //TODO add cover implementation
-        isUnderCover = true;
-        // we start the coroutine here instead of in the update function so we don't start it multiple times
-        StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
+        if (movementScript.isUnderTable)
+        {
+            isUnderCover = true;
+        }
     }
 
     public void CheckForQuakeDeath()
     {
-        if (currentTurn >= quakeStartTurn + turnsTillDeath)
+        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath)
         {
             //TODO kill player
+            Debug.Log("You were crushed by a falling object!");
         }
     }
 
     public void CheckForAftershockStart()
     {
-        if (currentTurn >= underCoverTurn + turnsTillAftershock)
+        if (GlobalControls.TurnNumber >= underCoverTurn + turnsTillAftershock)
         {
             isAftershockTime = true;
             Debug.Log("Aftershock!");
@@ -217,7 +215,7 @@ public class QuakeManager : MonoBehaviour
 
         quaking = true;
 
-        quakeStartTurn = currentTurn;
+        quakeStartTurn = GlobalControls.TurnNumber;
         firstQuakeCompleted = true;
 
         OnQuake.Invoke(); // every function subscribed to OnQuake is called here
@@ -238,7 +236,7 @@ public class QuakeManager : MonoBehaviour
         quaking = false;
 
         StopCoroutine(nameof(ShakeIt));
-        underCoverTurn = currentTurn;
+        underCoverTurn = GlobalControls.TurnNumber;
 
         foreach (Clobberer c in clobberers)
         {
