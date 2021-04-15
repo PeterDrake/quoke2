@@ -1200,13 +1200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b77207ac502ec4ca696fb2ccd8f9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button1: {fileID: 834084923}
-  button2: {fileID: 90488184}
-  button3: {fileID: 1692623593}
   cursorLocation: 0
   textArray: []
   npcArray: []
-  buttons: []
+  buttons:
+  - {fileID: 834084923}
+  - {fileID: 90488184}
+  - {fileID: 1692623593}
   npcText: {fileID: 89247439}
 --- !u!4 &1365973655
 Transform:
