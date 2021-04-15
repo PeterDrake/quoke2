@@ -16,6 +16,7 @@ public static class GlobalControls
     private static bool waterTaskCompleted = false;
 
     private static int turnNumber = 0;
+    private static string currentNPC;
 
     public static bool MetersEnabled
     {
@@ -86,6 +87,19 @@ public static class GlobalControls
         set
         {
             turnNumber = value;
+        }
+    }
+
+    public static string CurrentNPC
+    {
+        get
+        {
+            return currentNPC;
+        }
+
+        set
+        {
+            currentNPC = value;
         }
     }
 }

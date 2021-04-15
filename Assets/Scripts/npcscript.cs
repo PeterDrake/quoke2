@@ -27,8 +27,8 @@ public class npcscript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            GlobalControls.CurrentNPC = this.gameObject.name;
             LoadScene("npcScreen");
-            GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>().getNpcName(this.gameObject.name);
         }
        
     }
