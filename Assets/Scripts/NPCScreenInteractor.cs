@@ -84,6 +84,16 @@ public class NPCScreenInteractor : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
+
+            if (currentNode.nodeName.Contains("checkpoint"))
+            {
+                Debug.Log("Checkpoint");
+                GlobalControls.SetCheckpoint(currentNode.nodeName);
+            }
+            else
+            {
+                Debug.Log("No");
+            }
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {

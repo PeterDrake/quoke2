@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public static class GlobalControls
@@ -120,6 +121,11 @@ public static class GlobalControls
         {
             
         }
+    }
+
+    public static void SetCheckpoint(string nodeName)
+    {
+        convoDict[currentNPC] = nodeName;
     }
     
 }
