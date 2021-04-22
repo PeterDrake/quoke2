@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking.Types;
@@ -57,7 +58,11 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
+<<<<<<< HEAD
         invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
+=======
+        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit");
+>>>>>>> master
     }
 
     // changes slot background of specific slotNumber to selected sprite 
@@ -82,12 +87,12 @@ public class Selector : MonoBehaviour
     void RemoveItemFromInventory(int slotNumber)
     {
         // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!Physics.Raycast(player.transform.position, player.transform.forward, 1f, invalidItemSpaces))
+        if (!Physics.Raycast(roundToNextGridPosition(player.transform.position), player.transform.forward, 1f, invalidItemSpaces))
         {
             if (items[slotNumber].activeSelf)
             {
                 inventory[slotNumber].SetActive(true);
-                inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
+                inventory[slotNumber].transform.position = roundToNextGridPosition(player.transform.position) + player.transform.forward;
                 inventory[slotNumber] = null;
                 items[slotNumber].SetActive(false);  
             }
@@ -163,6 +168,11 @@ public class Selector : MonoBehaviour
             }
         }
 
+    }
+
+    Vector3 roundToNextGridPosition(Vector3 originalVector3)
+    {
+        return new Vector3(Convert.ToInt32(originalVector3.x*2)/2f, originalVector3.y, Convert.ToInt32(originalVector3.z*2)/2f);
     }
 
 }
