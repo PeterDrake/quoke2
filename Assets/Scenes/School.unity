@@ -261,8 +261,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747713875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 0, z: 7}
-  m_LocalScale: {x: 1, y: 1, z: 21}
+  m_LocalPosition: {x: 15.5, y: 0, z: 7}
+  m_LocalScale: {x: 1, y: 1, z: 22}
   m_Children: []
   m_Father: {fileID: 1353063842}
   m_RootOrder: 3
@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839403281}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 1353063842}
@@ -447,8 +447,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894646947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 7}
-  m_LocalScale: {x: 1, y: 1, z: 21}
+  m_LocalPosition: {x: -15.5, y: 0, z: 7}
+  m_LocalScale: {x: 1, y: 1, z: 22}
   m_Children: []
   m_Father: {fileID: 1353063842}
   m_RootOrder: 2
@@ -617,15 +617,15 @@ GameObject:
   - component: {fileID: 1141450572}
   - component: {fileID: 1141450571}
   - component: {fileID: 1141450570}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NPC PLACE HOLDER D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1141450570
-SphereCollider:
+--- !u!65 &1141450570
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -635,7 +635,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1141450571
 MeshRenderer:
@@ -655,7 +655,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0dea2828d09494cbba86d69f2700b0e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -692,7 +692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141450569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: -2}
+  m_LocalPosition: {x: -9.5, y: 0, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -834,15 +834,15 @@ GameObject:
   - component: {fileID: 1291811208}
   - component: {fileID: 1291811207}
   - component: {fileID: 1291811206}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NPC PLACE HOLDER C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1291811206
-SphereCollider:
+--- !u!65 &1291811206
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -852,7 +852,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1291811207
 MeshRenderer:
@@ -872,7 +872,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0dea2828d09494cbba86d69f2700b0e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -909,7 +909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291811205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 16}
+  m_LocalPosition: {x: 5.5, y: 0, z: 16.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1095,7 +1095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527379008}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 17}
+  m_LocalPosition: {x: 0, y: 0, z: 17.5}
   m_LocalScale: {x: 1, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 1353063842}
@@ -1232,7 +1232,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc7649c6bcd4a4ce68eebbce4a203e32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1269,7 +1269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631528234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0, z: 7}
+  m_LocalPosition: {x: 10.5, y: 0, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406803435}
@@ -1488,7 +1488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762356938}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 13.5, y: 0, z: 7}
+  m_LocalPosition: {x: 14, y: 0, z: 7}
   m_LocalScale: {x: 12, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}

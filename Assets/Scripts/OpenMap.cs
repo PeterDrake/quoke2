@@ -9,4 +9,5 @@ public class OpenMap : MonoBehaviour
     {
         SceneManager.LoadScene("StrategicMap");
     }
+        
 }

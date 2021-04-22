@@ -23,15 +23,7 @@ public class npcscript : MonoBehaviour
 
     /// On Collision with the gameObject we Load new Scene
     /// <param name="other"></param>
-    void OnTriggerEnter(Collider other )
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            LoadScene("npcScreen");
-        }
-       
-    }
- 
+
     /// Update brings back the previous scene when player presses the escape key
     /// Freezes the background if the player enters NPC screen
     void Update()
@@ -50,11 +42,7 @@ public class npcscript : MonoBehaviour
             GameObject.Find("Player").GetComponent<MovementRevised>().enabled = false;
         }
     }
-    
-    
-    /// Load newScene and add it to sceneHistory
-    /// <param name="newScene"></param>
-    
+
     public void LoadScene(string newScene)
     {
         sceneHistory.Add(newScene);
