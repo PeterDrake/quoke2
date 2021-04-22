@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// See https://www.youtube.com/watch?v=mbzXIOKZurA on grid movement
-
 public class MovementRevised : MonoBehaviour
 {
     public GameObject playerHead;
@@ -22,14 +20,14 @@ public class MovementRevised : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        layersToInteractWith = LayerMask.GetMask("NPC");
-        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table");
+        layersToInteractWith = LayerMask.GetMask("NPC");  // Interactive layer masks  
+        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table");  // These are the layers that we collide with 
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
 
     ///Returns true if there is an obstacle in Horizontal Direction
-    private bool ObstacleInDirectionOne(float x, float z)
+    private bool ObstacleInDirectionHorizontal(float x, float z)
     {
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(
@@ -49,7 +47,7 @@ public class MovementRevised : MonoBehaviour
     }
     
     ///Returns true if there is an obstacle in Vertical Direction
-    private bool ObstacleInDirectionTwo(float x, float z)
+    private bool ObstacleInDirectionVertical(float x, float z)
     {
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
@@ -67,7 +65,7 @@ public class MovementRevised : MonoBehaviour
         return hitColliders.Length != 0;
     }
     
-    
+    /// This tells us about the interactive object that we are about to run in to. On the Horizontal direction
     private GameObject IntractableInDirectionHorizontal(float x, float z)  //new code 
     {
         // Get all things in the space on the grid the player is trying to move to
@@ -89,6 +87,7 @@ public class MovementRevised : MonoBehaviour
         return null;
     }
     
+    /// This tells us about the interactive object that we are about to run in to. On the Vertical direction   
     private GameObject IntractableInDirectionVertical(float x, float z)  //new code 
     {
         // Get all things in the space on the grid the player is trying to move to
@@ -122,14 +121,14 @@ public class MovementRevised : MonoBehaviour
             {
                 //We check for the npc object in Horizontal Direction then we load npcScreen 
                 GameObject npc = IntractableInDirectionHorizontal(Input.GetAxisRaw("Horizontal"), 0.0f);
-                if (npc != null) //new code
+                if (npc != null)
                 {
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                     npc.GetComponent<npcscript>().LoadScene("npcScreen");
                 }
 
                 // Check if something occupying the space
-                else if (ObstacleInDirectionOne(Input.GetAxisRaw("Horizontal"), 0.0f))
+                else if (ObstacleInDirectionHorizontal(Input.GetAxisRaw("Horizontal"), 0.0f))
                 {
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                   
@@ -148,13 +147,13 @@ public class MovementRevised : MonoBehaviour
             {
                 //We check for the npc object in Vertical Direction then we load npcScreen 
                 GameObject npc = IntractableInDirectionVertical(Input.GetAxisRaw("Vertical"), 0.0f);
-                if (npc != null) //new code
+                if (npc != null) 
                 {
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Vertical"), 0f, 0f), transform.up);
                     npc.GetComponent<npcscript>().LoadScene("npcScreen");
                 }
                 // Check if something occupying the space
-                else if (ObstacleInDirectionTwo(Input.GetAxisRaw("Vertical"),0.0f))
+                else if (ObstacleInDirectionVertical(Input.GetAxisRaw("Vertical"),0.0f))
                 {
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                    
@@ -172,8 +171,9 @@ public class MovementRevised : MonoBehaviour
                 moving = false;
             }
         }
-
+        
         Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, layersToCollideWith);
+        
         // Tell us if the player is currently under a table
         if (tableCheckColliders.Length != 0)
         {
