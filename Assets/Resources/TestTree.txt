@@ -1,51 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <convoForest>
 	
-
-	<demetrius>
 		<dem0>
-			<!--playerText string array-->
 			<playerOptions>
 				<option>Im saying this</option>
 				<option>you said what</option>
 				<option>Yes</option>
 			</playerOptions>
-
-			<!--npcText string-->
-			<npcText> StoP! youve violated the law</npcText>
+ 
+            <keys>
+                <keyName>dem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+	
+			<npcText>StoP! you've violated the law</npcText>
 		</dem0>
 
 		<dem1>
-			blah
-			blah
-			just words
-			
+		    <playerOptions>
+        		<option>Is this a dem1</option>
+        		<option>Yeah pretty much</option>
+        		<option>no</option>
+        	</playerOptions>
+         
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+        	
+        	<npcText>Other meme</npcText>
 		</dem1>
+		
+		<dem2>
+            <playerOptions>
+                <option>Is this a dem2</option>
+                <option>Shuddupdood</option>
+                <option>Maybe</option>
+            </playerOptions>
+                 
+            <keys>
+                <keyName>dem1</keyName>
+                <keyName>dem0</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+                	
+            <npcText>*Internal Screaming*</npcText>
+        </dem2>
+        
+        <dem3>
+            <playerOptions>
+                <option>Is this a dem3</option>
+                <option>dont be so rude dude</option>
+                <option>V I B E S</option>
+            </playerOptions>
+                         
+            <keys>
+                <keyName>dem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem0</keyName>
+            </keys>
+                        	
+            <npcText>*audible wink*</npcText>
+        </dem3>
 
+		<fred0>
+        	<playerOptions>
+        		<option>Hey its fred</option>
+        		<option>ya kids like 2009</option>
+        		<option></option>
+        	</playerOptions>
+         
+            <keys>
+                 <keyName>fred1</keyName>
+                 <keyName>fred2</keyName>
+                 <keyName>fred3</keyName>
+            </keys>
+        	
+        	<npcText>StoP! you've violated the law</npcText>
+        </fred0>
 
-	</demetrius>
-
-
-	<fred>
-		<node>
-			<!--playerText string array-->
-			<playerOptions>
-				<option>Im saying this</option>
-				<option>you said what</option>
-				<option>Yes</option>
-			</playerOptions>
-
-			<!--npcText string-->
-			<npcText> StoP! youve violated the law</npcText>
-		</node>
-
-		<node>
-			blah
-			blah
-			just words
-			
-		</node>
-	</fred>
 
 
 
