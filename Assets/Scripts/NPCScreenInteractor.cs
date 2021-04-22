@@ -64,11 +64,11 @@ public class NPCScreenInteractor : MonoBehaviour
         // Change the cursor's location with < and >
         if (Input.GetKeyDown(","))
         {
-            cursorLocation--;
+            cursorLocation--;   
         }
         if (Input.GetKeyDown("."))
         {
-            cursorLocation++;
+            cursorLocation++;   
         }
         if (cursorLocation < 0)
         {
@@ -117,7 +117,7 @@ public class NPCScreenInteractor : MonoBehaviour
             }
 
             npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
-            
+            cursorLocation = 0;
 
         }
         
