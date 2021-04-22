@@ -42,7 +42,12 @@ public class NPCScreenInteractor : MonoBehaviour
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text
+                buttons[c].gameObject.SetActive(true);
+                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
+                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
             }
 
             npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
@@ -77,8 +82,8 @@ public class NPCScreenInteractor : MonoBehaviour
         buttons[cursorLocation].Select();
         
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-          
+        {  
+            //:D :3
         }
         
         if (Input.GetKeyDown("space"))
@@ -102,7 +107,13 @@ public class NPCScreenInteractor : MonoBehaviour
         
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
+                buttons[c].gameObject.SetActive(true);
                 buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
+                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
             }
 
             npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
