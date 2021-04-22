@@ -27,6 +27,7 @@ public class Selector : MonoBehaviour
     // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
     public GameObject[] items;
     private GameObject player;
+    private Transform movePoint;
 
     private int invalidItemSpaces;
     
@@ -58,6 +59,8 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
+        movePoint = player.GetComponent<MovementRevised>().movePoint;
+
         invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table");
     }
 
@@ -83,12 +86,12 @@ public class Selector : MonoBehaviour
     void RemoveItemFromInventory(int slotNumber)
     {
         // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!Physics.Raycast(roundToNextGridPosition(player.transform.position), player.transform.forward, 1f, invalidItemSpaces))
+        if (!Physics.Raycast(movePoint.position, player.transform.forward, 1f, invalidItemSpaces))
         {
             if (items[slotNumber].activeSelf)
             {
                 inventory[slotNumber].SetActive(true);
-                inventory[slotNumber].transform.position = roundToNextGridPosition(player.transform.position) + player.transform.forward;
+                inventory[slotNumber].transform.position = movePoint.position + player.transform.forward;
                 inventory[slotNumber] = null;
                 items[slotNumber].SetActive(false);  
 
