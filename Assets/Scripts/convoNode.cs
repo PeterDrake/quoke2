@@ -46,7 +46,6 @@ public class convoNode
 
 
 
-
     }
     
     
@@ -56,7 +55,7 @@ public class convoNode
     public List<string> nextNode;
     //the text that is displayed by the npc in this node
     public string npcText;
-    //
+    //name of node
     public string nodeName;
 
 }
