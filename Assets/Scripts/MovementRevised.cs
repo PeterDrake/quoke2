@@ -149,7 +149,7 @@ public class MovementRevised : MonoBehaviour
                 GameObject npc = IntractableInDirectionVertical(Input.GetAxisRaw("Vertical"), 0.0f);
                 if (npc != null) 
                 {
-                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Vertical"), 0f, 0f), transform.up);
+                    transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                     npc.GetComponent<npcscript>().LoadScene("npcScreen");
                 }
                 // Check if something occupying the space
