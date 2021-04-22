@@ -21,7 +21,9 @@ public static class GlobalControls
     private static Dictionary<string, string> convoDict = new Dictionary<string, string>()
     {
         {"fred0","fred0"},
-        {"dem0", "dem0"}
+        {"dem0", "dem0"},
+        {"safi0","safi0"},
+        {"rainer0", "rainer0"}
     };
     
 
