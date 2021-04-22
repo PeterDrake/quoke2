@@ -57,7 +57,7 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table");
+        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
     }
 
     // changes slot background of specific slotNumber to selected sprite 
@@ -90,10 +90,28 @@ public class Selector : MonoBehaviour
                 inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward);
                 inventory[slotNumber] = null;
                 items[slotNumber].SetActive(false);  
-
             }
         }
-        
+    }
+
+    // Handles placing an item in a storage container or taking an item out of a storage container
+    void InteractWithStorageContainer(int slotNumber, RaycastHit storageContainerCheck)
+    {
+        StorageContainer container = storageContainerCheck.collider.gameObject.GetComponent<StorageContainer>();
+        if (container.isItemStored() && !items[slotNumber].activeSelf)
+        {
+            GameObject item = container.removeItem();
+            item.GetComponent<Collectable>().TakeOutOfStorageContainer();
+            AddItemToInventory(item);
+        }
+        else if (container.storeItem(inventory[slotNumber]))
+        {
+            inventory[slotNumber].SetActive(true);
+            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
+            inventory[slotNumber].GetComponent<Collectable>().PutInStorageContainer();
+            inventory[slotNumber] = null;
+            items[slotNumber].SetActive(false);
+        }
     }
 
     // finds next empty spot and if there is changes sprite to that item's sprite
@@ -128,6 +146,11 @@ public class Selector : MonoBehaviour
         //If spacebar is pressed, run RemoveItemFromInventory on currently selected slot
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            RaycastHit storageContainerCheck;
+            if (Physics.Raycast(player.transform.position, player.transform.forward, out storageContainerCheck, 1f, LayerMask.GetMask("StorageContainer")))
+            {
+                InteractWithStorageContainer(currentSlot, storageContainerCheck);
+            }
             RemoveItemFromInventory(currentSlot);
         }
         
