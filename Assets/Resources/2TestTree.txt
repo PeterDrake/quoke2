@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<convoForest>
+	
+		<safi0>
+			<playerOptions>
+				<option>Im saying this</option>
+				<option>you said what</option>
+				<option>Yes</option>
+			</playerOptions>
+ 
+            <keys>
+                <keyName>safi1</keyName>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+            </keys>
+	
+			<npcText>safi0</npcText>
+        </safi0>
+		
+        <safi1>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Yes</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+            </keys>
+    
+            <npcText>safi1</npcText>
+        </safi1>
+        
+        <checkpointsafi2>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>checkpointsafi2</npcText>
+        </checkpointsafi2>
+        
+        
+        <safi3>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi4</keyName>
+                <keyName>safi0</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>safi3</npcText>
+        
+        
+        </safi3>
+        
+        <safi4>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Yes</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName>safi1</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>safi4</npcText>
+        </safi4>
+        
+        <tradesafi5>
+            <playerOptions>
+                <option>Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>:D</npcText>
+        </tradesafi5>
+		
+        
+        		
+
+</convoForest>

@@ -30,7 +30,7 @@ public class NPCScreenInteractor : MonoBehaviour
         {
             
             
-            convoFile.Load("Assets/Resources/TestTree.txt"); //Paste the path of the xml file you want to look at here
+            convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
             
            
             foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
@@ -92,9 +92,14 @@ public class NPCScreenInteractor : MonoBehaviour
             }
             else
             {
-                Debug.Log("No");
+                Debug.Log("n o . . . ");
             }
             
+            if (currentNode.nodeName.Contains("trade"))
+            {
+                Debug.Log("Trading Time!");
+            }
+        
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
                 buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
