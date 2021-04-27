@@ -17,12 +17,13 @@ public class MovementRevised : MonoBehaviour
     public bool isUnderTable;
 
     int layersToCollideWith;
-
+    int layersToInteractWith;
+    
     // Start is called before the first frame update
     void Start()
     {
-        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table");
-        Debug.Log("Mask: " + layersToCollideWith);
+        layersToInteractWith = LayerMask.GetMask("NPC");
+        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
@@ -67,7 +68,49 @@ public class MovementRevised : MonoBehaviour
     }
     
     
+    private GameObject IntractableInDirectionHorizontal(float x, float z)  //new code 
+    {
+        // Get all things in the space on the grid the player is trying to move to
+        Collider[] hitColliders = Physics.OverlapSphere(
+            movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
+            0.2f, layersToInteractWith);
+
+        // Exception if the player is crouching and the object in front is a table
+        if (hitColliders.Length == 1)
+        {
+            if (hitColliders[0].gameObject.layer == 10 && crouching)
+            {
+                return null;
+            }
+
+            return hitColliders[0].gameObject;
+        }
+
+        return null;
+    }
     
+    private GameObject IntractableInDirectionVertical(float x, float z)  //new code 
+    {
+        // Get all things in the space on the grid the player is trying to move to
+        Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
+            0.2f, layersToInteractWith);
+
+        // Exception if the player is crouching and the object in front is a table
+        if (hitColliders.Length == 1)
+        {
+            if (hitColliders[0].gameObject.layer == 10 && crouching)
+            {
+                return null;
+            }
+
+            return hitColliders[0].gameObject;
+        }
+
+        return null;
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -77,9 +120,16 @@ public class MovementRevised : MonoBehaviour
         {
             if (Math.Abs(Input.GetAxisRaw("Horizontal")) >= 1f)
             {
+                //We check for the npc object in Horizontal Direction then we load npcScreen 
+                GameObject npc = IntractableInDirectionHorizontal(Input.GetAxisRaw("Horizontal"), 0.0f);
+                if (npc != null) //new code
+                {
+                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
+                    npc.GetComponent<npcscript>().LoadScene("npcScreen");
+                }
 
                 // Check if something occupying the space
-                if (ObstacleInDirectionOne(Input.GetAxisRaw("Horizontal"), 0.0f))
+                else if (ObstacleInDirectionOne(Input.GetAxisRaw("Horizontal"), 0.0f))
                 {
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                   
@@ -92,15 +142,24 @@ public class MovementRevised : MonoBehaviour
                     GlobalControls.TurnNumber++;
                 }
             }
+           
+            
             else if (Math.Abs(Input.GetAxisRaw("Vertical")) >= 1f)
             {
+                //We check for the npc object in Vertical Direction then we load npcScreen 
+                GameObject npc = IntractableInDirectionVertical(Input.GetAxisRaw("Vertical"), 0.0f);
+                if (npc != null) //new code
+                {
+                    transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Vertical"), 0f, 0f), transform.up);
+                    npc.GetComponent<npcscript>().LoadScene("npcScreen");
+                }
                 // Check if something occupying the space
-                if (ObstacleInDirectionTwo(Input.GetAxisRaw("Vertical"),0.0f))
+                else if (ObstacleInDirectionTwo(Input.GetAxisRaw("Vertical"),0.0f))
                 {
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                    
                 }
-                else
+                else 
                 {
                     movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);

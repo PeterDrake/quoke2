@@ -48,6 +48,8 @@ public class QuakeManager : MonoBehaviour
     private int exitHouseTurn;
     private bool exitedHouse = false;
     private bool isAftershockTime = false;
+    [Tooltip("Should an aftershock trigger and kill the player if they step into the house?")]
+    public bool automaticAftershock = false;
 
 
     // door shaking objects
@@ -96,12 +98,12 @@ public class QuakeManager : MonoBehaviour
     void Update()
     {
         // if we're not already ready for a quake or the first quake has already been completed
-        if (!isQuakeTime && !firstQuakeCompleted)
+        if (!isQuakeTime && !firstQuakeCompleted && !automaticAftershock)
         {
             CheckForQuakeStart();
         } 
         // if we're in the middle of the first quake
-        else if (quaking)
+        else if (quaking && !automaticAftershock)
         {
             if (!isUnderCover)
             {
@@ -118,13 +120,12 @@ public class QuakeManager : MonoBehaviour
                     c.locked = false;
                 }
             }
-        } 
+        }
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
-        else if (!quaking && !quakeSafeZoneManager.playerInSafeZone && !isAftershockTime)
+        else if (!quaking && !quakeSafeZoneManager.playerInSafeZone && (!isAftershockTime || automaticAftershock))
         {
             CheckForAftershockStart();
         }
-
 
         if ((isQuakeTime && !quaking) || (adminMode && Input.GetKeyDown("p"))|| (isAftershockTime && !quaking))
         {
@@ -209,7 +210,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForAftershockStart()
     {
-        if (GlobalControls.TurnNumber >= underCoverTurn + turnsTillAftershock)
+        if (GlobalControls.TurnNumber >= underCoverTurn + turnsTillAftershock || automaticAftershock)
         {
             isAftershockTime = true;
             Debug.Log("Aftershock!");
