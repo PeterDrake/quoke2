@@ -105,7 +105,7 @@ public class Selector : MonoBehaviour
             item.GetComponent<Collectable>().TakeOutOfStorageContainer();
             AddItemToInventory(item);
         }
-        else if (container.storeItem(inventory[slotNumber]))
+        else if (items[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
         {
             inventory[slotNumber].SetActive(true);
             inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
