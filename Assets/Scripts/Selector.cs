@@ -103,19 +103,19 @@ public class Selector : MonoBehaviour
     void InteractWithStorageContainer(int slotNumber, RaycastHit storageContainerCheck)
     {
         StorageContainer container = storageContainerCheck.collider.gameObject.GetComponent<StorageContainer>();
-        if (container.isItemStored() && !items[slotNumber].activeSelf)
+        if (container.isItemStored() && !slotContents[slotNumber].activeSelf)
         {
             GameObject item = container.removeItem();
             item.GetComponent<Collectable>().TakeOutOfStorageContainer();
             AddItemToInventory(item);
         }
-        else if (items[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
+        else if (slotContents[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
         {
             inventory[slotNumber].SetActive(true);
             inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
             inventory[slotNumber].GetComponent<Collectable>().PutInStorageContainer();
             inventory[slotNumber] = null;
-            items[slotNumber].SetActive(false);
+            slotContents[slotNumber].SetActive(false);
         }
     }
 
