@@ -125,6 +125,7 @@ public class MovementRevised : MonoBehaviour
                 GameObject npc = IntractableInDirectionHorizontal(Input.GetAxisRaw("Horizontal"), 0.0f);
                 if (npc != null)
                 {
+                    GlobalControls.CurrentNPC = npc.name;
                     transform.LookAt(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), transform.up);
                     npc.GetComponent<npcscript>().LoadScene("npcScreen");
                 }
@@ -149,8 +150,9 @@ public class MovementRevised : MonoBehaviour
             {
                 //We check for the npc object in Vertical Direction then we load npcScreen 
                 GameObject npc = IntractableInDirectionVertical(Input.GetAxisRaw("Vertical"), 0.0f);
-                if (npc != null) 
+                if (npc != null)
                 {
+                    GlobalControls.CurrentNPC = npc.name;
                     transform.LookAt(transform.position + new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")), transform.up);
                     npc.GetComponent<npcscript>().LoadScene("npcScreen");
                 }
