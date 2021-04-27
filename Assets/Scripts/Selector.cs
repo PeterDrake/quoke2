@@ -12,7 +12,7 @@ public class Selector : MonoBehaviour
 {
     public int currentSlot;
     
-    // inventory holds the actual gameObjects which represent items in the world, that can be picked up and set down
+    // inventory holds the actual gameObjects which represent items in the world while they are in the players inventory, that can be picked up and set down
     public GameObject[] inventory;
 
     private Sprite unselectedSprite;
@@ -22,11 +22,12 @@ public class Selector : MonoBehaviour
     // Select the Selector object and look under the script component to see the arrays.
     // Set the size of both arrays to the number of slots, then select the appropriate GameObjects in the right order.
     public GameObject[] slots;
-    // items represents an array of empty game objects, one attached to each slot.
-    // An item gameObject is set to active if that slot is full, and inactive if it is empty.
+    // slotContents represents an array of empty game objects, one attached to each slot.
+    // An slotContents gameObject is set to active if that slot is full, and inactive if it is empty.
     // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
-    public GameObject[] items;
+    public GameObject[] slotContents;
     private GameObject player;
+    private Transform movePoint;
 
     private int invalidItemSpaces;
     
@@ -48,7 +49,8 @@ public class Selector : MonoBehaviour
 
         //starts the game with an empty inventory
         inventory = new GameObject[slots.Length];
-        foreach (GameObject item in items)
+        
+        foreach (GameObject item in slotContents)
         {
             item.SetActive(false);
         }
@@ -57,6 +59,8 @@ public class Selector : MonoBehaviour
         currentSlot = 0;
 
         player = GameObject.FindWithTag("Player");
+        
+        movePoint = player.GetComponent<MovementRevised>().movePoint;
 
         invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
     }
@@ -83,14 +87,14 @@ public class Selector : MonoBehaviour
     void RemoveItemFromInventory(int slotNumber)
     {
         // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!Physics.Raycast(roundToNextGridPosition(player.transform.position), player.transform.forward, 1f, invalidItemSpaces))
+        if (!Physics.Raycast(movePoint.position, player.transform.forward, 1f, invalidItemSpaces))
         {
-            if (items[slotNumber].activeSelf)
+            if (slotContents[slotNumber].activeSelf)
             {
                 inventory[slotNumber].SetActive(true);
-                inventory[slotNumber].transform.position = roundToNextGridPosition(player.transform.position) + player.transform.forward;
+                inventory[slotNumber].transform.position = movePoint.position + player.transform.forward;
                 inventory[slotNumber] = null;
-                items[slotNumber].SetActive(false);  
+                slotContents[slotNumber].SetActive(false);  
             }
         }
     }
@@ -121,8 +125,8 @@ public class Selector : MonoBehaviour
         int nextSpot = FindNextEmptySpot();
         if (nextSpot >= 0)
         {
-            items[nextSpot].SetActive(true);
-            items[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
+            slotContents[nextSpot].SetActive(true);
+            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
             inventory[nextSpot] = collectable;
             collectable.SetActive(false);
         }
@@ -134,7 +138,7 @@ public class Selector : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            if (!items[i].activeSelf)
+            if (!slotContents[i].activeSelf)
             {
                 return i;
             }
@@ -164,11 +168,6 @@ public class Selector : MonoBehaviour
             }
         }
 
-    }
-
-    Vector3 roundToNextGridPosition(Vector3 originalVector3)
-    {
-        return new Vector3(Convert.ToInt32(originalVector3.x*2)/2f, originalVector3.y, Convert.ToInt32(originalVector3.z*2)/2f);
     }
 
 }
