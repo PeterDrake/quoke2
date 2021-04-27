@@ -97,10 +97,6 @@ public class QuakeManager : MonoBehaviour
 
     void Update()
     {
-        if (automaticAftershock)
-        {
-
-        }
         // if we're not already ready for a quake or the first quake has already been completed
         if (!isQuakeTime && !firstQuakeCompleted && !automaticAftershock)
         {
@@ -124,13 +120,12 @@ public class QuakeManager : MonoBehaviour
                     c.locked = false;
                 }
             }
-        } 
+        }
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
         else if (!quaking && !quakeSafeZoneManager.playerInSafeZone && (!isAftershockTime || automaticAftershock))
         {
             CheckForAftershockStart();
         }
-
 
         if ((isQuakeTime && !quaking) || (adminMode && Input.GetKeyDown("p"))|| (isAftershockTime && !quaking))
         {
