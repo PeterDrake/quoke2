@@ -58,11 +58,7 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-<<<<<<< HEAD
-        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
-=======
-        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit");
->>>>>>> master
+        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
     }
 
     // changes slot background of specific slotNumber to selected sprite 
