@@ -20,10 +20,7 @@ public class npcscript : MonoBehaviour
         sceneHistory.Add(SceneManager.GetActiveScene().name);
 
     }
-
-    /// On Collision with the gameObject we Load new Scene
-    /// <param name="other"></param>
-
+    
     /// Update brings back the previous scene when player presses the escape key
     /// Freezes the background if the player enters NPC screen
     void Update()

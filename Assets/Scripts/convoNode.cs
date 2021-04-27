@@ -12,6 +12,8 @@ public class convoNode
 {
     public convoNode(XmlNode xml)
     {
+        nodeName = xml.Name;
+        
         IEnumerator sectionInfoEnumerator = xml.GetEnumerator();
         
         sectionInfoEnumerator.MoveNext();
@@ -44,7 +46,6 @@ public class convoNode
 
 
 
-
     }
     
     
@@ -54,5 +55,7 @@ public class convoNode
     public List<string> nextNode;
     //the text that is displayed by the npc in this node
     public string npcText;
+    //name of node
+    public string nodeName;
 
 }
