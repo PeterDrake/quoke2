@@ -16,6 +16,7 @@ public class npcscript : MonoBehaviour
 
     }
 
+    
     /// Update brings back the previous scene when player presses the escape key
     void Update()
     {

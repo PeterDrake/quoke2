@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public static class GlobalControls
@@ -16,6 +17,15 @@ public static class GlobalControls
     private static bool waterTaskCompleted = false;
 
     private static int turnNumber = 0;
+    private static string currentNPC;
+    private static Dictionary<string, string> convoDict = new Dictionary<string, string>()
+    {
+        {"fred0","fred0"},
+        {"dem0", "dem0"},
+        {"safi0","safi0"},
+        {"rainer0", "rainer0"}
+    };
+    
 
     public static bool MetersEnabled
     {
@@ -88,4 +98,36 @@ public static class GlobalControls
             turnNumber = value;
         }
     }
+
+    public static string CurrentNPC
+    {
+        get
+        {
+            return currentNPC;
+        }
+
+        set
+        {
+            currentNPC = value;
+        }
+    }
+
+    public static Dictionary<string, string> ConvoDict
+    {
+        get
+        {
+            return convoDict;
+        }
+
+        set
+        {
+            
+        }
+    }
+
+    public static void SetCheckpoint(string nodeName)
+    {
+        convoDict[currentNPC] = nodeName;
+    }
+    
 }

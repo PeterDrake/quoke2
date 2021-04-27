@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<convoForest>
+	
+		<safi0>
+			<playerOptions>
+				<option>Im saying this</option>
+				<option>you said what</option>
+				<option>Yes</option>
+			</playerOptions>
+ 
+            <keys>
+                <keyName>safi1</keyName>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+            </keys>
+	
+			<npcText>safi0</npcText>
+        </safi0>
+		
+        <safi1>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Yes</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+            </keys>
+    
+            <npcText>safi1</npcText>
+        </safi1>
+        
+        <checkpointsafi2>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>checkpointsafi2</npcText>
+        </checkpointsafi2>
+        
+        
+        <safi3>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi4</keyName>
+                <keyName>safi0</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>safi3</npcText>
+        
+        
+        </safi3>
+        
+        <safi4>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName>safi1</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>safi4</npcText>
+        </safi4>
+        
+        <tradesafi5>
+            <playerOptions>
+                <option>Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName>safi0</keyName>
+                <keyName>safi0</keyName>
+            </keys>
+    
+            <npcText>:D</npcText>
+        </tradesafi5>
+		
+        <dem0>
+            <playerOptions>
+                <option>Im saying this</option>
+                <option>you said what</option>
+                <option>Yes</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+    
+            <npcText>StoP! you've violated the law</npcText>
+        </dem0>
+
+        <checkpointdem1>
+            <playerOptions>
+                <option>Is this a dem1</option>
+                <option>Yeah pretty much</option>
+                <option>no</option>
+            </playerOptions>
+         
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+            
+            <npcText>Other meme</npcText>
+        </checkpointdem1>
+        
+        <dem2>
+            <playerOptions>
+                <option>Is this a dem2</option>
+                <option>Shuddupdood</option>
+                <option>Let's Trade!</option>
+            </playerOptions>
+                 
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem0</keyName>
+                <keyName>tradedem</keyName>
+            </keys>
+                    
+            <npcText>*Internal Screaming*</npcText>
+        </dem2>
+        
+        <dem3>
+            <playerOptions>
+                <option>Is this a dem3</option>
+                <option>dont be so rude dude</option>
+                <option>V I B E S</option>
+            </playerOptions>
+                         
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem0</keyName>
+            </keys>
+                            
+            <npcText>*audible wink*</npcText>
+        </dem3>
+        
+        <tradedem>
+            <playerOptions>
+                <option>Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+            
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName>dem0</keyName>
+                <keyName>dem0</keyName>
+            </keys>
+        
+            <npcText>Ooh money! :D</npcText>
+        </tradedem>
+
+        <fred0>
+            <playerOptions>
+                <option>Hey its fred</option>
+                <option>ya kids like 2009</option>
+                <option></option>
+            </playerOptions>
+         
+            <keys>
+                 <keyName>fred1</keyName>
+                 <keyName>fred2</keyName>
+                 <keyName>fred3</keyName>
+            </keys>
+            
+            <npcText>StoP! you've violated the law</npcText>
+        </fred0>
+        
+        <rainer0>
+            <playerOptions>
+                <option>Hey it's... not Fred...</option>
+                <option>ya kids like 2012 Minecraft?</option>
+                <option>:(</option>
+            </playerOptions>
+         
+            <keys>
+                 <keyName>rainer1</keyName>
+                 <keyName>rainer2</keyName>
+                 <keyName>rainer3</keyName>
+            </keys>
+            
+            <npcText>Hey guys, Rainer here and welcome back to another Minecraft mod showcase!</npcText>
+        </rainer0>
+        		
+
+</convoForest>
