@@ -5,11 +5,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     public Sprite itemSprite;
-    
-    void Start()
-    {
-
-    }
+    public bool inStorageContainer;
 
     /*
      * The Collectable script should be attached to any game object you want to be an inventory item.
@@ -23,14 +19,20 @@ public class Collectable : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnter is called");
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !inStorageContainer)
         {
             Debug.Log("Ran into item");
             GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
         }
     }
-    void Update()
+
+    public void PutInStorageContainer()
     {
-        
+        inStorageContainer = true;
+    }
+
+    public void TakeOutOfStorageContainer()
+    {
+        inStorageContainer = false;
     }
 }
