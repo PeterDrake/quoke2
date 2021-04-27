@@ -23,7 +23,7 @@ public class MovementRevised : MonoBehaviour
     void Start()
     {
         layersToInteractWith = LayerMask.GetMask("NPC");
-        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table");
+        layersToCollideWith = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         moving = false;
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
