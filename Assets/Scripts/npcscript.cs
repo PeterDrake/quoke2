@@ -5,27 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class npcscript : MonoBehaviour
 {
-    /// <summary>
     /// List of the Scenes 
-    /// </summary>
     private List<string> sceneHistory = new List<string>();  //running history of scenes
     //The last string in the list is always the current scene running
 
-    
-    /// <summary>
     /// Starts the Scene in ever Load and keeps the gameObject alive
-    /// </summary>
     void Start()
     {
         sceneHistory.Add(SceneManager.GetActiveScene().name);
 
     }
 
-    /// On Collision with the gameObject we Load new Scene
-    /// <param name="other"></param>
-
+    
     /// Update brings back the previous scene when player presses the escape key
-    /// Freezes the background if the player enters NPC screen
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -33,6 +25,7 @@ public class npcscript : MonoBehaviour
             PreviousScene();
         }
         
+        // Freezes the background if the player enters NPC screen
         if (sceneHistory.Count < 2)
         {
             GameObject.Find("Player").GetComponent<MovementRevised>().enabled = true;   
@@ -42,11 +35,11 @@ public class npcscript : MonoBehaviour
             GameObject.Find("Player").GetComponent<MovementRevised>().enabled = false;
         }
     }
-
+    
     public void LoadScene(string newScene)
     {
         sceneHistory.Add(newScene);
-        SceneManager.LoadScene(newScene,LoadSceneMode.Additive);
+        SceneManager.LoadScene(newScene,LoadSceneMode.Additive); //Additive: Loads the scene on the top of previous scene 
     }
  
     ///Call this whenever you want to load the previous scene

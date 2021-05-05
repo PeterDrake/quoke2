@@ -20,6 +20,7 @@ public class NPCScreenInteractor : MonoBehaviour
     public string[] npcArray;
     public Button[] buttons;
     public GameObject npcText;
+    private String npcName;
     private XmlDocument convoFile = new XmlDocument();
     public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
     public convoNode currentNode;
@@ -29,7 +30,7 @@ public class NPCScreenInteractor : MonoBehaviour
         {
             
             
-            convoFile.Load("Assets/Resources/TestTree.txt"); //Paste the path of the xml file you want to look at here
+            convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
             
            
             foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
@@ -37,17 +38,20 @@ public class NPCScreenInteractor : MonoBehaviour
                 forest.Add(node.Name, new convoNode(node));
             }
 
-            currentNode = forest["dem0"]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
+            currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
             
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text
+                buttons[c].gameObject.SetActive(true);
+                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
+                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
             }
 
             npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
             
-            
-           
             npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
             textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
            
@@ -60,11 +64,11 @@ public class NPCScreenInteractor : MonoBehaviour
         // Change the cursor's location with < and >
         if (Input.GetKeyDown(","))
         {
-            cursorLocation--;
+            cursorLocation--;   
         }
         if (Input.GetKeyDown("."))
         {
-            cursorLocation++;
+            cursorLocation++;   
         }
         if (cursorLocation < 0)
         {
@@ -78,21 +82,42 @@ public class NPCScreenInteractor : MonoBehaviour
         buttons[cursorLocation].Select();
         
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-          
+        {  
+            //:D :3
         }
         
         if (Input.GetKeyDown("space"))
         {
             currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
+
+            if (currentNode.nodeName.Contains("checkpoint"))
+            {
+                Debug.Log("Checkpoint");
+                GlobalControls.SetCheckpoint(currentNode.nodeName);
+            }
+            else
+            {
+                Debug.Log("n o . . . ");
+            }
             
+            if (currentNode.nodeName.Contains("trade"))
+            {
+                Debug.Log("Trading Time!");
+            }
+        
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
+                buttons[c].gameObject.SetActive(true);
                 buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
+                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
             }
 
             npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
-            
+            cursorLocation = 0;
 
         }
         

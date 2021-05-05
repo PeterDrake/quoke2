@@ -9,7 +9,7 @@
 			</playerOptions>
  
             <keys>
-                <keyName>dem1</keyName>
+                <keyName>checkpointdem1</keyName>
                 <keyName>dem2</keyName>
                 <keyName>dem3</keyName>
             </keys>
@@ -17,7 +17,7 @@
 			<npcText>StoP! you've violated the law</npcText>
 		</dem0>
 
-		<dem1>
+		<checkpointdem1>
 		    <playerOptions>
         		<option>Is this a dem1</option>
         		<option>Yeah pretty much</option>
@@ -31,19 +31,19 @@
             </keys>
         	
         	<npcText>Other meme</npcText>
-		</dem1>
+		</checkpointdem1>
 		
 		<dem2>
             <playerOptions>
                 <option>Is this a dem2</option>
                 <option>Shuddupdood</option>
-                <option>Maybe</option>
+                <option>Let's Trade!</option>
             </playerOptions>
                  
             <keys>
-                <keyName>dem1</keyName>
+                <keyName>checkpointdem1</keyName>
                 <keyName>dem0</keyName>
-                <keyName>dem3</keyName>
+                <keyName>tradedem</keyName>
             </keys>
                 	
             <npcText>*Internal Screaming*</npcText>
@@ -57,13 +57,29 @@
             </playerOptions>
                          
             <keys>
-                <keyName>dem1</keyName>
+                <keyName>checkpointdem1</keyName>
                 <keyName>dem2</keyName>
                 <keyName>dem0</keyName>
             </keys>
                         	
             <npcText>*audible wink*</npcText>
         </dem3>
+        
+        <tradedem>
+            <playerOptions>
+                <option>Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+            
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+        
+            <npcText>Ooh money! :D</npcText>
+        </tradedem>
 
 		<fred0>
         	<playerOptions>
@@ -80,7 +96,7 @@
         	
         	<npcText>StoP! you've violated the law</npcText>
         </fred0>
-
+        
 
 
 
