@@ -8,7 +8,7 @@ public class TitleScreenLogic : MonoBehaviour
 
     public void Awake()
     {
-        Screen.SetResolution(1024, 768, false);
+        // Screen.SetResolution(1024, 768, false);
     }
     
     public string DestinationScene = "HouseScene";
