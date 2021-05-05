@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenLogic : MonoBehaviour
 {
+
+    public void Awake()
+    {
+        Screen.SetResolution(1024, 768, false);
+    }
+    
     public string DestinationScene = "HouseScene";
     public void clickStartButton()
     {
