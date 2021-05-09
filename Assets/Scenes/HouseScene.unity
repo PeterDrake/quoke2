@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26741433}
   m_Layer: 0
-  m_Name: ColletableObjetcs
+  m_Name: CollectableObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,7 +1175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dba6a527c9e3a514e8cfebf00aecdb36, type: 2}
+  - {fileID: 2100000, guid: a8278b081aafa430b8ecde1a43307728, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1302,7 +1302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dba6a527c9e3a514e8cfebf00aecdb36, type: 2}
+  - {fileID: 2100000, guid: cafe8e0c880934d92b666c5774aa1588, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1918,7 +1918,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dba6a527c9e3a514e8cfebf00aecdb36, type: 2}
+  - {fileID: 2100000, guid: cc1e2d48b21c844b48cceb601bacaf0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2852,7 +2852,7 @@ GameObject:
   - component: {fileID: 3752473254016990760}
   - component: {fileID: 3752473254016990761}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: Inventory Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
