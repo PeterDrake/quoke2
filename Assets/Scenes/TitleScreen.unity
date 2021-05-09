@@ -294,6 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486556963}
+  - component: {fileID: 486556968}
   - component: {fileID: 486556967}
   - component: {fileID: 486556966}
   - component: {fileID: 486556965}
@@ -337,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c443ac9367d24747ac1ca903b410d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestinationScene: HouseScene
+  FirstScene: HouseScene
 --- !u!114 &486556965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +421,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486556962}
   m_CullTransparentMesh: 0
+--- !u!114 &486556968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486556962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: The user presses space to launch the first scene. A button is actually overkill
+    here, because it doesn't support mouse clicks, but it provides the correct look.
 --- !u!1 &934519191
 GameObject:
   m_ObjectHideFlags: 0
