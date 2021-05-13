@@ -789,6 +789,7 @@ GameObject:
   - component: {fileID: 361978384}
   - component: {fileID: 361978383}
   - component: {fileID: 361978385}
+  - component: {fileID: 361978386}
   m_Layer: 0
   m_Name: Keyboard Manager
   m_TagString: Untagged
@@ -857,6 +858,19 @@ MonoBehaviour:
   - {fileID: 3752473254958006722}
   slotContents:
   - {fileID: 3752473255478746484}
+--- !u!114 &361978386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361978381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ef247928707426e8ec2aae6eee4c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerMover: {fileID: 1825768136}
 --- !u!1 &643015055
 GameObject:
   m_ObjectHideFlags: 0

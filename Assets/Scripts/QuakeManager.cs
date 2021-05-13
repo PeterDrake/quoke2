@@ -60,7 +60,7 @@ public class QuakeManager : MonoBehaviour
     private bool quaking;
 
     private GameObject player;
-    private MovementRevised movementScript;
+    private Movement movementScript;
 
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
@@ -83,7 +83,7 @@ public class QuakeManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        movementScript = player.GetComponent<MovementRevised>();
+        movementScript = player.GetComponent<Movement>();
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);

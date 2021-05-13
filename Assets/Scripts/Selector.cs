@@ -60,7 +60,7 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         
-        movePoint = player.GetComponent<MovementRevised>().movePoint;
+        movePoint = player.GetComponent<Movement>().movePoint;
 
         invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
     }

@@ -28,11 +28,11 @@ public class npcscript : MonoBehaviour
         // Freezes the background if the player enters NPC screen
         if (sceneHistory.Count < 2)
         {
-            GameObject.Find("Player").GetComponent<MovementRevised>().enabled = true;   
+            GameObject.Find("Player").GetComponent<Movement>().enabled = true;   
         }
         else
         {
-            GameObject.Find("Player").GetComponent<MovementRevised>().enabled = false;
+            GameObject.Find("Player").GetComponent<Movement>().enabled = false;
         }
     }
     
