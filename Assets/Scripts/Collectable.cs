@@ -7,6 +7,8 @@ public class Collectable : MonoBehaviour
     public Sprite itemSprite;
     public bool inStorageContainer;
 
+    public Selector selector;
+    
     /*
      * The Collectable script should be attached to any game object you want to be an inventory item.
      * Both the player and the item must have a collider, and the item should also have a Rigidbody.
@@ -22,7 +24,7 @@ public class Collectable : MonoBehaviour
         if (other.CompareTag("Player") && !inStorageContainer)
         {
             Debug.Log("Ran into item");
-            GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
+            selector.AddItemToInventory(this.gameObject);
         }
     }
 
