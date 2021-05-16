@@ -12,10 +12,10 @@ public class KeyboardMover : MonoBehaviour
     {
         if (Math.Abs(Input.GetAxisRaw("Horizontal")) >= 1f)
         {
-            PlayerMover.MoveHorizontally(Input.GetAxisRaw("Horizontal"));
+            PlayerMover.MoveHorizontally(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f));
         } else if (Math.Abs(Input.GetAxisRaw("Vertical")) >= 1f)
         {
-            PlayerMover.MoveVertically(Input.GetAxisRaw("Vertical"));
+            PlayerMover.MoveHorizontally(new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")));
         }
         else
         {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Movement : MonoBehaviour
 {
@@ -25,74 +27,34 @@ public class Movement : MonoBehaviour
         movePoint.parent = null; // So that moving player doesn't move its child movePoint
     }
 
-    ///Returns true if there is an obstacle in Horizontal Direction
-    private bool ObstacleInDirectionHorizontal(float x, float z)
+    // ///Returns true if there is an obstacle in direction
+    // private bool ObstacleAhead(Vector3 direction)
+    // {
+    //     // Get all things in the space on the grid the player is trying to move to
+    //     Collider[] hitColliders = Physics.OverlapSphere(
+    //         movePoint.position + direction * 0.5f,
+    //         0.2f, layersToCollideWith);
+    //     Debug.Log("Obstacle hitColliders: " + hitColliders.Length);
+    //     // Exception if the player is crouching and the object in front is a table
+    //     if (hitColliders.Length == 1)
+    //     {
+    //         if (hitColliders[0].gameObject.layer == 10 && crouching)
+    //         {
+    //             return false;
+    //         }
+    //     }
+    //
+    //     return hitColliders.Length != 0;
+    // }
+
+    /// Returns the GameObject, if any, that the player would run into if they took a step in direction.
+    private GameObject InteractableAhead(Vector3 direction, int layers) 
     {
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(
-            movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
-            0.2f, layersToCollideWith);
-
-        // Exception if the player is crouching and the object in front is a table
-        if (hitColliders.Length == 1)
-        {
-            if (hitColliders[0].gameObject.layer == 10 && crouching)
-            {
-                return false;
-            }
-        }
-
-        return hitColliders.Length != 0;
-    }
-    
-    ///Returns true if there is an obstacle in Vertical Direction
-    private bool ObstacleInDirectionVertical(float x, float z)
-    {
-        // Get all things in the space on the grid the player is trying to move to
-        Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
-            0.2f, layersToCollideWith);
-
-        // Exception if the player is crouching and the object in front is a table
-        if (hitColliders.Length == 1)
-        {
-            if (hitColliders[0].gameObject.layer == 10 && crouching)
-            {
-                return false;
-            }
-        }
-
-        return hitColliders.Length != 0;
-    }
-    
-    /// This tells us about the interactive object that we are about to run in to. On the Horizontal direction
-    private GameObject IntractableInDirectionHorizontal(float x, float z)  //new code 
-    {
-        // Get all things in the space on the grid the player is trying to move to
-        Collider[] hitColliders = Physics.OverlapSphere(
-            movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 0.5f, 0.0f, 0.0f),
-            0.2f, layersToInteractWith);
-
-        // Exception if the player is crouching and the object in front is a table
-        if (hitColliders.Length == 1)
-        {
-            if (hitColliders[0].gameObject.layer == 10 && crouching)
-            {
-                return null;
-            }
-
-            return hitColliders[0].gameObject;
-        }
-
-        return null;
-    }
-    
-    /// This tells us about the interactive object that we are about to run in to. On the Vertical direction   
-    private GameObject InteractableInDirectionVertical(float x, float z)  //new code 
-    {
-        // Get all things in the space on the grid the player is trying to move to
-        Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
-            0.2f, layersToInteractWith);
-
+            movePoint.position + direction * 0.5f,
+            0.2f, layers);
+        Debug.Log("Interactable hitColliders: " + hitColliders.Length);
         // Exception if the player is crouching and the object in front is a table
         if (hitColliders.Length == 1)
         {
@@ -107,66 +69,37 @@ public class Movement : MonoBehaviour
         return null;
     }
 
-    public void MoveHorizontally(float direction)
+    public void MoveHorizontally(Vector3 direction)
     {
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             //We check for the npc object in Horizontal Direction then we load npcScreen 
-            GameObject npc = IntractableInDirectionHorizontal(direction, 0.0f);
+            GameObject npc = InteractableAhead(direction, layersToInteractWith);
+            Debug.Log("Ahead: <" + npc + ">");
             if (npc != null)
             {
                 GlobalControls.CurrentNPC = npc.name;
-                transform.LookAt(transform.position + new Vector3(direction, 0f, 0f),
+                transform.LookAt(transform.position + direction,
                     transform.up);
                 npc.GetComponent<npcscript>().LoadScene("npcScreen");
             }
 
             // Check if something occupying the space
-            else if (ObstacleInDirectionHorizontal(direction, 0.0f))
+            else if (InteractableAhead(direction, layersToCollideWith)) // Checks for null, taking Unity's weird idea of null into account
             {
-                transform.LookAt(transform.position + new Vector3(direction, 0f, 0f),
+                transform.LookAt(transform.position + direction,
                     transform.up);
 
             }
             else
             {
-                movePoint.position += new Vector3(direction, 0f, 0f);
-                transform.LookAt(transform.position + new Vector3(direction, 0f, 0f),
+                movePoint.position += direction;
+                transform.LookAt(transform.position + direction,
                     transform.up);
                 moving = true;
                 GlobalControls.TurnNumber++;
             }
         }
-    }
-
-    public void MoveVertically(float direction)
-    {
-        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
-        {
-
-            //We check for the npc object in Vertical Direction then we load npcScreen 
-            GameObject npc = InteractableInDirectionVertical(direction, 0.0f);
-            if (npc != null)
-            {
-                GlobalControls.CurrentNPC = npc.name;
-                transform.LookAt(transform.position + new Vector3(0f, 0f, direction), transform.up);
-                npc.GetComponent<npcscript>().LoadScene("npcScreen");
-            }
-            // Check if something occupying the space
-            else if (ObstacleInDirectionVertical(direction,0.0f))
-            {
-                transform.LookAt(transform.position + new Vector3(0f, 0f, direction), transform.up);
-               
-            }
-            else 
-            {
-                movePoint.position += new Vector3(0f, 0f, direction);
-                transform.LookAt(transform.position + new Vector3(0f, 0f, direction), transform.up);
-                moving = true;
-                GlobalControls.TurnNumber++;
-            }
-        }
-
     }
 
     public void SetMoving(bool moving)
