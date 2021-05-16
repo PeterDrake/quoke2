@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef247928707426e8ec2aae6eee4c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerMover: {fileID: 1825768136}
+  Player: {fileID: 1825768136}
 --- !u!1 &643015055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,10 +2148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d67f641c4242c9befea9106caca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHead: {fileID: 1332984408}
-  moveSpeed: 5
-  movePoint: {fileID: 643015056}
-  moving: 0
+  Head: {fileID: 1332984408}
+  MovementSpeed: 5
+  Destination: {fileID: 643015056}
   crouching: 0
   isUnderTable: 0
 --- !u!65 &1825768137

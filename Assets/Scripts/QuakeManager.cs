@@ -60,7 +60,7 @@ public class QuakeManager : MonoBehaviour
     private bool quaking;
 
     private GameObject player;
-    private Movement movementScript;
+    private PlayerMover playerMoverScript;
 
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
@@ -83,7 +83,7 @@ public class QuakeManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        movementScript = player.GetComponent<Movement>();
+        playerMoverScript = player.GetComponent<PlayerMover>();
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
@@ -193,7 +193,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForUnderCover()
     {
-        if (movementScript.isUnderTable)
+        if (playerMoverScript.UnderTable)
         {
             isUnderCover = true;
         }

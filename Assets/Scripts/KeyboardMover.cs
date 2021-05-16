@@ -1,25 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles keyboard input related to moving the player.
+/// </summary>
 public class KeyboardMover : MonoBehaviour
 {
-    public Movement PlayerMover;
+    public PlayerMover Player;
 
     // Update is called once per frame
     void Update()
     {
-        if (Math.Abs(Input.GetAxisRaw("Horizontal")) >= 1f)
+        Player.SetCrouching(Input.GetKey(KeyCode.C));
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        if (Math.Abs(h) >= 1f)
         {
-            PlayerMover.MoveHorizontally(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f));
-        } else if (Math.Abs(Input.GetAxisRaw("Vertical")) >= 1f)
+            Player.StartMoving(new Vector3(h, 0f, 0f));
+            GlobalControls.TurnNumber++;
+        } else if (Math.Abs(v) >= 1f)
         {
-            PlayerMover.MoveHorizontally(new Vector3(0f, 0f, Input.GetAxisRaw("Vertical")));
-        }
-        else
-        {
-            PlayerMover.SetMoving(false);
+            Player.StartMoving(new Vector3(0f, 0f, v));
+            GlobalControls.TurnNumber++;
         }
     }
 }
