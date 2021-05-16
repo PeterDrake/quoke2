@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
     }
     
     /// This tells us about the interactive object that we are about to run in to. On the Vertical direction   
-    private GameObject IntractableInDirectionVertical(float x, float z)  //new code 
+    private GameObject InteractableInDirectionVertical(float x, float z)  //new code 
     {
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(movePoint.position + new Vector3(0f, 0.0f, Input.GetAxisRaw("Vertical") * 0.5f),
@@ -109,7 +109,6 @@ public class Movement : MonoBehaviour
 
     public void MoveHorizontally(float direction)
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             //We check for the npc object in Horizontal Direction then we load npcScreen 
@@ -123,7 +122,7 @@ public class Movement : MonoBehaviour
             }
 
             // Check if something occupying the space
-            else if (ObstacleInDirectionHorizontal(Input.GetAxisRaw("Horizontal"), 0.0f))
+            else if (ObstacleInDirectionHorizontal(direction, 0.0f))
             {
                 transform.LookAt(transform.position + new Vector3(direction, 0f, 0f),
                     transform.up);
@@ -131,7 +130,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                movePoint.position += new Vector3(direction, 0f, 0f);
                 transform.LookAt(transform.position + new Vector3(direction, 0f, 0f),
                     transform.up);
                 moving = true;
@@ -142,12 +141,11 @@ public class Movement : MonoBehaviour
 
     public void MoveVertically(float direction)
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
 
             //We check for the npc object in Vertical Direction then we load npcScreen 
-            GameObject npc = IntractableInDirectionVertical(direction, 0.0f);
+            GameObject npc = InteractableInDirectionVertical(direction, 0.0f);
             if (npc != null)
             {
                 GlobalControls.CurrentNPC = npc.name;
@@ -155,14 +153,14 @@ public class Movement : MonoBehaviour
                 npc.GetComponent<npcscript>().LoadScene("npcScreen");
             }
             // Check if something occupying the space
-            else if (ObstacleInDirectionVertical(Input.GetAxisRaw("Vertical"),0.0f))
+            else if (ObstacleInDirectionVertical(direction,0.0f))
             {
                 transform.LookAt(transform.position + new Vector3(0f, 0f, direction), transform.up);
                
             }
             else 
             {
-                movePoint.position += new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+                movePoint.position += new Vector3(0f, 0f, direction);
                 transform.LookAt(transform.position + new Vector3(0f, 0f, direction), transform.up);
                 moving = true;
                 GlobalControls.TurnNumber++;
@@ -176,10 +174,10 @@ public class Movement : MonoBehaviour
         this.moving = moving;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void FixedUpdate()
     {
-
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.fixedDeltaTime);
+        
         Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, layersToCollideWith);
         
         // Tell us if the player is currently under a table
