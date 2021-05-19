@@ -790,7 +790,6 @@ GameObject:
   - component: {fileID: 361978382}
   - component: {fileID: 361978384}
   - component: {fileID: 361978383}
-  - component: {fileID: 361978385}
   - component: {fileID: 361978386}
   m_Layer: 0
   m_Name: Keyboard Manager
@@ -842,24 +841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8724ca67323c96f46aa35f174ee31056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &361978385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361978381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSlot: 0
-  inventory: []
-  slots:
-  - {fileID: 3752473254958006722}
-  slotContents:
-  - {fileID: 3752473255478746484}
 --- !u!114 &361978386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,9 +1188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f4d382868d4178ab6426b4b17c423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: b6f1d8d7da98f4a68b9cdbb36a05d22e, type: 3}
-  KeyboardInventoryManager: {fileID: 361978385}
-  InStorageContainer: 0
+  sprite: {fileID: 21300000, guid: b6f1d8d7da98f4a68b9cdbb36a05d22e, type: 3}
+  inventory: {fileID: 3752473254016990763}
+  inStorageContainer: 0
 --- !u!54 &1099424782
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1335,9 +1316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f4d382868d4178ab6426b4b17c423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
-  KeyboardInventoryManager: {fileID: 361978385}
-  InStorageContainer: 0
+  sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
+  inventory: {fileID: 3752473254016990763}
+  inStorageContainer: 0
 --- !u!54 &1138394399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1798,9 +1779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f4d382868d4178ab6426b4b17c423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 094819451c23f4e21b1eb1f4b206c073, type: 3}
-  KeyboardInventoryManager: {fileID: 361978385}
-  InStorageContainer: 0
+  sprite: {fileID: 21300000, guid: 094819451c23f4e21b1eb1f4b206c073, type: 3}
+  inventory: {fileID: 3752473254016990763}
+  inStorageContainer: 0
 --- !u!54 &1459635015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2021,9 +2002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f4d382868d4178ab6426b4b17c423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: f31a74b817d7c4138a8ed311306f2ac1, type: 3}
-  KeyboardInventoryManager: {fileID: 361978385}
-  InStorageContainer: 0
+  sprite: {fileID: 21300000, guid: f31a74b817d7c4138a8ed311306f2ac1, type: 3}
+  inventory: {fileID: 3752473254016990763}
+  inStorageContainer: 0
 --- !u!54 &1666027197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2148,11 +2129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d67f641c4242c9befea9106caca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Head: {fileID: 1332984408}
-  MovementSpeed: 5
-  Destination: {fileID: 643015056}
-  Crouching: 0
-  UnderTable: 0
+  head: {fileID: 1332984408}
+  movementSpeed: 5
+  destination: {fileID: 643015056}
+  crouching: 0
+  underTable: 0
 --- !u!65 &1825768137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3003,6 +2984,7 @@ GameObject:
   - component: {fileID: 3752473254016990759}
   - component: {fileID: 3752473254016990760}
   - component: {fileID: 3752473254016990761}
+  - component: {fileID: 3752473254016990763}
   m_Layer: 5
   m_Name: Inventory Canvas
   m_TagString: Untagged
@@ -3010,6 +2992,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3752473254016990763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752473254016990762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSlot: 0
+  inventory: []
+  unselectedSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  slots:
+  - {fileID: 3752473254958006722}
+  slotContents:
+  - {fileID: 3752473255478746484}
 --- !u!224 &3752473254958006721
 RectTransform:
   m_ObjectHideFlags: 0

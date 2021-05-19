@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking.Types;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
-public class KeyboardInventoryManager : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     public int currentSlot;
     

@@ -12,7 +12,7 @@ using UnityEngine.Serialization;
 public class Collectible : MonoBehaviour
 {
     public Sprite sprite;
-    public KeyboardInventoryManager keyboardInventoryManager;
+    public Inventory inventory;
     public bool inStorageContainer;
     
     void OnTriggerEnter(Collider other)
@@ -20,7 +20,7 @@ public class Collectible : MonoBehaviour
         // When the player runs into it, add it to inventory
         if (other.CompareTag("Player") && !inStorageContainer)
         {
-            keyboardInventoryManager.AddItemToInventory(this.gameObject);
+            inventory.AddItemToInventory(this.gameObject);
         }
     }
 }
