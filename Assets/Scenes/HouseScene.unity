@@ -3004,14 +3004,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSlot: 0
-  inventory: []
-  unselectedSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slots:
+  selectedSlotNumber: 0
+  player: {fileID: 1825768135}
+  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
+    type: 3}
+  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  slotFrames:
   - {fileID: 3752473254958006722}
   slotContents:
   - {fileID: 3752473255478746484}
+  items: []
 --- !u!224 &3752473254958006721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3044,7 +3046,7 @@ GameObject:
   - component: {fileID: 3752473254958006750}
   - component: {fileID: 3752473254958006751}
   m_Layer: 5
-  m_Name: Inventory Slot 1
+  m_Name: Frame 0
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3157,7 +3159,7 @@ GameObject:
   - component: {fileID: 3752473255478746481}
   - component: {fileID: 3752473255478746482}
   m_Layer: 5
-  m_Name: Inventory Item 1
+  m_Name: Contents 0
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

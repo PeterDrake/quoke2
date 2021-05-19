@@ -1,88 +1,78 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
 public class Inventory : MonoBehaviour
 {
-    public int currentSlot;
+    public int selectedSlotNumber;
+    public PlayerMover player;
+    private Transform movePoint;  // TODO This class shouldn't know about this
     
-    // inventory holds the actual gameObjects which represent items in the world while they are in the players inventory, that can be picked up and set down
-    public GameObject[] inventory;
+    public Sprite unselectedSlotSprite;
+    public Sprite selectedSlotSprite;
+    
+    // These are UI Images showing sprites (either unselectedSlotSprite or selectedSlotSprite).
+    public GameObject[] slotFrames;
 
-    public Sprite unselectedSprite;
-    public Sprite selectedSprite;
-    
-    // The arrays for slots and items are public, and the objects must be manually associated in the Unity editor.
-    // Select the Selector object and look under the script component to see the arrays.
-    // Set the size of both arrays to the number of slots, then select the appropriate GameObjects in the right order.
-    public GameObject[] slots;
-    // slotContents represents an array of empty game objects, one attached to each slot.
-    // An slotContents gameObject is set to active if that slot is full, and inactive if it is empty.
-    // The inventory sprite for the inventory item is also attached to this gameObject so it displays in the slot.
+    // These are UI Images showing sprites for occupied slots. They're inactive for unoccupied slots.
     public GameObject[] slotContents;
-    private GameObject player;
-    private Transform movePoint;
-
-    private int invalidItemSpaces;
+    
+    // These are the actual 3D GameObjects that the player has picked up.
+    public GameObject[] items;
+    
+    // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
+    private int dropObstructionLayers;
     
     // This would only allow for 10 inventory slots max
     // If more than 10 slots are needed, add the KeyCodes you want associated with those slots to validInputs here
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     
-    
-
     // Start is called before the first frame update
     void Start()
     {
-
-        slots[0].GetComponent<Image>().sprite = selectedSprite;
-
-        //starts the game with an empty inventory
-        inventory = new GameObject[slots.Length];
-        
+        movePoint = player.GetComponent<PlayerMover>().destination;
+        // Set initial state of all the arrays
+        foreach (GameObject frame in slotFrames)
+        {
+            frame.GetComponent<Image>().sprite = unselectedSlotSprite;
+        }
         foreach (GameObject item in slotContents)
         {
             item.SetActive(false);
         }
-
-        //sets first selected slot to be 0
-        currentSlot = 0;
-
-        player = GameObject.FindWithTag("Player");
-        
-        movePoint = player.GetComponent<PlayerMover>().destination;
-
-        invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
+        items = new GameObject[slotFrames.Length];
+        // Select the first slot
+        selectedSlotNumber = 0;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        // Find the layers that obstruct dropping
+        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
     }
 
-    // changes slot background of specific slotNumber to selected sprite 
     void SelectSlotNumber(int slotNumber)
     {
-        if (slotNumber < 0 || slotNumber >= slots.Length)
+        if (slotNumber < 0 || slotNumber >= slotFrames.Length)
         {
             return;
         }
-
-        slots[slotNumber].GetComponent<Image>().sprite = selectedSprite;
-
-            
-        if (currentSlot != slotNumber)
+        slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        if (selectedSlotNumber != slotNumber)
         {
-            slots[currentSlot].GetComponent<Image>().sprite = unselectedSprite;
-            currentSlot = slotNumber;
+            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
+            selectedSlotNumber = slotNumber;
         }
     }
 
     // removes item at specific slotNumber and sets item one grid unit in front of the player
-    void RemoveItemFromInventory(int slotNumber)
+    void RemoveItemFromInventorySlot(int slotNumber)
     {
         // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!Physics.Raycast(movePoint.position, player.transform.forward, 1f, invalidItemSpaces))
+        if (!player.ObjectAhead(dropObstructionLayers))
         {
             if (slotContents[slotNumber].activeSelf)
             {
-                inventory[slotNumber].SetActive(true);
-                inventory[slotNumber].transform.position = movePoint.position + player.transform.forward;
-                inventory[slotNumber] = null;
+                items[slotNumber].SetActive(true);
+                items[slotNumber].transform.position = movePoint.position + player.transform.forward;
+                items[slotNumber] = null;
                 slotContents[slotNumber].SetActive(false);  
             }
         }
@@ -98,12 +88,12 @@ public class Inventory : MonoBehaviour
             item.GetComponent<Collectible>().inStorageContainer = false;
             AddItemToInventory(item);
         }
-        else if (slotContents[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
+        else if (slotContents[slotNumber].activeSelf && container.storeItem(items[slotNumber]))
         {
-            inventory[slotNumber].SetActive(true);
-            inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
-            inventory[slotNumber].GetComponent<Collectible>().inStorageContainer = true;
-            inventory[slotNumber] = null;
+            items[slotNumber].SetActive(true);
+            items[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
+            items[slotNumber].GetComponent<Collectible>().inStorageContainer = true;
+            items[slotNumber] = null;
             slotContents[slotNumber].SetActive(false);
         }
     }
@@ -116,7 +106,7 @@ public class Inventory : MonoBehaviour
         {
             slotContents[nextSpot].SetActive(true);
             slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectible>().sprite;
-            inventory[nextSpot] = collectable;
+            items[nextSpot] = collectable;
             collectable.SetActive(false);
         }
 
@@ -125,7 +115,7 @@ public class Inventory : MonoBehaviour
     //goes through all the slots to find the first deactivated item and returns that slot number
     int FindNextEmptySpot()
     {
-        for(int i = 0; i < slots.Length; i++)
+        for(int i = 0; i < slotFrames.Length; i++)
         {
             if (!slotContents[i].activeSelf)
             {
@@ -143,13 +133,13 @@ public class Inventory : MonoBehaviour
             RaycastHit storageContainerCheck;
             if (Physics.Raycast(player.transform.position, player.transform.forward, out storageContainerCheck, 1f, LayerMask.GetMask("StorageContainer")))
             {
-                InteractWithStorageContainer(currentSlot, storageContainerCheck);
+                InteractWithStorageContainer(selectedSlotNumber, storageContainerCheck);
             }
-            RemoveItemFromInventory(currentSlot);
+            RemoveItemFromInventorySlot(selectedSlotNumber);
         }
         
         // If the user presses a key that is one of the valid inputs for slot selection, select that slot
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slotFrames.Length; i++)
         {
             if (Input.GetKey(validInputs[i]))
             {

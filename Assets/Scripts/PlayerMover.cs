@@ -26,11 +26,11 @@ public class PlayerMover : MonoBehaviour
     /// <summary>
     /// Returns the GameObject, if any, that the player would hit if they took a step in direction.
     /// </summary>
-    /// <param name="direction">A unit vector in the direction the player is facing</param>
     /// <param name="layers">Layers to check for objects</param>
     /// <returns></returns>
-    private GameObject ObjectAhead(Vector3 direction, int layers)
+    public GameObject ObjectAhead(int layers)
     {
+        Vector3 direction = transform.forward;
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(
             destination.position + direction * 0.5f,
@@ -54,8 +54,9 @@ public class PlayerMover : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, destination.position) <= 0.05f)
         {
+            transform.LookAt(transform.position + direction, transform.up);
             // Is the player about to walk into an interactable object?
-            GameObject ahead = ObjectAhead(direction, interactableLayers);
+            GameObject ahead = ObjectAhead(interactableLayers);
             if (ahead)  // TODO This seems to be assuming the only interactables are NPCs
             {
                 GlobalControls.CurrentNPC = ahead.name;
@@ -66,10 +67,9 @@ public class PlayerMover : MonoBehaviour
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
             // than checking for null, because destroyed GameObjects might not be null.
-            else if (!ObjectAhead(direction, obstacleLayers)){
+            else if (!ObjectAhead(obstacleLayers)){
                 destination.position += direction;
             }
-            transform.LookAt(transform.position + direction, transform.up);
         }
     }
 
