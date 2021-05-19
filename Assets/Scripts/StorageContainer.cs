@@ -12,7 +12,7 @@ public class StorageContainer : MonoBehaviour
         if (other.CompareTag("Collectable"))
         {
             Debug.Log("Placed in storage");
-            other.gameObject.GetComponent<Collectable>();
+            other.gameObject.GetComponent<Collectible>();
             //GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
         }
     }

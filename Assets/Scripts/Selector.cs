@@ -106,14 +106,14 @@ public class Selector : MonoBehaviour
         if (container.isItemStored() && !slotContents[slotNumber].activeSelf)
         {
             GameObject item = container.removeItem();
-            item.GetComponent<Collectable>().TakeOutOfStorageContainer();
+            item.GetComponent<Collectible>().InStorageContainer = false;
             AddItemToInventory(item);
         }
         else if (slotContents[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
         {
             inventory[slotNumber].SetActive(true);
             inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
-            inventory[slotNumber].GetComponent<Collectable>().PutInStorageContainer();
+            inventory[slotNumber].GetComponent<Collectible>().InStorageContainer = true;
             inventory[slotNumber] = null;
             slotContents[slotNumber].SetActive(false);
         }
@@ -126,7 +126,7 @@ public class Selector : MonoBehaviour
         if (nextSpot >= 0)
         {
             slotContents[nextSpot].SetActive(true);
-            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectable>().itemSprite;
+            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectible>().Sprite;
             inventory[nextSpot] = collectable;
             collectable.SetActive(false);
         }
