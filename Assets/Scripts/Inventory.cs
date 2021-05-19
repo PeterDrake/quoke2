@@ -6,8 +6,6 @@ public class Inventory : MonoBehaviour
 {
     public int selectedSlotNumber;
     public PlayerMover player;
-    private Transform movePoint; // TODO This class shouldn't know about this
-
     public Sprite unselectedSlotSprite;
     public Sprite selectedSlotSprite;
 
@@ -26,18 +24,15 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movePoint = player.GetComponent<PlayerMover>().destination;
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
             frame.GetComponent<Image>().sprite = unselectedSlotSprite;
         }
-
         foreach (GameObject item in slotContents)
         {
             item.SetActive(false);
         }
-
         items = new GameObject[slotFrames.Length];
         // Select the first slot
         selectedSlotNumber = 0;
@@ -80,10 +75,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Handles placing an item in a storage container or taking an item out of a storage container
+    /// <summary>
+    /// Takes the item in container (if there is one) or puts the selected item into container.
+    /// </summary>
     void InteractWithStorageContainer(StorageContainer container)
     {
-        int i = NextEmptySpot();
+        int i = FirstEmptySlot();
         if (i >= 0 && !SlotIsOccupied(i) && container.isItemStored())
         {
             GameObject item = container.removeItem();
@@ -93,12 +90,13 @@ public class Inventory : MonoBehaviour
         else
         {
             i = selectedSlotNumber; // Just to make the later expressions less hairy
-            if (SlotIsOccupied(i) && container.storeItem(items[i]))  // TODO storeItem returns a bool?
+            if (SlotIsOccupied(i) && !container.itemStored)
             {
-                // Place item on top of the container
+                // Place item in the container
+                container.itemStored = items[i];
                 items[i].SetActive(true);
                 Transform t = player.transform;
-                items[i].transform.position = t.position + t.forward + new Vector3(0f, 1f, 0f);  // TODO Up?
+                items[i].transform.position = t.position + t.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
                 // Remove item from inventory
                 items[i] = null;
@@ -111,10 +109,10 @@ public class Inventory : MonoBehaviour
     {
         return slotContents[i].activeSelf;
     }
-
+    
     public void PickUp(GameObject item)
     {
-        int i = NextEmptySpot();
+        int i = FirstEmptySlot();
         if (i >= 0)
         {
             // Display the sprite for this item
@@ -127,8 +125,10 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //goes through all the slots to find the first deactivated item and returns that slot number
-    private int NextEmptySpot()
+    /// <summary>
+    /// Returns the index of the first empty slot, or -1 if all slots are full.
+    /// <returns></returns>
+    private int FirstEmptySlot()
     {
         for (int i = 0; i < slotFrames.Length; i++)
         {
@@ -137,7 +137,6 @@ public class Inventory : MonoBehaviour
                 return i;
             }
         }
-
         return -1;
     }
 

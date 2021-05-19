@@ -17,16 +17,16 @@ public class StorageContainer : MonoBehaviour
         }
     }
 
-    // Attempts to store the selected item in the container and returns a boolean of success/failure
-    public bool storeItem(GameObject item)
-    {
-        if (itemStored == null)
-        {
-            itemStored = item;
-            return true;
-        }
-        return false;
-    }
+    // // Attempts to store the selected item in the container and returns a boolean of success/failure
+    // public bool storeItem(GameObject item)
+    // {
+    //     if (itemStored == null)
+    //     {
+    //         itemStored = item;
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     // Removes the currently stored item and returns it
     public GameObject removeItem()
