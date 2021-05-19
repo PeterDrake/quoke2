@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class Selector : MonoBehaviour
+public class KeyboardInventoryManager : MonoBehaviour
 {
     public int currentSlot;
     
@@ -60,7 +60,7 @@ public class Selector : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         
-        movePoint = player.GetComponent<PlayerMover>().Destination;
+        movePoint = player.GetComponent<PlayerMover>().destination;
 
         invalidItemSpaces = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
     }
@@ -106,14 +106,14 @@ public class Selector : MonoBehaviour
         if (container.isItemStored() && !slotContents[slotNumber].activeSelf)
         {
             GameObject item = container.removeItem();
-            item.GetComponent<Collectible>().InStorageContainer = false;
+            item.GetComponent<Collectible>().inStorageContainer = false;
             AddItemToInventory(item);
         }
         else if (slotContents[slotNumber].activeSelf && container.storeItem(inventory[slotNumber]))
         {
             inventory[slotNumber].SetActive(true);
             inventory[slotNumber].transform.position = player.transform.position + (player.transform.forward) + new Vector3(0f, 1f, 0f);
-            inventory[slotNumber].GetComponent<Collectible>().InStorageContainer = true;
+            inventory[slotNumber].GetComponent<Collectible>().inStorageContainer = true;
             inventory[slotNumber] = null;
             slotContents[slotNumber].SetActive(false);
         }
@@ -126,7 +126,7 @@ public class Selector : MonoBehaviour
         if (nextSpot >= 0)
         {
             slotContents[nextSpot].SetActive(true);
-            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectible>().Sprite;
+            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectible>().sprite;
             inventory[nextSpot] = collectable;
             collectable.SetActive(false);
         }

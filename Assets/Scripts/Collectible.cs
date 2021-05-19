@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// The Collectable script should be attached to any game object you want to be an inventory item.
@@ -10,25 +11,16 @@
 /// </summary>
 public class Collectible : MonoBehaviour
 {
-    public Sprite Sprite;
-    public Selector selector;
-    public bool InStorageContainer;
+    public Sprite sprite;
+    public KeyboardInventoryManager keyboardInventoryManager;
+    public bool inStorageContainer;
     
-    /*
-     * The Collectable script should be attached to any game object you want to be an inventory item.
-     * Both the player and the item must have a collider, and the item should also have a Rigidbody.
-     * The collider on the item must have the "Is Trigger" box checked.
-     * A very small (0.1 for all sizes) box collider on the item worked best in testing.
-     * Make sure to uncheck the "Use Gravity" box in the Rigidbody options or else the item will fall!
-     * Finally, make sure items are aligned with the grid properly when you place the game object
-     */
-
     void OnTriggerEnter(Collider other)
     {
         // When the player runs into it, add it to inventory
-        if (other.CompareTag("Player") && !InStorageContainer)
+        if (other.CompareTag("Player") && !inStorageContainer)
         {
-            selector.AddItemToInventory(this.gameObject);
+            keyboardInventoryManager.AddItemToInventory(this.gameObject);
         }
     }
 }

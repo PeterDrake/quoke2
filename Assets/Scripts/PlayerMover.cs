@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
 
 /// <summary>
@@ -6,11 +7,11 @@ using Debug = UnityEngine.Debug;
 /// </summary>
 public class PlayerMover : MonoBehaviour
 {
-    public GameObject Head;  // Used for our temporary crouch animation
-    public float MovementSpeed;
-    public Transform Destination;  // Point the player is current moving toward
-    public bool Crouching;
-    public bool UnderTable;
+    public GameObject head;  // Used for our temporary crouch animation
+    public float movementSpeed;
+    public Transform destination;  // Point the player is current moving toward
+    public bool crouching;
+    public bool underTable;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
@@ -19,7 +20,7 @@ public class PlayerMover : MonoBehaviour
     {
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
-        Destination.parent = null; // So that moving player doesn't move its child Destination
+        destination.parent = null; // So that moving player doesn't move its child Destination
     }
 
     /// <summary>
@@ -32,12 +33,12 @@ public class PlayerMover : MonoBehaviour
     {
         // Get all things in the space on the grid the player is trying to move to
         Collider[] hitColliders = Physics.OverlapSphere(
-            Destination.position + direction * 0.5f,
+            destination.position + direction * 0.5f,
             0.2f, layers);
         if (hitColliders.Length == 1)  // There should be 0 or 1 such objects
         {
             // It's okay to move into (under) a table if you're crouching
-            if (Crouching && hitColliders[0].gameObject.layer == LayerMask.NameToLayer("Table"))
+            if (crouching && hitColliders[0].gameObject.layer == LayerMask.NameToLayer("Table"))
             {
                 return null;
             }
@@ -51,7 +52,7 @@ public class PlayerMover : MonoBehaviour
     /// </summary>
     public void StartMoving(Vector3 direction)
     {
-        if (Vector3.Distance(transform.position, Destination.position) <= 0.05f)
+        if (Vector3.Distance(transform.position, destination.position) <= 0.05f)
         {
             // Is the player about to walk into an interactable object?
             GameObject ahead = ObjectAhead(direction, interactableLayers);
@@ -66,7 +67,7 @@ public class PlayerMover : MonoBehaviour
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
             // than checking for null, because destroyed GameObjects might not be null.
             else if (!ObjectAhead(direction, obstacleLayers)){
-                Destination.position += direction;
+                destination.position += direction;
             }
             transform.LookAt(transform.position + direction, transform.up);
         }
@@ -76,15 +77,15 @@ public class PlayerMover : MonoBehaviour
     {
         // If there's an obstacle where you are, it must be a table you're under
         Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
-        UnderTable = tableCheckColliders.Length != 0;
-        this.Crouching = crouching || UnderTable;
-        Head.transform.localPosition = new Vector3(Head.transform.localPosition.x, this.Crouching ? 0f : 0.5f,
-                Head.transform.localPosition.z);
+        underTable = tableCheckColliders.Length != 0;
+        this.crouching = crouching || underTable;
+        head.transform.localPosition = new Vector3(head.transform.localPosition.x, this.crouching ? 0f : 0.5f,
+                head.transform.localPosition.z);
     }
 
     public void FixedUpdate()
     {
         transform.position =
-            Vector3.MoveTowards(transform.position, Destination.position, MovementSpeed * Time.fixedDeltaTime);
+            Vector3.MoveTowards(transform.position, destination.position, movementSpeed * Time.fixedDeltaTime);
     }
 }
