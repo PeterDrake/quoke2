@@ -20,7 +20,7 @@ public class Collectible : MonoBehaviour
         // When the player runs into it, add it to inventory
         if (other.CompareTag("Player") && !inStorageContainer)
         {
-            inventory.AddItemToInventory(this.gameObject);
+            inventory.PickUp(this.gameObject);
         }
     }
 }

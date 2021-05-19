@@ -62,18 +62,20 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // removes item at specific slotNumber and sets item one grid unit in front of the player
-    void RemoveItemFromInventorySlot(int slotNumber)
+    private void DropSelectedItem()
     {
         // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
         if (!player.ObjectAhead(dropObstructionLayers))
         {
-            if (slotContents[slotNumber].activeSelf)
+            int i = selectedSlotNumber;  // Just to make the later expressions less hairy
+            if (slotContents[i].activeSelf)
             {
-                items[slotNumber].SetActive(true);
-                items[slotNumber].transform.position = movePoint.position + player.transform.forward;
-                items[slotNumber] = null;
-                slotContents[slotNumber].SetActive(false);  
+                // Place item in front of player
+                items[i].SetActive(true);
+                items[i].transform.position = player.destination.transform.position + player.transform.forward;
+                // Remove item from inventory
+                items[i] = null;
+                slotContents[i].SetActive(false);  
             }
         }
     }
@@ -86,7 +88,7 @@ public class Inventory : MonoBehaviour
         {
             GameObject item = container.removeItem();
             item.GetComponent<Collectible>().inStorageContainer = false;
-            AddItemToInventory(item);
+            PickUp(item);
         }
         else if (slotContents[slotNumber].activeSelf && container.storeItem(items[slotNumber]))
         {
@@ -98,22 +100,24 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // finds next empty spot and if there is changes sprite to that item's sprite
-    public void AddItemToInventory(GameObject collectable)
+    public void PickUp(GameObject item)
     {
-        int nextSpot = FindNextEmptySpot();
-        if (nextSpot >= 0)
+        int i = NextEmptySpot();
+        if (i >= 0)
         {
-            slotContents[nextSpot].SetActive(true);
-            slotContents[nextSpot].GetComponent<Image>().sprite = collectable.GetComponent<Collectible>().sprite;
-            items[nextSpot] = collectable;
-            collectable.SetActive(false);
+            // Display the sprite for this item
+            slotContents[i].SetActive(true);
+            slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            // Add item to the items array
+            items[i] = item;
+            // Remove item from the world
+            item.SetActive(false);
         }
 
     }
 
     //goes through all the slots to find the first deactivated item and returns that slot number
-    int FindNextEmptySpot()
+    private int NextEmptySpot()
     {
         for(int i = 0; i < slotFrames.Length; i++)
         {
@@ -135,7 +139,7 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithStorageContainer(selectedSlotNumber, storageContainerCheck);
             }
-            RemoveItemFromInventorySlot(selectedSlotNumber);
+            DropSelectedItem();
         }
         
         // If the user presses a key that is one of the valid inputs for slot selection, select that slot
