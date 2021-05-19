@@ -15,8 +15,8 @@ public class KeyboardInventoryManager : MonoBehaviour
     // inventory holds the actual gameObjects which represent items in the world while they are in the players inventory, that can be picked up and set down
     public GameObject[] inventory;
 
-    private Sprite unselectedSprite;
-    private Sprite selectedSprite;
+    public Sprite unselectedSprite;
+    public Sprite selectedSprite;
     
     // The arrays for slots and items are public, and the objects must be manually associated in the Unity editor.
     // Select the Selector object and look under the script component to see the arrays.
@@ -41,10 +41,6 @@ public class KeyboardInventoryManager : MonoBehaviour
     void Start()
     {
 
-        //Load sprites
-        selectedSprite = Resources.Load<Sprite>("SelectedSlot 1");
-        unselectedSprite = Resources.Load<Sprite>("UnselectedSlot 1");
-        
         slots[0].GetComponent<Image>().sprite = selectedSprite;
 
         //starts the game with an empty inventory
