@@ -11,7 +11,7 @@ public class CheatKeyboardController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            SceneManager.LoadScene("HouseScene");
+            SceneManager.LoadScene("PreQuakeHouse");
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
