@@ -2,7 +2,7 @@
 using UnityEngine.Serialization;
 
 /// <summary>
-/// The Collectable script should be attached to any game object you want to be an inventory item.
+/// The Collectible script should be attached to any game object you want to be an inventory item.
 /// Both the player and the item must have a Collider; the item must also have a Rigidbody.
 /// The collider on the item must have the "Is Trigger" box checked.
 /// A very small (0.1 for all axes) BoxCollider on the item worked best in testing.

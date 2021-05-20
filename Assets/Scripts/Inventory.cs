@@ -81,7 +81,7 @@ public class Inventory : MonoBehaviour
     void InteractWithStorageContainer(StorageContainer container)
     {
         int i = FirstEmptySlot();
-        if (i >= 0 && !SlotIsOccupied(i) && container.storedItem)
+        if (i >= 0 && !SlotIsOccupied(i) && container.contents)
         {
             GameObject item = container.RemoveItem();
             item.GetComponent<Collectible>().inStorageContainer = false;
@@ -90,10 +90,10 @@ public class Inventory : MonoBehaviour
         else
         {
             i = selectedSlotNumber; // Just to make the later expressions less hairy
-            if (SlotIsOccupied(i) && !container.storedItem)
+            if (SlotIsOccupied(i) && !container.contents)
             {
                 // Place item in the container
-                container.storedItem = items[i];
+                container.contents = items[i];
                 items[i].SetActive(true);
                 Transform t = player.transform;
                 items[i].transform.position = t.position + t.forward + Vector3.up;

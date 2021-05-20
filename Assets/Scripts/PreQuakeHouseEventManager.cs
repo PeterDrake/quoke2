@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
-public class HouseSceneEventManager : MonoBehaviour
+public class PreQuakeHouseEventManager : MonoBehaviour
 {
-    public StorageContainer[] containerArray;
+    public StorageContainer[] containers;
 
-    // Update is called once per frame
     void Update()
     {
         if (AllContainersFull())
@@ -14,11 +14,11 @@ public class HouseSceneEventManager : MonoBehaviour
         }
     }
     
-    public bool AllContainersFull()
+    private bool AllContainersFull()
     {
-        foreach (StorageContainer container in containerArray)
+        foreach (StorageContainer container in containers)
         {
-            if (!container.storedItem)
+            if (!container.contents)
             {
                 return false;
             }

@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class StorageContainer : MonoBehaviour
 {
-    public GameObject storedItem;
+    public GameObject contents;
 
     /// Removes and returns the currently stored item (or null if there is no such item)
     public GameObject RemoveItem()
     {
-        GameObject temp = storedItem;
-        storedItem = null;
+        GameObject temp = contents;
+        contents = null;
         return temp;
     }
     

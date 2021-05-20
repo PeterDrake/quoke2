@@ -82,7 +82,7 @@ public class PlayerMover : MonoBehaviour
                 head.transform.localPosition.z);
     }
 
-    public void FixedUpdate()
+    void FixedUpdate()
     {
         transform.position =
             Vector3.MoveTowards(transform.position, destination.position, movementSpeed * Time.fixedDeltaTime);

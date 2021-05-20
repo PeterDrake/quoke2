@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9aaa48649c21e46a49dab0660bdd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 0}
+  contents: {fileID: 0}
 --- !u!1 &137004347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,11 +1165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2b3154b9db72b4fba571149dc39c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerArray:
-  - {fileID: 1337733143}
-  - {fileID: 2129830241}
+  containers:
   - {fileID: 88252846}
   - {fileID: 1873914811}
+  - {fileID: 1337733143}
+  - {fileID: 2129830241}
 --- !u!4 &1050227611
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,7 +1680,7 @@ GameObject:
   - component: {fileID: 1337733139}
   - component: {fileID: 1337733143}
   m_Layer: 14
-  m_Name: Cabinet
+  m_Name: Cabinet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9aaa48649c21e46a49dab0660bdd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 0}
+  contents: {fileID: 0}
 --- !u!1 &1398157440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,7 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9aaa48649c21e46a49dab0660bdd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 0}
+  contents: {fileID: 0}
 --- !u!65 &1873914812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9aaa48649c21e46a49dab0660bdd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 0}
+  contents: {fileID: 0}
 --- !u!65 &2129830242
 BoxCollider:
   m_ObjectHideFlags: 0

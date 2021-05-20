@@ -115,11 +115,6 @@ public class QuakeManager : MonoBehaviour
             {
                 StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
                 hasBeenUnderCover = true;
-                // unlock all the doors so the player can get out
-                foreach (Clobberer c in clobberers)
-                {
-                    c.locked = false;
-                }
             }
         }
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
