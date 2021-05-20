@@ -26,11 +26,9 @@ public class PlayerKeyboardController : MonoBehaviour
         if (Math.Abs(h) >= 1f)
         {
             player.StartMoving(new Vector3(h, 0f, 0f));
-            GlobalControls.TurnNumber++;
         } else if (Math.Abs(v) >= 1f)
         {
             player.StartMoving(new Vector3(0f, 0f, v));
-            GlobalControls.TurnNumber++;
         }
         // Select from inventory (1-9)
         for (int i = 0; i < validInputs.Length; i++)

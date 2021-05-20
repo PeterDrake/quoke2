@@ -67,6 +67,7 @@ public class PlayerMover : MonoBehaviour
             // than checking for null, because destroyed GameObjects might not be null.
             else if (!ObjectAhead(obstacleLayers)){
                 destination.position += direction;
+                GlobalControls.TurnNumber++;
             }
         }
     }
