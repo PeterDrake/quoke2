@@ -18,7 +18,7 @@ public class HouseSceneEventManager : MonoBehaviour
     {
         foreach (StorageContainer container in containerArray)
         {
-            if (!container.isItemStored())
+            if (!container.storedItem)
             {
                 return false;
             }

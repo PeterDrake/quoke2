@@ -1,47 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StorageContainer : MonoBehaviour
 {
-    public GameObject itemStored;
+    public GameObject storedItem;
 
-
-    private void OnTriggerEnter(Collider other)
+    /// Removes and returns the currently stored item (or null if there is no such item)
+    public GameObject RemoveItem()
     {
-        if (other.CompareTag("Collectable"))
-        {
-            Debug.Log("Placed in storage");
-            other.gameObject.GetComponent<Collectible>();
-            //GameObject.Find("Selector").GetComponent<Selector>().AddItemToInventory(this.gameObject);
-        }
+        GameObject temp = storedItem;
+        storedItem = null;
+        return temp;
     }
-
-    // // Attempts to store the selected item in the container and returns a boolean of success/failure
-    // public bool storeItem(GameObject item)
-    // {
-    //     if (itemStored == null)
-    //     {
-    //         itemStored = item;
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // Removes the currently stored item and returns it
-    public GameObject removeItem()
-    {
-        if (itemStored != null)
-        {
-            GameObject temp = itemStored;
-            itemStored = null;
-            return temp;
-        }
-        return null;
-    }
-
-    public bool isItemStored()
-    {
-        return itemStored != null;
-    }
+    
 }
