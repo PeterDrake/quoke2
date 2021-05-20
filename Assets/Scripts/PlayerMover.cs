@@ -32,9 +32,7 @@ public class PlayerMover : MonoBehaviour
     {
         Vector3 direction = transform.forward;
         // Get all things in the space on the grid the player is trying to move to
-        Collider[] hitColliders = Physics.OverlapSphere(
-            destination.position + direction * 0.5f,
-            0.2f, layers);
+        Collider[] hitColliders = Physics.OverlapSphere(destination.position + direction, 0.2f, layers);
         if (hitColliders.Length == 1)  // There should be 0 or 1 such objects
         {
             // It's okay to move into (under) a table if you're crouching

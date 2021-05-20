@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Cinemachine;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class QuakeManager : MonoBehaviour
@@ -87,7 +88,7 @@ public class QuakeManager : MonoBehaviour
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
-        clobberers = Array.ConvertAll(doors, d => d.transform.parent.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
+        clobberers = Array.ConvertAll(doors, d => d.transform.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
 
         //_informationCanvas = GameObject.Find("MiniGameClose").transform.Find("GUI").GetComponent<GuiDisplayer>().GetBanner();
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
@@ -170,7 +171,7 @@ public class QuakeManager : MonoBehaviour
         {
             c.enabled = true;
         }
-
+        UnlockDoors();
         int shakes = 1;
         while (quaking)
         {
@@ -179,6 +180,15 @@ public class QuakeManager : MonoBehaviour
             yield return new WaitForSeconds(ShakeDuration);
 
             shakes++;
+        }
+    }
+
+    private void UnlockDoors()
+    {
+        foreach (GameObject door in doors)
+        {
+            door.layer = LayerMask.NameToLayer("Door");
+            door.GetComponent<Rigidbody>().constraints = 0;
         }
     }
 

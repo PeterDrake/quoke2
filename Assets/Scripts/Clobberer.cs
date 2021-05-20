@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 ///  When the player enters a collider with this script they will be killed
@@ -15,7 +16,12 @@ public class Clobberer : MonoBehaviour
 
     private void Update()
     {
-        doorLock.GetComponent<BoxCollider>().enabled = locked;
+        // doorLock.GetComponent<BoxCollider>().enabled = locked;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Knock knock!");
     }
 
     private void OnTriggerEnter(Collider other)
