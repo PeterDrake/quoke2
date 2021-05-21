@@ -267,7 +267,6 @@ public class QuakeManager : MonoBehaviour
 
     public void ShakeCamera(float duration, float amplitude, float frequency)
     {
-        Debug.Log("Shaking camera");
         ShakeElapsedTime = duration;
         while (ShakeElapsedTime > 0)
         {

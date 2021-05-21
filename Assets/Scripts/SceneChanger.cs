@@ -10,6 +10,7 @@ public class SceneChanger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Changing to scene " + sceneName);
         SceneManager.LoadSceneAsync(sceneName);
     }
         
