@@ -8,10 +8,12 @@ public class SceneChanger : MonoBehaviour
 
     public string sceneName;
     
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Changing to scene " + sceneName);
-        SceneManager.LoadSceneAsync(sceneName);
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadSceneAsync(sceneName);            
+        }
     }
         
 }
