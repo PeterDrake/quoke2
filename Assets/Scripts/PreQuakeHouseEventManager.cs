@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class PreQuakeHouseEventManager : MonoBehaviour
 {
     public StorageContainer[] containers;
 
-    void Update()
+    void FixedUpdate()
     {
         if (AllContainersFull())
         {
-            SceneManager.LoadScene("QuakeHouse");
+            SceneManager.LoadSceneAsync("QuakeHouse");
         }
     }
     

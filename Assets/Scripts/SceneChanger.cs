@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OpenMap : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
+
+    public string sceneName;
+    
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("StrategicMap");
+        SceneManager.LoadSceneAsync(sceneName);
     }
         
 }
