@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Cinemachine;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class QuakeManager : MonoBehaviour
@@ -60,7 +61,7 @@ public class QuakeManager : MonoBehaviour
     private bool quaking;
 
     private GameObject player;
-    private MovementRevised movementScript;
+    private PlayerMover playerMoverScript;
 
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
@@ -83,11 +84,11 @@ public class QuakeManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        movementScript = player.GetComponent<MovementRevised>();
+        playerMoverScript = player.GetComponent<PlayerMover>();
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
-        clobberers = Array.ConvertAll(doors, d => d.transform.parent.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
+        clobberers = Array.ConvertAll(doors, d => d.transform.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
 
         //_informationCanvas = GameObject.Find("MiniGameClose").transform.Find("GUI").GetComponent<GuiDisplayer>().GetBanner();
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
@@ -114,11 +115,6 @@ public class QuakeManager : MonoBehaviour
             {
                 StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
                 hasBeenUnderCover = true;
-                // unlock all the doors so the player can get out
-                foreach (Clobberer c in clobberers)
-                {
-                    c.locked = false;
-                }
             }
         }
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
@@ -170,7 +166,7 @@ public class QuakeManager : MonoBehaviour
         {
             c.enabled = true;
         }
-
+        UnlockDoors();
         int shakes = 1;
         while (quaking)
         {
@@ -179,6 +175,15 @@ public class QuakeManager : MonoBehaviour
             yield return new WaitForSeconds(ShakeDuration);
 
             shakes++;
+        }
+    }
+
+    private void UnlockDoors()
+    {
+        foreach (GameObject door in doors)
+        {
+            door.layer = LayerMask.NameToLayer("Door");
+            door.GetComponent<Rigidbody>().constraints = 0;
         }
     }
 
@@ -193,7 +198,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForUnderCover()
     {
-        if (movementScript.isUnderTable)
+        if (playerMoverScript.underTable)
         {
             isUnderCover = true;
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 ///  When the player enters a collider with this script they will be killed
@@ -9,14 +10,6 @@ public class Clobberer : MonoBehaviour
     public new bool enabled;
     // whether a clobberer is able to kill a player with the aftershock death message
     public bool aftershock;
-    public bool locked;
-
-    public GameObject doorLock;
-
-    private void Update()
-    {
-        doorLock.GetComponent<BoxCollider>().enabled = locked;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
