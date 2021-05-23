@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class CheatKeyboardController : MonoBehaviour
 {
+    // For scenes with no meters (before and during the quake), this can remain null
+    public Meters meters;
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -16,6 +19,14 @@ public class CheatKeyboardController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             SceneManager.LoadScene("QuakeHouse");
+        }
+        if (meters && Input.GetKeyDown(KeyCode.O))
+        {
+            meters.MarkTaskAsDone("water");
+        }
+        if (meters && Input.GetKeyDown(KeyCode.P))
+        {
+            meters.MarkTaskAsDone("poop");
         }
     }
 }
