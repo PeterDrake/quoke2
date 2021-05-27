@@ -217,7 +217,7 @@ public class QuakeManager : MonoBehaviour
         {
             //TODO kill player
             Debug.Log("You were crushed by a falling object!");
-            playerDeathScript.KillPlayer();
+            playerDeathScript.KillPlayer("QuakeManager", 0);
 
         }
     }
@@ -230,7 +230,7 @@ public class QuakeManager : MonoBehaviour
             Debug.Log("Aftershock!");
             //TODO kill player
             Debug.Log("You were killed in an aftershock!");
-            playerDeathScript.KillPlayer();
+            playerDeathScript.KillPlayer("QuakeManager", 1);
         }
     }
 
