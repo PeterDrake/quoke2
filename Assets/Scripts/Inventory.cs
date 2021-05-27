@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour
                 container.contents = items[i];
                 items[i].SetActive(true);
                 Transform t = player.transform;
-                items[i].transform.position = t.position + t.forward + Vector3.up;
+                items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
                 // Remove item from inventory
                 items[i] = null;
