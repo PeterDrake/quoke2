@@ -12,7 +12,24 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadSceneAsync(sceneName);            
+            
+            // Set GlobalControls to current scene
+            string previousScene = SceneManager.GetActiveScene().name;
+            switch (previousScene)
+            {
+                case "School":
+                    GlobalControls.CurrentScene = 0;
+                    break;
+                case "Park":
+                    GlobalControls.CurrentScene = 1;
+                    break;
+                case "Yard":
+                    GlobalControls.CurrentScene = 2;
+                    break;
+                    
+            }
+            
+            SceneManager.LoadSceneAsync(sceneName);
         }
     }
         
