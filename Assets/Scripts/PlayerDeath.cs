@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
+    public GameObject textChange;
     public bool playerDeath;
     private GameObject player;
     //private GameObject CallingObject;
@@ -15,6 +17,19 @@ public class PlayerDeath : MonoBehaviour
         canvas = y;
         canvas.SetActive(false);
     }
+
+    public void DeathType(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                textChange.GetComponent<Text>().text = "You got crushed!";
+                break;
+            case 1:
+                textChange.GetComponent<Text>().text = "You died in an aftershock!";
+                break;
+        }
+    }
     public void KillPlayer(string x, int y)
     {
         //CallingObject = GameObject.Find("Event Manager");
@@ -24,5 +39,7 @@ public class PlayerDeath : MonoBehaviour
         playerMoverScript = player.GetComponent<PlayerMover>();
         player.GetComponent<PlayerMover>().enabled = false;
         canvas.SetActive(true);
+        DeathType(y);
+     
     }
 }
