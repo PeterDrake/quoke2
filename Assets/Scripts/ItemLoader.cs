@@ -5,7 +5,16 @@ using UnityEngine;
 
 public class ItemLoader : MonoBehaviour
 {
-
+    /* TODO: */
+    /** Add public GameObject currentObject to collectible [Allows us to get a reference to the current object]
+     *  For this to work
+     *      Format foreach loop to make work good
+     *      Create Prefabs for items
+     *      ALL Items need to ALL be unique prefabs somehow in the scripts
+     *      Instantiate GlobalControls list to have the collectibles with the correct prefabs and everything created
+     *      *
+     */
+    
     public string scene;
     public Inventory inventory;
 
@@ -18,7 +27,7 @@ public class ItemLoader : MonoBehaviour
         {
             if (scene.Equals(collectible.scene))
             {
-                Instantiate(collectible.prefab, collectible.location, Quaternion.identity);
+                collectible.currentObject = Instantiate(collectible.prefab, collectible.location, Quaternion.identity);
             } 
             else if("Inventory".Equals(collectible.scene))
             {
@@ -31,7 +40,8 @@ public class ItemLoader : MonoBehaviour
         
         foreach (var collectible in inventoryList)
         {
-            inventory.PickUp(Instantiate(collectible.prefab));
+            collectible.currentObject = Instantiate(collectible.prefab);
+            inventory.PickUp(collectible.currentObject);
         }
     }
     

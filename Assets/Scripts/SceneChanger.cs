@@ -23,16 +23,21 @@ public class SceneChanger : MonoBehaviour
                     GlobalControls.CurrentScene = 0;
                     foreach (var collectible in GlobalControls.ItemList)
                     {
-                        if (collectible.scene.Equals("School"))
+                        if (collectible.currentObject.activeInHierarchy)
                         {
-                            if (collectible.prefab.activeInHierarchy)
+                            collectible.location = collectible.currentObject.transform.position;
+                        }
+                        else
+                        {
+                            var inventorySlot = Array.IndexOf<GameObject>(inventory.items, collectible.currentObject);
+                            if (inventorySlot > -1)
                             {
-                                collectible.location = collectible.prefab.transform.position;
+                                collectible.scene = "Inventory";
+                                collectible.location = new Vector3(inventorySlot, 0, 0);
                             }
                             else
                             {
-                                collectible.scene = "Inventory";
-                                //collectible.location = new Vector3(Array.IndexOf(inventory.items));
+                                collectible.scene = "Container/NPC";
                             }
                         }
                     }
