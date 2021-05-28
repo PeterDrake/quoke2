@@ -15,6 +15,7 @@ public static class GlobalControls
     private static bool poopTaskCompleted = false;
     private static bool waterTaskCompleted = false;
     private static int currentScene;
+    private static List<Collectible> itemList;
 
     private static int turnNumber = 0;
     private static string currentNPC;
@@ -137,6 +138,13 @@ public static class GlobalControls
             currentScene = value;
         }
     }
+    
+    public static List<Collectible> ItemList
+    {
+        get => itemList;
+        set => itemList = value;
+    }
+    
     public static void SetCheckpoint(string nodeName)
     {
         convoDict[currentNPC] = nodeName;
