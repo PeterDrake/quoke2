@@ -33,13 +33,13 @@ public class PlayerKeyboardController : MonoBehaviour
         // Select from inventory (1-9)
         for (int i = 0; i < validInputs.Length; i++)
         {
-            if (Input.GetKey(validInputs[i]))
+            if (inventory && Input.GetKey(validInputs[i]))
             {
                 inventory.SelectSlotNumber(i);
             }
         }
         // Pick up / drop (space)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (inventory && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
