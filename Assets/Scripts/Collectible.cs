@@ -14,6 +14,9 @@ public class Collectible : MonoBehaviour
     public Sprite sprite;
     public Inventory inventory;
     public bool inStorageContainer;
+    public string scene;
+    public Vector3 location;
+    public GameObject prefab;
     
     void OnTriggerEnter(Collider other)
     {
