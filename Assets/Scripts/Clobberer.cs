@@ -13,11 +13,15 @@ public class Clobberer : MonoBehaviour
     public bool aftershock;
 
     private GameObject quakeEvent;
-    
+    private PlayerDeath playerDeathScript;
+    private GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
         quakeEvent = GameObject.Find("Event Manager");
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerDeathScript = player.GetComponent<PlayerDeath>();
+        
         int quakeAtTurn = quakeEvent.GetComponent<QuakeManager>().turnsTillQuakeStart;
         int aftershockAtTurn = quakeEvent.GetComponent<QuakeManager>().turnsTillAftershock;
         
@@ -25,14 +29,14 @@ public class Clobberer : MonoBehaviour
         if (enabled && (GlobalControls.TurnNumber > quakeAtTurn))
         {
             Debug.Log("You were hit by a door during the earthquake!");
-            
-            //Systems.Status.PlayerDeath("Hit by a door", "You were hit by a door!");
+            playerDeathScript.KillPlayer(this.gameObject, 3);
 
         }
         if (aftershock && (GlobalControls.TurnNumber > aftershockAtTurn))
         {
             Debug.Log("The house collapsed due to an after shock!");
             //Systems.Status.PlayerDeath("Aftershock", "The house collapsed due to an after shock!");
+            // playerDeathScript.KillPlayer(this.gameObject, 0);
 
         }
     }
