@@ -8,7 +8,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject DeathText;
     public GameObject TipsText;
     public bool playerDeath;
-    private GameObject player;
+    public GameObject player;
     private GameObject canvas;
 
     public void DeactivateKillScreen(GameObject y)
@@ -35,11 +35,11 @@ public class PlayerDeath : MonoBehaviour
                 break;
         }
     }
-    public void KillPlayer(string x, int y)
+    public void KillPlayer(GameObject callingObject, int y)
     {
         playerDeath = true;
-        player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerMover>().enabled = false;
+        callingObject.SetActive(false);
         canvas.SetActive(true);
         DeathType(y);
     }
