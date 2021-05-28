@@ -62,6 +62,8 @@ public class QuakeManager : MonoBehaviour
 
     private GameObject player;
     private PlayerMover playerMoverScript;
+    private PlayerDeath playerDeathScript;
+	private GameObject canvas;
 
     //private InformationCanvas _informationCanvas;
     //[TextArea] [SerializeField] private string textOnQuake;
@@ -83,8 +85,13 @@ public class QuakeManager : MonoBehaviour
 
     private void Start()
     {
+		canvas = GameObject.Find("DeathUiCanvas");
         player = GameObject.FindGameObjectWithTag("Player");
+        playerDeathScript = player.GetComponent<PlayerDeath>();
+        playerDeathScript.DeactivateKillScreen(canvas);
+        
         playerMoverScript = player.GetComponent<PlayerMover>();
+        
 
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
@@ -203,13 +210,15 @@ public class QuakeManager : MonoBehaviour
             isUnderCover = true;
         }
     }
-
+    
     public void CheckForQuakeDeath()
     {
         if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath)
         {
             //TODO kill player
             Debug.Log("You were crushed by a falling object!");
+            playerDeathScript.KillPlayer(this.gameObject, 0);
+
         }
     }
 
@@ -221,6 +230,7 @@ public class QuakeManager : MonoBehaviour
             Debug.Log("Aftershock!");
             //TODO kill player
             Debug.Log("You were killed in an aftershock!");
+            playerDeathScript.KillPlayer(this.gameObject, 1);
         }
     }
 
