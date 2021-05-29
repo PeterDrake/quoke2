@@ -13,6 +13,8 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Inventory inventory = GameObject.Find("Inventory").GetComponent<Inventory>();    
+            GlobalControls.CurrentScene = 0;
             foreach (var collectible in GlobalControls.ItemList)
             {
                 if (collectible.currentObject.activeInHierarchy)
@@ -21,7 +23,7 @@ public class SceneChanger : MonoBehaviour
                 }
                 else
                 {
-                    var inventorySlot = Array.IndexOf<GameObject>(inventory.items, collectible.currentObject);
+                    var inventorySlot = Array.IndexOf(inventory.items, collectible.currentObject);
                     if (inventorySlot > -1)
                     {
                         collectible.scene = "Inventory";
