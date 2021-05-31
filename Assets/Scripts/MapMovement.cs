@@ -1,19 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapMovement : MonoBehaviour
 {
+    public GameObject player;
+    
     // Set size of and add locations in the Inspector
     public GameObject[] locations;
     public int playerLocation;
     
-    private GameObject player;
-
     private void Start()
     {
-        player = this.gameObject;
         playerLocation = GlobalControls.CurrentScene; // set playerLocation to previous scene (red box at where leaving)
     }
 
