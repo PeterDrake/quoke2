@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
@@ -24,6 +25,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this);
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
