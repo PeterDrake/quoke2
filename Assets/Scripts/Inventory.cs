@@ -25,15 +25,24 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
             frame.GetComponent<Image>().sprite = unselectedSlotSprite;
         }
-        foreach (GameObject item in slotContents)
+        if (SceneManager.GetActiveScene().name == "PreQuakeHouse")
         {
-            item.SetActive(false);
+            Debug.Log("One Slot Inventory");
+            foreach (GameObject item in slotContents)
+            {
+                item.SetActive(false);
+            }
+            
+        }
+        else
+        {
+            Debug.Log("Five Slot Inventory");
+            DontDestroyOnLoad(this);
         }
         items = new GameObject[slotFrames.Length];
         // Select the first slot

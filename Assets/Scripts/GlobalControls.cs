@@ -138,13 +138,13 @@ public static class GlobalControls
             currentScene = value;
         }
     }
-    
+
     public static List<Collectible> ItemList
     {
         get => itemList;
         set => itemList = value;
     }
-    
+
     public static void SetCheckpoint(string nodeName)
     {
         convoDict[currentNPC] = nodeName;
