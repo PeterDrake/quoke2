@@ -27,7 +27,7 @@ public class PlayerDeath : MonoBehaviour
                 break;
             case 1:
                 DeathText.GetComponent<Text>().text = "You died in an aftershock!";
-                TipsText.GetComponent<Text>().text = "Don't re-enter unstable structures!";
+                TipsText.GetComponent<Text>().text = "Exit buildings as soon as the earthquake ends";
                 break;
             case 2:
                 DeathText.GetComponent<Text>().text = "You died of thirst!";

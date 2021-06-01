@@ -213,7 +213,7 @@ public class QuakeManager : MonoBehaviour
     
     public void CheckForQuakeDeath()
     {
-        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath)
+        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath && !quakeSafeZoneManager.playerInSafeZone)
         {
             //TODO kill player
             Debug.Log("You were crushed by a falling object!");

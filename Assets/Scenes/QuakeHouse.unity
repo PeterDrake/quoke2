@@ -2440,5 +2440,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8598206352755387095, guid: c699be9587ffd4d4689af2cb871300d5,
+        type: 3}
+      propertyPath: enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598206352755387095, guid: c699be9587ffd4d4689af2cb871300d5,
+        type: 3}
+      propertyPath: aftershock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598206352755387095, guid: c699be9587ffd4d4689af2cb871300d5,
+        type: 3}
+      propertyPath: quakeSafeZoneManager
+      value: 
+      objectReference: {fileID: 782937058}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c699be9587ffd4d4689af2cb871300d5, type: 3}
