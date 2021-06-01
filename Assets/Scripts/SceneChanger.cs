@@ -13,29 +13,35 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory inventory = GameObject.Find("Inventory").GetComponent<Inventory>();    
-            GlobalControls.CurrentScene = 0;
-            foreach (var collectible in GlobalControls.ItemList)
+            try
             {
-                if (collectible.currentObject.activeInHierarchy)
+                Inventory inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+            
+                foreach (var collectible in GlobalControls.ItemList)
                 {
-                    collectible.location = collectible.currentObject.transform.position;
-                }
-                else
-                {
-                    var inventorySlot = Array.IndexOf(inventory.items, collectible.currentObject);
-                    if (inventorySlot > -1)
+                    if (collectible.currentObject.activeInHierarchy)
                     {
-                        collectible.scene = "Inventory";
-                        collectible.location = new Vector3(inventorySlot, 0, 0);
+                        collectible.location = collectible.currentObject.transform.position;
                     }
                     else
                     {
-                        collectible.scene = "Container/NPC";
+                        var inventorySlot = Array.IndexOf(inventory.items, collectible.currentObject);
+                        if (inventorySlot > -1)
+                        {
+                            collectible.scene = "Inventory";
+                            collectible.location = new Vector3(inventorySlot, 0, 0);
+                        }
+                        else
+                        {
+                            collectible.scene = "Container/NPC";
+                        }
                     }
                 }
             }
-            
+            catch (NullReferenceException n)
+            {
+                Debug.Log("WARNING: Inventory Reference Null");
+            }
             // Set GlobalControls to current scene
             GlobalControls.CurrentScene = Array.IndexOf(previousScenes, SceneManager.GetActiveScene().name);
             SceneManager.LoadSceneAsync(sceneToLoad);
