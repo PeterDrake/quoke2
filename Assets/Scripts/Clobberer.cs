@@ -32,12 +32,12 @@ public class Clobberer : MonoBehaviour
             playerDeathScript.KillPlayer(this.gameObject, 3);
 
         }
-        if (aftershock && (GlobalControls.TurnNumber > aftershockAtTurn))
-        {
-            Debug.Log("The house collapsed due to an after shock!");
-            //Systems.Status.PlayerDeath("Aftershock", "The house collapsed due to an after shock!");
-            // playerDeathScript.KillPlayer(this.gameObject, 0);
-
-        }
+        // if (aftershock && (GlobalControls.TurnNumber > aftershockAtTurn))
+        // {
+        //     Debug.Log("The house collapsed due to an after shock!");
+        //     //Systems.Status.PlayerDeath("Aftershock", "The house collapsed due to an after shock!");
+        //     // playerDeathScript.KillPlayer(this.gameObject, 0);
+        //
+        // }
     }
 }
