@@ -30,7 +30,20 @@ public class Inventory : MonoBehaviour
         {
             frame.GetComponent<Image>().sprite = unselectedSlotSprite;
         }
+        
+        
+        //Checks if the player is in the PreQuakeHouse scene
         if (SceneManager.GetActiveScene().name == "PreQuakeHouse")
+        {
+            //Loops through the inventory and removes all items from it
+            Debug.Log("One Slot Inventory");
+            foreach (GameObject item in slotContents)
+            {
+                item.SetActive(false);
+            }
+  
+        }
+        else
         {
             Debug.Log("One Slot Inventory");
             foreach (GameObject item in slotContents)
@@ -38,12 +51,12 @@ public class Inventory : MonoBehaviour
                 item.SetActive(false);
             }
             
-        }
-        else
-        {
+            //Persistent Inventory
             Debug.Log("Five Slot Inventory");
             DontDestroyOnLoad(this);
         }
+
+
         items = new GameObject[slotFrames.Length];
         // Select the first slot
         selectedSlotNumber = 0;
