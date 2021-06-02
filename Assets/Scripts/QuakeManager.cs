@@ -229,6 +229,7 @@ public class QuakeManager : MonoBehaviour
             isAftershockTime = true;
             Debug.Log("Aftershock!");
             //TODO kill player
+            TriggerQuake();
             Debug.Log("You were killed in an aftershock!");
             playerDeathScript.KillPlayer(this.gameObject, 1);
         }
