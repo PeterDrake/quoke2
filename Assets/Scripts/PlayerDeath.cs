@@ -37,6 +37,10 @@ public class PlayerDeath : MonoBehaviour
                 DeathText.GetComponent<Text>().text = "You got crushed!";
                 TipsText.GetComponent<Text>().text = "Don't go through doors during the earthquake!";
                 break;
+            case 4:
+                DeathText.GetComponent<Text>().text = "You died of unhygienic ways!";
+                TipsText.GetComponent<Text>().text = "Staying sanitary is important!";
+                break;
         }
     }
     public void KillPlayer(GameObject callingObject, int y)
