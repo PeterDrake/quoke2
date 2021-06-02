@@ -13,22 +13,16 @@ public class Clobberer : MonoBehaviour
     public bool aftershock;
     
     public QuakeSafeZoneManager quakeSafeZoneManager;
-
-    private GameObject quakeEvent;
+    
     private PlayerDeath playerDeathScript;
     private GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
-        quakeEvent = GameObject.Find("Event Manager");
         player = GameObject.FindGameObjectWithTag("Player");
         playerDeathScript = player.GetComponent<PlayerDeath>();
         quakeSafeZoneManager = quakeSafeZoneManager.GetComponent<QuakeSafeZoneManager>();
         
-        int quakeAtTurn = quakeEvent.GetComponent<QuakeManager>().turnsTillQuakeStart;
-        int aftershockAtTurn = quakeEvent.GetComponent<QuakeManager>().turnsTillAftershock;
-
-        Debug.Log("Player is in safe zone " + quakeSafeZoneManager.playerInSafeZone);
         if (enabled && !quakeSafeZoneManager.playerInSafeZone)
         {
             Debug.Log("You were hit by a door during the earthquake!");
@@ -38,7 +32,6 @@ public class Clobberer : MonoBehaviour
         if (aftershock && quakeSafeZoneManager.playerInSafeZone)
         {
             Debug.Log("You tried entering and the house collapsed due to an after shock!");
-            //Systems.Status.PlayerDeath("Aftershock", "The house collapsed due to an after shock!");
             playerDeathScript.KillPlayer(this.gameObject, 3);
         
         }
