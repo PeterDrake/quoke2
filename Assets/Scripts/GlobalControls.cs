@@ -25,7 +25,13 @@ public static class GlobalControls
         {"safi0","safi0"},
         {"rainer0", "rainer0"}
     };
-    
+
+    public static Vector3 capsule1Location;
+
+    static GlobalControls()
+    {
+        capsule1Location = new Vector3(11.5f, 0f, 0.5f);
+    }
 
     public static bool MetersEnabled
     {
