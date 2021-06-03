@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
@@ -34,6 +35,8 @@ public class Inventory : MonoBehaviour
             item.SetActive(false);
         }
         items = new GameObject[slotFrames.Length];
+        Debug.Log(GlobalControls.ItemList);
+        items = GlobalControls.ItemList.ToArray();
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
@@ -121,6 +124,7 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
+            GlobalControls.ItemList.Add(item);
             // Remove item from the world
             item.SetActive(false);
         }
