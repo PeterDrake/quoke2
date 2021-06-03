@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 0
   aftershock: 1
+  quakeSafeZoneManager: {fileID: 782937058}
 --- !u!1 &59890516
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +735,7 @@ MonoBehaviour:
   turnsTillDeath: 10
   secondsUnderCover: 5
   turnsTillAftershock: 2
-  automaticAftershock: 0
+  automaticAftershock: 1
   OnQuake:
     m_PersistentCalls:
       m_Calls: []
@@ -2525,6 +2526,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 104052355681058219, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 238849106}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c4f8ee47fb44c9ca69e3af271c959e, type: 3}
 --- !u!114 &1991587152 stripped

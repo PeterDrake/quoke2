@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -10,20 +11,28 @@ public class Clobberer : MonoBehaviour
     public new bool enabled;
     // whether a clobberer is able to kill a player with the aftershock death message
     public bool aftershock;
+    
+    public QuakeSafeZoneManager quakeSafeZoneManager;
+    
+    private PlayerDeath playerDeathScript;
+    private GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enabled && other.gameObject.CompareTag("Player"))
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerDeathScript = player.GetComponent<PlayerDeath>();
+        quakeSafeZoneManager = quakeSafeZoneManager.GetComponent<QuakeSafeZoneManager>();
+        
+        if (enabled && !quakeSafeZoneManager.playerInSafeZone)
         {
-            Debug.Log("You were hit by a door!");
-            //Systems.Status.PlayerDeath("Hit by a door", "You were hit by a door!");
+            Debug.Log("You were hit by a door during the earthquake!");
+            playerDeathScript.KillPlayer(this.gameObject, 3);
 
         }
-        if (aftershock && other.gameObject.CompareTag("Player"))
+        if (aftershock && quakeSafeZoneManager.playerInSafeZone)
         {
-            Debug.Log("The house collapsed due to an after shock!");
-            //Systems.Status.PlayerDeath("Aftershock", "The house collapsed due to an after shock!");
-
+            Debug.Log("You tried entering and the house collapsed due to an after shock!");
+            playerDeathScript.KillPlayer(this.gameObject, 6);
         }
     }
 }

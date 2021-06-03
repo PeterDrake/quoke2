@@ -123,6 +123,15 @@ public class QuakeManager : MonoBehaviour
                 StartCoroutine(nameof(UnderCoverCountdown), secondsUnderCover);
                 hasBeenUnderCover = true;
             }
+            else if (hasBeenUnderCover)
+            {
+                CheckForUnderCover();
+                if (!isUnderCover)
+                {
+                    Debug.Log("Player exited the table and should be killed");
+                    playerDeathScript.KillPlayer(this.gameObject, 5);
+                }
+            }
         }
         // if we're not in the middle of the quake, the player hasn't exited the house, and there hasn't already been an aftershock
         else if (!quaking && !quakeSafeZoneManager.playerInSafeZone && (!isAftershockTime || automaticAftershock))
@@ -209,11 +218,15 @@ public class QuakeManager : MonoBehaviour
         {
             isUnderCover = true;
         }
+        else if (!playerMoverScript.underTable)
+        {
+            isUnderCover = false;
+        }
     }
     
     public void CheckForQuakeDeath()
     {
-        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath)
+        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath && !quakeSafeZoneManager.playerInSafeZone)
         {
             //TODO kill player
             Debug.Log("You were crushed by a falling object!");
@@ -229,6 +242,7 @@ public class QuakeManager : MonoBehaviour
             isAftershockTime = true;
             Debug.Log("Aftershock!");
             //TODO kill player
+            TriggerQuake();
             Debug.Log("You were killed in an aftershock!");
             playerDeathScript.KillPlayer(this.gameObject, 1);
         }
