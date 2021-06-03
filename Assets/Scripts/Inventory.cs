@@ -68,6 +68,7 @@ public class Inventory : MonoBehaviour
                 // Place item in front of player
                 items[i].SetActive(true);
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
+                GlobalControls.capsule1Location = items[i].transform.position;
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
