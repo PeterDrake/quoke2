@@ -32,8 +32,7 @@ public class Clobberer : MonoBehaviour
         if (aftershock && quakeSafeZoneManager.playerInSafeZone)
         {
             Debug.Log("You tried entering and the house collapsed due to an after shock!");
-            playerDeathScript.KillPlayer(this.gameObject, 3);
-        
+            playerDeathScript.KillPlayer(this.gameObject, 6);
         }
     }
 }

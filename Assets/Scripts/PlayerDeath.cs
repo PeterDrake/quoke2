@@ -45,6 +45,10 @@ public class PlayerDeath : MonoBehaviour
                 DeathText.GetComponent<Text>().text = "You got crushed!";
                 TipsText.GetComponent<Text>().text = "Stay under cover until earthquake ends!";
                 break;
+            case 6:
+                DeathText.GetComponent<Text>().text = "You died in an aftershock!";
+                TipsText.GetComponent<Text>().text = "Don't re-enter unstable buildings!";
+                break;
         }
     }
     public void KillPlayer(GameObject callingObject, int y)
