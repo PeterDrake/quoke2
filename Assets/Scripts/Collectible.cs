@@ -21,10 +21,12 @@ public class Collectible : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Item Get!");
         // When the player runs into it, add it to inventory
         if (other.CompareTag("Player") && !inStorageContainer)
         {
             inventory.PickUp(this.gameObject);
+            inventory.tag = "NotEmptyInventory";
         }
     }
 }

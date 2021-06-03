@@ -54,6 +54,7 @@ public class Inventory : MonoBehaviour
             //Persistent Inventory
             Debug.Log("Five Slot Inventory");
             DontDestroyOnLoad(this);
+
         }
 
 
@@ -96,6 +97,12 @@ public class Inventory : MonoBehaviour
                 items[i] = null;
                 slotContents[i].SetActive(false);
             }
+            
+            if (items.Equals(null))
+            {
+                tag = "EmptyInventory";
+            }
+            
         }
     }
 

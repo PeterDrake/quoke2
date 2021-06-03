@@ -592,6 +592,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &837234294
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -979,6 +983,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &910905232
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1107,6 +1115,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &981707577
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1247,6 +1259,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &1068003693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2020,6 +2036,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1032673487}
+    - target: {fileID: 104052355681058219, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c4f8ee47fb44c9ca69e3af271c959e, type: 3}
 --- !u!1 &1984174868
@@ -2058,6 +2079,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &1984174870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2186,6 +2211,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 422b6fa0f0d544c159d0d8be9862cf1e, type: 3}
   inventory: {fileID: 237404831}
   inStorageContainer: 0
+  scene: 
+  location: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  currentObject: {fileID: 0}
 --- !u!54 &2012250814
 Rigidbody:
   m_ObjectHideFlags: 0
