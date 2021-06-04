@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class GlobalItemList
@@ -27,6 +28,14 @@ public static class GlobalItemList
                 "Assets/Prefabs/Blue Capsule", "PreQuakeHouse")},
         };
     }
+
+    /** Updates itemList with the picked up item's position and scene. */
+    public static void UpdateItemList(GameObject pickupableCollectible, string target, Vector3 position)
+    {
+        ItemList[pickupableCollectible.name] = new Item(new Vector3(position.x, position.y, position.z), 
+            pickupableCollectible.name, itemList[pickupableCollectible.name].prefab, target);
+    }
+    
 }
 
 

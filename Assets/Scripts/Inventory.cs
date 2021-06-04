@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
@@ -72,7 +73,10 @@ public class Inventory : MonoBehaviour
                 // Place item in front of player
                 items[i].SetActive(true);
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
-                GlobalControls.capsule1Location = items[i].transform.position;
+                
+                //updates item list accordingly
+                GlobalItemList.UpdateItemList(items[i], SceneManager.GetActiveScene().name, items[i].transform.position);
+                
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -106,6 +110,10 @@ public class Inventory : MonoBehaviour
                 Transform t = player.transform;
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
+                
+                GlobalItemList.UpdateItemList(items[i], SceneManager.GetActiveScene().name + " " + container.name, 
+                    items[i].transform.position);
+
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -131,14 +139,13 @@ public class Inventory : MonoBehaviour
             // Debug.Log(items[i].name);
             GlobalControls.itemList.Add(items[i]);
             
+            //updates item list to add item to list
+            GlobalItemList.UpdateItemList(item, "Inventory", new Vector3(i, 0, 0));
+            
             // Remove item from the world
             item.SetActive(false);
         }
-        Debug.Log("Current inventory status:");
-        foreach (var k in GlobalControls.itemList)
-        { 
-            Debug.Log(k.name);
-        }
+   
     }
 
     /// <summary>
@@ -169,6 +176,8 @@ public class Inventory : MonoBehaviour
         DropSelectedItem();
     }
 
+    
+    /** Only used by ItemLoader.cs */
     public void PickUpAtSlot(int slot, GameObject item)
     {
         int i = slot;
