@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 /// <summary>
@@ -14,7 +17,25 @@ public class Collectible : MonoBehaviour
     public Sprite sprite;
     public Inventory inventory;
     public bool inStorageContainer;
-    
+
+    public Vector3 location;
+    public string itemName;
+    public string prefab;
+    public string scene;
+
+    public Collectible(Vector3 location, string itemName, string prefab, string scene)
+    {
+        this.location = location;
+        this.itemName = itemName;
+        this.prefab = prefab;
+        this.scene = scene;
+    }
+
+    private void Awake()
+    {
+        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         // When the player runs into it, add it to inventory
