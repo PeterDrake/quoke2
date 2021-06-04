@@ -168,4 +168,26 @@ public class Inventory : MonoBehaviour
         }
         DropSelectedItem();
     }
+
+    public void PickUpAtSlot(int slot, GameObject item)
+    {
+        int i = slot;
+        if (i >= 0)
+        {
+            // Display the sprite for this item
+            slotContents[i].SetActive(true);
+            slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            // Add item to the items array
+            items[i] = item;
+            
+            GlobalControls.itemList.Add(items[i]);
+            
+            // Remove item from the world
+            item.SetActive(false);
+        }
+        
+    }
+    
+    
+    
 }
