@@ -6,21 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class ItemLoader : MonoBehaviour
 {
+    private Inventory inventory;
+    
     //weknowwhatstartdoesthx
     void Start()
     {
+        //can i keep it?
+        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
             if (item.scene.Equals(SceneManager.GetActiveScene()))
             {
                 //poot item here
-                Object prefab = AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
-                Instantiate(prefab, item.location, Quaternion.identity);
+                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                prefab.transform.position = item.location;
             } 
             else if (item.scene.Equals("Inventory"))
             {
                 //populate inventory with many things
-                
+                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                inventory.PickUpAtSlot((int) item.location.x, prefab);
             }
         }
     }
