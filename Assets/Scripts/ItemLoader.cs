@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ItemLoader : MonoBehaviour
 {
     private Inventory inventory;
-    
+
     //weknowwhatstartdoesthx
     void Start()
     {
@@ -21,12 +21,14 @@ public class ItemLoader : MonoBehaviour
                 GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                 // prefab.transform.position = item.location;
                 Instantiate(prefab, item.location, Quaternion.identity);
+                
             } 
             else if (item.scene.Equals("Inventory"))
             {
                 //populate inventory with many things
                 GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                 inventory.PickUpAtSlot((int) item.location.x, prefab);
+                Instantiate(prefab, item.location, Quaternion.identity);
             }
         }
     }
