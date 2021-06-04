@@ -45,11 +45,12 @@ public static class GlobalItemList
     public static void UpdateItemList(string name, string target, Vector3 position)
     {
         // Debug.Log(position);
-        // Debug.Log(name);
+        Debug.Log(name);
         // Debug.Log(itemList);
         // Debug.Log(itemList[name]);
         // Debug.Log(itemList[name].prefab);
         // Debug.Log(target);
+        name = name.Replace("(Clone)","").Trim();
         itemList[name] = new Item(position, name, itemList[name].prefab, target);
     }
     
