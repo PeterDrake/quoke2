@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
@@ -35,8 +36,8 @@ public class Inventory : MonoBehaviour
             item.SetActive(false);
         }
         items = new GameObject[slotFrames.Length];
-        Debug.Log(GlobalControls.ItemList);
-        items = GlobalControls.ItemList.ToArray();
+        // Debug.Log(GlobalControls.ItemList);
+        // items = GlobalControls.ItemList.ToArray();
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
@@ -75,6 +76,9 @@ public class Inventory : MonoBehaviour
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
+                
+                //we need to remove the list of items at global controls
+                GlobalControls.itemList.RemoveAt(i);
             }
         }
     }
@@ -124,9 +128,16 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
-            GlobalControls.ItemList.Add(item);
+            // Debug.Log(items[i].name);
+            GlobalControls.itemList.Add(items[i]);
+            
             // Remove item from the world
             item.SetActive(false);
+        }
+        Debug.Log("Current inventory status:");
+        foreach (var k in GlobalControls.itemList)
+        { 
+            Debug.Log(k.name);
         }
     }
 
