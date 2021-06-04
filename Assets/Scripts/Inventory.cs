@@ -37,8 +37,7 @@ public class Inventory : MonoBehaviour
             item.SetActive(false);
         }
         items = new GameObject[slotFrames.Length];
-        // Debug.Log(GlobalControls.ItemList);
-        // items = GlobalControls.ItemList.ToArray();
+        
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
@@ -75,14 +74,12 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
                 //updates item list accordingly
-                GlobalItemList.UpdateItemList(items[i], SceneManager.GetActiveScene().name, items[i].transform.position);
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position);
                 
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
-                
-                //we need to remove the list of items at global controls
-                GlobalControls.itemList.RemoveAt(i);
+
             }
         }
     }
@@ -111,7 +108,7 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
                 
-                GlobalItemList.UpdateItemList(items[i], SceneManager.GetActiveScene().name + " " + container.name, 
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name, 
                     items[i].transform.position);
 
                 // Remove item from inventory
@@ -136,11 +133,9 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
-            // Debug.Log(items[i].name);
-            GlobalControls.itemList.Add(items[i]);
-            
+
             //updates item list to add item to list
-            GlobalItemList.UpdateItemList(item, "Inventory", new Vector3(i, 0, 0));
+            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0));
             
             // Remove item from the world
             item.SetActive(false);
@@ -188,8 +183,6 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
-            
-            GlobalControls.itemList.Add(items[i]);
             
             // Remove item from the world
             item.SetActive(false);

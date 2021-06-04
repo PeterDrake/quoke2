@@ -15,11 +15,12 @@ public class ItemLoader : MonoBehaviour
         inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (item.scene.Equals(SceneManager.GetActiveScene()))
+            if (item.scene.Equals(SceneManager.GetActiveScene().name))
             {
                 //poot item here
                 GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
-                prefab.transform.position = item.location;
+                // prefab.transform.position = item.location;
+                Instantiate(prefab, item.location, Quaternion.identity);
             } 
             else if (item.scene.Equals("Inventory"))
             {

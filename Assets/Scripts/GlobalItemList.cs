@@ -16,24 +16,41 @@ public static class GlobalItemList
     static GlobalItemList()
     {
         //ihateuevenmorethanididbeforeuhavenoideahowmuchihateu
-        new Dictionary<string, Item>()
+        itemList = new Dictionary<string, Item>
         {
-            {"dum1", new Item(new Vector3(), "Green Capsule", 
+            {"Green Capsule", new Item(new Vector3(6.5f,0.5f,0.5f), "Green Capsule", 
                 "Assets/Prefabs/Green Capsule" , "PreQuakeHouse")},
-            {"dum2", new Item(new Vector3(), "Red Capsule", 
+            {"Red Capsule", new Item(new Vector3(-6.5f,0.5f,0.5f), "Red Capsule", 
                 "Assets/Prefabs/Red Capsule" , "PreQuakeHouse")},
-            {"dum3", new Item(new Vector3(), "Yellow Capsule", 
+            {"Yellow Capsule", new Item(new Vector3(3.5f,0.5f,3.5f), "Yellow Capsule", 
                 "Assets/Prefabs/Yellow Capsule" , "PreQuakeHouse")},
-            {"dum5", new Item(new Vector3(), "Blue Capsule", 
+            {"Blue Capsule", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Blue Capsule", 
                 "Assets/Prefabs/Blue Capsule", "PreQuakeHouse")},
+            {"Capsule", new Item(new Vector3(6.5f,0f,0.5f), "Capsule", 
+                "Assets/Prefabs/Capsule", "School")},
+            {"Capsule (1)", new Item(new Vector3(-8.5f,0f,5.5f), "Capsule (1)", 
+                "Assets/Prefabs/Capsule (1)", "School")},
+            {"Capsule (2)", new Item(new Vector3(-4.5f,0f,7.5f), "Capsule (2)", 
+                "Assets/Prefabs/Capsule (2)", "School")},
+            {"Capsule (3)", new Item(new Vector3(6.5f,0f,3.5f), "Capsule (3)", 
+                "Assets/Prefabs/Capsule (3)", "School")},
+            {"Capsule (4)", new Item(new Vector3(-11.5f,0f,-2.5f), "Capsule (4)", 
+                "Assets/Prefabs/Capsule (4)", "School")},
+            {"Capsule (5)", new Item(new Vector3(2.5f,0f,9.5f), "Capsule (5)", 
+                "Assets/Prefabs/Capsule (5)", "School")},
         };
     }
 
     /** Updates itemList with the picked up item's position and scene. */
-    public static void UpdateItemList(GameObject pickupableCollectible, string target, Vector3 position)
+    public static void UpdateItemList(string name, string target, Vector3 position)
     {
-        ItemList[pickupableCollectible.name] = new Item(new Vector3(position.x, position.y, position.z), 
-            pickupableCollectible.name, itemList[pickupableCollectible.name].prefab, target);
+        // Debug.Log(position);
+        // Debug.Log(name);
+        // Debug.Log(itemList);
+        // Debug.Log(itemList[name]);
+        // Debug.Log(itemList[name].prefab);
+        // Debug.Log(target);
+        itemList[name] = new Item(position, name, itemList[name].prefab, target);
     }
     
 }
