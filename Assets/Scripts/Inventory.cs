@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
     private int storageContainerLayers;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
@@ -36,6 +36,8 @@ public class Inventory : MonoBehaviour
         {
             item.SetActive(false);
         }
+
+        Debug.Log("slot frames length" + slotFrames.Length);
         items = new GameObject[slotFrames.Length];
         
         // Select the first slot
@@ -180,8 +182,10 @@ public class Inventory : MonoBehaviour
             // Display the sprite for this item
             slotContents[i].SetActive(true);
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            Debug.Log("length of items array" + items.Length);
             // Add item to the items array
             items[i] = item;
+            Debug.Log(items[i]);
             
             // Remove item from the world
             item.SetActive(false);
