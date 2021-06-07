@@ -70,17 +70,11 @@ public class Inventory : MonoBehaviour
             if (SlotIsOccupied(i))
             {
                 // Place item in front of player
-                Debug.Log("Slot found to be occupied and will drop");
-
                 items[i].SetActive(true);
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
                 //updates item list accordingly
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position);
-                if (items[i] == true)
-                {
-                    Debug.Log("enabled an object");
-                }
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);

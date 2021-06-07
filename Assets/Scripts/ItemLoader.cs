@@ -31,7 +31,6 @@ public class ItemLoader : MonoBehaviour
                 // inventory.PickUpAtSlot((int) item.location.x, prefab);
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventory.PickUpAtSlot((int) item.location.x, itemInInventory);
-                Debug.Log("Test");
             }
         }
     }
