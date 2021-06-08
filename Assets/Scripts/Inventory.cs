@@ -108,7 +108,8 @@ public class Inventory : MonoBehaviour
                 Transform t = player.transform;
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
-                
+
+                Debug.Log(SceneManager.GetActiveScene().name + " " + container.name);
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name, 
                     items[i].transform.position);
 
