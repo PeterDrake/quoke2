@@ -19,33 +19,33 @@ public static class GlobalItemList
         itemList = new Dictionary<string, Item>
         {
             {"Green Capsule", new Item(new Vector3(6.5f,0.5f,0.5f), "Green Capsule", 
-                "Assets/Prefabs/Green Capsule.prefab" , "PreQuakeHouse")},
+                "Assets/Prefabs/Green Capsule.prefab" , "PreQuakeHouse", false)},
             {"Red Capsule", new Item(new Vector3(-6.5f,0.5f,0.5f), "Red Capsule", 
-                "Assets/Prefabs/Red Capsule.prefab" , "PreQuakeHouse")},
+                "Assets/Prefabs/Red Capsule.prefab" , "PreQuakeHouse", false)},
             {"Yellow Capsule", new Item(new Vector3(3.5f,0.5f,3.5f), "Yellow Capsule", 
-                "Assets/Prefabs/Yellow Capsule.prefab" , "PreQuakeHouse")},
+                "Assets/Prefabs/Yellow Capsule.prefab" , "PreQuakeHouse", false)},
             {"Blue Capsule", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Blue Capsule", 
-                "Assets/Prefabs/Blue Capsule.prefab", "PreQuakeHouse")},
+                "Assets/Prefabs/Blue Capsule.prefab", "PreQuakeHouse", false)},
             {"Capsule", new Item(new Vector3(6.5f,0f,0.5f), "Capsule", 
-                "Assets/Prefabs/Capsule.prefab", "Park")},
+                "Assets/Prefabs/Capsule.prefab", "Park", false)},
             {"Capsule (1)", new Item(new Vector3(-8.5f,0f,5.5f), "Capsule (1)", 
-                "Assets/Prefabs/Capsule (1).prefab", "Park")},
+                "Assets/Prefabs/Capsule (1).prefab", "Park", false)},
             {"Capsule (2)", new Item(new Vector3(-4.5f,0f,7.5f), "Capsule (2)", 
-                "Assets/Prefabs/Capsule (2).prefab", "School")},
+                "Assets/Prefabs/Capsule (2).prefab", "School", false)},
             {"Capsule (3)", new Item(new Vector3(6.5f,0f,3.5f), "Capsule (3)", 
-                "Assets/Prefabs/Capsule (3).prefab", "School")},
+                "Assets/Prefabs/Capsule (3).prefab", "School", false)},
             {"Capsule (4)", new Item(new Vector3(-11.5f,0f,-2.5f), "Capsule (4)", 
-                "Assets/Prefabs/Capsule (4).prefab", "School")},
+                "Assets/Prefabs/Capsule (4).prefab", "School", false)},
             {"Capsule (5)", new Item(new Vector3(2.5f,0f,9.5f), "Capsule (5)", 
-                "Assets/Prefabs/Capsule (5).prefab", "School")},
+                "Assets/Prefabs/Capsule (5).prefab", "School", false)},
         };
     }
 
     /** Updates itemList with the picked up item's position and scene. */
-    public static void UpdateItemList(string name, string target, Vector3 position)
+    public static void UpdateItemList(string name, string target, Vector3 position, bool isInContainer)
     {
         name = name.Replace("(Clone)","").Trim();
-        itemList[name] = new Item(position, name, itemList[name].prefab, target);
+        itemList[name] = new Item(position, name, itemList[name].prefab, target, isInContainer);
     }
     
 }
@@ -57,13 +57,15 @@ public class Item
     public string itemName;
     public string prefab;
     public string scene;
+    public bool isInContainer;
 
-    public Item(Vector3 location, string itemName, string prefab, string scene)
+    public Item(Vector3 location, string itemName, string prefab, string scene, bool isInContainer)
     {
         this.location = location;
         this.itemName = itemName;
         this.prefab = prefab;
         this.scene = scene;
+        this.isInContainer = isInContainer;
     }
 }
 

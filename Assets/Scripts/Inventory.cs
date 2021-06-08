@@ -76,7 +76,7 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
                 //updates item list accordingly
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position);
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, false);
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -109,9 +109,9 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
 
-                Debug.Log(SceneManager.GetActiveScene().name + " " + container.name);
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name,
-                    items[i].transform.position);
+                Debug.Log(SceneManager.GetActiveScene().name);
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
+                    items[i].transform.position, true);
 
                 // Remove item from inventory
                 items[i] = null;
@@ -137,7 +137,7 @@ public class Inventory : MonoBehaviour
             items[i] = item;
 
             //updates item list to add item to list
-            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0));
+            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), false);
             
             // Remove item from the world
             item.SetActive(false);

@@ -15,22 +15,35 @@ public class ItemLoader : MonoBehaviour
         inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (item.scene.Equals(SceneManager.GetActiveScene().name))
+            if (item.scene.Equals(SceneManager.GetActiveScene().name) && !item.isInContainer)
             {
                 //poot item here
-                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                 // prefab.transform.position = item.location;
                 GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
                 itemInScene.transform.position = item.location;
-                
-            } 
+
+            }
             else if (item.scene.Equals("Inventory"))
             {
                 //populate inventory with many things
-                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                 // inventory.PickUpAtSlot((int) item.location.x, prefab);
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventory.PickUpAtSlot((int) item.location.x, itemInInventory);
+            }
+
+            //case when we have an occupied container in the scene to be loaded
+            else if (item.isInContainer)
+            {
+                if (SceneManager.GetActiveScene().name.Equals("Yard") || SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+                {
+                    Debug.Log("Populate itemsthat are in containers in the correct scene");
+                    GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                    // prefab.transform.position = item.location;
+                    GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
+                    itemInScene.transform.position = item.location;
+                }
             }
         }
     }
