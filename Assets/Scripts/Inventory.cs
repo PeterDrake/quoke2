@@ -110,7 +110,7 @@ public class Inventory : MonoBehaviour
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
 
                 Debug.Log(SceneManager.GetActiveScene().name + " " + container.name);
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name, 
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name,
                     items[i].transform.position);
 
                 // Remove item from inventory

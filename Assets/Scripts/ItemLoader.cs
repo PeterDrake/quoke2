@@ -32,6 +32,13 @@ public class ItemLoader : MonoBehaviour
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventory.PickUpAtSlot((int) item.location.x, itemInInventory);
             }
+            else if (item.scene.Equals("PreQuakeHouse") || item.scene.Equals("QuakeHouse"))
+            {
+                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                // prefab.transform.position = item.location;
+                GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
+                itemInScene.transform.position = item.location;
+            }
         }
     }
 
