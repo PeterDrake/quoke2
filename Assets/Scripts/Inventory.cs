@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
@@ -22,7 +25,8 @@ public class Inventory : MonoBehaviour
     private int storageContainerLayers;
     
     // Start is called before the first frame update
-    void Start()
+    //Awake not start because Inventory must load first
+    void Awake()
     {
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
@@ -33,7 +37,10 @@ public class Inventory : MonoBehaviour
         {
             item.SetActive(false);
         }
+
+        Debug.Log("slot frames length" + slotFrames.Length);
         items = new GameObject[slotFrames.Length];
+        
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
@@ -68,9 +75,13 @@ public class Inventory : MonoBehaviour
                 // Place item in front of player
                 items[i].SetActive(true);
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
+                
+                //updates item list accordingly
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position);
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
+
             }
         }
     }
@@ -98,6 +109,10 @@ public class Inventory : MonoBehaviour
                 Transform t = player.transform;
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
+                
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name, 
+                    items[i].transform.position);
+
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -120,9 +135,14 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
+
+            //updates item list to add item to list
+            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0));
+            
             // Remove item from the world
             item.SetActive(false);
         }
+   
     }
 
     /// <summary>
@@ -152,4 +172,28 @@ public class Inventory : MonoBehaviour
         }
         DropSelectedItem();
     }
+
+    
+    /** Only used by ItemLoader.cs */
+    public void PickUpAtSlot(int slot, GameObject item)
+    {
+        int i = slot;
+        if (i >= 0)
+        {
+            // Display the sprite for this item
+            slotContents[i].SetActive(true);
+            slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            Debug.Log("length of items array" + items.Length);
+            // Add item to the items array
+            items[i] = item;
+            Debug.Log(items[i]);
+            
+            // Remove item from the world
+            item.SetActive(false);
+        }
+        
+    }
+    
+    
+    
 }
