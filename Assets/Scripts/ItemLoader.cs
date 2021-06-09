@@ -7,16 +7,22 @@ using UnityEngine.SceneManagement;
 public class ItemLoader : MonoBehaviour
 {
     private Inventory inventory;
+    private StorageContainer container;
 
     //weknowwhatstartdoesthx
     void Start()
     {
         //can i keep it?
-        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+        GameObject g = GameObject.FindWithTag("Inventory");
+        if (g)
+        {
+            inventory = g.GetComponent<Inventory>();
+        }
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (item.scene.Equals(SceneManager.GetActiveScene().name) && !item.isInContainer)
+            if (item.scene.Equals(SceneManager.GetActiveScene().name) && item.containerName.Equals(""))
             {
+                // Debug.Log("When item is not in storage :" + item.containerName);
                 //poot item here
                 GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                 // prefab.transform.position = item.location;
@@ -24,7 +30,7 @@ public class ItemLoader : MonoBehaviour
                 itemInScene.transform.position = item.location;
 
             }
-            else if (item.scene.Equals("Inventory"))
+            else if (item.scene.Equals("Inventory") && inventory)
             {
                 //populate inventory with many things
                 GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
@@ -34,15 +40,27 @@ public class ItemLoader : MonoBehaviour
             }
 
             //case when we have an occupied container in the scene to be loaded
-            else if (item.isInContainer)
+            else if (!item.containerName.Equals(""))
             {
-                if (SceneManager.GetActiveScene().name.Equals("Yard") || SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+                // Debug.Log("When item is in storage :" + item.containerName);
+                //check if container exists in the scene
+                GameObject interactables = GameObject.Find(item.containerName);
+                if (interactables)
                 {
-                    Debug.Log("Populate itemsthat are in containers in the correct scene");
+                    // Debug.Log("Populate itemsthat are in containers in the correct scene");
                     GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                     // prefab.transform.position = item.location;
                     GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
                     itemInScene.transform.position = item.location;
+                    
+                    //place this item into the storage container's contents
+                    Debug.Log("<" + item.containerName + ">");
+                    Debug.Log(interactables);
+                    interactables.GetComponent<StorageContainer>().contents = itemInScene;
+                    Debug.Log("No error");
+
+
+
                 }
             }
         }
