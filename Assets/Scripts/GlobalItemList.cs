@@ -47,7 +47,6 @@ public static class GlobalItemList
     {
         name = name.Replace("(Clone)","").Trim();
         itemList[name] = new Item(position, name, itemList[name].prefab, target, containerName);
-        // Debug.Log(itemList[name].containerName);
     }
     
 }

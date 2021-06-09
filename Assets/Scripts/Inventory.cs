@@ -111,7 +111,6 @@ public class Inventory : MonoBehaviour
                 
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
                     items[i].transform.position, container.name);
-                    // Debug.Log(container.name);
 
                 // Remove item from inventory
                 items[i] = null;

@@ -42,24 +42,17 @@ public class ItemLoader : MonoBehaviour
             //case when we have an occupied container in the scene to be loaded
             else if (!item.containerName.Equals(""))
             {
-                // Debug.Log("When item is in storage :" + item.containerName);
-                //check if container exists in the scene
-                GameObject interactables = GameObject.Find(item.containerName);
-                if (interactables)
+                GameObject itemInContainer = GameObject.Find(item.containerName);
+                if (itemInContainer)
                 {
-                    // Debug.Log("Populate itemsthat are in containers in the correct scene");
                     GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
                     // prefab.transform.position = item.location;
                     GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
                     itemInScene.transform.position = item.location;
                     
                     //place this item into the storage container's contents
-                    Debug.Log("<" + item.containerName + ">");
-                    Debug.Log(interactables);
-                    interactables.GetComponent<StorageContainer>().contents = itemInScene;
-                    Debug.Log("No error");
-
-
+                    // Debug.Log("<" + item.containerName + ">");
+                    itemInContainer.GetComponent<StorageContainer>().contents = itemInScene;
 
                 }
             }
