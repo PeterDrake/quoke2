@@ -25,40 +25,42 @@ public class NPCScreenInteractor : MonoBehaviour
     public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
     public convoNode currentNode;
     
-        // Start is called before the first frame update
-        private void Start()
+    // Start is called before the first frame update
+    private void Start()
+    {
+        
+        convoFile.Load("Assets/Resources/2TestTree.xml"); //Paste the path of the xml file you want to look at here
+        
+        foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
         {
-            
-            
-            convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
-            
-           
-            foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
-            {
-                forest.Add(node.Name, new convoNode(node));
-            }
-
-            currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
-            
-            for (int c = 0; c < currentNode.playerArray.Count; c++)
-            {
-                buttons[c].gameObject.SetActive(true);
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
-                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-            }
-
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
-            
-            npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
-            textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
-           
+            forest.Add(node.Name, new convoNode(node));
         }
 
+        // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
+        // "theirName0" to get to the appropriate starting node
+        currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; 
+        
+        for (int c = 0; c < currentNode.playerArray.Count; c++)
+        {
+            buttons[c].gameObject.SetActive(true);
+            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
+            
+            //Turns a button off if there is no text in the button
+            if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+            {
+                buttons[c].gameObject.SetActive(false);
+            }
+        }
 
-        void Update()
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
+        
+        npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
+        textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
+       
+    }
+
+
+    void Update()
     {
         
         // Change the cursor's location with < and >
@@ -81,11 +83,13 @@ public class NPCScreenInteractor : MonoBehaviour
 
         buttons[cursorLocation].Select();
         
+        //Exits the NPC screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
             //:D :3
         }
         
+        //Selects an option from the player options
         if (Input.GetKeyDown("space"))
         {
             currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
