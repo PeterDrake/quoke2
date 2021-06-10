@@ -16,8 +16,6 @@ public class NPCScreenInteractor : MonoBehaviour
     //public Button button2;
     //public Button button3;
     public int cursorLocation = 0;
-    public string[] textArray;
-    public string[] npcArray;
     public Button[] buttons;
     public GameObject npcText;
     private String npcName;
@@ -51,12 +49,9 @@ public class NPCScreenInteractor : MonoBehaviour
                 buttons[c].gameObject.SetActive(false);
             }
         }
-
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
         
-        npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
-        textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
-       
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
+
     }
 
 
@@ -96,17 +91,12 @@ public class NPCScreenInteractor : MonoBehaviour
 
             if (currentNode.nodeName.Contains("checkpoint"))
             {
-                Debug.Log("Checkpoint");
                 GlobalControls.SetCheckpoint(currentNode.nodeName);
             }
-            else
-            {
-                Debug.Log("n o . . . ");
-            }
-            
+
             if (currentNode.nodeName.Contains("trade"))
             {
-                Debug.Log("Trading Time!");
+                //enter trading screen
             }
         
             for (int c = 0; c < currentNode.playerArray.Count; c++)
