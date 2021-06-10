@@ -26,10 +26,11 @@ public class NPCScreenInteractor : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        //Paste the path of the xml file you want to look at here
+        convoFile.Load("Assets/Resources/2TestTree.xml"); 
         
-        convoFile.Load("Assets/Resources/2TestTree.xml"); //Paste the path of the xml file you want to look at here
-        
-        foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
+        //looks through all the npc nodes instead of looking at just the <convoForest> tag
+        foreach (XmlNode node in convoFile.LastChild) 
         {
             forest.Add(node.Name, new convoNode(node));
         }
@@ -41,7 +42,9 @@ public class NPCScreenInteractor : MonoBehaviour
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
-            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
+            
+            //This displays the initial nodes player text
+            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];     
             
             //Turns a button off if there is no text in the button
             if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
@@ -49,8 +52,8 @@ public class NPCScreenInteractor : MonoBehaviour
                 buttons[c].gameObject.SetActive(false);
             }
         }
-        
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
+        //This displays the initial nodes npc text
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
 
     }
 
@@ -81,13 +84,14 @@ public class NPCScreenInteractor : MonoBehaviour
         //Exits the NPC screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
-            //:D :3
+            //Exits the NPC screen
         }
         
         //Selects an option from the player options
         if (Input.GetKeyDown("space"))
         {
-            currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
+            //This will change the node you're looking at
+            currentNode = forest[currentNode.nextNode[cursorLocation]]; 
 
             if (currentNode.nodeName.Contains("checkpoint"))
             {
@@ -102,15 +106,18 @@ public class NPCScreenInteractor : MonoBehaviour
             for (int c = 0; c < currentNode.playerArray.Count; c++)
             {
                 buttons[c].gameObject.SetActive(true);
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
+                
+                //This will change the player text based on the node we're looking at
+                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; 
                 if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
 
             }
-
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
+            
+            //This will change the npc text based on the node
+            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
             cursorLocation = 0;
 
         }
