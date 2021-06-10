@@ -3,9 +3,9 @@
 	
 		<safi0>
 			<playerOptions>
-				<option>Im saying this</option>
-				<option>you said what</option>
-				<option>Yes</option>
+				<option>Safi Option 0.1</option>
+				<option>Safi Option 0.2</option>
+				<option>Safi Option 0.3</option>
 			</playerOptions>
  
             <keys>
@@ -14,14 +14,14 @@
                 <keyName>safi3</keyName>
             </keys>
 	
-			<npcText>safi0</npcText>
+			<npcText>Safi Dialogue Path 0</npcText>
         </safi0>
 		
         <safi1>
             <playerOptions>
-                <option>Im saying this</option>
-                <option>you said what</option>
-                <option>Yes</option>
+                <option>Safi Option 1.1</option>
+                <option>Safi Option 1.2</option>
+                <option>Safi Option 1.3</option>
             </playerOptions>
  
             <keys>
@@ -30,14 +30,14 @@
                 <keyName>safi4</keyName>
             </keys>
     
-            <npcText>safi1</npcText>
+            <npcText>Safi Dialogue Path 1</npcText>
         </safi1>
         
         <checkpointsafi2>
             <playerOptions>
-                <option>Im saying this</option>
-                <option>you said what</option>
-                <option>Let's Trade!</option>
+                <option>Safi Option 2.1</option>
+                <option>Safi Option 2.2</option>
+                <option>Safi Let's Trade!</option>
             </playerOptions>
  
             <keys>
@@ -46,15 +46,15 @@
                 <keyName>tradesafi5</keyName>
             </keys>
     
-            <npcText>checkpointsafi2</npcText>
+            <npcText>Dialogue Path 2 (Checkpoint)</npcText>
         </checkpointsafi2>
         
         
         <safi3>
             <playerOptions>
-                <option>Im saying this</option>
-                <option>you said what</option>
-                <option>Let's Trade!</option>
+				<option>Safi Option 3.1</option>
+				<option>Safi Option 3.2</option>
+                <option>Safi Let's Trade!</option>
             </playerOptions>
  
             <keys>
@@ -63,16 +63,16 @@
                 <keyName>tradesafi5</keyName>
             </keys>
     
-            <npcText>safi3</npcText>
+            <npcText>Safi Dialogue Path 3</npcText>
         
         
         </safi3>
         
         <safi4>
             <playerOptions>
-                <option>Im saying this</option>
-                <option>you said what</option>
-                <option>Let's Trade!</option>
+                <option>Safi Option 4.1</option>
+                <option>Safi Option 4.2</option>
+                <option>Safi Let's Trade!</option>
             </playerOptions>
  
             <keys>
@@ -81,12 +81,12 @@
                 <keyName>tradesafi5</keyName>
             </keys>
     
-            <npcText>safi4</npcText>
+            <npcText>Safi Dialogue Path 4</npcText>
         </safi4>
         
         <tradesafi5>
             <playerOptions>
-                <option>Go Back</option>
+                <option>Safi Go Back</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -97,7 +97,7 @@
                 <keyName>safi0</keyName>
             </keys>
     
-            <npcText>:D</npcText>
+            <npcText>Safi Now Trading...</npcText>
         </tradesafi5>
 		
         <dem0>
