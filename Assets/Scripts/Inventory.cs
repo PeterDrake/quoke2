@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
     private int storageContainerLayers;
     
     // Start is called before the first frame update
+    //Awake not start because Inventory must load first
     void Awake()
     {
         // Set initial state of all the arrays
