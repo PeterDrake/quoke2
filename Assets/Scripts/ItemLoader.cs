@@ -18,7 +18,7 @@ public class ItemLoader : MonoBehaviour
             if (item.scene.Equals(SceneManager.GetActiveScene().name))
             {
                 //poot item here
-                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                GameObject prefab = (GameObject)Resources.Load(item.prefab, typeof(GameObject));
                 // prefab.transform.position = item.location;
                 GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
                 itemInScene.transform.position = item.location;
@@ -27,7 +27,7 @@ public class ItemLoader : MonoBehaviour
             else if (item.scene.Equals("Inventory"))
             {
                 //populate inventory with many things
-                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(item.prefab, typeof(GameObject));
+                GameObject prefab = (GameObject)Resources.Load(item.prefab, typeof(GameObject));
                 // inventory.PickUpAtSlot((int) item.location.x, prefab);
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventory.PickUpAtSlot((int) item.location.x, itemInInventory);
