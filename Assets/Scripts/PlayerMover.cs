@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
 
@@ -60,7 +61,8 @@ public class PlayerMover : MonoBehaviour
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction,
                     transform.up);
-                ahead.GetComponent<npcscript>().LoadScene("npcScreen");
+                ahead.GetComponent<npcscript>().LoadScene("NpcScreen");
+
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

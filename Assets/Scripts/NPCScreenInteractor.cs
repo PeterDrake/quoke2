@@ -79,7 +79,6 @@ public class NPCScreenInteractor : MonoBehaviour
 
         buttons[cursorLocation].Select();
         
-        //Exits the NPC screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
             //Exits the NPC screen
