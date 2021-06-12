@@ -28,15 +28,14 @@ public class npcscript : MonoBehaviour
             eventsLoaded = 0;
         }
         
+        //TODO: Fix this if else statement so it actually stops the player from moving.
         // Freezes the background if the player enters NPC screen
         if (sceneHistory.Count < 2)
         {
-            //Debug.Log("Events Loaded Moving " + eventsLoaded);
             GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true;   
         }
         else
         {
-            //Debug.Log("Events Loaded Frozen " + eventsLoaded);
             GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
         }
     }
