@@ -24,7 +24,6 @@ public class NPCScreenInteractor : MonoBehaviour
     {
         //Paste the path of the xml file you want to look at here
         string filepath = Application.streamingAssetsPath + "/2TestTree.xml";
-        Debug.Log(filepath);
         convoFile.Load("Assets/Resources/2TestTree.xml"); 
         
         //looks through all the npc nodes instead of looking at just the <convoForest> tag

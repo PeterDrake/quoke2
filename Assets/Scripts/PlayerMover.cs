@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
@@ -56,13 +57,13 @@ public class PlayerMover : MonoBehaviour
             transform.LookAt(transform.position + direction, transform.up);
             // Is the player about to walk into an interactable object?
             GameObject ahead = ObjectAhead(interactableLayers);
-            if (ahead)  // TODO This seems to be assuming the only interactables are NPCs
+            
+            // TODO This seems to be assuming the only interactables are NPCs
+            if (ahead)  
             {
                 GlobalControls.CurrentNPC = ahead.name;
-                transform.LookAt(transform.position + direction,
-                    transform.up);
+                transform.LookAt(transform.position + direction, transform.up);
                 ahead.GetComponent<npcscript>().LoadScene("NpcScreen");
-
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

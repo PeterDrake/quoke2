@@ -9,7 +9,9 @@ public class npcscript : MonoBehaviour
     private List<string> sceneHistory = new List<string>();  //running history of scenes
     //The last string in the list is always the current scene running
 
-    /// Starts the Scene in ever Load and keeps the gameObject alive
+    private int eventsLoaded;
+
+    /// Starts the Scene in every Load and keeps the gameObject alive
     void Start()
     {
         sceneHistory.Add(SceneManager.GetActiveScene().name);
@@ -23,23 +25,31 @@ public class npcscript : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             PreviousScene();
+            eventsLoaded = 0;
         }
         
         // Freezes the background if the player enters NPC screen
         if (sceneHistory.Count < 2)
         {
+            //Debug.Log("Events Loaded Moving " + eventsLoaded);
             GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true;   
         }
         else
         {
+            //Debug.Log("Events Loaded Frozen " + eventsLoaded);
             GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
         }
     }
     
     public void LoadScene(string newScene)
     {
-        sceneHistory.Add(newScene);
-        SceneManager.LoadScene(newScene,LoadSceneMode.Additive); //Additive: Loads the scene on the top of previous scene 
+        
+        if (eventsLoaded <= 0)
+        {
+            eventsLoaded++;
+            sceneHistory.Add(newScene);
+            SceneManager.LoadScene(newScene, LoadSceneMode.Additive); //Additive: Loads the scene on the top of previous scene
+        }
     }
  
     ///Call this whenever you want to load the previous scene
