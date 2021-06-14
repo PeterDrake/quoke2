@@ -20,26 +20,26 @@ public static class GlobalItemList
         itemList = new Dictionary<string, Item>
         {
             {"Wrench", new Item(new Vector3(6.5f,0.5f,0.5f), "Wrench", 
-                "Assets/Prefabs/Wrench.prefab" , "PreQuakeHouse", "")},
+                "Assets/Resources/Wrench.prefab" , "PreQuakeHouse", "")},
             {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
-                "Assets/Prefabs/Water Bottle.prefab" , "PreQuakeHouse", "")},
+                "Assets/Resources/Water Bottle.prefab" , "PreQuakeHouse", "")},
             {"Sandwich", new Item(new Vector3(3.5f,0.5f,3.5f), "Sandwich", 
-                "Assets/Prefabs/Sandwich.prefab" , "PreQuakeHouse", "")},
+                "Assets/Resources/Sandwich.prefab" , "PreQuakeHouse", "")},
             {"Shovel", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Shovel", 
-                "Assets/Prefabs/Shovel.prefab", "PreQuakeHouse", "")},
+                "Assets/Resources/Shovel.prefab", "PreQuakeHouse", "")},
             {"Tarp", new Item(new Vector3(6.5f,0f,0.5f), "Tarp", 
-                "Assets/Prefabs/Tarp.prefab", "Park", "")},
+                "Assets/Resources/Tarp.prefab", "Park", "")},
             {"Bucket", new Item(new Vector3(-8.5f,0f,5.5f), "Bucket", 
-                "Assets/Prefabs/Bucket.prefab", "Park", "")},
+                "Assets/Resources/Bucket.prefab", "Park", "")},
             {"Rope", new Item(new Vector3(-4.5f,0f,7.5f), "Rope", 
-                "Assets/Prefabs/Rope.prefab", "School", "")},
+                "Assets/Resources/Rope.prefab", "School", "")},
             {"Dog Collar", new Item(new Vector3(6.5f,0f,3.5f), "Dog Collar", 
-                "Assets/Prefabs/Dog Collar.prefab", "School", "")},
+                "Assets/Resources/Dog Collar.prefab", "School", "")},
             {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
-                "Assets/Prefabs/Pet Rat.prefab", "School", "")},
+                "Assets/Resources/Pet Rat.prefab", "School", "")},
             {"Bag", new Item(new Vector3(2.5f,0f,9.5f), "Bag", 
-                "Assets/Prefabs/Bag.prefab", "School", "")},
-        };
+                "Assets/Resources/Bag.prefab", "School", "")},
+            };
     }
 
     /** Updates itemList with the picked up item's position and scene. */
