@@ -5,7 +5,10 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TradingScreenInteractor : MonoBehaviour
+/**
+ * Class TradingScreenManager handles keyboard input for the trade screen
+ */
+public class TradingScreenManager : MonoBehaviour
 {
     public int cursorLocation = 0;
     public string[] textArray;
@@ -81,11 +84,11 @@ public class TradingScreenInteractor : MonoBehaviour
             ChangeSelectedInventory();
         }
 
-        //Dont know how this works so it's a work in progress
+        /*Dont know how this works so it's a work in progress
         if (Input.GetKeyDown("Enter"))
         {
             button.Select();
-        }
+        }*/
 
         //change inventories based on cursor location
         
@@ -108,10 +111,12 @@ public class TradingScreenInteractor : MonoBehaviour
         if (cursorLocation == 0 && inventoryPlayer && Input.GetKeyDown(KeyCode.Space))
         {
             TransferItem(inventoryPlayer, inventoryPlayerBin);
+            UpdateOfferItems();
         }
         else if (cursorLocation == 1 && inventoryPlayerBin && Input.GetKeyDown(KeyCode.Space))
         {
             TransferItem(inventoryPlayerBin, inventoryPlayer);
+            UpdateOfferItems();
         }
 
         
@@ -204,7 +209,7 @@ public class TradingScreenInteractor : MonoBehaviour
         //Customized inventory.PickUp() method
         if (inventory.slotContents[i].activeSelf)
         {
-            inventory.items[i].SetActive(true);
+            //inventory.items[i].SetActive(true);
             
             // Add item to destination
             destination.slotContents[firstSlot].SetActive(true);
@@ -216,5 +221,23 @@ public class TradingScreenInteractor : MonoBehaviour
             inventory.slotContents[i].SetActive(false);
 
         }
+    }
+
+    private void UpdateOfferItems()
+    {
+        List<string> playerOffered = new List<string>();
+        
+        foreach(GameObject item in inventoryPlayerBin.items)
+        {
+            if (item) playerOffered.Add(item.name);
+        }
+
+        //if player offered nothing, skip method
+        if (playerOffered.Count == 0) return;
+        
+        //otherwise check if any possible trades
+        //populate NPC bin and NPC inventory accordingly
+        
+        
     }
 }

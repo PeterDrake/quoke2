@@ -374,12 +374,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111307115}
   m_CullTransparentMesh: 0
+--- !u!1 &126508866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6002203689044799006, guid: 0049234cdadc31e46ad21cb81798293a,
+    type: 3}
+  m_PrefabInstance: {fileID: 515263861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &126508868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6002203689044799000, guid: 0049234cdadc31e46ad21cb81798293a,
     type: 3}
   m_PrefabInstance: {fileID: 515263861}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &126508869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126508866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a51e23c561d3cc45bebcea5568f89d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &193731445 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 104052355681058214, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
@@ -689,6 +707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002203689044799007, guid: 0049234cdadc31e46ad21cb81798293a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0049234cdadc31e46ad21cb81798293a, type: 3}
@@ -1703,6 +1726,11 @@ PrefabInstance:
     - target: {fileID: 104052355681058218, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
         type: 3}
       propertyPath: m_Name
+      value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 104052355681058218, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
+        type: 3}
+      propertyPath: m_TagString
       value: Inventory
       objectReference: {fileID: 0}
     - target: {fileID: 3846880691827368403, guid: a5c4f8ee47fb44c9ca69e3af271c959e,
