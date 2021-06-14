@@ -10,17 +10,17 @@ public class TradeScreenTester : MonoBehaviour
     private Dictionary<string, Item> itemList = new Dictionary<string, Item>
             {
                 {"Wrench", new Item(new Vector3(0,0,0), "Wrench", 
-                    "Assets/Prefabs/Wrench.prefab" , "Inventory", "")},
+                    "Assets/Resources/Wrench.prefab" , "Inventory", "")},
                 {"Water Bottle", new Item(new Vector3(1,0,0), "Water Bottle", 
-                    "Assets/Prefabs/Water Bottle.prefab" , "Inventory", "")},
+                    "Assets/Resources/Water Bottle.prefab" , "Inventory", "")},
                 {"Sandwich", new Item(new Vector3(2,0,0), "Sandwich", 
-                    "Assets/Prefabs/Sandwich.prefab" , "Inventory", "")},
+                    "Assets/Resources/Sandwich.prefab" , "Inventory", "")},
                 {"Shovel", new Item(new Vector3(0,0,0), "Shovel", 
-                    "Assets/Prefabs/Shovel.prefab", "NPCName", "Inventory (NPC)")},
+                    "Assets/Resources/Shovel.prefab", "NPCName", "Inventory (NPC)")},
                 {"Tarp", new Item(new Vector3(1,0,0), "Tarp", 
-                    "Assets/Prefabs/Tarp.prefab", "NPCName", "Inventory (NPC)")},
+                    "Assets/Resources/Tarp.prefab", "NPCName", "Inventory (NPC)")},
                 {"Bucket", new Item(new Vector3(2,0,0), "Bucket", 
-                    "Assets/Prefabs/Bucket.prefab", "NPCName", "Inventory (NPC)")},
+                    "Assets/Resources/Bucket.prefab", "NPCName", "Inventory (NPC)")},
             };
 
     //weknowwhatstartdoesthx
