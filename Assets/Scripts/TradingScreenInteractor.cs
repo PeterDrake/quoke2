@@ -7,18 +7,15 @@ using UnityEngine.UI;
 
 public class TradingScreenInteractor : MonoBehaviour
 {
-    //public Button button1;
-    //public Button button2;
-    //public Button button3;
     public int cursorLocation = 0;
     public string[] textArray;
     public string[] npcArray;
     public Button[] buttons;
     public GameObject npcText;
     private String npcName;
-    private XmlDocument convoFile = new XmlDocument();
-    public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
-    public convoNode currentNode;
+    //private XmlDocument convoFile = new XmlDocument();
+    //public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
+    //public convoNode currentNode;
     private Inventory inventoryPlayer;
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
@@ -40,6 +37,7 @@ public class TradingScreenInteractor : MonoBehaviour
         inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPCBin.SelectSlotNumber(1);
         
+        /*
         convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
         
        
@@ -63,7 +61,7 @@ public class TradingScreenInteractor : MonoBehaviour
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
         
         npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
-        textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};
+        textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};*/
        
     }
 
@@ -75,19 +73,18 @@ public class TradingScreenInteractor : MonoBehaviour
         if (Input.GetKeyDown(","))
         {
             cursorLocation--;
+            changeSelectedInventory();
         }
-        if (Input.GetKeyDown("."))
+        else if (Input.GetKeyDown("."))
         {
             cursorLocation++;
+            changeSelectedInventory();
         }
-        if (cursorLocation < 0)
-        {
-            cursorLocation = 1;
-        }
-        else if (cursorLocation > 1)
-        {
-            cursorLocation = 0;
-        }
+
+        //change inventories based on cursor location
+        
+        
+        
         for (int i = 0; i < validInputs.Length; i++)
         {
             if (cursorLocation == 0 && inventoryPlayer && Input.GetKey(validInputs[i]))
@@ -149,5 +146,33 @@ public class TradingScreenInteractor : MonoBehaviour
         
 
         
+    }
+
+    void changeSelectedInventory()
+    {
+        if (cursorLocation < 0)
+        {
+            cursorLocation = 1;
+        }
+        else if (cursorLocation > 1)
+        {
+            cursorLocation = 0;
+        }
+        if (cursorLocation == 0) //inventory is selected
+        {
+            //change selected slot sprite
+            inventoryPlayer.selectedSlotSprite = inventoryPlayerBin.selectedSlotSprite;
+            inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
+        }
+        else if (cursorLocation == 1) //bin is selected
+        {
+            //change selected slot sprite
+            inventoryPlayerBin.selectedSlotSprite = inventoryPlayer.selectedSlotSprite;
+            inventoryPlayer.selectedSlotSprite = inventoryPlayer.unselectedSlotSprite;
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryPlayerBin.SelectSlotNumber(0);
+        }
     }
 }
