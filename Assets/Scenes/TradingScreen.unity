@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 522925749}
   - component: {fileID: 522925748}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Trading Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1271,8 +1271,7 @@ MonoBehaviour:
   cursorLocation: 0
   textArray: []
   npcArray: []
-  buttons:
-  - {fileID: 834084923}
+  button: {fileID: 0}
   npcText: {fileID: 0}
 --- !u!1 &1224874541
 GameObject:
@@ -1344,8 +1343,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1-5 to select slot. SPACE to add item. ESC to leave interaction. ENTER
-    to confirm trade. <> to change Inventory selection
+  m_Text: 1-5 to select slot. SPACE to add item. <> to change Inventory selection.
+    ENTER to confirm. ESC to leave interaction.
 --- !u!222 &1224874544
 CanvasRenderer:
   m_ObjectHideFlags: 0

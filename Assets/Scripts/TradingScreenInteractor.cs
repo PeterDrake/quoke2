@@ -10,7 +10,7 @@ public class TradingScreenInteractor : MonoBehaviour
     public int cursorLocation = 0;
     public string[] textArray;
     public string[] npcArray;
-    public Button[] buttons;
+    public Button button;
     public GameObject npcText;
     private String npcName;
     //private XmlDocument convoFile = new XmlDocument();
@@ -75,10 +75,16 @@ public class TradingScreenInteractor : MonoBehaviour
             cursorLocation--;
             ChangeSelectedInventory();
         }
-        else if (Input.GetKeyDown("."))
+        if (Input.GetKeyDown("."))
         {
             cursorLocation++;
             ChangeSelectedInventory();
+        }
+
+        //Dont know how this works so it's a work in progress
+        if (Input.GetKeyDown("Enter"))
+        {
+            button.Select();
         }
 
         //change inventories based on cursor location
