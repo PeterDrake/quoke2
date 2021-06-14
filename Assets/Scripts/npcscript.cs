@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +16,6 @@ public class npcscript : MonoBehaviour
     void Start()
     {
         sceneHistory.Add(SceneManager.GetActiveScene().name);
-
     }
 
     
@@ -28,15 +28,17 @@ public class npcscript : MonoBehaviour
             eventsLoaded = 0;
         }
         
-        //TODO: Fix this if else statement so it actually stops the player from moving.
+        // TODO: Fix this if else statement so it actually stops the player from moving.
         // Freezes the background if the player enters NPC screen
-        if (sceneHistory.Count < 2)
+        if (eventsLoaded > 0)
         {
-            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true;   
+            // Debug.Log("STOPPING Events" + eventsLoaded);
+            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
         }
         else
         {
-            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
+            // Debug.Log("Moving Events" + eventsLoaded);
+            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true; 
         }
     }
     
@@ -54,16 +56,13 @@ public class npcscript : MonoBehaviour
     ///Call this whenever you want to load the previous scene
     ///It will remove the current scene from the history and then load the new last scene in the history
     ///It will return false if we have not moved between scenes enough to have stored a previous scene in the history
-    public bool PreviousScene()
+    public void PreviousScene()
     {
-        bool returnValue = false;
-        if (sceneHistory.Count >= 2)  //Checking that we have actually switched scenes enough to go back to a previous scene
-        {
-            returnValue = true;
-            sceneHistory.RemoveAt(sceneHistory.Count -1);
-            SceneManager.UnloadSceneAsync("npcScreen");  // Reloads the game where the player entered the new Scene
-        }
-        return returnValue;
+       if (sceneHistory.Count >= 2)  //Checking that we have actually switched scenes enough to go back to a previous scene
+       {
+           sceneHistory.RemoveAt(sceneHistory.Count -1);
+           SceneManager.UnloadSceneAsync("npcScreen");  // Reloads the game where the player entered the new Scene
+       }
     }
     
     
