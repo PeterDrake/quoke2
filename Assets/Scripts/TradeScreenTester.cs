@@ -57,3 +57,33 @@ public class TradeScreenTester : MonoBehaviour
         }
     }
 }
+
+public class itemAttribs
+{
+    public List<string> itemName;
+    public bool tradeable;
+    public List<string> equivalences;
+
+    //if itemName length == 1 , only need that one item
+    //if itemName length == 2 , need both items
+    //fork and spoon equivalent to plate
+    //if only one, no plate
+    //if both, one plate
+}
+public class ItemCopy
+{
+    public Vector3 location;
+    public string itemName;
+    public string prefab;
+    public string scene;
+    public string containerName;
+
+    public ItemCopy(Vector3 location, string itemName, string prefab, string scene, string containerName)
+    {
+        this.location = location;
+        this.itemName = itemName;
+        this.prefab = prefab;
+        this.scene = scene;
+        this.containerName = containerName;
+    }
+}
