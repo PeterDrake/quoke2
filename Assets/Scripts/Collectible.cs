@@ -33,7 +33,10 @@ public class Collectible : MonoBehaviour
 
     private void Awake()
     {
-        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+        if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        {
+            inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+        }
     }
 
     void OnTriggerEnter(Collider other)

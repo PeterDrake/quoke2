@@ -37,8 +37,7 @@ public class Inventory : MonoBehaviour
         {
             item.SetActive(false);
         }
-
-        Debug.Log("slot frames length" + slotFrames.Length);
+        
         items = new GameObject[slotFrames.Length];
         
         // Select the first slot
@@ -77,7 +76,7 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
                 //updates item list accordingly
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position);
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -110,8 +109,8 @@ public class Inventory : MonoBehaviour
                 items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
                 
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name + " " + container.name, 
-                    items[i].transform.position);
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
+                    items[i].transform.position, container.name);
 
                 // Remove item from inventory
                 items[i] = null;
@@ -137,7 +136,7 @@ public class Inventory : MonoBehaviour
             items[i] = item;
 
             //updates item list to add item to list
-            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0));
+            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), "");
             
             // Remove item from the world
             item.SetActive(false);
@@ -183,11 +182,9 @@ public class Inventory : MonoBehaviour
             // Display the sprite for this item
             slotContents[i].SetActive(true);
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
-            Debug.Log("length of items array" + items.Length);
             // Add item to the items array
             items[i] = item;
-            Debug.Log(items[i]);
-            
+
             // Remove item from the world
             item.SetActive(false);
         }
