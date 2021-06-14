@@ -73,33 +73,39 @@ public class TradingScreenInteractor : MonoBehaviour
         if (Input.GetKeyDown(","))
         {
             cursorLocation--;
-            changeSelectedInventory();
+            ChangeSelectedInventory();
         }
         else if (Input.GetKeyDown("."))
         {
             cursorLocation++;
-            changeSelectedInventory();
+            ChangeSelectedInventory();
         }
 
         //change inventories based on cursor location
         
         
-        
-        for (int i = 0; i < validInputs.Length; i++)
+        //select slot
+        for (var i = 0; i < validInputs.Length; i++)
         {
             if (cursorLocation == 0 && inventoryPlayer && Input.GetKey(validInputs[i]))
             {
                 inventoryPlayer.SelectSlotNumber(i);
             }
-            else if (cursorLocation == 1 && inventoryPlayer && Input.GetKey(validInputs[i]))
+            else if (cursorLocation == 1 && inventoryPlayerBin && Input.GetKey(validInputs[i]))
             {
                 inventoryPlayerBin.SelectSlotNumber(i);
             }
         }
-        // Pick up / drop (space)
-        if (inventoryPlayer && Input.GetKeyDown(KeyCode.Space))
+        
+        
+        // Transfer items (space)
+        if (cursorLocation == 0 && inventoryPlayer && Input.GetKeyDown(KeyCode.Space))
         {
-            inventoryPlayer.PickUpOrDrop();
+            TransferItem(inventoryPlayer, inventoryPlayerBin);
+        }
+        else if (cursorLocation == 1 && inventoryPlayerBin && Input.GetKeyDown(KeyCode.Space))
+        {
+            TransferItem(inventoryPlayerBin, inventoryPlayer);
         }
 
         
@@ -148,7 +154,7 @@ public class TradingScreenInteractor : MonoBehaviour
         
     }
 
-    void changeSelectedInventory()
+    private void ChangeSelectedInventory()
     {
         if (cursorLocation < 0)
         {
@@ -173,6 +179,36 @@ public class TradingScreenInteractor : MonoBehaviour
             inventoryPlayer.selectedSlotSprite = inventoryPlayer.unselectedSlotSprite;
             inventoryPlayer.SelectSlotNumber(0);
             inventoryPlayerBin.SelectSlotNumber(0);
+        }
+    }
+
+    private void TransferItem(Inventory inventory, Inventory destination)
+    {
+        var i = inventory.selectedSlotNumber;
+        
+        //copied private method FindEmptySlot
+        var firstSlot = 0;
+        for (var j = 0; j < destination.slotFrames.Length; j++)
+        {
+            if (destination.slotContents[j].activeSelf) continue;
+            firstSlot = j;
+            break;
+        }
+        
+        //Customized inventory.PickUp() method
+        if (inventory.slotContents[i].activeSelf)
+        {
+            inventory.items[i].SetActive(true);
+            
+            // Add item to destination
+            destination.slotContents[firstSlot].SetActive(true);
+            destination.slotContents[firstSlot].GetComponent<Image>().sprite = inventory.items[i].GetComponent<Collectible>().sprite;
+            destination.items[firstSlot] = inventory.items[i];
+            
+            // Remove item from inventory
+            inventory.items[i] = null;
+            inventory.slotContents[i].SetActive(false);
+
         }
     }
 }
