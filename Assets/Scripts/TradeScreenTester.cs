@@ -9,18 +9,18 @@ public class TradeScreenTester : MonoBehaviour
     private StorageContainer container;
     private Dictionary<string, Item> itemList = new Dictionary<string, Item>
             {
-                {"Green Capsule", new Item(new Vector3(0,0,0), "Green Capsule", 
-                    "Assets/Prefabs/Green Capsule.prefab" , "Inventory", "")},
-                {"Red Capsule", new Item(new Vector3(1,0,0), "Red Capsule", 
-                    "Assets/Prefabs/Red Capsule.prefab" , "Inventory", "")},
-                {"Yellow Capsule", new Item(new Vector3(2,0,0), "Yellow Capsule", 
-                    "Assets/Prefabs/Yellow Capsule.prefab" , "Inventory", "")},
-                {"Blue Capsule", new Item(new Vector3(0,0,0), "Blue Capsule", 
-                    "Assets/Prefabs/Blue Capsule.prefab", "NPCName", "Inventory (NPC)")},
-                {"Capsule", new Item(new Vector3(1,0,0), "Capsule", 
-                    "Assets/Prefabs/Capsule.prefab", "NPCName", "Inventory (NPC)")},
-                {"Capsule (1)", new Item(new Vector3(2,0,0), "Capsule (1)", 
-                    "Assets/Prefabs/Capsule (1).prefab", "NPCName", "Inventory (NPC)")},
+                {"Wrench", new Item(new Vector3(0,0,0), "Wrench", 
+                    "Assets/Prefabs/Wrench.prefab" , "Inventory", "")},
+                {"Water Bottle", new Item(new Vector3(1,0,0), "Water Bottle", 
+                    "Assets/Prefabs/Water Bottle.prefab" , "Inventory", "")},
+                {"Sandwich", new Item(new Vector3(2,0,0), "Sandwich", 
+                    "Assets/Prefabs/Sandwich.prefab" , "Inventory", "")},
+                {"Shovel", new Item(new Vector3(0,0,0), "Shovel", 
+                    "Assets/Prefabs/Shovel.prefab", "NPCName", "Inventory (NPC)")},
+                {"Tarp", new Item(new Vector3(1,0,0), "Tarp", 
+                    "Assets/Prefabs/Tarp.prefab", "NPCName", "Inventory (NPC)")},
+                {"Bucket", new Item(new Vector3(2,0,0), "Bucket", 
+                    "Assets/Prefabs/Bucket.prefab", "NPCName", "Inventory (NPC)")},
             };
 
     //weknowwhatstartdoesthx
