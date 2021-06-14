@@ -59,7 +59,7 @@ public class PlayerMover : MonoBehaviour
             GameObject ahead = ObjectAhead(interactableLayers);
             
             // TODO This seems to be assuming the only interactables are NPCs
-            if (ahead)  
+            if (ahead)
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);

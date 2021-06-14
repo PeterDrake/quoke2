@@ -28,17 +28,20 @@ public class npcscript : MonoBehaviour
             eventsLoaded = 0;
         }
         
-        // TODO: Fix this if else statement so it actually stops the player from moving.
-        // Freezes the background if the player enters NPC screen
-        if (eventsLoaded > 0)
+        if (GameObject.Find("Interactor"))
         {
-            // Debug.Log("STOPPING Events" + eventsLoaded);
-            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
-        }
-        else
-        {
-            // Debug.Log("Moving Events" + eventsLoaded);
-            GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true; 
+            // // TODO: Fix this if else statement so it actually stops the player from moving.
+            // // Freezes the background if the player enters NPC screen
+            if (eventsLoaded > 0)
+            {
+                Debug.Log("STOPPING Events" + eventsLoaded);
+                GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
+            }
+            else
+            {
+                Debug.Log("Moving Events" + eventsLoaded);
+                GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true;
+            }
         }
     }
     
@@ -64,8 +67,6 @@ public class npcscript : MonoBehaviour
            SceneManager.UnloadSceneAsync("npcScreen");  // Reloads the game where the player entered the new Scene
        }
     }
-    
-    
-    
+
 
 }
