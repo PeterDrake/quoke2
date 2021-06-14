@@ -36,9 +36,9 @@ public static class GlobalItemList
             {"Dog Collar", new Item(new Vector3(6.5f,0f,3.5f), "Dog Collar", 
                 "Assets/Prefabs/Dog Collar.prefab", "School", "")},
             {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
-                "Assets/Prefabs/Pet Rat", "School", "")},
+                "Assets/Prefabs/Pet Rat.prefab", "School", "")},
             {"Bag", new Item(new Vector3(2.5f,0f,9.5f), "Bag", 
-                "Assets/Prefabs/Bag", "School", "")},
+                "Assets/Prefabs/Bag.prefab", "School", "")},
         };
     }
 
