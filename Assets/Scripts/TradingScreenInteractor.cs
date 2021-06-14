@@ -29,9 +29,16 @@ public class TradingScreenInteractor : MonoBehaviour
     private void Start()
     {
         inventoryPlayer = GameObject.Find("Inventory").GetComponent<Inventory>();
-        inventoryPlayerBin = GameObject.Find("Inventory").GetComponent<Inventory>();
-        inventoryNPC = GameObject.Find("Inventory").GetComponent<Inventory>();
-        inventoryNPCBin = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
+        inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
+        inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
+
+        inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
+        inventoryPlayerBin.SelectSlotNumber(1);
+        inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
+        inventoryNPC.SelectSlotNumber(1);
+        inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
+        inventoryNPCBin.SelectSlotNumber(1);
         
         convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
         
