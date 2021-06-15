@@ -30,7 +30,7 @@ public class ItemLoader : MonoBehaviour
                 itemInScene.transform.position = item.location;
 
             }
-            else if (item.scene.Equals("Inventory") && inventory)
+            else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player") && inventory)
             {
                 //populate inventory with many things
                 GameObject prefab = (GameObject)Resources.Load(item.name, typeof(GameObject));
@@ -40,7 +40,7 @@ public class ItemLoader : MonoBehaviour
             }
 
             //case when we have an occupied container in the scene to be loaded
-            else if (!item.containerName.Equals(""))
+            else if (item.scene.Equals(SceneManager.GetActiveScene().name) && !item.containerName.Equals(""))
             {
                 GameObject itemInContainer = GameObject.Find(item.containerName);
                 if (itemInContainer)

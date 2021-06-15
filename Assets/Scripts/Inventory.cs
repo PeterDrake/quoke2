@@ -136,7 +136,7 @@ public class Inventory : MonoBehaviour
             items[i] = item;
 
             //updates item list to add item to list
-            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), "");
+            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), "Player");
             
             // Remove item from the world
             item.SetActive(false);
