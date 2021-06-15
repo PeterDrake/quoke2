@@ -10,7 +10,7 @@ using UnityEngine.UI;
  * * Make button flash
  * * Update GlobalItemList
  */
-public class TradingScreenManager : MonoBehaviour
+public class TradingManager : MonoBehaviour
 {
     public int cursorLocation = 0;
     public Button button;
