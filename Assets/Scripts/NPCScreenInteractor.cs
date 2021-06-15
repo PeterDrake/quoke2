@@ -6,16 +6,17 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.Rendering;
 using Object = System.Object;
 
 public class NPCScreenInteractor : MonoBehaviour
 {
-    public int cursorLocation = 0;
+    public int cursorLocation;
     public Button[] buttons;
     public GameObject npcText;
     private String npcName;
-    private XmlDocument convoFile = new XmlDocument();
+    private XmlDocument convoFile;
     public Dictionary<string, convoNode> forest;
     public convoNode currentNode;
     
@@ -23,6 +24,9 @@ public class NPCScreenInteractor : MonoBehaviour
     private void Start()
     {
         forest = new Dictionary<string, convoNode>();
+        convoFile = new XmlDocument();
+        cursorLocation = 0;
+
     }
     
     public void BeginConversation()
@@ -34,16 +38,15 @@ public class NPCScreenInteractor : MonoBehaviour
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
         foreach (XmlNode node in convoFile.LastChild) 
         {
-            forest.Add(node.Name, new convoNode(node));
+            if (!forest.ContainsKey(node.Name))
+            {
+                forest.Add(node.Name, new convoNode(node));
+            }
         }
 
         // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
         // "theirName0" to get to the appropriate starting node
-        // Debug.Log("Key1" + GlobalControls.CurrentNPC);
-        // Debug.Log("Key4" + GlobalControls.ConvoDict);
-        // Debug.Log("Key2" + GlobalControls.ConvoDict[GlobalControls.CurrentNPC]);
-        // Debug.Log("Key3" + forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]);
-        currentNode = forest[GlobalControls.CurrentNPC]; 
+        currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; 
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
@@ -63,6 +66,12 @@ public class NPCScreenInteractor : MonoBehaviour
 
     }
 
+    public void Reset()
+    {
+        Start();
+    }
+    
+    
 
     void Update()
     {
