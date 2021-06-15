@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScreenshotTaker : MonoBehaviour
 {
-    
+    private int counter = 0;
     /// <summary>
     /// Saves a screenshot (in the top-level directory for this project) when the user presses 'k'.
     /// </summary>
@@ -11,7 +11,8 @@ public class ScreenshotTaker : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ScreenCapture.CaptureScreenshot("screenshot.png");
+            ScreenCapture.CaptureScreenshot("screenshot" + counter + ".png");
+            counter++;
         }
     }
 }
