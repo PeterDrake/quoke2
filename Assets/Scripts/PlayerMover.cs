@@ -70,7 +70,6 @@ public class PlayerMover : MonoBehaviour
                 npcCanvas.SetActive(true);
                 GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
 
-                // ahead.GetComponent<npcscript>().LoadScene("NpcScreen");
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
