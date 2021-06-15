@@ -25,7 +25,7 @@ public class TradeScreenTester : MonoBehaviour
             };
 
     //weknowwhatstartdoesthx
-    void Start()
+    void Awake()
     {
         //can i keep it? I like it <3
         GameObject g = GameObject.FindWithTag("Inventory");

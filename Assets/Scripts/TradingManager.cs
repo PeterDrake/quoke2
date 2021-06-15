@@ -212,14 +212,10 @@ public class TradingManager : MonoBehaviour
                 numContents[3]++;
             }
         }
-        Debug.Log(numContents[0]);
-        Debug.Log(numContents[1]);
-        Debug.Log(numContents[2]);
-        Debug.Log(numContents[3]);
-        
+
         if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
         {
-            Debug.Log("Not Enough Inventory!");
+            Debug.Log("Not Enough Inventory to complete trade!");
             return false;
         }
 
