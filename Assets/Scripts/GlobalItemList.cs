@@ -20,25 +20,25 @@ public static class GlobalItemList
         itemList = new Dictionary<string, Item>
         {
             {"Wrench", new Item(new Vector3(6.5f,0.5f,0.5f), "Wrench", 
-                "Assets/Resources/Wrench.prefab" , "PreQuakeHouse", "")},
+                "PreQuakeHouse", "")},
             {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
-                "Assets/Resources/Water Bottle.prefab" , "PreQuakeHouse", "")},
+                "PreQuakeHouse", "")},
             {"Sandwich", new Item(new Vector3(3.5f,0.5f,3.5f), "Sandwich", 
-                "Assets/Resources/Sandwich.prefab" , "PreQuakeHouse", "")},
+                "PreQuakeHouse", "")},
             {"Shovel", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Shovel", 
-                "Assets/Resources/Shovel.prefab", "PreQuakeHouse", "")},
+                "PreQuakeHouse", "")},
             {"Tarp", new Item(new Vector3(6.5f,0f,0.5f), "Tarp", 
-                "Assets/Resources/Tarp.prefab", "Park", "")},
+                "Park", "")},
             {"Bucket", new Item(new Vector3(-8.5f,0f,5.5f), "Bucket", 
-                "Assets/Resources/Bucket.prefab", "Park", "")},
+                "Park", "")},
             {"Rope", new Item(new Vector3(-4.5f,0f,7.5f), "Rope", 
-                "Assets/Resources/Rope.prefab", "School", "")},
+                "School", "")},
             {"Dog Collar", new Item(new Vector3(6.5f,0f,3.5f), "Dog Collar", 
-                "Assets/Resources/Dog Collar.prefab", "School", "")},
+                "School", "")},
             {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
-                "Assets/Resources/Pet Rat.prefab", "School", "")},
+                "School", "")},
             {"Bag", new Item(new Vector3(2.5f,0f,9.5f), "Bag", 
-                "Assets/Resources/Bag.prefab", "School", "")},
+                "School", "")},
             };
     }
 
@@ -46,7 +46,7 @@ public static class GlobalItemList
     public static void UpdateItemList(string name, string target, Vector3 position, string containerName)
     {
         name = name.Replace("(Clone)","").Trim();
-        itemList[name] = new Item(position, name, itemList[name].prefab, target, containerName);
+        itemList[name] = new Item(position, name, target, containerName);
     }
     
 }
@@ -55,16 +55,14 @@ public static class GlobalItemList
 public class Item
 {
     public Vector3 location;
-    public string itemName;
-    public string prefab;
+    public string name;
     public string scene;
     public string containerName;
 
-    public Item(Vector3 location, string itemName, string prefab, string scene, string containerName)
+    public Item(Vector3 location, string name, string scene, string containerName)
     {
         this.location = location;
-        this.itemName = itemName;
-        this.prefab = prefab;
+        this.name = name;
         this.scene = scene;
         this.containerName = containerName;
     }
