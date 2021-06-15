@@ -16,11 +16,16 @@ public class NPCScreenInteractor : MonoBehaviour
     public GameObject npcText;
     private String npcName;
     private XmlDocument convoFile = new XmlDocument();
-    public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
+    public Dictionary<string, convoNode> forest;
     public convoNode currentNode;
     
     // Start is called before the first frame update
     private void Start()
+    {
+        forest = new Dictionary<string, convoNode>();
+    }
+    
+    public void BeginConversation()
     {
         //Paste the path of the xml file you want to look at here
         string filepath = Application.streamingAssetsPath + "/2TestTree.xml";
@@ -34,7 +39,11 @@ public class NPCScreenInteractor : MonoBehaviour
 
         // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
         // "theirName0" to get to the appropriate starting node
-        currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; 
+        // Debug.Log("Key1" + GlobalControls.CurrentNPC);
+        // Debug.Log("Key4" + GlobalControls.ConvoDict);
+        // Debug.Log("Key2" + GlobalControls.ConvoDict[GlobalControls.CurrentNPC]);
+        // Debug.Log("Key3" + forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]);
+        currentNode = forest[GlobalControls.CurrentNPC]; 
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {

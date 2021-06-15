@@ -14,6 +14,7 @@ public class PlayerMover : MonoBehaviour
     public Transform destination;  // Point the player is current moving toward
     public bool crouching;
     public bool underTable;
+    public NPCScreenInteractor interactor;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
@@ -25,6 +26,7 @@ public class PlayerMover : MonoBehaviour
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
         npcCanvas = GameObject.Find("NpcCanvas");
+        interactor = GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>();
         npcCanvas.SetActive(false);
     }
 
@@ -69,7 +71,7 @@ public class PlayerMover : MonoBehaviour
                 
                 npcCanvas.SetActive(true);
                 GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
-                
+                interactor.BeginConversation(); //:D
 
             }
             // Is there an obstacle ahead?

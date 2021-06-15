@@ -28,26 +28,6 @@ public static class GlobalControls
         {"rainer0", "rainer0"}
     };
 
-    public static Vector3 capsule1Location;
-    public static string capsule1Scene;
-    public static List<GameObject> itemList = new List<GameObject>(5);
-
-    static GlobalControls()
-    {
-        //location of objects
-        capsule1Location = new Vector3(11.5f, 0f, 0.5f);
-
-        //scene of objects
-
-        capsule1Scene = SceneManager.GetActiveScene().name;
-    }
-    
-    public static List<GameObject> ItemList
-    {
-        get;
-        set;
-    }
-
     public static bool MetersEnabled
     {
         get
