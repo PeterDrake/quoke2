@@ -7,20 +7,24 @@ using UnityEngine.UI;
 
 /**
  * Class TradingScreenManager handles keyboard input for the trade screen
+ *
+ *
+ *
+ * TODO:
+ * * Check for Valid Trade
+ * * * * Trading rules as follows: NPC never trades away item they need;
+ * * * *                           Always 1:1 for unneeded items;
+ * * * *                           1:2 if 1 is item NPC needs (player will never need if NPC needs)
+ * * Implement completed Trade
+ * * Update GlobalItemList
  */
 public class TradingScreenManager : MonoBehaviour
 {
     public int cursorLocation = 0;
-    public string[] textArray;
-    public string[] npcArray;
     public Button button;
-    public GameObject npcText;
     public Sprite unselected;
     public Sprite selected;
-    private String npcName;
-    //private XmlDocument convoFile = new XmlDocument();
-    //public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
-    //public convoNode currentNode;
+    public string npcName;
     private Inventory inventoryPlayer;
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
@@ -74,7 +78,7 @@ public class TradingScreenManager : MonoBehaviour
     void Update()
     {
         
-        // Change the cursor's location with < and >
+        // Change the cursor's location (< and >)
         if (Input.GetKeyDown(","))
         {
             cursorLocation--;
@@ -86,84 +90,57 @@ public class TradingScreenManager : MonoBehaviour
             ChangeSelectedInventory();
         }
 
-        /*Dont know how this works so it's a work in progress
-        if (Input.GetKeyDown("Enter"))
-        {
-            button.Select();
-        }*/
-
-        //change inventories based on cursor location
-        
-        
-        //select slot
+        //select slot (1-9)
         for (var i = 0; i < validInputs.Length; i++)
         {
-            if (cursorLocation == 0 && inventoryPlayer && Input.GetKey(validInputs[i]))
+            if (cursorLocation == 0 && Input.GetKey(validInputs[i]))
             {
                 inventoryPlayer.SelectSlotNumber(i);
             }
-            else if (cursorLocation == 1 && inventoryPlayerBin && Input.GetKey(validInputs[i]))
+            else if (cursorLocation == 1 && Input.GetKey(validInputs[i]))
             {
                 inventoryPlayerBin.SelectSlotNumber(i);
+            }
+            else if (cursorLocation == 2 && Input.GetKey(validInputs[i]))
+            {
+                inventoryNPCBin.SelectSlotNumber(i);
+            }
+            else if (cursorLocation == 3 && Input.GetKey(validInputs[i]))
+            {
+                inventoryNPC.SelectSlotNumber(i);
             }
         }
         
         
         // Transfer items (space)
-        if (cursorLocation == 0 && inventoryPlayer && Input.GetKeyDown(KeyCode.Space))
+        if (cursorLocation == 0 && Input.GetKeyDown(KeyCode.Space))
         {
             TransferItem(inventoryPlayer, inventoryPlayerBin);
-            UpdateOfferItems();
         }
-        else if (cursorLocation == 1 && inventoryPlayerBin && Input.GetKeyDown(KeyCode.Space))
+        else if (cursorLocation == 1 && Input.GetKeyDown(KeyCode.Space))
         {
             TransferItem(inventoryPlayerBin, inventoryPlayer);
-            UpdateOfferItems();
+        }
+        else if (cursorLocation == 2 && Input.GetKeyDown(KeyCode.Space))
+        {
+            TransferItem(inventoryNPCBin, inventoryNPC);
+        }
+        else if (cursorLocation == 3 && Input.GetKeyDown(KeyCode.Space))
+        {
+            TransferItem(inventoryNPC, inventoryNPCBin);
         }
 
+        // TODO make button move items
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if(CheckValidTrade()) button.Select();
+        }
         
+        // TODO Make activate NPC text screen and update global InventoryList
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
-            //:D :3
-        }
-        
-        /* //commented out because we haven't done any dialogue
-        if (Input.GetKeyDown("space"))
-        {
-            currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
-
-            if (currentNode.nodeName.Contains("checkpoint"))
-            {
-                Debug.Log("Checkpoint");
-                GlobalControls.SetCheckpoint(currentNode.nodeName);
-            }
-            else
-            {
-                Debug.Log("n o . . . ");
-            }
             
-            if (currentNode.nodeName.Contains("trade"))
-            {
-                Debug.Log("Trading Time!");
-            }
-        
-            for (int c = 0; c < currentNode.playerArray.Count; c++)
-            {
-                buttons[c].gameObject.SetActive(true);
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This will change the player text based on the node were looking at
-                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This will change the npc text based on the node
-            cursorLocation = 0;
-
-        }*/
-        
-
+        }
         
     }
 
@@ -178,41 +155,40 @@ public class TradingScreenManager : MonoBehaviour
             cursorLocation = 0;
         }
 
-        switch (cursorLocation)
+        if (cursorLocation == 0)
         {
-            //PlayerInventory is selected
-            case 0:
-                //change selected slot sprite
-                inventoryPlayer.selectedSlotSprite = selected;
-                inventoryPlayerBin.selectedSlotSprite = unselected;
-                inventoryNPCBin.selectedSlotSprite = unselected;
-                inventoryNPC.selectedSlotSprite = unselected;
-                break;
-            //PlayerBin is selected
-            case 1:
-                //change selected slot sprite
-                inventoryPlayer.selectedSlotSprite = unselected;
-                inventoryPlayerBin.selectedSlotSprite = selected;
-                inventoryNPCBin.selectedSlotSprite = unselected;
-                inventoryNPC.selectedSlotSprite = unselected;
-                break;
-            //NPCBin is selected
-            case 2:
-                //change selected slot sprite
-                inventoryPlayer.selectedSlotSprite = unselected;
-                inventoryPlayerBin.selectedSlotSprite = unselected;
-                inventoryNPCBin.selectedSlotSprite = selected;
-                inventoryNPC.selectedSlotSprite = unselected;
-                break;
-            //NPCInventory is selected
-            case 3:
-                //change selected slot sprite
-                inventoryPlayer.selectedSlotSprite = unselected;
-                inventoryPlayerBin.selectedSlotSprite = unselected;
-                inventoryNPCBin.selectedSlotSprite = unselected;
-                inventoryNPC.selectedSlotSprite = selected;
-                break;
+            //change selected slot sprite
+            inventoryPlayer.selectedSlotSprite = selected;
+            inventoryPlayerBin.selectedSlotSprite = unselected;
+            inventoryNPCBin.selectedSlotSprite = unselected;
+            inventoryNPC.selectedSlotSprite = unselected;
         }
+        else if (cursorLocation == 1)
+        {
+            //change selected slot sprite
+            inventoryPlayer.selectedSlotSprite = unselected;
+            inventoryPlayerBin.selectedSlotSprite = selected;
+            inventoryNPCBin.selectedSlotSprite = unselected;
+            inventoryNPC.selectedSlotSprite = unselected;
+        }
+        else if (cursorLocation == 2)
+        {
+            //change selected slot sprite
+            inventoryPlayer.selectedSlotSprite = unselected;
+            inventoryPlayerBin.selectedSlotSprite = unselected;
+            inventoryNPCBin.selectedSlotSprite = selected;
+            inventoryNPC.selectedSlotSprite = unselected;
+        }
+        else if (cursorLocation == 3)
+        {
+            //change selected slot sprite
+            inventoryPlayer.selectedSlotSprite = unselected;
+            inventoryPlayerBin.selectedSlotSprite = unselected;
+            inventoryNPCBin.selectedSlotSprite = unselected;
+            inventoryNPC.selectedSlotSprite = selected;
+        }
+        
+        //reset highlight locations (must be done to clear selected slot of past inventory
         inventoryPlayerBin.SelectSlotNumber(0);
         inventoryPlayer.SelectSlotNumber(0);
         inventoryNPC.SelectSlotNumber(0);
@@ -249,21 +225,9 @@ public class TradingScreenManager : MonoBehaviour
         }
     }
 
-    private void UpdateOfferItems()
+    private bool CheckValidTrade()
     {
-        List<string> playerOffered = new List<string>();
-        
-        foreach(GameObject item in inventoryPlayerBin.items)
-        {
-            if (item) playerOffered.Add(item.name);
-        }
-
-        //if player offered nothing, skip method
-        if (playerOffered.Count == 0) return;
-        
-        //otherwise check if any possible trades
-        //populate NPC bin and NPC inventory accordingly
-        
-        
+        //To be created
+        return false;
     }
 }
