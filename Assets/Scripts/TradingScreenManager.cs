@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 /**
  * Class TradingScreenManager handles keyboard input for the trade screen
- *
- *
- *
+ * 
  * TODO:
  * * Check for Valid Trade
  * * * * Trading rules as follows: NPC never trades away item they need;
@@ -45,33 +43,6 @@ public class TradingScreenManager : MonoBehaviour
         inventoryNPC.SelectSlotNumber(1);
         inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPCBin.SelectSlotNumber(1);
-        
-        /* //commented out because we haven't done any dialogue
-        convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
-        
-       
-        foreach (XmlNode node in convoFile.LastChild) //looks through all the npc nodes instead of looking at just the <convoForest> tag
-        {
-            forest.Add(node.Name, new convoNode(node));
-        }
-
-        currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; // This is where the we let the NPC talk to the code. The npc we run into will pass back something like "theirName0" to get to the appropriate starting node
-        
-        for (int c = 0; c < currentNode.playerArray.Count; c++)
-        {
-            buttons[c].gameObject.SetActive(true);
-            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; //This displays the initial nodes player text    
-            if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
-            {
-                buttons[c].gameObject.SetActive(false);
-            }
-        }
-
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; //This displays the initial nodes npc text
-        
-        npcArray = new[] {"You said 'button 1'", "You said 'button 2'", "You said 'button 3'"};
-        textArray = new[] {"Hey here's text for button 1", "Hey here's text for button 2", "Hey here's text for button 3"};*/
-       
     }
 
 
