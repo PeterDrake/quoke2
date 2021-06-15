@@ -69,6 +69,7 @@ public class PlayerMover : MonoBehaviour
                 
                 npcCanvas.SetActive(true);
                 GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
+                
 
             }
             // Is there an obstacle ahead?
