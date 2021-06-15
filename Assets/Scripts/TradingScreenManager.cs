@@ -108,7 +108,7 @@ public class TradingScreenManager : MonoBehaviour
             if (CheckValidTrade())
             {
                 Debug.Log("Valid trade!");
-                completeTrade();
+                CompleteTrade();
             }
             else Debug.Log("Invalid Trade!");
         }
@@ -124,7 +124,7 @@ public class TradingScreenManager : MonoBehaviour
     /**
      * returns false if not enough inventory
      */
-    private bool completeTrade()
+    private bool CompleteTrade()
     {
         int[] numContents = new int[] {0,5,5,0};
         for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
