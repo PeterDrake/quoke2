@@ -32,6 +32,7 @@ public class TradingScreenManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        button.interactable = false;
         inventoryPlayer = GameObject.Find("Inventory").GetComponent<Inventory>();
         inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
         inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
@@ -88,23 +89,24 @@ public class TradingScreenManager : MonoBehaviour
         {
             if (cursorLocation == 0)
             {
-                TransferItem(inventoryPlayer, inventoryPlayerBin);
+                TransferItem(inventoryPlayer, inventoryPlayerBin, inventoryPlayer.selectedSlotNumber);
             }
             else if (cursorLocation == 1)
             {
-                TransferItem(inventoryPlayerBin, inventoryPlayer);
+                TransferItem(inventoryPlayerBin, inventoryPlayer, inventoryPlayerBin.selectedSlotNumber);
             }
             else if (cursorLocation == 2)
             {
-                TransferItem(inventoryNPCBin, inventoryNPC);
+                TransferItem(inventoryNPCBin, inventoryNPC, inventoryNPCBin.selectedSlotNumber);
             }
             else if (cursorLocation == 3)
             {
-                TransferItem(inventoryNPC, inventoryNPCBin);
+                TransferItem(inventoryNPC, inventoryNPCBin, inventoryNPC.selectedSlotNumber);
             }
-            
-            if(CheckValidTrade()) button.Select();
-            
+
+            if (CheckValidTrade()) button.interactable = true;
+            else button.interactable = false;
+
         }
 
         // TODO make button move items
@@ -112,8 +114,8 @@ public class TradingScreenManager : MonoBehaviour
         {
             if (CheckValidTrade())
             {
-                //button.Select();
                 Debug.Log("Valid trade!");
+                completeTrade();
             }
             else Debug.Log("Invalid Trade!");
         }
@@ -125,7 +127,53 @@ public class TradingScreenManager : MonoBehaviour
         }
         
     }
+    
+    /**
+     * returns false if not enough inventory
+     */
+    private bool completeTrade()
+    {
+        int[] numContents = new int[] {0,5,5,0};
+        for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
+        {
+            if (!inventoryPlayer.slotContents[i].activeSelf)
+            {
+                numContents[0]++;
+            }
+            if (!inventoryPlayerBin.slotContents[i].activeSelf)
+            {
+                numContents[1]--; //number items
+            }
+            if (!inventoryNPCBin.slotContents[i].activeSelf)
+            {
+                numContents[2]--; //number items
+            }
+            if (!inventoryNPC.slotContents[i].activeSelf)
+            {
+                numContents[3]++;
+            }
+        }
+        Debug.Log(numContents[0]);
+        Debug.Log(numContents[1]);
+        Debug.Log(numContents[2]);
+        Debug.Log(numContents[3]);
+        
+        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
+        {
+            Debug.Log("Not Enough Inventory!");
+            return false;
+        }
 
+        for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
+        {
+            if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
+        }
+        for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
+        {
+            if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
+        }
+        return true;
+    }
     private void ChangeSelectedInventory()
     {
         if (cursorLocation < 0)
@@ -177,9 +225,9 @@ public class TradingScreenManager : MonoBehaviour
         inventoryNPCBin.SelectSlotNumber(0);
     }
 
-    private void TransferItem(Inventory inventory, Inventory destination)
+    private void TransferItem(Inventory inventory, Inventory destination, int slotNumber)
     {
-        var i = inventory.selectedSlotNumber;
+        var i = slotNumber;
         
         //copied private method FindEmptySlot
         var firstSlot = 0;
