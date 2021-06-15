@@ -6,10 +6,12 @@ public class NPC
 {
     public List<string> needs;
     public string name;
+    public string scene;
 
-    public NPC(string name, List<string> needs)
+    public NPC(string name, string scene, List<string> needs)
     {
         this.name = name;
+        this.scene = scene;
         this.needs = needs;
     }
 }
