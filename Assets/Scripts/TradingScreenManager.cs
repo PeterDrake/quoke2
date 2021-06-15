@@ -15,6 +15,8 @@ public class TradingScreenManager : MonoBehaviour
     public string[] npcArray;
     public Button button;
     public GameObject npcText;
+    public Sprite unselected;
+    public Sprite selected;
     private String npcName;
     //private XmlDocument convoFile = new XmlDocument();
     //public Dictionary<string, convoNode> forest = new Dictionary<string, convoNode>();
@@ -40,7 +42,7 @@ public class TradingScreenManager : MonoBehaviour
         inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPCBin.SelectSlotNumber(1);
         
-        /*
+        /* //commented out because we haven't done any dialogue
         convoFile.Load("Assets/Resources/2TestTree.txt"); //Paste the path of the xml file you want to look at here
         
        
@@ -125,7 +127,7 @@ public class TradingScreenManager : MonoBehaviour
             //:D :3
         }
         
-        /*
+        /* //commented out because we haven't done any dialogue
         if (Input.GetKeyDown("space"))
         {
             currentNode = forest[currentNode.nextNode[cursorLocation]]; //This will change the node you're looking at
@@ -169,28 +171,52 @@ public class TradingScreenManager : MonoBehaviour
     {
         if (cursorLocation < 0)
         {
-            cursorLocation = 1;
+            cursorLocation = 3;
         }
-        else if (cursorLocation > 1)
+        else if (cursorLocation > 3)
         {
             cursorLocation = 0;
         }
-        if (cursorLocation == 0) //inventory is selected
+
+        switch (cursorLocation)
         {
-            //change selected slot sprite
-            inventoryPlayer.selectedSlotSprite = inventoryPlayerBin.selectedSlotSprite;
-            inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
-            inventoryPlayerBin.SelectSlotNumber(0);
-            inventoryPlayer.SelectSlotNumber(0);
+            //PlayerInventory is selected
+            case 0:
+                //change selected slot sprite
+                inventoryPlayer.selectedSlotSprite = selected;
+                inventoryPlayerBin.selectedSlotSprite = unselected;
+                inventoryNPCBin.selectedSlotSprite = unselected;
+                inventoryNPC.selectedSlotSprite = unselected;
+                break;
+            //PlayerBin is selected
+            case 1:
+                //change selected slot sprite
+                inventoryPlayer.selectedSlotSprite = unselected;
+                inventoryPlayerBin.selectedSlotSprite = selected;
+                inventoryNPCBin.selectedSlotSprite = unselected;
+                inventoryNPC.selectedSlotSprite = unselected;
+                break;
+            //NPCBin is selected
+            case 2:
+                //change selected slot sprite
+                inventoryPlayer.selectedSlotSprite = unselected;
+                inventoryPlayerBin.selectedSlotSprite = unselected;
+                inventoryNPCBin.selectedSlotSprite = selected;
+                inventoryNPC.selectedSlotSprite = unselected;
+                break;
+            //NPCInventory is selected
+            case 3:
+                //change selected slot sprite
+                inventoryPlayer.selectedSlotSprite = unselected;
+                inventoryPlayerBin.selectedSlotSprite = unselected;
+                inventoryNPCBin.selectedSlotSprite = unselected;
+                inventoryNPC.selectedSlotSprite = selected;
+                break;
         }
-        else if (cursorLocation == 1) //bin is selected
-        {
-            //change selected slot sprite
-            inventoryPlayerBin.selectedSlotSprite = inventoryPlayer.selectedSlotSprite;
-            inventoryPlayer.selectedSlotSprite = inventoryPlayer.unselectedSlotSprite;
-            inventoryPlayer.SelectSlotNumber(0);
-            inventoryPlayerBin.SelectSlotNumber(0);
-        }
+        inventoryPlayerBin.SelectSlotNumber(0);
+        inventoryPlayer.SelectSlotNumber(0);
+        inventoryNPC.SelectSlotNumber(0);
+        inventoryNPCBin.SelectSlotNumber(0);
     }
 
     private void TransferItem(Inventory inventory, Inventory destination)
