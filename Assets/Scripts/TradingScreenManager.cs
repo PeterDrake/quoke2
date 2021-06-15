@@ -84,27 +84,38 @@ public class TradingScreenManager : MonoBehaviour
         
         
         // Transfer items (space)
-        if (cursorLocation == 0 && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            TransferItem(inventoryPlayer, inventoryPlayerBin);
-        }
-        else if (cursorLocation == 1 && Input.GetKeyDown(KeyCode.Space))
-        {
-            TransferItem(inventoryPlayerBin, inventoryPlayer);
-        }
-        else if (cursorLocation == 2 && Input.GetKeyDown(KeyCode.Space))
-        {
-            TransferItem(inventoryNPCBin, inventoryNPC);
-        }
-        else if (cursorLocation == 3 && Input.GetKeyDown(KeyCode.Space))
-        {
-            TransferItem(inventoryNPC, inventoryNPCBin);
+            if (cursorLocation == 0)
+            {
+                TransferItem(inventoryPlayer, inventoryPlayerBin);
+            }
+            else if (cursorLocation == 1)
+            {
+                TransferItem(inventoryPlayerBin, inventoryPlayer);
+            }
+            else if (cursorLocation == 2)
+            {
+                TransferItem(inventoryNPCBin, inventoryNPC);
+            }
+            else if (cursorLocation == 3)
+            {
+                TransferItem(inventoryNPC, inventoryNPCBin);
+            }
+            
+            if(CheckValidTrade()) button.Select();
+            
         }
 
         // TODO make button move items
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(CheckValidTrade()) button.Select();
+            if (CheckValidTrade())
+            {
+                //button.Select();
+                Debug.Log("Valid trade!");
+            }
+            else Debug.Log("Invalid Trade!");
         }
         
         // TODO Make activate NPC text screen and update global InventoryList
@@ -198,7 +209,38 @@ public class TradingScreenManager : MonoBehaviour
 
     private bool CheckValidTrade()
     {
-        //To be created
+        List<string> npcOffers = new List<string>(); //list of names of items NPC offered
+        List<string> playerOffers = new List<string>(); //list of names of items player offered
+        List<bool> playerOfferedNeed = new List<bool>(); //Counts number of needs player offered
+        
+        //fill lists of names
+        foreach (GameObject item in inventoryNPCBin.items)
+        {
+            if(item) npcOffers.Add(item.name.Replace("(Clone)","").Trim());
+        }
+        foreach (GameObject item in inventoryPlayerBin.items)
+        {
+            if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+        }
+
+        
+        //will not trade nothing
+        if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
+        
+        //will not trade away item they need
+        foreach (string need in GlobalItemList.NPCList[npcName].needs)
+        {
+            if (npcOffers.Contains(need)) return false;
+            if (playerOffers.Contains(need)) playerOfferedNeed.Add(true);
+        }
+
+        //give extra items if player offered items they need
+        if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
+        
+        //1:1 for anything else
+        if (npcOffers.Count == playerOffers.Count) return true;
+        
+        //If none of the above, not valid trade.
         return false;
     }
 }

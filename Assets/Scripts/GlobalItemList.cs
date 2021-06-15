@@ -49,7 +49,7 @@ public static class GlobalItemList
             };
         npcList = new Dictionary<string, NPC>
         {
-            {"safi0", new NPC("safi0", "Park", new List<string>{"Wrench"})},
+            {"safi0", new NPC("safi0", "Park", new List<string>{"Wrench", "Shovel"})},
             {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"})},
             {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"})},
             {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"})},
