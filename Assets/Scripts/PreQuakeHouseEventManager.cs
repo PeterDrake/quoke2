@@ -9,6 +9,11 @@ public class PreQuakeHouseEventManager : MonoBehaviour
     {
         if (AllContainersFull())
         {
+            foreach (StorageContainer container in containers)
+            {
+                GameObject item = container.contents;
+                GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
+            }
             SceneManager.LoadSceneAsync("QuakeHouse");
         }
     }

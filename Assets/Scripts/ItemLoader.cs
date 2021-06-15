@@ -54,7 +54,7 @@ public class ItemLoader : MonoBehaviour
                 GameObject itemInContainer = GameObject.Find(item.containerName);
                 if (itemInContainer)
                 {
-                    GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(item.name, typeof(GameObject));
+                    GameObject prefab = (GameObject)Resources.Load(item.name, typeof(GameObject));
                     // prefab.transform.position = item.location;
                     GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);
                     itemInScene.transform.position = item.location;
