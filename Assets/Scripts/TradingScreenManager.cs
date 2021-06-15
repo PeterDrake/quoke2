@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +6,7 @@ using UnityEngine.UI;
  * Class TradingScreenManager handles keyboard input for the trade screen
  * 
  * TODO:
- * * Check for Valid Trade
- * * * * Trading rules as follows: NPC never trades away item they need;
- * * * *                           Always 1:1 for unneeded items;
- * * * *                           1:2 if 1 is item NPC needs (player will never need if NPC needs)
- * * Implement completed Trade
+ * * Make button flash
  * * Update GlobalItemList
  */
 public class TradingScreenManager : MonoBehaviour
