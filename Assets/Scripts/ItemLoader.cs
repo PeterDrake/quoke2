@@ -13,12 +13,12 @@ public class ItemLoader : MonoBehaviour
     void Start()
     {
         
-        //DEBUG
+        /*DEBUG
         foreach (Item value in GlobalItemList.ItemList.Values)
         {
             //Debug.Log(value.name + " in " + value.scene + " at " + value.location + " with container " + value.containerName);
             Debug.Log(value.ToString());
-        }
+        }*/
         
         
         //can i keep it?
