@@ -12,6 +12,15 @@ public class ItemLoader : MonoBehaviour
     //weknowwhatstartdoesthx
     void Start()
     {
+        
+        //DEBUG
+        foreach (Item value in GlobalItemList.ItemList.Values)
+        {
+            //Debug.Log(value.name + " in " + value.scene + " at " + value.location + " with container " + value.containerName);
+            Debug.Log(value.ToString());
+        }
+        
+        
         //can i keep it?
         GameObject g = GameObject.FindWithTag("Inventory");
         if (g)

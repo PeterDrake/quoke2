@@ -16,4 +16,9 @@ public class Item
         this.scene = scene;
         this.containerName = containerName;
     }
+    
+    public new string ToString()
+    {
+        return this.name + " in " + this.scene + " at " + this.location + " with container " + this.containerName;
+    }
 }
