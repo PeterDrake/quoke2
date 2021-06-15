@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /**
@@ -16,6 +17,7 @@ public class TradingScreenManager : MonoBehaviour
     public Sprite unselected;
     public Sprite selected;
     public string npcName;
+    private Inventory parentInventory;
     private Inventory inventoryPlayer;
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
@@ -26,11 +28,33 @@ public class TradingScreenManager : MonoBehaviour
     private void Start()
     {
         button.interactable = false;
-        inventoryPlayer = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inventoryPlayer = GameObject.Find("Inventory (Player)").GetComponent<Inventory>();
         inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
         inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
         inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
 
+        
+        //populate inventoryPlayer with parentInventory contents
+        parentInventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+        if (parentInventory)
+        {
+            //overwrite inventoryPlayer with parentInventory
+            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            {
+                if (parentInventory.slotContents[i].activeSelf)
+                {
+                    inventoryPlayer.items[i] = null;
+                    inventoryPlayer.slotContents[i].SetActive(false);
+                    TransferItem(parentInventory, inventoryPlayer, i);
+                }
+            }
+        }
+        
+        
+        //TODO will be deleted / changed
+        parentInventory.gameObject.SetActive(false);
+        
+        
         inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
         inventoryPlayerBin.SelectSlotNumber(1);
         inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
@@ -113,10 +137,52 @@ public class TradingScreenManager : MonoBehaviour
             else Debug.Log("Invalid Trade!");
         }
         
-        // TODO Make activate NPC text screen and update global InventoryList
+        // TODO Make activate NPC text screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
+            Debug.Log("Leaving the trading screen");
+            for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
+            {
+                if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryPlayer, i);
+            }
+            for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
+            {
+                if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryNPC, i);
+            }
             
+            //Update globalItemList
+            for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+            {
+                if (inventoryPlayer.slotContents[i].activeSelf) 
+                    GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "");
+            }
+            for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
+            {
+                if (inventoryNPC.slotContents[i].activeSelf)
+                    GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, SceneManager.GetActiveScene().name,
+                        new Vector3(i, 0, 0), npcName);
+            }
+            
+            
+            
+            
+            //Update parent Inventory object
+            parentInventory.gameObject.SetActive(true);
+            if (parentInventory)
+            {
+                //overwrite parent inventory with inventory here
+                for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+                {
+                    if (inventoryPlayer.slotContents[i].activeSelf)
+                    {
+                        parentInventory.items[i] = null;
+                        parentInventory.slotContents[i].SetActive(false);
+                        TransferItem(inventoryPlayer, parentInventory, i);
+                    }
+                }
+            }
+            
+            GameObject.Find("Trading Screen").SetActive(false);
         }
         
     }
