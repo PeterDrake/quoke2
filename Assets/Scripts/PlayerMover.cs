@@ -17,12 +17,15 @@ public class PlayerMover : MonoBehaviour
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
-    
+    private GameObject npcCanvas;
+
     void Start()
     {
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
+        npcCanvas = GameObject.Find("NpcCanvas");
+        npcCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -63,7 +66,11 @@ public class PlayerMover : MonoBehaviour
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);
-                ahead.GetComponent<npcscript>().LoadScene("NpcScreen");
+                
+                npcCanvas.SetActive(true);
+                GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
+
+                // ahead.GetComponent<npcscript>().LoadScene("NpcScreen");
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

@@ -11,7 +11,6 @@ public class SceneChanger : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Changing Scenes");
         if (other.CompareTag("Player"))
         {
             // Set GlobalControls to current scene
