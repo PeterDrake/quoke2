@@ -19,6 +19,7 @@ public class NPCScreenInteractor : MonoBehaviour
     private XmlDocument convoFile;
     public Dictionary<string, convoNode> forest;
     public convoNode currentNode;
+    private GameObject tradingScreen;
     
     // Start is called before the first frame update
     private void Start()
@@ -26,7 +27,7 @@ public class NPCScreenInteractor : MonoBehaviour
         forest = new Dictionary<string, convoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-
+        tradingScreen = GameObject.Find("Manager").GetComponent<Manager>().tradingScreen;
     }
     
     public void BeginConversation()
@@ -114,7 +115,9 @@ public class NPCScreenInteractor : MonoBehaviour
 
             if (currentNode.nodeName.Contains("trade"))
             {
-                //enter trading screen
+                tradingScreen.SetActive(true);
+                GameObject.Find("Trading Manager").GetComponent<TradingManager>().BeginTrading();
+                GameObject.Find("NpcCanvas").SetActive(false);
             }
         
             for (int c = 0; c < currentNode.playerArray.Count; c++)

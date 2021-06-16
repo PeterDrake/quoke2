@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,19 +25,28 @@ public class TradingManager : MonoBehaviour
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-    
+    private GameObject npcCanvas;
+
     // Start is called before the first frame update
     private void Start()
     {
-        button.interactable = false;
         inventoryPlayer = GameObject.Find("Inventory (Player)").GetComponent<Inventory>();
         inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
         inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
         inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
-
         
         //populate inventoryPlayer with parentInventory contents
         parentInventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+
+        npcCanvas = GameObject.Find("Manager").GetComponent<Manager>().npcScreen;;
+
+    }
+
+    public void BeginTrading()
+    {
+        button.interactable = false;
+        npcName = GlobalControls.CurrentNPC;
+
         if (parentInventory)
         {
             //overwrite inventoryPlayer with parentInventory
@@ -181,7 +192,8 @@ public class TradingManager : MonoBehaviour
                     }
                 }
             }
-            
+            npcCanvas.SetActive(true);
+            GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>().BeginConversation();
             GameObject.Find("Trading Screen").SetActive(false);
         }
         
