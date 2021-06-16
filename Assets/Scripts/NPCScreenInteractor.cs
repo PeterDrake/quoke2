@@ -20,13 +20,15 @@ public class NPCScreenInteractor : MonoBehaviour
     public Dictionary<string, convoNode> forest;
     public convoNode currentNode;
     private GameObject tradingScreen;
+    private ReferenceManager referenceManager;
     
     private void OnEnable()
     {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         forest = new Dictionary<string, convoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        tradingScreen = GameObject.Find("Canvases").GetComponentInChildren<TradingManager>(true).gameObject;
+        tradingScreen = referenceManager.tradeCanvas;
     }
     
     public void BeginConversation()
@@ -98,6 +100,9 @@ public class NPCScreenInteractor : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
+            referenceManager.dialogueCanvas.SetActive(false);
+            referenceManager.player.GetComponent<PlayerMover>().enabled = true;
+            referenceManager.inventoryCanvas.SetActive(true);
             //Exits the NPC screen
         }
         
@@ -115,8 +120,9 @@ public class NPCScreenInteractor : MonoBehaviour
             if (currentNode.nodeName.Contains("trade"))
             {
                 tradingScreen.SetActive(true);
-                GameObject.Find("Trading Manager").GetComponent<TradingManager>().BeginTrading();
-                GameObject.Find("NpcCanvas").SetActive(false);
+                referenceManager.dialogueCanvas.SetActive(false);
+                tradingScreen.GetComponent<TradingManager>().BeginTrading();
+                
             }
         
             for (int c = 0; c < currentNode.playerArray.Count; c++)

@@ -29,16 +29,16 @@ public class TradingManager : MonoBehaviour
     private ReferenceManager referenceManager;
 
     // Start is called before the first frame update
-    private void Start()
+    private void OnEnable()
     {
         inventoryPlayer = GameObject.Find("Inventory (Player)").GetComponent<Inventory>();
         inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
         inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
         inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
-        referenceManager = GameObject.Find("Manager").GetComponent<ReferenceManager>();
-        // parentInventory = referenceManager.playerInventory.GetComponent<Inventory>();
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         //
-        // npcCanvas = referenceManager.npcScreen;
+        npcCanvas = referenceManager.dialogueCanvas;
 
     }
 
@@ -46,7 +46,7 @@ public class TradingManager : MonoBehaviour
     {
         button.interactable = false;
         npcName = GlobalControls.CurrentNPC;
-
+        referenceManager.inventoryCanvas.SetActive(true);
         if (parentInventory)
         {
             //overwrite inventoryPlayer with parentInventory
@@ -63,7 +63,7 @@ public class TradingManager : MonoBehaviour
         
         
         //TODO will be deleted / changed
-        parentInventory.gameObject.SetActive(false);
+        referenceManager.inventoryCanvas.SetActive(false);
         
         
         inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
@@ -178,8 +178,8 @@ public class TradingManager : MonoBehaviour
             
             
             //Update parent Inventory object
-            parentInventory.gameObject.SetActive(true);
-            if (parentInventory)
+            referenceManager.inventoryCanvas.SetActive(true);
+            if (referenceManager.inventoryCanvas)
             {
                 //overwrite parent inventory with inventory here
                 for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
@@ -192,9 +192,10 @@ public class TradingManager : MonoBehaviour
                     }
                 }
             }
+            referenceManager.inventoryCanvas.SetActive(false);
             npcCanvas.SetActive(true);
-            GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>().BeginConversation();
-            GameObject.Find("Trading Screen").SetActive(false);
+            referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
+            referenceManager.tradeCanvas.SetActive(false);
         }
         
     }

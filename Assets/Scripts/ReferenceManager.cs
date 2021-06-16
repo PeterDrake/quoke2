@@ -12,15 +12,17 @@ public class ReferenceManager : MonoBehaviour
     public GameObject dialogueCanvas;
     public GameObject tradeCanvas;
     public GameObject inventoryCanvas;
+    public GameObject player;
     
     private void Awake()
     {
         canvases = GameObject.Find("Canvases");
         dialogueCanvas = canvases.GetComponentInChildren<NPCScreenInteractor>(true).gameObject;
         tradeCanvas = canvases.GetComponentInChildren<TradingManager>(true).gameObject;
+        player = GameObject.Find("Player");
         foreach (Inventory i in canvases.GetComponentsInChildren<Inventory>(true))
         {
-            if (i.name.Equals("Inventory Canvas"))
+            if (i.gameObject.name.Equals("Inventory Canvas"))
             {
                 inventoryCanvas = i.gameObject;
                 break;
