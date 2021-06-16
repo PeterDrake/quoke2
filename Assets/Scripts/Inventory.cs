@@ -23,11 +23,15 @@ public class Inventory : MonoBehaviour
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
     private int storageContainerLayers;
+
+    private ReferenceManager referenceManager;
     
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
     {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        player = referenceManager.player.GetComponent<PlayerMover>();
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {

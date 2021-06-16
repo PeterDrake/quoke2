@@ -10,10 +10,16 @@ public class PlayerKeyboardController : MonoBehaviour
     public PlayerMover player;
 
     public Inventory inventory;
-    
+
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
+
+    void Start()
+    {
+        inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas
+            .GetComponent<Inventory>();
+    }
     
     // Update is called once per frame
     void Update()
