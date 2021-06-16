@@ -10,7 +10,8 @@ public class npcscript : MonoBehaviour
 
     private void Start()
     {
-        interactor = GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>();
+        interactor = GameObject.Find("Canvases").GetComponentInChildren<NPCScreenInteractor>(true);
+        // interactor = GameObject.Find("Interactor").GetComponent<NPCScreenInteractor>();
     }
 
     /// Update brings back the previous scene when player presses the escape key
@@ -20,7 +21,7 @@ public class npcscript : MonoBehaviour
         {
             GameObject.Find("Player").GetComponent<PlayerMover>().enabled = true;
             GameObject.Find("NpcCanvas").SetActive(false);
-            interactor.Reset();
+            // interactor.Reset();
         }
         
     }

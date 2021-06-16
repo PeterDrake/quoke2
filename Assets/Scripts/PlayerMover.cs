@@ -16,9 +16,6 @@ public class PlayerMover : MonoBehaviour
     public bool underTable;
     
     public NPCScreenInteractor interactor;
-    public GameObject npcCanvas;
-    public GameObject tradingScreen;
-    public Manager managerScript;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
@@ -28,13 +25,7 @@ public class PlayerMover : MonoBehaviour
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
-        managerScript = GameObject.Find("Manager").GetComponent<Manager>();
-        interactor = managerScript.interactor.GetComponent<NPCScreenInteractor>();
-        npcCanvas = managerScript.npcScreen;
-        tradingScreen = managerScript.tradingScreen;
-        
-        npcCanvas.SetActive(false);
-        tradingScreen.SetActive(false);
+
     }
 
     /// <summary>
@@ -75,12 +66,18 @@ public class PlayerMover : MonoBehaviour
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);
-                
+                // TODO Cache these ... somewhere?
+                GameObject npcCanvas = GameObject.Find("Canvases").GetComponentInChildren<NPCScreenInteractor>(true)
+                    .gameObject;
                 npcCanvas.SetActive(true);
-                managerScript.playerInventory.SetActive(false);
-                managerScript.player.GetComponent<PlayerMover>().enabled = false;
-                interactor.BeginConversation(); //:D
-
+                GameObject inventoryCanvas = GameObject.Find("Inventory Canvas");
+                if (inventoryCanvas) // TODO Keeping track of the mode would avoid a lot of checks like this
+                {
+                    inventoryCanvas.SetActive(false);
+                    enabled = false; // TODO When we tell the keyboard manager that we're in a different mode, it will
+                    // start ignoring movement commands automatically
+                    npcCanvas.GetComponent<NPCScreenInteractor>().BeginConversation(); //:D                }
+                }
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
