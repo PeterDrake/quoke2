@@ -23,20 +23,16 @@ public class NPCScreenInteractor : MonoBehaviour
     
     private void OnEnable()
     {
-        Debug.Log("Calling Start");
         forest = new Dictionary<string, convoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
         tradingScreen = GameObject.Find("Canvases").GetComponentInChildren<TradingManager>(true).gameObject;
-        Debug.Log("convoFile at end of Start: " + convoFile);
     }
     
     public void BeginConversation()
     {
-        Debug.Log("Beginning conversation");
         //Paste the path of the xml file you want to look at here
         string filepath = Application.streamingAssetsPath + "/2TestTree.xml";
-        Debug.Log(convoFile);
         convoFile.Load(filepath); 
         
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
