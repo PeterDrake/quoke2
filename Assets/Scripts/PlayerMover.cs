@@ -19,13 +19,14 @@ public class PlayerMover : MonoBehaviour
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
-
+    private ReferenceManager referenceManager;
+    
     void Start()
     {
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
-
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
     }
 
     /// <summary>
@@ -66,17 +67,13 @@ public class PlayerMover : MonoBehaviour
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);
-                // TODO Cache these ... somewhere?
-                GameObject npcCanvas = GameObject.Find("Canvases").GetComponentInChildren<NPCScreenInteractor>(true)
-                    .gameObject;
-                npcCanvas.SetActive(true);
-                GameObject inventoryCanvas = GameObject.Find("Inventory Canvas");
+                referenceManager.dialogueCanvas.SetActive(true);
+                GameObject inventoryCanvas = referenceManager.inventoryCanvas;
                 if (inventoryCanvas) // TODO Keeping track of the mode would avoid a lot of checks like this
                 {
                     inventoryCanvas.SetActive(false);
-                    enabled = false; // TODO When we tell the keyboard manager that we're in a different mode, it will
-                    // start ignoring movement commands automatically
-                    npcCanvas.GetComponent<NPCScreenInteractor>().BeginConversation(); //:D                }
+                    enabled = false; // TODO When we tell the keyboard manager that we're in a different mode, it will start ignoring movement commands automatically
+                    referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
                 }
             }
             // Is there an obstacle ahead?
