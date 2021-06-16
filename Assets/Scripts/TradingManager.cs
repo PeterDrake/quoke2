@@ -26,6 +26,7 @@ public class TradingManager : MonoBehaviour
     private Inventory inventoryNPCBin;
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private GameObject npcCanvas;
+    private Manager manager;
 
     // Start is called before the first frame update
     private void Start()
@@ -34,11 +35,10 @@ public class TradingManager : MonoBehaviour
         inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
         inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
         inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
-        
-        //populate inventoryPlayer with parentInventory contents
-        parentInventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+        manager = GameObject.Find("Manager").GetComponent<Manager>();
+        parentInventory = manager.playerInventory.GetComponent<Inventory>();
 
-        npcCanvas = GameObject.Find("Manager").GetComponent<Manager>().npcScreen;;
+        npcCanvas = manager.npcScreen;
 
     }
 

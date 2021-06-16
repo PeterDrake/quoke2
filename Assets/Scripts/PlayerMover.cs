@@ -18,6 +18,7 @@ public class PlayerMover : MonoBehaviour
     public NPCScreenInteractor interactor;
     public GameObject npcCanvas;
     public GameObject tradingScreen;
+    public Manager managerScript;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
@@ -27,10 +28,10 @@ public class PlayerMover : MonoBehaviour
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
-        
-        interactor = GameObject.Find("Manager").GetComponent<Manager>().interactor.GetComponent<NPCScreenInteractor>();
-        npcCanvas = GameObject.Find("Manager").GetComponent<Manager>().npcScreen;
-        tradingScreen = GameObject.Find("Manager").GetComponent<Manager>().tradingScreen;
+        managerScript = GameObject.Find("Manager").GetComponent<Manager>();
+        interactor = managerScript.interactor.GetComponent<NPCScreenInteractor>();
+        npcCanvas = managerScript.npcScreen;
+        tradingScreen = managerScript.tradingScreen;
         
         npcCanvas.SetActive(false);
         tradingScreen.SetActive(false);
@@ -76,7 +77,8 @@ public class PlayerMover : MonoBehaviour
                 transform.LookAt(transform.position + direction, transform.up);
                 
                 npcCanvas.SetActive(true);
-                GameObject.Find("Player").GetComponent<PlayerMover>().enabled = false;
+                managerScript.playerInventory.SetActive(false);
+                managerScript.player.GetComponent<PlayerMover>().enabled = false;
                 interactor.BeginConversation(); //:D
 
             }
