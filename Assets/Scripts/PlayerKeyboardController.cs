@@ -11,7 +11,7 @@ public class PlayerKeyboardController : MonoBehaviour
     public Inventory inventory;
     public bool isExploring;
     public bool isTrading;
-    public bool isChatting;
+    public bool isConversing;
     public ReferenceManager referenceManager;
     public TradingManager tradeManager;
     public NPCScreenInteractor dialogueManager;
@@ -29,7 +29,7 @@ public class PlayerKeyboardController : MonoBehaviour
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         isTrading = false;
-        isChatting = false;
+        isConversing = false;
         isExploring = true;
         cursorLocation = 0;
     }
@@ -68,7 +68,7 @@ public class PlayerKeyboardController : MonoBehaviour
                 inventory.PickUpOrDrop();
             }
         } 
-        else if (isChatting) //if talking to an npc
+        else if (isConversing) //if talking to an npc
         {
             
         } 
@@ -124,22 +124,24 @@ public class PlayerKeyboardController : MonoBehaviour
     public void SetExploring()
     {
         isExploring = true;
-        isChatting = false;
+        isConversing = false;
         isTrading = false;
         
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
+        referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
     }
 
-    public void SetChatting()
+    public void SetConversing()
     {
         isExploring = false;
-        isChatting = true;
+        isConversing = true;
         isTrading = false;
         cursorLocation = 0;
         
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
         referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
@@ -148,12 +150,14 @@ public class PlayerKeyboardController : MonoBehaviour
     public void SetTrading()
     {
         isExploring = false;
-        isChatting = false;
+        isConversing = false;
         isTrading = true;
         cursorLocation = 0;
         
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
+        referenceManager.tradeCanvas.GetComponent<TradingManager>().BeginTrading();
     }
 }

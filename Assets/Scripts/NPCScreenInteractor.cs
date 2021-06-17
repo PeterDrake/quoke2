@@ -21,6 +21,7 @@ public class NPCScreenInteractor : MonoBehaviour
     public convoNode currentNode;
     private GameObject tradingScreen;
     private ReferenceManager referenceManager;
+    private PlayerKeyboardController keyboardManager;
     
     private void OnEnable()
     {
@@ -29,6 +30,7 @@ public class NPCScreenInteractor : MonoBehaviour
         convoFile = new XmlDocument();
         cursorLocation = 0;
         tradingScreen = referenceManager.tradeCanvas;
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardController>();
     }
     
     public void BeginConversation()
@@ -68,13 +70,6 @@ public class NPCScreenInteractor : MonoBehaviour
 
     }
 
-    // public void Reset()
-    // {
-    //     Start();
-    // }
-    
-    
-
     void Update()
     {
         
@@ -100,10 +95,7 @@ public class NPCScreenInteractor : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {  
-            referenceManager.dialogueCanvas.SetActive(false);
-            referenceManager.player.GetComponent<PlayerMover>().enabled = true;
-            referenceManager.inventoryCanvas.SetActive(true);
-            //Exits the NPC screen
+            keyboardManager.SetExploring();
         }
         
         //Selects an option from the player options
@@ -119,10 +111,7 @@ public class NPCScreenInteractor : MonoBehaviour
 
             if (currentNode.nodeName.Contains("trade"))
             {
-                tradingScreen.SetActive(true);
-                referenceManager.dialogueCanvas.SetActive(false);
-                tradingScreen.GetComponent<TradingManager>().BeginTrading();
-                
+                keyboardManager.SetTrading();
             }
         
             for (int c = 0; c < currentNode.playerArray.Count; c++)

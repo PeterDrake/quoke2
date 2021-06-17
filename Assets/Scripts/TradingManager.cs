@@ -48,25 +48,20 @@ public class TradingManager : MonoBehaviour
         button.interactable = false;
         npcName = GlobalControls.CurrentNPC;
         referenceManager.inventoryCanvas.SetActive(true);
-        if (parentInventory)
+        //overwrite inventoryPlayer with parentInventory
+        Debug.Log(parentInventory);
+        for (int i = 0; i < parentInventory.slotContents.Length; i++)
         {
-            //overwrite inventoryPlayer with parentInventory
-            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            Debug.Log(i);
+            if (parentInventory.slotContents[i].activeSelf)
             {
-                if (parentInventory.slotContents[i].activeSelf)
-                {
-                    inventoryPlayer.items[i] = null;
-                    inventoryPlayer.slotContents[i].SetActive(false);
-                    TransferItem(parentInventory, inventoryPlayer, i);
-                }
+                inventoryPlayer.items[i] = null;
+                inventoryPlayer.slotContents[i].SetActive(false);
+                TransferItem(parentInventory, inventoryPlayer, i);
             }
         }
-        
-        
-        //TODO will be deleted / changed
         referenceManager.inventoryCanvas.SetActive(false);
-        
-        
+
         inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
         inventoryPlayerBin.SelectSlotNumber(1);
         inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
@@ -78,127 +73,7 @@ public class TradingManager : MonoBehaviour
 
     void Update()
     {
-        
-        /* Change the cursor's location (< and >)
-        if (Input.GetKeyDown(","))
-        {
-            cursorLocation--;
-            ChangeSelectedInventory();
-        }
-        if (Input.GetKeyDown("."))
-        {
-            cursorLocation++;
-            ChangeSelectedInventory();
-        }*/
 
-        //select slot (1-9)
-        for (var i = 0; i < validInputs.Length; i++)
-        {
-            if (cursorLocation == 0 && Input.GetKey(validInputs[i]))
-            {
-                inventoryPlayer.SelectSlotNumber(i);
-            }
-            else if (cursorLocation == 1 && Input.GetKey(validInputs[i]))
-            {
-                inventoryPlayerBin.SelectSlotNumber(i);
-            }
-            else if (cursorLocation == 2 && Input.GetKey(validInputs[i]))
-            {
-                inventoryNPCBin.SelectSlotNumber(i);
-            }
-            else if (cursorLocation == 3 && Input.GetKey(validInputs[i]))
-            {
-                inventoryNPC.SelectSlotNumber(i);
-            }
-        }
-        
-        
-        // Transfer items (space)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (cursorLocation == 0)
-            {
-                TransferItem(inventoryPlayer, inventoryPlayerBin, inventoryPlayer.selectedSlotNumber);
-            }
-            else if (cursorLocation == 1)
-            {
-                TransferItem(inventoryPlayerBin, inventoryPlayer, inventoryPlayerBin.selectedSlotNumber);
-            }
-            else if (cursorLocation == 2)
-            {
-                TransferItem(inventoryNPCBin, inventoryNPC, inventoryNPCBin.selectedSlotNumber);
-            }
-            else if (cursorLocation == 3)
-            {
-                TransferItem(inventoryNPC, inventoryNPCBin, inventoryNPC.selectedSlotNumber);
-            }
-
-            if (CheckValidTrade()) button.interactable = true;
-            else button.interactable = false;
-
-        }
-
-        // TODO make button move items
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (CheckValidTrade())
-            {
-                Debug.Log("Valid trade!");
-                CompleteTrade();
-            }
-            else Debug.Log("Invalid Trade!");
-        }
-        
-        // TODO Make activate NPC text screen
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {  
-            Debug.Log("Leaving the trading screen");
-            for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
-            {
-                if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryPlayer, i);
-            }
-            for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
-            {
-                if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryNPC, i);
-            }
-            
-            //Update globalItemList
-            for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
-            {
-                if (inventoryPlayer.slotContents[i].activeSelf) 
-                    GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "");
-            }
-            for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
-            {
-                if (inventoryNPC.slotContents[i].activeSelf)
-                    GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, SceneManager.GetActiveScene().name,
-                        new Vector3(i, 0, 0), npcName);
-            }
-            
-            
-            
-            
-            //Update parent Inventory object
-            referenceManager.inventoryCanvas.SetActive(true);
-            if (referenceManager.inventoryCanvas)
-            {
-                //overwrite parent inventory with inventory here
-                for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
-                {
-                    if (inventoryPlayer.slotContents[i].activeSelf)
-                    {
-                        parentInventory.items[i] = null;
-                        parentInventory.slotContents[i].SetActive(false);
-                        TransferItem(inventoryPlayer, parentInventory, i);
-                    }
-                }
-            }
-            referenceManager.inventoryCanvas.SetActive(false);
-            npcCanvas.SetActive(true);
-            referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
-            referenceManager.tradeCanvas.SetActive(false);
-        }
-        
     }
     
     /**
@@ -265,9 +140,9 @@ public class TradingManager : MonoBehaviour
         }
     }    
     
-    public void ChangeSelectedInventory(int cursorLocation)
+    public void ChangeSelectedInventory(int location)
     {
-        this.cursorLocation = cursorLocation;
+        cursorLocation = location;
         if (cursorLocation < 0)
         {
             cursorLocation = 3;
@@ -357,11 +232,12 @@ public class TradingManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
 
 
-        keyboardManager.SetChatting();
+        keyboardManager.SetConversing();
     }
     
-    public void EncapsulateSpace(int cursorLocation)
+    public void EncapsulateSpace(int location)
     {
+        cursorLocation = location;
         if (cursorLocation == 0)
         {
             TransferItem(inventoryPlayer, inventoryPlayerBin, inventoryPlayer.selectedSlotNumber);
