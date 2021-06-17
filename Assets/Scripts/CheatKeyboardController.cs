@@ -5,7 +5,11 @@ public class CheatKeyboardController : MonoBehaviour
 {
     // For scenes with no meters (before and during the quake), this can remain null
     public Meters meters;
-    
+
+    void Start()
+    {
+        meters = GameObject.Find("Managers").GetComponent<ReferenceManager>().meters.GetComponent<Meters>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))

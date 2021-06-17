@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
 
@@ -12,15 +14,19 @@ public class PlayerMover : MonoBehaviour
     public Transform destination;  // Point the player is current moving toward
     public bool crouching;
     public bool underTable;
+    
+    public DialogueManager interactor;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
+    private ReferenceManager referenceManager;
     
     void Start()
     {
         interactableLayers = LayerMask.GetMask("NPC");
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
     }
 
     /// <summary>
@@ -55,12 +61,13 @@ public class PlayerMover : MonoBehaviour
             transform.LookAt(transform.position + direction, transform.up);
             // Is the player about to walk into an interactable object?
             GameObject ahead = ObjectAhead(interactableLayers);
-            if (ahead)  // TODO This seems to be assuming the only interactables are NPCs
+            
+            // TODO This seems to be assuming the only interactables are NPCs
+            if (ahead)
             {
                 GlobalControls.CurrentNPC = ahead.name;
-                transform.LookAt(transform.position + direction,
-                    transform.up);
-                ahead.GetComponent<npcscript>().LoadScene("npcScreen");
+                transform.LookAt(transform.position + direction, transform.up);
+                referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

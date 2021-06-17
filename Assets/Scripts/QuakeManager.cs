@@ -47,7 +47,6 @@ public class QuakeManager : MonoBehaviour
     [Tooltip("How many moves can the player make after the earthquake before they die?")]
     public int turnsTillAftershock = 5;
     private int exitHouseTurn;
-    private bool exitedHouse = false;
     private bool isAftershockTime = false;
     [Tooltip("Should an aftershock trigger and kill the player if they step into the house?")]
     public bool automaticAftershock = false;
