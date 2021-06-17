@@ -14,6 +14,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject inventoryCanvas;
     public GameObject player;
     public GameObject keyboardManager;
+    public GameObject meters;
     
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class ReferenceManager : MonoBehaviour
         dialogueCanvas = canvases.GetComponentInChildren<DialogueManager>(true).gameObject;
         tradeCanvas = canvases.GetComponentInChildren<TradeManager>(true).gameObject;
         player = GameObject.Find("Player");
+        meters = GameObject.Find("Meters Canvas");
         foreach (Inventory i in canvases.GetComponentsInChildren<Inventory>(true))
         {
             if (i.gameObject.name.Equals("Inventory Canvas"))

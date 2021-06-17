@@ -10,8 +10,14 @@ public class StartButton : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
+            GlobalControls.PoopTimeLeft = 24;
+            GlobalControls.WaterTimeLeft = 12;
+            GlobalControls.PoopTaskCompleted = false;
+            GlobalControls.WaterTaskCompleted = false;
+            GlobalControls.TurnNumber = 0;
             GlobalItemList.Reset();
             SceneManager.LoadScene(FirstScene);
+            
         }
     }
     
