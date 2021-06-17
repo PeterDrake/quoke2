@@ -320,7 +320,7 @@ public class TradeManager : MonoBehaviour
         if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
         
         //1:1 for anything else
-        if (npcOffers.Count == playerOffers.Count) return true;
+        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0 ) return true;
         
         //If none of the above, not valid trade.
         return false;
