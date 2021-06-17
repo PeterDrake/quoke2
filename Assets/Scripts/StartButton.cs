@@ -10,6 +10,7 @@ public class StartButton : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
+            GlobalItemList.Reset();
             SceneManager.LoadScene(FirstScene);
         }
     }
