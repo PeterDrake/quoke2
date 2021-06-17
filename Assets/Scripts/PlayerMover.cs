@@ -67,14 +67,7 @@ public class PlayerMover : MonoBehaviour
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);
-                referenceManager.dialogueCanvas.SetActive(true);
-                GameObject inventoryCanvas = referenceManager.inventoryCanvas;
-                if (inventoryCanvas) // TODO Keeping track of the mode would avoid a lot of checks like this
-                {
-                    inventoryCanvas.SetActive(false);
-                    enabled = false; // TODO When we tell the keyboard manager that we're in a different mode, it will start ignoring movement commands automatically
-                    referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
-                }
+                referenceManager.keyboardManager.GetComponent<PlayerKeyboardController>().SetConversing();
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

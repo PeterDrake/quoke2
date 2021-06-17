@@ -42,8 +42,6 @@ public class PlayerKeyboardController : MonoBehaviour
             // Crouch (c)
             player.SetCrouching(Input.GetKey(KeyCode.C));
             // Move (wasd or arrow keys)
-            //float h = Input.GetAxisRaw("Horizontal");
-            //float v = Input.GetAxisRaw("Vertical");
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
             if (Math.Abs(h) >= 1f)
@@ -70,7 +68,29 @@ public class PlayerKeyboardController : MonoBehaviour
         } 
         else if (isConversing) //if talking to an npc
         {
+            // Change the cursor's location with < and >
+            if (Input.GetKeyDown(","))
+            {
+                cursorLocation--;
+                dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
+            if (Input.GetKeyDown("."))
+            {
+                cursorLocation++;   
+                dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
             
+        
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {  
+                SetExploring();
+            }
+        
+            //Selects an option from the player options
+            if (Input.GetKeyDown("space"))
+            {
+                dialogueManager.EncapsulateSpace();
+            }
         } 
         else if (isTrading) //if trading with an npc
         {

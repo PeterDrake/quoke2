@@ -69,19 +69,10 @@ public class NPCScreenInteractor : MonoBehaviour
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
 
     }
-
-    void Update()
+    
+    public void ChangeCursorLocations(int location)
     {
-        
-        // Change the cursor's location with < and >
-        if (Input.GetKeyDown(","))
-        {
-            cursorLocation--;   
-        }
-        if (Input.GetKeyDown("."))
-        {
-            cursorLocation++;   
-        }
+        cursorLocation = location;
         if (cursorLocation < 0)
         {
             cursorLocation = buttons.Length - 1;
@@ -90,51 +81,42 @@ public class NPCScreenInteractor : MonoBehaviour
         {
             cursorLocation = 0;
         }
-
+        
         buttons[cursorLocation].Select();
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {  
-            keyboardManager.SetExploring();
-        }
-        
-        //Selects an option from the player options
-        if (Input.GetKeyDown("space"))
+    }
+
+    public void EncapsulateSpace()
+    {
+        //This will change the node you're looking at
+        currentNode = forest[currentNode.nextNode[cursorLocation]]; 
+
+        if (currentNode.nodeName.Contains("checkpoint"))
         {
-            //This will change the node you're looking at
-            currentNode = forest[currentNode.nextNode[cursorLocation]]; 
+            GlobalControls.SetCheckpoint(currentNode.nodeName);
+        }
 
-            if (currentNode.nodeName.Contains("checkpoint"))
-            {
-                GlobalControls.SetCheckpoint(currentNode.nodeName);
-            }
-
-            if (currentNode.nodeName.Contains("trade"))
-            {
-                keyboardManager.SetTrading();
-            }
-        
-            for (int c = 0; c < currentNode.playerArray.Count; c++)
-            {
-                buttons[c].gameObject.SetActive(true);
-                
-                //This will change the player text based on the node we're looking at
-                buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; 
-                if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            //This will change the npc text based on the node
-            npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
-            cursorLocation = 0;
-
+        if (currentNode.nodeName.Contains("trade"))
+        {
+            keyboardManager.SetTrading();
         }
         
+        for (int c = 0; c < currentNode.playerArray.Count; c++)
+        {
+            buttons[c].gameObject.SetActive(true);
+                
+            //This will change the player text based on the node we're looking at
+            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; 
+            if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+            {
+                buttons[c].gameObject.SetActive(false);
+            }
 
-        
+        }
+            
+        //This will change the npc text based on the node
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
+        cursorLocation = 0;
+
     }
 
    
