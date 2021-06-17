@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
 
         // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
         // "theirName0" to get to the appropriate starting node
-        currentNode = forest[GlobalControls.ConvoDict[GlobalControls.CurrentNPC]]; 
+        currentNode = forest[GlobalControls.NPCList[GlobalControls.CurrentNPC].node]; 
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {

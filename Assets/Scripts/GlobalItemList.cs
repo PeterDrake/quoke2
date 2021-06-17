@@ -7,7 +7,6 @@ using UnityEngine;
 public static class GlobalItemList
 {
     private static Dictionary<string, Item> itemList;
-    private static Dictionary<string, NPC> npcList;
 
     public static Dictionary<string, Item> ItemList
     {
@@ -15,11 +14,6 @@ public static class GlobalItemList
         set => itemList = value;
     }
     
-    public static Dictionary<string, NPC> NPCList
-    {
-        get => npcList;
-        set => npcList = value;
-    }
 
     static GlobalItemList()
     {
@@ -38,8 +32,8 @@ public static class GlobalItemList
                 "Park", "")},
             {"Bucket", new Item(new Vector3(-8.5f,0f,5.5f), "Bucket", 
                 "Park", "")},
-            {"Rope", new Item(new Vector3(-4.5f,0f,7.5f), "Rope", 
-                "School", "")},
+            {"Rope", new Item(new Vector3(-7.5f,0f,6.5f), "Rope", 
+                "Park", "")},
             {"Dog Collar", new Item(new Vector3(6.5f,0f,3.5f), "Dog Collar", 
                 "School", "")},
             {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
@@ -58,13 +52,6 @@ public static class GlobalItemList
                 "Inventory", "dem0")},
             
             };
-        npcList = new Dictionary<string, NPC>
-        {
-            {"safi0", new NPC("safi0", "Park", new List<string>{"Wrench", "Shovel"})},
-            {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"})},
-            {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"})},
-            {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"})},
-        };
     }
 
     /** Updates itemList with the picked up item's position and scene. */

@@ -20,13 +20,22 @@ public static class GlobalControls
 
     private static int turnNumber = 0;
     private static string currentNPC;
-    private static Dictionary<string, string> convoDict = new Dictionary<string, string>()
+
+    private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
-        {"fred0","fred0"},
-        {"dem0", "dem0"},
-        {"safi0","safi0"},
-        {"rainer0", "rainer0"}
+        {"safi0", new NPC("safi0", "Park", new List<string>{"Rope", "Mask"}, "safi0", 0)},
+        {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"}, "dem0", 0)},
+        {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0)},
+        {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"}, "rainer0", 0)},
     };
+
+    public static Dictionary<string, NPC> NPCList
+    {
+        get
+        {
+            return npcList;
+        }
+    }
 
     public static bool MetersEnabled
     {
@@ -112,19 +121,7 @@ public static class GlobalControls
             currentNPC = value;
         }
     }
-
-    public static Dictionary<string, string> ConvoDict
-    {
-        get
-        {
-            return convoDict;
-        }
-
-        set
-        {
-            
-        }
-    }
+    
 
     public static int CurrentScene
     {
@@ -140,7 +137,7 @@ public static class GlobalControls
     }
     public static void SetCheckpoint(string nodeName)
     {
-        convoDict[currentNPC] = nodeName;
+        NPCList[currentNPC].node = nodeName;
     }
     
 }

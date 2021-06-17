@@ -310,7 +310,7 @@ public class TradeManager : MonoBehaviour
         if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
         
         //will not trade away item they need
-        foreach (string need in GlobalItemList.NPCList[npcName].needs)
+        foreach (string need in GlobalControls.NPCList[npcName].needs)
         {
             if (npcOffers.Contains(need)) return false;
             if (playerOffers.Contains(need)) playerOfferedNeed.Add(true);
