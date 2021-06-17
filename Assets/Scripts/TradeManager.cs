@@ -47,19 +47,23 @@ public class TradeManager : MonoBehaviour
     {
         button.interactable = false;
         npcName = GlobalControls.CurrentNPC;
-        referenceManager.inventoryCanvas.SetActive(true);
-        //overwrite inventoryPlayer with parentInventory
-        for (int i = 0; i < parentInventory.slotContents.Length; i++)
+
+        foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (parentInventory.slotContents[i].activeSelf)
+            if (item.scene.Equals("Inventory") && item.containerName.Equals(npcName))
             {
-                inventoryPlayer.items[i] = null;
-                inventoryPlayer.slotContents[i].SetActive(false);
-                TransferItem(parentInventory, inventoryPlayer, i);
+                GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
+                inventoryNPC.PickUpAtSlot((int) item.location.x, itemInInventory);
+            }
+            else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
+            {
+                GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
+                inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
             }
         }
-        referenceManager.inventoryCanvas.SetActive(false);
-
+        
         inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
         inventoryPlayerBin.SelectSlotNumber(1);
         inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;

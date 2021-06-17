@@ -46,6 +46,17 @@ public static class GlobalItemList
                 "School", "")},
             {"Bag", new Item(new Vector3(2.5f,0f,9.5f), "Bag", 
                 "School", "")},
+            {"Mask", new Item(new Vector3(0, 0, 0), "Mask", 
+                "Inventory", "safi0")},
+            {"Phone", new Item(new Vector3(1,0,0), "Phone", 
+                "Inventory", "safi0")},
+            {"Burger", new Item(new Vector3(2,0,0), "Burger", 
+                "Inventory", "safi0")},
+            {"Book", new Item(new Vector3(3,0,0), "Book", 
+                "Inventory", "dem0")},
+            {"Cup", new Item(new Vector3(4,0,0), "Cup", 
+                "Inventory", "dem0")},
+            
             };
         npcList = new Dictionary<string, NPC>
         {
