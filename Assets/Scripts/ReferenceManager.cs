@@ -13,10 +13,12 @@ public class ReferenceManager : MonoBehaviour
     public GameObject tradeCanvas;
     public GameObject inventoryCanvas;
     public GameObject player;
+    public GameObject keyboardManager;
     
     private void Awake()
     {
         canvases = GameObject.Find("Canvases");
+        keyboardManager = GameObject.Find("Keyboard Manager");
         dialogueCanvas = canvases.GetComponentInChildren<NPCScreenInteractor>(true).gameObject;
         tradeCanvas = canvases.GetComponentInChildren<TradingManager>(true).gameObject;
         player = GameObject.Find("Player");

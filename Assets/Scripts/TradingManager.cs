@@ -27,6 +27,7 @@ public class TradingManager : MonoBehaviour
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private GameObject npcCanvas;
     private ReferenceManager referenceManager;
+    private PlayerKeyboardController keyboardManager;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -37,7 +38,7 @@ public class TradingManager : MonoBehaviour
         inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        //
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardController>();
         npcCanvas = referenceManager.dialogueCanvas;
 
     }
@@ -78,7 +79,7 @@ public class TradingManager : MonoBehaviour
     void Update()
     {
         
-        // Change the cursor's location (< and >)
+        /* Change the cursor's location (< and >)
         if (Input.GetKeyDown(","))
         {
             cursorLocation--;
@@ -88,7 +89,7 @@ public class TradingManager : MonoBehaviour
         {
             cursorLocation++;
             ChangeSelectedInventory();
-        }
+        }*/
 
         //select slot (1-9)
         for (var i = 0; i < validInputs.Length; i++)
@@ -203,7 +204,7 @@ public class TradingManager : MonoBehaviour
     /**
      * returns false if not enough inventory
      */
-    private bool CompleteTrade()
+    public bool CompleteTrade()
     {
         int[] numContents = new int[] {0,5,5,0};
         for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
@@ -242,8 +243,31 @@ public class TradingManager : MonoBehaviour
         }
         return true;
     }
-    private void ChangeSelectedInventory()
+
+    public void SelectSlot(int cursorLocation, int slotNumber)
     {
+        this.cursorLocation = cursorLocation;
+        if (cursorLocation == 0)
+        {
+            inventoryPlayer.SelectSlotNumber(slotNumber);
+        }
+        else if (cursorLocation == 1)
+        {
+            inventoryPlayerBin.SelectSlotNumber(slotNumber);
+        }
+        else if (cursorLocation == 2)
+        {
+            inventoryNPCBin.SelectSlotNumber(slotNumber);
+        }
+        else if (cursorLocation == 3)
+        {
+            inventoryNPC.SelectSlotNumber(slotNumber);
+        }
+    }    
+    
+    public void ChangeSelectedInventory(int cursorLocation)
+    {
+        this.cursorLocation = cursorLocation;
         if (cursorLocation < 0)
         {
             cursorLocation = 3;
@@ -293,6 +317,72 @@ public class TradingManager : MonoBehaviour
         inventoryNPCBin.SelectSlotNumber(0);
     }
 
+    public void LeaveTrading()
+    {
+        for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
+        {
+            if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryPlayer, i);
+        }
+        for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
+        {
+            if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryNPC, i);
+        }
+                
+        //Update globalItemList
+        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+        {
+            if (inventoryPlayer.slotContents[i].activeSelf) 
+                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "");
+        }
+        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
+        {
+            if (inventoryNPC.slotContents[i].activeSelf)
+                GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, SceneManager.GetActiveScene().name,
+                    new Vector3(i, 0, 0), npcName);
+        }
+        referenceManager.inventoryCanvas.SetActive(true);
+        if (referenceManager.inventoryCanvas)
+        {
+            //overwrite parent inventory with inventory here
+            for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+            {
+                if (inventoryPlayer.slotContents[i].activeSelf)
+                {
+                    parentInventory.items[i] = null;
+                    parentInventory.slotContents[i].SetActive(false);
+                    TransferItem(inventoryPlayer, parentInventory, i);
+                }
+            }
+        }
+        referenceManager.inventoryCanvas.SetActive(false);
+
+
+        keyboardManager.SetChatting();
+    }
+    
+    public void EncapsulateSpace(int cursorLocation)
+    {
+        if (cursorLocation == 0)
+        {
+            TransferItem(inventoryPlayer, inventoryPlayerBin, inventoryPlayer.selectedSlotNumber);
+        }
+        else if (cursorLocation == 1)
+        {
+            TransferItem(inventoryPlayerBin, inventoryPlayer, inventoryPlayerBin.selectedSlotNumber);
+        }
+        else if (cursorLocation == 2)
+        {
+            TransferItem(inventoryNPCBin, inventoryNPC, inventoryNPCBin.selectedSlotNumber);
+        }
+        else if (cursorLocation == 3)
+        {
+            TransferItem(inventoryNPC, inventoryNPCBin, inventoryNPC.selectedSlotNumber);
+        }
+
+        if (CheckValidTrade()) button.interactable = true;
+        else button.interactable = false;
+    }
+    
     private void TransferItem(Inventory inventory, Inventory destination, int slotNumber)
     {
         var i = slotNumber;
@@ -323,7 +413,7 @@ public class TradingManager : MonoBehaviour
         }
     }
 
-    private bool CheckValidTrade()
+    public bool CheckValidTrade()
     {
         List<string> npcOffers = new List<string>(); //list of names of items NPC offered
         List<string> playerOffers = new List<string>(); //list of names of items player offered
