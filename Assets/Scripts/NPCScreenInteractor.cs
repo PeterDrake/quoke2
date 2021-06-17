@@ -70,7 +70,7 @@ public class NPCScreenInteractor : MonoBehaviour
 
     }
     
-    public void ChangeCursorLocations(int location)
+    public int ChangeCursorLocations(int location)
     {
         cursorLocation = location;
         if (cursorLocation < 0)
@@ -81,8 +81,8 @@ public class NPCScreenInteractor : MonoBehaviour
         {
             cursorLocation = 0;
         }
-        
         buttons[cursorLocation].Select();
+        return cursorLocation;
     }
 
     public void EncapsulateSpace()

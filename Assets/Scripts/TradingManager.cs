@@ -49,10 +49,8 @@ public class TradingManager : MonoBehaviour
         npcName = GlobalControls.CurrentNPC;
         referenceManager.inventoryCanvas.SetActive(true);
         //overwrite inventoryPlayer with parentInventory
-        Debug.Log(parentInventory);
         for (int i = 0; i < parentInventory.slotContents.Length; i++)
         {
-            Debug.Log(i);
             if (parentInventory.slotContents[i].activeSelf)
             {
                 inventoryPlayer.items[i] = null;
@@ -70,12 +68,6 @@ public class TradingManager : MonoBehaviour
         inventoryNPCBin.SelectSlotNumber(1);
     }
 
-
-    void Update()
-    {
-
-    }
-    
     /**
      * returns false if not enough inventory
      */
@@ -119,9 +111,9 @@ public class TradingManager : MonoBehaviour
         return true;
     }
 
-    public void SelectSlot(int cursorLocation, int slotNumber)
+    public void SelectSlot(int location, int slotNumber)
     {
-        this.cursorLocation = cursorLocation;
+        this.cursorLocation = location;
         if (cursorLocation == 0)
         {
             inventoryPlayer.SelectSlotNumber(slotNumber);
@@ -138,9 +130,10 @@ public class TradingManager : MonoBehaviour
         {
             inventoryNPC.SelectSlotNumber(slotNumber);
         }
+
     }    
     
-    public void ChangeSelectedInventory(int location)
+    public int ChangeSelectedInventory(int location)
     {
         cursorLocation = location;
         if (cursorLocation < 0)
@@ -190,6 +183,8 @@ public class TradingManager : MonoBehaviour
         inventoryPlayer.SelectSlotNumber(0);
         inventoryNPC.SelectSlotNumber(0);
         inventoryNPCBin.SelectSlotNumber(0);
+        
+        return cursorLocation;
     }
 
     public void LeaveTrading()

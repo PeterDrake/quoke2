@@ -72,12 +72,12 @@ public class PlayerKeyboardController : MonoBehaviour
             if (Input.GetKeyDown(","))
             {
                 cursorLocation--;
-                dialogueManager.ChangeCursorLocations(cursorLocation);
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
             }
             if (Input.GetKeyDown("."))
             {
                 cursorLocation++;   
-                dialogueManager.ChangeCursorLocations(cursorLocation);
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
             }
             
         
@@ -97,12 +97,13 @@ public class PlayerKeyboardController : MonoBehaviour
             if (Input.GetKeyDown(","))
             {
                 cursorLocation--;
-                tradeManager.ChangeSelectedInventory(cursorLocation);
+                cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
+                
             }
             if (Input.GetKeyDown("."))
             {
                 cursorLocation++;
-                tradeManager.ChangeSelectedInventory(cursorLocation);
+                cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
             }
             
             //select slots
@@ -121,7 +122,6 @@ public class PlayerKeyboardController : MonoBehaviour
                 tradeManager.EncapsulateSpace(cursorLocation);
             }
 
-            // TODO make button move items
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 if (tradeManager.CheckValidTrade())
@@ -132,10 +132,8 @@ public class PlayerKeyboardController : MonoBehaviour
                 else Debug.Log("Invalid Trade!");
             }
             
-            // TODO Make activate NPC text screen
             if (Input.GetKeyDown(KeyCode.Escape))
             {  
-                Debug.Log("Leaving the trading screen");
                 tradeManager.LeaveTrading();
             }
         }
