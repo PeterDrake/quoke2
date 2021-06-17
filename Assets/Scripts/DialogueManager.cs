@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.Rendering;
-using Object = System.Object;
+
 
 public class DialogueManager : MonoBehaviour
 {
