@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +32,6 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        player = referenceManager.player.GetComponent<PlayerMover>();
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
@@ -50,6 +50,11 @@ public class Inventory : MonoBehaviour
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
+    }
+
+    private void Start()
+    {
+        player = referenceManager.player.GetComponent<PlayerMover>();
     }
 
     public void SelectSlotNumber(int slotNumber)

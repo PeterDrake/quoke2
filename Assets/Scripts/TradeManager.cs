@@ -206,12 +206,12 @@ public class TradeManager : MonoBehaviour
         for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
         {
             if (inventoryPlayer.slotContents[i].activeSelf) 
-                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "");
+                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "Player");
         }
         for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
         {
             if (inventoryNPC.slotContents[i].activeSelf)
-                GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, SceneManager.GetActiveScene().name,
+                GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
                     new Vector3(i, 0, 0), npcName);
         }
         referenceManager.inventoryCanvas.SetActive(true);
@@ -225,12 +225,13 @@ public class TradeManager : MonoBehaviour
                     parentInventory.items[i] = null;
                     parentInventory.slotContents[i].SetActive(false);
                     TransferItem(inventoryPlayer, parentInventory, i);
+
+                    parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
+
                 }
             }
         }
         referenceManager.inventoryCanvas.SetActive(false);
-
-
         keyboardManager.SetConversing();
     }
     
