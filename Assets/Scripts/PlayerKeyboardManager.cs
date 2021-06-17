@@ -28,6 +28,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        player = referenceManager.player.GetComponent<PlayerMover>();
         isTrading = false;
         isConversing = false;
         isExploring = true;
