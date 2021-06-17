@@ -97,6 +97,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentNode.nodeName.Contains("trade"))
         {
+            buttons[cursorLocation].Select();
             keyboardManager.SetTrading();
         }
         
