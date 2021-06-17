@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
         }
         //This displays the initial nodes npc text
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
-
+        buttons[cursorLocation].Select();
     }
     
     public int ChangeCursorLocations(int location)
@@ -88,6 +88,7 @@ public class DialogueManager : MonoBehaviour
     public void EncapsulateSpace()
     {
         //This will change the node you're looking at
+        Debug.Log(cursorLocation);
         currentNode = forest[currentNode.nextNode[cursorLocation]]; 
 
         if (currentNode.nodeName.Contains("checkpoint"))
@@ -115,8 +116,7 @@ public class DialogueManager : MonoBehaviour
         }
             
         //This will change the npc text based on the node
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
-        cursorLocation = 0;
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
 
     }
 

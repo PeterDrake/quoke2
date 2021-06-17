@@ -90,6 +90,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (Input.GetKeyDown("space"))
             {
                 dialogueManager.EncapsulateSpace();
+                cursorLocation = dialogueManager.ChangeCursorLocations(0);
             }
         } 
         else if (isTrading) //if trading with an npc
