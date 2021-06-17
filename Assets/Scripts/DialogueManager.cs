@@ -10,7 +10,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.Rendering;
 using Object = System.Object;
 
-public class NPCScreenInteractor : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     public int cursorLocation;
     public Button[] buttons;
@@ -21,7 +21,7 @@ public class NPCScreenInteractor : MonoBehaviour
     public convoNode currentNode;
     private GameObject tradingScreen;
     private ReferenceManager referenceManager;
-    private PlayerKeyboardController keyboardManager;
+    private PlayerKeyboardManager keyboardManager;
     
     private void OnEnable()
     {
@@ -30,7 +30,7 @@ public class NPCScreenInteractor : MonoBehaviour
         convoFile = new XmlDocument();
         cursorLocation = 0;
         tradingScreen = referenceManager.tradeCanvas;
-        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardController>();
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
     }
     
     public void BeginConversation()

@@ -19,8 +19,8 @@ public class ReferenceManager : MonoBehaviour
     {
         canvases = GameObject.Find("Canvases");
         keyboardManager = GameObject.Find("Keyboard Manager");
-        dialogueCanvas = canvases.GetComponentInChildren<NPCScreenInteractor>(true).gameObject;
-        tradeCanvas = canvases.GetComponentInChildren<TradingManager>(true).gameObject;
+        dialogueCanvas = canvases.GetComponentInChildren<DialogueManager>(true).gameObject;
+        tradeCanvas = canvases.GetComponentInChildren<TradeManager>(true).gameObject;
         player = GameObject.Find("Player");
         foreach (Inventory i in canvases.GetComponentsInChildren<Inventory>(true))
         {

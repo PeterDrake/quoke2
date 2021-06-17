@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 /// <summary>
 /// Handles keyboard input related to moving the player.
 /// </summary>
-public class PlayerKeyboardController : MonoBehaviour
+public class PlayerKeyboardManager : MonoBehaviour
 {
     public PlayerMover player;
     public Inventory inventory;
@@ -13,8 +13,8 @@ public class PlayerKeyboardController : MonoBehaviour
     public bool isTrading;
     public bool isConversing;
     public ReferenceManager referenceManager;
-    public TradingManager tradeManager;
-    public NPCScreenInteractor dialogueManager;
+    public TradeManager tradeManager;
+    public DialogueManager dialogueManager;
 
 
     private int cursorLocation;
@@ -25,8 +25,8 @@ public class PlayerKeyboardController : MonoBehaviour
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        tradeManager = referenceManager.tradeCanvas.GetComponent<TradingManager>();
-        dialogueManager = referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>();
+        tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
+        dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         isTrading = false;
         isConversing = false;
@@ -162,7 +162,7 @@ public class PlayerKeyboardController : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.dialogueCanvas.GetComponent<NPCScreenInteractor>().BeginConversation();
+        referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
     }
 
     public void SetTrading()
@@ -176,6 +176,6 @@ public class PlayerKeyboardController : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
-        referenceManager.tradeCanvas.GetComponent<TradingManager>().BeginTrading();
+        referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
     }
 }

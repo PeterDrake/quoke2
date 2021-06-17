@@ -34,7 +34,7 @@ public class TradeScreenTester : MonoBehaviour
             inventory = g.GetComponent<Inventory>();
         }
 
-        npcName = this.gameObject.GetComponent<TradingManager>().npcName;
+        npcName = this.gameObject.GetComponent<TradeManager>().npcName;
         
         foreach (Item item in itemList.Values)
         {

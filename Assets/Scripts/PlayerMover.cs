@@ -15,7 +15,7 @@ public class PlayerMover : MonoBehaviour
     public bool crouching;
     public bool underTable;
     
-    public NPCScreenInteractor interactor;
+    public DialogueManager interactor;
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
@@ -67,7 +67,7 @@ public class PlayerMover : MonoBehaviour
             {
                 GlobalControls.CurrentNPC = ahead.name;
                 transform.LookAt(transform.position + direction, transform.up);
-                referenceManager.keyboardManager.GetComponent<PlayerKeyboardController>().SetConversing();
+                referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
