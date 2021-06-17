@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /**
@@ -24,8 +21,6 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
-    private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-    private GameObject npcCanvas;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
 
@@ -39,7 +34,6 @@ public class TradeManager : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        npcCanvas = referenceManager.dialogueCanvas;
 
     }
 

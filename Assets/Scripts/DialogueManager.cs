@@ -14,7 +14,6 @@ public class DialogueManager : MonoBehaviour
     private XmlDocument convoFile;
     public Dictionary<string, convoNode> forest;
     public convoNode currentNode;
-    private GameObject tradingScreen;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     
@@ -24,7 +23,6 @@ public class DialogueManager : MonoBehaviour
         forest = new Dictionary<string, convoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        tradingScreen = referenceManager.tradeCanvas;
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
     }
     
