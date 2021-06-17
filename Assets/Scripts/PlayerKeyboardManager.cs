@@ -179,4 +179,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
     }
+    
+    
 }
