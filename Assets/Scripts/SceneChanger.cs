@@ -15,6 +15,21 @@ public class SceneChanger : MonoBehaviour
         {
             // Set GlobalControls to current scene
             GlobalControls.CurrentScene = Array.IndexOf(previousScenes, SceneManager.GetActiveScene().name);
+            if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+            {
+                StorageContainer[] containers = new StorageContainer[]
+                {
+                    GameObject.Find("Shed 1").GetComponent<StorageContainer>(),
+                    GameObject.Find("Shed 2").GetComponent<StorageContainer>(),
+                    GameObject.Find("Cabinet 1").GetComponent<StorageContainer>(),
+                    GameObject.Find("Cabinet 2").GetComponent<StorageContainer>(),
+                };
+                    foreach (StorageContainer container in containers)
+                {
+                    GameObject item = container.contents;
+                    GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
+                }
+            }
             SceneManager.LoadSceneAsync(sceneToLoad);
         }
     }
