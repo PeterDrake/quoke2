@@ -24,10 +24,13 @@ public class SceneChanger : MonoBehaviour
                     GameObject.Find("Cabinet 1").GetComponent<StorageContainer>(),
                     GameObject.Find("Cabinet 2").GetComponent<StorageContainer>(),
                 };
-                    foreach (StorageContainer container in containers)
+                foreach (StorageContainer container in containers)
                 {
                     GameObject item = container.contents;
-                    GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
+                    if (item)
+                    {
+                        GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
+                    }
                 }
             }
             SceneManager.LoadSceneAsync(sceneToLoad);
