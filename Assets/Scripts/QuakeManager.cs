@@ -84,12 +84,9 @@ public class QuakeManager : MonoBehaviour
 
     private void Start()
     {
-		canvas = GameObject.Find("Death UI Canvas");
         player = GameObject.FindGameObjectWithTag("Player");
-        playerDeathScript = player.GetComponent<PlayerDeath>();
-        playerDeathScript.DeactivateKillScreen(canvas);
-        
-        playerMoverScript = player.GetComponent<PlayerMover>();
+        playerDeathScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>();
+        playerMoverScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().player.GetComponent<PlayerMover>();
         
 
         doors = GameObject.FindGameObjectsWithTag("Door");

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles keyboard input related to moving the player.
@@ -34,8 +35,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
-        
-        SetExploring();
+        if(!SceneManager.GetActiveScene().name.Equals("QuakeHouse")) SetExploring();
+        else SetSegue();
         cursorLocation = 0;
     }
     
@@ -157,6 +158,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         isExploring = true;
         isConversing = false;
         isTrading = false;
+        isSegue = false;
+        isDeath = false;
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
@@ -171,6 +174,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         isExploring = false;
         isConversing = true;
         isTrading = false;
+        isSegue = false;
+        isDeath = false;
         cursorLocation = 0;
         
         deathCanvas.SetActive(false);
@@ -187,6 +192,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         isExploring = false;
         isConversing = false;
         isTrading = true;
+        isSegue = false;
+        isDeath = false;
         cursorLocation = 0;
         
         deathCanvas.SetActive(false);
@@ -198,11 +205,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
     }
 
-    public void setSegue()
+    public void SetSegue()
     {
         isExploring = false;
         isConversing = false;
         isTrading = false;
+        isSegue = true;
+        isDeath = false;
 
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
@@ -212,6 +221,23 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(true);
 
+    }
+
+    public void SetDeath()
+    {
+        isExploring = false;
+        isConversing = false;
+        isTrading = false;
+        isSegue = false;
+        isDeath = true;
+
+        referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.inventoryCanvas.SetActive(false);
+        referenceManager.dialogueCanvas.SetActive(false);
+        referenceManager.tradeCanvas.SetActive(false);
+
+        deathCanvas.SetActive(true);
+        segueCanvas.SetActive(false);
     }
     
     

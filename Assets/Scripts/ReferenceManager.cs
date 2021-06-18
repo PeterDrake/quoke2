@@ -19,7 +19,7 @@ public class ReferenceManager : MonoBehaviour
     
     public GameObject player;
     public GameObject keyboardManager;
-    
+    public GameObject deathManager;
     
     private void Awake()
     {
@@ -52,19 +52,11 @@ public class ReferenceManager : MonoBehaviour
                 segueCanvas = canvas.gameObject;
             }
         }
+        
+        
         keyboardManager = GameObject.Find("Keyboard Manager");
-        //dialogueCanvas = canvases.GetComponentInChildren<DialogueManager>(true).gameObject;
-        //tradeCanvas = canvases.GetComponentInChildren<TradeManager>(true).gameObject;
+        deathManager = GameObject.Find("Death Manager");
         player = GameObject.Find("Player");
-        //metersCanvas = GameObject.Find("Meters Canvas");
-        /*foreach (Inventory i in canvases.GetComponentsInChildren<Inventory>(true))
-        {
-            if (i.gameObject.name.Equals("Inventory Canvas"))
-            {
-                inventoryCanvas = i.gameObject;
-                break;
-            }
-        }*/
     }
     
 }
