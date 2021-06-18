@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 1503781773934214081}
   - component: {fileID: 1503781773934214082}
   - component: {fileID: 1503781773934214083}
-  - component: {fileID: 517378461}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -160,22 +159,7 @@ MonoBehaviour:
   destination: {fileID: 1503781772969547931}
   crouching: 0
   underTable: 0
---- !u!114 &517378461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503781773934214092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d22b01cc5964eb4687113d8e3834003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathText: {fileID: 0}
-  TipsText: {fileID: 0}
-  playerDeath: 1
-  player: {fileID: 1503781773934214092}
+  interactor: {fileID: 0}
 --- !u!1 &1503781774431257427
 GameObject:
   m_ObjectHideFlags: 0

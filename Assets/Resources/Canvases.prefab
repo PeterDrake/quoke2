@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 92844160234099731}
   - component: {fileID: 92844160234099730}
   - component: {fileID: 92844160234099741}
+  - component: {fileID: 8401115369052945609}
   m_Layer: 5
   m_Name: Death Canvas
   m_TagString: Untagged
@@ -104,6 +105,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8401115369052945609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92844160234099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c443ac9367d24747ac1ca903b410d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstScene: PreQuakeHouse
 --- !u!1 &92844160324952454
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +447,6 @@ GameObject:
   - component: {fileID: 92844161277098531}
   - component: {fileID: 92844161277098530}
   - component: {fileID: 92844161277098541}
-  - component: {fileID: 92844161277098540}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -557,19 +570,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &92844161277098540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92844161277098542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c443ac9367d24747ac1ca903b410d17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirstScene: PreQuakeHouse
 --- !u!1 &294004690705671867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4347540996121710246
 RectTransform:
   m_ObjectHideFlags: 0

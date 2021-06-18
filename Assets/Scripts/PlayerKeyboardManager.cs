@@ -55,6 +55,13 @@ public class PlayerKeyboardManager : MonoBehaviour
                 SetExploring();
             }
         }
+        else if (isDeath)
+        {
+            if (Input.GetKeyDown("space"))
+            {
+                deathCanvas.GetComponent<StartButton>().RestartGame();
+            }
+        }
         else if (isExploring) //if moving around the map
         {
             // Crouch (c)
