@@ -35,8 +35,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
-        if(!SceneManager.GetActiveScene().name.Equals("QuakeHouse")) SetExploring();
-        else SetSegue();
+        if(SceneManager.GetActiveScene().name.Equals("QuakeHouse")) SetSegue();
+        else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
+        {
+            this.gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
+            this.enabled = false;
+        }
+        else SetExploring();
         cursorLocation = 0;
     }
     

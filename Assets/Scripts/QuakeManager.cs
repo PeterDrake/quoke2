@@ -84,7 +84,7 @@ public class QuakeManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         playerDeathScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>();
         playerMoverScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().player.GetComponent<PlayerMover>();
         
