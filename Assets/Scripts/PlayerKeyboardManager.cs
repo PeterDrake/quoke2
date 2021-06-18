@@ -11,10 +11,13 @@ public class PlayerKeyboardManager : MonoBehaviour
     public bool isExploring;
     public bool isTrading;
     public bool isConversing;
+    public bool isSegue;
+    public bool isDeath;
     public ReferenceManager referenceManager;
     public TradeManager tradeManager;
     public DialogueManager dialogueManager;
-
+    public GameObject deathCanvas;
+    public GameObject segueCanvas;
 
     private int cursorLocation;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
@@ -28,6 +31,10 @@ public class PlayerKeyboardManager : MonoBehaviour
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         player = referenceManager.player.GetComponent<PlayerMover>();
+        deathCanvas = referenceManager.deathCanvas;
+        deathCanvas.SetActive(false);
+        segueCanvas = referenceManager.segueCanvas;
+        
         isTrading = false;
         isConversing = false;
         isExploring = true;
@@ -37,7 +44,14 @@ public class PlayerKeyboardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isExploring) //if moving around the map
+        if (isSegue)
+        {
+            if (Input.GetKeyDown("space"))
+            {
+                SetExploring();
+            }
+        }
+        else if (isExploring) //if moving around the map
         {
             // Crouch (c)
             player.SetCrouching(Input.GetKey(KeyCode.C));
@@ -146,6 +160,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         isConversing = false;
         isTrading = false;
         
+        deathCanvas.SetActive(false);
+        segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
@@ -159,6 +175,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         isTrading = false;
         cursorLocation = 0;
         
+        deathCanvas.SetActive(false);
+        segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
@@ -173,11 +191,29 @@ public class PlayerKeyboardManager : MonoBehaviour
         isTrading = true;
         cursorLocation = 0;
         
+        deathCanvas.SetActive(false);
+        segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
+    }
+
+    public void setSegue()
+    {
+        isExploring = false;
+        isConversing = false;
+        isTrading = false;
+
+        referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.inventoryCanvas.SetActive(false);
+        referenceManager.dialogueCanvas.SetActive(false);
+        referenceManager.tradeCanvas.SetActive(false);
+
+        deathCanvas.SetActive(false);
+        segueCanvas.SetActive(true);
+
     }
     
     
