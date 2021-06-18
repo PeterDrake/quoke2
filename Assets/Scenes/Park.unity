@@ -1294,7 +1294,7 @@ PrefabInstance:
     - target: {fileID: 5722493791308113909, guid: b7bbe2529ce2dea4f80fe7ae115b93db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5722493791308113909, guid: b7bbe2529ce2dea4f80fe7ae115b93db,
         type: 3}
@@ -1360,6 +1360,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92844160234099740, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1066204461451815800, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_RootOrder
@@ -1374,6 +1379,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvases
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347540996121710241, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236637126846725001, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8288787797652995178, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}

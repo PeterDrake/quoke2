@@ -81,7 +81,6 @@ public class DialogueManager : MonoBehaviour
     public void EncapsulateSpace()
     {
         //This will change the node you're looking at
-        Debug.Log(cursorLocation);
         currentNode = forest[currentNode.nextNode[cursorLocation]]; 
 
         if (currentNode.nodeName.Contains("checkpoint"))

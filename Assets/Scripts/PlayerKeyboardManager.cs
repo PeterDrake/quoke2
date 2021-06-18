@@ -35,9 +35,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
         
-        isTrading = false;
-        isConversing = false;
-        isExploring = true;
+        SetExploring();
         cursorLocation = 0;
     }
     
