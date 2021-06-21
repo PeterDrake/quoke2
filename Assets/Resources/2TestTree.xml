@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<convoForest>
+	
+		<safi0>
+			<playerOptions>
+				<option>Safi Option 0.1</option>
+				<option>Safi Option 0.2</option>
+				<option>Safi Option 0.3</option>
+			</playerOptions>
+ 
+            <keys>
+                <keyName>safi1</keyName>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+            </keys>
+	
+			<npcText>Safi Dialogue Path 0</npcText>
+        </safi0>
+		
+        <safi1>
+            <playerOptions>
+                <option>Safi Option 1.1</option>
+                <option>Safi Option 1.2</option>
+                <option>Safi Option 1.3</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointsafi2</keyName>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+            </keys>
+    
+            <npcText>Safi Dialogue Path 1</npcText>
+        </safi1>
+        
+        <checkpointsafi2>
+            <playerOptions>
+                <option>Safi Option 2.1</option>
+                <option>Safi Option 2.2</option>
+                <option>Safi Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi3</keyName>
+                <keyName>safi4</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>Safi Dialogue Path 2 (Checkpoint)</npcText>
+        </checkpointsafi2>
+        
+        
+        <safi3>
+            <playerOptions>
+				<option>Safi Option 3.1</option>
+				<option>Safi Option 3.2</option>
+                <option>Safi Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi4</keyName>
+                <keyName>safi0</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>Safi Dialogue Path 3</npcText>
+        
+        
+        </safi3>
+        
+        <safi4>
+            <playerOptions>
+                <option>Safi Option 4.1</option>
+                <option>Safi Option 4.2</option>
+                <option>Safi Let's Trade!</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName>safi1</keyName>
+                <keyName>tradesafi5</keyName>
+            </keys>
+    
+            <npcText>Safi Dialogue Path 4</npcText>
+        </safi4>
+        
+        <tradesafi5>
+            <playerOptions>
+                <option>Safi Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>safi0</keyName>
+                <keyName>safi0</keyName>
+                <keyName>safi0</keyName>
+            </keys>
+    
+            <npcText>Safi Now Trading...</npcText>
+        </tradesafi5>
+		
+        <dem0>
+            <playerOptions>
+                <option>Demitrius Option 0.1</option>
+                <option>Demitrius Option 0.2</option>
+                <option>Demitrius Option 0.3</option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+    
+            <npcText>Demitrius Dialogue Path 0</npcText>
+        </dem0>
+
+        <checkpointdem1>
+            <playerOptions>
+                <option>Demitrius Option 1.1</option>
+                <option>Demitrius Option 1.2</option>
+                <option>Demitrius Option 1.3</option>
+            </playerOptions>
+         
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem3</keyName>
+            </keys>
+            
+            <npcText>Demitrius Dialogue Path 1 (Checkpoint)</npcText>
+        </checkpointdem1>
+        
+        <dem2>
+            <playerOptions>
+                <option>Demitrius Option 2.1</option>
+                <option>Demitrius Option 2.2</option>
+                <option>Demitrius Option 2.3</option>
+            </playerOptions>
+                 
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem0</keyName>
+                <keyName>tradedem</keyName>
+            </keys>
+                    
+            <npcText>Demitrius Dialogue Path 2</npcText>
+        </dem2>
+        
+        <dem3>
+            <playerOptions>
+                <option>Demitrius Option 3.1</option>
+                <option>Demitrius Option 3.2</option>
+                <option>Demitrius Option 3.3</option>
+            </playerOptions>
+                         
+            <keys>
+                <keyName>checkpointdem1</keyName>
+                <keyName>dem2</keyName>
+                <keyName>dem0</keyName>
+            </keys>
+                            
+            <npcText>Demitrius Dialogue Path 3</npcText>
+        </dem3>
+        
+        <tradedem>
+            <playerOptions>
+                <option>Demitrius Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+            
+            <keys>
+                <keyName>dem0</keyName>
+                <keyName>dem0</keyName>
+                <keyName>dem0</keyName>
+            </keys>
+        
+            <npcText>Demitrius Now Trading...</npcText>
+        </tradedem>
+
+        <fred0>
+            <playerOptions>
+                <option>Fred Option 0.1</option>
+                <option>Fred Option 0.2</option>
+                <option></option>
+            </playerOptions>
+         
+            <keys>
+                 <keyName>fred1</keyName>
+                 <keyName>fred2</keyName>
+                 <keyName>fred3</keyName>
+            </keys>
+            
+            <npcText>Fred Dialogue Path 1</npcText>
+        </fred0>
+        
+        <rainer0>
+            <playerOptions>
+                <option>Rainer Option 0.1</option>
+                <option>Rainer Option 0.2</option>
+                <option>Rainer Option 0.3</option>
+            </playerOptions>
+         
+            <keys>
+                 <keyName>rainer1</keyName>
+                 <keyName>rainer2</keyName>
+                 <keyName>rainer3</keyName>
+            </keys>
+            
+            <npcText>Rainer Dialogue Path 1</npcText>
+        </rainer0>
+        		
+
+</convoForest>
