@@ -6,8 +6,6 @@ public class Meters : MonoBehaviour
     public int poopTimeLeft;
     public int waterTimeLeft;
 
-    public bool isStrategicMap = false;
-
     public GameObject poopDoneIndicator;
     public GameObject waterDoneIndicator;
 
@@ -19,6 +17,8 @@ public class Meters : MonoBehaviour
 
     void Start()
     {
+        bool isStrategicMap = GlobalControls.IsStrategicMap;
+        Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
         

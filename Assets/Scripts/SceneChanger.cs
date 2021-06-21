@@ -15,6 +15,18 @@ public class SceneChanger : MonoBehaviour
         {
             // Set GlobalControls to current scene
             GlobalControls.CurrentScene = Array.IndexOf(previousScenes, SceneManager.GetActiveScene().name);
+
+            if (sceneToLoad.Equals("StrategicMap"))
+            {
+                GlobalControls.IsStrategicMap = true;
+                Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
+            }
+            else
+            {
+                GlobalControls.IsStrategicMap = false;
+                Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
+            }
+            
             if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
             {
                 StorageContainer[] containers = new StorageContainer[]

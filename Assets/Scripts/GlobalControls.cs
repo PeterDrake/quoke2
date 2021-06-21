@@ -17,6 +17,7 @@ public static class GlobalControls
     private static bool poopTaskCompleted = false;
     private static bool waterTaskCompleted = false;
     private static int currentScene;
+    private static bool isStrategicMap;
 
     private static int turnNumber = 0;
     private static string currentNPC;
@@ -28,6 +29,13 @@ public static class GlobalControls
         {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0)},
         {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"}, "rainer0", 0)},
     };
+
+    public static bool IsStrategicMap
+    {
+        get => isStrategicMap;
+        set => isStrategicMap = value;
+    }
+
 
     public static Dictionary<string, NPC> NPCList
     {

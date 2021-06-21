@@ -14,7 +14,7 @@ public class PreQuakeHouseEventManager : MonoBehaviour
                 GameObject item = container.contents;
                 GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
             }
-            SceneManager.LoadSceneAsync("QuakeHouse");
+            SceneManager.LoadScene("QuakeHouse");
         }
     }
     
