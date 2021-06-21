@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCInteracted : MonoBehaviour
 {
@@ -19,38 +20,48 @@ public class NPCInteracted : MonoBehaviour
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        safiImage = GameObject.Find("Safi Met Image");
-        demImage = GameObject.Find("Dem Met Image");
-        rainerImage = GameObject.Find("Rainer Met Image");
-        fredImage = GameObject.Find("Fred Met Image");
+        if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
+            SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        {
+            referenceManager.npcInteractedCanvas.SetActive(false);
+        }
+        else
+        {
+            safiImage = GameObject.Find("Safi Met Image");
+            demImage = GameObject.Find("Dem Met Image");
+            rainerImage = GameObject.Find("Rainer Met Image");
+            fredImage = GameObject.Find("Fred Met Image");
 
-        safiInteracted = GlobalControls.SafiInteracted;
-        demInteracted = GlobalControls.DemInteracted;
-        rainerInteracted = GlobalControls.RainerInteracted;
-        fredInteracted = GlobalControls.FredInteracted;
+            safiInteracted = GlobalControls.SafiInteracted;
+            demInteracted = GlobalControls.DemInteracted;
+            rainerInteracted = GlobalControls.RainerInteracted;
+            fredInteracted = GlobalControls.FredInteracted;
 
-        if (!safiInteracted)
-        { 
-            safiImage.SetActive(false);
+            if (!safiInteracted)
+            {
+                safiImage.SetActive(false);
+            }
+
+            if (!demInteracted)
+            {
+                demImage.SetActive(false);
+            }
+
+            if (!rainerInteracted)
+            {
+                rainerImage.SetActive(false);
+            }
+
+            if (!fredInteracted)
+            {
+                fredImage.SetActive(false);
+            }
         }
-        if (!demInteracted)
-        { 
-            demImage.SetActive(false);
-        }
-        if (!rainerInteracted)
-        { 
-            rainerImage.SetActive(false);
-        }
-        if (!fredInteracted)
-        { 
-            fredImage.SetActive(false);
-        }
-        
+
     }
 
     public void updateNPCInteracted(string name)
     {
-        Debug.Log("Updating NPC Interacted");
         if (name.Equals("safi0"))
         {
             safiInteracted = true;
