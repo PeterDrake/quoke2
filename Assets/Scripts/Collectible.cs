@@ -35,7 +35,7 @@ public class Collectible : MonoBehaviour
     {
         if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
-            inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
+            inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponent<Inventory>();
         }
     }
 
