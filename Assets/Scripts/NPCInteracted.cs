@@ -28,11 +28,24 @@ public class NPCInteracted : MonoBehaviour
         demInteracted = GlobalControls.DemInteracted;
         rainerInteracted = GlobalControls.RainerInteracted;
         fredInteracted = GlobalControls.FredInteracted;
+
+        if (!safiInteracted)
+        { 
+            safiImage.SetActive(false);
+        }
+        if (!demInteracted)
+        { 
+            demImage.SetActive(false);
+        }
+        if (!rainerInteracted)
+        { 
+            rainerImage.SetActive(false);
+        }
+        if (!fredInteracted)
+        { 
+            fredImage.SetActive(false);
+        }
         
-        safiImage.SetActive(false);
-        demImage.SetActive(false);
-        rainerImage.SetActive(false);
-        fredImage.SetActive(false);
     }
 
     public void updateNPCInteracted(string name)
