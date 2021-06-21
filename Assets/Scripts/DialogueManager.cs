@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 
@@ -16,7 +19,9 @@ public class DialogueManager : MonoBehaviour
     public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
-    
+    private string filepath;
+    private string fileContents;
+
     private void OnEnable()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -26,11 +31,41 @@ public class DialogueManager : MonoBehaviour
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
     }
     
+    IEnumerator GetWebText()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(filepath);
+        Debug.Log("Attempting to communicate with server at " + filepath);
+        yield return request.SendWebRequest();
+        yield return new WaitForSeconds(0.5f);
+        
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log("ERROR ERROR Download Failed <3");
+            Debug.Log(request.error);
+        }
+        else
+        {
+            Debug.Log("WOOHOO DOWNLOAD SUCCEEDED <3");
+            Debug.Log(request.downloadHandler.text);
+            Debug.Log("File Contents = " + fileContents);
+            fileContents = request.downloadHandler.text;
+        }
+
+        
+        request.Dispose();
+    }
     public void BeginConversation()
     {
+        
         //Paste the path of the xml file you want to look at here
-        string filepath = Application.streamingAssetsPath + "/2TestTree.xml";
-        convoFile.Load(filepath); 
+        filepath = Application.streamingAssetsPath + "/2TestTree.xml";
+
+        if (filepath.Contains("http"))
+        {
+            StartCoroutine(GetWebText());
+            convoFile.LoadXml(fileContents);
+        }
+        else convoFile.LoadXml(File.ReadAllText(filepath)); 
         
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
         foreach (XmlNode node in convoFile.LastChild) 
