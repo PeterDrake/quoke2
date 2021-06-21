@@ -74,7 +74,6 @@ Transform:
   - {fileID: 1298035552812648324}
   - {fileID: 3748763218506422893}
   - {fileID: 7248003616501655394}
-  - {fileID: 7623926642067370725}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,18 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef247928707426e8ec2aae6eee4c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  inventory: {fileID: 0}
-  isExploring: 0
-  isTrading: 0
-  isConversing: 0
-  isSegue: 0
-  isDeath: 0
-  referenceManager: {fileID: 0}
-  tradeManager: {fileID: 0}
-  dialogueManager: {fileID: 0}
-  deathCanvas: {fileID: 0}
-  segueCanvas: {fileID: 0}
 --- !u!114 &418980624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,59 +172,6 @@ MonoBehaviour:
   player: {fileID: 0}
   locations: []
   playerLocation: 0
---- !u!1 &7623926642067370723
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7623926642067370725}
-  - component: {fileID: 7623926642067370722}
-  m_Layer: 0
-  m_Name: Linkup Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7623926642067370725
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623926642067370723}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 849.69794, y: 544.1641, z: -563.0598}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1298035553294467039}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7623926642067370722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623926642067370723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5581122f91b56547a0740d6bd90b303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvases: {fileID: 0}
-  inventoryCanvas: {fileID: 0}
-  metersCanvas: {fileID: 0}
-  dialogueCanvas: {fileID: 0}
-  tradeCanvas: {fileID: 0}
-  deathCanvas: {fileID: 0}
-  segueCanvas: {fileID: 0}
-  player: {fileID: 0}
-  keyboardManager: {fileID: 0}
-  deathManager: {fileID: 0}
 --- !u!1 &8686033780167706860
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,15 +12,15 @@ public class DialogueManager : MonoBehaviour
     public GameObject npcText;
     private String npcName;
     private XmlDocument convoFile;
-    public Dictionary<string, convoNode> forest;
-    public convoNode currentNode;
+    public Dictionary<string, ConvoNode> forest;
+    public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     
     private void OnEnable()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        forest = new Dictionary<string, convoNode>();
+        forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (!forest.ContainsKey(node.Name))
             {
-                forest.Add(node.Name, new convoNode(node));
+                forest.Add(node.Name, new ConvoNode(node));
             }
         }
 
