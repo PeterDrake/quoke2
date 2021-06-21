@@ -16,7 +16,8 @@ public class ReferenceManager : MonoBehaviour
     public GameObject tradeCanvas;
     public GameObject deathCanvas;
     public GameObject segueCanvas;
-    
+    public GameObject npcInteractedCanvas;
+
     public GameObject player;
     public GameObject keyboardManager;
     public GameObject deathManager;
@@ -50,6 +51,10 @@ public class ReferenceManager : MonoBehaviour
             else if (canvas.gameObject.name.Equals("Segue Canvas"))
             {
                 segueCanvas = canvas.gameObject;
+            }
+            else if (canvas.gameObject.name.Equals("NPC Interacted Canvas"))
+            {
+                npcInteractedCanvas = canvas.gameObject;
             }
         }
         
