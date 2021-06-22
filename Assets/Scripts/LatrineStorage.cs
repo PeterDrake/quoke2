@@ -6,7 +6,7 @@ using UnityEngine;
 public class LatrineStorage : MonoBehaviour
 {
 
-    private int timesShoveled = 0;
+    public int timesShoveled;
 
     public bool CheckAllLatrineItems()
     {
@@ -77,4 +77,51 @@ public class LatrineStorage : MonoBehaviour
         }
         return false;
     }
+
+
+    public bool ShovelingComplete()
+    {
+        if (timesShoveled >= 2 && timesShoveled <= 4)
+        {
+            return true;
+        }
+        timesShoveled = 0;
+        return false;
+    }
+
+    public bool PlywoodComplete()
+    {
+        return false;
+    }
+
+    public bool RopeComplete()
+    {
+        return false;
+    }
+
+    public bool TarpComplete()
+    {
+        return false;
+    }
+
+    public bool LatrineComplete()
+    {
+        if (ShovelingComplete())
+        {
+            if (PlywoodComplete())
+            {
+                if (RopeComplete())
+                {
+                    if (TarpComplete())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    
+    
 }

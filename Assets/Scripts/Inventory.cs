@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
                 if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
                     latrineStorage.CheckAllLatrineItems())
                 {
-                    //do digging part
+                    latrineStorage.timesShoveled++;
                     Debug.Log("Now Digging... Please Wait...");
                 }
                 else
