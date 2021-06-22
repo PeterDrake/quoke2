@@ -46,7 +46,7 @@ public class SceneManagement : MonoBehaviour
             GlobalControls.IsStrategicMap = false;
             Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         }
-            
+
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             StorageContainer[] containers = new StorageContainer[]
@@ -65,7 +65,6 @@ public class SceneManagement : MonoBehaviour
                 }
             }
         }
-        
         else if (sceneToLoad.Equals("QuakeHouse") && SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
         {
             StorageContainer[] containers = new StorageContainer[]

@@ -11,6 +11,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private Inventory inventory;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
+    public bool inventoryInScene = true;
     
     private ReferenceManager referenceManager;
     private TradeManager tradeManager;
@@ -196,7 +197,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
-        referenceManager.inventoryCanvas.SetActive(true);
+        if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
         referenceManager.npcInteractedCanvas.SetActive(true);

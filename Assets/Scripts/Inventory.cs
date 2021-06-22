@@ -50,6 +50,8 @@ public class Inventory : MonoBehaviour
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
+        
+        if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse")) setAvailableSlots(1);
     }
 
     private void Start()
@@ -57,6 +59,39 @@ public class Inventory : MonoBehaviour
         player = referenceManager.player.GetComponent<PlayerMover>();
     }
 
+    public void setAvailableSlots(int numSlots)
+    {
+
+        GameObject[] tempSlotFrames = new GameObject[numSlots];
+        GameObject[] tempItems = new GameObject[numSlots];
+        GameObject[] tempSlotContents = new GameObject[numSlots];
+
+        for (int i = 0; i < numSlots; i++)
+        {
+            tempItems[i] = items[i];
+            tempSlotContents[i] = slotContents[i];
+            tempSlotFrames[i] = slotFrames[i];
+        }
+
+        items = tempItems;
+        slotContents = tempSlotContents;
+        slotFrames = tempSlotFrames;
+
+        if (numSlots < 5)
+        {
+            for (int i = 4; i >= numSlots; i--)
+            {
+                GameObject.Find("Frame " + i).SetActive(false);
+            }
+        }
+        
+        
+        // Select the first slot
+        selectedSlotNumber = 0;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+    }
+    
+    
     public void SelectSlotNumber(int slotNumber)
     {
         if (slotNumber < 0 || slotNumber >= slotFrames.Length)
