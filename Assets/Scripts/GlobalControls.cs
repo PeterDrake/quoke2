@@ -21,13 +21,18 @@ public static class GlobalControls
 
     private static int turnNumber = 0;
     private static string currentNPC;
+    
+    private static bool safiInteracted;
+    private static bool demInteracted;
+    private static bool rainerInteracted;
+    private static bool fredInteracted;
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
-        {"safi0", new NPC("safi0", "Park", new List<string>{"Rope", "Mask"}, "safi0", 0)},
-        {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"}, "dem0", 0)},
-        {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0)},
-        {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"}, "rainer0", 0)},
+        {"safi0", new NPC("safi0", "Park", new List<string>{"Rope", "Mask"}, "safi0", 0, false)},
+        {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"}, "dem0", 0, false)},
+        {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0, false)},
+        {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"}, "rainer0", 0, false)},
     };
 
     public static bool IsStrategicMap
@@ -146,6 +151,58 @@ public static class GlobalControls
     public static void SetCheckpoint(string nodeName)
     {
         NPCList[currentNPC].node = nodeName;
+    }
+    
+    public static bool SafiInteracted
+    {
+        get
+        {
+            return safiInteracted;
+        }
+
+        set
+        {
+            safiInteracted = value;
+        }
+    }
+    
+    public static bool DemInteracted
+    {
+        get
+        {
+            return demInteracted;
+        }
+
+        set
+        {
+            demInteracted = value;
+        }
+    }
+    
+    public static bool RainerInteracted
+    {
+        get
+        {
+            return rainerInteracted;
+        }
+
+        set
+        {
+            rainerInteracted = value;
+        }
+    }
+    
+    public static bool FredInteracted
+    {
+        get
+        {
+            return fredInteracted;
+        }
+
+        set
+        {
+            fredInteracted = value;
+        }
     }
     
 }

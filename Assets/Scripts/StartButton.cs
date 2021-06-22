@@ -28,6 +28,10 @@ public class StartButton : MonoBehaviour
         GlobalControls.PoopTaskCompleted = false;
         GlobalControls.WaterTaskCompleted = false;
         GlobalControls.TurnNumber = 0;
+        GlobalControls.SafiInteracted = false;
+        GlobalControls.DemInteracted = false;
+        GlobalControls.RainerInteracted = false;
+        GlobalControls.FredInteracted = false;
         GlobalItemList.Reset();
         SceneManager.LoadScene(FirstScene);
     }
