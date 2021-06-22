@@ -34,6 +34,8 @@ public class TradeManager : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        selected = Resources.Load<Sprite>("SelectedSlot 1");
+        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
 
     }
 
@@ -210,6 +212,7 @@ public class TradeManager : MonoBehaviour
         {
             if (inventoryNPC.slotContents[i].activeSelf)
             {
+                inventoryNPC.items[i].name = inventoryNPC.items[i].name.Replace("(Clone)","").Trim();
                 //If new item for NPC and it's one of their needs increase satisfaction
                 if (!GlobalItemList.ItemList[inventoryNPC.items[i].name].containerName.Equals(npcName) && 
                     GlobalControls.NPCList[npcName].needs.Contains(inventoryNPC.items[i].name))
