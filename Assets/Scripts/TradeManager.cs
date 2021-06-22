@@ -11,11 +11,11 @@ using UnityEngine.UI;
  */
 public class TradeManager : MonoBehaviour
 {
-    public int cursorLocation = 0;
-    public Button button;
-    public Sprite unselected;
-    public Sprite selected;
-    public string npcName;
+    private string npcName;
+    private int cursorLocation = 0;
+    private Button button;
+    private Sprite unselected;
+    private Sprite selected;
     private Inventory parentInventory;
     private Inventory inventoryPlayer;
     private Inventory inventoryNPC;
@@ -95,6 +95,7 @@ public class TradeManager : MonoBehaviour
         if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
         {
             Debug.Log("Not Enough Inventory to complete trade!");
+            button.interactable = false;
             return false;
         }
 
@@ -106,6 +107,8 @@ public class TradeManager : MonoBehaviour
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
         }
+        button.Select();
+        button.interactable = false;
         return true;
     }
 
