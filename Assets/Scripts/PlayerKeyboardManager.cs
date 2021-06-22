@@ -11,7 +11,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private Inventory inventory;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
-    public bool inventoryInScene = true;
+    private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
     
     private ReferenceManager referenceManager;
     private TradeManager tradeManager;
@@ -36,14 +36,24 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
-        if(SceneManager.GetActiveScene().name.Equals("QuakeHouse")) SetSegue();
+        cursorLocation = 0;
+        
+        if (SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        {
+            inventoryInScene = false;
+            SetSegue();
+        }
+        else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
+        {
+            inventory.setAvailableSlots(1);
+            SetExploring();
+        }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
             this.gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
             this.enabled = false;
         }
         else SetExploring();
-        cursorLocation = 0;
     }
     
     // Update is called once per frame

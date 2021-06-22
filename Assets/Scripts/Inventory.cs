@@ -50,8 +50,6 @@ public class Inventory : MonoBehaviour
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
-        
-        if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse")) setAvailableSlots(1);
     }
 
     private void Start()
@@ -61,7 +59,6 @@ public class Inventory : MonoBehaviour
 
     public void setAvailableSlots(int numSlots)
     {
-
         GameObject[] tempSlotFrames = new GameObject[numSlots];
         GameObject[] tempItems = new GameObject[numSlots];
         GameObject[] tempSlotContents = new GameObject[numSlots];
