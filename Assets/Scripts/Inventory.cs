@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
     private int storageContainerLayers;
+    private int latrineContainerLayers;
 
     private ReferenceManager referenceManager;
     
@@ -50,6 +51,7 @@ public class Inventory : MonoBehaviour
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
+        latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
     }
 
     private void Start()
@@ -175,9 +177,18 @@ public class Inventory : MonoBehaviour
     public void PickUpOrDrop()
     {
         GameObject container = player.ObjectAhead(storageContainerLayers);
+        GameObject latrine = player.ObjectAhead(latrineContainerLayers);
         if (container) {
             InteractWithStorageContainer(container.GetComponent<StorageContainer>());
         }
+        else if (latrine)
+        {
+            Debug.Log("Interacting with latrine");
+        }
+        //check if the player is in front of the latrine
+        
+        
+        
         DropSelectedItem();
     }
 
