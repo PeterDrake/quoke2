@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 284626891}
   - component: {fileID: 284626890}
   - component: {fileID: 284626895}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Latrine Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,10 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9f778948e1745528c34f0b91cdb038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shovel: {fileID: 0}
-  plywood: {fileID: 0}
-  rope: {fileID: 0}
-  tarp: {fileID: 0}
 --- !u!1 &327178031
 GameObject:
   m_ObjectHideFlags: 0

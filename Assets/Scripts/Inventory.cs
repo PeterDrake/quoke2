@@ -27,11 +27,16 @@ public class Inventory : MonoBehaviour
     private int latrineContainerLayers;
 
     private ReferenceManager referenceManager;
-    
+
+    private LatrineStorage latrineStorage;
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
     {
+        if (SceneManager.GetActiveScene().name.Equals("Yard"))
+        {
+            latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
+        }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
@@ -82,16 +87,28 @@ public class Inventory : MonoBehaviour
             int i = selectedSlotNumber; // Just to make the later expressions less hairy
             if (SlotIsOccupied(i))
             {
-                // Place item in front of player
-                items[i].SetActive(true);
-                items[i].transform.position = player.destination.transform.position + player.transform.forward;
+                // Debug.Log("Shovel maybe: " + items[i].name);
+                // Debug.Log("Latrine ahead: " + player.ObjectAhead(latrineContainerLayers));
+                if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
+                    latrineStorage.CheckAllLatrineItems())
+                {
+                    //do digging part
+                    Debug.Log("Now Digging... Please Wait...");
+                }
+                else
+                {
+                    // Place item in front of player
+                    items[i].SetActive(true);
+                    items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
-                //updates item list accordingly
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
-                // Remove item from inventory
-                items[i] = null;
-                slotContents[i].SetActive(false);
-
+                    //updates item list accordingly
+                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
+                    // Remove item from inventory
+                    items[i] = null;
+                    slotContents[i].SetActive(false);
+                    
+                }
+                
             }
         }
     }

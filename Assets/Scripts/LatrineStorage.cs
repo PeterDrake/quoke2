@@ -6,14 +6,18 @@ using UnityEngine;
 public class LatrineStorage : MonoBehaviour
 {
 
-    private void Start()
+    private int timesShoveled = 0;
+
+    public bool CheckAllLatrineItems()
     {
-        if (CheckPlywood() && CheckRope() && CheckShovel() &&CheckTarp())
+        if (CheckPlywood() && CheckRope() && CheckShovel() && CheckTarp())
         {
             Debug.Log("Starting Latrine");
+            return true;
         }
+        return false;
     }
-
+    
     public bool CheckShovel()
     {
         foreach (Item item in GlobalItemList.ItemList.Values)
