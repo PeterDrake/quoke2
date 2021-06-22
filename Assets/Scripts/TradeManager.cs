@@ -13,7 +13,7 @@ public class TradeManager : MonoBehaviour
 {
     private string npcName;
     private int cursorLocation = 0;
-    private Button button;
+    public Button button;
     private Sprite unselected;
     private Sprite selected;
     private Inventory parentInventory;
@@ -39,7 +39,7 @@ public class TradeManager : MonoBehaviour
 
     public void BeginTrading()
     {
-        button.interactable = false;
+        
         npcName = GlobalControls.CurrentNPC;
 
         foreach (Item item in GlobalItemList.ItemList.Values)
@@ -203,13 +203,24 @@ public class TradeManager : MonoBehaviour
         for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
         {
             if (inventoryPlayer.slotContents[i].activeSelf) 
-                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "Player");
+                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", 
+                    new Vector3(i, 0, 0), "Player");
         }
         for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
         {
             if (inventoryNPC.slotContents[i].activeSelf)
+            {
+                //If new item for NPC and it's one of their needs increase satisfaction
+                if (!GlobalItemList.ItemList[inventoryNPC.items[i].name].containerName.Equals(npcName) && 
+                    GlobalControls.NPCList[npcName].needs.Contains(inventoryNPC.items[i].name))
+                {
+                    GlobalControls.NPCList[npcName].satisfaction++;
+                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.NPCList[npcName].satisfaction);
+                }
+                
                 GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
                     new Vector3(i, 0, 0), npcName);
+            }
         }
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)
