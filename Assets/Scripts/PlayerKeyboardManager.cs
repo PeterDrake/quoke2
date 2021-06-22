@@ -17,6 +17,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private DialogueManager dialogueManager;
     private GameObject deathCanvas;
     private GameObject segueCanvas;
+    private GameObject npcInteractedCanvas;
 
     private int cursorLocation;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
@@ -29,6 +30,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
@@ -197,6 +199,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
+        referenceManager.npcInteractedCanvas.SetActive(true);
     }
 
     public void SetConversing()
@@ -210,6 +213,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
+        referenceManager.npcInteractedCanvas.SetActive(false);
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
     }
 
@@ -224,6 +228,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
+        referenceManager.npcInteractedCanvas.SetActive(false);
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
     }
 
@@ -235,6 +240,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
+        referenceManager.npcInteractedCanvas.SetActive(false);
 
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(true);
@@ -249,6 +255,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
+        referenceManager.npcInteractedCanvas.SetActive(false);
 
         deathCanvas.SetActive(true);
         segueCanvas.SetActive(false);
