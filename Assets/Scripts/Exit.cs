@@ -11,8 +11,7 @@ public class Exit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement
-                .GetComponent<SceneManagement>().ChangeScene(sceneToLoad);
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene(sceneToLoad);
         }
     }
         

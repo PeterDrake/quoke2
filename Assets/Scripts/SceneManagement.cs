@@ -16,12 +16,6 @@ public class SceneManagement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Restart()
     {
         GlobalControls.PoopTimeLeft = 24;

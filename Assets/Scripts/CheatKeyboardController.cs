@@ -10,8 +10,7 @@ public class CheatKeyboardController : MonoBehaviour
     void Start()
     {
         meters = GameObject.Find("Managers").GetComponent<ReferenceManager>().metersCanvas.GetComponent<Meters>();
-        sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement
-            .GetComponent<SceneManagement>();
+        sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
     }
     void Update()
     {
