@@ -42,8 +42,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             GlobalControls.IsStrategicMap = false;
-            SceneManagement sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>()
-                .sceneManagement.GetComponent<SceneManagement>();
+            SceneManagement sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
             sceneManagement.ChangeScene(locations[playerLocation].GetComponent<MapMarker>().mapName);
         }
         // Move the player on top of the marker for the location they are currently at
