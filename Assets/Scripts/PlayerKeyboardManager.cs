@@ -138,7 +138,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            deathCanvas.GetComponent<StartButton>().RestartGame();
+            referenceManager.sceneManagement.GetComponent<SceneManagement>().Restart();
         }
     }
     private void UpdateTrading()

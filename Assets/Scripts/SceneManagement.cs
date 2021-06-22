@@ -22,6 +22,21 @@ public class SceneManagement : MonoBehaviour
         
     }
 
+    public void Restart()
+    {
+        GlobalControls.PoopTimeLeft = 24;
+        GlobalControls.WaterTimeLeft = 12;
+        GlobalControls.PoopTaskCompleted = false;
+        GlobalControls.WaterTaskCompleted = false;
+        GlobalControls.TurnNumber = 0;
+        GlobalControls.SafiInteracted = false;
+        GlobalControls.DemInteracted = false;
+        GlobalControls.RainerInteracted = false;
+        GlobalControls.FredInteracted = false;
+        GlobalItemList.Reset();
+        ChangeScene("PreQuakeHouse");
+    }
+
     public void ChangeScene(string sceneToLoad)
     {
         // Set GlobalControls to current scene
