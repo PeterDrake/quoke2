@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +9,24 @@ public class PlayerDeath : MonoBehaviour
     public GameObject DeathText;
     public GameObject TipsText;
     public bool playerDeath;
-    public GameObject player;
     private GameObject canvas;
 
-    public void DeactivateKillScreen(GameObject y)
+    private void Start()
     {
-        canvas = y;
-        canvas.SetActive(false);
+        playerDeath = false;
+        canvas = GameObject.Find("Managers").GetComponent<ReferenceManager>().deathCanvas;
+        
+        foreach (Text text in canvas.GetComponentsInChildren<Text>(true))
+        {
+            if (text.gameObject.name.Equals("Death Reason"))
+            {
+                DeathText = text.gameObject;
+            }
+            else if (text.gameObject.name.Equals("Tips Text"))
+            {
+                TipsText = text.gameObject;
+            }
+        }
     }
 
     public void DeathType(int x)
@@ -53,10 +65,9 @@ public class PlayerDeath : MonoBehaviour
     }
     public void KillPlayer(GameObject callingObject, int y)
     {
+        GameObject.Find("Managers").GetComponent<ReferenceManager>().keyboardManager.GetComponent<PlayerKeyboardManager>().SetDeath();
         playerDeath = true;
-        player.GetComponent<PlayerMover>().enabled = false;
         callingObject.SetActive(false);
-        canvas.SetActive(true);
         DeathType(y);
     }
 }

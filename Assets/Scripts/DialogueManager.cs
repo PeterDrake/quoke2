@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 
@@ -12,32 +15,33 @@ public class DialogueManager : MonoBehaviour
     public GameObject npcText;
     private String npcName;
     private XmlDocument convoFile;
-    public Dictionary<string, convoNode> forest;
-    public convoNode currentNode;
+    public Dictionary<string, ConvoNode> forest;
+    public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
-    
+
     private void OnEnable()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        forest = new Dictionary<string, convoNode>();
+        forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
     }
-    
+
     public void BeginConversation()
     {
-        //Paste the path of the xml file you want to look at here
-        string filepath = Application.streamingAssetsPath + "/2TestTree.xml";
-        convoFile.Load(filepath); 
         
+        //Paste the path of the xml file you want to look at here
+        TextAsset text = Resources.Load<TextAsset>("2TestTree");
+        convoFile.LoadXml(text.text);
+
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
         foreach (XmlNode node in convoFile.LastChild) 
         {
             if (!forest.ContainsKey(node.Name))
             {
-                forest.Add(node.Name, new convoNode(node));
+                forest.Add(node.Name, new ConvoNode(node));
             }
         }
 
@@ -61,6 +65,8 @@ public class DialogueManager : MonoBehaviour
         //This displays the initial nodes npc text
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
         buttons[cursorLocation].Select();
+
+
     }
     
     public int ChangeCursorLocations(int location)
@@ -81,7 +87,6 @@ public class DialogueManager : MonoBehaviour
     public void EncapsulateSpace()
     {
         //This will change the node you're looking at
-        Debug.Log(cursorLocation);
         currentNode = forest[currentNode.nextNode[cursorLocation]]; 
 
         if (currentNode.nodeName.Contains("checkpoint"))

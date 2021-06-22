@@ -16,11 +16,13 @@ public class Clobberer : MonoBehaviour
     
     private PlayerDeath playerDeathScript;
     private GameObject player;
+    private ReferenceManager referenceManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerDeathScript = player.GetComponent<PlayerDeath>();
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        player = referenceManager.player;
+        playerDeathScript = referenceManager.deathManager.GetComponent<PlayerDeath>();
         quakeSafeZoneManager = quakeSafeZoneManager.GetComponent<QuakeSafeZoneManager>();
         
         if (enabled && !quakeSafeZoneManager.playerInSafeZone)

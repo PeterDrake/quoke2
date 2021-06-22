@@ -1,24 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
 
     public string FirstScene;
+    public string currentScene;
 
-    private void Update()
+    public void Start()
     {
-        if (Input.GetKeyDown("space"))
+        currentScene = SceneManager.GetActiveScene().name;
+    }
+
+    public void Update()
+    {
+        if (currentScene.Equals("TitleScreen") && Input.GetKeyDown("space"))
         {
-            GlobalControls.PoopTimeLeft = 24;
-            GlobalControls.WaterTimeLeft = 12;
-            GlobalControls.PoopTaskCompleted = false;
-            GlobalControls.WaterTaskCompleted = false;
-            GlobalControls.TurnNumber = 0;
-            GlobalItemList.Reset();
-            SceneManager.LoadScene(FirstScene);
-            
+            RestartGame();
         }
     }
-    
+
+    public void RestartGame()
+    {
+        GlobalControls.PoopTimeLeft = 24;
+        GlobalControls.WaterTimeLeft = 12;
+        GlobalControls.PoopTaskCompleted = false;
+        GlobalControls.WaterTaskCompleted = false;
+        GlobalControls.TurnNumber = 0;
+        GlobalControls.SafiInteracted = false;
+        GlobalControls.DemInteracted = false;
+        GlobalControls.RainerInteracted = false;
+        GlobalControls.FredInteracted = false;
+        GlobalItemList.Reset();
+        SceneManager.LoadScene(FirstScene);
+    }
 }

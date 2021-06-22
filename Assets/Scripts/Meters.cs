@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Meters : MonoBehaviour
 {
     public int poopTimeLeft;
     public int waterTimeLeft;
-
-    public bool isStrategicMap = false;
 
     public GameObject poopDoneIndicator;
     public GameObject waterDoneIndicator;
@@ -19,6 +18,16 @@ public class Meters : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name.Contains("Quake"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
+        else
+        {
+            GlobalControls.MetersEnabled = true;
+        }
+        bool isStrategicMap = GlobalControls.IsStrategicMap;
+        Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
         
