@@ -6,7 +6,7 @@ public class StartButton : MonoBehaviour
 {
 
     public string FirstScene;
-    public string currentScene;
+    private string currentScene;
 
     public void Start()
     {
@@ -17,7 +17,7 @@ public class StartButton : MonoBehaviour
     {
         if (currentScene.Equals("TitleScreen") && Input.GetKeyDown("space"))
         {
-            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().Restart();
+            GameObject.Find("Scene Management").GetComponent<SceneManagement>().Restart();
         }
     }
 }
