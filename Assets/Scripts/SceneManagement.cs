@@ -8,13 +8,7 @@ public class SceneManagement : MonoBehaviour
 
 {
     private readonly string[] previousScenes = {"School", "Park", "Yard"};
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool firstTime = true;
 
     public void Restart()
     {
@@ -31,6 +25,10 @@ public class SceneManagement : MonoBehaviour
         ChangeScene("PreQuakeHouse");
     }
 
+    /// <summary>
+    /// This handles All "end of scene" things we need to do
+    /// </summary>
+    /// <param name="sceneToLoad"></param>
     public void ChangeScene(string sceneToLoad)
     {
         // Set GlobalControls to current scene
@@ -43,6 +41,8 @@ public class SceneManagement : MonoBehaviour
         else
         {
             GlobalControls.IsStrategicMap = false;
+            GlobalControls.PoopTimeLeft--;
+            GlobalControls.WaterTimeLeft--;
         }
 
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
