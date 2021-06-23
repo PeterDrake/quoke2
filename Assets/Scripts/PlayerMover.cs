@@ -66,7 +66,7 @@ public class PlayerMover : MonoBehaviour
             if (ahead)
             {
                 GlobalControls.CurrentNPC = ahead.name;
-                referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().updateNPCInteracted(ahead.name);
+                referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
                 transform.LookAt(transform.position + direction, transform.up);
                 referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
             }
