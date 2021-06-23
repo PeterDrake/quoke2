@@ -6,7 +6,7 @@ public class StartButton : MonoBehaviour
 {
 
     public string FirstScene;
-    public string currentScene;
+    private string currentScene;
 
     public void Start()
     {
@@ -17,22 +17,7 @@ public class StartButton : MonoBehaviour
     {
         if (currentScene.Equals("TitleScreen") && Input.GetKeyDown("space"))
         {
-            RestartGame();
+            GameObject.Find("Scene Management").GetComponent<SceneManagement>().Restart();
         }
-    }
-
-    public void RestartGame()
-    {
-        GlobalControls.PoopTimeLeft = 24;
-        GlobalControls.WaterTimeLeft = 12;
-        GlobalControls.PoopTaskCompleted = false;
-        GlobalControls.WaterTaskCompleted = false;
-        GlobalControls.TurnNumber = 0;
-        GlobalControls.SafiInteracted = false;
-        GlobalControls.DemInteracted = false;
-        GlobalControls.RainerInteracted = false;
-        GlobalControls.FredInteracted = false;
-        GlobalItemList.Reset();
-        SceneManager.LoadScene(FirstScene);
     }
 }
