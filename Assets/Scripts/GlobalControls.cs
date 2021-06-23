@@ -29,10 +29,10 @@ public static class GlobalControls
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
-        {"safi0", new NPC("safi0", "Park", new List<string>{"Rope", "Mask"}, "safi0", 0, false)},
-        {"dem0", new NPC("dem0", "Park", new List<string>{"Dog Collar"}, "dem0", 0, false)},
+        {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 0, false)},
+        {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 0, false)},
         {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0, false)},
-        {"rainer0", new NPC("rainer0", "School", new List<string>{"Wrench"}, "rainer0", 0, false)},
+        {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0", 0, false)},
     };
 
     public static bool IsStrategicMap

@@ -136,7 +136,7 @@
             <playerOptions>
                 <option>Demitrius Option 2.1</option>
                 <option>Demitrius Option 2.2</option>
-                <option>Demitrius Option 2.3</option>
+                <option>Demitrius Let's Trade!</option>
             </playerOptions>
                  
             <keys>
@@ -184,33 +184,66 @@
             <playerOptions>
                 <option>Fred Option 0.1</option>
                 <option>Fred Option 0.2</option>
-                <option></option>
+                <option>Fred Let's Trade!</option>
             </playerOptions>
          
             <keys>
-                 <keyName>fred1</keyName>
-                 <keyName>fred2</keyName>
-                 <keyName>fred3</keyName>
+                 <keyName>fred0</keyName>
+                 <keyName>fred0</keyName>
+                 <keyName>tradefred</keyName>
             </keys>
             
             <npcText>Fred Dialogue Path 1</npcText>
         </fred0>
+
+        <tradefred>
+            <playerOptions>
+                <option>Fred Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>fred0</keyName>
+                <keyName>fred0</keyName>
+                <keyName>fred0</keyName>
+            </keys>
+    
+            <npcText>Fred Now Trading...</npcText>
+        </tradefred>
         
         <rainer0>
             <playerOptions>
                 <option>Rainer Option 0.1</option>
                 <option>Rainer Option 0.2</option>
-                <option>Rainer Option 0.3</option>
+                <option>Rainer Let's Trade!</option>
             </playerOptions>
          
             <keys>
-                 <keyName>rainer1</keyName>
-                 <keyName>rainer2</keyName>
-                 <keyName>rainer3</keyName>
+                 <keyName>rainer0</keyName>
+                 <keyName>rainer0</keyName>
+                 <keyName>traderainer</keyName>
             </keys>
             
             <npcText>Rainer Dialogue Path 1</npcText>
+            
         </rainer0>
+
+        <traderainer>
+            <playerOptions>
+                <option>Rainer Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>rainer0</keyName>
+                <keyName>rainer0</keyName>
+                <keyName>rainer0</keyName>
+            </keys>
+    
+            <npcText>Rainer Now Trading...</npcText>
+        </traderainer>
         		
 
 </convoForest>
