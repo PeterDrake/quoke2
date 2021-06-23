@@ -16,6 +16,15 @@ public class Meters : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name.Contains("Quake"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
+        else
+        {
+            GlobalControls.MetersEnabled = true;
+        }
+        bool isStrategicMap = GlobalControls.IsStrategicMap;
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
 

@@ -24,13 +24,19 @@ public class Inventory : MonoBehaviour
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
     private int storageContainerLayers;
+    private int latrineContainerLayers;
 
     private ReferenceManager referenceManager;
-    
+
+    private LatrineStorage latrineStorage;
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
     {
+        if (SceneManager.GetActiveScene().name.Equals("Yard"))
+        {
+            latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
+        }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
@@ -50,6 +56,7 @@ public class Inventory : MonoBehaviour
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
+        latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
     }
 
     private void Start()
@@ -112,16 +119,35 @@ public class Inventory : MonoBehaviour
             int i = selectedSlotNumber; // Just to make the later expressions less hairy
             if (SlotIsOccupied(i))
             {
-                // Place item in front of player
-                items[i].SetActive(true);
-                items[i].transform.position = player.destination.transform.position + player.transform.forward;
+                if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
+                    latrineStorage.CheckAllLatrineItems())
+                {
+                    latrineStorage.timesShoveled++;
+                    Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
+                    if (latrineStorage.ShovelingComplete())
+                    {
+                        latrineStorage.shovelingDone = true;
+                    }else if (latrineStorage.timesShoveled > 4)
+                    {
+                        Debug.Log("Resetting shoveling");
+                        latrineStorage.timesShoveled = 0;
+                        latrineStorage.shovelingDone = false;
+                    }
+                }
+                else
+                {
+                    // Place item in front of player
+                    items[i].SetActive(true);
+                    items[i].transform.position = player.destination.transform.position + player.transform.forward;
                 
-                //updates item list accordingly
-                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
-                // Remove item from inventory
-                items[i] = null;
-                slotContents[i].SetActive(false);
-
+                    //updates item list accordingly
+                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
+                    // Remove item from inventory
+                    items[i] = null;
+                    slotContents[i].SetActive(false);
+                    
+                }
+                
             }
         }
     }
@@ -160,6 +186,75 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    void removeLatrineItem(int i)
+    {
+        latrineStorage.contents = items[i];
+        items[i].SetActive(true);
+        items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+        items[i].GetComponent<Collectible>().inLatrine = true;
+                    
+        GlobalItemList.UpdateItemList(items[i].name, "",
+            new Vector3(0,0,0), "");
+        GameObject.Find(items[i].name).SetActive(false);
+        // Remove item from inventory
+        items[i] = null;
+        slotContents[i].SetActive(false);
+        latrineStorage.contents = null;
+    }
+    void InteractWithLatrine()
+    {
+        int x = 0;
+        int i = FirstEmptySlot();
+        if (i >= 0 && !SlotIsOccupied(i) && latrineStorage.contents)
+        {
+            GameObject item = latrineStorage.RemoveLatrineItem();
+            item.GetComponent<Collectible>().inStorageContainer = false;
+            PickUp(item);
+        }
+        else
+        {
+            i = selectedSlotNumber; // Just to make the later expressions less hairy
+            if (SlotIsOccupied(i) && !latrineStorage.contents)
+            {
+                // Place item in the container if the item is a latrine task item
+                if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers)) x = 1; 
+                if (items[i].name.Equals("Plywood(Clone)") && latrineStorage.shovelingDone) x = 2;
+                if (items[i].name.Equals("Rope(Clone)") && latrineStorage.plywoodDone) x = 3;
+                if (items[i].name.Equals("Tarp(Clone)") && latrineStorage.ropeDone) x = 4;
+
+                switch (x)
+                {
+                    case 0:
+                        Debug.Log("You cant do that try again");
+                        break;
+                    case 1:
+                        //When you try to dig
+                        break;
+                    case 2:
+                        removeLatrineItem(i);
+                        latrineStorage.plywoodDone = true;
+                        Debug.Log("Plywood Complete");
+                        break;
+                    case 3:
+                        removeLatrineItem(i);
+                        latrineStorage.ropeDone = true;
+                        Debug.Log("Rope Complete");
+                        break;
+                    case 4:
+                        removeLatrineItem(i);
+                        latrineStorage.tarpDone = true;
+                        Debug.Log("Tarp Complete");
+                        latrineStorage.LatrineComplete();
+                        break;
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
     private bool SlotIsOccupied(int i)
     {
         return slotContents[i].activeSelf;
@@ -207,9 +302,19 @@ public class Inventory : MonoBehaviour
     public void PickUpOrDrop()
     {
         GameObject container = player.ObjectAhead(storageContainerLayers);
+        GameObject latrine = player.ObjectAhead(latrineContainerLayers);
         if (container) {
             InteractWithStorageContainer(container.GetComponent<StorageContainer>());
         }
+        else if (latrine)
+        {
+            InteractWithLatrine();
+            Debug.Log("Interacting with latrine");
+        }
+        //check if the player is in front of the latrine
+        
+        
+        
         DropSelectedItem();
     }
 

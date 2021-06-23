@@ -284,7 +284,7 @@ Transform:
   - {fileID: 1854046730}
   - {fileID: 2006731745}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &147968438
 GameObject:
@@ -317,7 +317,7 @@ Transform:
   - {fileID: 1338940792}
   - {fileID: 782937057}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165233968
 GameObject:
@@ -502,7 +502,8 @@ GameObject:
   - component: {fileID: 284626892}
   - component: {fileID: 284626891}
   - component: {fileID: 284626890}
-  m_Layer: 8
+  - component: {fileID: 284626895}
+  m_Layer: 15
   m_Name: Latrine Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,6 +600,18 @@ Transform:
   m_Father: {fileID: 2006731745}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &284626895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284626889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9f778948e1745528c34f0b91cdb038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &327178031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,7 +1660,7 @@ Transform:
   m_Children:
   - {fileID: 2116419774}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1001 &1338940791
 PrefabInstance:
@@ -2165,7 +2178,7 @@ PrefabInstance:
     - target: {fileID: 2260013301213580019, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4238469695704091685, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
