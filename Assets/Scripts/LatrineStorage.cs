@@ -13,7 +13,16 @@ public class LatrineStorage : MonoBehaviour
     public bool plywoodDone;
     public bool ropeDone;
     public bool tarpDone;
-    
+
+    public Meters meters;
+    public ReferenceManager referenceManager;
+
+    public void Start()
+    {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        meters = referenceManager.metersCanvas.GetComponent<Meters>();
+    }
+
 
     /// Removes and returns the currently stored item (or null if there is no such item)
     public GameObject RemoveLatrineItem()
@@ -66,6 +75,7 @@ public class LatrineStorage : MonoBehaviour
         if (!ropeDone) return false;
         if (!tarpDone) return false;
         Debug.Log("Completed latrine uwu");
+        meters.MarkTaskAsDone("poop");
         return true;
     }
     
