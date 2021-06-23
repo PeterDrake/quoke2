@@ -39,12 +39,10 @@ public class SceneManagement : MonoBehaviour
         if (sceneToLoad.Equals("StrategicMap"))
         {
             GlobalControls.IsStrategicMap = true;
-            Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         }
         else
         {
             GlobalControls.IsStrategicMap = false;
-            Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         }
 
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))

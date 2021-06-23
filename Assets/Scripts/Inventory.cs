@@ -125,7 +125,16 @@ public class Inventory : MonoBehaviour
                     latrineStorage.CheckAllLatrineItems())
                 {
                     latrineStorage.timesShoveled++;
-                    Debug.Log("Now Digging... Please Wait...");
+                    Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
+                    if (latrineStorage.ShovelingComplete())
+                    {
+                        latrineStorage.shovelingDone = true;
+                    }else if (latrineStorage.timesShoveled > 4)
+                    {
+                        Debug.Log("Resetting shoveling");
+                        latrineStorage.timesShoveled = 0;
+                        latrineStorage.shovelingDone = false;
+                    }
                 }
                 else
                 {
@@ -182,6 +191,7 @@ public class Inventory : MonoBehaviour
     
     void InteractWithLatrine(LatrineStorage latrine)
     {
+        int x = 0;
         int i = FirstEmptySlot();
         if (i >= 0 && !SlotIsOccupied(i) && latrine.contents)
         {
@@ -195,23 +205,85 @@ public class Inventory : MonoBehaviour
             if (SlotIsOccupied(i) && !latrine.contents)
             {
                 // Place item in the container if the item is a latrine task item
-                if (items[i].name.Equals("Tarp(Clone)") || items[i].name.Equals("Rope(Clone)") || 
-                    items[i].name.Equals("Plywood(Clone)"))
+                if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers)) x = 1; 
+                if (items[i].name.Equals("Plywood(Clone)") && latrineStorage.shovelingDone) x = 2;
+                if (items[i].name.Equals("Rope(Clone)") && latrineStorage.plywoodDone) x = 3;
+                if (items[i].name.Equals("Tarp(Clone)") && latrineStorage.ropeDone) x = 4;
+
+                switch (x)
                 {
-                    latrine.contents = items[i];
-                    items[i].SetActive(true);
-                    Transform t = player.transform;
-                    items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
-                    items[i].GetComponent<Collectible>().inLatrine = true;
+                    case 0:
+                        Debug.Log("You cant do that try again");
+                        break;
+                    case 1:
+                        //When you try to dig
+                        break;
+                    case 2:
+                        latrine.contents = items[i];
+                        items[i].SetActive(true);
+                        items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                        items[i].GetComponent<Collectible>().inLatrine = true;
                     
-                    GlobalItemList.UpdateItemList(items[i].name, "",
-                        new Vector3(0,0,0), "");
-                    GameObject.Find(items[i].name).SetActive(false);
-                    // Remove item from inventory
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
-                    latrine.contents = null;
+                        GlobalItemList.UpdateItemList(items[i].name, "",
+                            new Vector3(0,0,0), "");
+                        GameObject.Find(items[i].name).SetActive(false);
+                        // Remove item from inventory
+                        items[i] = null;
+                        slotContents[i].SetActive(false);
+                        latrine.contents = null;
+
+                        latrineStorage.plywoodDone = true;
+                        Debug.Log("Plywood Complete");
+                        break;
+                    case 3:
+                        latrine.contents = items[i];
+                        items[i].SetActive(true);
+                        items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                        items[i].GetComponent<Collectible>().inLatrine = true;
+                    
+                        GlobalItemList.UpdateItemList(items[i].name, "",
+                            new Vector3(0,0,0), "");
+                        GameObject.Find(items[i].name).SetActive(false);
+                        // Remove item from inventory
+                        items[i] = null;
+                        slotContents[i].SetActive(false);
+                        latrine.contents = null;
+
+                        latrineStorage.ropeDone = true;
+                        Debug.Log("Rope Complete");
+                        break;
+                    case 4:
+                        latrine.contents = items[i];
+                        items[i].SetActive(true);
+                        items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                        items[i].GetComponent<Collectible>().inLatrine = true;
+                    
+                        GlobalItemList.UpdateItemList(items[i].name, "",
+                            new Vector3(0,0,0), "");
+                        GameObject.Find(items[i].name).SetActive(false);
+                        // Remove item from inventory
+                        items[i] = null;
+                        slotContents[i].SetActive(false);
+                        latrine.contents = null;
+
+                        latrineStorage.tarpDone = true;
+                        Debug.Log("Tarp Complete");
+                        latrineStorage.LatrineComplete();
+                        break;
+                    
+                        
+                        
+                        
                 }
+                
+                
+                
+                
+                
+               
+                
+                
+                
             }
         }
     }

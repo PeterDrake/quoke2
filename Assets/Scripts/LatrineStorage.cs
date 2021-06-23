@@ -9,6 +9,12 @@ public class LatrineStorage : MonoBehaviour
     public int timesShoveled;
     public GameObject contents;
 
+    public bool shovelingDone;
+    public bool plywoodDone;
+    public bool ropeDone;
+    public bool tarpDone;
+    
+
     /// Removes and returns the currently stored item (or null if there is no such item)
     public GameObject RemoveLatrineItem()
     {
@@ -21,7 +27,6 @@ public class LatrineStorage : MonoBehaviour
     {
         if (inventoryHasItem("Shovel") || inventoryHasItem("Tarp") || inventoryHasItem("Rope") || inventoryHasItem("Plywood"))
         {
-            Debug.Log("Starting Latrine");
             return true;
         }
         return false;
@@ -50,31 +55,17 @@ public class LatrineStorage : MonoBehaviour
         {
             return true;
         }
-        timesShoveled = 0;
         return false;
     }
 
-    public bool PlywoodComplete()
-    {
-        return false;
-    }
-
-    public bool RopeComplete()
-    {
-        return false;
-    }
-
-    public bool TarpComplete()
-    {
-        return false;
-    }
 
     public bool LatrineComplete()
     {
         if (!ShovelingComplete()) return false;
-        if (!PlywoodComplete()) return false;
-        if (!RopeComplete()) return false;
-        if (!TarpComplete()) return false;
+        if (!plywoodDone) return false;
+        if (!ropeDone) return false;
+        if (!tarpDone) return false;
+        Debug.Log("Completed latrine uwu");
         return true;
     }
     

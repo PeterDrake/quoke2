@@ -27,7 +27,6 @@ public class Meters : MonoBehaviour
             GlobalControls.MetersEnabled = true;
         }
         bool isStrategicMap = GlobalControls.IsStrategicMap;
-        Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
         
