@@ -135,7 +135,7 @@ public class QuakeManager : MonoBehaviour
             CheckForAftershockStart();
         }
 
-        if ((isQuakeTime && !quaking) || (adminMode && Input.GetKeyDown("p"))|| (isAftershockTime && !quaking))
+        if ((isQuakeTime && !quaking) || (isAftershockTime && !quaking))
         {
             TriggerQuake();
         }
