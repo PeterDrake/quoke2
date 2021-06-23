@@ -203,13 +203,14 @@ public class Inventory : MonoBehaviour
                     Transform t = player.transform;
                     items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
                     items[i].GetComponent<Collectible>().inLatrine = true;
-                
-                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
-                        items[i].transform.position, latrine.name);
-
+                    
+                    GlobalItemList.UpdateItemList(items[i].name, "",
+                        new Vector3(0,0,0), "");
+                    GameObject.Find(items[i].name).SetActive(false);
                     // Remove item from inventory
                     items[i] = null;
                     slotContents[i].SetActive(false);
+                    latrine.contents = null;
                 }
             }
         }

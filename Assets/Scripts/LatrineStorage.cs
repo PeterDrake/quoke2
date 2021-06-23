@@ -19,19 +19,19 @@ public class LatrineStorage : MonoBehaviour
     
     public bool CheckAllLatrineItems()
     {
-        if (CheckPlywood() && CheckRope() && CheckShovel() && CheckTarp())
+        if (inventoryHasItem("Shovel") || inventoryHasItem("Tarp") || inventoryHasItem("Rope") || inventoryHasItem("Plywood"))
         {
             Debug.Log("Starting Latrine");
             return true;
         }
         return false;
     }
-    
-    public bool CheckShovel()
+
+    public bool inventoryHasItem(string itemName)
     {
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (item.name.Equals("Shovel"))
+            if (itemName.Equals(item.name))
             {
                 if (item.containerName.Equals("Player"))
                 {
@@ -41,51 +41,7 @@ public class LatrineStorage : MonoBehaviour
         }
         return false;
     }
-    
-    public bool CheckRope()
-    {
-        foreach (Item item in GlobalItemList.ItemList.Values)
-        {
-            if (item.name.Equals("Rope"))
-            {
-                if (item.containerName.Equals("Player"))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    public bool CheckTarp()
-    {
-        foreach (Item item in GlobalItemList.ItemList.Values)
-        {
-            if (item.name.Equals("Tarp"))
-            {
-                if (item.containerName.Equals("Player"))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    public bool CheckPlywood()
-    {
-        foreach (Item item in GlobalItemList.ItemList.Values)
-        {
-            if (item.name.Equals("Plywood"))
-            {
-                if (item.containerName.Equals("Player"))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
 
 
     public bool ShovelingComplete()
