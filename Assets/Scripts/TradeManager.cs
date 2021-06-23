@@ -11,11 +11,11 @@ using UnityEngine.UI;
  */
 public class TradeManager : MonoBehaviour
 {
-    public int cursorLocation = 0;
+    private string npcName;
+    private int cursorLocation = 0;
     public Button button;
-    public Sprite unselected;
-    public Sprite selected;
-    public string npcName;
+    private Sprite unselected;
+    private Sprite selected;
     private Inventory parentInventory;
     private Inventory inventoryPlayer;
     private Inventory inventoryNPC;
@@ -34,12 +34,14 @@ public class TradeManager : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        selected = Resources.Load<Sprite>("SelectedSlot 1");
+        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
 
     }
 
     public void BeginTrading()
     {
-        button.interactable = false;
+        
         npcName = GlobalControls.CurrentNPC;
 
         foreach (Item item in GlobalItemList.ItemList.Values)
@@ -95,6 +97,7 @@ public class TradeManager : MonoBehaviour
         if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
         {
             Debug.Log("Not Enough Inventory to complete trade!");
+            button.interactable = false;
             return false;
         }
 
@@ -106,6 +109,8 @@ public class TradeManager : MonoBehaviour
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
         }
+        button.Select();
+        button.interactable = false;
         return true;
     }
 
@@ -200,13 +205,25 @@ public class TradeManager : MonoBehaviour
         for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
         {
             if (inventoryPlayer.slotContents[i].activeSelf) 
-                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", new Vector3(i, 0, 0), "Player");
+                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", 
+                    new Vector3(i, 0, 0), "Player");
         }
         for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
         {
             if (inventoryNPC.slotContents[i].activeSelf)
+            {
+                inventoryNPC.items[i].name = inventoryNPC.items[i].name.Replace("(Clone)","").Trim();
+                //If new item for NPC and it's one of their needs increase satisfaction
+                if (!GlobalItemList.ItemList[inventoryNPC.items[i].name].containerName.Equals(npcName) && 
+                    GlobalControls.NPCList[npcName].needs.Contains(inventoryNPC.items[i].name))
+                {
+                    GlobalControls.NPCList[npcName].satisfaction++;
+                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.NPCList[npcName].satisfaction);
+                }
+                
                 GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
                     new Vector3(i, 0, 0), npcName);
+            }
         }
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)

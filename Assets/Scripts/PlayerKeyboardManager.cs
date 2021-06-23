@@ -19,6 +19,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject deathCanvas;
     private GameObject segueCanvas;
     private GameObject npcInteractedCanvas;
+    private GameObject metersCanvas;
 
     private int cursorLocation;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
@@ -31,6 +32,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
@@ -38,6 +40,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         segueCanvas = referenceManager.segueCanvas;
         cursorLocation = 0;
         
+        
+        //Handle start of scene things
         if (SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             inventoryInScene = false;
@@ -54,6 +58,21 @@ public class PlayerKeyboardManager : MonoBehaviour
             this.enabled = false;
         }
         else SetExploring();
+        
+        if (!SceneManager.GetActiveScene().name.Equals("StrategicMap") && GlobalControls.MetersEnabled)
+        {
+            if (!GlobalControls.PoopTaskCompleted && GlobalControls.PoopTimeLeft == 0)
+            {
+                Debug.Log("You died by poop meter going to zero!!");
+                GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 4);
+            }
+            if (!GlobalControls.WaterTaskCompleted && GlobalControls.WaterTimeLeft == 0)
+            {
+                Debug.Log("You died of thirst!");
+                GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 2);
+            }
+        }
+        
     }
     
     // Update is called once per frame
