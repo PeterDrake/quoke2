@@ -42,6 +42,15 @@ public class CheatKeyboardController : MonoBehaviour
         {
             sceneManagement.Restart();
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0),"Player" );
+            GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0),"Player" );
+            GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0),"Player" );
+            GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0),"Player" );
+            sceneManagement.ChangeScene("Yard");
+        }
         
     }
 }
