@@ -38,8 +38,13 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.IsStrategicMap = true;
         }
+        else if (sceneToLoad.Contains("Quake"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
         else
         {
+            GlobalControls.MetersEnabled = true;
             GlobalControls.IsStrategicMap = false;
             GlobalControls.PoopTimeLeft--;
             GlobalControls.WaterTimeLeft--;
@@ -81,7 +86,6 @@ public class SceneManagement : MonoBehaviour
                 }
             }
         }
-        
         SceneManager.LoadSceneAsync(sceneToLoad);
     }
 }
