@@ -28,10 +28,10 @@ public class NPCInteracted : MonoBehaviour
 
     private void OnEnable()
     {
-        safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
-        demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
-        rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
-        fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
+        if(safiSatisfaction) safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
+        if(demSatisfaction) demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
+        if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
+        if(fredSatisfaction) fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
     }
 
     void Start()
