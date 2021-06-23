@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public GameObject DeathText;
-    public GameObject TipsText;
+    private Text DeathText;
+    private Text TipsText;
+    private Text ScoreText;
     public bool playerDeath;
     private GameObject canvas;
 
@@ -20,11 +22,15 @@ public class PlayerDeath : MonoBehaviour
         {
             if (text.gameObject.name.Equals("Death Reason"))
             {
-                DeathText = text.gameObject;
+                DeathText = text;
             }
             else if (text.gameObject.name.Equals("Tips Text"))
             {
-                TipsText = text.gameObject;
+                TipsText = text;
+            }
+            else if (text.name.Equals("Score Number"))
+            {
+                ScoreText = text;
             }
         }
     }
@@ -34,32 +40,39 @@ public class PlayerDeath : MonoBehaviour
         switch (x)
         {
             case 0:
-                DeathText.GetComponent<Text>().text = "You got crushed!";
-                TipsText.GetComponent<Text>().text = "Get under a solid structure during the earthquake!";
+                DeathText.text = "You got crushed!";
+                TipsText.text = "Get under a solid structure during the earthquake!";
+                ScoreText.text = "-1";
                 break;
             case 1:
-                DeathText.GetComponent<Text>().text = "You died in an aftershock!";
-                TipsText.GetComponent<Text>().text = "Exit buildings as soon as the earthquake ends";
+                DeathText.text = "You died in an aftershock!";
+                TipsText.text = "Exit buildings as soon as the earthquake ends";
+                ScoreText.text = "-1";
                 break;
             case 2:
-                DeathText.GetComponent<Text>().text = "You died of thirst!";
-                TipsText.GetComponent<Text>().text = "Regular access to clean water is vital!";
+                DeathText.text = "You died of thirst!";
+                TipsText.text = "Regular access to clean water is vital!";
+                ScoreText.text = "-2";
                 break;
             case 3:
-                DeathText.GetComponent<Text>().text = "You got crushed!";
-                TipsText.GetComponent<Text>().text = "Don't go through doors during the earthquake!";
+                DeathText.text = "You got crushed!";
+                TipsText.text = "Don't go through doors during the earthquake!";
+                ScoreText.text = "-1";
                 break;
             case 4:
-                DeathText.GetComponent<Text>().text = "You died of unhygienic ways!";
-                TipsText.GetComponent<Text>().text = "Staying sanitary is important!";
+                DeathText.text = "You died of unhygienic ways!";
+                TipsText.text = "Staying sanitary is important!";
+                ScoreText.text = "-1000";
                 break;
             case 5:
-                DeathText.GetComponent<Text>().text = "You got crushed!";
-                TipsText.GetComponent<Text>().text = "Stay under cover until earthquake ends!";
+                DeathText.text = "You got crushed!";
+                TipsText.text = "Stay under cover until earthquake ends!";
+                ScoreText.text = "-1";
                 break;
             case 6:
-                DeathText.GetComponent<Text>().text = "You died in an aftershock!";
-                TipsText.GetComponent<Text>().text = "Don't re-enter unstable buildings!";
+                DeathText.text = "You died in an aftershock!";
+                TipsText.text = "Don't re-enter unstable buildings!";
+                ScoreText.text = "-1";
                 break;
         }
     }
