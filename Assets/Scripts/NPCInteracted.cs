@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -23,8 +24,15 @@ public class NPCInteracted : MonoBehaviour
     private GameObject demSatisfaction;
     private GameObject rainerSatisfaction;
     private GameObject fredSatisfaction;
-    
-    
+
+
+    private void OnEnable()
+    {
+        safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
+        demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
+        rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
+        fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
+    }
 
     void Start()
     {
