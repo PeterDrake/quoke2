@@ -17,6 +17,7 @@ public class Collectible : MonoBehaviour
     public Sprite sprite;
     public Inventory inventory;
     public bool inStorageContainer;
+    public bool inLatrine;
 
     public Vector3 location;
     public string itemName;
@@ -42,7 +43,7 @@ public class Collectible : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // When the player runs into it, add it to inventory
-        if (other.CompareTag("Player") && !inStorageContainer)
+        if (other.CompareTag("Player") && (!inStorageContainer || !inLatrine))
         {
             inventory.PickUp(this.gameObject);
         }

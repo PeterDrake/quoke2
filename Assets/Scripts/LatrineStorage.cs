@@ -7,7 +7,16 @@ public class LatrineStorage : MonoBehaviour
 {
 
     public int timesShoveled;
+    public GameObject contents;
 
+    /// Removes and returns the currently stored item (or null if there is no such item)
+    public GameObject RemoveLatrineItem()
+    {
+        GameObject temp = contents;
+        contents = null;
+        return temp;
+    }
+    
     public bool CheckAllLatrineItems()
     {
         if (CheckPlywood() && CheckRope() && CheckShovel() && CheckTarp())
@@ -106,20 +115,11 @@ public class LatrineStorage : MonoBehaviour
 
     public bool LatrineComplete()
     {
-        if (ShovelingComplete())
-        {
-            if (PlywoodComplete())
-            {
-                if (RopeComplete())
-                {
-                    if (TarpComplete())
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        if (!ShovelingComplete()) return false;
+        if (!PlywoodComplete()) return false;
+        if (!RopeComplete()) return false;
+        if (!TarpComplete()) return false;
+        return true;
     }
     
     
