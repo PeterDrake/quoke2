@@ -74,6 +74,7 @@ Transform:
   - {fileID: 1298035552812648324}
   - {fileID: 3748763218506422893}
   - {fileID: 7248003616501655394}
+  - {fileID: 7562464434405218211}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,9 +97,11 @@ MonoBehaviour:
   tradeCanvas: {fileID: 0}
   deathCanvas: {fileID: 0}
   segueCanvas: {fileID: 0}
+  npcInteractedCanvas: {fileID: 0}
   player: {fileID: 0}
   keyboardManager: {fileID: 0}
   deathManager: {fileID: 0}
+  sceneManagement: {fileID: 0}
 --- !u!1 &3748763218506422894
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meters: {fileID: 0}
+  sceneManagement: {fileID: 0}
 --- !u!114 &3748763218506422897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,8 +174,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  locations: []
+  locations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerLocation: 0
+--- !u!1 &7562464434405218213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7562464434405218211}
+  - component: {fileID: 7562464434405218210}
+  - component: {fileID: 612458183404849236}
+  m_Layer: 0
+  m_Name: Scene Management
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7562464434405218211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562464434405218213}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.2757096, y: -2.3885536, z: -9.287716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1298035553294467039}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7562464434405218210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562464434405218213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: 'Named Scene Manageemnt because Unity claims SceneManager as a keyword.
+
+    HELLO.'
+--- !u!114 &612458183404849236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562464434405218213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bb8d1cc63f9854782828bde35e6d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8686033780167706860
 GameObject:
   m_ObjectHideFlags: 0

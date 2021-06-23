@@ -21,6 +21,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject player;
     public GameObject keyboardManager;
     public GameObject deathManager;
+    public GameObject sceneManagement;
     
     private void Awake()
     {
@@ -57,11 +58,13 @@ public class ReferenceManager : MonoBehaviour
                 npcInteractedCanvas = canvas.gameObject;
             }
         }
-        
-        
+
         keyboardManager = GameObject.Find("Keyboard Manager");
         deathManager = GameObject.Find("Death Manager");
         player = GameObject.Find("Player");
+        sceneManagement = GameObject.Find("Scene Management");
     }
+    
+    
     
 }
