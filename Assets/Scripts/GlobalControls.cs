@@ -35,6 +35,32 @@ public static class GlobalControls
         {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0", 0, false)},
     };
 
+
+    public static void Reset()
+    {
+        npcList = new Dictionary<string, NPC>
+        {
+            {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 0, false)},
+            {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 0, false)},
+            {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0, false)},
+            {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0", 0, false)},
+        };
+        metersEnabled = true;
+        poopTimeLeft = 24;
+        waterTimeLeft = 12;
+        poopTaskCompleted = false;
+        waterTaskCompleted = false;
+        currentScene = -1;
+        isStrategicMap = false;
+
+        turnNumber = 0;
+        currentNPC = "";
+        
+        safiInteracted = false;
+        demInteracted = false;
+        rainerInteracted = false;
+        fredInteracted = false;
+    }
     public static bool IsStrategicMap
     {
         get => isStrategicMap;
