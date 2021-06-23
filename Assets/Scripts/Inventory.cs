@@ -29,6 +29,9 @@ public class Inventory : MonoBehaviour
     private ReferenceManager referenceManager;
 
     private LatrineStorage latrineStorage;
+
+    public bool waterBottleDropped;
+    
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
@@ -134,20 +137,29 @@ public class Inventory : MonoBehaviour
                         latrineStorage.shovelingDone = false;
                     }
                 }
-                else
+                // TODO: Check if the item we dropped is the water bottle
+                else if (items[i].name.Equals("Water Bottle(Clone)"))
                 {
-                    // Place item in front of player
-                    items[i].SetActive(true);
-                    items[i].transform.position = player.destination.transform.position + player.transform.forward;
-                
-                    //updates item list accordingly
-                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
-                    // Remove item from inventory
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
+                    Debug.Log("Dropped water bottle");
+                    waterBottleDropped = true;
+                    Debug.Log(waterBottleDropped);
+                }
+                else if (items[i].name.Equals("Chlorine Tablet(Clone)") && waterBottleDropped)
+                {
+                    Debug.Log("Dropping Chlorine when bottle has been dropped");
                     
+                    //TODO: check if the water bottle and chlorine have the same position
                 }
                 
+                // Place item in front of player
+                items[i].SetActive(true);
+                items[i].transform.position = player.destination.transform.position + player.transform.forward;
+            
+                //updates item list accordingly
+                GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
+                // Remove item from inventory
+                items[i] = null;
+                slotContents[i].SetActive(false);
             }
         }
     }
@@ -265,6 +277,13 @@ public class Inventory : MonoBehaviour
         int i = FirstEmptySlot();
         if (i >= 0)
         {
+            //For water task
+            if (item.name.Equals("Water Bottle(Clone)"))
+            {
+                Debug.Log("Picked up water bottle");
+                waterBottleDropped = false;
+                Debug.Log(waterBottleDropped);
+            }
             // Display the sprite for this item
             slotContents[i].SetActive(true);
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
