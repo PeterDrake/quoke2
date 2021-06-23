@@ -61,12 +61,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         if (!SceneManager.GetActiveScene().name.Equals("StrategicMap") && GlobalControls.MetersEnabled)
         {
-            if (!GlobalControls.PoopTaskCompleted && GlobalControls.PoopTimeLeft == 1)
+            if (!GlobalControls.PoopTaskCompleted && GlobalControls.PoopTimeLeft == 0)
             {
                 Debug.Log("You died by poop meter going to zero!!");
                 GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 4);
             }
-            if (!GlobalControls.WaterTaskCompleted && GlobalControls.WaterTimeLeft == 1)
+            if (!GlobalControls.WaterTaskCompleted && GlobalControls.WaterTimeLeft == 0)
             {
                 Debug.Log("You died of thirst!");
                 GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 2);

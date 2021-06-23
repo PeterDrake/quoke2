@@ -46,8 +46,8 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.MetersEnabled = true;
             GlobalControls.IsStrategicMap = false;
-            GlobalControls.PoopTimeLeft--;
-            GlobalControls.WaterTimeLeft--;
+            if(!GlobalControls.PoopTaskCompleted) GlobalControls.PoopTimeLeft--;
+            if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
         }
 
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
