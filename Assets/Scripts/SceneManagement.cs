@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +6,6 @@ public class SceneManagement : MonoBehaviour
 
 {
     private readonly string[] previousScenes = {"School", "Park", "Yard"};
-    private bool firstTime = true;
 
     public void Restart()
     {
