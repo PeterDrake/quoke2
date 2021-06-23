@@ -15,6 +15,7 @@ public class Meters : MonoBehaviour
     
     private PlayerDeath playerDeathScript;
     private GameObject player;
+    private bool isStrategicMap;
 
     void Start()
     {
@@ -26,14 +27,21 @@ public class Meters : MonoBehaviour
         {
             GlobalControls.MetersEnabled = true;
         }
-        bool isStrategicMap = GlobalControls.IsStrategicMap;
-        Debug.Log("IsStrategicMap = " + GlobalControls.IsStrategicMap);
+        isStrategicMap = GlobalControls.IsStrategicMap;
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
         
         player = GameObject.FindGameObjectWithTag("Player");
-        playerDeathScript = player.GetComponent<PlayerDeath>();
+        playerDeathScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>();
         
+        
+        poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
+        waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
+        UpdateVisualText();
+    }
+
+    public void CheckDeath()
+    {
         if (GlobalControls.MetersEnabled && !isStrategicMap)
         {
             if (!GlobalControls.PoopTaskCompleted)
@@ -57,11 +65,7 @@ public class Meters : MonoBehaviour
                 GlobalControls.WaterTimeLeft = waterTimeLeft;
             }
         }
-        poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
-        waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
-        UpdateVisualText();
     }
-
     //Used to check off meter on canvas & reset meter
     public void MarkTaskAsDone(string task)
     {
