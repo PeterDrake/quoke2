@@ -36,11 +36,10 @@ public class NPCInteracted : MonoBehaviour
 
     void Start()
     {
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
             SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
-            referenceManager.npcInteractedCanvas.SetActive(false);
+            this.gameObject.SetActive(false);
         }
         else
         {

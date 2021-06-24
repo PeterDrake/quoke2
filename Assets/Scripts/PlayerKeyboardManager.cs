@@ -42,6 +42,11 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         
         //Handle start of scene things
+        if (SceneManager.GetActiveScene().name.Equals("GameEnd"))
+        {
+            inventoryInScene = false;
+            SetExploring();
+        }
         if (SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             inventoryInScene = false;

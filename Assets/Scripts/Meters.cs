@@ -24,7 +24,6 @@ public class Meters : MonoBehaviour
         {
             GlobalControls.MetersEnabled = true;
         }
-        bool isStrategicMap = GlobalControls.IsStrategicMap;
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
 
@@ -47,6 +46,11 @@ public class Meters : MonoBehaviour
         {
             GlobalControls.WaterTaskCompleted = true;
             waterDoneIndicator.SetActive(true);
+        }
+
+        if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        {
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
         }
     }
 

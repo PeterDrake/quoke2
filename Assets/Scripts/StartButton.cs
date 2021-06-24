@@ -19,5 +19,10 @@ public class StartButton : MonoBehaviour
         {
             GameObject.Find("Scene Management").GetComponent<SceneManagement>().Restart();
         }
+        else if (currentScene.Equals("GameEnd") && Input.GetKeyDown("space"))
+        {
+            GameObject.Find("Scene Management").GetComponent<SceneManagement>().Restart();
+        }
+        
     }
 }

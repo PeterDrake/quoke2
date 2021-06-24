@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,19 +6,10 @@ public class SceneManagement : MonoBehaviour
 
 {
     private readonly string[] previousScenes = {"School", "Park", "Yard"};
-    private bool firstTime = true;
 
     public void Restart()
     {
-        GlobalControls.PoopTimeLeft = 24;
-        GlobalControls.WaterTimeLeft = 12;
-        GlobalControls.PoopTaskCompleted = false;
-        GlobalControls.WaterTaskCompleted = false;
-        GlobalControls.TurnNumber = 0;
-        GlobalControls.SafiInteracted = false;
-        GlobalControls.DemInteracted = false;
-        GlobalControls.RainerInteracted = false;
-        GlobalControls.FredInteracted = false;
+        GlobalControls.Reset();
         GlobalItemList.Reset();
         ChangeScene("PreQuakeHouse");
     }
