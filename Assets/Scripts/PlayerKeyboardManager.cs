@@ -315,7 +315,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        tooltipCanvas.SetActive(true);
+        referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
         if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
@@ -331,7 +331,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        tooltipCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
@@ -348,7 +348,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        tooltipCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
@@ -362,7 +362,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 1;
 
-        tooltipCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
@@ -379,7 +379,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 4;
 
-        tooltipCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);

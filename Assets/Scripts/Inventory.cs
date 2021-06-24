@@ -122,7 +122,7 @@ public class Inventory : MonoBehaviour
                 tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
             tooltipText.text = items[selectedSlotNumber].GetComponent<Comment>().notes;
         }
-        else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+        else if(tooltipText.gameObject.activeSelf) tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
 
     private void DropSelectedItem()
@@ -160,7 +160,8 @@ public class Inventory : MonoBehaviour
                     items[i] = null;
                     slotContents[i].SetActive(false);
                     //turn off tooltip
-                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                    if (tooltipText.gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
                 
             }
@@ -197,7 +198,8 @@ public class Inventory : MonoBehaviour
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
-                tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                if (tooltipText.gameObject.activeSelf)
+                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
     }
@@ -216,7 +218,8 @@ public class Inventory : MonoBehaviour
         items[i] = null;
         slotContents[i].SetActive(false);
         latrineStorage.contents = null;
-        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+        if (tooltipText.gameObject.activeSelf)
+            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
     void InteractWithLatrine()
     {

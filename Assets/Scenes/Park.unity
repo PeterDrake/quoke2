@@ -1295,13 +1295,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1801085538}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3550322322332755441
+--- !u!1001 &4084182736156582802
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 707200577192940815, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2260013301213580019, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_RootOrder
