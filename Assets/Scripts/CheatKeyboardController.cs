@@ -65,6 +65,12 @@ public class CheatKeyboardController : MonoBehaviour
             GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-5.5f,0.5f,-7.5f),"" );
             sceneManagement.ChangeScene("Yard");
         }
+        if (Input.GetKeyDown(KeyCode.Y)) //Load Yard with PreQuake Items
+        {
+            GlobalItemList.UpdateItemList("Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
+            GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
+            sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
+        }
         
     }
 }
