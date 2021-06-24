@@ -139,22 +139,11 @@ public class Inventory : MonoBehaviour
                         latrineStorage.shovelingDone = false;
                     }
                 }
-                else if (items[i].name.Equals("Water Bottle(Clone)"))
+                else if (items[i].name.Equals("Chlorine Tablet(Clone)") && player.ObjectAhead(waterLayer))
                 {
-                    Debug.Log("Dropped water bottle");
-                    waterBottleDropped = true;
-                    Debug.Log(waterBottleDropped);
+                    Debug.Log("Dropping chlorine table into water bottle");
                 }
-                else if (items[i].name.Equals("Chlorine Tablet(Clone)") && waterBottleDropped)
-                {
-                    if (player.ObjectAhead(waterLayer))
-                    {
-                        
-                        Debug.Log("Water bottle ahead. Dropping chlorine tablet");
-                    }
 
-                }
-                
                 // Place item in front of player
                 items[i].SetActive(true);
                 items[i].transform.position = player.destination.transform.position + player.transform.forward;
@@ -281,13 +270,6 @@ public class Inventory : MonoBehaviour
         int i = FirstEmptySlot();
         if (i >= 0)
         {
-            //For water task
-            if (item.name.Equals("Water Bottle(Clone)"))
-            {
-                Debug.Log("Picked up water bottle");
-                waterBottleDropped = false;
-                Debug.Log(waterBottleDropped);
-            }
             // Display the sprite for this item
             slotContents[i].SetActive(true);
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
