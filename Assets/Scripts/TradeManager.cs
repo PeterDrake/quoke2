@@ -23,6 +23,7 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryNPCBin;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private Text tooltipText;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -34,6 +35,7 @@ public class TradeManager : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        tooltipText = GameObject.Find("Trade Item Tooltip").GetComponentInChildren<Text>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
 
@@ -120,18 +122,34 @@ public class TradeManager : MonoBehaviour
         if (cursorLocation == 0)
         {
             inventoryPlayer.SelectSlotNumber(slotNumber);
+            if (inventoryPlayer.items[slotNumber])
+            {
+                tooltipText.text = inventoryPlayer.items[slotNumber].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 1)
         {
             inventoryPlayerBin.SelectSlotNumber(slotNumber);
+            if (inventoryPlayerBin.items[slotNumber])
+            {
+                tooltipText.text = inventoryPlayerBin.items[slotNumber].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 2)
         {
             inventoryNPCBin.SelectSlotNumber(slotNumber);
+            if (inventoryNPCBin.items[slotNumber])
+            {
+                tooltipText.text = inventoryNPCBin.items[slotNumber].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 3)
         {
             inventoryNPC.SelectSlotNumber(slotNumber);
+            if (inventoryNPC.items[slotNumber])
+            {
+                tooltipText.text = inventoryNPC.items[slotNumber].GetComponent<Comment>().notes;
+            }
         }
 
     }    

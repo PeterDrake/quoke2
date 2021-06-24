@@ -22,14 +22,18 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject segueCanvas;
     private GameObject npcInteractedCanvas;
     private GameObject metersCanvas;
+    private GameObject tooltipCanvas;
+    private Text tooltipText;
 
     private int cursorLocation;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
-    private readonly string[] npcList = {"Safi", "Dem", "Rainer", "Fred"};
-    private GameObject[] npcFrames = new GameObject[4];
+    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "fred0"};
+    private readonly GameObject[] npcFrames = new GameObject[4];
+    private Sprite unselected;
+    private Sprite selected;
     
     void Start()
     {
@@ -39,18 +43,23 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        tooltipCanvas = referenceManager.tooltipCanvas;
+        tooltipText = tooltipCanvas.GetComponentInChildren<Text>();
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
         cursorLocation = 0;
+        
+        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
+        selected = Resources.Load<Sprite>("SelectedSlot 1");
 
         foreach (Image image in npcInteractedCanvas.GetComponentsInChildren<Image>(true))
         {
             if (image.gameObject.name.Equals("Safi Frame")) npcFrames[0] = image.gameObject;
-            if (image.gameObject.name.Equals("Dem Frame")) npcFrames[0] = image.gameObject;
-            if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[0] = image.gameObject;
-            if (image.gameObject.name.Equals("Fred Frame")) npcFrames[0] = image.gameObject;
+            if (image.gameObject.name.Equals("Dem Frame")) npcFrames[1] = image.gameObject;
+            if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
+            if (image.gameObject.name.Equals("Fred Frame")) npcFrames[3] = image.gameObject;
         }
         
         
@@ -171,17 +180,42 @@ public class PlayerKeyboardManager : MonoBehaviour
             
             
         // Select from inventory (1-9)
-        for (int i = 0; i < validInputs.Length; i++)
+        if (cursorLocation == 0)
         {
-            if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
+            for (int i = 0; i < validInputs.Length; i++)
             {
-                inventory.SelectSlotNumber(i);
-            }
-            else if (npcInteractedCanvas.activeSelf && cursorLocation == 1 && Input.GetKey(validNPCInputs[i]))
-            {
-                
+                if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
+                {
+                    inventory.SelectSlotNumber(i);
+                    if (inventory.items[i])
+                    {
+                        tooltipText.text = inventory.items[i].GetComponent<Comment>().notes;
+                    }
+                }
             }
         }
+
+        if (cursorLocation == 1)
+        {
+            for (int i = 0; i < validNPCInputs.Length; i++)
+            {
+                if (npcInteractedCanvas.activeSelf && cursorLocation == 1 && Input.GetKey(validNPCInputs[i]))
+                {
+                    for (int j = 0; j < validNPCInputs.Length; j++)
+                    {
+                        if(j == i) npcFrames[j].GetComponent<Image>().sprite = selected;
+                        else npcFrames[j].GetComponent<Image>().sprite = unselected;
+                    }
+                    
+                    if (npcFrames[i].GetComponentInChildren<Image>().gameObject.activeSelf)
+                    {
+                        tooltipText.text = GlobalControls.NPCList[npcList[i]].description;
+                    }
+                    
+                }
+            }
+        }
+        
         if (inventory && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
@@ -195,16 +229,31 @@ public class PlayerKeyboardManager : MonoBehaviour
                 cursorLocation = 1;
                 
                 //Update to show NPCInteractedCanvas selected
-                inventory.selectedSlotSprite = Resources.Load<Sprite>("UnselectedSlot 1");
+                inventory.selectedSlotSprite = unselected;
                 inventory.SelectSlotNumber(1);
+
+                npcFrames[0].GetComponent<Image>().sprite = selected;
+                if (npcFrames[0].GetComponentInChildren<Image>().gameObject.activeSelf)
+                {
+                    tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
+                }
             }
             else //if previously selected the NPCInteractedCanvas
             {
                 cursorLocation = 0;
                 
                 //Update to show Inventory selected
-                inventory.selectedSlotSprite = Resources.Load<Sprite>("SelectedSlot 1");
+                inventory.selectedSlotSprite = selected;
                 inventory.SelectSlotNumber(0);
+                
+                for (int i = 0; i < validNPCInputs.Length; i++)
+                {
+                    npcFrames[i].GetComponent<Image>().sprite = unselected;
+                }
+                if (inventory.items[0])
+                {
+                    tooltipText.text = inventory.items[0].GetComponent<Comment>().notes;
+                }
             }
         }
     }
@@ -269,6 +318,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
+        tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
@@ -283,6 +333,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
+        tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
@@ -298,6 +349,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
+        tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
@@ -310,6 +362,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 1;
 
+        tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
@@ -325,6 +378,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 4;
 
+        tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
