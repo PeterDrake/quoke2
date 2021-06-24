@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5956442820297227916}
   - component: {fileID: 6743589005987278973}
   - component: {fileID: 1977397278823682511}
+  - component: {fileID: 3801423367088891916}
   m_Layer: 0
   m_Name: Plywood
   m_TagString: Untagged
@@ -128,7 +129,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 0e92a4083b0c14d4cb561b46c8496e29, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
   scene: 
+--- !u!114 &3801423367088891916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591080965216593091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Plywood. Watch for splinters!

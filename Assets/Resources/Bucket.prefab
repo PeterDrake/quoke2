@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4078035835725413620}
   - component: {fileID: 4078035835725413621}
   - component: {fileID: 4078035835725413626}
+  - component: {fileID: 6880314003613338174}
   m_Layer: 0
   m_Name: Bucket
   m_TagString: Untagged
@@ -128,7 +129,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 139c35d29beb0d74fadd5ec6d2ff589d, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
   scene: 
+--- !u!114 &6880314003613338174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078035835725413627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: A sturdy 5gal bucket

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6893519689133163557}
   - component: {fileID: 6893519689133163556}
   - component: {fileID: 6893519689133163555}
+  - component: {fileID: 7015640918428263132}
   m_Layer: 0
   m_Name: Dog Collar
   m_TagString: Untagged
@@ -128,7 +129,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 5f3902f12f9529545bd1f9875e49c427, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
   scene: 
+--- !u!114 &7015640918428263132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893519689133163554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Dog collar. A bit spikey

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7207739615764212762}
   - component: {fileID: 7207739615764212761}
   - component: {fileID: 7207739615764212760}
+  - component: {fileID: 6338862110415257103}
   m_Layer: 0
   m_Name: Mask
   m_TagString: Untagged
@@ -128,7 +129,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ac95458232757c7479cb471a080a6aa6, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
   scene: 
+--- !u!114 &6338862110415257103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207739615764212775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Mask. The once-elusive N95
