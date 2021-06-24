@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour
     private int waterLayer;
 
     private ReferenceManager referenceManager;
+    private Meters meters;
 
     private LatrineStorage latrineStorage;
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class Inventory : MonoBehaviour
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
@@ -142,8 +144,8 @@ public class Inventory : MonoBehaviour
                     GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
                     items[i] = null;
                     slotContents[i].SetActive(false);
-                    
-                    
+                    meters = referenceManager.metersCanvas.GetComponent<Meters>();
+                    meters.MarkTaskAsDone("water");
                     
                 }
                 else
