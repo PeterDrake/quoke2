@@ -44,7 +44,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         tooltipCanvas = referenceManager.tooltipCanvas;
-        tooltipText = tooltipCanvas.GetComponentInChildren<Text>();
+        tooltipText = tooltipCanvas.GetComponentInChildren<Text>(true);
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
@@ -187,10 +187,6 @@ public class PlayerKeyboardManager : MonoBehaviour
                 if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
                 {
                     inventory.SelectSlotNumber(i);
-                    if (inventory.items[i])
-                    {
-                        tooltipText.text = inventory.items[i].GetComponent<Comment>().notes;
-                    }
                 }
             }
         }
@@ -207,11 +203,13 @@ public class PlayerKeyboardManager : MonoBehaviour
                         else npcFrames[j].GetComponent<Image>().sprite = unselected;
                     }
                     
-                    if (npcFrames[i].GetComponentInChildren<Image>().gameObject.activeSelf)
+                    if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[i]].interracted)
                     {
+                        if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
                         tooltipText.text = GlobalControls.NPCList[npcList[i]].description;
                     }
-                    
+                    else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
             }
         }
@@ -233,10 +231,13 @@ public class PlayerKeyboardManager : MonoBehaviour
                 inventory.SelectSlotNumber(1);
 
                 npcFrames[0].GetComponent<Image>().sprite = selected;
-                if (npcFrames[0].GetComponentInChildren<Image>().gameObject.activeSelf)
+                if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[0]].interracted)
                 {
+                    if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
                     tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
                 }
+                else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
             else //if previously selected the NPCInteractedCanvas
             {
@@ -249,10 +250,6 @@ public class PlayerKeyboardManager : MonoBehaviour
                 for (int i = 0; i < validNPCInputs.Length; i++)
                 {
                     npcFrames[i].GetComponent<Image>().sprite = unselected;
-                }
-                if (inventory.items[0])
-                {
-                    tooltipText.text = inventory.items[0].GetComponent<Comment>().notes;
                 }
             }
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 public class Inventory : MonoBehaviour
@@ -27,6 +28,7 @@ public class Inventory : MonoBehaviour
     private int latrineContainerLayers;
 
     private ReferenceManager referenceManager;
+    private Text tooltipText;
 
     private LatrineStorage latrineStorage;
     // Start is called before the first frame update
@@ -38,6 +40,7 @@ public class Inventory : MonoBehaviour
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
@@ -62,6 +65,9 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
+        if (GlobalControls.TooltipsEnabled)
+            tooltipText = referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true);
+        SelectSlotNumber(0);
     }
 
     public void setAvailableSlots(int numSlots)
@@ -93,6 +99,7 @@ public class Inventory : MonoBehaviour
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        SelectSlotNumber(0);
     }
     
     
@@ -109,6 +116,13 @@ public class Inventory : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
             selectedSlotNumber = slotNumber;
         }
+        if (GlobalControls.TooltipsEnabled && items[selectedSlotNumber])
+        {
+            if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+            tooltipText.text = items[selectedSlotNumber].GetComponent<Comment>().notes;
+        }
+        else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
 
     private void DropSelectedItem()
@@ -145,7 +159,8 @@ public class Inventory : MonoBehaviour
                     // Remove item from inventory
                     items[i] = null;
                     slotContents[i].SetActive(false);
-                    
+                    //turn off tooltip
+                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
                 
             }
@@ -182,6 +197,7 @@ public class Inventory : MonoBehaviour
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
+                tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
     }
@@ -200,6 +216,7 @@ public class Inventory : MonoBehaviour
         items[i] = null;
         slotContents[i].SetActive(false);
         latrineStorage.contents = null;
+        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
     void InteractWithLatrine()
     {
@@ -277,7 +294,8 @@ public class Inventory : MonoBehaviour
             // Remove item from the world
             item.SetActive(false);
         }
-   
+        //reselect slot to current slot number to update tooltip if necessary
+        SelectSlotNumber(selectedSlotNumber);
     }
 
     /// <summary>

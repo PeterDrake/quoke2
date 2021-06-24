@@ -99,6 +99,7 @@ public class NPCInteracted : MonoBehaviour
             safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
             safiInteracted = true;
             GlobalControls.SafiInteracted = true;
+            GlobalControls.NPCList["safi0"].interracted = true;
             safiImage.SetActive(true);
             safiSatisfaction.SetActive(true);
         }
@@ -107,6 +108,7 @@ public class NPCInteracted : MonoBehaviour
             demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
             demInteracted = true;
             GlobalControls.DemInteracted = true;
+            GlobalControls.NPCList["dem0"].interracted = true;
             demImage.SetActive(true);
             demSatisfaction.SetActive(true);
         }
@@ -115,6 +117,7 @@ public class NPCInteracted : MonoBehaviour
             rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
             rainerInteracted = true;
             GlobalControls.RainerInteracted = true;
+            GlobalControls.NPCList["rainer0"].interracted = true;
             rainerImage.SetActive(true);
             rainerSatisfaction.SetActive(true);
         }
@@ -123,6 +126,7 @@ public class NPCInteracted : MonoBehaviour
             fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
             fredInteracted = true;
             GlobalControls.FredInteracted = true;
+            GlobalControls.NPCList["fred0"].interracted = true;
             fredImage.SetActive(true);
             fredSatisfaction.SetActive(true);
         }

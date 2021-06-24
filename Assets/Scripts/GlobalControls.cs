@@ -26,6 +26,7 @@ public static class GlobalControls
     private static bool demInteracted;
     private static bool rainerInteracted;
     private static bool fredInteracted;
+    private static bool tooltipsEnabled = true;
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
@@ -75,6 +76,11 @@ public static class GlobalControls
         set => isStrategicMap = value;
     }
 
+    public static bool TooltipsEnabled
+    {
+        get => tooltipsEnabled;
+        set => tooltipsEnabled = value;
+    }
 
     public static Dictionary<string, NPC> NPCList
     {

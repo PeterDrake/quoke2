@@ -62,16 +62,13 @@ public class TradeManager : MonoBehaviour
             }
         }
         
+        inventoryPlayer.SelectSlotNumber(0);
         inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
         inventoryPlayerBin.SelectSlotNumber(1);
         inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPC.SelectSlotNumber(1);
         inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPCBin.SelectSlotNumber(1);
-        if (inventoryPlayer.items[0])
-        {
-            tooltipText.text = inventoryPlayer.items[0].GetComponent<Comment>().notes;
-        }
     }
 
     /**
@@ -126,34 +123,18 @@ public class TradeManager : MonoBehaviour
         if (cursorLocation == 0)
         {
             inventoryPlayer.SelectSlotNumber(slotNumber);
-            if (inventoryPlayer.items[slotNumber])
-            {
-                tooltipText.text = inventoryPlayer.items[slotNumber].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 1)
         {
             inventoryPlayerBin.SelectSlotNumber(slotNumber);
-            if (inventoryPlayerBin.items[slotNumber])
-            {
-                tooltipText.text = inventoryPlayerBin.items[slotNumber].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 2)
         {
             inventoryNPCBin.SelectSlotNumber(slotNumber);
-            if (inventoryNPCBin.items[slotNumber])
-            {
-                tooltipText.text = inventoryNPCBin.items[slotNumber].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 3)
         {
             inventoryNPC.SelectSlotNumber(slotNumber);
-            if (inventoryNPC.items[slotNumber])
-            {
-                tooltipText.text = inventoryNPC.items[slotNumber].GetComponent<Comment>().notes;
-            }
         }
 
     }    
@@ -177,10 +158,6 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
-            if (inventoryPlayer.items[0])
-            {
-                tooltipText.text = inventoryPlayer.items[0].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 1)
         {
@@ -189,10 +166,6 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = selected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
-            if (inventoryPlayerBin.items[0])
-            {
-                tooltipText.text = inventoryPlayerBin.items[0].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 2)
         {
@@ -201,10 +174,6 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = selected;
             inventoryNPC.selectedSlotSprite = unselected;
-            if (inventoryNPCBin.items[0])
-            {
-                tooltipText.text = inventoryNPCBin.items[0].GetComponent<Comment>().notes;
-            }
         }
         else if (cursorLocation == 3)
         {
@@ -213,10 +182,6 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = selected;
-            if (inventoryNPC.items[0])
-            {
-                tooltipText.text = inventoryNPC.items[0].GetComponent<Comment>().notes;
-            }
         }
         
         //reset highlight locations (must be done to clear selected slot of past inventory
