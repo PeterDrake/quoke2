@@ -68,6 +68,10 @@ public class TradeManager : MonoBehaviour
         inventoryNPC.SelectSlotNumber(1);
         inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
         inventoryNPCBin.SelectSlotNumber(1);
+        if (inventoryPlayer.items[0])
+        {
+            tooltipText.text = inventoryPlayer.items[0].GetComponent<Comment>().notes;
+        }
     }
 
     /**
@@ -173,6 +177,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            if (inventoryPlayer.items[0])
+            {
+                tooltipText.text = inventoryPlayer.items[0].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 1)
         {
@@ -181,6 +189,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = selected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            if (inventoryPlayerBin.items[0])
+            {
+                tooltipText.text = inventoryPlayerBin.items[0].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 2)
         {
@@ -189,6 +201,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = selected;
             inventoryNPC.selectedSlotSprite = unselected;
+            if (inventoryNPCBin.items[0])
+            {
+                tooltipText.text = inventoryNPCBin.items[0].GetComponent<Comment>().notes;
+            }
         }
         else if (cursorLocation == 3)
         {
@@ -197,6 +213,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = selected;
+            if (inventoryNPC.items[0])
+            {
+                tooltipText.text = inventoryNPC.items[0].GetComponent<Comment>().notes;
+            }
         }
         
         //reset highlight locations (must be done to clear selected slot of past inventory

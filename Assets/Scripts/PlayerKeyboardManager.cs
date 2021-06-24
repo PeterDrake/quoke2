@@ -320,6 +320,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         segueCanvas.SetActive(false);
         tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
+        if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
         if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
@@ -335,6 +336,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         segueCanvas.SetActive(false);
         tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
@@ -351,6 +353,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         segueCanvas.SetActive(false);
         tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
@@ -364,6 +367,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
@@ -380,6 +384,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
