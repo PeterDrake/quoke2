@@ -60,14 +60,8 @@ public class TradeManager : MonoBehaviour
                 inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
             }
         }
-        
-        inventoryPlayer.SelectSlotNumber(0);
-        inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
-        inventoryPlayerBin.SelectSlotNumber(1);
-        inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
-        inventoryNPC.SelectSlotNumber(1);
-        inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
-        inventoryNPCBin.SelectSlotNumber(1);
+        button.interactable = false;
+        ChangeSelectedInventory(0);
     }
 
     /**
@@ -157,6 +151,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
         }
         else if (cursorLocation == 1)
         {
@@ -165,6 +163,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = selected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryPlayerBin.SelectSlotNumber(0);
         }
         else if (cursorLocation == 2)
         {
@@ -173,6 +175,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = selected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
         }
         else if (cursorLocation == 3)
         {
@@ -181,13 +187,14 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = selected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
         }
         
         //reset highlight locations (must be done to clear selected slot of past inventory
-        inventoryPlayerBin.SelectSlotNumber(0);
-        inventoryPlayer.SelectSlotNumber(0);
-        inventoryNPC.SelectSlotNumber(0);
-        inventoryNPCBin.SelectSlotNumber(0);
+        
         
         return cursorLocation;
     }

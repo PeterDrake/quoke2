@@ -70,6 +70,11 @@ public class Inventory : MonoBehaviour
         SelectSlotNumber(0);
     }
 
+    private void OnEnable()
+    {
+        SelectSlotNumber(0);
+    }
+
     public void setAvailableSlots(int numSlots)
     {
         GameObject[] tempSlotFrames = new GameObject[numSlots];
@@ -118,11 +123,12 @@ public class Inventory : MonoBehaviour
         }
         if (GlobalControls.TooltipsEnabled && items[selectedSlotNumber])
         {
-            if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
-                tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
-            tooltipText.text = items[selectedSlotNumber].GetComponent<Comment>().notes;
+            if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
+                referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
+            referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = items[selectedSlotNumber].GetComponent<Comment>().notes;
         }
-        else if(tooltipText.gameObject.activeSelf) tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+        else if(referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf) 
+            referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
     }
 
     private void DropSelectedItem()
