@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6010604910718799546}
   - component: {fileID: 6010604910718799545}
   - component: {fileID: 6010604910718799544}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,6 +128,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 29c8e615133e09f42b933416a3320bd7, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
