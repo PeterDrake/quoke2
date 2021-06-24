@@ -323,21 +323,25 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void PickUpOrDrop()
     {
-        GameObject container = player.ObjectAhead(storageContainerLayers);
-        GameObject latrine = player.ObjectAhead(latrineContainerLayers);
-        if (container) {
-            InteractWithStorageContainer(container.GetComponent<StorageContainer>());
-        }
-        else if (latrine)
+        if (!SceneManager.GetActiveScene().name.Equals("GameEnd"))
         {
-            InteractWithLatrine();
-            Debug.Log("Interacting with latrine");
+            GameObject container = player.ObjectAhead(storageContainerLayers);
+            GameObject latrine = player.ObjectAhead(latrineContainerLayers);
+            if (container)
+            {
+                InteractWithStorageContainer(container.GetComponent<StorageContainer>());
+            }
+            else if (latrine)
+            {
+                InteractWithLatrine();
+                Debug.Log("Interacting with latrine");
+            }
+            //check if the player is in front of the latrine
+
+
+
+            DropSelectedItem();
         }
-        //check if the player is in front of the latrine
-        
-        
-        
-        DropSelectedItem();
     }
 
     
