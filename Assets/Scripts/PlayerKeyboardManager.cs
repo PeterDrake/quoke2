@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles keyboard input related to moving the player.
@@ -25,7 +27,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-
+    private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
+    private readonly string[] npcList = {"Safi", "Dem", "Rainer", "Fred"};
+    private GameObject[] npcFrames = new GameObject[4];
+    
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -39,6 +44,14 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
         cursorLocation = 0;
+
+        foreach (Image image in npcInteractedCanvas.GetComponentsInChildren<Image>(true))
+        {
+            if (image.gameObject.name.Equals("Safi Frame")) npcFrames[0] = image.gameObject;
+            if (image.gameObject.name.Equals("Dem Frame")) npcFrames[0] = image.gameObject;
+            if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[0] = image.gameObject;
+            if (image.gameObject.name.Equals("Fred Frame")) npcFrames[0] = image.gameObject;
+        }
         
         
         //Handle start of scene things
@@ -160,14 +173,39 @@ public class PlayerKeyboardManager : MonoBehaviour
         // Select from inventory (1-9)
         for (int i = 0; i < validInputs.Length; i++)
         {
-            if (inventory && Input.GetKey(validInputs[i]))
+            if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
             {
                 inventory.SelectSlotNumber(i);
             }
+            else if (npcInteractedCanvas.activeSelf && cursorLocation == 1 && Input.GetKey(validNPCInputs[i]))
+            {
+                
+            }
         }
-        if (inventory && Input.GetKeyDown(KeyCode.Space))
+        if (inventory && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
+        }
+
+
+        if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(",") || Input.GetKeyDown(".")))
+        {
+            if (cursorLocation == 0) //if previously selected the inventory
+            {
+                cursorLocation = 1;
+                
+                //Update to show NPCInteractedCanvas selected
+                inventory.selectedSlotSprite = Resources.Load<Sprite>("UnselectedSlot 1");
+                inventory.SelectSlotNumber(1);
+            }
+            else //if previously selected the NPCInteractedCanvas
+            {
+                cursorLocation = 0;
+                
+                //Update to show Inventory selected
+                inventory.selectedSlotSprite = Resources.Load<Sprite>("SelectedSlot 1");
+                inventory.SelectSlotNumber(0);
+            }
         }
     }
     
@@ -226,6 +264,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     
     public void SetExploring()
     {
+        cursorLocation = 0;
         gamemode = 3;
         
         deathCanvas.SetActive(false);
