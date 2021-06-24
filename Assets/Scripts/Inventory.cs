@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
     private int storageContainerLayers;
     private int latrineContainerLayers;
+    private int waterLayer;
 
     private ReferenceManager referenceManager;
 
@@ -60,6 +61,7 @@ public class Inventory : MonoBehaviour
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
+        waterLayer = LayerMask.GetMask("Water");
     }
 
     private void Start()
@@ -137,7 +139,6 @@ public class Inventory : MonoBehaviour
                         latrineStorage.shovelingDone = false;
                     }
                 }
-                // TODO: Check if the item we dropped is the water bottle
                 else if (items[i].name.Equals("Water Bottle(Clone)"))
                 {
                     Debug.Log("Dropped water bottle");
@@ -146,9 +147,12 @@ public class Inventory : MonoBehaviour
                 }
                 else if (items[i].name.Equals("Chlorine Tablet(Clone)") && waterBottleDropped)
                 {
-                    Debug.Log("Dropping Chlorine when bottle has been dropped");
-                    
-                    //TODO: check if the water bottle and chlorine have the same position
+                    if (player.ObjectAhead(waterLayer))
+                    {
+                        
+                        Debug.Log("Water bottle ahead. Dropping chlorine tablet");
+                    }
+
                 }
                 
                 // Place item in front of player
