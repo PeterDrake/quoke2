@@ -208,7 +208,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void removeLatrineItem(int i)
+    void RemoveLatrineItem(int i)
     {
         latrineStorage.contents = items[i];
         items[i].SetActive(true);
@@ -253,17 +253,17 @@ public class Inventory : MonoBehaviour
                         //When you try to dig
                         break;
                     case 2:
-                        removeLatrineItem(i);
+                        RemoveLatrineItem(i);
                         latrineStorage.plywoodDone = true;
                         Debug.Log("Plywood Complete");
                         break;
                     case 3:
-                        removeLatrineItem(i);
+                        RemoveLatrineItem(i);
                         latrineStorage.ropeDone = true;
                         Debug.Log("Rope Complete");
                         break;
                     case 4:
-                        removeLatrineItem(i);
+                        RemoveLatrineItem(i);
                         latrineStorage.tarpDone = true;
                         Debug.Log("Tarp Complete");
                         latrineStorage.LatrineComplete();
