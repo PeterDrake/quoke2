@@ -147,6 +147,14 @@ public class Inventory : MonoBehaviour
                     meters = referenceManager.metersCanvas.GetComponent<Meters>();
                     meters.MarkTaskAsDone("water");
                     
+                    GlobalItemList.UpdateItemList("Water Bottle", "", new Vector3(0,0,0), "");
+                    GameObject.Find("Water Bottle(Clone)").SetActive(false);
+                    GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
+                        player.destination.transform.position + player.transform.forward, "");
+                    
+                    GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
+                    GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward , Quaternion.identity);
+
                 }
                 else
                 {
