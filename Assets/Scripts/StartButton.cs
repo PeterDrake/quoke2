@@ -21,7 +21,7 @@ public class StartButton : MonoBehaviour
         }
         else if (currentScene.Equals("GameEnd") && Input.GetKeyDown("space"))
         {
-            GameObject.Find("Scene Management").GetComponent<SceneManagement>().ChangeScene("TitleScreen");
+            GameObject.Find("Scene Management").GetComponent<SceneManagement>().Restart();
         }
         
     }
