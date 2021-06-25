@@ -109,7 +109,8 @@ public class SceneManagement : MonoBehaviour
                 GameObject item = container.contents;
                 if (item)
                 {
-                    GlobalItemList.UpdateItemList(item.name, "Street", item.transform.position, container.name);
+                    GlobalItemList.UpdateItemList(item.name, "Street", 
+                        new Vector3(item.transform.position.x + 9,item.transform.position.y,item.transform.position.z - 16), container.name);
                 }
             }
         }
