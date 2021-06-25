@@ -29,6 +29,8 @@ public static class GlobalControls
     private static bool fredInteracted;
     private static bool tooltipsEnabled = true;
 
+    private static bool apartmentCondition;
+
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
         {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
@@ -72,6 +74,13 @@ public static class GlobalControls
         fredInteracted = false;
         adminMode = true;
     }
+    
+    public static bool ApartmentCondition
+    {
+        get => apartmentCondition;
+        set => apartmentCondition = value;
+    }
+    
     public static bool IsStrategicMap
     {
         get => isStrategicMap;

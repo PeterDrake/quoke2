@@ -11,6 +11,16 @@ public class ItemLoader : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        {
+            foreach (Item item in GlobalItemList.ItemList.Values)
+            {
+                if (item.scene.Equals("PreQuakeHouse"))
+                {
+                    GlobalItemList.UpdateItemList(item.name, "PreQuakeApartment", item.location, item.containerName);
+                }
+            }
+        }
         
         GameObject g = GameObject.FindWithTag("Inventory");
         if (g)
