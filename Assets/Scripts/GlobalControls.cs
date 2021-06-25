@@ -30,13 +30,13 @@ public static class GlobalControls
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
-        {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 
+        {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
             0, false, "Safi needs a Dog Collar")},
-        {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
+        {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
             0, false, "Demitrius needs a Can Opener and Mask")},
-        {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 
+        {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
             0, false, "Fred needs a Wrench")},
-        {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0",
+        {"rainer0", new NPC("Rainer", "School", new List<string>{"Bucket"}, "rainer0",
             0, false, "Rainer needs a Bucket")},
     };
 
@@ -45,13 +45,13 @@ public static class GlobalControls
     {
         npcList = new Dictionary<string, NPC>
         {
-            {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 
+            {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
                 0, false, "Safi needs a Dog Collar")},
-            {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
+            {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
                 0, false, "Demitrius needs a Can Opener and Mask")},
-            {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 
+            {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
                 0, false, "Fred needs a Wrench")},
-            {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0",
+            {"rainer0", new NPC("Rainer", "School", new List<string>{"Bucket"}, "rainer0",
                 0, false, "Rainer needs a Bucket")},
         };
         metersEnabled = true;
