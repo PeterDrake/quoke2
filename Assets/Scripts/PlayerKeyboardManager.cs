@@ -69,16 +69,17 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventoryInScene = false;
             SetExploring();
         }
-        if (SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        else if (SceneManager.GetActiveScene().name.Equals("QuakeHouse") || SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
         {
             inventoryInScene = false;
             SetSegue();
         }
-        else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
+        else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
             SetExploring();
+            npcInteractedCanvas.SetActive(false);
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
