@@ -10,8 +10,9 @@ public class NPC
     public string node;
     public int satisfaction;
     public bool interracted;
+    public string description;
 
-    public NPC(string name, string scene, List<string> needs, string node, int satisfaction, bool interracted)
+    public NPC(string name, string scene, List<string> needs, string node, int satisfaction, bool interracted, string description)
     {
         this.name = name;
         this.scene = scene;
@@ -19,5 +20,6 @@ public class NPC
         this.node = node;
         this.satisfaction = satisfaction;
         this.interracted = interracted;
+        this.description = description;
     }
 }

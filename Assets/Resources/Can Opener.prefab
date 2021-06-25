@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7207739615764212762}
   - component: {fileID: 7207739615764212761}
   - component: {fileID: 7207739615764212760}
+  - component: {fileID: 5693870026018699498}
   m_Layer: 0
   m_Name: Can Opener
   m_TagString: Untagged
@@ -128,7 +129,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6dea6acf4cff960419e2e94a5d4ee955, type: 3}
   inventory: {fileID: 0}
   inStorageContainer: 0
+  inLatrine: 0
   location: {x: 0, y: 0, z: 0}
   itemName: 
   prefab: 
   scene: 
+--- !u!114 &5693870026018699498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207739615764212775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Can opener. Open those cans!

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles keyboard input related to moving the player.
@@ -20,12 +22,19 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject segueCanvas;
     private GameObject npcInteractedCanvas;
     private GameObject metersCanvas;
+    private GameObject tooltipCanvas;
+    private Text tooltipText;
 
     private int cursorLocation;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-
+    private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
+    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "fred0"};
+    private readonly GameObject[] npcFrames = new GameObject[4];
+    private Sprite unselected;
+    private Sprite selected;
+    
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -34,11 +43,24 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        tooltipCanvas = referenceManager.tooltipCanvas;
+        tooltipText = tooltipCanvas.GetComponentInChildren<Text>(true);
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
         cursorLocation = 0;
+        
+        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
+        selected = Resources.Load<Sprite>("SelectedSlot 1");
+
+        foreach (Image image in npcInteractedCanvas.GetComponentsInChildren<Image>(true))
+        {
+            if (image.gameObject.name.Equals("Safi Frame")) npcFrames[0] = image.gameObject;
+            if (image.gameObject.name.Equals("Dem Frame")) npcFrames[1] = image.gameObject;
+            if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
+            if (image.gameObject.name.Equals("Fred Frame")) npcFrames[3] = image.gameObject;
+        }
         
         
         //Handle start of scene things
@@ -54,7 +76,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
         {
-            inventory.setAvailableSlots(1);
+            if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
+            inventory.SetAvailableSlots(1);
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
@@ -158,16 +181,78 @@ public class PlayerKeyboardManager : MonoBehaviour
             
             
         // Select from inventory (1-9)
-        for (int i = 0; i < validInputs.Length; i++)
+        if (cursorLocation == 0)
         {
-            if (inventory && Input.GetKey(validInputs[i]))
+            for (int i = 0; i < validInputs.Length; i++)
             {
-                inventory.SelectSlotNumber(i);
+                if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
+                {
+                    inventory.SelectSlotNumber(i);
+                }
             }
         }
-        if (inventory && Input.GetKeyDown(KeyCode.Space))
+
+        if (cursorLocation == 1 && npcInteractedCanvas.activeSelf)
+        {
+            for (int i = 0; i < validNPCInputs.Length; i++)
+            {
+                if (npcInteractedCanvas.activeSelf && cursorLocation == 1 && Input.GetKey(validNPCInputs[i]))
+                {
+                    for (int j = 0; j < validNPCInputs.Length; j++)
+                    {
+                        if(j == i) npcFrames[j].GetComponent<Image>().sprite = selected;
+                        else npcFrames[j].GetComponent<Image>().sprite = unselected;
+                    }
+                    
+                    if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[i]].interracted)
+                    {
+                        if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+                        tooltipText.text = GlobalControls.NPCList[npcList[i]].description;
+                    }
+                    else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                }
+            }
+        }
+        
+        if (inventory && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
+        }
+
+
+        if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(",") || Input.GetKeyDown(".")))
+        {
+            if (cursorLocation == 0) //if previously selected the inventory
+            {
+                cursorLocation = 1;
+                
+                //Update to show NPCInteractedCanvas selected
+                inventory.selectedSlotSprite = unselected;
+                inventory.SelectSlotNumber(1);
+
+                npcFrames[0].GetComponent<Image>().sprite = selected;
+                if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[0]].interracted)
+                {
+                    if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+                    tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
+                }
+                else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+            }
+            else //if previously selected the NPCInteractedCanvas
+            {
+                cursorLocation = 0;
+                
+                //Update to show Inventory selected
+                inventory.selectedSlotSprite = selected;
+                inventory.SelectSlotNumber(0);
+                
+                for (int i = 0; i < validNPCInputs.Length; i++)
+                {
+                    npcFrames[i].GetComponent<Image>().sprite = unselected;
+                }
+            }
         }
     }
     
@@ -231,10 +316,26 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
-        if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
+        if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.npcInteractedCanvas.SetActive(true);
+        if (inventoryInScene)
+        {
+            referenceManager.tooltipCanvas.SetActive(true);
+            referenceManager.inventoryCanvas.SetActive(true);
+            referenceManager.npcInteractedCanvas.SetActive(true);
+            
+            cursorLocation = 0;
+                
+            //Update to show Inventory selected
+            inventory.selectedSlotSprite = selected;
+            inventory.SelectSlotNumber(0);
+                
+            for (int i = 0; i < validNPCInputs.Length; i++)
+            {
+                npcFrames[i].GetComponent<Image>().sprite = unselected;
+            }
+        }
     }
 
     public void SetConversing()
@@ -244,7 +345,9 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
@@ -259,7 +362,9 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
@@ -271,7 +376,9 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 1;
 
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
@@ -286,7 +393,9 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 4;
 
+        referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
+        referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 public class Inventory : MonoBehaviour
@@ -28,6 +29,7 @@ public class Inventory : MonoBehaviour
     private int waterLayer;
 
     private ReferenceManager referenceManager;
+    private Text tooltipText;
     private Meters meters;
 
     private LatrineStorage latrineStorage;
@@ -66,14 +68,22 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
+        if (GlobalControls.TooltipsEnabled)
+            tooltipText = referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true);
+        SelectSlotNumber(0);
     }
 
-    public void setAvailableSlots(int numSlots)
+    private void OnEnable()
+    {
+        if(items.Length > 0) SelectSlotNumber(0);
+    }
+
+    public void SetAvailableSlots(int numSlots)
     {
         GameObject[] tempSlotFrames = new GameObject[numSlots];
         GameObject[] tempItems = new GameObject[numSlots];
         GameObject[] tempSlotContents = new GameObject[numSlots];
-
+        
         for (int i = 0; i < numSlots; i++)
         {
             tempItems[i] = items[i];
@@ -97,6 +107,7 @@ public class Inventory : MonoBehaviour
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        SelectSlotNumber(0);
     }
     
     
@@ -113,6 +124,14 @@ public class Inventory : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
             selectedSlotNumber = slotNumber;
         }
+        if (GlobalControls.TooltipsEnabled && items[selectedSlotNumber])
+        {
+            if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
+                referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
+            referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = items[selectedSlotNumber].GetComponent<Comment>().notes;
+        }
+        else if(referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf) 
+            referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
     }
 
     private void DropSelectedItem()
@@ -167,7 +186,9 @@ public class Inventory : MonoBehaviour
                     // Remove item from inventory
                     items[i] = null;
                     slotContents[i].SetActive(false);
-                    
+                    //turn off tooltip
+                    if (tooltipText.gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
                 
             }
@@ -204,6 +225,8 @@ public class Inventory : MonoBehaviour
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
+                if (tooltipText.gameObject.activeSelf)
+                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
     }
@@ -222,6 +245,8 @@ public class Inventory : MonoBehaviour
         items[i] = null;
         slotContents[i].SetActive(false);
         latrineStorage.contents = null;
+        if (tooltipText.gameObject.activeSelf)
+            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
     void InteractWithLatrine()
     {
@@ -299,7 +324,8 @@ public class Inventory : MonoBehaviour
             // Remove item from the world
             item.SetActive(false);
         }
-   
+        //reselect slot to current slot number to update tooltip if necessary
+        SelectSlotNumber(selectedSlotNumber);
     }
 
     /// <summary>
@@ -323,21 +349,25 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void PickUpOrDrop()
     {
-        GameObject container = player.ObjectAhead(storageContainerLayers);
-        GameObject latrine = player.ObjectAhead(latrineContainerLayers);
-        if (container) {
-            InteractWithStorageContainer(container.GetComponent<StorageContainer>());
-        }
-        else if (latrine)
+        if (!SceneManager.GetActiveScene().name.Equals("GameEnd"))
         {
-            InteractWithLatrine();
-            Debug.Log("Interacting with latrine");
+            GameObject container = player.ObjectAhead(storageContainerLayers);
+            GameObject latrine = player.ObjectAhead(latrineContainerLayers);
+            if (container)
+            {
+                InteractWithStorageContainer(container.GetComponent<StorageContainer>());
+            }
+            else if (latrine)
+            {
+                InteractWithLatrine();
+                Debug.Log("Interacting with latrine");
+            }
+            //check if the player is in front of the latrine
+
+
+
+            DropSelectedItem();
         }
-        //check if the player is in front of the latrine
-        
-        
-        
-        DropSelectedItem();
     }
 
     
