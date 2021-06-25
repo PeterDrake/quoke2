@@ -18,6 +18,7 @@ public static class GlobalControls
     private static bool waterTaskCompleted = false;
     private static int currentScene;
     private static bool isStrategicMap;
+    private static bool adminMode = true;
 
     private static int turnNumber = 0;
     private static string currentNPC;
@@ -69,6 +70,7 @@ public static class GlobalControls
         demInteracted = false;
         rainerInteracted = false;
         fredInteracted = false;
+        adminMode = true;
     }
     public static bool IsStrategicMap
     {
@@ -80,6 +82,12 @@ public static class GlobalControls
     {
         get => tooltipsEnabled;
         set => tooltipsEnabled = value;
+    }
+    
+    public static bool AdminMode
+    {
+        get => adminMode;
+        set => adminMode = value;
     }
 
     public static Dictionary<string, NPC> NPCList

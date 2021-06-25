@@ -13,7 +13,6 @@ public class QuakeManager : MonoBehaviour
     public QuakeSafeZoneManager quakeSafeZoneManager;
 
     [Header("Admin Tools")]
-    [SerializeField] private bool adminMode = true;
     [SerializeField] private bool showCountdown = true;
 
 
@@ -88,7 +87,6 @@ public class QuakeManager : MonoBehaviour
         playerDeathScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>();
         playerMoverScript = GameObject.Find("Managers").GetComponent<ReferenceManager>().player.GetComponent<PlayerMover>();
         
-
         doors = GameObject.FindGameObjectsWithTag("Door");
         bodies = Array.ConvertAll(doors, d => d.GetComponent(typeof(Rigidbody)) as Rigidbody);
         clobberers = Array.ConvertAll(doors, d => d.transform.gameObject.GetComponent(typeof(Clobberer)) as Clobberer);
