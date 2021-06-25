@@ -18,6 +18,7 @@ public static class GlobalControls
     private static bool waterTaskCompleted = false;
     private static int currentScene;
     private static bool isStrategicMap;
+    private static bool adminMode = true;
 
     private static int turnNumber = 0;
     private static string currentNPC;
@@ -26,13 +27,18 @@ public static class GlobalControls
     private static bool demInteracted;
     private static bool rainerInteracted;
     private static bool fredInteracted;
+    private static bool tooltipsEnabled = true;
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {
-        {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 0, false)},
-        {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 0, false)},
-        {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0, false)},
-        {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0", 0, false)},
+        {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
+            0, false, "Safi needs a Dog Collar")},
+        {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
+            0, false, "Demitrius needs a Can Opener and Mask")},
+        {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
+            0, false, "Fred needs a Wrench")},
+        {"rainer0", new NPC("Rainer", "School", new List<string>{"Bucket"}, "rainer0",
+            0, false, "Rainer needs a Bucket")},
     };
 
 
@@ -40,10 +46,14 @@ public static class GlobalControls
     {
         npcList = new Dictionary<string, NPC>
         {
-            {"safi0", new NPC("safi0", "Park", new List<string>{"Dog Collar"}, "safi0", 0, false)},
-            {"dem0", new NPC("dem0", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 0, false)},
-            {"fred0", new NPC("fred0", "School", new List<string>{"Wrench"}, "fred0", 0, false)},
-            {"rainer0", new NPC("rainer0", "School", new List<string>{"Bucket"}, "rainer0", 0, false)},
+            {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
+                0, false, "Safi needs a Dog Collar")},
+            {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
+                0, false, "Demitrius needs a Can Opener and Mask")},
+            {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
+                0, false, "Fred needs a Wrench")},
+            {"rainer0", new NPC("Rainer", "School", new List<string>{"Bucket"}, "rainer0",
+                0, false, "Rainer needs a Bucket")},
         };
         metersEnabled = true;
         poopTimeLeft = 24;
@@ -60,6 +70,7 @@ public static class GlobalControls
         demInteracted = false;
         rainerInteracted = false;
         fredInteracted = false;
+        adminMode = true;
     }
     public static bool IsStrategicMap
     {
@@ -67,6 +78,17 @@ public static class GlobalControls
         set => isStrategicMap = value;
     }
 
+    public static bool TooltipsEnabled
+    {
+        get => tooltipsEnabled;
+        set => tooltipsEnabled = value;
+    }
+    
+    public static bool AdminMode
+    {
+        get => adminMode;
+        set => adminMode = value;
+    }
 
     public static Dictionary<string, NPC> NPCList
     {

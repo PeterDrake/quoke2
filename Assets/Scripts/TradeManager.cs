@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /**
@@ -23,6 +25,7 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryNPCBin;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private Text tooltipText;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -59,48 +62,14 @@ public class TradeManager : MonoBehaviour
                 inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
             }
         }
-        
-        inventoryPlayerBin.selectedSlotSprite = inventoryPlayerBin.unselectedSlotSprite;
-        inventoryPlayerBin.SelectSlotNumber(1);
-        inventoryNPC.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
-        inventoryNPC.SelectSlotNumber(1);
-        inventoryNPCBin.selectedSlotSprite = inventoryNPCBin.unselectedSlotSprite;
-        inventoryNPCBin.SelectSlotNumber(1);
+        button.interactable = false;
+        ChangeSelectedInventory(0);
     }
-
-    /**
-     * returns false if not enough inventory
-     */
-    public bool CompleteTrade()
+    
+    public void CompleteTrade()
     {
-        int[] numContents = new int[] {0,5,5,0};
-        for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
-        {
-            if (!inventoryPlayer.slotContents[i].activeSelf)
-            {
-                numContents[0]++;
-            }
-            if (!inventoryPlayerBin.slotContents[i].activeSelf)
-            {
-                numContents[1]--; //number items
-            }
-            if (!inventoryNPCBin.slotContents[i].activeSelf)
-            {
-                numContents[2]--; //number items
-            }
-            if (!inventoryNPC.slotContents[i].activeSelf)
-            {
-                numContents[3]++;
-            }
-        }
-
-        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
-        {
-            Debug.Log("Not Enough Inventory to complete trade!");
-            button.interactable = false;
-            return false;
-        }
-
+        //StartCoroutine(SelectButton());
+        button.Select();
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
             if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
@@ -109,11 +78,20 @@ public class TradeManager : MonoBehaviour
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
         }
-        button.Select();
         button.interactable = false;
-        return true;
     }
 
+    private IEnumerator SelectButton()
+    {
+        button.Select();
+        yield return new WaitForSeconds(0.1f);
+        
+        button.interactable = false;
+        button.interactable = true;
+        yield return new WaitForSeconds(0.1f);
+        button.interactable = false;
+    }
+    
     public void SelectSlot(int location, int slotNumber)
     {
         this.cursorLocation = location;
@@ -155,6 +133,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
         }
         else if (cursorLocation == 1)
         {
@@ -163,6 +145,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = selected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryPlayerBin.SelectSlotNumber(0);
         }
         else if (cursorLocation == 2)
         {
@@ -171,6 +157,10 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = selected;
             inventoryNPC.selectedSlotSprite = unselected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
         }
         else if (cursorLocation == 3)
         {
@@ -179,13 +169,14 @@ public class TradeManager : MonoBehaviour
             inventoryPlayerBin.selectedSlotSprite = unselected;
             inventoryNPCBin.selectedSlotSprite = unselected;
             inventoryNPC.selectedSlotSprite = selected;
+            inventoryPlayerBin.SelectSlotNumber(0);
+            inventoryPlayer.SelectSlotNumber(0);
+            inventoryNPCBin.SelectSlotNumber(0);
+            inventoryNPC.SelectSlotNumber(0);
         }
         
         //reset highlight locations (must be done to clear selected slot of past inventory
-        inventoryPlayerBin.SelectSlotNumber(0);
-        inventoryPlayer.SelectSlotNumber(0);
-        inventoryNPC.SelectSlotNumber(0);
-        inventoryNPCBin.SelectSlotNumber(0);
+        
         
         return cursorLocation;
     }
@@ -219,6 +210,15 @@ public class TradeManager : MonoBehaviour
                 {
                     GlobalControls.NPCList[npcName].satisfaction++;
                     Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.NPCList[npcName].satisfaction);
+                    if (GlobalControls.NPCList[npcName].needs.Count == GlobalControls.NPCList[npcName].satisfaction)
+                        GlobalControls.NPCList[npcName].description = GlobalControls.NPCList[npcName].name + " is happy and needs nothing more";
+                    else
+                    {
+                        string description = GlobalControls.NPCList[npcName].description;
+                        description = description.Replace(inventoryNPC.items[i].name,"").Trim();
+                        description = description.Replace("and","").Trim();
+                        GlobalControls.NPCList[npcName].description = description;
+                    }
                 }
                 
                 GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
@@ -300,6 +300,11 @@ public class TradeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// returns false if no items offered, not enough inventory, NPC offered need, incorrect number of items offered.
+    /// Returns true if Exact :1 of unneeded items, or Exact 1:2 if 1 is item NPC needs.
+    /// </summary>
+    /// <returns></returns>
     public bool CheckValidTrade()
     {
         List<string> npcOffers = new List<string>(); //list of names of items NPC offered
@@ -315,10 +320,37 @@ public class TradeManager : MonoBehaviour
         {
             if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
         }
-
         
         //will not trade nothing
         if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
+        
+        //Will not trade if not enough inventory
+        int[] numContents = new int[] {0,5,5,0};
+        for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
+        {
+            if (!inventoryPlayer.slotContents[i].activeSelf)
+            {
+                numContents[0]++;
+            }
+            if (!inventoryPlayerBin.slotContents[i].activeSelf)
+            {
+                numContents[1]--; //number items
+            }
+            if (!inventoryNPCBin.slotContents[i].activeSelf)
+            {
+                numContents[2]--; //number items
+            }
+            if (!inventoryNPC.slotContents[i].activeSelf)
+            {
+                numContents[3]++;
+            }
+        }
+
+        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
+        {
+            Debug.Log("Not Enough Inventory to complete trade!");
+            return false;
+        }
         
         //will not trade away item they need
         foreach (string need in GlobalControls.NPCList[npcName].needs)
@@ -329,10 +361,10 @@ public class TradeManager : MonoBehaviour
 
         //give extra items if player offered items they need
         if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
-        
+
         //1:1 for anything else
-        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0 ) return true;
-        
+        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0) return true;
+
         //If none of the above, not valid trade.
         return false;
     }
