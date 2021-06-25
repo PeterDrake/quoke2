@@ -25,7 +25,7 @@ public class ItemLoader : MonoBehaviour
 
         foreach (Item item in itemsToChange)
         {
-            GlobalItemList.UpdateItemList(item.name, "PreQuakeApartment", item.location, item.containerName);
+            GlobalItemList.UpdateItemList(item.name, "PreQuakeApartment", new Vector3(item.location.x - 2, item.location.y, item.location.z), item.containerName);
         }
         GameObject g = GameObject.FindWithTag("Inventory");
         if (g)
