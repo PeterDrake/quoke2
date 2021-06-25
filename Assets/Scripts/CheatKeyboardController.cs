@@ -76,6 +76,12 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
                 sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
             }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.ApartmentCondition + 
+                          " to " + !GlobalControls.ApartmentCondition);
+                GlobalControls.ApartmentCondition = !GlobalControls.ApartmentCondition;
+            }
         }
     }
 }
