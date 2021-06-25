@@ -311,18 +311,31 @@ public class PlayerKeyboardManager : MonoBehaviour
     
     public void SetExploring()
     {
-        cursorLocation = 0;
         gamemode = 3;
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        if(inventoryInScene) referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
-        if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        if(inventoryInScene) referenceManager.npcInteractedCanvas.SetActive(true);
+        if (inventoryInScene)
+        {
+            referenceManager.tooltipCanvas.SetActive(true);
+            referenceManager.inventoryCanvas.SetActive(true);
+            referenceManager.npcInteractedCanvas.SetActive(true);
+            
+            cursorLocation = 0;
+                
+            //Update to show Inventory selected
+            inventory.selectedSlotSprite = selected;
+            inventory.SelectSlotNumber(0);
+                
+            for (int i = 0; i < validNPCInputs.Length; i++)
+            {
+                npcFrames[i].GetComponent<Image>().sprite = unselected;
+            }
+        }
     }
 
     public void SetConversing()
