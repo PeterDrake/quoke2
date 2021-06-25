@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour
         player = referenceManager.player.GetComponent<PlayerMover>();
     }
 
-    public void setAvailableSlots(int numSlots)
+    public void SetAvailableSlots(int numSlots)
     {
         GameObject[] tempSlotFrames = new GameObject[numSlots];
         GameObject[] tempItems = new GameObject[numSlots];

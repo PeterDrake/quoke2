@@ -54,7 +54,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
         {
-            inventory.setAvailableSlots(1);
+            inventory.SetAvailableSlots(1);
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
