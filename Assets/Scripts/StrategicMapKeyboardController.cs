@@ -11,6 +11,29 @@ public class StrategicMapKeyboardController : MonoBehaviour
     
     private void Start()
     {
+        if (!GlobalControls.ApartmentCondition)
+        {
+            Transform[] children = GameObject.Find("Locations").GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in children)
+            {
+                if(child.gameObject.name.Equals("Street Marker")) child.gameObject.SetActive(false);
+                else if(child.gameObject.name.Equals("Street Text")) child.gameObject.SetActive(false);
+                else if(child.gameObject.name.Equals("Yard Marker")) child.gameObject.SetActive(true);
+                else if(child.gameObject.name.Equals("Yard Text")) child.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            Transform[] children = GameObject.Find("Locations").GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in children)
+            {
+                if(child.gameObject.name.Equals("Yard Marker")) child.gameObject.SetActive(false);
+                else if(child.gameObject.name.Equals("Yard Text")) child.gameObject.SetActive(false);
+                else if(child.gameObject.name.Equals("Street Marker")) child.gameObject.SetActive(true);
+                else if(child.gameObject.name.Equals("Street Text")) child.gameObject.SetActive(true);
+            }
+        }
+        
         // Set the player location to the scene we just left
         playerLocation = GlobalControls.CurrentScene;
         if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 2)
@@ -19,11 +42,21 @@ public class StrategicMapKeyboardController : MonoBehaviour
         }
 
         ReferenceManager references = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-
-        locations = new []
+        if (!GlobalControls.ApartmentCondition)
         {
-            GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker")
-        };
+            locations = new []
+            {
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker")
+            };
+        }
+        else
+        {
+            locations = new []
+            {
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Street Marker")
+            };
+        }
+        
         player = references.player;
         references.deathCanvas.SetActive(false);
         references.segueCanvas.SetActive(false);

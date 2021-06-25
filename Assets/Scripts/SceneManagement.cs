@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 
 {
-    private readonly string[] previousScenes = {"School", "Park", "Yard"};
+    private string[] previousScenes;
+
+    private void Start()
+    {
+        if(GlobalControls.ApartmentCondition) previousScenes = new []{"School", "Park", "Street"};
+        else previousScenes = new []{"School", "Park", "Yard"};
+    }
 
     public void Restart()
     {
