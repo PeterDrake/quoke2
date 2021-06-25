@@ -14,8 +14,46 @@ public static class GlobalItemList
 
     static GlobalItemList()
     {
+        if (GlobalControls.ApartmentCondition)
+        {
+            itemList = new Dictionary<string, Item>
+            {
+                {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
+                    "PreQuakeHouse", "")},
+                {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
+                    "PreQuakeHouse", "")},
+                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
+                    "", "")},
+                {"Sandwich", new Item(new Vector3(3.5f,0.5f,3.5f), "Sandwich", 
+                    "PreQuakeHouse", "")},
+                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
+                    "PreQuakeHouse", "")},
+                {"Bucket", new Item(new Vector3(0,0f,0), "Bucket", 
+                    "Inventory", "safi0")},
+                {"Mask", new Item(new Vector3(1, 0, 0), "Mask", 
+                    "Inventory", "safi0")},
+                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips", 
+                    "Inventory", "dem0")},
+                {"Tarp", new Item(new Vector3(1,0f,0), "Tarp", 
+                    "Inventory", "dem0")},
+                {"Bag", new Item(new Vector3(2,0f,0), "Bag", 
+                    "Inventory", "dem0")},
+                {"Dog Collar", new Item(new Vector3(3,0f,0), "Dog Collar", 
+                    "Inventory", "dem0")},
+                {"Bucket 2", new Item(new Vector3(0,0f,0), "Bucket 2", 
+                    "Inventory", "rainer0")},
+                {"Wrench", new Item(new Vector3(1,0f,0), "Wrench", 
+                    "Inventory", "rainer0")},
+                {"Chlorine Tablet", new Item(new Vector3(0,0f,0), "Chlorine Tablet", 
+                    "Inventory", "fred0")},
+                {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
+                    "Inventory", "fred0")},
+                {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                    "School", "")},
+            };
+        }
         //ihateuevenmorethanididbeforeuhavenoideahowmuchihateu
-        itemList = new Dictionary<string, Item>
+        else itemList = new Dictionary<string, Item>
         {
             {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
                 "PreQuakeHouse", "")},
@@ -47,10 +85,8 @@ public static class GlobalItemList
                 "Inventory", "fred0")},
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
-            {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
-                "NONE", "")},
-            {"Burger", new Item(new Vector3(2,0,0), "Burger", 
-                "NONE", "")},
+            {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                "School", "")},
         };
     }
 
@@ -63,7 +99,46 @@ public static class GlobalItemList
 
     public static void Reset()
     {
-        itemList = new Dictionary<string, Item>
+        if (GlobalControls.ApartmentCondition)
+        {
+            itemList = new Dictionary<string, Item>
+            {
+                {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
+                    "PreQuakeHouse", "")},
+                {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
+                    "PreQuakeHouse", "")},
+                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
+                    "", "")},
+                {"Sandwich", new Item(new Vector3(3.5f,0.5f,3.5f), "Sandwich", 
+                    "PreQuakeHouse", "")},
+                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
+                    "PreQuakeHouse", "")},
+                {"Bucket", new Item(new Vector3(0,0f,0), "Bucket", 
+                    "Inventory", "safi0")},
+                {"Mask", new Item(new Vector3(1, 0, 0), "Mask", 
+                    "Inventory", "safi0")},
+                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips", 
+                    "Inventory", "dem0")},
+                {"Tarp", new Item(new Vector3(1,0f,0), "Tarp", 
+                    "Inventory", "dem0")},
+                {"Bag", new Item(new Vector3(2,0f,0), "Bag", 
+                    "Inventory", "dem0")},
+                {"Dog Collar", new Item(new Vector3(3,0f,0), "Dog Collar", 
+                    "Inventory", "dem0")},
+                {"Bucket 2", new Item(new Vector3(0,0f,0), "Bucket 2", 
+                    "Inventory", "rainer0")},
+                {"Wrench", new Item(new Vector3(1,0f,0), "Wrench", 
+                    "Inventory", "rainer0")},
+                {"Chlorine Tablet", new Item(new Vector3(0,0f,0), "Chlorine Tablet", 
+                    "Inventory", "fred0")},
+                {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
+                    "Inventory", "fred0")},
+                {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                    "School", "")},
+            };
+        }
+        //ihateuevenmorethanididbeforeuhavenoideahowmuchihateu
+        else itemList = new Dictionary<string, Item>
         {
             {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
                 "PreQuakeHouse", "")},
@@ -95,10 +170,8 @@ public static class GlobalItemList
                 "Inventory", "fred0")},
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
-            {"Pet Rat", new Item(new Vector3(-11.5f,0f,-2.5f), "Pet Rat", 
-                "NONE", "")},
-            {"Burger", new Item(new Vector3(2,0,0), "Burger", 
-                "NONE", "")},
+            {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                "School", "")},
         };
     }
     
