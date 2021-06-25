@@ -63,40 +63,9 @@ public class TradeManager : MonoBehaviour
         button.interactable = false;
         ChangeSelectedInventory(0);
     }
-
-    /**
-     * returns false if not enough inventory
-     */
-    public bool CompleteTrade()
+    
+    public void CompleteTrade()
     {
-        int[] numContents = new int[] {0,5,5,0};
-        for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
-        {
-            if (!inventoryPlayer.slotContents[i].activeSelf)
-            {
-                numContents[0]++;
-            }
-            if (!inventoryPlayerBin.slotContents[i].activeSelf)
-            {
-                numContents[1]--; //number items
-            }
-            if (!inventoryNPCBin.slotContents[i].activeSelf)
-            {
-                numContents[2]--; //number items
-            }
-            if (!inventoryNPC.slotContents[i].activeSelf)
-            {
-                numContents[3]++;
-            }
-        }
-
-        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
-        {
-            Debug.Log("Not Enough Inventory to complete trade!");
-            button.interactable = false;
-            return false;
-        }
-
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
             if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
@@ -107,7 +76,6 @@ public class TradeManager : MonoBehaviour
         }
         button.Select();
         button.interactable = false;
-        return true;
     }
 
     public void SelectSlot(int location, int slotNumber)
@@ -309,6 +277,11 @@ public class TradeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// returns false if no items offered, not enough inventory, NPC offered need, incorrect number of items offered.
+    /// Returns true if Exact :1 of unneeded items, or Exact 1:2 if 1 is item NPC needs.
+    /// </summary>
+    /// <returns></returns>
     public bool CheckValidTrade()
     {
         List<string> npcOffers = new List<string>(); //list of names of items NPC offered
@@ -324,10 +297,40 @@ public class TradeManager : MonoBehaviour
         {
             if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
         }
-
+        
+        
         
         //will not trade nothing
         if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
+        
+        //Will not trade if not enough inventory
+        int[] numContents = new int[] {0,5,5,0};
+        for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
+        {
+            if (!inventoryPlayer.slotContents[i].activeSelf)
+            {
+                numContents[0]++;
+            }
+            if (!inventoryPlayerBin.slotContents[i].activeSelf)
+            {
+                numContents[1]--; //number items
+            }
+            if (!inventoryNPCBin.slotContents[i].activeSelf)
+            {
+                numContents[2]--; //number items
+            }
+            if (!inventoryNPC.slotContents[i].activeSelf)
+            {
+                numContents[3]++;
+            }
+        }
+
+        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
+        {
+            Debug.Log("Not Enough Inventory to complete trade!");
+            button.interactable = false;
+            return false;
+        }
         
         //will not trade away item they need
         foreach (string need in GlobalControls.NPCList[npcName].needs)
