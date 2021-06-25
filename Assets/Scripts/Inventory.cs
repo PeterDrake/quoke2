@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
         if(items.Length > 0) SelectSlotNumber(0);
     }
 
-    public void setAvailableSlots(int numSlots)
+    public void SetAvailableSlots(int numSlots)
     {
         GameObject[] tempSlotFrames = new GameObject[numSlots];
         GameObject[] tempItems = new GameObject[numSlots];
