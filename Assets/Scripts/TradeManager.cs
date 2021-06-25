@@ -66,6 +66,7 @@ public class TradeManager : MonoBehaviour
     
     public void CompleteTrade()
     {
+        button.Select();
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
             if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
@@ -74,7 +75,6 @@ public class TradeManager : MonoBehaviour
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
         }
-        button.Select();
         button.interactable = false;
     }
 
@@ -328,7 +328,6 @@ public class TradeManager : MonoBehaviour
         if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
         {
             Debug.Log("Not Enough Inventory to complete trade!");
-            button.interactable = false;
             return false;
         }
         
@@ -341,10 +340,10 @@ public class TradeManager : MonoBehaviour
 
         //give extra items if player offered items they need
         if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
-        
+
         //1:1 for anything else
-        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0 ) return true;
-        
+        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0) return true;
+
         //If none of the above, not valid trade.
         return false;
     }
