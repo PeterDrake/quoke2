@@ -298,6 +298,7 @@ public class TradeManager : MonoBehaviour
             inventory.slotContents[i].SetActive(false);
 
         }
+        inventory.SelectSlotNumber(i);
     }
 
     /// <summary>
