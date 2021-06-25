@@ -11,17 +11,22 @@ public class ItemLoader : MonoBehaviour
 
     void Start()
     {
+        List<Item> itemsToChange = new List<Item>();
         if (SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
         {
             foreach (Item item in GlobalItemList.ItemList.Values)
             {
                 if (item.scene.Equals("PreQuakeHouse"))
                 {
-                    GlobalItemList.UpdateItemList(item.name, "PreQuakeApartment", item.location, item.containerName);
+                    itemsToChange.Add(item);
                 }
             }
         }
-        
+
+        foreach (Item item in itemsToChange)
+        {
+            GlobalItemList.UpdateItemList(item.name, "PreQuakeApartment", item.location, item.containerName);
+        }
         GameObject g = GameObject.FindWithTag("Inventory");
         if (g)
         {
