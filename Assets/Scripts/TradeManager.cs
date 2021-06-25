@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /**
@@ -66,6 +68,7 @@ public class TradeManager : MonoBehaviour
     
     public void CompleteTrade()
     {
+        //StartCoroutine(SelectButton());
         button.Select();
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
@@ -78,6 +81,17 @@ public class TradeManager : MonoBehaviour
         button.interactable = false;
     }
 
+    private IEnumerator SelectButton()
+    {
+        button.Select();
+        yield return new WaitForSeconds(0.1f);
+        
+        button.interactable = false;
+        button.interactable = true;
+        yield return new WaitForSeconds(0.1f);
+        button.interactable = false;
+    }
+    
     public void SelectSlot(int location, int slotNumber)
     {
         this.cursorLocation = location;
@@ -200,12 +214,10 @@ public class TradeManager : MonoBehaviour
                         GlobalControls.NPCList[npcName].description = GlobalControls.NPCList[npcName].name + " is happy and needs nothing more";
                     else
                     {
-                        Debug.Log("Changing Description for " + npcName);
                         string description = GlobalControls.NPCList[npcName].description;
                         description = description.Replace(inventoryNPC.items[i].name,"").Trim();
                         description = description.Replace("and","").Trim();
                         GlobalControls.NPCList[npcName].description = description;
-                        Debug.Log("Description is now " + description);
                     }
                 }
                 
@@ -308,8 +320,6 @@ public class TradeManager : MonoBehaviour
         {
             if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
         }
-        
-        
         
         //will not trade nothing
         if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
