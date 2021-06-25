@@ -196,6 +196,14 @@ public class TradeManager : MonoBehaviour
                 {
                     GlobalControls.NPCList[npcName].satisfaction++;
                     Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.NPCList[npcName].satisfaction);
+                    if (GlobalControls.NPCList[npcName].needs.Count == GlobalControls.NPCList[npcName].satisfaction)
+                        GlobalControls.NPCList[npcName].description = npcName + " is happy and needs nothing more";
+                    else
+                    {
+                        string description = GlobalControls.NPCList[npcName].description;
+                        description = description.Replace(inventoryNPC.items[i].name,"").Trim();
+                        description = description.Replace("and","").Trim();
+                    }
                 }
                 
                 GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
