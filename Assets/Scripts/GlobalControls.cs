@@ -29,7 +29,7 @@ public static class GlobalControls
     private static bool fredInteracted;
     private static bool tooltipsEnabled = true;
 
-    private static bool apartmentCondition;
+    private static bool apartmentCondition = true;
 
     private static Dictionary<string, NPC> npcList = new Dictionary<string, NPC>
     {

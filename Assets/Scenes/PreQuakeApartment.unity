@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 609521969}
   - component: {fileID: 609521968}
   m_Layer: 14
-  m_Name: Cabinet 2
+  m_Name: Go Bag 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,6 +1438,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 979bcdd01055bb64bb6c2bc508497085, type: 2}
+    - target: {fileID: 1748523382790061303, guid: 0d61ffd4a85704db3aa06476d765b65a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1748523382790061304, guid: 0d61ffd4a85704db3aa06476d765b65a,
         type: 3}
       propertyPath: sceneName
@@ -1776,7 +1781,7 @@ GameObject:
   - component: {fileID: 1616768800}
   - component: {fileID: 1616768803}
   m_Layer: 14
-  m_Name: Cabinet 1
+  m_Name: Go Bag 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

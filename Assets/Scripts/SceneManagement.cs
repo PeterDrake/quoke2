@@ -11,7 +11,11 @@ public class SceneManagement : MonoBehaviour
     {
         GlobalControls.Reset();
         GlobalItemList.Reset();
-        ChangeScene("PreQuakeHouse");
+        if (GlobalControls.ApartmentCondition)
+        {
+            ChangeScene("PreQuakeApartment");
+        }
+        else ChangeScene("PreQuakeHouse");
     }
 
     /// <summary>
@@ -72,6 +76,40 @@ public class SceneManagement : MonoBehaviour
                 if (item)
                 {
                     GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
+                }
+            }
+        }
+        else if (sceneToLoad.Equals("QuakeApartment") && SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        {
+            StorageContainer[] containers = new StorageContainer[]
+            {
+                GameObject.Find("Shelf 1").GetComponent<StorageContainer>(),
+                GameObject.Find("Shelf 2").GetComponent<StorageContainer>(),
+                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>(),
+                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>(),
+            };
+            foreach (StorageContainer container in containers)
+            {
+                GameObject item = container.contents;
+                if (item)
+                {
+                    GlobalItemList.UpdateItemList(item.name, "QuakeApartment", item.transform.position, container.name);
+                }
+            }
+        }
+        else if (sceneToLoad.Equals("Street") && SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
+        {
+            StorageContainer[] containers = new StorageContainer[]
+            {
+                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>(),
+                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>(),
+            };
+            foreach (StorageContainer container in containers)
+            {
+                GameObject item = container.contents;
+                if (item)
+                {
+                    GlobalItemList.UpdateItemList(item.name, "Street", item.transform.position, container.name);
                 }
             }
         }

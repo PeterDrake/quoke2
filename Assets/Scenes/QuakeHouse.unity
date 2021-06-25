@@ -156,7 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1706505810}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272653938
 MonoBehaviour:
@@ -359,7 +359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quakeSafeZoneManager: {fileID: 782937058}
-  adminMode: 1
   showCountdown: 1
   VirtualCamera: {fileID: 1299424173}
   ShakeDuration: 1
@@ -720,7 +719,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1706505810}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &471967106
 MonoBehaviour:
@@ -1109,7 +1108,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1706505810}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1048139705
 MonoBehaviour:
@@ -1320,7 +1319,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1706505810}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1168224541
 MonoBehaviour:
@@ -1962,11 +1961,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1311662064}
   - {fileID: 272653937}
   - {fileID: 471967105}
   - {fileID: 1168224540}
   - {fileID: 1048139704}
+  - {fileID: 1311662064}
   - {fileID: 782937057}
   - {fileID: 1685272598}
   m_Father: {fileID: 0}
@@ -2301,7 +2300,7 @@ PrefabInstance:
     - target: {fileID: 8598206352755387089, guid: c699be9587ffd4d4689af2cb871300d5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8598206352755387089, guid: c699be9587ffd4d4689af2cb871300d5,
         type: 3}
