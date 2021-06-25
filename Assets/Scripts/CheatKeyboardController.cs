@@ -53,6 +53,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.L)) //Load Yard with Latrine Items
             {
+                GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0),"Player" );
@@ -61,6 +62,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.V)) //Load Yard with PreQuake Items
             {
+                GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("Cup", "Yard", new Vector3(6.5f,0.5f,0.5f),"" );
                 GlobalItemList.UpdateItemList("Water Bottle", "Yard", new Vector3(-6.5f,0.5f,0.5f),"" );
                 GlobalItemList.UpdateItemList("Sandwich", "Yard", new Vector3(3.5f,0.5f,3.5f),"" );
@@ -69,6 +71,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Y)) //Load scene with water task items
             {
+                GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
                 GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
                 sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
