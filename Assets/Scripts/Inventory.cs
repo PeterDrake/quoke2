@@ -40,7 +40,6 @@ public class Inventory : MonoBehaviour
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
@@ -72,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     private void OnEnable()
     {
-        SelectSlotNumber(0);
+        if(items.Length > 0) SelectSlotNumber(0);
     }
 
     public void setAvailableSlots(int numSlots)
@@ -80,7 +79,7 @@ public class Inventory : MonoBehaviour
         GameObject[] tempSlotFrames = new GameObject[numSlots];
         GameObject[] tempItems = new GameObject[numSlots];
         GameObject[] tempSlotContents = new GameObject[numSlots];
-
+        
         for (int i = 0; i < numSlots; i++)
         {
             tempItems[i] = items[i];

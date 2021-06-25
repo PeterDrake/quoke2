@@ -76,6 +76,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
         {
+            if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.setAvailableSlots(1);
             SetExploring();
         }
@@ -191,7 +192,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (cursorLocation == 1)
+        if (cursorLocation == 1 && npcInteractedCanvas.activeSelf)
         {
             for (int i = 0; i < validNPCInputs.Length; i++)
             {
@@ -315,13 +316,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        referenceManager.tooltipCanvas.SetActive(true);
+        if(inventoryInScene) referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
         if(inventoryInScene) referenceManager.inventoryCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.npcInteractedCanvas.SetActive(true);
+        if(inventoryInScene) referenceManager.npcInteractedCanvas.SetActive(true);
     }
 
     public void SetConversing()
