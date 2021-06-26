@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
     private Meters meters;
 
     private LatrineStorage latrineStorage;
+    private TwoBucketScript twoBucket;
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
@@ -40,6 +41,10 @@ public class Inventory : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("Yard"))
         {
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("Street"))
+        {
+            twoBucket = GameObject.Find("Two Bucket Spot").GetComponent<TwoBucketScript>();
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
@@ -248,6 +253,7 @@ public class Inventory : MonoBehaviour
         if (tooltipText.gameObject.activeSelf)
             tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
+    
     void InteractWithLatrine()
     {
         int x = 0;
@@ -297,10 +303,79 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    void InteractWithTwoBucket()
+    {
+        int x = 0;
+        int i = FirstEmptySlot();
+        if (i >= 0 && !SlotIsOccupied(i) && twoBucket.contents)
+        {
+            GameObject item = twoBucket.RemoveBucketItem();
+            item.GetComponent<Collectible>().inStorageContainer = false;
+            PickUp(item);
+        }
+        else
+        {
+            i = selectedSlotNumber; // Just to make the later expressions less hairy
+            if (SlotIsOccupied(i) && !twoBucket.contents && player.ObjectAhead(latrineContainerLayers))
+            {
+                // Place item in the container if the item is a latrine task item
+                if (items[i].name.Equals("Bucket(Clone)")) x = 0; 
+                if (items[i].name.Equals("Bucket 2(Clone)")) x = 1;
+                if (items[i].name.Equals("Bag(Clone)") && twoBucket.bucketTwoDone && twoBucket.bucketDone) x = 2;
+                if (items[i].name.Equals("Wood Chips(Clone)") && twoBucket.bagDone) x = 3;
+                if (items[i].name.Equals("Toilet Paper(Clone)") && twoBucket.woodChipsDone) x = 4;
+
+                switch (x)
+                {
+                    case 0:
+                        RemoveBucketItem(i);
+                        twoBucket.bucketDone = true;
+                        Debug.Log("Bucket Complete");
+                        break;
+                    case 1:
+                        RemoveBucketItem(i);
+                        twoBucket.bucketTwoDone = true;
+                        Debug.Log("Bucket two Complete");
+                        break;
+                    case 2:
+                        RemoveBucketItem(i);
+                        twoBucket.bagDone = true;
+                        Debug.Log("Bag Complete");
+                        break;
+                    case 3:
+                        RemoveBucketItem(i);
+                        twoBucket.woodChipsDone = true;
+                        Debug.Log("Wood Chips Complete");
+                        break;
+                    case 4:
+                        RemoveBucketItem(i);
+                        twoBucket.toiletPaperDone = true;
+                        Debug.Log("Toilet Paper Complete");
+                        twoBucket.TwoBucketComplete();
+                        break;
+                }
+            }
+        }
+    }
     
-    
-    
-    
+    void RemoveBucketItem(int i)
+    {
+        twoBucket.contents = items[i];
+        items[i].SetActive(true);
+        items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+        items[i].GetComponent<Collectible>().inLatrine = true;
+                    
+        GlobalItemList.UpdateItemList(items[i].name, "",
+            new Vector3(0,0,0), "");
+        GameObject.Find(items[i].name).SetActive(false);
+        // Remove item from inventory
+        items[i] = null;
+        slotContents[i].SetActive(false);
+        twoBucket.contents = null;
+        if (tooltipText.gameObject.activeSelf)
+            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+    }
     
     private bool SlotIsOccupied(int i)
     {
@@ -357,10 +432,15 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithStorageContainer(container.GetComponent<StorageContainer>());
             }
-            else if (latrine)
+            else if (latrine && !GlobalControls.ApartmentCondition)
             {
                 InteractWithLatrine();
                 Debug.Log("Interacting with latrine");
+            }
+            else if (GlobalControls.ApartmentCondition && latrine)
+            {
+                InteractWithTwoBucket();
+                Debug.Log("Interacting with Two Bucket");
             }
             //check if the player is in front of the latrine
 
