@@ -52,7 +52,6 @@ public static class GlobalItemList
                     "School", "")},
             };
         }
-        //ihateuevenmorethanididbeforeuhavenoideahowmuchihateu
         else itemList = new Dictionary<string, Item>
         {
             {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
@@ -99,6 +98,7 @@ public static class GlobalItemList
 
     public static void Reset()
     {
+        Debug.Log(GlobalControls.ApartmentCondition);
         if (GlobalControls.ApartmentCondition)
         {
             itemList = new Dictionary<string, Item>
@@ -137,9 +137,10 @@ public static class GlobalItemList
                     "School", "")},
             };
         }
-        //ihateuevenmorethanididbeforeuhavenoideahowmuchihateu
-        else itemList = new Dictionary<string, Item>
+        else 
         {
+            itemList = new Dictionary<string, Item>
+            {
             {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
                 "PreQuakeHouse", "")},
             {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
@@ -172,7 +173,9 @@ public static class GlobalItemList
                 "Inventory", "fred0")},
             {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
                 "School", "")},
-        };
+            };
+            
+        }
     }
     
 }

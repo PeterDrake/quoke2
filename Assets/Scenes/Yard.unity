@@ -618,6 +618,7 @@ MonoBehaviour:
   plywoodDone: 0
   ropeDone: 0
   tarpDone: 0
+  toiletPaperDone: 0
   meters: {fileID: 0}
   referenceManager: {fileID: 0}
 --- !u!1 &327178031
@@ -650,7 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quakeSafeZoneManager: {fileID: 782937058}
-  adminMode: 1
   showCountdown: 1
   VirtualCamera: {fileID: 1299424173}
   ShakeDuration: 1
@@ -2173,6 +2173,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 707200577192940815, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 828397358690428945, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778451578437466264, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2260013301213580019, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_RootOrder
@@ -2227,6 +2242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700866213118161490, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6235391132302310076, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}

@@ -274,6 +274,7 @@ public class Inventory : MonoBehaviour
                 if (items[i].name.Equals("Plywood(Clone)") && latrineStorage.shovelingDone) x = 2;
                 if (items[i].name.Equals("Rope(Clone)") && latrineStorage.plywoodDone) x = 3;
                 if (items[i].name.Equals("Tarp(Clone)") && latrineStorage.ropeDone) x = 4;
+                if (items[i].name.Equals("Toilet Paper(Clone)") && latrineStorage.tarpDone) x = 5;
 
                 switch (x)
                 {
@@ -297,6 +298,11 @@ public class Inventory : MonoBehaviour
                         RemoveLatrineItem(i);
                         latrineStorage.tarpDone = true;
                         Debug.Log("Tarp Complete");
+                        break;
+                    case 5:
+                        RemoveLatrineItem(i);
+                        latrineStorage.toiletPaperDone = true;
+                        Debug.Log("Toilet Paper Complete");
                         latrineStorage.LatrineComplete();
                         break;
                 }
