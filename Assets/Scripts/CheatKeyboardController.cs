@@ -96,6 +96,7 @@ public class CheatKeyboardController : MonoBehaviour
                 Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.ApartmentCondition + 
                           " to " + !GlobalControls.ApartmentCondition);
                 GlobalControls.ApartmentCondition = !GlobalControls.ApartmentCondition;
+                GlobalItemList.Reset();
             }
         }
     }

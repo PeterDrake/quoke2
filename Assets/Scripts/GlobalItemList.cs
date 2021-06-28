@@ -49,7 +49,7 @@ public static class GlobalItemList
                 {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                     "Inventory", "fred0")},
                 {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
-                    "School", "")},
+                    "Inventory", "rainer0")},
             };
         }
         else itemList = new Dictionary<string, Item>
@@ -85,7 +85,7 @@ public static class GlobalItemList
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
             {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
-                "School", "")},
+                "Inventory", "rainer0")},
         };
     }
 
@@ -134,7 +134,7 @@ public static class GlobalItemList
                 {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                     "Inventory", "fred0")},
                 {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
-                    "School", "")},
+                    "Inventory", "rainer0")},
             };
         }
         else 
@@ -172,7 +172,7 @@ public static class GlobalItemList
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
             {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
-                "School", "")},
+                "Inventory", "rainer0")},
             };
             
         }
