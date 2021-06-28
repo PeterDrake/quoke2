@@ -300,6 +300,8 @@ public class PlayerKeyboardManager : MonoBehaviour
             {
                 Debug.Log("Valid trade!");
                 tradeManager.CompleteTrade();
+                referenceManager.itemLoader.SetActive(false);
+                referenceManager.itemLoader.SetActive(true);
             }
             else Debug.Log("Invalid Trade!");
         }

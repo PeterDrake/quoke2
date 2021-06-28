@@ -185,11 +185,13 @@ public class TradeManager : MonoBehaviour
     {
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
-            if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryPlayer, i);
+            if (inventoryPlayerBin.slotContents[i].activeSelf)
+                TransferItem(inventoryPlayerBin, inventoryPlayer, i);
         }
         for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
         {
-            if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryNPC, i);
+            if (inventoryNPCBin.slotContents[i].activeSelf)
+                TransferItem(inventoryNPCBin, inventoryNPC, i);
         }
                 
         //Update globalItemList

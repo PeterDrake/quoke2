@@ -326,35 +326,38 @@ public class Inventory : MonoBehaviour
             if (SlotIsOccupied(i) && !twoBucket.contents && player.ObjectAhead(latrineContainerLayers))
             {
                 // Place item in the container if the item is a latrine task item
-                if (items[i].name.Equals("Bucket(Clone)")) x = 0; 
-                if (items[i].name.Equals("Bucket 2(Clone)")) x = 1;
-                if (items[i].name.Equals("Bag(Clone)") && twoBucket.bucketTwoDone && twoBucket.bucketDone) x = 2;
-                if (items[i].name.Equals("Wood Chips(Clone)") && twoBucket.bagDone) x = 3;
-                if (items[i].name.Equals("Toilet Paper(Clone)") && twoBucket.woodChipsDone) x = 4;
+                if (items[i].name.Equals("Bucket(Clone)")) x = 1; 
+                if (items[i].name.Equals("Bucket 2(Clone)")) x = 2;
+                if (items[i].name.Equals("Bag(Clone)") && twoBucket.bucketTwoDone && twoBucket.bucketDone) x = 3;
+                if (items[i].name.Equals("Wood Chips(Clone)") && twoBucket.bagDone) x = 4;
+                if (items[i].name.Equals("Toilet Paper(Clone)") && twoBucket.woodChipsDone) x = 5;
 
                 switch (x)
                 {
                     case 0:
+                        Debug.Log("You cant do that try again");
+                        break;
+                    case 1:
                         RemoveBucketItem(i);
                         twoBucket.bucketDone = true;
                         Debug.Log("Bucket Complete");
                         break;
-                    case 1:
+                    case 2:
                         RemoveBucketItem(i);
                         twoBucket.bucketTwoDone = true;
                         Debug.Log("Bucket two Complete");
                         break;
-                    case 2:
+                    case 3:
                         RemoveBucketItem(i);
                         twoBucket.bagDone = true;
                         Debug.Log("Bag Complete");
                         break;
-                    case 3:
+                    case 4:
                         RemoveBucketItem(i);
                         twoBucket.woodChipsDone = true;
                         Debug.Log("Wood Chips Complete");
                         break;
-                    case 4:
+                    case 5:
                         RemoveBucketItem(i);
                         twoBucket.toiletPaperDone = true;
                         Debug.Log("Toilet Paper Complete");

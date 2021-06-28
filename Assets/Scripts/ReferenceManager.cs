@@ -23,6 +23,8 @@ public class ReferenceManager : MonoBehaviour
     public GameObject keyboardManager;
     public GameObject deathManager;
     public GameObject sceneManagement;
+
+    public GameObject itemLoader;
     
     private void Awake()
     {
@@ -68,6 +70,7 @@ public class ReferenceManager : MonoBehaviour
         deathManager = GameObject.Find("Death Manager");
         player = GameObject.Find("Player");
         sceneManagement = GameObject.Find("Scene Management");
+        itemLoader = GameObject.Find("ItemManager");
     }
     
     
