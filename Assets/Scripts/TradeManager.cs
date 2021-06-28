@@ -193,14 +193,9 @@ public class TradeManager : MonoBehaviour
             if (inventoryNPCBin.slotContents[i].activeSelf)
                 TransferItem(inventoryNPCBin, inventoryNPC, i);
         }
-                
+
         //Update globalItemList
-        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
-        {
-            if (inventoryPlayer.slotContents[i].activeSelf) 
-                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", 
-                    new Vector3(i, 0, 0), "Player");
-        }
+
         for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
         {
             if (inventoryNPC.slotContents[i].activeSelf)
@@ -238,13 +233,29 @@ public class TradeManager : MonoBehaviour
                     parentInventory.items[i] = null;
                     parentInventory.slotContents[i].SetActive(false);
                     TransferItem(inventoryPlayer, parentInventory, i);
-
-                    parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
-
+                    
+                }
+                else if (parentInventory.slotContents[i].activeSelf)
+                {
+                    parentInventory.items[i] = null;
+                    parentInventory.slotContents[i].SetActive(false);
                 }
             }
+            
+            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            {
+                if(parentInventory.slotContents[i].activeSelf) parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
+            }
+            
+            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            {
+                if (parentInventory.slotContents[i].activeSelf) 
+                    GlobalItemList.UpdateItemList(parentInventory.items[i].name, "Inventory", 
+                        new Vector3(i, 0, 0), "Player");
+            }
+            
         }
-        referenceManager.inventoryCanvas.SetActive(false);
+        
         keyboardManager.SetConversing();
     }
     
