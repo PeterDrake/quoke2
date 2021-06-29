@@ -46,7 +46,9 @@ public class TradeManager : MonoBehaviour
     {
         
         npcName = GlobalControls.CurrentNPC;
-
+        
+        List<int> playerSlotsUsed = new List<int>();
+        List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcName))
@@ -54,12 +56,29 @@ public class TradeManager : MonoBehaviour
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryNPC.PickUpAtSlot((int) item.location.x, itemInInventory);
+                npcSlotsUsed.Add((int) item.location.x);
             }
             else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
             {
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
+                playerSlotsUsed.Add((int) item.location.x);
+            }
+        }
+
+        //Set unused slots to null if not already.
+        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+        {
+            if (!playerSlotsUsed.Contains(i) && inventoryPlayer.slotContents[i].activeSelf)
+            {
+                inventoryPlayer.items[i] = null;
+                inventoryPlayer.slotContents[i].SetActive(false);
+            }
+            if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
+            {
+                inventoryNPC.items[i] = null;
+                inventoryNPC.slotContents[i].SetActive(false);
             }
         }
         button.interactable = false;
