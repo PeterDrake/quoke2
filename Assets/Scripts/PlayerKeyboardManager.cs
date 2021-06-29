@@ -15,7 +15,8 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
-    
+    private bool npcInteractedInScene = true;
+
     private ReferenceManager referenceManager;
     private TradeManager tradeManager;
     private DialogueManager dialogueManager;
@@ -65,22 +66,40 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         
         //Handle start of scene things
+        if (SceneManager.GetActiveScene().name.Contains("Quake"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
+        else
+        {
+            GlobalControls.MetersEnabled = true;
+        }
+        
         if (SceneManager.GetActiveScene().name.Equals("GameEnd"))
         {
             inventoryInScene = false;
+            npcInteractedInScene = false;
             SetExploring();
         }
-        else if (SceneManager.GetActiveScene().name.Equals("QuakeHouse") || SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
+        else if (SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             inventoryInScene = false;
+            npcInteractedInScene = false;
+            SetSegue();
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
+        {
+            if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
+            inventory.SetAvailableSlots(2);
+            npcInteractedInScene = false;
             SetSegue();
         }
         else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
+            npcInteractedInScene = false;
             SetExploring();
-            npcInteractedCanvas.SetActive(false);
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
@@ -222,20 +241,6 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.PickUpOrDrop();
         }
 
-        if (!inventoryInScene && Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name.Equals("QuakeApartment") )
-        {
-            GameObject ahead = player.ObjectAhead(LayerMask.GetMask("StorageContainer"));
-            if (ahead && (ahead.name.Equals("Go Bag 1") || ahead.name.Equals("Go Bag 2")))
-            {
-                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>().contents.SetActive(false);
-                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>().contents.SetActive(false);
-                GameObject.Find("Go Bag 1").SetActive(false);
-                GameObject.Find("Go Bag 2").SetActive(false);
-            }
-        }
-        
-        
-
 
         if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(",") || Input.GetKeyDown(".")))
         {
@@ -341,14 +346,17 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             referenceManager.tooltipCanvas.SetActive(true);
             referenceManager.inventoryCanvas.SetActive(true);
-            referenceManager.npcInteractedCanvas.SetActive(true);
-            
+
             cursorLocation = 0;
                 
             //Update to show Inventory selected
             inventory.selectedSlotSprite = selected;
             inventory.SelectSlotNumber(0);
-                
+        }
+        if (npcInteractedInScene)
+        {
+            referenceManager.npcInteractedCanvas.SetActive(true);
+            
             for (int i = 0; i < validNPCInputs.Length; i++)
             {
                 npcFrames[i].GetComponent<Image>().sprite = unselected;
