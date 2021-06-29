@@ -444,12 +444,10 @@ public class Inventory : MonoBehaviour
             else if (latrine && !GlobalControls.ApartmentCondition)
             {
                 InteractWithLatrine();
-                Debug.Log("Interacting with latrine");
             }
             else if (GlobalControls.ApartmentCondition && latrine)
             {
                 InteractWithTwoBucket();
-                Debug.Log("Interacting with Two Bucket");
             }
             //check if the player is in front of the latrine
 
@@ -464,7 +462,6 @@ public class Inventory : MonoBehaviour
     public void PickUpAtSlot(int slot, GameObject item)
     {
         // Debug.Log(slotContents.Length + " slotcontents length");
-        Debug.Log(slot + " Slot");
         int i = slot;
         if (i >= 0)
         {
