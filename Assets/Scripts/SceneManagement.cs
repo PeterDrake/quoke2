@@ -105,11 +105,9 @@ public class SceneManagement : MonoBehaviour
         }
         else if (sceneToLoad.Equals("Street") && SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
         {
-            StorageContainer[] containers = new StorageContainer[]
-            {
-                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>(),
-                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>(),
-            };
+            StorageContainer[] containers =
+                GameObject.Find("Interactables").GetComponentsInChildren<StorageContainer>(true);
+            
             foreach (StorageContainer container in containers)
             {
                 GameObject item = container.contents;

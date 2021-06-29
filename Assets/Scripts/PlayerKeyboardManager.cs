@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -182,11 +183,11 @@ public class PlayerKeyboardManager : MonoBehaviour
             
             
         // Select from inventory (1-9)
-        if (cursorLocation == 0)
+        if (cursorLocation == 0 && inventory)
         {
             for (int i = 0; i < validInputs.Length; i++)
             {
-                if (inventory && cursorLocation == 0 && Input.GetKey(validInputs[i]))
+                if (Input.GetKey(validInputs[i]))
                 {
                     inventory.SelectSlotNumber(i);
                 }
@@ -215,11 +216,25 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
             }
         }
-        
-        if (inventory && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
+
+        if (inventoryInScene && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
+
+        if (!inventoryInScene && Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name.Equals("QuakeApartment") )
+        {
+            GameObject ahead = player.ObjectAhead(LayerMask.GetMask("StorageContainer"));
+            if (ahead && (ahead.name.Equals("Go Bag 1") || ahead.name.Equals("Go Bag 2")))
+            {
+                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>().contents.SetActive(false);
+                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>().contents.SetActive(false);
+                GameObject.Find("Go Bag 1").SetActive(false);
+                GameObject.Find("Go Bag 2").SetActive(false);
+            }
+        }
+        
+        
 
 
         if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(",") || Input.GetKeyDown(".")))
