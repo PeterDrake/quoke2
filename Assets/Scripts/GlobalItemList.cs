@@ -20,7 +20,7 @@ public static class GlobalItemList
             {
                 {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
                     "PreQuakeHouse", "")},
-                {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
+                {"Chlorine Tablet", new Item(new Vector3(-6.5f,0.5f,0.5f), "Chlorine Tablet", 
                     "PreQuakeHouse", "")},
                 {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
                     "", "")},
@@ -44,11 +44,11 @@ public static class GlobalItemList
                     "Inventory", "rainer0")},
                 {"Wrench", new Item(new Vector3(1,0f,0), "Wrench", 
                     "Inventory", "rainer0")},
-                {"Chlorine Tablet", new Item(new Vector3(0,0f,0), "Chlorine Tablet", 
+                {"Water Bottle", new Item(new Vector3(0,0f,0), "Water Bottle", 
                     "Inventory", "fred0")},
                 {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                     "Inventory", "fred0")},
-                {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                {"Toilet Paper", new Item(new Vector3(2,0,0), "Toilet Paper", 
                     "Inventory", "rainer0")},
             };
         }
@@ -84,7 +84,7 @@ public static class GlobalItemList
                 "Inventory", "fred0")},
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
-            {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+            {"Toilet Paper", new Item(new Vector3(2,0,0), "Toilet Paper", 
                 "Inventory", "rainer0")},
         };
     }
@@ -105,7 +105,7 @@ public static class GlobalItemList
             {
                 {"Cup", new Item(new Vector3(6.5f,0.5f,0.5f), "Cup", 
                     "PreQuakeHouse", "")},
-                {"Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Water Bottle", 
+                {"Chlorine Tablet", new Item(new Vector3(-6.5f,0.5f,0.5f), "Chlorine Tablet", 
                     "PreQuakeHouse", "")},
                 {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
                     "", "")},
@@ -129,11 +129,11 @@ public static class GlobalItemList
                     "Inventory", "rainer0")},
                 {"Wrench", new Item(new Vector3(1,0f,0), "Wrench", 
                     "Inventory", "rainer0")},
-                {"Chlorine Tablet", new Item(new Vector3(0,0f,0), "Chlorine Tablet", 
+                {"Water Bottle", new Item(new Vector3(0,0f,0), "Water Bottle", 
                     "Inventory", "fred0")},
                 {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                     "Inventory", "fred0")},
-                {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+                {"Toilet Paper", new Item(new Vector3(2,0,0), "Toilet Paper", 
                     "Inventory", "rainer0")},
             };
         }
@@ -171,7 +171,7 @@ public static class GlobalItemList
                 "Inventory", "fred0")},
             {"Can Opener", new Item(new Vector3(1,0,0), "Can Opener", 
                 "Inventory", "fred0")},
-            {"Toilet Paper", new Item(new Vector3(5.5f,0f,1.5f), "Toilet Paper", 
+            {"Toilet Paper", new Item(new Vector3(2,0,0), "Toilet Paper", 
                 "Inventory", "rainer0")},
             };
             

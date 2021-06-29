@@ -463,6 +463,8 @@ public class Inventory : MonoBehaviour
     /** Only used by ItemLoader.cs */
     public void PickUpAtSlot(int slot, GameObject item)
     {
+        // Debug.Log(slotContents.Length + " slotcontents length");
+        Debug.Log(slot + " Slot");
         int i = slot;
         if (i >= 0)
         {
