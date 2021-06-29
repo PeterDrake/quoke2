@@ -121,7 +121,7 @@ public class SceneManagement : MonoBehaviour
             int inventoryCount = 0;
             foreach (Item item in GlobalItemList.ItemList.Values)
             {
-                if (item.scene.Equals("Inventory"))
+                if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
                 {
                     if (item.name.Equals("Chlorine Tablet"))
                     {
@@ -130,7 +130,6 @@ public class SceneManagement : MonoBehaviour
                     inventoryCount++;
                 }
             }
-
             if (noStoredWater || inventoryCount != 2)
             {
                 GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
