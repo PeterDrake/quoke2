@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public static class GlobalControls
 {
-    private static int noStoredWaterTime = 3;
+    private static int noStoredWaterTime = 2;
     /* poopTimeLeft and waterTimeLeft should be set to initial values after the quake,
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
@@ -131,6 +131,12 @@ public static class GlobalControls
         rainerInteracted = false;
         fredInteracted = false;
         adminMode = true;
+    }
+
+    public static int NoStoredWaterTime
+    {
+        get => noStoredWaterTime;
+        set => noStoredWaterTime = value;
     }
     
     public static bool ApartmentCondition

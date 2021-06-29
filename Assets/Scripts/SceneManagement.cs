@@ -49,8 +49,10 @@ public class SceneManagement : MonoBehaviour
             if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
         }
 
+       
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
+            bool noStoredWater = true;
             StorageContainer[] containers = new StorageContainer[]
             {
                 GameObject.Find("Shed 1").GetComponent<StorageContainer>(),
@@ -65,6 +67,16 @@ public class SceneManagement : MonoBehaviour
                 {
                     GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
                 }
+
+                if (item.name.Equals("Water Bottle(Clone)"))
+                {
+                    noStoredWater = false;
+                }
+            }
+
+            if (noStoredWater)
+            {
+                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
             }
         }
         else if (sceneToLoad.Equals("QuakeHouse") && SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
@@ -105,17 +117,23 @@ public class SceneManagement : MonoBehaviour
         }
         else if (sceneToLoad.Equals("Street") && SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
         {
-            StorageContainer[] containers =
-                GameObject.Find("Interactables").GetComponentsInChildren<StorageContainer>(true);
-            
-            foreach (StorageContainer container in containers)
+            bool noStoredWater = true;
+            int inventoryCount = 0;
+            foreach (Item item in GlobalItemList.ItemList.Values)
             {
-                GameObject item = container.contents;
-                if (item)
+                if (item.scene.Equals("Inventory"))
                 {
-                    GlobalItemList.UpdateItemList(item.name, "Street", 
-                        new Vector3(item.transform.position.x + 9,item.transform.position.y,item.transform.position.z - 16), container.name);
+                    if (item.name.Equals("Chlorine Tablet"))
+                    {
+                        noStoredWater = false;
+                    }
+                    inventoryCount++;
                 }
+            }
+
+            if (noStoredWater || inventoryCount != 2)
+            {
+                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
             }
         }
         SceneManager.LoadSceneAsync(sceneToLoad);
