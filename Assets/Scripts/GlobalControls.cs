@@ -43,13 +43,13 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
-                    0, false, "Safi needs a Dog Collar")},
+                    0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
-                    0, false, "Demitrius needs a Can Opener and Mask")},
+                    0, false, "Demitrius needs a Can Opener and Mask", 2)},
                 {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
-                    0, false, "Fred needs a Wrench")},
+                    0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
-                    0, false, "Rainer needs a Tarp")},
+                    0, false, "Rainer needs a Tarp", 1)},
             };
             currentObjective = 2;
         }
@@ -58,13 +58,13 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string> {"Dog Collar"}, "safi0",
-                        0, false, "Safi needs a Dog Collar")},
+                        0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
-                        0, false, "Demitrius needs a Can Opener and Mask")},
+                        0, false, "Demitrius needs a Can Opener and Mask", 2)},
                 {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
-                        0, false, "Fred needs a Wrench")},
+                        0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
-                        0, false, "Rainer needs a Bucket")},
+                        0, false, "Rainer needs a Bucket", 1)},
             };
             currentObjective = 1;
         }
@@ -97,13 +97,13 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{"Dog Collar"}, "safi0", 
-                    0, false, "Safi needs a Dog Collar")},
+                    0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
-                    0, false, "Demitrius needs a Can Opener and Mask")},
+                    0, false, "Demitrius needs a Can Opener and Mask", 2)},
                 {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
-                    0, false, "Fred needs a Wrench")},
+                    0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
-                    0, false, "Rainer needs a Tarp")},
+                    0, false, "Rainer needs a Tarp", 1)},
             };
             currentObjective = 2;
         }
@@ -112,13 +112,13 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string> {"Dog Collar"}, "safi0",
-                    0, false, "Safi needs a Dog Collar")},
+                    0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask")},
+                    0, false, "Demitrius needs a Can Opener and Mask", 2)},
                 {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
-                    0, false, "Fred needs a Wrench")},
+                    0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
-                    0, false, "Rainer needs a Bucket")},
+                    0, false, "Rainer needs a Bucket", 1)},
             };
             currentObjective = 1;
         }

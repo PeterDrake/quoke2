@@ -138,7 +138,7 @@ public class Inventory : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
             selectedSlotNumber = slotNumber;
         }
-        if (GlobalControls.TooltipsEnabled && items[selectedSlotNumber])
+        if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
