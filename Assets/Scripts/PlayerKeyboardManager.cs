@@ -273,7 +273,42 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.PickUpOrDrop();
         }
 
-
+        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            if (cursorLocation > inventory.slotContents.Length - 1)
+            {
+                npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = unselected;
+                inventory.selectedSlotSprite = selected;
+                cursorLocation = 0;
+                inventory.SelectSlotNumber(cursorLocation);
+            }
+            else
+            {
+                npcFrames[0].GetComponent<Image>().sprite = selected;
+                inventory.selectedSlotSprite = unselected;
+                cursorLocation = inventory.slotContents.Length;
+                inventory.SelectSlotNumber(2);
+            }
+        }
+        
+        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            if (cursorLocation > inventory.slotContents.Length - 1)
+            {
+                npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = unselected;
+                inventory.selectedSlotSprite = selected;
+                cursorLocation = 0;
+                inventory.SelectSlotNumber(cursorLocation);
+            }
+            else
+            {
+                npcFrames[0].GetComponent<Image>().sprite = selected;
+                inventory.selectedSlotSprite = unselected;
+                cursorLocation = inventory.slotContents.Length;
+                inventory.SelectSlotNumber(2);
+            }
+        }
+        
         if (inventory && Input.GetKeyDown("."))
         {
             cursorLocation++;
@@ -281,7 +316,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             {
                 cursorLocation = 0;
                 inventory.selectedSlotSprite = selected;
-                inventory.SelectSlotNumber(0);
+                inventory.SelectSlotNumber(0); 
         
                 for (int i = 0; i < validNPCInputs.Length; i++)
                 {
