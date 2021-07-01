@@ -46,7 +46,16 @@ public class PlayerKeyboardManager : MonoBehaviour
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         tooltipCanvas = referenceManager.tooltipCanvas;
-        tooltipText = tooltipCanvas.GetComponentInChildren<Text>(true);
+        if (GlobalControls.TooltipsEnabled)
+        {
+            foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
+            {
+                if (image.gameObject.name.Equals("Tooltip"))
+                {
+                    tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
+                }
+            }
+        }
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);

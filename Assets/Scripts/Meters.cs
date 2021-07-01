@@ -50,7 +50,17 @@ public class Meters : MonoBehaviour
 
         if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
+            // GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
+            foreach (Image image in GameObject.Find("Managers").GetComponent<ReferenceManager>().tooltipCanvas
+                .GetComponentsInChildren<Image>(true))
+            {
+                if (image.gameObject.name.Equals("Objectives"))
+                {
+                    image.gameObject.SetActive(true);
+                    image.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
+                }
+            }
+           
         }
     }
 

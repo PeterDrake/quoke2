@@ -74,7 +74,16 @@ public class Inventory : MonoBehaviour
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
         if (GlobalControls.TooltipsEnabled)
-            tooltipText = referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true);
+        {
+            foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
+            {
+                if (image.gameObject.name.Equals("Tooltip"))
+                {
+                    tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
+                }
+            }
+        }
+
         SelectSlotNumber(0);
     }
 
