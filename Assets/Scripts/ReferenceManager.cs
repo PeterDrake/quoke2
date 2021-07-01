@@ -23,6 +23,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject keyboardManager;
     public GameObject deathManager;
     public GameObject sceneManagement;
+    public GameObject keybinds;
     public ObjectiveManager objectiveManager;
 
     public GameObject itemLoader;
@@ -73,6 +74,10 @@ public class ReferenceManager : MonoBehaviour
         sceneManagement = GameObject.Find("Scene Management");
         itemLoader = GameObject.Find("Item Manager");
         objectiveManager = GameObject.Find("Objective Manager").GetComponent<ObjectiveManager>();
+        foreach (Transform child in tooltipCanvas.GetComponentsInChildren<Transform>(true))
+        {
+            if (child.gameObject.name.Equals("Keybinds")) keybinds = child.gameObject;
+        }
     }
     
     

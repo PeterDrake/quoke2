@@ -400,6 +400,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+
+        if (GlobalControls.KeybindsEnabled)
+        {
+            referenceManager.keybinds.SetActive(true);
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Exploring"];
+        }
+        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
         if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
     }
@@ -418,6 +425,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
         referenceManager.npcInteractedCanvas.SetActive(false);
+        if (GlobalControls.KeybindsEnabled)
+        {
+            referenceManager.keybinds.SetActive(true);
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Conversing"];
+        }
+        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
     }
 
@@ -438,6 +451,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         objectives.SetActive(false);
         if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
+        if (GlobalControls.KeybindsEnabled)
+        {
+            referenceManager.keybinds.SetActive(true);
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Trading"];
+        }
+        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
         
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
         
