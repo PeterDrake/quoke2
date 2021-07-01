@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StrategicMapKeyboardController : MonoBehaviour
 {
@@ -64,6 +65,12 @@ public class StrategicMapKeyboardController : MonoBehaviour
         references.dialogueCanvas.SetActive(false);
         references.tradeCanvas.SetActive(false);
         references.npcInteractedCanvas.SetActive(false);
+        if (GlobalControls.KeybindsEnabled)
+        {
+            references.keybinds.SetActive(true);
+            references.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["StrategicMap"];
+        }
+        else if (GlobalControls.KeybindsEnabled) references.keybinds.SetActive(false);
     }
 
     void Update()
