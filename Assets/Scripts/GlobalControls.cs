@@ -51,6 +51,7 @@ public static class GlobalControls
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp")},
             };
+            currentObjective = 2;
         }
         else
         {
@@ -65,6 +66,7 @@ public static class GlobalControls
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                         0, false, "Rainer needs a Bucket")},
             };
+            currentObjective = 1;
         }
 
         metersEnabled = true;
@@ -103,6 +105,7 @@ public static class GlobalControls
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp")},
             };
+            currentObjective = 2;
         }
         else
         {
@@ -117,6 +120,7 @@ public static class GlobalControls
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                     0, false, "Rainer needs a Bucket")},
             };
+            currentObjective = 1;
         }
 
         metersEnabled = true;
@@ -144,7 +148,12 @@ public static class GlobalControls
         get => noStoredWaterTime;
         set => noStoredWaterTime = value;
     }
-    
+
+    public static int CurrentObjective
+    {
+        get => currentObjective;
+        set => currentObjective = value;
+    }
     public static bool ApartmentCondition
     {
         get => apartmentCondition;

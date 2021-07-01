@@ -94,6 +94,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("GameEnd"))
         {
             inventoryInScene = false;
+            GlobalControls.ObjectivesEnabled = false;
             npcInteractedInScene = false;
             SetExploring();
         }
@@ -102,6 +103,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(2);
             npcInteractedInScene = false;
+            GlobalControls.CurrentObjective = 3;
             SetSegue();
         }
         else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
@@ -109,12 +111,19 @@ public class PlayerKeyboardManager : MonoBehaviour
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
             npcInteractedInScene = false;
+            if(GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 2;
+            else if(!GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 1;
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
             this.gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
             this.enabled = false;
+        }
+        else if (GlobalControls.CurrentObjective <= 2)
+        {
+            GlobalControls.CurrentObjective = 5;
+            SetExploring();
         }
         else SetExploring();
         
@@ -372,7 +381,12 @@ public class PlayerKeyboardManager : MonoBehaviour
                 npcFrames[i].GetComponent<Image>().sprite = unselected;
             }
         }
-        if (GlobalControls.ObjectivesEnabled) objectives.SetActive(true);
+
+        if (GlobalControls.ObjectivesEnabled)
+        {
+            objectives.SetActive(true);
+            referenceManager.objectiveManager.UpdateObjectiveBanner();
+        }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
         if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);

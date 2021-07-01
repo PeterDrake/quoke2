@@ -57,17 +57,11 @@ public class Meters : MonoBehaviour
             GlobalControls.WaterTaskCompleted = true;
             waterDoneIndicator.SetActive(true);
         }
-
-        Debug.Log("objectives");
+        
         if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            GlobalControls.ObjectivesEnabled = true;
-            objectives.SetActive(true);
-            objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
-        }
-        else
-        {
-            objectives.SetActive(false);
+            GlobalControls.CurrentObjective = 5;
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
         }
     }
 
@@ -77,12 +71,8 @@ public class Meters : MonoBehaviour
         waterLevelDisplay.text = waterTimeLeft.ToString();
         if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            objectives.SetActive(true);
-            objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
-        }
-        else
-        {
-            objectives.SetActive(false);
+            GlobalControls.CurrentObjective = 6;
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
         }
     }
 

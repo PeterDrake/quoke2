@@ -23,7 +23,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject keyboardManager;
     public GameObject deathManager;
     public GameObject sceneManagement;
-    public GameObject objectiveManager;
+    public ObjectiveManager objectiveManager;
 
     public GameObject itemLoader;
     
@@ -72,7 +72,7 @@ public class ReferenceManager : MonoBehaviour
         player = GameObject.Find("Player");
         sceneManagement = GameObject.Find("Scene Management");
         itemLoader = GameObject.Find("Item Manager");
-        objectiveManager = GameObject.Find("Objective Manager");
+        objectiveManager = GameObject.Find("Objective Manager").GetComponent<ObjectiveManager>();
     }
     
     

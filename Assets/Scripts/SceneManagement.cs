@@ -37,6 +37,10 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.IsStrategicMap = true;
         }
+        else if (sceneToLoad.Equals("GameEnd"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
         else if (sceneToLoad.Contains("Quake"))
         {
             GlobalControls.MetersEnabled = false;
