@@ -338,8 +338,8 @@ public class Inventory : MonoBehaviour
                 if (items[i].name.Equals("Bucket(Clone)")) x = 1; 
                 if (items[i].name.Equals("Bucket 2(Clone)")) x = 2;
                 if (items[i].name.Equals("Bag(Clone)") && twoBucket.bucketTwoDone && twoBucket.bucketDone) x = 3;
-                if (items[i].name.Equals("Wood Chips(Clone)") && twoBucket.bagDone) x = 4;
-                if (items[i].name.Equals("Toilet Paper(Clone)") && twoBucket.woodChipsDone) x = 5;
+                if (items[i].name.Equals("Toilet Paper(Clone)") && twoBucket.bagDone) x = 4;
+                if (items[i].name.Equals("Wood Chips(Clone)") && twoBucket.toiletPaperDone) x = 5;
 
                 switch (x)
                 {
@@ -363,15 +363,16 @@ public class Inventory : MonoBehaviour
                         break;
                     case 4:
                         RemoveBucketItem(i);
-                        twoBucket.woodChipsDone = true;
-                        Debug.Log("Wood Chips Complete");
+                        twoBucket.toiletPaperDone = true;
+                        Debug.Log("Toilet Paper Complete");
                         break;
                     case 5:
                         RemoveBucketItem(i);
-                        twoBucket.toiletPaperDone = true;
-                        Debug.Log("Toilet Paper Complete");
+                        twoBucket.woodChipsDone = true;
+                        Debug.Log("Wood Chips Complete");
                         twoBucket.TwoBucketComplete();
                         break;
+                    
                 }
             }
         }

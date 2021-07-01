@@ -61,8 +61,8 @@ public class TwoBucketScript : MonoBehaviour
         if (!bucketDone) return false;
         if (!bucketTwoDone) return false;
         if (!bagDone) return false;
-        if (!woodChipsDone) return false;
         if (!toiletPaperDone) return false;
+        if (!woodChipsDone) return false;
         Debug.Log("Completed Two Bucket System uwu");
         meters.MarkTaskAsDone("poop");
         return true;
