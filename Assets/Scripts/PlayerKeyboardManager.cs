@@ -427,13 +427,13 @@ public class PlayerKeyboardManager : MonoBehaviour
     }
     private void UpdateTrading()
     {
-        if (Input.GetKeyDown(","))
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
             cursorLocation--;
             cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
                 
         }
-        if (Input.GetKeyDown("."))
+        if (Input.GetKeyDown(KeyCode.RightBracket))
         {
             cursorLocation++;
             cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
