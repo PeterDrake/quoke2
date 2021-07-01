@@ -288,7 +288,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                     npcFrames[i].GetComponent<Image>().sprite = unselected;
                 }
             }
-            else if (cursorLocation >= inventory.slotContents.Length)
+            else if (!npcInteractedCanvas.activeSelf && cursorLocation >= inventory.slotContents.Length)
             {
                 cursorLocation = 0;
                 inventory.SelectSlotNumber(cursorLocation);
