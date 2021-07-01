@@ -371,6 +371,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
+        else if(!GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
         if (GlobalControls.ObjectivesEnabled)
@@ -408,6 +409,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                 npcFrames[i].GetComponent<Image>().sprite = unselected;
             }
         }
+        else if(!npcInteractedInScene) referenceManager.npcInteractedCanvas.SetActive(false);
 
         
     }
