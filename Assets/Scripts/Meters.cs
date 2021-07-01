@@ -12,6 +12,8 @@ public class Meters : MonoBehaviour
 
     public Text poopLevelDisplay;
     public Text waterLevelDisplay;
+
+    private GameObject objectives;
     
 
     void Start()
@@ -29,7 +31,15 @@ public class Meters : MonoBehaviour
 
         poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
         waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
-
+        
+        foreach (Image image in GameObject.Find("Managers").GetComponent<ReferenceManager>().tooltipCanvas
+            .GetComponentsInChildren<Image>(true))
+        {
+            if (image.gameObject.name.Equals("Objectives"))
+            {
+                objectives = image.gameObject;
+            }
+        }
         UpdateVisualText();
     }
     
@@ -48,19 +58,15 @@ public class Meters : MonoBehaviour
             waterDoneIndicator.SetActive(true);
         }
 
+        Debug.Log("objectives");
         if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            // GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
-            foreach (Image image in GameObject.Find("Managers").GetComponent<ReferenceManager>().tooltipCanvas
-                .GetComponentsInChildren<Image>(true))
-            {
-                if (image.gameObject.name.Equals("Objectives"))
-                {
-                    image.gameObject.SetActive(true);
-                    image.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
-                }
-            }
-           
+            objectives.SetActive(true);
+            objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
+        }
+        else
+        {
+            objectives.SetActive(false);
         }
     }
 
@@ -68,6 +74,15 @@ public class Meters : MonoBehaviour
     {
         poopLevelDisplay.text = poopTimeLeft.ToString();
         waterLevelDisplay.text = waterTimeLeft.ToString();
+        if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        {
+            objectives.SetActive(true);
+            objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
+        }
+        else
+        {
+            objectives.SetActive(false);
+        }
     }
 
 }
