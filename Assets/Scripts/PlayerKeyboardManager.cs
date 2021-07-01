@@ -373,6 +373,21 @@ public class PlayerKeyboardManager : MonoBehaviour
         if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
+        if (GlobalControls.ObjectivesEnabled)
+        {
+            objectives.SetActive(true);
+            referenceManager.objectiveManager.UpdateObjectiveBanner();
+        }
+        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+
+        if (GlobalControls.KeybindsEnabled)
+        {
+            referenceManager.keybinds.SetActive(true);
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Exploring"];
+        }
+        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
+        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
         {
             referenceManager.tooltipCanvas.SetActive(true);
@@ -394,21 +409,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (GlobalControls.ObjectivesEnabled)
-        {
-            objectives.SetActive(true);
-            referenceManager.objectiveManager.UpdateObjectiveBanner();
-        }
-        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
-
-        if (GlobalControls.KeybindsEnabled)
-        {
-            referenceManager.keybinds.SetActive(true);
-            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Exploring"];
-        }
-        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
-        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
-        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
+        
     }
 
     public void SetConversing()
@@ -418,19 +419,27 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
-        referenceManager.tooltipCanvas.SetActive(false);
+        referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
         referenceManager.inventoryCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
         referenceManager.npcInteractedCanvas.SetActive(false);
+        if (GlobalControls.ObjectivesEnabled)
+        {
+            objectives.SetActive(true);
+            referenceManager.objectiveManager.UpdateObjectiveBanner();
+        }
+        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
         if (GlobalControls.KeybindsEnabled)
         {
             referenceManager.keybinds.SetActive(true);
             referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Conversing"];
         }
         else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
+        toolTips.SetActive(false);
+        
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
     }
 

@@ -74,10 +74,11 @@ public static class GlobalControls
         keybinds = new Dictionary<string, string>()
         {
             {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
-            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change Inventory selection. \nENTER => confirm. \nESC => leave interaction."},
-            {"Conversing", "< > => Switch Option"},
+            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
+            {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
+        
         metersEnabled = true;
         objectivesEnabled = true;
         tooltipsEnabled = true;
@@ -136,8 +137,8 @@ public static class GlobalControls
         keybinds = new Dictionary<string, string>()
         {
             {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
-            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change Inventory selection. \nENTER => confirm. \nESC => leave interaction."},
-            {"Conversing", "< > => Switch Option"},
+            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
+            {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
         
