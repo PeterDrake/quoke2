@@ -236,13 +236,14 @@ public class PlayerKeyboardManager : MonoBehaviour
             
             
         // Select from inventory (1-9)
-        if (cursorLocation <= inventory.slotContents.Length && inventory)
+        if (cursorLocation < inventory.slotContents.Length && inventory)
         {
             for (int i = 0; i < validInputs.Length; i++)
             {
                 if (Input.GetKey(validInputs[i]))
                 {
                     inventory.SelectSlotNumber(i);
+                    cursorLocation = i;
                 }
             }
         } 
@@ -250,8 +251,9 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             for (int i = 0; i < validNPCInputs.Length; i++)
             {
-                if (npcInteractedCanvas.activeSelf && cursorLocation == 1 && Input.GetKey(validNPCInputs[i]))
+                if (Input.GetKey(validNPCInputs[i]))
                 {
+                    cursorLocation = inventory.slotContents.Length + i;
                     for (int j = 0; j < validNPCInputs.Length; j++)
                     {
                         if(j == i) npcFrames[j].GetComponent<Image>().sprite = selected;
