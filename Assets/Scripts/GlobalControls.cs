@@ -15,11 +15,12 @@ public static class GlobalControls
     private static bool adminMode = true;
     private static bool metersEnabled = true;
     private static bool objectivesEnabled = true;
+    private static bool keybindsEnabled = true;
     private static int currentObjective;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
-    private static bool poopTaskCompleted = false;
-    private static bool waterTaskCompleted = false;
+    private static bool poopTaskCompleted;
+    private static bool waterTaskCompleted;
     private static int currentScene;
     private static bool isStrategicMap;
 
@@ -72,6 +73,7 @@ public static class GlobalControls
         metersEnabled = true;
         objectivesEnabled = true;
         tooltipsEnabled = true;
+        keybindsEnabled = true;
         poopTimeLeft = 24;
         waterTimeLeft = 12;
         poopTaskCompleted = false;
@@ -126,6 +128,7 @@ public static class GlobalControls
         metersEnabled = true;
         tooltipsEnabled = true;
         objectivesEnabled = true;
+        keybindsEnabled = true;
         poopTimeLeft = 24;
         waterTimeLeft = 12;
         poopTaskCompleted = false;
@@ -158,6 +161,11 @@ public static class GlobalControls
     {
         get => apartmentCondition;
         set => apartmentCondition = value;
+    }
+    public static bool KeybindsEnabled
+    {
+        get => keybindsEnabled;
+        set => keybindsEnabled = value;
     }
     public static bool ObjectivesEnabled
     {
