@@ -7,6 +7,18 @@ public class CheatKeyboardController : MonoBehaviour
     public Meters meters;
     public SceneManagement sceneManagement;
     private string currentScene;
+    public KeyCode preQuakeTeleport = KeyCode.H;
+    public KeyCode quakeTeleport = KeyCode.J;
+    public KeyCode strategicMapTeleport = KeyCode.K;
+    public KeyCode parkTeleport = KeyCode.B;
+    public KeyCode completeWater = KeyCode.O;
+    public KeyCode completePoop = KeyCode.P;
+    public KeyCode restart = KeyCode.N;
+    public KeyCode causeAftershock = KeyCode.U;
+    public KeyCode loadPoopItems = KeyCode.L;
+    public KeyCode loadWaterItems = KeyCode.Y;
+    public KeyCode loadPreQuakeItems = KeyCode.V;
+    public KeyCode changeCondition = KeyCode.T;
 
     void Start()
     {
@@ -19,7 +31,7 @@ public class CheatKeyboardController : MonoBehaviour
     {
         if (GlobalControls.AdminMode)
         {
-            if (Input.GetKeyDown(KeyCode.H))//Load PreQuakeHouse
+            if (Input.GetKeyDown(preQuakeTeleport))//Load PreQuakeHouse
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -30,7 +42,7 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("PreQuakeHouse");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.J))//Load QuakeHouse
+            if (Input.GetKeyDown(quakeTeleport))//Load QuakeHouse
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -41,31 +53,31 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("QuakeHouse");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.K))//Load Strategic Map
+            if (Input.GetKeyDown(strategicMapTeleport))//Load Strategic Map
             {
                 sceneManagement.ChangeScene("StrategicMap");
             }
-            if (Input.GetKeyDown(KeyCode.B))//Load Park
+            if (Input.GetKeyDown(parkTeleport))//Load Park
             {
                 sceneManagement.ChangeScene("Park");
             }
-            if (meters && Input.GetKeyDown(KeyCode.O)) //Complete Water
+            if (meters && Input.GetKeyDown(completeWater)) //Complete Water
             {
                 meters.MarkTaskAsDone("water");
             }
-            if (meters && Input.GetKeyDown(KeyCode.P)) //Complete Poop
+            if (meters && Input.GetKeyDown(completePoop)) //Complete Poop
             {
                 meters.MarkTaskAsDone("poop");
             }
-            if (Input.GetKeyDown(KeyCode.N)) //Restart Game
+            if (Input.GetKeyDown(restart)) //Restart Game
             {
                 sceneManagement.Restart();
             }
-            if (currentScene.Equals("Yard") && Input.GetKeyDown(KeyCode.U))
+            if ((currentScene.Equals("Yard") || currentScene.Equals("Street")) && Input.GetKeyDown(causeAftershock))
             {
                 GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>().TriggerQuake();
             }
-            if (Input.GetKeyDown(KeyCode.L)) //Load Yard with Latrine Items
+            if (Input.GetKeyDown(loadPoopItems)) //Load Yard with Latrine Items
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -89,7 +101,14 @@ public class CheatKeyboardController : MonoBehaviour
                 }
                 
             }
-            if (Input.GetKeyDown(KeyCode.V)) //Load Yard with PreQuake Items
+            if (Input.GetKeyDown(loadWaterItems)) //Load scene with water task items
+            {
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
+                GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
+                sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
+            }
+            if (Input.GetKeyDown(loadPreQuakeItems)) //Load Yard with PreQuake Items
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -108,14 +127,7 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("Yard");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Y)) //Load scene with water task items
-            {
-                GlobalItemList.Reset();
-                GlobalItemList.UpdateItemList("Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
-                GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
-                sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
-            }
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(changeCondition))
             {
                 Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.ApartmentCondition + 
                           " to " + !GlobalControls.ApartmentCondition);
