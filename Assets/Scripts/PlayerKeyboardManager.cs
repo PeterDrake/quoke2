@@ -31,6 +31,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private Text tooltipText;
 
     private int cursorLocation;
+
+    private int inventoryNumber;
     // Note that the 1 key is at index 0, and so on. This neatly accounts for 0-based array index and doesn't have to be
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
@@ -427,16 +429,52 @@ public class PlayerKeyboardManager : MonoBehaviour
     }
     private void UpdateTrading()
     {
-        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        if (Input.GetKeyDown(","))
         {
             cursorLocation--;
-            cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
+        }
+        if (Input.GetKeyDown("."))
+        {
+            cursorLocation++;
+        }
+
+        if (cursorLocation > -1 && cursorLocation < 5)
+        {
+            inventoryNumber = 0;
+        }
+        else if (cursorLocation > 4 && cursorLocation < 10)
+        {
+            inventoryNumber = 1;
+        }
+        else if (cursorLocation > 9 && cursorLocation < 15)
+        {
+            inventoryNumber = 2;
+        }
+        else if (cursorLocation > 14 && cursorLocation < 20)
+        {
+            inventoryNumber = 3;
+        }
+        else if (cursorLocation > 19)
+        {
+            cursorLocation = 0;
+            inventoryNumber = 0;
+        }
+        else if (cursorLocation < 0)
+        {
+            cursorLocation = 19;
+            inventoryNumber = 3;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            inventoryNumber--;
+            inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
                 
         }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
-            cursorLocation++;
-            cursorLocation = tradeManager.ChangeSelectedInventory(cursorLocation);
+            inventoryNumber++;
+            inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
         }
             
         //select slots
@@ -444,7 +482,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             if (Input.GetKey(validInputs[i]))
             {
-                tradeManager.SelectSlot(cursorLocation, i);
+                tradeManager.SelectSlot(inventoryNumber, i);
             }
         }
         
@@ -452,7 +490,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         // Transfer items (space)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            tradeManager.EncapsulateSpace(cursorLocation);
+            tradeManager.EncapsulateSpace(inventoryNumber);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -559,6 +597,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         gamemode = 5;
         cursorLocation = 0;
+        inventoryNumber = 0;
         
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
