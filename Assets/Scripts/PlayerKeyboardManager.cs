@@ -280,10 +280,18 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (npcInteractedCanvas.activeSelf && cursorLocation >= inventory.slotContents.Length + npcFrames.Length)
             {
                 cursorLocation = 0;
+                inventory.selectedSlotSprite = selected;
+                inventory.SelectSlotNumber(0);
+        
+                for (int i = 0; i < validNPCInputs.Length; i++)
+                {
+                    npcFrames[i].GetComponent<Image>().sprite = unselected;
+                }
             }
             else if (cursorLocation >= inventory.slotContents.Length)
             {
                 cursorLocation = 0;
+                inventory.SelectSlotNumber(cursorLocation);
             }
             
             if (cursorLocation >= inventory.slotContents.Length)
@@ -313,7 +321,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else
             {
                 inventory.SelectSlotNumber(cursorLocation);
-            } 
+            }
         }
 
         if (inventory && Input.GetKeyDown(","))
@@ -370,13 +378,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         //         cursorLocation = 0;
         //         
         //         //Update to show Inventory selected
-        //         inventory.selectedSlotSprite = selected;
-        //         inventory.SelectSlotNumber(0);
-        //         
-        //         for (int i = 0; i < validNPCInputs.Length; i++)
-        //         {
-        //             npcFrames[i].GetComponent<Image>().sprite = unselected;
-        //         }
         //     }
         // }
     }
