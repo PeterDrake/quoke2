@@ -44,6 +44,9 @@ public class PlayerMover : MonoBehaviour
             // It's okay to move into (under) a table if you're crouching
             if (crouching && hitColliders[0].gameObject.layer == LayerMask.NameToLayer("Table"))
             {
+                Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
+                underTable = tableCheckColliders.Length != 0;
+                this.crouching = crouching || underTable;
                 return null;
             }
             return hitColliders[0].gameObject;
