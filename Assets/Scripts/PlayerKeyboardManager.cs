@@ -487,6 +487,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (Input.GetKey(validInputs[i]))
             {
                 tradeManager.SelectSlot(inventoryNumber, i);
+                cursorLocation = inventoryNumber * 5 + i;
             }
         }
         
