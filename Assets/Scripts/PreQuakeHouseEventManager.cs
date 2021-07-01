@@ -4,17 +4,31 @@ using UnityEngine.SceneManagement;
 public class PreQuakeHouseEventManager : MonoBehaviour
 {
     public StorageContainer[] containers;
-
+    
     void FixedUpdate()
     {
         if (AllContainersFull())
         {
-            foreach (StorageContainer container in containers)
+            if (GlobalControls.ApartmentCondition)
             {
-                GameObject item = container.contents;
-                GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
+                foreach (StorageContainer container in containers)
+                {
+                    GameObject item = container.contents;
+                    GlobalItemList.UpdateItemList(item.name, "QuakeApartment", item.transform.position, container.name);
+                }
+
+                SceneManager.LoadScene("QuakeApartment");
             }
-            SceneManager.LoadScene("QuakeHouse");
+            else
+            {
+                foreach (StorageContainer container in containers)
+                {
+                    GameObject item = container.contents;
+                    GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
+                }
+
+                SceneManager.LoadScene("QuakeHouse");
+            }
         }
     }
     

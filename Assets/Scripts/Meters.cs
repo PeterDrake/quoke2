@@ -12,7 +12,7 @@ public class Meters : MonoBehaviour
 
     public Text poopLevelDisplay;
     public Text waterLevelDisplay;
-    
+
 
     void Start()
     {
@@ -29,7 +29,6 @@ public class Meters : MonoBehaviour
 
         poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
         waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
-
         UpdateVisualText();
     }
     
@@ -47,10 +46,11 @@ public class Meters : MonoBehaviour
             GlobalControls.WaterTaskCompleted = true;
             waterDoneIndicator.SetActive(true);
         }
-
-        if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        
+        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
+            GlobalControls.CurrentObjective = 5;
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
         }
     }
 
@@ -58,6 +58,11 @@ public class Meters : MonoBehaviour
     {
         poopLevelDisplay.text = poopTimeLeft.ToString();
         waterLevelDisplay.text = waterTimeLeft.ToString();
+        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        {
+            GlobalControls.CurrentObjective = 6;
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
+        }
     }
 
 }

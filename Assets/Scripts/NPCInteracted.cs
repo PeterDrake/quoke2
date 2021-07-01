@@ -28,10 +28,14 @@ public class NPCInteracted : MonoBehaviour
 
     private void OnEnable()
     {
-        if(safiSatisfaction) safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
-        if(demSatisfaction) demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
-        if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
-        if(fredSatisfaction) fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
+        if(safiSatisfaction) safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
+            + GlobalControls.NPCList["safi0"].totalSatisfaction;
+        if(demSatisfaction) demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
+            + GlobalControls.NPCList["dem0"].totalSatisfaction;
+        if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
+            + GlobalControls.NPCList["rainer0"].totalSatisfaction;
+        if(fredSatisfaction) fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
+            + GlobalControls.NPCList["fred0"].totalSatisfaction;
     }
 
     void Start()
@@ -58,10 +62,14 @@ public class NPCInteracted : MonoBehaviour
             rainerInteracted = GlobalControls.RainerInteracted;
             fredInteracted = GlobalControls.FredInteracted;
 
-            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
-            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
-            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
-            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
+            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
+                + GlobalControls.NPCList["safi0"].totalSatisfaction;
+            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
+                + GlobalControls.NPCList["dem0"].totalSatisfaction;
+            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
+                + GlobalControls.NPCList["rainer0"].totalSatisfaction;
+            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
+                + GlobalControls.NPCList["fred0"].totalSatisfaction;
 
             if (!safiInteracted)
             {
@@ -96,7 +104,8 @@ public class NPCInteracted : MonoBehaviour
     {
         if (name.Equals("safi0"))
         {
-            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction.ToString();
+            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
+                + GlobalControls.NPCList["safi0"].totalSatisfaction;
             safiInteracted = true;
             GlobalControls.SafiInteracted = true;
             GlobalControls.NPCList["safi0"].interracted = true;
@@ -105,7 +114,8 @@ public class NPCInteracted : MonoBehaviour
         }
         else if (name.Equals("dem0"))
         {
-            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction.ToString();
+            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
+                + GlobalControls.NPCList["dem0"].totalSatisfaction;
             demInteracted = true;
             GlobalControls.DemInteracted = true;
             GlobalControls.NPCList["dem0"].interracted = true;
@@ -114,7 +124,8 @@ public class NPCInteracted : MonoBehaviour
         }
         else if (name.Equals("rainer0"))
         {
-            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction.ToString();
+            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
+                + GlobalControls.NPCList["rainer0"].totalSatisfaction;
             rainerInteracted = true;
             GlobalControls.RainerInteracted = true;
             GlobalControls.NPCList["rainer0"].interracted = true;
@@ -123,7 +134,8 @@ public class NPCInteracted : MonoBehaviour
         }
         else if (name.Equals("fred0"))
         {
-            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction.ToString();
+            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
+                + GlobalControls.NPCList["fred0"].totalSatisfaction;
             fredInteracted = true;
             GlobalControls.FredInteracted = true;
             GlobalControls.NPCList["fred0"].interracted = true;

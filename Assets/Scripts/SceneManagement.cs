@@ -5,13 +5,23 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 
 {
-    private readonly string[] previousScenes = {"School", "Park", "Yard"};
+    private string[] previousScenes;
+
+    private void Start()
+    {
+        if(GlobalControls.ApartmentCondition) previousScenes = new []{"School", "Park", "Street"};
+        else previousScenes = new []{"School", "Park", "Yard"};
+    }
 
     public void Restart()
     {
         GlobalControls.Reset();
         GlobalItemList.Reset();
-        ChangeScene("PreQuakeHouse");
+        if (GlobalControls.ApartmentCondition)
+        {
+            ChangeScene("PreQuakeApartment");
+        }
+        else ChangeScene("PreQuakeHouse");
     }
 
     /// <summary>
@@ -27,6 +37,10 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.IsStrategicMap = true;
         }
+        else if (sceneToLoad.Equals("GameEnd"))
+        {
+            GlobalControls.MetersEnabled = false;
+        }
         else if (sceneToLoad.Contains("Quake"))
         {
             GlobalControls.MetersEnabled = false;
@@ -39,8 +53,10 @@ public class SceneManagement : MonoBehaviour
             if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
         }
 
+       
         if (sceneToLoad.Equals("Yard") && SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
+            bool noStoredWater = true;
             StorageContainer[] containers = new StorageContainer[]
             {
                 GameObject.Find("Shed 1").GetComponent<StorageContainer>(),
@@ -55,6 +71,16 @@ public class SceneManagement : MonoBehaviour
                 {
                     GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
                 }
+
+                if (item && item.name.Equals("Water Bottle(Clone)") && (container.name.Equals("Shed 1") || container.name.Equals("Shed 2")))
+                {
+                    noStoredWater = false;
+                }
+            }
+
+            if (noStoredWater)
+            {
+                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
             }
         }
         else if (sceneToLoad.Equals("QuakeHouse") && SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
@@ -73,6 +99,44 @@ public class SceneManagement : MonoBehaviour
                 {
                     GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
                 }
+            }
+        }
+        else if (sceneToLoad.Equals("QuakeApartment") && SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        {
+            StorageContainer[] containers = new StorageContainer[]
+            {
+                GameObject.Find("Shelf 1").GetComponent<StorageContainer>(),
+                GameObject.Find("Shelf 2").GetComponent<StorageContainer>(),
+                GameObject.Find("Go Bag 1").GetComponent<StorageContainer>(),
+                GameObject.Find("Go Bag 2").GetComponent<StorageContainer>(),
+            };
+            foreach (StorageContainer container in containers)
+            {
+                GameObject item = container.contents;
+                if (item)
+                {
+                    GlobalItemList.UpdateItemList(item.name, "QuakeApartment", item.transform.position, container.name);
+                }
+            }
+        }
+        else if (sceneToLoad.Equals("Street") && SceneManager.GetActiveScene().name.Equals("QuakeApartment"))
+        {
+            bool noStoredWater = true;
+            int inventoryCount = 0;
+            foreach (Item item in GlobalItemList.ItemList.Values)
+            {
+                if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
+                {
+                    if (item.name.Equals("Chlorine Tablet"))
+                    {
+                        noStoredWater = false;
+                    }
+                    inventoryCount++;
+                }
+            }
+            if (noStoredWater || inventoryCount != 2)
+            {
+                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
             }
         }
         SceneManager.LoadSceneAsync(sceneToLoad);
