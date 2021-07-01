@@ -25,6 +25,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject npcInteractedCanvas;
     private GameObject metersCanvas;
     private GameObject tooltipCanvas;
+    private GameObject toolTips;
+    private GameObject objectives;
     private Text tooltipText;
 
     private int cursorLocation;
@@ -46,6 +48,11 @@ public class PlayerKeyboardManager : MonoBehaviour
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         tooltipCanvas = referenceManager.tooltipCanvas;
+        foreach (Image image in tooltipCanvas.GetComponentsInChildren<Image>())
+        {
+            if (image.gameObject.name.Equals("Tooltip")) toolTips = image.gameObject;
+            if (image.gameObject.name.Equals("Objectives")) objectives = image.gameObject;
+        }
         if (GlobalControls.TooltipsEnabled)
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
@@ -365,6 +372,10 @@ public class PlayerKeyboardManager : MonoBehaviour
                 npcFrames[i].GetComponent<Image>().sprite = unselected;
             }
         }
+        if (GlobalControls.ObjectivesEnabled) objectives.SetActive(true);
+        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
     }
 
     public void SetConversing()
@@ -398,7 +409,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.npcInteractedCanvas.SetActive(false);
+        objectives.SetActive(false);
+        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
+        
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
+        
     }
 
     public void SetSegue()

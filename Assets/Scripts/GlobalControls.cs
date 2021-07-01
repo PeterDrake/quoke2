@@ -11,23 +11,24 @@ public static class GlobalControls
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
     // metersEnabled is currently set to true for testing purposes
+    private static bool tooltipsEnabled = true;
+    private static bool adminMode = true;
     private static bool metersEnabled = true;
+    private static bool objectivesEnabled = true;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
     private static bool poopTaskCompleted = false;
     private static bool waterTaskCompleted = false;
     private static int currentScene;
     private static bool isStrategicMap;
-    private static bool adminMode = true;
 
     private static int turnNumber = 0;
     private static string currentNPC;
-    
+
     private static bool safiInteracted;
     private static bool demInteracted;
     private static bool rainerInteracted;
     private static bool fredInteracted;
-    private static bool tooltipsEnabled = true;
 
     private static bool apartmentCondition = false;
 
@@ -66,6 +67,8 @@ public static class GlobalControls
         }
 
         metersEnabled = true;
+        objectivesEnabled = true;
+        tooltipsEnabled = true;
         poopTimeLeft = 24;
         waterTimeLeft = 12;
         poopTaskCompleted = false;
@@ -86,7 +89,7 @@ public static class GlobalControls
 
     public static void Reset()
     {
-        if (GlobalControls.apartmentCondition)
+        if (apartmentCondition)
         {
             npcList = new Dictionary<string, NPC>
             {
@@ -116,6 +119,8 @@ public static class GlobalControls
         }
 
         metersEnabled = true;
+        tooltipsEnabled = true;
+        objectivesEnabled = true;
         poopTimeLeft = 24;
         waterTimeLeft = 12;
         poopTaskCompleted = false;
@@ -143,6 +148,11 @@ public static class GlobalControls
     {
         get => apartmentCondition;
         set => apartmentCondition = value;
+    }
+    public static bool ObjectivesEnabled
+    {
+        get => objectivesEnabled;
+        set => objectivesEnabled = value;
     }
     
     public static bool IsStrategicMap

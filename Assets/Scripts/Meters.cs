@@ -59,8 +59,9 @@ public class Meters : MonoBehaviour
         }
 
         Debug.Log("objectives");
-        if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
+            GlobalControls.ObjectivesEnabled = true;
             objectives.SetActive(true);
             objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";
         }
@@ -74,7 +75,7 @@ public class Meters : MonoBehaviour
     {
         poopLevelDisplay.text = poopTimeLeft.ToString();
         waterLevelDisplay.text = waterTimeLeft.ToString();
-        if (GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
             objectives.SetActive(true);
             objectives.GetComponentInChildren<Text>(true).text = "Go to the tent to end the game!";

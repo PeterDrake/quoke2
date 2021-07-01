@@ -65,10 +65,18 @@ public class PlayerMover : MonoBehaviour
             // TODO This seems to be assuming the only interactables are NPCs
             if (ahead)
             {
-                GlobalControls.CurrentNPC = ahead.name;
-                referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
-                transform.LookAt(transform.position + direction, transform.up);
-                referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
+                if (ahead.name.Equals("Tent") && GlobalControls.PoopTaskCompleted && GlobalControls.WaterTaskCompleted)
+                {
+                    referenceManager.sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
+                }
+                else
+                {
+                    GlobalControls.CurrentNPC = ahead.name;
+                    referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
+                    transform.LookAt(transform.position + direction, transform.up);
+                    referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
+                }
+
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better
