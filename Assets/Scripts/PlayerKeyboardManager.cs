@@ -49,7 +49,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         tooltipCanvas = referenceManager.tooltipCanvas;
-        foreach (Image image in tooltipCanvas.GetComponentsInChildren<Image>())
+        foreach (Image image in tooltipCanvas.GetComponentsInChildren<Image>(true))
         {
             if (image.gameObject.name.Equals("Tooltip")) toolTips = image.gameObject;
             if (image.gameObject.name.Equals("Objectives")) objectives = image.gameObject;
