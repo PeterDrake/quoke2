@@ -12,6 +12,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 {
     private PlayerMover player;
     private Inventory inventory;
+    private bool crouchFlag = false;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
@@ -206,8 +207,19 @@ public class PlayerKeyboardManager : MonoBehaviour
     
     private void UpdateExploring()
     {
-        // Crouch (c)
-        player.SetCrouching(Input.GetKey(KeyCode.C));
+        switch (crouchFlag)
+        {
+            // Crouch (c)
+            case true when Input.GetKeyDown(KeyCode.C):
+                crouchFlag = !crouchFlag;
+                player.SetCrouching(crouchFlag);
+                break;
+            case false when Input.GetKeyDown(KeyCode.C):
+                crouchFlag = !crouchFlag;
+                player.SetCrouching(crouchFlag);
+                break;
+        }
+        
         // Move (wasd or arrow keys)
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
