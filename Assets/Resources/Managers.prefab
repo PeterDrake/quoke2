@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1298035552812648324}
   - component: {fileID: 1298035552812648323}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: Item Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +75,7 @@ Transform:
   - {fileID: 3748763218506422893}
   - {fileID: 7248003616501655394}
   - {fileID: 7562464434405218211}
+  - {fileID: 8168119677587757196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,10 +99,12 @@ MonoBehaviour:
   deathCanvas: {fileID: 0}
   segueCanvas: {fileID: 0}
   npcInteractedCanvas: {fileID: 0}
+  tooltipCanvas: {fileID: 0}
   player: {fileID: 0}
   keyboardManager: {fileID: 0}
   deathManager: {fileID: 0}
   sceneManagement: {fileID: 0}
+  itemLoader: {fileID: 0}
 --- !u!1 &3748763218506422894
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +182,49 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerLocation: 0
+--- !u!1 &6931439039469447948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8168119677587757196}
+  - component: {fileID: 1368440583515973037}
+  m_Layer: 0
+  m_Name: Objective Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8168119677587757196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931439039469447948}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.927874, y: -54.663498, z: 45.672363}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1298035553294467039}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1368440583515973037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931439039469447948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b859f8e034725e540a0e81e207751bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7562464434405218213
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +327,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d22b01cc5964eb4687113d8e3834003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathText: {fileID: 0}
-  TipsText: {fileID: 0}
   playerDeath: 0

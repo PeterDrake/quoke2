@@ -15,6 +15,7 @@ public static class GlobalControls
     private static bool adminMode = true;
     private static bool metersEnabled = true;
     private static bool objectivesEnabled = true;
+    private static int currentObjective;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
     private static bool poopTaskCompleted = false;
