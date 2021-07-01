@@ -35,6 +35,7 @@ public static class GlobalControls
     private static bool apartmentCondition = false;
 
     private static Dictionary<string, NPC> npcList;
+    private static Dictionary<string, string> keybinds;
 
     static GlobalControls()
     {
@@ -70,6 +71,13 @@ public static class GlobalControls
             currentObjective = 1;
         }
 
+        keybinds = new Dictionary<string, string>()
+        {
+            {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
+            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change Inventory selection. \nENTER => confirm. \nESC => leave interaction."},
+            {"Conversing", "< > => Switch Option"},
+            {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
+        };
         metersEnabled = true;
         objectivesEnabled = true;
         tooltipsEnabled = true;
@@ -125,6 +133,14 @@ public static class GlobalControls
             currentObjective = 1;
         }
 
+        keybinds = new Dictionary<string, string>()
+        {
+            {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
+            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change Inventory selection. \nENTER => confirm. \nESC => leave interaction."},
+            {"Conversing", "< > => Switch Option"},
+            {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
+        };
+        
         metersEnabled = true;
         tooltipsEnabled = true;
         objectivesEnabled = true;
@@ -193,12 +209,14 @@ public static class GlobalControls
 
     public static Dictionary<string, NPC> NPCList
     {
-        get
-        {
-            return npcList;
-        }
+        get => npcList;
     }
 
+    public static Dictionary<string, string> Keybinds
+    {
+        get => keybinds;
+    }
+    
     public static bool MetersEnabled
     {
         get
