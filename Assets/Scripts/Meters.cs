@@ -13,8 +13,6 @@ public class Meters : MonoBehaviour
     public Text poopLevelDisplay;
     public Text waterLevelDisplay;
 
-    private GameObject objectives;
-    
 
     void Start()
     {
@@ -31,15 +29,6 @@ public class Meters : MonoBehaviour
 
         poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
         waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
-        
-        foreach (Image image in GameObject.Find("Managers").GetComponent<ReferenceManager>().tooltipCanvas
-            .GetComponentsInChildren<Image>(true))
-        {
-            if (image.gameObject.name.Equals("Objectives"))
-            {
-                objectives = image.gameObject;
-            }
-        }
         UpdateVisualText();
     }
     

@@ -72,7 +72,7 @@ public class SceneManagement : MonoBehaviour
                     GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
                 }
 
-                if (item.name.Equals("Water Bottle(Clone)"))
+                if (item && item.name.Equals("Water Bottle(Clone)") && (container.name.Equals("Shed 1") || container.name.Equals("Shed 2")))
                 {
                     noStoredWater = false;
                 }

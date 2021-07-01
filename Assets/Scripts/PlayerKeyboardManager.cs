@@ -120,7 +120,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             this.gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
             this.enabled = false;
         }
-        else if (GlobalControls.CurrentObjective <= 2)
+        else if (GlobalControls.CurrentObjective <= 4)
         {
             GlobalControls.CurrentObjective = 5;
             SetExploring();

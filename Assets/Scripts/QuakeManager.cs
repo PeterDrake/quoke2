@@ -274,6 +274,9 @@ public class QuakeManager : MonoBehaviour
         {
             c.enabled = false;
         }
+        
+        GlobalControls.CurrentObjective = 4;
+        GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
 
         //_informationCanvas.ChangeText(textAfterQuake);
         //Systems.Objectives.Satisfy("SURVIVEQUAKE");
