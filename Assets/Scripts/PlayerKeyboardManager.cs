@@ -268,7 +268,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
 
         
-        if (inventoryInScene && cursorLocation == 0  && Input.GetKeyDown(KeyCode.Space))
+        if (inventoryInScene && cursorLocation < inventory.slotContents.Length  && Input.GetKeyDown(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
@@ -302,6 +302,9 @@ public class PlayerKeyboardManager : MonoBehaviour
                     inventory.SelectSlotNumber(1);
 
                     npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = selected;
+                    if(cursorLocation - inventory.slotContents.Length > 0)
+                        npcFrames[cursorLocation - inventory.slotContents.Length - 1].GetComponent<Image>().sprite = unselected;
+
                     if (GlobalControls.TooltipsEnabled && 
                         GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].interracted)
                     {
@@ -327,19 +330,35 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (inventory && Input.GetKeyDown(","))
         {
             cursorLocation--;
-            if (cursorLocation >= inventory.slotContents.Length && npcInteractedCanvas.activeSelf)
+            if (cursorLocation < 0)
+            {
+                if (npcInteractedCanvas.activeSelf)
+                {
+                    cursorLocation = inventory.slotContents.Length + npcFrames.Length - 1;
+                }
+                else
+                {
+                    cursorLocation = inventory.slotContents.Length - 1;
+                }
+            }
+            
+            if (cursorLocation >= inventory.slotContents.Length)
             {
                 if (npcInteractedCanvas.activeSelf)
                 {
                     inventory.selectedSlotSprite = unselected;
                     inventory.SelectSlotNumber(1);
 
-                    npcFrames[npcFrames.Length].GetComponent<Image>().sprite = selected;
-                    if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[npcFrames.Length]].interracted)
+                    npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = selected;
+                    if(cursorLocation != inventory.slotContents.Length + npcFrames.Length - 1)
+                        npcFrames[cursorLocation - inventory.slotContents.Length + 1].GetComponent<Image>().sprite = unselected;
+
+                    if (GlobalControls.TooltipsEnabled && 
+                        GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].interracted)
                     {
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
                             tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
-                        tooltipText.text = GlobalControls.NPCList[npcList[npcFrames.Length]].description;
+                        tooltipText.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].description;
                     }
                     else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
@@ -350,36 +369,18 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
 
             }
+            else
+            {
+                if (cursorLocation.Equals(inventory.slotContents.Length - 1))
+                {
+                    npcFrames[0].GetComponent<Image>().sprite = unselected;
+                }
+
+                inventory.selectedSlotSprite = selected;
+                inventory.SelectSlotNumber(cursorLocation);
+            }
         }
-
-
-
-        // if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(",") || Input.GetKeyDown(".")))
-        // {
-        //     if (cursorLocation == 0) //if previously selected the inventory
-        //     {
-        //         cursorLocation = 1;
-        //         
-        //         //Update to show NPCInteractedCanvas selected
-        //         inventory.selectedSlotSprite = unselected;
-        //         inventory.SelectSlotNumber(1);
-        //
-        //         npcFrames[0].GetComponent<Image>().sprite = selected;
-        //         if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[0]].interracted)
-        //         {
-        //             if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
-        //                 tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
-        //             tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
-        //         }
-        //         else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
-        //     }
-        //     else //if previously selected the NPCInteractedCanvas
-        //     {
-        //         cursorLocation = 0;
-        //         
-        //         //Update to show Inventory selected
-        //     }
-        // }
+        
     }
     
     private void UpdateDeath()
