@@ -464,17 +464,21 @@ public class PlayerKeyboardManager : MonoBehaviour
             cursorLocation = 19;
             inventoryNumber = 3;
         }
+
+        tradeManager.ChangeSelectedInventory(inventoryNumber);
+        tradeManager.SelectSlot(inventoryNumber, cursorLocation % 5);
         
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
-                
+            cursorLocation = 5 * inventoryNumber;
         }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
             inventoryNumber++;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
+            cursorLocation = 5 * inventoryNumber;
         }
             
         //select slots
