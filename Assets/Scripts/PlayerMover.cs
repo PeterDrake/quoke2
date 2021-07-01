@@ -46,7 +46,6 @@ public class PlayerMover : MonoBehaviour
             {
                 Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
                 underTable = tableCheckColliders.Length != 0;
-                this.crouching = crouching || underTable;
                 return null;
             }
             return hitColliders[0].gameObject;
