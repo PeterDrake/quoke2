@@ -37,9 +37,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     // accounted for elsewhere.
     private readonly KeyCode[] validInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
         KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
-    private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
-    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "fred0"};
-    private readonly GameObject[] npcFrames = new GameObject[4];
+    private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
+        KeyCode.Alpha6};
+    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "fred0", "carlos0", "bob0"};
+    private readonly GameObject[] npcFrames = new GameObject[6];
     private Sprite unselected;
     private Sprite selected;
     
@@ -82,6 +83,8 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (image.gameObject.name.Equals("Dem Frame")) npcFrames[1] = image.gameObject;
             if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
             if (image.gameObject.name.Equals("Fred Frame")) npcFrames[3] = image.gameObject;
+            if (image.gameObject.name.Equals("Carlos Frame")) npcFrames[4] = image.gameObject;
+            if (image.gameObject.name.Equals("Bob Frame")) npcFrames[5] = image.gameObject;
         }
         
         
