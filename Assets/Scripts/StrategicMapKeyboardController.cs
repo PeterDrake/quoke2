@@ -37,7 +37,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         
         // Set the player location to the scene we just left
         playerLocation = GlobalControls.CurrentScene;
-        if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 2)
+        if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 3)
         {
             playerLocation = 0;
         }
