@@ -44,6 +44,8 @@ public class PlayerMover : MonoBehaviour
             // It's okay to move into (under) a table if you're crouching
             if (crouching && hitColliders[0].gameObject.layer == LayerMask.NameToLayer("Table"))
             {
+                Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
+                underTable = tableCheckColliders.Length != 0;
                 return null;
             }
             return hitColliders[0].gameObject;
@@ -65,10 +67,18 @@ public class PlayerMover : MonoBehaviour
             // TODO This seems to be assuming the only interactables are NPCs
             if (ahead)
             {
-                GlobalControls.CurrentNPC = ahead.name;
-                referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
-                transform.LookAt(transform.position + direction, transform.up);
-                referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
+                if (ahead.name.Equals("Tent") && GlobalControls.PoopTaskCompleted && GlobalControls.WaterTaskCompleted)
+                {
+                    referenceManager.sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
+                }
+                else
+                {
+                    GlobalControls.CurrentNPC = ahead.name;
+                    referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
+                    transform.LookAt(transform.position + direction, transform.up);
+                    referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
+                }
+
             }
             // Is there an obstacle ahead?
             // Note that using the result of ObjectAhead as if it were a bool (using Unity's truthiness) is better

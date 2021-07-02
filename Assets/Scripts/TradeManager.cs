@@ -46,7 +46,9 @@ public class TradeManager : MonoBehaviour
     {
         
         npcName = GlobalControls.CurrentNPC;
-
+        
+        List<int> playerSlotsUsed = new List<int>();
+        List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcName))
@@ -54,12 +56,29 @@ public class TradeManager : MonoBehaviour
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryNPC.PickUpAtSlot((int) item.location.x, itemInInventory);
+                npcSlotsUsed.Add((int) item.location.x);
             }
             else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
             {
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
+                playerSlotsUsed.Add((int) item.location.x);
+            }
+        }
+
+        //Set unused slots to null if not already.
+        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+        {
+            if (!playerSlotsUsed.Contains(i) && inventoryPlayer.slotContents[i].activeSelf)
+            {
+                inventoryPlayer.items[i] = null;
+                inventoryPlayer.slotContents[i].SetActive(false);
+            }
+            if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
+            {
+                inventoryNPC.items[i] = null;
+                inventoryNPC.slotContents[i].SetActive(false);
             }
         }
         button.interactable = false;
@@ -185,20 +204,17 @@ public class TradeManager : MonoBehaviour
     {
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
-            if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryPlayer, i);
+            if (inventoryPlayerBin.slotContents[i].activeSelf)
+                TransferItem(inventoryPlayerBin, inventoryPlayer, i);
         }
         for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
         {
-            if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryNPC, i);
+            if (inventoryNPCBin.slotContents[i].activeSelf)
+                TransferItem(inventoryNPCBin, inventoryNPC, i);
         }
-                
+
         //Update globalItemList
-        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
-        {
-            if (inventoryPlayer.slotContents[i].activeSelf) 
-                GlobalItemList.UpdateItemList(inventoryPlayer.items[i].name, "Inventory", 
-                    new Vector3(i, 0, 0), "Player");
-        }
+
         for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
         {
             if (inventoryNPC.slotContents[i].activeSelf)
@@ -236,13 +252,29 @@ public class TradeManager : MonoBehaviour
                     parentInventory.items[i] = null;
                     parentInventory.slotContents[i].SetActive(false);
                     TransferItem(inventoryPlayer, parentInventory, i);
-
-                    parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
-
+                    
+                }
+                else if (parentInventory.slotContents[i].activeSelf)
+                {
+                    parentInventory.items[i] = null;
+                    parentInventory.slotContents[i].SetActive(false);
                 }
             }
+            
+            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            {
+                if(parentInventory.slotContents[i].activeSelf) parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
+            }
+            
+            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            {
+                if (parentInventory.slotContents[i].activeSelf) 
+                    GlobalItemList.UpdateItemList(parentInventory.items[i].name, "Inventory", 
+                        new Vector3(i, 0, 0), "Player");
+            }
+            
         }
-        referenceManager.inventoryCanvas.SetActive(false);
+        
         keyboardManager.SetConversing();
     }
     
@@ -298,6 +330,7 @@ public class TradeManager : MonoBehaviour
             inventory.slotContents[i].SetActive(false);
 
         }
+        inventory.SelectSlotNumber(i);
     }
 
     /// <summary>

@@ -13,6 +13,7 @@ public class LatrineStorage : MonoBehaviour
     public bool plywoodDone;
     public bool ropeDone;
     public bool tarpDone;
+    public bool toiletPaperDone;
 
     public Meters meters;
     public ReferenceManager referenceManager;
@@ -34,7 +35,7 @@ public class LatrineStorage : MonoBehaviour
     
     public bool CheckAllLatrineItems()
     {
-        if (inventoryHasItem("Shovel") || inventoryHasItem("Tarp") || inventoryHasItem("Rope") || inventoryHasItem("Plywood"))
+        if (inventoryHasItem("Shovel") || inventoryHasItem("Tarp") || inventoryHasItem("Rope") || inventoryHasItem("Plywood") || inventoryHasItem("Toilet Paper"))
         {
             return true;
         }
@@ -74,6 +75,7 @@ public class LatrineStorage : MonoBehaviour
         if (!plywoodDone) return false;
         if (!ropeDone) return false;
         if (!tarpDone) return false;
+        if (!toiletPaperDone) return false;
         Debug.Log("Completed latrine uwu");
         meters.MarkTaskAsDone("poop");
         return true;
