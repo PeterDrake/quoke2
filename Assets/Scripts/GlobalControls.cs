@@ -31,6 +31,8 @@ public static class GlobalControls
     private static bool demInteracted;
     private static bool rainerInteracted;
     private static bool fredInteracted;
+    private static bool carlosInteracted;
+    private static bool bobInteracted;
 
     private static bool apartmentCondition = false;
 
@@ -52,6 +54,10 @@ public static class GlobalControls
                     0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp", 1)},
+                {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
+                    0, false, "Carlos needs nothing", 0)},
+                {"bob0", new NPC("Bob", "Garden", new List<string> {""}, "bob0",
+                    0, false, "Bob needs nothing", 0)},
             };
             currentObjective = 2;
         }
@@ -67,6 +73,10 @@ public static class GlobalControls
                         0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                         0, false, "Rainer needs a Bucket", 1)},
+                {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
+                    0, false, "Carlos needs nothing", 0)},
+                {"bob0", new NPC("Bob", "Garden", new List<string> {""}, "bob0",
+                    0, false, "Bob needs nothing", 0)},
             };
             currentObjective = 1;
         }
@@ -97,6 +107,8 @@ public static class GlobalControls
         demInteracted = false;
         rainerInteracted = false;
         fredInteracted = false;
+        carlosInteracted = false;
+        bobInteracted = false;
         adminMode = true;
     }
 
@@ -115,6 +127,10 @@ public static class GlobalControls
                     0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp", 1)},
+                {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
+                    0, false, "Carlos needs nothing", 0)},
+                {"bob0", new NPC("Bob", "Garden", new List<string> {""}, "bob0",
+                    0, false, "Bob needs nothing", 0)},
             };
             currentObjective = 2;
         }
@@ -130,6 +146,10 @@ public static class GlobalControls
                     0, false, "Fred needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                     0, false, "Rainer needs a Bucket", 1)},
+                {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
+                    0, false, "Carlos needs nothing", 0)},
+                {"bob0", new NPC("Bob", "Garden", new List<string> {""}, "bob0",
+                    0, false, "Bob needs nothing", 0)},
             };
             currentObjective = 1;
         }
@@ -160,6 +180,8 @@ public static class GlobalControls
         demInteracted = false;
         rainerInteracted = false;
         fredInteracted = false;
+        carlosInteracted = false;
+        bobInteracted = false;
         adminMode = true;
     }
 
@@ -370,6 +392,30 @@ public static class GlobalControls
         set
         {
             fredInteracted = value;
+        }
+    }
+    public static bool CarlosInteracted
+    {
+        get
+        {
+            return carlosInteracted;
+        }
+
+        set
+        {
+            carlosInteracted = value;
+        }
+    }
+    public static bool BobInteracted
+    {
+        get
+        {
+            return bobInteracted;
+        }
+
+        set
+        {
+            bobInteracted = value;
         }
     }
     
