@@ -47,14 +47,14 @@ public class StrategicMapKeyboardController : MonoBehaviour
         {
             locations = new []
             {
-                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker")
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker"), GameObject.Find("Garden Marker")
             };
         }
         else
         {
             locations = new []
             {
-                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Street Marker")
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Street Marker"), GameObject.Find("Garden Marker")
             };
         }
         
