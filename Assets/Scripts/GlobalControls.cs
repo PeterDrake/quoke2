@@ -22,6 +22,7 @@ public static class GlobalControls
     private static bool poopTaskCompleted;
     private static bool waterTaskCompleted;
     private static bool[] poopTaskProgress;
+    private static int timesShoveled;
     private static int currentScene;
     private static bool isStrategicMap;
 
@@ -99,6 +100,7 @@ public static class GlobalControls
         poopTaskCompleted = false;
         waterTaskCompleted = false;
         poopTaskProgress = new bool[5];
+        timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
 
@@ -173,6 +175,7 @@ public static class GlobalControls
         poopTaskCompleted = false;
         waterTaskCompleted = false;
         poopTaskProgress = new bool[5];
+        timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
 
@@ -253,6 +256,12 @@ public static class GlobalControls
     {
         get => poopTimeLeft;
         set => poopTimeLeft = value;
+    }
+    
+    public static int TimesShoveled
+    {
+        get => timesShoveled;
+        set => timesShoveled = value;
     }
 
     public static int WaterTimeLeft

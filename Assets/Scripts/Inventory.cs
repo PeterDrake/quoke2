@@ -263,6 +263,7 @@ public class Inventory : MonoBehaviour
             if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers))
             {
                 latrineStorage.timesShoveled++;
+                GlobalControls.TimesShoveled++;
                 Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
                 if (latrineStorage.ShovelingComplete())
                 {
@@ -272,6 +273,7 @@ public class Inventory : MonoBehaviour
                 {
                     Debug.Log("Resetting shoveling");
                     latrineStorage.timesShoveled = 0;
+                    GlobalControls.TimesShoveled = 0;
                     latrineStorage.shovelingDone = false;
                 }
             }

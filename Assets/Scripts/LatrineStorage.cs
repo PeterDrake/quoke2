@@ -16,11 +16,11 @@ public class LatrineStorage : MonoBehaviour
     public bool toiletPaperDone;
 
     
-    public GameObject shovel;
-    public GameObject plywood;
-    public GameObject rope;
-    public GameObject tarp;
-    public GameObject toiletPaper;
+    private GameObject[] holes;
+    private GameObject plywood;
+    private GameObject rope;
+    private GameObject tarp;
+    private GameObject toiletPaper;
 
     public Meters meters;
     public ReferenceManager referenceManager;
@@ -34,10 +34,17 @@ public class LatrineStorage : MonoBehaviour
         ropeDone = GlobalControls.PoopTaskProgress[2];
         tarpDone = GlobalControls.PoopTaskProgress[3];
         toiletPaperDone = GlobalControls.PoopTaskProgress[4];
-        
+        timesShoveled = GlobalControls.TimesShoveled;
+        holes = new GameObject[4];
+
+        int i = 0;
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
         {
-            if (child.gameObject.name.Equals("Hole")) shovel = child.gameObject;
+            if (child.gameObject.name.Contains("Hole") && !child.gameObject.name.Contains("Latrine"))
+            {
+                holes[i] = child.gameObject;
+                i++;
+            }
             else if (child.gameObject.name.Equals("Plywood")) plywood = child.gameObject;
             else if (child.gameObject.name.Equals("Tarp")) tarp = child.gameObject;
             else if (child.gameObject.name.Equals("Rope")) rope = child.gameObject;
@@ -49,8 +56,21 @@ public class LatrineStorage : MonoBehaviour
 
     public void UpdateVisuals()
     {
-        if(shovelingDone) shovel.SetActive(true);
-        else shovel.SetActive(false);
+        if (GlobalControls.TimesShoveled != 0)
+        {
+            for (int i = 0; i < holes.Length; i++)
+            {
+                if(i == GlobalControls.TimesShoveled - 1) holes[i].SetActive(true);
+                else holes[i].SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < holes.Length; i++)
+            {
+                holes[i].SetActive(false);
+            }
+        }
         if(plywoodDone) plywood.SetActive(true);
         else plywood.SetActive(false);
         if(ropeDone) rope.SetActive(true);
