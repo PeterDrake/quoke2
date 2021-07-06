@@ -13,6 +13,12 @@ public class TwoBucketScript : MonoBehaviour
     public bool woodChipsDone;
     public bool toiletPaperDone;
 
+    public GameObject bucketOne;
+    public GameObject bucketTwo;
+    public GameObject bag;
+    public GameObject woodChips;
+    public GameObject toiletPaper;
+
     public Meters meters;
     public ReferenceManager referenceManager;
 
@@ -20,9 +26,31 @@ public class TwoBucketScript : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         meters = referenceManager.metersCanvas.GetComponent<Meters>();
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
+        {
+            if (child.gameObject.name.Equals("Bucket 1")) bucketOne = child.gameObject;
+            else if (child.gameObject.name.Equals("Bucket 2")) bucketTwo = child.gameObject;
+            else if (child.gameObject.name.Equals("Bag")) bag = child.gameObject;
+            else if (child.gameObject.name.Equals("Toilet Paper")) woodChips = child.gameObject;
+            else if (child.gameObject.name.Equals("Wood Chips")) toiletPaper = child.gameObject;
+        }
     }
 
 
+    public void UpdateVisuals()
+    {
+        if(bucketDone) bucketOne.SetActive(true);
+        else bucketOne.SetActive(false);
+        if(bucketTwoDone) bucketTwo.SetActive(true);
+        else bucketTwo.SetActive(false);
+        if(bagDone) bag.SetActive(true);
+        else bag.SetActive(false);
+        if(toiletPaperDone) toiletPaper.SetActive(true);
+        else toiletPaper.SetActive(false);
+        if(woodChipsDone) woodChips.SetActive(true);
+        else woodChips.SetActive(false);
+    }
+    
     /// Removes and returns the currently stored item (or null if there is no such item)
     public GameObject RemoveBucketItem()
     {

@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
         // Find layers for various interactions
-        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
+        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
         waterLayer = LayerMask.GetMask("Water");
@@ -372,8 +372,9 @@ public class Inventory : MonoBehaviour
                         Debug.Log("Wood Chips Complete");
                         twoBucket.TwoBucketComplete();
                         break;
-                    
+                        
                 }
+                twoBucket.UpdateVisuals();
             }
         }
     }
