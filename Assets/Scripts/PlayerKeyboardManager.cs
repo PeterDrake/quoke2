@@ -601,12 +601,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
 
-        if (GlobalControls.KeybindsEnabled)
-        {
-            referenceManager.keybinds.SetActive(true);
-            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Exploring"];
-        }
-        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
         if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
@@ -620,6 +614,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.selectedSlotSprite = selected;
             inventory.SelectSlotNumber(0);
         }
+
         if (npcInteractedInScene)
         {
             referenceManager.npcInteractedCanvas.SetActive(true);
@@ -630,9 +625,32 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
         else if(!npcInteractedInScene) referenceManager.npcInteractedCanvas.SetActive(false);
-        npcInventoryTooltip.SetActive(false);
 
+        npcInventoryTooltip.SetActive(false);
         
+        if (GlobalControls.KeybindsEnabled)
+        {
+            referenceManager.keybinds.SetActive(true);
+            string exploringText = GlobalControls.Keybinds["Exploring"];
+            if(!npcInteractedInScene) exploringText = exploringText.Replace("\n[ ] => Switch inventory","");
+            if (inventoryInScene)
+            {
+                Image[] images = inventory.gameObject.GetComponentsInChildren<Image>(true);
+                foreach (Image image in images)
+                {
+                    if (image.gameObject.name.Equals("Frame 1") && !image.gameObject.activeSelf)
+                    {
+                        exploringText = exploringText.Replace("\n< > => Move slots","");
+                        break;
+                    }
+                }
+            }
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = exploringText;
+        }
+        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
+
+
+
     }
 
     public void SetConversing()
