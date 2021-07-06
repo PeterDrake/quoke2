@@ -244,6 +244,72 @@
     
             <npcText>Rainer Now Trading...</npcText>
         </traderainer>
+
+        <carlos0>
+            <playerOptions>
+                <option>carlos0 Option 0.1</option>
+                <option>carlos0 Option 0.2</option>
+                <option>carlos0 Let's Trade!</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>carlos0</keyName>
+                <keyName>carlos0</keyName>
+                <keyName>tradecarlos</keyName>
+            </keys>
+    
+            <npcText>Carlos Dialogue Path 1</npcText>
+    
+        </carlos0>
+    
+        <tradecarlos>
+            <playerOptions>
+                <option>Carlos Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>carlos0</keyName>
+                <keyName>carlos0</keyName>
+                <keyName>carlos0</keyName>
+            </keys>
+    
+            <npcText>Carlos Now Trading...</npcText>
+        </tradecarlos>
+
+        <bob0>
+            <playerOptions>
+                <option>Bob Option 0.1</option>
+                <option>Bob Option 0.2</option>
+                <option>Bob Let's Trade!</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>bob0</keyName>
+                <keyName>bob0</keyName>
+                <keyName>tradebob</keyName>
+            </keys>
+    
+            <npcText>Bob Dialogue Path 1</npcText>
+    
+        </bob0>
+    
+        <tradebob>
+            <playerOptions>
+                <option>Bob Go Back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>bob0</keyName>
+                <keyName>bob0</keyName>
+                <keyName>bob0</keyName>
+            </keys>
+    
+            <npcText>Bob Now Trading...</npcText>
+        </tradebob>
         		
 
 </convoForest>

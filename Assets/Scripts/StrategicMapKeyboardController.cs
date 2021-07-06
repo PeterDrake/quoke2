@@ -37,7 +37,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         
         // Set the player location to the scene we just left
         playerLocation = GlobalControls.CurrentScene;
-        if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 2)
+        if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 3)
         {
             playerLocation = 0;
         }
@@ -47,14 +47,14 @@ public class StrategicMapKeyboardController : MonoBehaviour
         {
             locations = new []
             {
-                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker")
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Yard Marker"), GameObject.Find("Garden Marker")
             };
         }
         else
         {
             locations = new []
             {
-                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Street Marker")
+                GameObject.Find("School Marker"), GameObject.Find("Park Marker"), GameObject.Find("Street Marker"), GameObject.Find("Garden Marker")
             };
         }
         

@@ -14,16 +14,22 @@ public class NPCInteracted : MonoBehaviour
     public bool demInteracted;
     public bool rainerInteracted;
     public bool fredInteracted;
+    public bool carlosInteracted;
+    public bool bobInteracted;
 
     private GameObject safiImage;
     private GameObject demImage;
     private GameObject rainerImage;
     private GameObject fredImage;
+    private GameObject carlosImage;
+    private GameObject bobImage;
     
     private GameObject safiSatisfaction;
     private GameObject demSatisfaction;
     private GameObject rainerSatisfaction;
     private GameObject fredSatisfaction;
+    private GameObject carlosSatisfaction;
+    private GameObject bobSatisfaction;
 
 
     private void OnEnable()
@@ -51,16 +57,22 @@ public class NPCInteracted : MonoBehaviour
             demImage = GameObject.Find("Dem Met Image");
             rainerImage = GameObject.Find("Rainer Met Image");
             fredImage = GameObject.Find("Fred Met Image");
+            carlosImage = GameObject.Find("Carlos Met Image");
+            bobImage = GameObject.Find("Bob Met Image");
             
             safiSatisfaction = GameObject.Find("Safi Satisfaction");
             demSatisfaction = GameObject.Find("Dem Satisfaction");
             rainerSatisfaction = GameObject.Find("Rainer Satisfaction");
             fredSatisfaction = GameObject.Find("Fred Satisfaction");
+            carlosSatisfaction = GameObject.Find("Carlos Satisfaction");
+            bobSatisfaction = GameObject.Find("Bob Satisfaction");
 
             safiInteracted = GlobalControls.SafiInteracted;
             demInteracted = GlobalControls.DemInteracted;
             rainerInteracted = GlobalControls.RainerInteracted;
             fredInteracted = GlobalControls.FredInteracted;
+            carlosInteracted = GlobalControls.CarlosInteracted;
+            bobInteracted = GlobalControls.BobInteracted;
 
             safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
                 + GlobalControls.NPCList["safi0"].totalSatisfaction;
@@ -70,6 +82,10 @@ public class NPCInteracted : MonoBehaviour
                 + GlobalControls.NPCList["rainer0"].totalSatisfaction;
             fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
                 + GlobalControls.NPCList["fred0"].totalSatisfaction;
+            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
+                + GlobalControls.NPCList["carlos0"].totalSatisfaction;
+            bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
+                + GlobalControls.NPCList["bob0"].totalSatisfaction;
 
             if (!safiInteracted)
             {
@@ -93,6 +109,18 @@ public class NPCInteracted : MonoBehaviour
             {
                 fredImage.SetActive(false);
                 fredSatisfaction.SetActive(false);
+            }
+            
+            if (!carlosInteracted)
+            {
+                carlosImage.SetActive(false);
+                carlosSatisfaction.SetActive(false);
+            }
+            
+            if (!bobInteracted)
+            {
+                bobImage.SetActive(false);
+                bobSatisfaction.SetActive(false);
             }
             
             
@@ -141,6 +169,26 @@ public class NPCInteracted : MonoBehaviour
             GlobalControls.NPCList["fred0"].interracted = true;
             fredImage.SetActive(true);
             fredSatisfaction.SetActive(true);
+        }
+        else if (name.Equals("carlos0"))
+        {
+            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
+                + GlobalControls.NPCList["carlos0"].totalSatisfaction;
+            carlosInteracted = true;
+            GlobalControls.CarlosInteracted = true;
+            GlobalControls.NPCList["carlos0"].interracted = true;
+            carlosImage.SetActive(true);
+            carlosSatisfaction.SetActive(true);
+        }
+        else if (name.Equals("bob0"))
+        {
+            bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
+                + GlobalControls.NPCList["bob0"].totalSatisfaction;
+            bobInteracted = true;
+            GlobalControls.BobInteracted = true;
+            GlobalControls.NPCList["bob0"].interracted = true;
+            bobImage.SetActive(true);
+            bobSatisfaction.SetActive(true);
         }
     }
 }
