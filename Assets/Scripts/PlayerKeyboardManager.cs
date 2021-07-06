@@ -137,8 +137,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
-            this.gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
-            this.enabled = false;
+            gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
+            enabled = false;
         }
         else if (GlobalControls.CurrentObjective <= 4)
         {

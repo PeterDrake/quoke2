@@ -71,6 +71,8 @@ public class StrategicMapKeyboardController : MonoBehaviour
             references.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["StrategicMap"];
         }
         else if (GlobalControls.KeybindsEnabled) references.keybinds.SetActive(false);
+
+        GameObject.Find("NPC Inventory").SetActive(false);
     }
 
     void Update()
