@@ -24,7 +24,7 @@ public class PlayerMover : MonoBehaviour
     void Start()
     {
         interactableLayers = LayerMask.GetMask("NPC");
-        obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer");
+        obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer", "LatrineContainer");
         destination.parent = null; // So that moving player doesn't move its child Destination
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
     }

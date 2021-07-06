@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
         // Find layers for various interactions
-        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer");
+        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
         waterLayer = LayerMask.GetMask("Water");
@@ -156,22 +156,7 @@ public class Inventory : MonoBehaviour
             int i = selectedSlotNumber; // Just to make the later expressions less hairy
             if (SlotIsOccupied(i))
             {
-                if (items[i].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
-                    latrineStorage.CheckAllLatrineItems())
-                {
-                    latrineStorage.timesShoveled++;
-                    Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
-                    if (latrineStorage.ShovelingComplete())
-                    {
-                        latrineStorage.shovelingDone = true;
-                    }else if (latrineStorage.timesShoveled > 4)
-                    {
-                        Debug.Log("Resetting shoveling");
-                        latrineStorage.timesShoveled = 0;
-                        latrineStorage.shovelingDone = false;
-                    }
-                }
-                else if (items[i].name.Equals("Chlorine Tablet(Clone)") && player.ObjectAhead(waterLayer))
+                if (items[i].name.Equals("Chlorine Tablet(Clone)") && player.ObjectAhead(waterLayer))
                 {
                     Debug.Log("Dropping chlorine tablet to water bottle");
                     GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
@@ -275,6 +260,23 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers))
+            {
+                latrineStorage.timesShoveled++;
+                GlobalControls.TimesShoveled++;
+                Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
+                if (latrineStorage.ShovelingComplete())
+                {
+                    GlobalControls.PoopTaskProgress[0] = true;
+                    latrineStorage.shovelingDone = true;
+                }else if (latrineStorage.timesShoveled > 4)
+                {
+                    Debug.Log("Resetting shoveling");
+                    latrineStorage.timesShoveled = 0;
+                    GlobalControls.TimesShoveled = 0;
+                    latrineStorage.shovelingDone = false;
+                }
+            }
             i = selectedSlotNumber; // Just to make the later expressions less hairy
             if (SlotIsOccupied(i) && !latrineStorage.contents)
             {
@@ -296,25 +298,30 @@ public class Inventory : MonoBehaviour
                     case 2:
                         RemoveLatrineItem(i);
                         latrineStorage.plywoodDone = true;
+                        GlobalControls.PoopTaskProgress[1] = true;
                         Debug.Log("Plywood Complete");
                         break;
                     case 3:
                         RemoveLatrineItem(i);
                         latrineStorage.ropeDone = true;
+                        GlobalControls.PoopTaskProgress[2] = true;
                         Debug.Log("Rope Complete");
                         break;
                     case 4:
                         RemoveLatrineItem(i);
                         latrineStorage.tarpDone = true;
+                        GlobalControls.PoopTaskProgress[3] = true;
                         Debug.Log("Tarp Complete");
                         break;
                     case 5:
                         RemoveLatrineItem(i);
                         latrineStorage.toiletPaperDone = true;
+                        GlobalControls.PoopTaskProgress[4] = true;
                         Debug.Log("Toilet Paper Complete");
                         latrineStorage.LatrineComplete();
                         break;
                 }
+                latrineStorage.UpdateVisuals();
             }
         }
     }
@@ -349,31 +356,37 @@ public class Inventory : MonoBehaviour
                     case 1:
                         RemoveBucketItem(i);
                         twoBucket.bucketDone = true;
+                        GlobalControls.PoopTaskProgress[0] = true;
                         Debug.Log("Bucket Complete");
                         break;
                     case 2:
                         RemoveBucketItem(i);
                         twoBucket.bucketTwoDone = true;
+                        GlobalControls.PoopTaskProgress[1] = true;
                         Debug.Log("Bucket two Complete");
                         break;
                     case 3:
                         RemoveBucketItem(i);
                         twoBucket.bagDone = true;
+                        GlobalControls.PoopTaskProgress[2] = true;
                         Debug.Log("Bag Complete");
                         break;
                     case 4:
                         RemoveBucketItem(i);
                         twoBucket.toiletPaperDone = true;
+                        GlobalControls.PoopTaskProgress[3] = true;
                         Debug.Log("Toilet Paper Complete");
                         break;
                     case 5:
                         RemoveBucketItem(i);
                         twoBucket.woodChipsDone = true;
+                        GlobalControls.PoopTaskProgress[4] = true;
                         Debug.Log("Wood Chips Complete");
                         twoBucket.TwoBucketComplete();
                         break;
-                    
+                        
                 }
+                twoBucket.UpdateVisuals();
             }
         }
     }

@@ -21,6 +21,8 @@ public static class GlobalControls
     private static int waterTimeLeft = 12;
     private static bool poopTaskCompleted;
     private static bool waterTaskCompleted;
+    private static bool[] poopTaskProgress;
+    private static int timesShoveled;
     private static int currentScene;
     private static bool isStrategicMap;
 
@@ -83,7 +85,7 @@ public static class GlobalControls
 
         keybinds = new Dictionary<string, string>()
         {
-            {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
+            {"Exploring", "WASD => Move Character \nSPACE => Drop/Interact \n< > => Move slots \n[ ] => Switch inventory"},
             {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
             {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
@@ -97,6 +99,8 @@ public static class GlobalControls
         waterTimeLeft = 12;
         poopTaskCompleted = false;
         waterTaskCompleted = false;
+        poopTaskProgress = new bool[5];
+        timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
 
@@ -156,7 +160,7 @@ public static class GlobalControls
 
         keybinds = new Dictionary<string, string>()
         {
-            {"Exploring", "WASD => Move Character \nSPACE => PickUp/Interact \n< > => Move slots \n[ ] => Switch inventory"},
+            {"Exploring", "WASD => Move Character \nSPACE => Drop/Interact \n< > => Move slots \n[ ] => Switch inventory"},
             {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
             {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
@@ -170,6 +174,8 @@ public static class GlobalControls
         waterTimeLeft = 12;
         poopTaskCompleted = false;
         waterTaskCompleted = false;
+        poopTaskProgress = new bool[5];
+        timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
 
@@ -212,6 +218,12 @@ public static class GlobalControls
         set => objectivesEnabled = value;
     }
     
+    public static bool[] PoopTaskProgress
+    {
+        get => poopTaskProgress;
+        set => poopTaskProgress = value;
+    }
+    
     public static bool IsStrategicMap
     {
         get => isStrategicMap;
@@ -230,113 +242,63 @@ public static class GlobalControls
         set => adminMode = value;
     }
 
-    public static Dictionary<string, NPC> NPCList
-    {
-        get => npcList;
-    }
+    public static Dictionary<string, NPC> NPCList => npcList;
 
-    public static Dictionary<string, string> Keybinds
-    {
-        get => keybinds;
-    }
-    
+    public static Dictionary<string, string> Keybinds => keybinds;
+
     public static bool MetersEnabled
     {
-        get
-        {
-            return metersEnabled;
-        }
-        set
-        {
-            metersEnabled = value;
-        }
+        get => metersEnabled;
+        set => metersEnabled = value;
     }
 
     public static int PoopTimeLeft
     {
-        get
-        {
-            return poopTimeLeft;
-        }
-        set
-        {
-            poopTimeLeft = value;
-        }
+        get => poopTimeLeft;
+        set => poopTimeLeft = value;
+    }
+    
+    public static int TimesShoveled
+    {
+        get => timesShoveled;
+        set => timesShoveled = value;
     }
 
     public static int WaterTimeLeft
     {
-        get
-        {
-            return waterTimeLeft;
-        }
-        set
-        {
-            waterTimeLeft = value;
-        }
+        get => waterTimeLeft;
+        set => waterTimeLeft = value;
     }
 
     public static bool PoopTaskCompleted
     {
-        get
-        {
-            return poopTaskCompleted;
-        }
-        set
-        {
-            poopTaskCompleted = value;
-        }
+        get => poopTaskCompleted;
+        set => poopTaskCompleted = value;
     }
 
     public static bool WaterTaskCompleted
     {
-        get
-        {
-            return waterTaskCompleted;
-        }
-        set
-        {
-            waterTaskCompleted = value;
-        }
+        get => waterTaskCompleted;
+        set => waterTaskCompleted = value;
     }
 
     public static int TurnNumber
     {
-        get
-        {
-            return turnNumber;
-        }
-        set
-        {
-            turnNumber = value;
-        }
+        get => turnNumber;
+        set => turnNumber = value;
     }
 
     public static string CurrentNPC
     {
-        get
-        {
-            return currentNPC;
-        }
-
-        set
-        {
-            currentNPC = value;
-        }
+        get => currentNPC;
+        set => currentNPC = value;
     }
     
 
     public static int CurrentScene
     {
-        get
-        {
-            return currentScene;
-        }
-
-        set
-        {
-            currentScene = value;
-        }
+        get => currentScene;
+        set => currentScene = value;
     }
     public static void SetCheckpoint(string nodeName)
     {
@@ -345,78 +307,36 @@ public static class GlobalControls
     
     public static bool SafiInteracted
     {
-        get
-        {
-            return safiInteracted;
-        }
-
-        set
-        {
-            safiInteracted = value;
-        }
+        get => safiInteracted;
+        set => safiInteracted = value;
     }
     
     public static bool DemInteracted
     {
-        get
-        {
-            return demInteracted;
-        }
-
-        set
-        {
-            demInteracted = value;
-        }
+        get => demInteracted;
+        set => demInteracted = value;
     }
     
     public static bool RainerInteracted
     {
-        get
-        {
-            return rainerInteracted;
-        }
-
-        set
-        {
-            rainerInteracted = value;
-        }
+        get => rainerInteracted;
+        set => rainerInteracted = value;
     }
     
     public static bool FredInteracted
     {
-        get
-        {
-            return fredInteracted;
-        }
-
-        set
-        {
-            fredInteracted = value;
-        }
+        get => fredInteracted;
+        set => fredInteracted = value;
     }
     public static bool CarlosInteracted
     {
-        get
-        {
-            return carlosInteracted;
-        }
-
-        set
-        {
-            carlosInteracted = value;
-        }
+        get => carlosInteracted;
+        set => carlosInteracted = value;
     }
     public static bool BobInteracted
     {
-        get
-        {
-            return bobInteracted;
-        }
-
-        set
-        {
-            bobInteracted = value;
-        }
+        get => bobInteracted;
+        set => bobInteracted = value;
     }
     
 }

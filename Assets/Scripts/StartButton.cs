@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-
-    public string FirstScene;
+    
     private string currentScene;
 
     public void Start()

@@ -85,17 +85,17 @@ public class CheatKeyboardController : MonoBehaviour
                     GlobalItemList.UpdateItemList("Bucket", "Inventory", new Vector3(0, 0, 0),"Player" );
                     GlobalItemList.UpdateItemList("Bucket 2", "Inventory", new Vector3(1, 0, 0),"Player" );
                     GlobalItemList.UpdateItemList("Bag", "Inventory", new Vector3(2, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Wood Chips", "Inventory", new Vector3(3, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(3, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Wood Chips", "Inventory", new Vector3(4, 0, 0),"Player" );
                     sceneManagement.ChangeScene("Street");
                 }
                 else
                 {
                     GlobalItemList.Reset();
                     GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(1, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(2, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(3, 0, 0),"Player" );
                     GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4, 0, 0),"Player" );
                     sceneManagement.ChangeScene("Yard");
                 }
