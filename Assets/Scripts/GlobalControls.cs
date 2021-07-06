@@ -21,6 +21,7 @@ public static class GlobalControls
     private static int waterTimeLeft = 12;
     private static bool poopTaskCompleted;
     private static bool waterTaskCompleted;
+    private static bool[] poopTaskProgress;
     private static int currentScene;
     private static bool isStrategicMap;
 
@@ -97,6 +98,7 @@ public static class GlobalControls
         waterTimeLeft = 12;
         poopTaskCompleted = false;
         waterTaskCompleted = false;
+        poopTaskProgress = new bool[5];
         currentScene = -1;
         isStrategicMap = false;
 
@@ -170,6 +172,7 @@ public static class GlobalControls
         waterTimeLeft = 12;
         poopTaskCompleted = false;
         waterTaskCompleted = false;
+        poopTaskProgress = new bool[5];
         currentScene = -1;
         isStrategicMap = false;
 
@@ -210,6 +213,12 @@ public static class GlobalControls
     {
         get => objectivesEnabled;
         set => objectivesEnabled = value;
+    }
+    
+    public static bool[] PoopTaskProgress
+    {
+        get => poopTaskProgress;
+        set => poopTaskProgress = value;
     }
     
     public static bool IsStrategicMap

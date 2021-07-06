@@ -93,9 +93,9 @@ public class CheatKeyboardController : MonoBehaviour
                 {
                     GlobalItemList.Reset();
                     GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0),"Player" );
-                    GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(1, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(2, 0, 0),"Player" );
+                    GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(3, 0, 0),"Player" );
                     GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4, 0, 0),"Player" );
                     sceneManagement.ChangeScene("Yard");
                 }

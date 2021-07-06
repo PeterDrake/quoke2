@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &10992408
 Transform:
   m_ObjectHideFlags: 0
@@ -1320,7 +1320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1160639909
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,7 +1745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1611371737
 Transform:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1889700376
 Transform:
   m_ObjectHideFlags: 0
@@ -2477,7 +2477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2002353548
 Transform:
   m_ObjectHideFlags: 0
@@ -2486,7 +2486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002353547}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07999992, y: 12.7, z: 0.1420002}
+  m_LocalPosition: {x: -0.07999992, y: 13.15, z: 0.1420002}
   m_LocalScale: {x: 0.5, y: 0.20000002, z: 0.25}
   m_Children: []
   m_Father: {fileID: 2033555131}
@@ -2592,8 +2592,8 @@ MonoBehaviour:
   bucketDone: 0
   bucketTwoDone: 0
   bagDone: 0
-  woodChipsDone: 0
   toiletPaperDone: 0
+  woodChipsDone: 0
   bucketOne: {fileID: 0}
   bucketTwo: {fileID: 0}
   bag: {fileID: 0}

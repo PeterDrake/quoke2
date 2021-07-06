@@ -10,8 +10,8 @@ public class TwoBucketScript : MonoBehaviour
     public bool bucketDone;
     public bool bucketTwoDone;
     public bool bagDone;
-    public bool woodChipsDone;
     public bool toiletPaperDone;
+    public bool woodChipsDone;
 
     public GameObject bucketOne;
     public GameObject bucketTwo;
@@ -26,14 +26,21 @@ public class TwoBucketScript : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         meters = referenceManager.metersCanvas.GetComponent<Meters>();
+        bucketDone = GlobalControls.PoopTaskProgress[0];
+        bucketTwoDone = GlobalControls.PoopTaskProgress[1];
+        bagDone = GlobalControls.PoopTaskProgress[2];
+        toiletPaperDone = GlobalControls.PoopTaskProgress[3];
+        woodChipsDone = GlobalControls.PoopTaskProgress[4];
+        
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
         {
             if (child.gameObject.name.Equals("Bucket 1")) bucketOne = child.gameObject;
             else if (child.gameObject.name.Equals("Bucket 2")) bucketTwo = child.gameObject;
             else if (child.gameObject.name.Equals("Bag")) bag = child.gameObject;
-            else if (child.gameObject.name.Equals("Toilet Paper")) woodChips = child.gameObject;
-            else if (child.gameObject.name.Equals("Wood Chips")) toiletPaper = child.gameObject;
+            else if (child.gameObject.name.Equals("Toilet Paper")) toiletPaper = child.gameObject;
+            else if (child.gameObject.name.Equals("Wood Chips")) woodChips = child.gameObject;
         }
+        UpdateVisuals();
     }
 
 
