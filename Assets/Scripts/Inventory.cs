@@ -410,7 +410,8 @@ public class Inventory : MonoBehaviour
             slotContents[i].SetActive(true);
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
-            items[i] = item;
+            // TODO Uncomment -- this was deliberately broken to fail a test
+            // items[i] = item;
 
             //updates item list to add item to list
             GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), "Player");
