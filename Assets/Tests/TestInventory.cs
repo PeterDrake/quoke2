@@ -19,8 +19,12 @@ public class TestInventory
     public IEnumerator Cabinet1IsInitiallyEmpty
         ()
     {
+        GameObject gameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PreQuakeHouse Level"));
+        GameObject cabinet = GameObject.Find("Cabinet 1");
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         yield return null;
+        Assert.Null(cabinet.GetComponent<StorageContainer>().contents);
+        Object.Destroy(gameObject);
     }
 }
