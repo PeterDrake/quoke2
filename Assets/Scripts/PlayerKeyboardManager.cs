@@ -311,7 +311,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.PickUpOrDrop();
         }
 
-        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.RightBracket))
+        if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.LeftBracket)))
         {
             if (cursorLocation > inventory.slotContents.Length - 1)
             {
@@ -319,6 +319,8 @@ public class PlayerKeyboardManager : MonoBehaviour
                 inventory.selectedSlotSprite = selected;
                 cursorLocation = 0;
                 inventory.SelectSlotNumber(cursorLocation);
+                
+                npcInventoryTooltip.SetActive(false);
             }
             else
             {
@@ -326,27 +328,35 @@ public class PlayerKeyboardManager : MonoBehaviour
                 inventory.selectedSlotSprite = unselected;
                 cursorLocation = inventory.slotContents.Length;
                 inventory.SelectSlotNumber(2);
+                
+                if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[0]].interracted)
+                {
+                    if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+                    tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
+                    npcInventoryTooltip.SetActive(true);
+                    npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
+                    int index = 0;
+                    foreach (Item item in GlobalItemList.ItemList.Values)
+                    {
+                        if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
+                        {
+                            GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                            Sprite sprite = prefab.GetComponent<Collectible>().sprite;
+                            npcInventoryTooltipSprites[index].sprite = sprite;
+                            index++;
+                        }
+                    }
+
+                    for (int j = npcInventoryTooltipSprites.Length - 1; j > index; j--)
+                    {
+                        npcInventoryTooltipSprites[j].sprite = unselected;
+                    }
+                }
+                else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
-        
-        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.LeftBracket))
-        {
-            if (cursorLocation > inventory.slotContents.Length - 1)
-            {
-                npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = unselected;
-                inventory.selectedSlotSprite = selected;
-                cursorLocation = 0;
-                inventory.SelectSlotNumber(cursorLocation);
-            }
-            else
-            {
-                npcFrames[0].GetComponent<Image>().sprite = selected;
-                inventory.selectedSlotSprite = unselected;
-                cursorLocation = inventory.slotContents.Length;
-                inventory.SelectSlotNumber(2);
-            }
-        }
-        
+
         if (inventory && Input.GetKeyDown("."))
         {
             cursorLocation++;
