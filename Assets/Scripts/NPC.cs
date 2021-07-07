@@ -24,5 +24,6 @@ public class NPC
         this.interracted = interracted;
         this.description = description;
         this.totalSatisfaction = totalSatisfaction;
+        this.owes = owes;
     }
 }

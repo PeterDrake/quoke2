@@ -23,6 +23,7 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
+    private Inventory inventoryIOU;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     private Text tooltipText;
@@ -30,10 +31,20 @@ public class TradeManager : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        inventoryPlayer = GameObject.Find("Inventory (Player)").GetComponent<Inventory>();
-        inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
-        inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
-        inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
+        foreach (Inventory child in GetComponentsInChildren<Inventory>(true))
+        {
+            if (child.gameObject.name.Equals("Inventory (Player)")) inventoryPlayer = child;
+            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventoryPlayerBin = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventoryNPC = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventoryNPCBin = child;
+            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventoryIOU = child;
+        }
+        inventoryPlayer.gameObject.SetActive(true);
+        inventoryPlayerBin.gameObject.SetActive(true);
+        inventoryNPC.gameObject.SetActive(true);
+        inventoryNPCBin.gameObject.SetActive(true);
+        inventoryIOU.gameObject.SetActive(true);
+        
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -44,9 +55,8 @@ public class TradeManager : MonoBehaviour
 
     public void BeginTrading()
     {
-        
         npcName = GlobalControls.CurrentNPC;
-        
+
         List<int> playerSlotsUsed = new List<int>();
         List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
@@ -75,13 +85,33 @@ public class TradeManager : MonoBehaviour
                 inventoryPlayer.items[i] = null;
                 inventoryPlayer.slotContents[i].SetActive(false);
             }
+
             if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
             {
                 inventoryNPC.items[i] = null;
                 inventoryNPC.slotContents[i].SetActive(false);
             }
         }
+
         button.interactable = false;
+
+        //Load IOU inventory
+        if (GlobalControls.NPCList[npcName].owes > 0)
+        {
+            
+            inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
+            inventoryIOU.selectedSlotSprite = unselected;
+            inventoryIOU.SelectSlotNumber(0);
+
+            foreach (GameObject game in inventoryIOU.slotContents)
+            {
+                game.SetActive(true);
+                Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
+                Debug.Log("sprite is " + prefab.name);
+                game.GetComponent<Image>().sprite = prefab;
+            }
+        }
+        
         ChangeSelectedInventory(0);
     }
     

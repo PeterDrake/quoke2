@@ -281,6 +281,24 @@ public class PlayerKeyboardManager : MonoBehaviour
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
                             tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
                         tooltipText.text = GlobalControls.NPCList[npcList[i]].description;
+                        npcInventoryTooltip.SetActive(true);
+                        npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
+                        int index = 0;
+                        foreach (Item item in GlobalItemList.ItemList.Values)
+                        {
+                            if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
+                            {
+                                GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                                Sprite sprite = prefab.GetComponent<Collectible>().sprite;
+                                npcInventoryTooltipSprites[index].sprite = sprite;
+                                index++;
+                            }
+                        }
+
+                        for (int j = npcInventoryTooltipSprites.Length - 1; j > index; j--)
+                        {
+                            npcInventoryTooltipSprites[j].sprite = unselected;
+                        }
                     }
                     else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }

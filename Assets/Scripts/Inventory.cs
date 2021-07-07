@@ -38,6 +38,23 @@ public class Inventory : MonoBehaviour
     //Awake not start because Inventory must load first
     void Awake()
     {
+        slotFrames = new GameObject[5];
+        slotContents = new GameObject[5];
+        int frameCounter = 0;
+        int contentsCounter = 0;
+        foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
+        {
+            if (child.gameObject.name.Contains("Frame"))
+            {
+                slotFrames[frameCounter] = child.gameObject;
+                frameCounter++;
+            }
+            if (child.gameObject.name.Contains("Contents"))
+            {
+                slotContents[contentsCounter] = child.gameObject;
+                contentsCounter++;
+            }
+        }
         if (SceneManager.GetActiveScene().name.Equals("Yard"))
         {
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
@@ -105,19 +122,19 @@ public class Inventory : MonoBehaviour
             tempSlotFrames[i] = slotFrames[i];
         }
 
-        items = tempItems;
-        slotContents = tempSlotContents;
-        slotFrames = tempSlotFrames;
-
         if (numSlots < 5)
         {
             for (int i = 4; i >= numSlots; i--)
             {
-                GameObject.Find("Frame " + i).SetActive(false);
+                slotFrames[i].SetActive(false);
             }
         }
         
-        
+        items = tempItems;
+        slotContents = tempSlotContents;
+        slotFrames = tempSlotFrames;
+
+
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
