@@ -159,7 +159,17 @@ public class Inventory : MonoBehaviour
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
-            referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = items[selectedSlotNumber].GetComponent<Comment>().notes;
+            {
+                if (items[selectedSlotNumber])
+                {
+                    Comment comment = items[selectedSlotNumber].GetComponent<Comment>();
+                    if (comment)
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = comment.notes;
+                    else
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
+                }
+            }
+            
         }
         else if(referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf) 
             referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);

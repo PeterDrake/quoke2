@@ -98,7 +98,6 @@ public static class GlobalItemList
 
     public static void Reset()
     {
-        Debug.Log(GlobalControls.ApartmentCondition);
         if (GlobalControls.ApartmentCondition)
         {
             itemList = new Dictionary<string, Item>

@@ -43,7 +43,7 @@ public static class GlobalControls
 
     static GlobalControls()
     {
-        Debug.Log("idk");
+        Debug.Log("Starting Global Controls");
         if (apartmentCondition)
         {
             npcList = new Dictionary<string, NPC>
