@@ -122,6 +122,54 @@ public class TradeManager : MonoBehaviour
     {
         //StartCoroutine(SelectButton());
         button.Select();
+        
+        int[] numContents = {0,0,0};
+        
+        for (int i = 0; i < inventoryPlayerBin.slotFrames.Length; i++)
+        {
+            if (inventoryPlayerBin.slotContents[i].activeSelf)
+            {
+                numContents[0]++; //number items
+            }
+        }
+        for (int i = 0; i < inventoryNPCBin.slotFrames.Length; i++)
+        {
+            if (inventoryNPCBin.slotContents[i].activeSelf)
+            {
+                numContents[1]++; //number items
+            }
+        }
+        for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
+        {
+            if (inventoryIOU.slotFrames[i].activeSelf)
+            {
+                numContents[2]++;
+            }
+        }
+        
+        List<string> playerOffers = new List<string>(); //list of names of items player offered
+
+        //fill lists of names
+        foreach (GameObject item in inventoryPlayerBin.items)
+        {
+            if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+        }
+
+        int playerTradePoints = 0;
+        
+        //will not trade away item they need
+        foreach (string need in GlobalControls.NPCList[npcName].needs)
+        {
+            if (playerOffers.Contains(need))
+            {
+                playerTradePoints++; //add an extra trade point if offered a need
+            }
+        }
+
+        playerTradePoints += numContents[0];
+
+        int endIouTotal = playerTradePoints - numContents[1] + numContents[2];
+
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
             if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
@@ -129,6 +177,11 @@ public class TradeManager : MonoBehaviour
         for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
+        }
+        for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
+        {
+            if(i < endIouTotal) inventoryIOU.slotFrames[i].SetActive(true);
+            else inventoryIOU.slotFrames[i].SetActive(false);
         }
         button.interactable = false;
     }
