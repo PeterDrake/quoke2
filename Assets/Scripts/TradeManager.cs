@@ -97,24 +97,21 @@ public class TradeManager : MonoBehaviour
         button.interactable = false;
 
         //Load IOU inventory
-        if (GlobalControls.NPCList[npcName].owes > 0)
+        inventoryIOU.selectedSlotSprite = unselected;
+        inventoryIOU.SelectSlotNumber(0);
+        for (int i = inventoryIOU.slotFrames.Length - 1; i > GlobalControls.NPCList[npcName].owes - 1; i--)
         {
-            inventoryIOU.selectedSlotSprite = unselected;
-            inventoryIOU.SelectSlotNumber(0);
-            for (int i = inventoryIOU.slotFrames.Length - 1; i > GlobalControls.NPCList[npcName].owes - 1; i--)
-            {
-                inventoryIOU.slotFrames[i].SetActive(false);
-            }
-            //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
-
-            foreach (GameObject game in inventoryIOU.slotContents)
-            {
-                game.SetActive(true);
-                Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
-                game.GetComponent<Image>().sprite = prefab;
-            }
+            inventoryIOU.slotFrames[i].SetActive(false);
         }
-        
+        //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
+
+        foreach (GameObject game in inventoryIOU.slotContents)
+        {
+            game.SetActive(true);
+            Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
+            game.GetComponent<Image>().sprite = prefab;
+        }
+
         ChangeSelectedInventory(0);
     }
     
