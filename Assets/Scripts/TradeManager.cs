@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -100,7 +101,11 @@ public class TradeManager : MonoBehaviour
         {
             inventoryIOU.selectedSlotSprite = unselected;
             inventoryIOU.SelectSlotNumber(0);
-            inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
+            for (int i = inventoryIOU.slotFrames.Length - 1; i > GlobalControls.NPCList[npcName].owes - 1; i--)
+            {
+                inventoryIOU.slotFrames[i].SetActive(false);
+            }
+            //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
 
             foreach (GameObject game in inventoryIOU.slotContents)
             {
@@ -269,6 +274,16 @@ public class TradeManager : MonoBehaviour
                     new Vector3(i, 0, 0), npcName);
             }
         }
+
+        //update IOUs
+        int counter = 0;
+        foreach (GameObject game in inventoryIOU.slotFrames)
+        {
+            if (game.activeSelf) counter++;
+        }
+
+        GlobalControls.NPCList[npcName].owes = counter;
+        
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)
         {
@@ -415,7 +430,7 @@ public class TradeManager : MonoBehaviour
         }
         for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
         {
-            if (inventoryIOU.slotContents[i].activeSelf)
+            if (inventoryIOU.slotFrames[i].activeSelf)
             {
                 numContents[4]++;
             }
@@ -442,17 +457,12 @@ public class TradeManager : MonoBehaviour
 
         playerTradePoints += playerOffers.Count; //add number of player offered items
 
-        if (playerTradePoints == 0 && npcOffers.Count == 0) return false; //if player and npc offer nothing, return false
+        if (playerTradePoints == 0 && npcOffers.Count == 0) return false; //if player and npc offer no items return false
+
+        if (playerTradePoints + numContents[4] - npcOffers.Count > 5) return false; //if player will end with more than 5 IOUs return false
 
         if (playerTradePoints + numContents[4] >= npcOffers.Count) return true; //if combined IOU and player offers are >= than npcOffers
-
-        //give extra items if player offered items they need
-        //if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
-
-        //1:1 for anything else
-        //if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0) return true;
         
-        //If none of the above, not valid trade.
         return false;
     }
 }
