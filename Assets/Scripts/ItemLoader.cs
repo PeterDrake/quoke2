@@ -37,6 +37,7 @@ public class ItemLoader : MonoBehaviour
             if (item.scene.Equals(SceneManager.GetActiveScene().name) && item.containerName.Equals(""))
             {
                 //poot item here
+                Debug.Log("Placing " + item.name); // TODO Remove log message
                 GameObject prefab = (GameObject)Resources.Load(item.name, typeof(GameObject));
                 // prefab.transform.position = item.location;
                 GameObject itemInScene = Instantiate(prefab, item.location, Quaternion.identity);

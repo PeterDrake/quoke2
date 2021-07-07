@@ -21,10 +21,33 @@ public class TestInventory
     {
         GameObject gameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PreQuakeHouse Level"));
         GameObject cabinet = GameObject.Find("Cabinet 1");
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
         yield return null;
         Assert.Null(cabinet.GetComponent<StorageContainer>().contents);
+        Object.Destroy(gameObject);
+    }
+
+    [UnityTest]
+    public IEnumerator PicksUpAnItem()
+    {
+        GameObject gameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PreQuakeHouse Level"));
+        ReferenceManager referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
+        yield return null;  // This seems necessary to 
+        // Take some steps
+        for (int i = 0; i < 5; i++)
+        {
+            player.StartMoving(new Vector3(0f, 0f, 1f));
+            yield return new WaitForSeconds(0.5f);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            player.StartMoving(new Vector3(1f, 0f, 0f));
+            yield return new WaitForSeconds(0.5f);
+        }
+        GameObject cup = GameObject.Find("Cup(Clone)");
+        Assert.NotNull(cup);
+        Assert.AreEqual(cup, inventory.items[0]);
         Object.Destroy(gameObject);
     }
 }
