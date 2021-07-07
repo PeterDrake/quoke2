@@ -430,26 +430,11 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithTwoBucket();
             }
-            //check if the player is in front of the latrine
-
-
-
-            // DropSelectedItem();
         }
     }
 
     private void InteractWithWaterPurifyingTable(StorageContainer container)
     {
-        //if there is something in the container
-        // int i = FirstEmptySlot();
-        // if (i >= 0 && !SlotIsOccupied(i) && container.contents)
-        // {
-        //     //picking up the item
-        //     GameObject item = container.RemoveItem();
-        //     item.GetComponent<Collectible>().inStorageContainer = false;
-        //     PickUp(item);
-        // }
-        //if the contents is empty and we have water bottle
         if (!container.contents && SlotIsOccupied(selectedSlotNumber))
         {
             if (items[selectedSlotNumber].name.Equals("Water Bottle(Clone)"))
