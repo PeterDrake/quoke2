@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 public class TestInventory
@@ -31,9 +32,13 @@ public class TestInventory
     {
         GameObject gameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PreQuakeHouse Level"));
         ReferenceManager referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        ItemLoader itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+        itemLoader.LoadItems("PreQuakeHouse");
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
         yield return null;  // This seems necessary to 
+        GameObject cup = GameObject.Find("Cup(Clone)");
+        Assert.NotNull(cup);
         // Take some steps
         for (int i = 0; i < 5; i++)
         {
@@ -45,8 +50,7 @@ public class TestInventory
             player.StartMoving(new Vector3(1f, 0f, 0f));
             yield return new WaitForSeconds(0.5f);
         }
-        GameObject cup = GameObject.Find("Cup(Clone)");
-        Assert.NotNull(cup);
+        Debug.Log("In slot 0:" + inventory.items[0].name);
         Assert.AreEqual(cup, inventory.items[0]);
         Object.Destroy(gameObject);
     }
