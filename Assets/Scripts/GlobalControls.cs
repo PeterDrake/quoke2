@@ -68,7 +68,7 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string> {"Dog Collar"}, "safi0",
-                        0, false, "Safi needs a Dog Collar", 1, 3)},
+                        0, false, "Safi needs a Dog Collar", 1, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
                         0, false, "Demitrius needs a Can Opener and Mask", 2, 0)},
                 {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
@@ -143,7 +143,7 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string> {"Dog Collar"}, "safi0",
-                    0, false, "Safi needs a Dog Collar", 1, 3)},
+                    0, false, "Safi needs a Dog Collar", 1, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
                     0, false, "Demitrius needs a Can Opener and Mask", 2, 0)},
                 {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
