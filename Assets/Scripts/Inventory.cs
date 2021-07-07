@@ -148,52 +148,6 @@ public class Inventory : MonoBehaviour
             referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
     }
 
-    private void DropSelectedItem()
-    {
-        // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!player.ObjectAhead(dropObstructionLayers))
-        {
-            int i = selectedSlotNumber; // Just to make the later expressions less hairy
-            if (SlotIsOccupied(i))
-            {
-                if (items[i].name.Equals("Chlorine Tablet(Clone)") && player.ObjectAhead(waterLayer))
-                {
-                    Debug.Log("Dropping chlorine tablet to water bottle");
-                    GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
-                    meters = referenceManager.metersCanvas.GetComponent<Meters>();
-                    meters.MarkTaskAsDone("water");
-                    
-                    GlobalItemList.UpdateItemList("Water Bottle", "", new Vector3(0,0,0), "");
-                    GameObject.Find("Water Bottle(Clone)").SetActive(false);
-                    GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
-                        player.destination.transform.position + player.transform.forward, "");
-                    
-                    GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
-                    GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward , Quaternion.identity);
-
-                }
-                else
-                {
-                    // Place item in front of player
-                    items[i].SetActive(true);
-                    items[i].transform.position = player.destination.transform.position + player.transform.forward;
-                
-                    //updates item list accordingly
-                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
-                    // Remove item from inventory
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
-                    //turn off tooltip
-                    if (tooltipText.gameObject.activeSelf)
-                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
-                }
-                
-            }
-        }
-    }
-
     /// <summary>
     /// Takes the item in container (if there is one) or puts the selected item into container.
     /// </summary>
@@ -480,7 +434,7 @@ public class Inventory : MonoBehaviour
 
 
 
-            DropSelectedItem();
+            // DropSelectedItem();
         }
     }
 
