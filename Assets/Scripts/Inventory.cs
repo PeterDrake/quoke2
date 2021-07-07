@@ -462,7 +462,11 @@ public class Inventory : MonoBehaviour
             GameObject latrine = player.ObjectAhead(latrineContainerLayers);
             if (container)
             {
-                InteractWithStorageContainer(container.GetComponent<StorageContainer>());
+                if (container.name.Equals("Water Purifying Table"))
+                {
+                    InteractWithWaterPurifyingTable(container.GetComponent<StorageContainer>());
+                }
+                else InteractWithStorageContainer(container.GetComponent<StorageContainer>());
             }
             else if (latrine && !GlobalControls.ApartmentCondition)
             {
@@ -480,7 +484,74 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
+    private void InteractWithWaterPurifyingTable(StorageContainer container)
+    {
+        //if there is something in the container
+        // int i = FirstEmptySlot();
+        // if (i >= 0 && !SlotIsOccupied(i) && container.contents)
+        // {
+        //     //picking up the item
+        //     GameObject item = container.RemoveItem();
+        //     item.GetComponent<Collectible>().inStorageContainer = false;
+        //     PickUp(item);
+        // }
+        //if the contents is empty and we have water bottle
+        if (!container.contents && SlotIsOccupied(selectedSlotNumber))
+        {
+            if (items[selectedSlotNumber].name.Equals("Water Bottle(Clone)"))
+            {
+                Debug.Log("Dropping water bottle");
+                container.contents = items[selectedSlotNumber];
+                items[selectedSlotNumber].SetActive(true);
+                Transform t = player.transform;
+                items[selectedSlotNumber].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                items[selectedSlotNumber].GetComponent<Collectible>().inStorageContainer = true;
+                
+                GlobalItemList.UpdateItemList(items[selectedSlotNumber].name, SceneManager.GetActiveScene().name,
+                    items[selectedSlotNumber].transform.position, container.name);
+
+                // Remove item from inventory
+                items[selectedSlotNumber] = null;
+                slotContents[selectedSlotNumber].SetActive(false);
+                if (tooltipText.gameObject.activeSelf)
+                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+            }
+        }
+        else if (container.contents && SlotIsOccupied(selectedSlotNumber))
+        {
+            if (items[selectedSlotNumber].name.Equals("Chlorine Tablet(Clone)"))
+            {
+                GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
+                items[selectedSlotNumber] = null;
+                slotContents[selectedSlotNumber].SetActive(false);
+                meters = referenceManager.metersCanvas.GetComponent<Meters>();
+                meters.MarkTaskAsDone("water");
+                    
+                GlobalItemList.UpdateItemList("Water Bottle", "", new Vector3(0,0,0), "");
+                GameObject.Find("Water Bottle(Clone)").SetActive(false);
+                GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
+                    player.destination.transform.position + player.transform.forward + Vector3.up, "Water Purifying Table");
+                    
+                GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
+                GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward + Vector3.up, Quaternion.identity);
+                container.contents = waterBottleClean;
+            }
+        }
+        else
+        {
+            int i = FirstEmptySlot();
+            if (i >= 0 && !SlotIsOccupied(i) && container.contents)
+            {
+                //picking up the item
+                GameObject item = container.RemoveItem();
+                item.GetComponent<Collectible>().inStorageContainer = false;
+                PickUp(item);
+            }
+        }
+
+    }
+
+
     /** Only used by ItemLoader.cs */
     public void PickUpAtSlot(int slot, GameObject item)
     {
