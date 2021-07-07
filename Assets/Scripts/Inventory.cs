@@ -174,7 +174,7 @@ public class Inventory : MonoBehaviour
                     GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward , Quaternion.identity);
 
                 }
-                else
+                else if(items[i].name.Equals("Water Bottle(Clone)"))
                 {
                     // Place item in front of player
                     items[i].SetActive(true);
