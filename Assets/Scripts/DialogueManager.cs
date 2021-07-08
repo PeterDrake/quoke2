@@ -19,7 +19,9 @@ public class DialogueManager : MonoBehaviour
     public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
-
+    public bool isNpcActionDone;
+    public bool isNpcDrinkDone;
+    
     private void OnEnable()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -27,6 +29,8 @@ public class DialogueManager : MonoBehaviour
         convoFile = new XmlDocument();
         cursorLocation = 0;
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        isNpcActionDone = false;
+        isNpcDrinkDone = false;
     }
 
     public void BeginConversation()
@@ -61,6 +65,22 @@ public class DialogueManager : MonoBehaviour
             {
                 buttons[c].gameObject.SetActive(false);
             }
+            
+            //Turns off button if NPC drinks or NPC action is complete
+            if (currentNode.nodeName.Contains("0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && isNpcActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && isNpcDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
         }
         //This displays the initial nodes npc text
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
@@ -100,6 +120,7 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.SetTrading();
         }
         
+        
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
@@ -110,7 +131,7 @@ public class DialogueManager : MonoBehaviour
             {
                 buttons[c].gameObject.SetActive(false);
             }
-
+            
         }
             
         //This will change the npc text based on the node
