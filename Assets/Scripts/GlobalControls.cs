@@ -35,6 +35,7 @@ public static class GlobalControls
     private static bool fredInteracted;
     private static bool carlosInteracted;
     private static bool bobInteracted;
+    private static bool allNPCInteracted;
 
     private static bool apartmentCondition = false;
 
@@ -113,6 +114,7 @@ public static class GlobalControls
         fredInteracted = false;
         carlosInteracted = false;
         bobInteracted = false;
+        allNPCInteracted = false;
         adminMode = true;
     }
 
@@ -188,6 +190,7 @@ public static class GlobalControls
         fredInteracted = false;
         carlosInteracted = false;
         bobInteracted = false;
+        allNPCInteracted = false;
         adminMode = true;
     }
 
@@ -337,6 +340,12 @@ public static class GlobalControls
     {
         get => bobInteracted;
         set => bobInteracted = value;
+    }
+
+    public static bool AllNPCInteracted
+    {
+        get => allNPCInteracted;
+        set => allNPCInteracted = value;
     }
     
 }

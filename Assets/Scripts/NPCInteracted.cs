@@ -128,6 +128,13 @@ public class NPCInteracted : MonoBehaviour
 
     }
 
+    public bool AllNPCInteracted()
+    {
+        if (safiInteracted && demInteracted && rainerInteracted && fredInteracted && carlosInteracted &&
+            bobInteracted) return true;
+        return false;
+    }
+
     public void UpdateNPCInteracted(string name)
     {
         if (name.Equals("safi0"))

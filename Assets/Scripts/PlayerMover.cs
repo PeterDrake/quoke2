@@ -76,6 +76,14 @@ public class PlayerMover : MonoBehaviour
                     GlobalControls.CurrentNPC = ahead.name;
                     referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
                     transform.LookAt(transform.position + direction, transform.up);
+
+                    if (referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().AllNPCInteracted() && !GlobalControls.AllNPCInteracted)
+                    {
+                        Debug.Log("You have talked to all NPCS!");
+                        GlobalControls.AllNPCInteracted = true;
+                        GlobalControls.CurrentObjective = 6;
+                    }
+                    
                     referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>().SetConversing();
                 }
 

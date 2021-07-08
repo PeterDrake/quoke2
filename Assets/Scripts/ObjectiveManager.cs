@@ -56,6 +56,12 @@ public class ObjectiveManager : MonoBehaviour
                 currentObjective = "Meet your neighbors";
                 break;
             case 6:
+                currentObjective = "Make clean water! Find a water bottle and chlorine tablet";
+                break;
+            case 7:
+                currentObjective = "Find a shovel, plywood, rope, tarp and toilet paper for your latrine!";
+                break;
+            case 8:
                 currentObjective = "Go to the tent to end the game!";
                 break;
         }

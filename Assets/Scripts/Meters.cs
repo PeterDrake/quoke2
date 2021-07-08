@@ -49,7 +49,12 @@ public class Meters : MonoBehaviour
         
         if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
-            GlobalControls.CurrentObjective = 5;
+            GlobalControls.CurrentObjective = 8;
+            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
+        }
+        else if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && !GlobalControls.PoopTaskCompleted)
+        {
+            GlobalControls.CurrentObjective = 7;
             GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
         }
     }
