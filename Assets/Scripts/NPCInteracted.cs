@@ -63,16 +63,28 @@ public class NPCInteracted : MonoBehaviour
         
         if(safiOwes && GlobalControls.NPCList["safi0"].owes != 0) 
             safiOwes.SetActive(true);
+        else if(safiOwes && GlobalControls.NPCList["safi0"].owes == 0)
+            safiOwes.SetActive(false);
         if(demOwes && GlobalControls.NPCList["dem0"].owes != 0) 
             demOwes.SetActive(true);
+        else if(demOwes && GlobalControls.NPCList["dem0"].owes == 0)
+            demOwes.SetActive(false);
         if(rainerOwes && GlobalControls.NPCList["rainer0"].owes != 0) 
             rainerOwes.SetActive(true);
+        else if(rainerOwes && GlobalControls.NPCList["rainer0"].owes == 0)
+            rainerOwes.SetActive(false);
         if(fredOwes && GlobalControls.NPCList["fred0"].owes != 0) 
             fredOwes.SetActive(true);
+        else if(fredOwes && GlobalControls.NPCList["fred0"].owes == 0)
+            fredOwes.SetActive(false);
         if(carlosOwes && GlobalControls.NPCList["carlos0"].owes != 0) 
             carlosOwes.SetActive(true);
+        else if(carlosOwes && GlobalControls.NPCList["carlos0"].owes == 0)
+            carlosOwes.SetActive(false);
         if(bobOwes && GlobalControls.NPCList["bob0"].owes != 0) 
             bobOwes.SetActive(true);
+        else if(bobOwes && GlobalControls.NPCList["bob0"].owes == 0)
+            bobOwes.SetActive(false);
     }
 
     void Start()
@@ -144,6 +156,7 @@ public class NPCInteracted : MonoBehaviour
                 safiImage.SetActive(true);
                 safiSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["safi0"].owes != 0) safiOwes.SetActive(true);
+                else if (GlobalControls.NPCList["safi0"].owes == 0) safiOwes.SetActive(false);
             }
 
             if (!demInteracted)
@@ -157,6 +170,7 @@ public class NPCInteracted : MonoBehaviour
                 demImage.SetActive(true);
                 demSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["dem0"].owes != 0) demOwes.SetActive(true);
+                else if (GlobalControls.NPCList["dem0"].owes == 0) demOwes.SetActive(false);
             }
 
             if (!rainerInteracted)
@@ -170,6 +184,7 @@ public class NPCInteracted : MonoBehaviour
                 rainerImage.SetActive(true);
                 rainerSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["rainer0"].owes != 0) rainerOwes.SetActive(true);
+                else if (GlobalControls.NPCList["rainer0"].owes == 0) rainerOwes.SetActive(false);
             }
 
             if (!fredInteracted)
@@ -183,6 +198,7 @@ public class NPCInteracted : MonoBehaviour
                 fredImage.SetActive(true);
                 fredSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["fred0"].owes != 0) fredOwes.SetActive(true);
+                else if (GlobalControls.NPCList["fred0"].owes == 0) fredOwes.SetActive(false);
             }
             
             if (!carlosInteracted)
@@ -196,6 +212,7 @@ public class NPCInteracted : MonoBehaviour
                 carlosImage.SetActive(true);
                 carlosSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["carlos0"].owes != 0) carlosOwes.SetActive(true);
+                else if (GlobalControls.NPCList["carlos0"].owes == 0) carlosOwes.SetActive(false);
             }
             
             if (!bobInteracted)
@@ -209,6 +226,7 @@ public class NPCInteracted : MonoBehaviour
                 bobImage.SetActive(true);
                 bobSatisfaction.SetActive(true);
                 if(GlobalControls.NPCList["bob0"].owes != 0) bobOwes.SetActive(true);
+                else if (GlobalControls.NPCList["bob0"].owes == 0) bobOwes.SetActive(false);
             }
         }
 
