@@ -38,6 +38,20 @@ public static class GlobalControls
 
     private static bool apartmentCondition = false;
 
+    private static bool demActionDone = false;
+    private static bool demDrinkDone = false;
+    private static bool safiActionDone1 = false;
+    private static bool safiActionDone2 = false;
+    private static bool safiActionDone3 = false;
+    private static bool bobDrinkDone = false;
+    private static bool carlosDrinkDone = false;
+    private static bool rainerActionDone = false;
+    private static bool rainerDrinkDone = false;
+    private static bool annetteActionDone = false;
+    private static bool annetteDrinkDone = false;
+
+    private static bool playerHasCleanWater = false;
+    
     private static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
 
@@ -114,6 +128,20 @@ public static class GlobalControls
         carlosInteracted = false;
         bobInteracted = false;
         adminMode = true;
+
+        demActionDone = false;
+        demDrinkDone = false;
+        safiActionDone1 = false;
+        safiActionDone2 = false;
+        safiActionDone3 = false;
+        bobDrinkDone = false;
+        carlosDrinkDone = false;
+        rainerActionDone = false;
+        rainerDrinkDone = false;
+        annetteActionDone = false;
+        annetteDrinkDone = false;
+
+        playerHasCleanWater = false;
     }
 
 
@@ -189,6 +217,20 @@ public static class GlobalControls
         carlosInteracted = false;
         bobInteracted = false;
         adminMode = true;
+        
+        demActionDone = false;
+        demDrinkDone = false;
+        safiActionDone1 = false;
+        safiActionDone2 = false;
+        safiActionDone3 = false;
+        bobDrinkDone = false;
+        carlosDrinkDone = false;
+        rainerActionDone = false;
+        rainerDrinkDone = false;
+        annetteActionDone = false;
+        annetteDrinkDone = false;
+
+        playerHasCleanWater = false;
     }
 
     public static int NoStoredWaterTime
@@ -339,6 +381,78 @@ public static class GlobalControls
         set => bobInteracted = value;
     }
     
+    public static bool DemActionDone
+    {
+        get => demActionDone;
+        set => demActionDone = value;
+    }
+    
+    public static bool DemDrinkDone
+    {
+        get => demDrinkDone;
+        set => demDrinkDone = value;
+    }
+    
+    public static bool SafiActionDone1
+    {
+        get => safiActionDone1;
+        set => safiActionDone1 = value;
+    }
+    
+    public static bool SafiActionDone2
+    {
+        get => safiActionDone2;
+        set => safiActionDone2 = value;
+    }
+    
+    public static bool SafiActionDone3
+    {
+        get => safiActionDone3;
+        set => safiActionDone3 = value;
+    }
+    
+    public static bool BobDrinkDone
+    {
+        get => bobDrinkDone;
+        set => bobDrinkDone = value;
+    }
+    
+    public static bool CarlosDrinkDone
+    {
+        get => carlosDrinkDone;
+        set => carlosDrinkDone = value;
+    }
+    
+    public static bool RainerActionDone
+    {
+        get => rainerActionDone;
+        set => rainerActionDone = value;
+    }
+    
+    public static bool RainerDrinkDone
+    {
+        get => rainerDrinkDone;
+        set => rainerDrinkDone = value;
+    }
+    
+    public static bool AnnetteActionDone
+    {
+        get => annetteActionDone;
+        set => annetteActionDone = value;
+    }
+    
+    public static bool AnnetteDrinkDone
+    {
+        get => annetteDrinkDone;
+        set => annetteDrinkDone = value;
+    }
+    
+    public static bool PlayerHasCleanWater
+    {
+        get => playerHasCleanWater;
+        set => playerHasCleanWater = value;
+    }
+
 }
 
 
