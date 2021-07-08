@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -116,9 +117,20 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.SetTrading();
         }
 
+        //If we do an NPC Action
         if (currentNode.nodeName.Contains("action"))
         {
             GlobalControls.DemActionDone = true;
+        }
+
+        //If we give water to an NPC
+        if (currentNode.nodeName.Contains("givewater"))
+        {
+            if (GlobalControls.PlayerHasCleanWater)
+            {
+                GlobalControls.DemDrinkDone = true;                
+            }
+
         }
 
 
@@ -133,7 +145,7 @@ public class DialogueManager : MonoBehaviour
                 buttons[c].gameObject.SetActive(false);
             }
             
-            //Turns off button if NPC drinks or NPC action is complete
+            //Turns off button if Demetrius drinks or Demetrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
             {
                 if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
@@ -146,6 +158,20 @@ public class DialogueManager : MonoBehaviour
                     buttons[c].gameObject.SetActive(false);
                 }
 
+            }
+            
+            if (currentNode.nodeName.Contains("drink"))
+            {
+                if (GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have water right here!"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have water right here!"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
             }
             
         }

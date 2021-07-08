@@ -176,6 +176,12 @@ public class Inventory : MonoBehaviour
                 }
                 else
                 {
+                    if (items[i].name.Equals("Water Bottle Clean(Clone)"))
+                    {
+                        Debug.Log("Player Does Not Have Water!");
+                        GlobalControls.PlayerHasCleanWater = false;
+                    }
+
                     // Place item in front of player
                     items[i].SetActive(true);
                     items[i].transform.position = player.destination.transform.position + player.transform.forward;
@@ -188,6 +194,7 @@ public class Inventory : MonoBehaviour
                     //turn off tooltip
                     if (tooltipText.gameObject.activeSelf)
                         tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                    
                 }
                 
             }
@@ -430,6 +437,13 @@ public class Inventory : MonoBehaviour
             
             // Remove item from the world
             item.SetActive(false);
+
+            if (item.name.Equals("Water Bottle Clean(Clone)"))
+            {
+                Debug.Log("Player Has Water!");
+                GlobalControls.PlayerHasCleanWater = true;
+            }
+
         }
         //reselect slot to current slot number to update tooltip if necessary
         SelectSlotNumber(selectedSlotNumber);
