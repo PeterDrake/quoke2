@@ -179,22 +179,6 @@
     
             <npcText>Oh I see. That's alright.</npcText>
         </refusewaterdem>
-
-        <havenowaterdem>
-            <playerOptions>
-                <option>Go back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-        
-            <keys>
-                <keyName>dem0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-        
-            <npcText>It doesn't seem like you have any water on you right now.</npcText>
-        </havenowaterdem>
         
         <tradedem>
             <playerOptions>
@@ -214,21 +198,21 @@
 
         <fred0>
             <playerOptions>
-                <option>Fred Option 0.1</option>
-                <option>Fred Option 0.2</option>
-                <option>Fred Let's Trade!</option>
+                <option>Fred Action</option>
+                <option>Fred Drink</option>
+                <option>Fred Trade</option>
             </playerOptions>
-         
+    
             <keys>
-                 <keyName>fred0</keyName>
-                 <keyName>fred0</keyName>
-                 <keyName>tradefred</keyName>
+                <keyName>actionfred1</keyName>
+                <keyName>drinkfred2</keyName>
+                <keyName>tradefred</keyName>
             </keys>
-            
-            <npcText>Fred Dialogue Path 1</npcText>
+    
+            <npcText>That quake was no joke. Are you okay at least?</npcText>
         </fred0>
-
-        <tradefred>
+    
+        <actionfred1>
             <playerOptions>
                 <option>Fred Go Back</option>
                 <option></option>
@@ -241,7 +225,71 @@
                 <keyName>fred0</keyName>
             </keys>
     
-            <npcText>Fred Now Trading...</npcText>
+            <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
+        </actionfred1>
+    
+        <drinkfred2>
+            <playerOptions>
+                <option>I have water right here!</option>
+                <option>I don't have any water right now...</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>givewaterfred</keyName>
+                <keyName>refusewaterfred</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh, sure. Do you have any water?</npcText>
+        </drinkfred2>
+    
+        <givewaterfred>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>fred0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh thank you! This should help me for a bit.</npcText>
+        </givewaterfred>
+    
+        <refusewaterfred>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>fred0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh I see. That's alright.</npcText>
+        </refusewaterfred>
+    
+        <tradefred>
+                <playerOptions>
+                    <option>Fred Go Back</option>
+                    <option></option>
+                    <option></option>
+                </playerOptions>
+        
+                <keys>
+                    <keyName>fred0</keyName>
+                    <keyName>fred0</keyName>
+                    <keyName>fred0</keyName>
+                </keys>
+        
+                <npcText>Fred Now Trading...</npcText>
         </tradefred>
         
         <rainer0>

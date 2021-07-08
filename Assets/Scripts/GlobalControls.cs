@@ -47,8 +47,8 @@ public static class GlobalControls
     private static bool carlosDrinkDone = false;
     private static bool rainerActionDone = false;
     private static bool rainerDrinkDone = false;
-    private static bool annetteActionDone = false;
-    private static bool annetteDrinkDone = false;
+    private static bool fredActionDone = false;
+    private static bool fredDrinkDone = false;
 
     private static bool playerHasCleanWater = false;
     
@@ -138,8 +138,8 @@ public static class GlobalControls
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
-        annetteActionDone = false;
-        annetteDrinkDone = false;
+        fredActionDone = false;
+        fredDrinkDone = false;
 
         playerHasCleanWater = false;
     }
@@ -227,8 +227,8 @@ public static class GlobalControls
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
-        annetteActionDone = false;
-        annetteDrinkDone = false;
+        fredActionDone = false;
+        fredDrinkDone = false;
 
         playerHasCleanWater = false;
     }
@@ -435,16 +435,16 @@ public static class GlobalControls
         set => rainerDrinkDone = value;
     }
     
-    public static bool AnnetteActionDone
+    public static bool FredActionDone
     {
-        get => annetteActionDone;
-        set => annetteActionDone = value;
+        get => fredActionDone;
+        set => fredActionDone = value;
     }
     
-    public static bool AnnetteDrinkDone
+    public static bool FredDrinkDone
     {
-        get => annetteDrinkDone;
-        set => annetteDrinkDone = value;
+        get => fredDrinkDone;
+        set => fredDrinkDone = value;
     }
     
     public static bool PlayerHasCleanWater

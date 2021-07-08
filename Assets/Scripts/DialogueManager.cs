@@ -63,8 +63,23 @@ public class DialogueManager : MonoBehaviour
                 buttons[c].gameObject.SetActive(false);
             }
             
-            //Turns off button if NPC drinks or NPC action is complete
+            //Turns off button if Demitrius drinks or Demitrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Fred drinks or Fred action is complete
+            if (currentNode.nodeName.Contains("fred0"))
             {
                 if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
                 {
@@ -105,6 +120,80 @@ public class DialogueManager : MonoBehaviour
     {
         //This will change the node you're looking at
         currentNode = forest[currentNode.nextNode[cursorLocation]]; 
+        
+        //switch statement cases for actions
+        int x = 0;
+        if (GlobalControls.CurrentNPC.Equals("dem0"))
+            x = 1;
+        if (GlobalControls.CurrentNPC.Equals("safi0"))
+            x = 2;
+        if (GlobalControls.CurrentNPC.Equals("rainer0"))
+            x = 3;
+        if (GlobalControls.CurrentNPC.Equals("fred0"))
+            x = 4;
+        
+        //switch statement cases for drinks
+        int y = 0;
+        if (GlobalControls.CurrentNPC.Equals("dem0"))
+            y = 1;
+        if (GlobalControls.CurrentNPC.Equals("carlos0"))
+            y = 2;
+        if (GlobalControls.CurrentNPC.Equals("bob0"))
+            y = 3;
+        if (GlobalControls.CurrentNPC.Equals("rainer0"))
+            y = 4;
+        if (GlobalControls.CurrentNPC.Equals("fred0"))
+            y = 5;
+        
+        //If we do an NPC Action
+        if (currentNode.nodeName.Contains("action"))
+        {
+            switch (x)
+            {
+                case 0:
+                    break;
+                case 1:
+                    GlobalControls.DemActionDone = true;
+                    break;
+                case 2:
+                    //safi has 3 actions. will take care of it differently here
+                    break;
+                case 3:
+                    GlobalControls.RainerActionDone = true;
+                    break;
+                case 4:
+                    GlobalControls.FredActionDone = true;
+                    break;
+            }
+            
+        }
+
+        //If we give water to an NPC
+        if (currentNode.nodeName.Contains("givewater"))
+        {
+            switch (y)
+            {
+                case 0:
+                    break;
+                case 1:
+                    GlobalControls.DemDrinkDone = true;
+                    break;
+                case 2:
+                    GlobalControls.CarlosDrinkDone = true;
+                    break;
+                case 3:
+                    GlobalControls.BobDrinkDone = true;
+                    break;
+                case 4:
+                    GlobalControls.RainerDrinkDone = true;
+                    break;
+                case 5:
+                    GlobalControls.FredDrinkDone = true;
+                    break;
+            }
+
+        }
+
 
         if (currentNode.nodeName.Contains("checkpoint"))
         {
@@ -116,24 +205,8 @@ public class DialogueManager : MonoBehaviour
             buttons[cursorLocation].Select();
             keyboardManager.SetTrading();
         }
-
-        //If we do an NPC Action
-        if (currentNode.nodeName.Contains("action"))
-        {
-            GlobalControls.DemActionDone = true;
-        }
-
-        //If we give water to an NPC
-        if (currentNode.nodeName.Contains("givewater"))
-        {
-            if (GlobalControls.PlayerHasCleanWater)
-            {
-                GlobalControls.DemDrinkDone = true;                
-            }
-
-        }
-
-
+        
+        
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
@@ -143,6 +216,20 @@ public class DialogueManager : MonoBehaviour
             if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
             {
                 buttons[c].gameObject.SetActive(false);
+            }
+
+            if (currentNode.nodeName.Contains("drink"))
+            {
+                if (GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have water right here!"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have water right here!"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
             }
             
             //Turns off button if Demetrius drinks or Demetrius action is complete
@@ -160,19 +247,21 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            if (currentNode.nodeName.Contains("drink"))
+            //Turns off button if Fred drinks or Fred action is complete
+            if (currentNode.nodeName.Contains("fred0"))
             {
-                if (GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
-                    ("I have water right here!"))
-                {
-                    buttons[c].gameObject.SetActive(true);
-                }
-                else if (!GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
-                    ("I have water right here!"))
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.FredActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.FredDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
             }
+            
             
         }
             
