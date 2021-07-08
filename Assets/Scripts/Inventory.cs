@@ -204,17 +204,11 @@ public class Inventory : MonoBehaviour
     
     void InteractWithLatrine()
     {
+        int i = 0;
         int x = 0;
-        int i = FirstEmptySlot();
-        if (i >= 0 && !SlotIsOccupied(i) && latrineStorage.contents)
+        if(SlotIsOccupied(selectedSlotNumber))
         {
-            GameObject item = latrineStorage.RemoveLatrineItem();
-            item.GetComponent<Collectible>().inStorageContainer = false;
-            PickUp(item);
-        }
-        else
-        {
-            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers))
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && !GlobalControls.PoopTaskCompleted)
             {
                 latrineStorage.timesShoveled++;
                 GlobalControls.TimesShoveled++;
