@@ -3,9 +3,9 @@
 	
 		<safi0>
 			<playerOptions>
-				<option>Safi Option 0.1</option>
-				<option>Safi Option 0.2</option>
-				<option>Safi Option 0.3</option>
+				<option>Safi Action</option>
+				<option>Safi Gas</option>
+				<option>Safi Shut Off Water</option>
 			</playerOptions>
  
             <keys>
@@ -102,9 +102,9 @@
 		
         <dem0>
             <playerOptions>
-                <option>Demitrius Action</option>
-                <option>Demitrius Drink</option>
-                <option>Demitrius Trade</option>
+                <option>Help Demitrius with Foraging</option>
+                <option>Give Demitrius a Drink</option>
+                <option>Trade with Demitrius</option>
             </playerOptions>
  
             <keys>
@@ -118,7 +118,7 @@
 
         <actiondem1>
             <playerOptions>
-                <option>Demitrius Go Back</option>
+                <option>You're Welcome!</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -150,7 +150,7 @@
 
         <givewaterdem>
             <playerOptions>
-                <option>Go back</option>
+                <option>Glad you're feeling better!</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -166,7 +166,7 @@
 
         <refusewaterdem>
             <playerOptions>
-                <option>Go back</option>
+                <option>I'll try to find some...</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -182,7 +182,7 @@
         
         <tradedem>
             <playerOptions>
-                <option>Demitrius Go Back</option>
+                <option>I think I'm done.</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -196,39 +196,39 @@
             <npcText>Demitrius Now Trading...</npcText>
         </tradedem>
 
-        <fred0>
+        <annette0>
             <playerOptions>
-                <option>Fred Action</option>
-                <option>Fred Drink</option>
-                <option>Fred Trade</option>
+                <option>Help Annette with Translation</option>
+                <option>Give Annette a Drink</option>
+                <option>Trade with Annette</option>
             </playerOptions>
     
             <keys>
-                <keyName>actionfred1</keyName>
-                <keyName>drinkfred2</keyName>
-                <keyName>tradefred</keyName>
+                <keyName>actionannette1</keyName>
+                <keyName>drinkannette2</keyName>
+                <keyName>tradeannette</keyName>
             </keys>
     
             <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </fred0>
+        </annette0>
     
-        <actionfred1>
+        <actionannette1>
             <playerOptions>
-                <option>Fred Go Back</option>
+                <option>Glad to help!</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>fred0</keyName>
-                <keyName>fred0</keyName>
-                <keyName>fred0</keyName>
+                <keyName>annette0</keyName>
+                <keyName>annette0</keyName>
+                <keyName>annette0</keyName>
             </keys>
     
-            <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
-        </actionfred1>
+            <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
+        </actionannette1>
     
-        <drinkfred2>
+        <drinkannette2>
             <playerOptions>
                 <option>I have water right here!</option>
                 <option>I don't have any water right now...</option>
@@ -236,61 +236,61 @@
             </playerOptions>
     
             <keys>
-                <keyName>givewaterfred</keyName>
-                <keyName>refusewaterfred</keyName>
+                <keyName>givewaterannette</keyName>
+                <keyName>refusewaterannette</keyName>
                 <keyName></keyName>
             </keys>
     
-            <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkfred2>
+            <npcText>I could use some water. You got any on you?</npcText>
+        </drinkannette2>
     
-        <givewaterfred>
+        <givewaterannette>
             <playerOptions>
-                <option>Go back</option>
+                <option>Hydrate or diedrate!</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>fred0</keyName>
+                <keyName>annette0</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
-            <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewaterfred>
+            <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
+        </givewaterannette>
     
-        <refusewaterfred>
+        <refusewaterannette>
             <playerOptions>
-                <option>Go back</option>
+                <option>I'll go find some!</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>fred0</keyName>
+                <keyName>annette0</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
-            <npcText>Oh I see. That's alright.</npcText>
-        </refusewaterfred>
+            <npcText>If you happen to find any, I'll gladly take some.</npcText>
+        </refusewaterannette>
     
-        <tradefred>
+        <tradeannette>
                 <playerOptions>
-                    <option>Fred Go Back</option>
+                    <option>Annette Go Back</option>
                     <option></option>
                     <option></option>
                 </playerOptions>
         
                 <keys>
-                    <keyName>fred0</keyName>
-                    <keyName>fred0</keyName>
-                    <keyName>fred0</keyName>
+                    <keyName>annette0</keyName>
+                    <keyName>annette0</keyName>
+                    <keyName>annette0</keyName>
                 </keys>
         
-                <npcText>Fred Now Trading...</npcText>
-        </tradefred>
+                <npcText>Annette Now Trading...</npcText>
+        </tradeannette>
 
         <rainer0>
             <playerOptions>

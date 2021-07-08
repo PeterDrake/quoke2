@@ -32,7 +32,7 @@ public static class GlobalControls
     private static bool safiInteracted;
     private static bool demInteracted;
     private static bool rainerInteracted;
-    private static bool fredInteracted;
+    private static bool annetteInteracted;
     private static bool carlosInteracted;
     private static bool bobInteracted;
 
@@ -47,8 +47,8 @@ public static class GlobalControls
     private static bool carlosDrinkDone = false;
     private static bool rainerActionDone = false;
     private static bool rainerDrinkDone = false;
-    private static bool fredActionDone = false;
-    private static bool fredDrinkDone = false;
+    private static bool annetteActionDone = false;
+    private static bool annetteDrinkDone = false;
 
     private static bool playerHasCleanWater = false;
     
@@ -66,8 +66,8 @@ public static class GlobalControls
                     0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
                     0, false, "Demitrius needs a Can Opener and Mask", 2)},
-                {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
-                    0, false, "Fred needs a Wrench", 1)},
+                {"annette0", new NPC("Annette", "School", new List<string>{"Wrench"}, "annette0", 
+                    0, false, "Annette needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp", 1)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
@@ -85,8 +85,8 @@ public static class GlobalControls
                         0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
                         0, false, "Demitrius needs a Can Opener and Mask", 2)},
-                {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
-                        0, false, "Fred needs a Wrench", 1)},
+                {"annette0", new NPC("Annette", "School", new List<string> {"Wrench"}, "annette0",
+                        0, false, "Annette needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                         0, false, "Rainer needs a Bucket", 1)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
@@ -124,7 +124,7 @@ public static class GlobalControls
         safiInteracted = false;
         demInteracted = false;
         rainerInteracted = false;
-        fredInteracted = false;
+        annetteInteracted = false;
         carlosInteracted = false;
         bobInteracted = false;
         adminMode = true;
@@ -138,8 +138,8 @@ public static class GlobalControls
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
-        fredActionDone = false;
-        fredDrinkDone = false;
+        annetteActionDone = false;
+        annetteDrinkDone = false;
 
         playerHasCleanWater = false;
     }
@@ -155,8 +155,8 @@ public static class GlobalControls
                     0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Can Opener", "Mask"}, "dem0", 
                     0, false, "Demitrius needs a Can Opener and Mask", 2)},
-                {"fred0", new NPC("Fred", "School", new List<string>{"Wrench"}, "fred0", 
-                    0, false, "Fred needs a Wrench", 1)},
+                {"annette0", new NPC("Annette", "School", new List<string>{"Wrench"}, "annette0", 
+                    0, false, "Annette needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tarp"}, "rainer0",
                     0, false, "Rainer needs a Tarp", 1)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
@@ -174,8 +174,8 @@ public static class GlobalControls
                     0, false, "Safi needs a Dog Collar", 1)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string> {"Can Opener", "Mask"}, "dem0",
                     0, false, "Demitrius needs a Can Opener and Mask", 2)},
-                {"fred0", new NPC("Fred", "School", new List<string> {"Wrench"}, "fred0",
-                    0, false, "Fred needs a Wrench", 1)},
+                {"annette0", new NPC("Annette", "School", new List<string> {"Wrench"}, "annette0",
+                    0, false, "Annette needs a Wrench", 1)},
                 {"rainer0", new NPC("Rainer", "School", new List<string> {"Bucket"}, "rainer0",
                     0, false, "Rainer needs a Bucket", 1)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {""}, "carlos0",
@@ -213,7 +213,7 @@ public static class GlobalControls
         safiInteracted = false;
         demInteracted = false;
         rainerInteracted = false;
-        fredInteracted = false;
+        annetteInteracted = false;
         carlosInteracted = false;
         bobInteracted = false;
         adminMode = true;
@@ -227,8 +227,8 @@ public static class GlobalControls
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
-        fredActionDone = false;
-        fredDrinkDone = false;
+        annetteActionDone = false;
+        annetteDrinkDone = false;
 
         playerHasCleanWater = false;
     }
@@ -365,10 +365,10 @@ public static class GlobalControls
         set => rainerInteracted = value;
     }
     
-    public static bool FredInteracted
+    public static bool AnnetteInteracted
     {
-        get => fredInteracted;
-        set => fredInteracted = value;
+        get => annetteInteracted;
+        set => annetteInteracted = value;
     }
     public static bool CarlosInteracted
     {
@@ -435,16 +435,16 @@ public static class GlobalControls
         set => rainerDrinkDone = value;
     }
     
-    public static bool FredActionDone
+    public static bool AnnetteActionDone
     {
-        get => fredActionDone;
-        set => fredActionDone = value;
+        get => annetteActionDone;
+        set => annetteActionDone = value;
     }
     
-    public static bool FredDrinkDone
+    public static bool AnnetteDrinkDone
     {
-        get => fredDrinkDone;
-        set => fredDrinkDone = value;
+        get => annetteDrinkDone;
+        set => annetteDrinkDone = value;
     }
     
     public static bool PlayerHasCleanWater

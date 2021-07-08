@@ -78,15 +78,15 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Fred drinks or Fred action is complete
-            if (currentNode.nodeName.Contains("fred0"))
+            //Turns off button if Annette drinks or Annette action is complete
+            if (currentNode.nodeName.Contains("annette0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.FredActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.AnnetteActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.FredDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
             x = 2;
         if (GlobalControls.CurrentNPC.Equals("rainer0"))
             x = 3;
-        if (GlobalControls.CurrentNPC.Equals("fred0"))
+        if (GlobalControls.CurrentNPC.Equals("annette0"))
             x = 4;
         
         //switch statement cases for drinks
@@ -177,7 +177,7 @@ public class DialogueManager : MonoBehaviour
             y = 3;
         if (GlobalControls.CurrentNPC.Equals("rainer0"))
             y = 4;
-        if (GlobalControls.CurrentNPC.Equals("fred0"))
+        if (GlobalControls.CurrentNPC.Equals("annette0"))
             y = 5;
         
         //If we do an NPC Action
@@ -197,7 +197,7 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.RainerActionDone = true;
                     break;
                 case 4:
-                    GlobalControls.FredActionDone = true;
+                    GlobalControls.AnnetteActionDone = true;
                     break;
             }
             
@@ -223,7 +223,7 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.RainerDrinkDone = true;
                     break;
                 case 5:
-                    GlobalControls.FredDrinkDone = true;
+                    GlobalControls.AnnetteDrinkDone = true;
                     break;
             }
 
@@ -282,15 +282,15 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Fred drinks or Fred action is complete
-            if (currentNode.nodeName.Contains("fred0"))
+            //Turns off button if Annette drinks or Annette action is complete
+            if (currentNode.nodeName.Contains("annette0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.FredActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Translation") && GlobalControls.AnnetteActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.FredDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }

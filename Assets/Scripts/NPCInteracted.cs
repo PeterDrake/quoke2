@@ -13,21 +13,21 @@ public class NPCInteracted : MonoBehaviour
     public bool safiInteracted;
     public bool demInteracted;
     public bool rainerInteracted;
-    public bool fredInteracted;
+    public bool annetteInteracted;
     public bool carlosInteracted;
     public bool bobInteracted;
 
     private GameObject safiImage;
     private GameObject demImage;
     private GameObject rainerImage;
-    private GameObject fredImage;
+    private GameObject annetteImage;
     private GameObject carlosImage;
     private GameObject bobImage;
     
     private GameObject safiSatisfaction;
     private GameObject demSatisfaction;
     private GameObject rainerSatisfaction;
-    private GameObject fredSatisfaction;
+    private GameObject annetteSatisfaction;
     private GameObject carlosSatisfaction;
     private GameObject bobSatisfaction;
 
@@ -40,8 +40,8 @@ public class NPCInteracted : MonoBehaviour
             + GlobalControls.NPCList["dem0"].totalSatisfaction;
         if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
             + GlobalControls.NPCList["rainer0"].totalSatisfaction;
-        if(fredSatisfaction) fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
-            + GlobalControls.NPCList["fred0"].totalSatisfaction;
+        if(annetteSatisfaction) annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
+            + GlobalControls.NPCList["annette0"].totalSatisfaction;
     }
 
     void Start()
@@ -56,21 +56,21 @@ public class NPCInteracted : MonoBehaviour
             safiImage = GameObject.Find("Safi Met Image");
             demImage = GameObject.Find("Dem Met Image");
             rainerImage = GameObject.Find("Rainer Met Image");
-            fredImage = GameObject.Find("Fred Met Image");
+            annetteImage = GameObject.Find("Annette Met Image");
             carlosImage = GameObject.Find("Carlos Met Image");
             bobImage = GameObject.Find("Bob Met Image");
             
             safiSatisfaction = GameObject.Find("Safi Satisfaction");
             demSatisfaction = GameObject.Find("Dem Satisfaction");
             rainerSatisfaction = GameObject.Find("Rainer Satisfaction");
-            fredSatisfaction = GameObject.Find("Fred Satisfaction");
+            annetteSatisfaction = GameObject.Find("Annette Satisfaction");
             carlosSatisfaction = GameObject.Find("Carlos Satisfaction");
             bobSatisfaction = GameObject.Find("Bob Satisfaction");
 
             safiInteracted = GlobalControls.SafiInteracted;
             demInteracted = GlobalControls.DemInteracted;
             rainerInteracted = GlobalControls.RainerInteracted;
-            fredInteracted = GlobalControls.FredInteracted;
+            annetteInteracted = GlobalControls.AnnetteInteracted;
             carlosInteracted = GlobalControls.CarlosInteracted;
             bobInteracted = GlobalControls.BobInteracted;
 
@@ -80,8 +80,8 @@ public class NPCInteracted : MonoBehaviour
                 + GlobalControls.NPCList["dem0"].totalSatisfaction;
             rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
                 + GlobalControls.NPCList["rainer0"].totalSatisfaction;
-            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
-                + GlobalControls.NPCList["fred0"].totalSatisfaction;
+            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
+                + GlobalControls.NPCList["annette0"].totalSatisfaction;
             carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
                 + GlobalControls.NPCList["carlos0"].totalSatisfaction;
             bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
@@ -105,10 +105,10 @@ public class NPCInteracted : MonoBehaviour
                 rainerSatisfaction.SetActive(false);
             }
 
-            if (!fredInteracted)
+            if (!annetteInteracted)
             {
-                fredImage.SetActive(false);
-                fredSatisfaction.SetActive(false);
+                annetteImage.SetActive(false);
+                annetteSatisfaction.SetActive(false);
             }
             
             if (!carlosInteracted)
@@ -160,15 +160,15 @@ public class NPCInteracted : MonoBehaviour
             rainerImage.SetActive(true);
             rainerSatisfaction.SetActive(true);
         }
-        else if (name.Equals("fred0"))
+        else if (name.Equals("annette0"))
         {
-            fredSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["fred0"].satisfaction + " / " 
-                + GlobalControls.NPCList["fred0"].totalSatisfaction;
-            fredInteracted = true;
-            GlobalControls.FredInteracted = true;
-            GlobalControls.NPCList["fred0"].interracted = true;
-            fredImage.SetActive(true);
-            fredSatisfaction.SetActive(true);
+            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
+                + GlobalControls.NPCList["annette0"].totalSatisfaction;
+            annetteInteracted = true;
+            GlobalControls.AnnetteInteracted = true;
+            GlobalControls.NPCList["annette0"].interracted = true;
+            annetteImage.SetActive(true);
+            annetteSatisfaction.SetActive(true);
         }
         else if (name.Equals("carlos0"))
         {
