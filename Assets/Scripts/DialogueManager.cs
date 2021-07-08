@@ -81,12 +81,47 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Fred drinks or Fred action is complete
             if (currentNode.nodeName.Contains("fred0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.FredActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.FredDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Rainer drinks or Rainer action is complete
+            if (currentNode.nodeName.Contains("rainer0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.RainerActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.RainerDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Carlos drinks is complete
+            if (currentNode.nodeName.Contains("carlos0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Bob drinks is complete
+            if (currentNode.nodeName.Contains("bob0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.BobDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -256,6 +291,41 @@ public class DialogueManager : MonoBehaviour
                 }
                 
                 if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.FredDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Rainer drinks or Rainer action is complete
+            if (currentNode.nodeName.Contains("rainer0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.RainerActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.RainerDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Carlos drinks is complete
+            if (currentNode.nodeName.Contains("carlos0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            //Turns off button if Bob drinks is complete
+            if (currentNode.nodeName.Contains("bob0"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.BobDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }

@@ -291,25 +291,24 @@
         
                 <npcText>Fred Now Trading...</npcText>
         </tradefred>
-        
+
         <rainer0>
             <playerOptions>
-                <option>Rainer Option 0.1</option>
-                <option>Rainer Option 0.2</option>
-                <option>Rainer Let's Trade!</option>
+                <option>Rainer Action</option>
+                <option>Rainer Drink</option>
+                <option>Rainer Trade</option>
             </playerOptions>
-         
+    
             <keys>
-                 <keyName>rainer0</keyName>
-                 <keyName>rainer0</keyName>
-                 <keyName>traderainer</keyName>
+                <keyName>actionrainer1</keyName>
+                <keyName>drinkrainer2</keyName>
+                <keyName>traderainer</keyName>
             </keys>
-            
-            <npcText>Rainer Dialogue Path 1</npcText>
-            
+    
+            <npcText>That quake was no joke. Are you okay at least?</npcText>
         </rainer0>
-
-        <traderainer>
+    
+        <actionrainer1>
             <playerOptions>
                 <option>Rainer Go Back</option>
                 <option></option>
@@ -322,25 +321,136 @@
                 <keyName>rainer0</keyName>
             </keys>
     
-            <npcText>Rainer Now Trading...</npcText>
-        </traderainer>
-
+            <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
+        </actionrainer1>
+    
+        <drinkrainer2>
+            <playerOptions>
+                <option>I have water right here!</option>
+                <option>I don't have any water right now...</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>givewaterrainer</keyName>
+                <keyName>refusewaterrainer</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh, sure. Do you have any water?</npcText>
+        </drinkrainer2>
+    
+        <givewaterrainer>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>rainer0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh thank you! This should help me for a bit.</npcText>
+        </givewaterrainer>
+    
+        <refusewaterrainer>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>rainer0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh I see. That's alright.</npcText>
+        </refusewaterrainer>
+    
+            <traderainer>
+                <playerOptions>
+                    <option>Rainer Go Back</option>
+                    <option></option>
+                    <option></option>
+                </playerOptions>
+        
+                <keys>
+                    <keyName>rainer0</keyName>
+                    <keyName>rainer0</keyName>
+                    <keyName>rainer0</keyName>
+                </keys>
+        
+                <npcText>Rainer Now Trading...</npcText>
+            </traderainer>
+    
         <carlos0>
             <playerOptions>
-                <option>carlos0 Option 0.1</option>
-                <option>carlos0 Option 0.2</option>
-                <option>carlos0 Let's Trade!</option>
+                <option>Carlos Drink</option>
+                <option>Carlos Trade</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>drinkcarlos2</keyName>
+                <keyName>tradecarlos</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>That quake was no joke. Are you okay at least?</npcText>
+        </carlos0>
+    
+        <drinkcarlos2>
+            <playerOptions>
+                <option>I have water right here!</option>
+                <option>I don't have any water right now...</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>givewatercarlos</keyName>
+                <keyName>refusewatercarlos</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh, sure. Do you have any water?</npcText>
+        </drinkcarlos2>
+    
+        <givewatercarlos>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
             </playerOptions>
     
             <keys>
                 <keyName>carlos0</keyName>
-                <keyName>carlos0</keyName>
-                <keyName>tradecarlos</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
             </keys>
     
-            <npcText>Carlos Dialogue Path 1</npcText>
+            <npcText>Oh thank you! This should help me for a bit.</npcText>
+        </givewatercarlos>
     
-        </carlos0>
+        <refusewatercarlos>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>carlos0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh I see. That's alright.</npcText>
+        </refusewatercarlos>
     
         <tradecarlos>
             <playerOptions>
@@ -360,20 +470,67 @@
 
         <bob0>
             <playerOptions>
-                <option>Bob Option 0.1</option>
-                <option>Bob Option 0.2</option>
-                <option>Bob Let's Trade!</option>
+                <option>Bob Drink</option>
+                <option>Bob Trade</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>drinkbob2</keyName>
+                <keyName>tradebob</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>That quake was no joke. Are you okay at least?</npcText>
+        </bob0>
+    
+        <drinkbob2>
+            <playerOptions>
+                <option>I have water right here!</option>
+                <option>I don't have any water right now...</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>givewaterbob</keyName>
+                <keyName>refusewaterbob</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh, sure. Do you have any water?</npcText>
+        </drinkbob2>
+    
+        <givewaterbob>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
             </playerOptions>
     
             <keys>
                 <keyName>bob0</keyName>
-                <keyName>bob0</keyName>
-                <keyName>tradebob</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
             </keys>
     
-            <npcText>Bob Dialogue Path 1</npcText>
+            <npcText>Oh thank you! This should help me for a bit.</npcText>
+        </givewaterbob>
     
-        </bob0>
+        <refusewaterbob>
+            <playerOptions>
+                <option>Go back</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>bob0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh I see. That's alright.</npcText>
+        </refusewaterbob>
     
         <tradebob>
             <playerOptions>
