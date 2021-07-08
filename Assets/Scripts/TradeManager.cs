@@ -46,6 +46,9 @@ public class TradeManager : MonoBehaviour
         inventoryNPCBin.gameObject.SetActive(true);
         inventoryIOU.gameObject.SetActive(true);
         
+        inventoryNPC.SetAvailableSlots(4);
+        inventoryNPCBin.SetAvailableSlots(4);
+        
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -86,13 +89,17 @@ public class TradeManager : MonoBehaviour
                 inventoryPlayer.items[i] = null;
                 inventoryPlayer.slotContents[i].SetActive(false);
             }
+        }
 
+        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
+        {
             if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
             {
                 inventoryNPC.items[i] = null;
                 inventoryNPC.slotContents[i].SetActive(false);
             }
         }
+
 
         button.interactable = false;
 

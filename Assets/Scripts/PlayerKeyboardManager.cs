@@ -534,39 +534,49 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             inventoryNumber = 1;
         }
-        else if (cursorLocation > 9 && cursorLocation < 15)
+        else if (cursorLocation > 9 && cursorLocation < 14)
         {
             inventoryNumber = 2;
         }
-        else if (cursorLocation > 14 && cursorLocation < 20)
+        else if (cursorLocation > 13 && cursorLocation < 18)
         {
             inventoryNumber = 3;
         }
-        else if (cursorLocation > 19)
+        else if (cursorLocation > 17)
         {
             cursorLocation = 0;
             inventoryNumber = 0;
         }
         else if (cursorLocation < 0)
         {
-            cursorLocation = 19;
+            cursorLocation = 17;
             inventoryNumber = 3;
         }
 
         tradeManager.ChangeSelectedInventory(inventoryNumber);
-        tradeManager.SelectSlot(inventoryNumber, cursorLocation % 5);
-        
+        if (inventoryNumber == 0) tradeManager.SelectSlot(inventoryNumber, cursorLocation);
+        else if (inventoryNumber == 1) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 5);
+        else if (inventoryNumber == 2) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 10);
+        else if (inventoryNumber == 3) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 14);
+
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
-            cursorLocation = 5 * inventoryNumber;
+
+            if (inventoryNumber == 0) cursorLocation = 0;
+            else if (inventoryNumber == 1) cursorLocation = 5;
+            else if (inventoryNumber == 2) cursorLocation = 10;
+            else if (inventoryNumber == 3) cursorLocation = 14;
         }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
             inventoryNumber++;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
-            cursorLocation = 5 * inventoryNumber;
+            if (inventoryNumber == 0) cursorLocation = 0;
+            else if (inventoryNumber == 1) cursorLocation = 5;
+            else if (inventoryNumber == 2) cursorLocation = 10;
+            else if (inventoryNumber == 3) cursorLocation = 14;
         }
             
         //select slots
@@ -575,7 +585,10 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (Input.GetKey(validInputs[i]))
             {
                 tradeManager.SelectSlot(inventoryNumber, i);
-                cursorLocation = inventoryNumber * 5 + i;
+                if (inventoryNumber == 0) cursorLocation = 0 + i;
+                else if (inventoryNumber == 1) cursorLocation = 5 + i;
+                else if (inventoryNumber == 2) cursorLocation = 10 + i;
+                else if (inventoryNumber == 3) cursorLocation = 14 + i;
             }
         }
         
