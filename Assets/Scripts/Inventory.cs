@@ -203,6 +203,11 @@ public class Inventory : MonoBehaviour
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
                     items[i].transform.position, container.name);
 
+                if (items[i].name.Equals("Water Bottle Clean(Clone)"))
+                {
+                    GlobalControls.PlayerHasCleanWater = false;
+                }
+                
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -477,7 +482,7 @@ public class Inventory : MonoBehaviour
                 
                 GlobalItemList.UpdateItemList(items[selectedSlotNumber].name, SceneManager.GetActiveScene().name,
                     items[selectedSlotNumber].transform.position, container.name);
-
+                
                 // Remove item from inventory
                 items[selectedSlotNumber] = null;
                 slotContents[selectedSlotNumber].SetActive(false);
@@ -503,6 +508,7 @@ public class Inventory : MonoBehaviour
                 GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
                 GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward + Vector3.up, Quaternion.identity);
                 container.contents = waterBottleClean;
+                GlobalControls.PlayerHasCleanWater = false;
             }
         }
         else

@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Demitrius drinks or Demitrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Foraging") && GlobalControls.DemActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Annette drinks or Annette action is complete
             if (currentNode.nodeName.Contains("annette0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.AnnetteActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Translation") && GlobalControls.AnnetteActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
