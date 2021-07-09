@@ -14,7 +14,6 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode completeWater = KeyCode.O;
     public KeyCode completePoop = KeyCode.P;
     public KeyCode restart = KeyCode.N;
-    public KeyCode causeAftershock = KeyCode.U;
     public KeyCode loadPoopItems = KeyCode.L;
     public KeyCode loadWaterItems = KeyCode.Y;
     public KeyCode loadPreQuakeItems = KeyCode.V;
@@ -72,10 +71,6 @@ public class CheatKeyboardController : MonoBehaviour
             if (Input.GetKeyDown(restart)) //Restart Game
             {
                 sceneManagement.Restart();
-            }
-            if ((currentScene.Equals("Yard") || currentScene.Equals("Street")) && Input.GetKeyDown(causeAftershock))
-            {
-                GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>().TriggerQuake();
             }
             if (Input.GetKeyDown(loadPoopItems)) //Load Yard with Latrine Items
             {

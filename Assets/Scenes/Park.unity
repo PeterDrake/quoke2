@@ -1322,6 +1322,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6900766592375629005, guid: 5a4dd5795570c9b4d8a686d480704d1a,
+        type: 3}
+      propertyPath: notes
+      value: 'Cheat Codes:
+
+        H => Teleport to PreQuake (house or apartment
+        depending on condition)
+
+        J => Teleport to Quake (house or apartment
+        depending on condition)
+
+        K => Teleport to StrategicMap
+
+        B
+        => Teleport to Park
+
+        O => Complete Water Meter
+
+        P => Complete
+        Poop Meter
+
+        N => Restart Game at Prequake
+
+        L => Load Latrine/Two
+        Bucket items (Apartment or House condition)
+
+        V => Load PreQuake items
+        to Street/Yard (Apartment or House Condition)
+
+        Y => Give player Water
+        task Items
+
+        T => Change global flag for Apartment Condition (Call
+        in conjunction with a teleport to update map/items'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4dd5795570c9b4d8a686d480704d1a, type: 3}
 --- !u!1001 &5272264540780616584
