@@ -72,7 +72,7 @@ public class SceneManagement : MonoBehaviour
                     GlobalItemList.UpdateItemList(item.name, "Yard", item.transform.position, container.name);
                 }
 
-                if (item && item.name.Equals("Water Bottle(Clone)") && (container.name.Equals("Shed 1") || container.name.Equals("Shed 2")))
+                if (item && item.name.Equals("Dirty Water Bottle(Clone)") && (container.name.Equals("Shed 1") || container.name.Equals("Shed 2")))
                 {
                     noStoredWater = false;
                 }
@@ -127,7 +127,7 @@ public class SceneManagement : MonoBehaviour
             {
                 if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
                 {
-                    if (item.name.Equals("Chlorine Tablet"))
+                    if (item.name.Equals("Bleach"))
                     {
                         noStoredWater = false;
                     }
