@@ -270,7 +270,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Demetrius drinks or Demetrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.DemActionDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Foraging") && GlobalControls.DemActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
