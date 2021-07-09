@@ -471,7 +471,7 @@ public class Inventory : MonoBehaviour
     {
         if (!container.contents && SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Water Bottle(Clone)"))
+            if (items[selectedSlotNumber].name.Equals("Dirty Water Bottle(Clone)"))
             {
                 Debug.Log("Dropping water bottle");
                 container.contents = items[selectedSlotNumber];
@@ -492,16 +492,16 @@ public class Inventory : MonoBehaviour
         }
         else if (container.contents && SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Chlorine Tablet(Clone)"))
+            if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
             {
-                GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
+                GlobalItemList.UpdateItemList("Bleach", "", new Vector3(0,0,0), "");
                 items[selectedSlotNumber] = null;
                 slotContents[selectedSlotNumber].SetActive(false);
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
                     
-                GlobalItemList.UpdateItemList("Water Bottle", "", new Vector3(0,0,0), "");
-                GameObject.Find("Water Bottle(Clone)").SetActive(false);
+                GlobalItemList.UpdateItemList("Dirty Water Bottle", "", new Vector3(0,0,0), "");
+                GameObject.Find("Dirty Water Bottle(Clone)").SetActive(false);
                 GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
                     player.destination.transform.position + player.transform.forward + Vector3.up, "Water Purifying Table");
                     
@@ -544,7 +544,4 @@ public class Inventory : MonoBehaviour
         }
         
     }
-    
-    
-    
 }
