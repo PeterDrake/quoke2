@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
+    private Inventory inventoryIOU;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     private Text tooltipText;
@@ -30,10 +32,23 @@ public class TradeManager : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        inventoryPlayer = GameObject.Find("Inventory (Player)").GetComponent<Inventory>();
-        inventoryPlayerBin = GameObject.Find("Inventory (Player To Trade)").GetComponent<Inventory>();
-        inventoryNPC = GameObject.Find("Inventory (NPC)").GetComponent<Inventory>();
-        inventoryNPCBin = GameObject.Find("Inventory (NPC To Trade)").GetComponent<Inventory>();
+        foreach (Inventory child in GetComponentsInChildren<Inventory>(true))
+        {
+            if (child.gameObject.name.Equals("Inventory (Player)")) inventoryPlayer = child;
+            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventoryPlayerBin = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventoryNPC = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventoryNPCBin = child;
+            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventoryIOU = child;
+        }
+        inventoryPlayer.gameObject.SetActive(true);
+        inventoryPlayerBin.gameObject.SetActive(true);
+        inventoryNPC.gameObject.SetActive(true);
+        inventoryNPCBin.gameObject.SetActive(true);
+        inventoryIOU.gameObject.SetActive(true);
+        
+        inventoryNPC.SetAvailableSlots(4);
+        inventoryNPCBin.SetAvailableSlots(4);
+        
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -44,9 +59,8 @@ public class TradeManager : MonoBehaviour
 
     public void BeginTrading()
     {
-        
         npcName = GlobalControls.CurrentNPC;
-        
+
         List<int> playerSlotsUsed = new List<int>();
         List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
@@ -75,13 +89,36 @@ public class TradeManager : MonoBehaviour
                 inventoryPlayer.items[i] = null;
                 inventoryPlayer.slotContents[i].SetActive(false);
             }
+        }
+
+        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
+        {
             if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
             {
                 inventoryNPC.items[i] = null;
                 inventoryNPC.slotContents[i].SetActive(false);
             }
         }
+
+
         button.interactable = false;
+
+        //Load IOU inventory
+        inventoryIOU.selectedSlotSprite = unselected;
+        inventoryIOU.SelectSlotNumber(0);
+        for (int i = inventoryIOU.slotFrames.Length - 1; i > GlobalControls.NPCList[npcName].owes - 1; i--)
+        {
+            inventoryIOU.slotFrames[i].SetActive(false);
+        }
+        //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
+
+        foreach (GameObject game in inventoryIOU.slotContents)
+        {
+            game.SetActive(true);
+            Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
+            game.GetComponent<Image>().sprite = prefab;
+        }
+
         ChangeSelectedInventory(0);
     }
     
@@ -89,6 +126,54 @@ public class TradeManager : MonoBehaviour
     {
         //StartCoroutine(SelectButton());
         button.Select();
+        
+        int[] numContents = {0,0,0};
+        
+        for (int i = 0; i < inventoryPlayerBin.slotFrames.Length; i++)
+        {
+            if (inventoryPlayerBin.slotContents[i].activeSelf)
+            {
+                numContents[0]++; //number items
+            }
+        }
+        for (int i = 0; i < inventoryNPCBin.slotFrames.Length; i++)
+        {
+            if (inventoryNPCBin.slotContents[i].activeSelf)
+            {
+                numContents[1]++; //number items
+            }
+        }
+        for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
+        {
+            if (inventoryIOU.slotFrames[i].activeSelf)
+            {
+                numContents[2]++;
+            }
+        }
+        
+        List<string> playerOffers = new List<string>(); //list of names of items player offered
+
+        //fill lists of names
+        foreach (GameObject item in inventoryPlayerBin.items)
+        {
+            if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+        }
+
+        int playerTradePoints = 0;
+        
+        //will not trade away item they need
+        foreach (string need in GlobalControls.NPCList[npcName].needs)
+        {
+            if (playerOffers.Contains(need))
+            {
+                playerTradePoints++; //add an extra trade point if offered a need
+            }
+        }
+
+        playerTradePoints += numContents[0];
+
+        int endIouTotal = playerTradePoints - numContents[1] + numContents[2];
+
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
             if (inventoryPlayerBin.slotContents[i].activeSelf) TransferItem(inventoryPlayerBin, inventoryNPC, i);
@@ -96,6 +181,11 @@ public class TradeManager : MonoBehaviour
         for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
         {
             if (inventoryNPCBin.slotContents[i].activeSelf) TransferItem(inventoryNPCBin, inventoryPlayer, i);
+        }
+        for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
+        {
+            if(i < endIouTotal) inventoryIOU.slotFrames[i].SetActive(true);
+            else inventoryIOU.slotFrames[i].SetActive(false);
         }
         button.interactable = false;
     }
@@ -241,6 +331,16 @@ public class TradeManager : MonoBehaviour
                     new Vector3(i, 0, 0), npcName);
             }
         }
+
+        //update IOUs
+        int counter = 0;
+        foreach (GameObject game in inventoryIOU.slotFrames)
+        {
+            if (game.activeSelf) counter++;
+        }
+
+        GlobalControls.NPCList[npcName].owes = counter;
+        
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)
         {
@@ -353,29 +453,43 @@ public class TradeManager : MonoBehaviour
         {
             if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
         }
-        
-        //will not trade nothing
-        if (playerOffers.Count == 0 || npcOffers.Count == 0) return false;
-        
+
         //Will not trade if not enough inventory
-        int[] numContents = new int[] {0,5,5,0};
+        int[] numContents = {0,5,5,0,0};
+        
         for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
         {
             if (!inventoryPlayer.slotContents[i].activeSelf)
             {
                 numContents[0]++;
             }
+        }
+        for (int i = 0; i < inventoryPlayerBin.slotFrames.Length; i++)
+        {
             if (!inventoryPlayerBin.slotContents[i].activeSelf)
             {
                 numContents[1]--; //number items
             }
+        }
+        for (int i = 0; i < inventoryNPCBin.slotFrames.Length; i++)
+        {
             if (!inventoryNPCBin.slotContents[i].activeSelf)
             {
                 numContents[2]--; //number items
             }
+        }
+        for (int i = 0; i < inventoryNPC.slotFrames.Length; i++)
+        {
             if (!inventoryNPC.slotContents[i].activeSelf)
             {
                 numContents[3]++;
+            }
+        }
+        for (int i = 0; i < inventoryIOU.slotFrames.Length; i++)
+        {
+            if (inventoryIOU.slotFrames[i].activeSelf)
+            {
+                numContents[4]++;
             }
         }
 
@@ -385,20 +499,27 @@ public class TradeManager : MonoBehaviour
             return false;
         }
         
+        int playerTradePoints = 0;
+        
         //will not trade away item they need
         foreach (string need in GlobalControls.NPCList[npcName].needs)
         {
             if (npcOffers.Contains(need)) return false;
-            if (playerOffers.Contains(need)) playerOfferedNeed.Add(true);
+            if (playerOffers.Contains(need))
+            {
+                playerOfferedNeed.Add(true);
+                playerTradePoints++; //add an extra trade point if offered a need
+            }
         }
 
-        //give extra items if player offered items they need
-        if (playerOfferedNeed.Count > 0 && npcOffers.Count == playerOffers.Count + playerOfferedNeed.Count) return true;
+        playerTradePoints += playerOffers.Count; //add number of player offered items
 
-        //1:1 for anything else
-        if (npcOffers.Count == playerOffers.Count && playerOfferedNeed.Count == 0) return true;
+        if (playerTradePoints == 0 && npcOffers.Count == 0) return false; //if player and npc offer no items return false
 
-        //If none of the above, not valid trade.
+        if (playerTradePoints + numContents[4] - npcOffers.Count > 5) return false; //if player will end with more than 5 IOUs return false
+
+        if (playerTradePoints + numContents[4] >= npcOffers.Count) return true; //if combined IOU and player offers are >= than npcOffers
+        
         return false;
     }
 }
