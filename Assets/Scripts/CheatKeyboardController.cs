@@ -104,8 +104,8 @@ public class CheatKeyboardController : MonoBehaviour
             if (Input.GetKeyDown(loadWaterItems)) //Load scene with water task items
             {
                 GlobalItemList.Reset();
-                GlobalItemList.UpdateItemList("Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
-                GlobalItemList.UpdateItemList("Chlorine Tablet", "Inventory", new Vector3(1,0,0),"Player" );
+                GlobalItemList.UpdateItemList("Dirty Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
+                GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(1,0,0),"Player" );
                 sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
             }
             if (Input.GetKeyDown(loadPreQuakeItems)) //Load Yard with PreQuake Items
@@ -113,16 +113,16 @@ public class CheatKeyboardController : MonoBehaviour
                 if (GlobalControls.ApartmentCondition)
                 {
                     GlobalItemList.Reset();
-                    GlobalItemList.UpdateItemList("Chlorine Tablet", "Street", new Vector3(4.5f,1.5f,-8.5f), "Go Bag 1");
+                    GlobalItemList.UpdateItemList("Bleach", "Street", new Vector3(4.5f,1.5f,-8.5f), "Go Bag 1");
                     GlobalItemList.UpdateItemList("Book", "Street", new Vector3(4.5f,1.5f,-7.5f), "Go Bag 2");
                     sceneManagement.ChangeScene("Street");
                 }
                 else
                 {
                     GlobalItemList.Reset();
-                    GlobalItemList.UpdateItemList("Cup", "Yard", new Vector3(6.5f, 0.5f, 0.5f), "");
-                    GlobalItemList.UpdateItemList("Water Bottle", "Yard", new Vector3(-6.5f, 0.5f, 0.5f), "");
-                    GlobalItemList.UpdateItemList("Sandwich", "Yard", new Vector3(3.5f, 0.5f, 3.5f), "");
+                    GlobalItemList.UpdateItemList("Sunscreen", "Yard", new Vector3(6.5f, 0.5f, 0.5f), "");
+                    GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-6.5f, 0.5f, 0.5f), "");
+                    GlobalItemList.UpdateItemList("Flashlight", "Yard", new Vector3(3.5f, 0.5f, 3.5f), "");
                     GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-5.5f, 0.5f, -7.5f), "");
                     sceneManagement.ChangeScene("Yard");
                 }
