@@ -49,7 +49,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private Sprite unselected;
     private Sprite selected;
 
-    private KeyCode keyDown;
+    private KeyCode keyDown = KeyCode.JoystickButton0;
     
     void Start()
     {
@@ -192,7 +192,6 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         if (!virtualKeyboard)
         {
-            keyDown = KeyCode.JoystickButton0;
             if (Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
             else if (Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
             else if (Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
@@ -291,7 +290,15 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         //TODO
         // Move (wasd or arrow keys)
-        float h = Input.GetAxisRaw("Horizontal");
+
+        if (keyDown.Equals(KeyCode.W)) player.StartMoving(new Vector3(0,0,1));
+        else if (keyDown.Equals(KeyCode.A)) player.StartMoving(new Vector3(-1,0,0));
+        else if (keyDown.Equals(KeyCode.S)) player.StartMoving(new Vector3(0,0,-1));
+        else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1,0,0));
+
+
+
+        /*float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         if (Math.Abs(h) >= 1f)
         {
@@ -299,7 +306,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         } else if (Math.Abs(v) >= 1f)
         {
             player.StartMoving(new Vector3(0f, 0f, v));
-        }
+        }*/
             
             
         // Select from inventory (1-9)

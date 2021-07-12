@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class CheatKeyboardController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class CheatKeyboardController : MonoBehaviour
     public Meters meters;
     public SceneManagement sceneManagement;
     private string currentScene;
+    public bool virtualKeyboard;
+    private KeyCode keyDown = KeyCode.JoystickButton0;
     public KeyCode preQuakeTeleport = KeyCode.H;
     public KeyCode quakeTeleport = KeyCode.J;
     public KeyCode strategicMapTeleport = KeyCode.K;
@@ -24,13 +27,37 @@ public class CheatKeyboardController : MonoBehaviour
         meters = GameObject.Find("Managers").GetComponent<ReferenceManager>().metersCanvas.GetComponent<Meters>();
         sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
         currentScene = SceneManager.GetActiveScene().name;
-
     }
+
+    /// <summary>
+    /// SetKeyDown sets a specific key to be pressed for one update frame. Pass KeyCode.JoystickButton0 for none
+    /// </summary>
+    /// <param name="pressed"></param>
+    public void SetKeyDown(KeyCode pressed)
+    {
+        keyDown = pressed;
+    }
+    
     void Update()
     {
         if (GlobalControls.AdminMode)
         {
-            if (Input.GetKeyDown(preQuakeTeleport))//Load PreQuakeHouse
+            if (!virtualKeyboard)
+            {
+                if (Input.GetKeyDown(preQuakeTeleport)) keyDown = preQuakeTeleport;
+                else if (Input.GetKeyDown(quakeTeleport)) keyDown = quakeTeleport;
+                else if (Input.GetKeyDown(strategicMapTeleport)) keyDown = strategicMapTeleport;
+                else if (Input.GetKeyDown(parkTeleport)) keyDown = parkTeleport;
+                else if (Input.GetKeyDown(completeWater)) keyDown = completeWater;
+                else if (Input.GetKeyDown(completePoop)) keyDown = completePoop;
+                else if (Input.GetKeyDown(restart)) keyDown = restart;
+                else if (Input.GetKeyDown(loadPoopItems)) keyDown = loadPoopItems;
+                else if (Input.GetKeyDown(loadWaterItems)) keyDown = loadWaterItems;
+                else if (Input.GetKeyDown(loadPreQuakeItems)) keyDown = loadPreQuakeItems;
+                else if (Input.GetKeyDown(changeCondition)) keyDown = changeCondition;
+            }
+            
+            if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -41,7 +68,7 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("PreQuakeHouse");
                 }
             }
-            if (Input.GetKeyDown(quakeTeleport))//Load QuakeHouse
+            if (keyDown.Equals(quakeTeleport))//Load QuakeHouse
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -52,27 +79,27 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("QuakeHouse");
                 }
             }
-            if (Input.GetKeyDown(strategicMapTeleport))//Load Strategic Map
+            if (keyDown.Equals(strategicMapTeleport))//Load Strategic Map
             {
                 sceneManagement.ChangeScene("StrategicMap");
             }
-            if (Input.GetKeyDown(parkTeleport))//Load Park
+            if (keyDown.Equals(parkTeleport))//Load Park
             {
                 sceneManagement.ChangeScene("Park");
             }
-            if (meters && Input.GetKeyDown(completeWater)) //Complete Water
+            if (meters && keyDown.Equals(completeWater)) //Complete Water
             {
                 meters.MarkTaskAsDone("water");
             }
-            if (meters && Input.GetKeyDown(completePoop)) //Complete Poop
+            if (meters && keyDown.Equals(completePoop)) //Complete Poop
             {
                 meters.MarkTaskAsDone("poop");
             }
-            if (Input.GetKeyDown(restart)) //Restart Game
+            if (keyDown.Equals(restart)) //Restart Game
             {
                 sceneManagement.Restart();
             }
-            if (Input.GetKeyDown(loadPoopItems)) //Load Yard with Latrine Items
+            if (keyDown.Equals(loadPoopItems)) //Load Yard with Latrine Items
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -96,14 +123,14 @@ public class CheatKeyboardController : MonoBehaviour
                 }
                 
             }
-            if (Input.GetKeyDown(loadWaterItems)) //Load scene with water task items
+            if (keyDown.Equals(loadWaterItems)) //Load scene with water task items
             {
                 GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("Dirty Water Bottle", "Inventory", new Vector3(0,0,0),"Player" );
                 GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(1,0,0),"Player" );
                 sceneManagement.ChangeScene(SceneManager.GetActiveScene().name);
             }
-            if (Input.GetKeyDown(loadPreQuakeItems)) //Load Yard with PreQuake Items
+            if (keyDown.Equals(loadPreQuakeItems)) //Load Yard with PreQuake Items
             {
                 if (GlobalControls.ApartmentCondition)
                 {
@@ -122,13 +149,15 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("Yard");
                 }
             }
-            if (Input.GetKeyDown(changeCondition))
+            if (keyDown.Equals(changeCondition))
             {
                 Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.ApartmentCondition + 
                           " to " + !GlobalControls.ApartmentCondition);
                 GlobalControls.ApartmentCondition = !GlobalControls.ApartmentCondition;
                 GlobalItemList.Reset();
             }
+
+            keyDown = KeyCode.JoystickButton0;
         }
     }
 }
