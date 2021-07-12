@@ -192,10 +192,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         if (!virtualKeyboard)
         {
-            if (Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
-            else if (Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
-            else if (Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
-            else if (Input.GetKeyDown(KeyCode.D)) keyDown = KeyCode.D;
+            if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
+            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
+            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
+            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
             else if (Input.GetKeyDown(KeyCode.C)) keyDown = KeyCode.C;
             else if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
             else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
