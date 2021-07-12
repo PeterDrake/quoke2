@@ -118,9 +118,7 @@ public class QuakeManager : MonoBehaviour
             }
             else if (hasBeenUnderCover)
             {
-                
                 CheckForUnderCover();
-                Debug.Log(isUnderCover);
                 playerMoverScript.SetCrouching(false);
                 if (!isUnderCover)
                 {
