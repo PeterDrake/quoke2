@@ -13,6 +13,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private PlayerMover player;
     private Inventory inventory;
     private bool crouchFlag = false;
+    public bool virtualKeyboard;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
@@ -47,6 +48,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private readonly GameObject[] npcFrames = new GameObject[6];
     private Sprite unselected;
     private Sprite selected;
+
+    private KeyCode keyDown;
     
     void Start()
     {
@@ -174,10 +177,44 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// SetKeyDown sets a specific key to be pressed for one update frame. Pass KeyCode.JoystickButton0 for none
+    /// </summary>
+    /// <param name="pressed"></param>
+    public void SetKeyDown(KeyCode pressed)
+    {
+        keyDown = pressed;
+    }
     
     // Update is called once per frame
     void Update()
     {
+        if (!virtualKeyboard)
+        {
+            keyDown = KeyCode.JoystickButton0;
+            if (Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
+            else if (Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
+            else if (Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
+            else if (Input.GetKeyDown(KeyCode.D)) keyDown = KeyCode.D;
+            else if (Input.GetKeyDown(KeyCode.C)) keyDown = KeyCode.C;
+            else if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
+            else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
+            else if (Input.GetKeyDown(KeyCode.Return)) keyDown = KeyCode.Return;
+            else if (Input.GetKeyDown(KeyCode.Comma)) keyDown = KeyCode.Comma;
+            else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
+            else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
+            else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
+            foreach (var key in validInputs)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    keyDown = key;
+                    break;
+                }
+            }
+        }
+        
         if (gamemode == 1)
         {
             UpdateSegue();
@@ -198,11 +235,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             UpdateTrading();
         }
+        
+        keyDown = KeyCode.JoystickButton0;
     }
 
     private void UpdateSegue()
     {
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             SetExploring();
         }
@@ -211,25 +250,25 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void UpdateConversing()
     {
         // Change the cursor's location with < and >
-        if (Input.GetKeyDown(","))
+        if (keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
             cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
         }
-        if (Input.GetKeyDown("."))
+        if (keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;   
             cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
         }
             
         
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (keyDown.Equals(KeyCode.Escape))
         {  
             SetExploring();
         }
         
         //Selects an option from the player options
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             dialogueManager.EncapsulateSpace();
             cursorLocation = dialogueManager.ChangeCursorLocations(0);
@@ -241,16 +280,16 @@ public class PlayerKeyboardManager : MonoBehaviour
         switch (crouchFlag)
         {
             // Crouch (c)
-            case true when Input.GetKeyDown(KeyCode.C):
+            case true when keyDown.Equals(KeyCode.C):
                 crouchFlag = !crouchFlag;
                 player.SetCrouching(crouchFlag);
                 break;
-            case false when Input.GetKeyDown(KeyCode.C):
+            case false when keyDown.Equals(KeyCode.C):
                 crouchFlag = !crouchFlag;
                 player.SetCrouching(crouchFlag);
                 break;
         }
-        
+        //TODO
         // Move (wasd or arrow keys)
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -268,7 +307,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             for (int i = 0; i < validInputs.Length; i++)
             {
-                if (Input.GetKey(validInputs[i]))
+                if (keyDown.Equals(validInputs[i]))
                 {
                     inventory.SelectSlotNumber(i);
                     cursorLocation = i;
@@ -279,7 +318,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             for (int i = 0; i < validNPCInputs.Length; i++)
             {
-                if (Input.GetKey(validNPCInputs[i]))
+                if (keyDown.Equals(validNPCInputs[i]))
                 {
                     cursorLocation = inventory.slotContents.Length + i;
                     for (int j = 0; j < validNPCInputs.Length; j++)
@@ -317,12 +356,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
 
         
-        if (inventoryInScene && cursorLocation < inventory.slotContents.Length  && Input.GetKeyDown(KeyCode.Space))
+        if (inventoryInScene && cursorLocation < inventory.slotContents.Length  && keyDown.Equals(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
 
-        if (inventory && npcInteractedCanvas.activeSelf && (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.LeftBracket)))
+        if (inventory && npcInteractedCanvas.activeSelf && (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
         {
             if (cursorLocation > inventory.slotContents.Length - 1)
             {
@@ -369,7 +408,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (inventory && Input.GetKeyDown("."))
+        if (inventory && keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;
             if (npcInteractedCanvas.activeSelf && cursorLocation >= inventory.slotContents.Length + npcFrames.Length)
@@ -446,7 +485,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (inventory && Input.GetKeyDown(","))
+        if (inventory && keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
             if (cursorLocation < 0)
@@ -527,18 +566,18 @@ public class PlayerKeyboardManager : MonoBehaviour
     
     private void UpdateDeath()
     {
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             referenceManager.sceneManagement.GetComponent<SceneManagement>().Restart();
         }
     }
     private void UpdateTrading()
     {
-        if (Input.GetKeyDown(","))
+        if (keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
         }
-        if (Input.GetKeyDown("."))
+        if (keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;
         }
@@ -576,7 +615,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (inventoryNumber == 2) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 10);
         else if (inventoryNumber == 3) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 14);
 
-        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        if (keyDown.Equals(KeyCode.LeftBracket))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
@@ -586,7 +625,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (inventoryNumber == 2) cursorLocation = 10;
             else if (inventoryNumber == 3) cursorLocation = 14;
         }
-        if (Input.GetKeyDown(KeyCode.RightBracket))
+        if (keyDown.Equals(KeyCode.RightBracket))
         {
             inventoryNumber++;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
@@ -611,12 +650,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         
         // Transfer items (space)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyDown.Equals(KeyCode.Space))
         {
             tradeManager.EncapsulateSpace(inventoryNumber);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (keyDown.Equals(KeyCode.Return))
         {
             if (tradeManager.CheckValidTrade())
             {
@@ -628,7 +667,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else Debug.Log("Invalid Trade!");
         }
             
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (keyDown.Equals(KeyCode.Escape))
         {  
             tradeManager.LeaveTrading();
         }
