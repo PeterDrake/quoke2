@@ -211,6 +211,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForUnderCover()
     {
+        playerMoverScript.CheckUnderTable();
         if (playerMoverScript.underTable)
         {
             isUnderCover = true;
