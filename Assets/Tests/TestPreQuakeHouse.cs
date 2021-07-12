@@ -15,12 +15,14 @@ public class TestPreQuakeHouse
     public IEnumerator Setup()
     {
         SceneManager.LoadScene("PreQuakeHouse");
+        
         yield return null;
-        ReferenceManager tempReferenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        tempReferenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.N);
+        
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.N);
         
         yield return new WaitForSeconds(1.5f);
-        
+
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
@@ -51,6 +53,30 @@ public class TestPreQuakeHouse
         yield return null;
     }
 
+
+    [UnityTest]
+    public IEnumerator PicksUpAnItem()
+    {
+        // Find some objects
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
+        GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
+        Assert.NotNull(sunscreen);
+        // Take some steps
+        for (int i = 0; i < 5; i++)
+        {
+            playerKeyboard.SetKeyDown(KeyCode.W);
+            yield return new WaitForSeconds(0.5f);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            playerKeyboard.SetKeyDown(KeyCode.D);
+            yield return new WaitForSeconds(0.5f);
+        }
+        // Verify that the sunscreen was picked up
+        Assert.AreEqual(sunscreen, inventory.items[0]);
+    }
+    
     [UnityTest]
     public IEnumerator VirtualPlayerMoves()
     {
@@ -88,30 +114,6 @@ public class TestPreQuakeHouse
         
         Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[1].name);
-    }
-    
-    
-    [UnityTest]
-    public IEnumerator PicksUpAnItem()
-    {
-        // Find some objects
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
-        GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
-        Assert.NotNull(sunscreen);
-        // Take some steps
-        for (int i = 0; i < 5; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.W);
-            yield return new WaitForSeconds(0.5f);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.D);
-            yield return new WaitForSeconds(0.5f);
-        }
-        // Verify that the sunscreen was picked up
-        Assert.AreEqual(sunscreen, inventory.items[0]);
     }
 
     
