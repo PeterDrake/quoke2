@@ -288,9 +288,8 @@ public class PlayerKeyboardManager : MonoBehaviour
                 player.SetCrouching(crouchFlag);
                 break;
         }
-        //TODO
-        // Move (wasd or arrow keys)
 
+        // Move (wasd)
         if (keyDown.Equals(KeyCode.W)) player.StartMoving(new Vector3(0,0,1));
         else if (keyDown.Equals(KeyCode.A)) player.StartMoving(new Vector3(-1,0,0));
         else if (keyDown.Equals(KeyCode.S)) player.StartMoving(new Vector3(0,0,-1));
