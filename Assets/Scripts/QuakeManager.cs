@@ -118,9 +118,13 @@ public class QuakeManager : MonoBehaviour
             }
             else if (hasBeenUnderCover)
             {
+                
                 CheckForUnderCover();
+                Debug.Log(isUnderCover);
+                playerMoverScript.SetCrouching(false);
                 if (!isUnderCover)
                 {
+                    
                     Debug.Log("Player exited the table and should be killed");
                     playerDeathScript.KillPlayer(this.gameObject, 5);
                 }
@@ -207,6 +211,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForUnderCover()
     {
+        playerMoverScript.CheckUnderTable();
         if (playerMoverScript.underTable)
         {
             isUnderCover = true;
