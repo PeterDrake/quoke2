@@ -455,7 +455,7 @@ public class TradeManager : MonoBehaviour
         }
 
         //Will not trade if not enough inventory
-        int[] numContents = {0,5,5,0,0};
+        int[] numContents = {0,inventoryPlayerBin.slotFrames.Length,inventoryNPC.slotFrames.Length,0,0};
         
         for (int i = 0; i < inventoryPlayer.slotFrames.Length; i++)
         {
