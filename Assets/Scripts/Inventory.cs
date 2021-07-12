@@ -122,9 +122,9 @@ public class Inventory : MonoBehaviour
             tempSlotFrames[i] = slotFrames[i];
         }
 
-        if (numSlots < 5)
+        if (numSlots < slotFrames.Length)
         {
-            for (int i = 4; i >= numSlots; i--)
+            for (int i = slotFrames.Length - 1; i >= numSlots; i--)
             {
                 slotFrames[i].SetActive(false);
             }
@@ -206,6 +206,11 @@ public class Inventory : MonoBehaviour
                 if (items[i].name.Equals("Water Bottle Clean(Clone)"))
                 {
                     GlobalControls.PlayerHasCleanWater = false;
+                }
+                
+                if (items[i].name.Equals("Wrench(Clone)"))
+                {
+                    GlobalControls.PlayerHasWrench = false;
                 }
                 
                 // Remove item from inventory
@@ -417,6 +422,13 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Player Has Water!");
                 GlobalControls.PlayerHasCleanWater = true;
             }
+            
+            if (item.name.Equals("Wrench(Clone)"))
+            {
+                Debug.Log("Player Has Wrench!");
+                GlobalControls.PlayerHasWrench = true;
+            }
+
 
         }
         //reselect slot to current slot number to update tooltip if necessary
@@ -508,7 +520,6 @@ public class Inventory : MonoBehaviour
                 GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
                 GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward + Vector3.up, Quaternion.identity);
                 container.contents = waterBottleClean;
-                GlobalControls.PlayerHasCleanWater = false;
             }
         }
         else
@@ -538,6 +549,11 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
+            if (item.name.Equals("Water Bottle Clean(Clone)"))
+                GlobalControls.PlayerHasCleanWater = true;
+            if (item.name.Equals("Wrench(Clone)"))
+                GlobalControls.PlayerHasWrench = true;
+
 
             // Remove item from the world
             item.SetActive(false);

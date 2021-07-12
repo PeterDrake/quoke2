@@ -78,6 +78,20 @@ public class DialogueManager : MonoBehaviour
 
             }
             
+            if (currentNode.nodeName.Contains("checkpointsafi1"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Water") && GlobalControls.SafiWaterActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Gas") && GlobalControls.SafiGasActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
             //Turns off button if Annette drinks or Annette action is complete
             if (currentNode.nodeName.Contains("annette0"))
             {
@@ -130,10 +144,28 @@ public class DialogueManager : MonoBehaviour
             
         }
         //This displays the initial nodes npc text
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText; 
-        buttons[cursorLocation].Select();
-
-
+        npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
+        
+        if (cursorLocation > buttons.Length - 1)
+        {
+            cursorLocation = 0;
+        }
+        if (buttons[cursorLocation].gameObject.activeSelf)
+        {
+            cursorLocation = ChangeCursorLocations(cursorLocation);
+        }
+        else
+        {
+            while (!buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation++;
+                if (cursorLocation > buttons.Length - 1)
+                {
+                    cursorLocation = 0;
+                }
+            }
+            cursorLocation = ChangeCursorLocations(cursorLocation);
+        }
     }
     
     public int ChangeCursorLocations(int location)
@@ -151,8 +183,12 @@ public class DialogueManager : MonoBehaviour
         return cursorLocation;
     }
 
-    public void EncapsulateSpace()
+    public int EncapsulateSpace()
     {
+        if (!buttons[cursorLocation].gameObject.activeSelf)
+        {
+            return cursorLocation;
+        }
         //This will change the node you're looking at
         currentNode = forest[currentNode.nextNode[cursorLocation]]; 
         
@@ -160,13 +196,13 @@ public class DialogueManager : MonoBehaviour
         int x = 0;
         if (GlobalControls.CurrentNPC.Equals("dem0"))
             x = 1;
-        if (GlobalControls.CurrentNPC.Equals("safi0"))
-            x = 2;
         if (GlobalControls.CurrentNPC.Equals("rainer0"))
-            x = 3;
+            x = 2;
         if (GlobalControls.CurrentNPC.Equals("annette0"))
+            x = 3;
+        if (GlobalControls.CurrentNPC.Equals("safi0"))
             x = 4;
-        
+
         //switch statement cases for drinks
         int y = 0;
         if (GlobalControls.CurrentNPC.Equals("dem0"))
@@ -191,16 +227,26 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.DemActionDone = true;
                     break;
                 case 2:
-                    //safi has 3 actions. will take care of it differently here
-                    break;
-                case 3:
                     GlobalControls.RainerActionDone = true;
                     break;
-                case 4:
+                case 3:
                     GlobalControls.AnnetteActionDone = true;
                     break;
             }
-            
+
+        }
+        if (x == 4)
+        {
+            if (currentNode.nodeName.Contains("safiwatersuccess"))
+            {
+                Debug.Log("Water Done");
+                GlobalControls.SafiWaterActionDone = true;
+            }
+            else if(currentNode.nodeName.Contains("safigassuccess"))
+            {
+                Debug.Log("Ass Done");
+                GlobalControls.SafiGasActionDone = true;
+            }
         }
 
         //If we give water to an NPC
@@ -267,6 +313,21 @@ public class DialogueManager : MonoBehaviour
                 }
             }
             
+            if (currentNode.nodeName.Contains("safishutoffwater") || currentNode.nodeName.Contains("safishutoffgas"))
+            {
+                if (GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have one right here!"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>().text.Contains
+                    ("I have one right here!"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+            }
+            
+            
             //Turns off button if Demetrius drinks or Demetrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
             {
@@ -276,6 +337,20 @@ public class DialogueManager : MonoBehaviour
                 }
                 
                 if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+
+            }
+            
+            if (currentNode.nodeName.Contains("checkpointsafi1"))
+            {
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Water") && GlobalControls.SafiWaterActionDone)
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Gas") && GlobalControls.SafiGasActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -337,6 +412,29 @@ public class DialogueManager : MonoBehaviour
             
         //This will change the npc text based on the node
         npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
+        
+        if (cursorLocation > buttons.Length - 1)
+        {
+            cursorLocation = 0;
+        }
+        if (buttons[cursorLocation].gameObject.activeSelf)
+        {
+            cursorLocation = ChangeCursorLocations(cursorLocation);
+        }
+        else
+        {
+            while (!buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation++;
+                if (cursorLocation > buttons.Length - 1)
+                {
+                    cursorLocation = 0;
+                }
+            }
+            cursorLocation = ChangeCursorLocations(cursorLocation);
+        }
+
+        return cursorLocation;
 
     }
 

@@ -3,86 +3,121 @@
 	
 		<safi0>
 			<playerOptions>
-				<option>Safi Action</option>
-				<option>Safi Gas</option>
-				<option>Safi Shut Off Water</option>
+                <option><b>Rescue Safi</b></option>
+				<option></option>
+				<option></option>
 			</playerOptions>
  
             <keys>
-                <keyName>safi1</keyName>
-                <keyName>checkpointsafi2</keyName>
-                <keyName>safi3</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
             </keys>
 	
-			<npcText>Safi Dialogue Path 0</npcText>
+			<npcText>Anyone there?! Help me!</npcText>
         </safi0>
 		
-        <safi1>
+        <checkpointsafi1>
             <playerOptions>
-                <option>Safi Option 1.1</option>
-                <option>Safi Option 1.2</option>
-                <option>Safi Option 1.3</option>
+                <option>Shut Off Water</option>
+                <option>Shut of Gas</option>
+                <option>Trade</option>
             </playerOptions>
  
             <keys>
-                <keyName>checkpointsafi2</keyName>
-                <keyName>safi3</keyName>
-                <keyName>safi4</keyName>
-            </keys>
-    
-            <npcText>Safi Dialogue Path 1</npcText>
-        </safi1>
-        
-        <checkpointsafi2>
-            <playerOptions>
-                <option>Safi Option 2.1</option>
-                <option>Safi Option 2.2</option>
-                <option>Safi Let's Trade!</option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>safi3</keyName>
-                <keyName>safi4</keyName>
+                <keyName>safishutoffwater</keyName>
+                <keyName>safishutoffgas</keyName>
                 <keyName>tradesafi5</keyName>
             </keys>
     
-            <npcText>Safi Dialogue Path 2 (Checkpoint)</npcText>
-        </checkpointsafi2>
+            <npcText>Thank you! But my house is still in danger! Halp!</npcText>
+        </checkpointsafi1>
         
-        
-        <safi3>
+        <safishutoffwater>
             <playerOptions>
-				<option>Safi Option 3.1</option>
-				<option>Safi Option 3.2</option>
-                <option>Safi Let's Trade!</option>
+                <option>I have one right here! Let's get started!</option>
+                <option>I don't have one right now.</option>
+                <option></option>
             </playerOptions>
  
             <keys>
-                <keyName>safi4</keyName>
-                <keyName>safi0</keyName>
-                <keyName>tradesafi5</keyName>
+                <keyName>safiwatersuccess</keyName>
+                <keyName>safinowrench</keyName>
+                <keyName></keyName>
             </keys>
     
-            <npcText>Safi Dialogue Path 3</npcText>
+            <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+        </safishutoffwater>
         
         
-        </safi3>
-        
-        <safi4>
+        <safiwatersuccess>
             <playerOptions>
-                <option>Safi Option 4.1</option>
-                <option>Safi Option 4.2</option>
-                <option>Safi Let's Trade!</option>
+				<option>You are welcome!</option>
+				<option></option>
+                <option></option>
             </playerOptions>
  
             <keys>
-                <keyName>safi0</keyName>
-                <keyName>safi1</keyName>
-                <keyName>tradesafi5</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
             </keys>
     
-            <npcText>Safi Dialogue Path 4</npcText>
-        </safi4>
+            <npcText>Okay thank you!</npcText>
+        
+        
+        </safiwatersuccess>
+
+        <safishutoffgas>
+            <playerOptions>
+                <option>I have one right here! Let's get started!</option>
+                <option>I don't have one right now.</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>safigassuccess</keyName>
+                <keyName>safinowrench</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+        </safishutoffgas>
+    
+    
+        <safigassuccess>
+            <playerOptions>
+                <option>You are welcome!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+            </keys>
+    
+            <npcText>Okay thank you!</npcText>
+    
+    
+        </safigassuccess>
+        
+        <safinowrench>
+            <playerOptions>
+                <option>I will be right back!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+ 
+            <keys>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+                <keyName>checkpointsafi1</keyName>
+            </keys>
+    
+            <npcText>Well hurry and find one!</npcText>
+        </safinowrench>
         
         <tradesafi5>
             <playerOptions>

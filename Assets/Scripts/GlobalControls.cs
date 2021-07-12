@@ -40,9 +40,8 @@ public static class GlobalControls
 
     private static bool demActionDone = false;
     private static bool demDrinkDone = false;
-    private static bool safiActionDone1 = false;
-    private static bool safiActionDone2 = false;
-    private static bool safiActionDone3 = false;
+    private static bool safiWaterActionDone = false;
+    private static bool safiGasActionDone = false;
     private static bool bobDrinkDone = false;
     private static bool carlosDrinkDone = false;
     private static bool rainerActionDone = false;
@@ -51,6 +50,7 @@ public static class GlobalControls
     private static bool annetteDrinkDone = false;
 
     private static bool playerHasCleanWater = false;
+    private static bool playerHasWrench = false;
     
     private static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
@@ -131,9 +131,8 @@ public static class GlobalControls
 
         demActionDone = false;
         demDrinkDone = false;
-        safiActionDone1 = false;
-        safiActionDone2 = false;
-        safiActionDone3 = false;
+        safiWaterActionDone = false;
+        safiGasActionDone = false;
         bobDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
@@ -142,6 +141,7 @@ public static class GlobalControls
         annetteDrinkDone = false;
 
         playerHasCleanWater = false;
+        playerHasWrench = false;
     }
 
 
@@ -220,9 +220,8 @@ public static class GlobalControls
         
         demActionDone = false;
         demDrinkDone = false;
-        safiActionDone1 = false;
-        safiActionDone2 = false;
-        safiActionDone3 = false;
+        safiWaterActionDone = false;
+        safiGasActionDone = false;
         bobDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
@@ -231,6 +230,7 @@ public static class GlobalControls
         annetteDrinkDone = false;
 
         playerHasCleanWater = false;
+        playerHasWrench = false;
     }
 
     public static int NoStoredWaterTime
@@ -393,22 +393,16 @@ public static class GlobalControls
         set => demDrinkDone = value;
     }
     
-    public static bool SafiActionDone1
+    public static bool SafiWaterActionDone
     {
-        get => safiActionDone1;
-        set => safiActionDone1 = value;
+        get => safiWaterActionDone;
+        set => safiWaterActionDone = value;
     }
     
-    public static bool SafiActionDone2
+    public static bool SafiGasActionDone
     {
-        get => safiActionDone2;
-        set => safiActionDone2 = value;
-    }
-    
-    public static bool SafiActionDone3
-    {
-        get => safiActionDone3;
-        set => safiActionDone3 = value;
+        get => safiGasActionDone;
+        set => safiGasActionDone = value;
     }
     
     public static bool BobDrinkDone
@@ -451,6 +445,12 @@ public static class GlobalControls
     {
         get => playerHasCleanWater;
         set => playerHasCleanWater = value;
+    }
+    
+    public static bool PlayerHasWrench
+    {
+        get => playerHasWrench;
+        set => playerHasWrench = value;
     }
 
 }

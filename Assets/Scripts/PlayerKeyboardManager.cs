@@ -252,12 +252,52 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
-            cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            if (cursorLocation < 0)
+            {
+                cursorLocation = dialogueManager.buttons.Length - 1;
+            }
+
+            if (dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
+            else
+            {
+                while (!dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+                {
+                    cursorLocation--;
+                    if (cursorLocation < 0)
+                    {
+                        cursorLocation = dialogueManager.buttons.Length - 1;
+                    }
+                }
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
         }
+        
         if (keyDown.Equals(KeyCode.Period))
         {
-            cursorLocation++;   
-            cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            cursorLocation++;
+            if (cursorLocation > dialogueManager.buttons.Length - 1)
+            {
+                cursorLocation = 0;
+            }
+            if (dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
+            else
+            {
+                while (!dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+                {
+                    cursorLocation++;
+                    if (cursorLocation > dialogueManager.buttons.Length - 1)
+                    {
+                        cursorLocation = 0;
+                    }
+                }
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
         }
             
         
@@ -268,9 +308,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         //Selects an option from the player options
         if (keyDown.Equals(KeyCode.Space))
-        {
-            dialogueManager.EncapsulateSpace();
-            cursorLocation = dialogueManager.ChangeCursorLocations(0);
+        { 
+            cursorLocation = dialogueManager.EncapsulateSpace();
         }
     }    
     
