@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 public class TestPreQuakeHouse
@@ -12,12 +13,9 @@ public class TestPreQuakeHouse
     [UnitySetUp]
     public IEnumerator Setup()
     {
-        levelPrefab = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PreQuakeHouse Level"));
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        // Because the test scene doesn't have the expected name, it's necessary to call LoadItems directly
-        ItemLoader itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-        itemLoader.LoadItems("PreQuakeHouse");
+        SceneManager.LoadScene("PreQuakeHouse");
         yield return null;
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
     }
 
     [UnityTearDown]

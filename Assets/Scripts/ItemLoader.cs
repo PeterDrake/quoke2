@@ -14,7 +14,6 @@ public class ItemLoader : MonoBehaviour
         LoadItems(SceneManager.GetActiveScene().name);
     }
 
-    // This is separated from Start so that it can be called in tests (which do not have the expected scene name).
     public void LoadItems(string sceneName) {
         List<Item> itemsToChange = new List<Item>();
         if (sceneName.Equals("PreQuakeApartment"))
