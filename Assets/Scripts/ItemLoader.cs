@@ -11,8 +11,13 @@ public class ItemLoader : MonoBehaviour
 
     void Start()
     {
+        LoadItems(SceneManager.GetActiveScene().name);
+    }
+
+    // This is separated from Start so that it can be called in tests (which do not have the expected scene name).
+    public void LoadItems(string sceneName) {
         List<Item> itemsToChange = new List<Item>();
-        if (SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        if (sceneName.Equals("PreQuakeApartment"))
         {
             foreach (Item item in GlobalItemList.ItemList.Values)
             {
@@ -34,7 +39,7 @@ public class ItemLoader : MonoBehaviour
         }
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
-            if (item.scene.Equals(SceneManager.GetActiveScene().name) && item.containerName.Equals(""))
+            if (item.scene.Equals(sceneName) && item.containerName.Equals(""))
             {
                 //poot item here
                 GameObject prefab = (GameObject)Resources.Load(item.name, typeof(GameObject));
@@ -52,7 +57,7 @@ public class ItemLoader : MonoBehaviour
             }
 
             //case when we have an occupied container in the scene to be loaded
-            else if (item.scene.Equals(SceneManager.GetActiveScene().name) && !item.containerName.Equals(""))
+            else if (item.scene.Equals(sceneName) && !item.containerName.Equals(""))
             {
                 GameObject itemInContainer = GameObject.Find(item.containerName);
                 if (itemInContainer)
@@ -69,6 +74,4 @@ public class ItemLoader : MonoBehaviour
             }
         }
     }
-
-    
 }
