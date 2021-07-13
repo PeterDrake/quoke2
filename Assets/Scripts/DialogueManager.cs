@@ -225,12 +225,21 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case 1:
                     GlobalControls.DemActionDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                    GlobalControls.NPCList["dem0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 2:
                     GlobalControls.RainerActionDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                    GlobalControls.NPCList["rainer0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 3:
                     GlobalControls.AnnetteActionDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                    GlobalControls.NPCList["annette0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
             }
 
@@ -241,11 +250,24 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("Water Done");
                 GlobalControls.SafiWaterActionDone = true;
+                GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                GlobalControls.NPCList["safi0"].satisfaction++;
+                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
             }
             else if(currentNode.nodeName.Contains("safigassuccess"))
             {
                 Debug.Log("Ass Done");
                 GlobalControls.SafiGasActionDone = true;
+                GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                GlobalControls.NPCList["safi0"].satisfaction++;
+                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+            }
+            else if(currentNode.nodeName.Contains("checkpointsafi1") && !GlobalControls.SafiRescued)
+            {
+                GlobalControls.SafiRescued = true;
+                GlobalControls.CurrentPoints += GlobalControls.Points["safirescue"];
+                GlobalControls.NPCList["safi0"].satisfaction++;
+                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
             }
         }
 
@@ -258,18 +280,33 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case 1:
                     GlobalControls.DemDrinkDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList["dem0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 2:
                     GlobalControls.CarlosDrinkDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList["carlos0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 3:
                     GlobalControls.BobDrinkDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList["bob0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 4:
                     GlobalControls.RainerDrinkDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList["rainer0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 5:
                     GlobalControls.AnnetteDrinkDone = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList["annette0"].satisfaction++;
+                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
                     break;
             }
 

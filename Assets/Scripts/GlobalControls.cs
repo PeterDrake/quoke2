@@ -17,6 +17,7 @@ public static class GlobalControls
     private static bool objectivesEnabled = true;
     private static bool keybindsEnabled = true;
     private static int currentObjective;
+    private static int currentPoints = 0;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
     private static bool poopTaskCompleted;
@@ -42,6 +43,7 @@ public static class GlobalControls
     private static bool demDrinkDone = false;
     private static bool safiWaterActionDone = false;
     private static bool safiGasActionDone = false;
+    private static bool safiRescued = false;
     private static bool bobDrinkDone = false;
     private static bool carlosDrinkDone = false;
     private static bool rainerActionDone = false;
@@ -55,6 +57,19 @@ public static class GlobalControls
     private static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
 
+    private static Dictionary<string, int> points = new Dictionary<string, int>
+    {
+        {"safirescue", 10},
+        {"favors", 5},
+        {"tradeneeds", 10},
+        {"drink", 5},
+        {"sanitationdeath", -100},
+        {"crusheddeath", -5},
+        {"enteringbuildingdeath", -10},
+        {"diedrate", -7},
+        {"aftershockdeath", -5},
+    };
+
     static GlobalControls()
     {
         Debug.Log("Starting Global Controls");
@@ -65,15 +80,15 @@ public static class GlobalControls
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
                     0, false, "Safi needs a Dog Collar", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 2,0)},
+                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 3,0)},
+                    0, false, "Annette needs a Wrench", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 3, 0)},
+                    0, false, "Rainer needs a Tarp", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 3, 0)},
+                    0, false, "Carlos needs nothing", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 3, 0)},
+                    0, false, "Bob needs nothing", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -84,15 +99,15 @@ public static class GlobalControls
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
                     0, false, "Safi needs a Dog Collar", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 2,0)},
+                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 3,0)},
+                    0, false, "Annette needs a Wrench", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 3, 0)},
+                    0, false, "Rainer needs a Tarp", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 3, 0)},
+                    0, false, "Carlos needs nothing", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 3, 0)},
+                    0, false, "Bob needs nothing", 4, 0)},
             };
             currentObjective = 1;
         }
@@ -117,6 +132,7 @@ public static class GlobalControls
         timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
+        currentPoints = 0;
 
         turnNumber = 0;
         currentNPC = "";
@@ -133,6 +149,7 @@ public static class GlobalControls
         demDrinkDone = false;
         safiWaterActionDone = false;
         safiGasActionDone = false;
+        safiRescued = false;
         bobDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
@@ -154,15 +171,15 @@ public static class GlobalControls
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
                     0, false, "Safi needs a Dog Collar", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 2,0)},
+                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 3,0)},
+                    0, false, "Annette needs a Wrench", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 3, 0)},
+                    0, false, "Rainer needs a Tarp", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 3, 0)},
+                    0, false, "Carlos needs nothing", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 3, 0)},
+                    0, false, "Bob needs nothing", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -173,15 +190,15 @@ public static class GlobalControls
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
                     0, false, "Safi needs a Dog Collar", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 2,0)},
+                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 3,0)},
+                    0, false, "Annette needs a Wrench", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 3, 0)},
+                    0, false, "Rainer needs a Tarp", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 3, 0)},
+                    0, false, "Carlos needs nothing", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 3, 0)},
+                    0, false, "Bob needs nothing", 4, 0)},
             };
             currentObjective = 1;
         }
@@ -206,6 +223,7 @@ public static class GlobalControls
         timesShoveled = 0;
         currentScene = -1;
         isStrategicMap = false;
+        currentPoints = 0;
 
         turnNumber = 0;
         currentNPC = "";
@@ -222,6 +240,7 @@ public static class GlobalControls
         demDrinkDone = false;
         safiWaterActionDone = false;
         safiGasActionDone = false;
+        safiRescued = false;
         bobDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
@@ -233,10 +252,27 @@ public static class GlobalControls
         playerHasWrench = false;
     }
 
+    public static Dictionary<string,int> Points
+    {
+        get => points;
+    }
+    
+    public static bool SafiRescued
+    {
+        get => safiRescued;
+        set => safiRescued = value;
+    }
+    
     public static int NoStoredWaterTime
     {
         get => noStoredWaterTime;
         set => noStoredWaterTime = value;
+    }
+    
+    public static int CurrentPoints
+    {
+        get => currentPoints;
+        set => currentPoints = value;
     }
 
     public static int CurrentObjective

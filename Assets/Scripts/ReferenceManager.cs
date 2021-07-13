@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// This class holds references to various objects within the scene. It would be possible to do this directly
@@ -25,6 +26,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject sceneManagement;
     public GameObject keybinds;
     public ObjectiveManager objectiveManager;
+    public Text pointsText;
 
     public GameObject itemLoader;
     
@@ -77,7 +79,9 @@ public class ReferenceManager : MonoBehaviour
         foreach (Transform child in tooltipCanvas.GetComponentsInChildren<Transform>(true))
         {
             if (child.gameObject.name.Equals("Keybinds")) keybinds = child.gameObject;
+            if (child.gameObject.name.Equals("Points Text")) pointsText = child.gameObject.GetComponent<Text>();
         }
+        
     }
     
     

@@ -83,7 +83,6 @@ public class Meters : MonoBehaviour
 
     private void UpdateVisualText()
     {
-        Debug.Log("Updating visual text");
         poopLevelNumber.text = poopTimeLeft.ToString();
         waterLevelNumber.text = waterTimeLeft.ToString();
 

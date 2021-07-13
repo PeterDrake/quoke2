@@ -20,7 +20,6 @@ public class ObjectiveManager : MonoBehaviour
     
     public void UpdateObjectiveBanner()
     {
-        Debug.Log("Updating objectives banner");
         SetCurrentObjective(GlobalControls.CurrentObjective);
         if (GlobalControls.ObjectivesEnabled)
         {

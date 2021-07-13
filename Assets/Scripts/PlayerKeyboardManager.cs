@@ -29,6 +29,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject tooltipCanvas;
     private GameObject toolTips;
     private GameObject objectives;
+    private Text pointsText;
     private Text tooltipText;
     private Text npcInventoryTooltipName;
     private Image[] npcInventoryTooltipSprites;
@@ -94,6 +95,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                     }
                 }
             }
+            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
         }
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
@@ -736,7 +738,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
 
-        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        if (GlobalControls.TooltipsEnabled)
+        {
+            toolTips.SetActive(true);
+            referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
+            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+        }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
         {
@@ -784,7 +791,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
 
-
+        
 
     }
 
@@ -818,6 +825,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
         npcInventoryTooltip.SetActive(false);
+        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
+        referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
     }
 
     public void SetTrading()
@@ -836,7 +845,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.npcInteractedCanvas.SetActive(false);
         objectives.SetActive(false);
-        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        if (GlobalControls.TooltipsEnabled)
+        {
+            toolTips.SetActive(true);
+            referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
+            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+        }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (GlobalControls.KeybindsEnabled)
         {
@@ -870,7 +884,8 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(true);
-        
+        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(false);
+
 
     }
 
@@ -888,6 +903,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(true);
         segueCanvas.SetActive(false);
+        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(false);
         
     }
     

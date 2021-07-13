@@ -167,6 +167,8 @@ public class TradeManager : MonoBehaviour
             if (playerOffers.Contains(need))
             {
                 playerTradePoints++; //add an extra trade point if offered a need
+                GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
+                
             }
         }
 
@@ -188,6 +190,7 @@ public class TradeManager : MonoBehaviour
             else inventoryIOU.slotFrames[i].SetActive(false);
         }
         button.interactable = false;
+        referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
     }
 
     private IEnumerator SelectButton()
