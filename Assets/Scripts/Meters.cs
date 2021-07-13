@@ -116,7 +116,7 @@ public class Meters : MonoBehaviour
         poopProgressObject.GetComponent<Slider>().value = poopTimeLeft / 24f;
         waterProgressObject.GetComponent<Slider>().value = waterTimeLeft / 24f;
         
-        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted && GlobalControls.CurrentObjective != 6)
         {
             GlobalControls.CurrentObjective = 6;
             referenceManager.objectiveManager.UpdateObjectiveBanner();
