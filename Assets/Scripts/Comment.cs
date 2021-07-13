@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Comment : MonoBehaviour
 {
-    // This line is a garbage comment just to change a file
+    // This line is a garbage comment just to change a file2
     [TextArea(minLines: 2, maxLines: 32)]
     public string notes = "Type comment here.";
 }
