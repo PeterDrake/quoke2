@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Comment : MonoBehaviour
 {
-    [TextArea] public string notes = "Type comment here.";
+    [TextArea(minLines: 2, maxLines: 32)]
+    public string notes = "Type comment here.";
 }
