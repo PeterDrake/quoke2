@@ -20,9 +20,12 @@ public class Meters : MonoBehaviour
     private Text poopLevelNumber;
     private Text waterLevelNumber;
 
+    private ReferenceManager referenceManager;
+
 
     void Start()
     {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
         if (SceneManager.GetActiveScene().name.Contains("Quake"))
         {
@@ -80,6 +83,7 @@ public class Meters : MonoBehaviour
 
     private void UpdateVisualText()
     {
+        Debug.Log("Updating visual text");
         poopLevelNumber.text = poopTimeLeft.ToString();
         waterLevelNumber.text = waterTimeLeft.ToString();
 
@@ -115,7 +119,7 @@ public class Meters : MonoBehaviour
         if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
             GlobalControls.CurrentObjective = 6;
-            GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
+            referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
     }
 
