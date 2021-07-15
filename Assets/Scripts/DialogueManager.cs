@@ -227,19 +227,19 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.DemActionDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                     GlobalControls.NPCList["dem0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 2:
                     GlobalControls.RainerActionDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                     GlobalControls.NPCList["rainer0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 3:
                     GlobalControls.AnnetteActionDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                     GlobalControls.NPCList["annette0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
             }
 
@@ -252,7 +252,7 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SafiWaterActionDone = true;
                 GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                 GlobalControls.NPCList["safi0"].satisfaction++;
-                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
             }
             else if(currentNode.nodeName.Contains("safigassuccess"))
             {
@@ -260,14 +260,14 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SafiGasActionDone = true;
                 GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                 GlobalControls.NPCList["safi0"].satisfaction++;
-                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
             }
             else if(currentNode.nodeName.Contains("checkpointsafi1") && !GlobalControls.SafiRescued)
             {
                 GlobalControls.SafiRescued = true;
                 GlobalControls.CurrentPoints += GlobalControls.Points["safirescue"];
                 GlobalControls.NPCList["safi0"].satisfaction++;
-                referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
             }
         }
 
@@ -282,31 +282,31 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.DemDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList["dem0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 2:
                     GlobalControls.CarlosDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList["carlos0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 3:
                     GlobalControls.BobDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList["bob0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 4:
                     GlobalControls.RainerDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList["rainer0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 5:
                     GlobalControls.AnnetteDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList["annette0"].satisfaction++;
-                    referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
             }
 
@@ -330,20 +330,20 @@ public class DialogueManager : MonoBehaviour
             buttons[c].gameObject.SetActive(true);
                 
             //This will change the player text based on the node we're looking at
-            buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c]; 
-            if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
+            buttons[c].GetComponentInChildren<Text>(true).text = currentNode.playerArray[c]; 
+            if (buttons[c].GetComponentInChildren<Text>(true).text.Equals(""))
             {
                 buttons[c].gameObject.SetActive(false);
             }
 
             if (currentNode.nodeName.Contains("drink"))
             {
-                if (GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                if (GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I have water right here!"))
                 {
                     buttons[c].gameObject.SetActive(true);
                 }
-                else if (!GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>().text.Contains
+                else if (!GlobalControls.PlayerHasCleanWater && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I have water right here!"))
                 {
                     buttons[c].gameObject.SetActive(false);
@@ -352,12 +352,12 @@ public class DialogueManager : MonoBehaviour
             
             if (currentNode.nodeName.Contains("safishutoffwater") || currentNode.nodeName.Contains("safishutoffgas"))
             {
-                if (GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>().text.Contains
+                if (GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I have one right here!"))
                 {
                     buttons[c].gameObject.SetActive(true);
                 }
-                else if (!GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>().text.Contains
+                else if (!GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I have one right here!"))
                 {
                     buttons[c].gameObject.SetActive(false);
@@ -368,12 +368,12 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Demetrius drinks or Demetrius action is complete
             if (currentNode.nodeName.Contains("dem0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Foraging") && GlobalControls.DemActionDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Foraging") && GlobalControls.DemActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.DemDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -382,12 +382,12 @@ public class DialogueManager : MonoBehaviour
             
             if (currentNode.nodeName.Contains("checkpointsafi1"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Water") && GlobalControls.SafiWaterActionDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Water") && GlobalControls.SafiWaterActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Gas") && GlobalControls.SafiGasActionDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Gas") && GlobalControls.SafiGasActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -397,12 +397,12 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Annette drinks or Annette action is complete
             if (currentNode.nodeName.Contains("annette0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Translation") && GlobalControls.AnnetteActionDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Translation") && GlobalControls.AnnetteActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -412,12 +412,12 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Rainer drinks or Rainer action is complete
             if (currentNode.nodeName.Contains("rainer0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.RainerActionDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Action") && GlobalControls.RainerActionDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
                 
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.RainerDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.RainerDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -427,7 +427,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Carlos drinks is complete
             if (currentNode.nodeName.Contains("carlos0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -437,7 +437,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Bob drinks is complete
             if (currentNode.nodeName.Contains("bob0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.BobDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.BobDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -448,7 +448,7 @@ public class DialogueManager : MonoBehaviour
         }
             
         //This will change the npc text based on the node
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
+        npcText.GetComponentInChildren<Text>(true).text = currentNode.npcText;
         
         if (cursorLocation > buttons.Length - 1)
         {

@@ -95,7 +95,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                     }
                 }
             }
-            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
@@ -195,10 +195,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (!virtualKeyboard)
         {
             if (Input.GetKeyDown(KeyCode.C)) keyDown = KeyCode.C;
-            else if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
-            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
-            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
-            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
             else if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
             else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
             else if (Input.GetKeyDown(KeyCode.Return)) keyDown = KeyCode.Return;
@@ -206,6 +202,14 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
             else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
             else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
+            else if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
+            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
+            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
+            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
+            else if (Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
             foreach (var key in validInputs)
             {
                 if (Input.GetKeyDown(key))
@@ -741,8 +745,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (GlobalControls.TooltipsEnabled)
         {
             toolTips.SetActive(true);
-            referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
-            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
         }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
@@ -825,8 +829,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
         npcInventoryTooltip.SetActive(false);
-        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
-        referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+        referenceManager.pointsText.gameObject.SetActive(true);
+        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
     }
 
     public void SetTrading()
@@ -848,8 +852,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (GlobalControls.TooltipsEnabled)
         {
             toolTips.SetActive(true);
-            referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(true);
-            referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (GlobalControls.KeybindsEnabled)
@@ -884,9 +888,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(true);
-        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(false);
-
-
+        referenceManager.pointsText.gameObject.SetActive(false);
     }
 
     public void SetDeath()
@@ -903,7 +905,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(true);
         segueCanvas.SetActive(false);
-        referenceManager.pointsText.GetComponentInParent<Transform>().gameObject.SetActive(false);
+        referenceManager.pointsText.gameObject.SetActive(false);
         
     }
     

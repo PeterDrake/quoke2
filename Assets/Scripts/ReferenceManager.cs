@@ -26,7 +26,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject sceneManagement;
     public GameObject keybinds;
     public ObjectiveManager objectiveManager;
-    public Text pointsText;
+    public GameObject pointsText;
 
     public GameObject itemLoader;
     
@@ -79,7 +79,7 @@ public class ReferenceManager : MonoBehaviour
         foreach (Transform child in tooltipCanvas.GetComponentsInChildren<Transform>(true))
         {
             if (child.gameObject.name.Equals("Keybinds")) keybinds = child.gameObject;
-            if (child.gameObject.name.Equals("Points Text")) pointsText = child.gameObject.GetComponent<Text>();
+            if (child.gameObject.name.Equals("Points")) pointsText = child.gameObject;
         }
         
     }

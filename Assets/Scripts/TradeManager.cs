@@ -190,7 +190,7 @@ public class TradeManager : MonoBehaviour
             else inventoryIOU.slotFrames[i].SetActive(false);
         }
         button.interactable = false;
-        referenceManager.pointsText.text = GlobalControls.CurrentPoints.ToString();
+        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
     }
 
     private IEnumerator SelectButton()
