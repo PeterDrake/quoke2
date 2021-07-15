@@ -18,6 +18,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
     private bool npcInteractedInScene = true;
+    private bool pointsInScene = true;
 
     private ReferenceManager referenceManager;
     private TradeManager tradeManager;
@@ -139,6 +140,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(2);
+            pointsInScene = false;
             npcInteractedInScene = false;
             GlobalControls.CurrentObjective = 3;
             SetSegue();
@@ -148,6 +150,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
             npcInteractedInScene = false;
+            pointsInScene = false;
             if(GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 2;
             else if(!GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 1;
             SetExploring();
@@ -745,8 +748,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (GlobalControls.TooltipsEnabled)
         {
             toolTips.SetActive(true);
-            referenceManager.pointsText.gameObject.SetActive(true);
-            referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
         }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
@@ -761,6 +762,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.SelectSlotNumber(0);
         }
 
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
+        
         if (npcInteractedInScene)
         {
             referenceManager.npcInteractedCanvas.SetActive(true);
@@ -829,8 +837,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
         npcInventoryTooltip.SetActive(false);
-        referenceManager.pointsText.gameObject.SetActive(true);
-        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
+
     }
 
     public void SetTrading()
@@ -852,8 +865,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (GlobalControls.TooltipsEnabled)
         {
             toolTips.SetActive(true);
-            referenceManager.pointsText.gameObject.SetActive(true);
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (GlobalControls.KeybindsEnabled)
@@ -868,6 +879,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+        
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
         
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
         npcInventoryTooltip.SetActive(false);
