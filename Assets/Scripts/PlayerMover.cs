@@ -24,7 +24,7 @@ public class PlayerMover : MonoBehaviour
     void Start()
     {
         interactableLayers = LayerMask.GetMask("NPC");
-        obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer", "LatrineContainer");
+        obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer", "LatrineContainer", "WaterPurifying");
         destination.parent = null; // So that moving player doesn't move its child Destination
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
     }
@@ -93,8 +93,7 @@ public class PlayerMover : MonoBehaviour
     public void SetCrouching(bool crouching)
     {
         // If there's an obstacle where you are, it must be a table you're under
-        Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
-        underTable = tableCheckColliders.Length != 0;
+        CheckUnderTable();
         this.crouching = crouching || underTable;
         head.transform.localPosition = new Vector3(head.transform.localPosition.x, this.crouching ? 0f : 0.5f,
                 head.transform.localPosition.z);
@@ -104,5 +103,11 @@ public class PlayerMover : MonoBehaviour
     {
         transform.position =
             Vector3.MoveTowards(transform.position, destination.position, movementSpeed * Time.fixedDeltaTime);
+    }
+
+    public void CheckUnderTable()
+    {
+        Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
+        underTable = tableCheckColliders.Length != 0;
     }
 }

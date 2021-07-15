@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class ObjectiveManager : MonoBehaviour
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {
-                if (image.gameObject.name.Equals("Objectives"))
+                if (image && image.gameObject.name.Equals("Objectives"))
                 {
                     image.gameObject.SetActive(true);
                     image.GetComponentInChildren<Text>().text = currentObjective;

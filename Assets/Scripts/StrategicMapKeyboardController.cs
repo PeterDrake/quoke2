@@ -9,6 +9,8 @@ public class StrategicMapKeyboardController : MonoBehaviour
     // Set size of and add locations in the Inspector
     public GameObject[] locations;
     public int playerLocation;
+    private KeyCode keyDown = KeyCode.JoystickButton0;
+    public bool virtualKeyboard;
     
     private void Start()
     {
@@ -74,19 +76,38 @@ public class StrategicMapKeyboardController : MonoBehaviour
 
         GameObject.Find("NPC Inventory").SetActive(false);
     }
-
+    
+    /// <summary>
+    /// SetKeyDown sets a specific key to be pressed for one update frame. Pass KeyCode.JoystickButton0 for none
+    /// </summary>
+    /// <param name="pressed"></param>
+    public void SetKeyDown(KeyCode pressed)
+    {
+        keyDown = pressed;
+    }
+    
+    // Update is called once per frame
     void Update()
     {
+        if (!virtualKeyboard)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
+            else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
+            else if (Input.GetKeyDown(KeyCode.Comma)) keyDown = KeyCode.Comma;
+            else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
+        }
+        
+        
         // Change the player's location with < and >
-        if (Input.GetKeyDown(","))  // Move left with < key
+        if (keyDown.Equals(KeyCode.Comma))  // Move left with < key
         {
             playerLocation = (playerLocation - 1 + locations.Length) % locations.Length;
         }
-        if (Input.GetKeyDown("."))  // Move right with > key
+        if (keyDown.Equals(KeyCode.Period))  // Move right with > key
         {
             playerLocation = (playerLocation + 1) % locations.Length;
         }
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             GlobalControls.IsStrategicMap = false;
             SceneManagement sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
@@ -94,5 +115,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         }
         // Move the player on top of the marker for the location they are currently at
         player.transform.position = locations[playerLocation].transform.position + Vector3.up;
+        
+        keyDown = KeyCode.JoystickButton0;
     }
 }

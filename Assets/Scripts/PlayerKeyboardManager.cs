@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,11 +9,13 @@ public class PlayerKeyboardManager : MonoBehaviour
 {
     private PlayerMover player;
     private Inventory inventory;
-    private bool crouchFlag = false;
+    private bool crouchFlag;
+    public bool virtualKeyboard;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
     private bool npcInteractedInScene = true;
+    private bool pointsInScene = true;
 
     private ReferenceManager referenceManager;
     private TradeManager tradeManager;
@@ -25,13 +24,13 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject segueCanvas;
     private GameObject npcInteractedCanvas;
     private GameObject metersCanvas;
-    private GameObject tooltipCanvas;
     private GameObject toolTips;
     private GameObject objectives;
     private Text tooltipText;
     private Text npcInventoryTooltipName;
     private Image[] npcInventoryTooltipSprites;
     private GameObject npcInventoryTooltip;
+    private Text[] npcInventoryTooltipItemName;
 
     private int cursorLocation;
 
@@ -42,10 +41,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
         KeyCode.Alpha6};
-    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "fred0", "carlos0", "bob0"};
+    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "annette0", "carlos0", "bob0"};
     private readonly GameObject[] npcFrames = new GameObject[6];
     private Sprite unselected;
     private Sprite selected;
+
+    private KeyCode keyDown = KeyCode.JoystickButton0;
     
     void Start()
     {
@@ -55,30 +56,41 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
-        tooltipCanvas = referenceManager.tooltipCanvas;
-        npcInventoryTooltipSprites = new Image[6];
         if (GlobalControls.TooltipsEnabled)
         {
+            npcInventoryTooltipSprites = new Image[4];
+            npcInventoryTooltipItemName = new Text[4];
             int i = 0;
-            foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
+            int j = 0;
+            foreach (Transform child in referenceManager.tooltipCanvas.GetComponentsInChildren<Transform>(true))
             {
-                if (image.gameObject.name.Equals("Tooltip"))
+                if (child.gameObject.name.Equals("Tooltip"))
                 {
-                    toolTips = image.gameObject;
-                    tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
+                    toolTips = child.gameObject;
+                    tooltipText = child.gameObject.GetComponentInChildren<Text>(true);
                 }
-                else if (image.gameObject.name.Equals("Objectives")) objectives = image.gameObject;
-                else if (image.gameObject.name.Equals("NPC Inventory"))
+                else if (child.gameObject.name.Equals("Objectives")) objectives = child.gameObject;
+                else if (child.gameObject.name.Equals("NPC Inventory"))
                 {
-                    npcInventoryTooltip = image.gameObject;
-                    npcInventoryTooltipName = image.gameObject.GetComponentInChildren<Text>(true);
+                    npcInventoryTooltip = child.gameObject;
+                    npcInventoryTooltipName = child.gameObject.GetComponentInChildren<Text>(true);
                 }
-                else if (image.gameObject.name.Contains("NPC Inventory Image"))
+                else if (child.gameObject.name.Contains("NPC Inventory"))
                 {
-                    npcInventoryTooltipSprites[i] = image;
-                    i++;
+                    if (child.gameObject.name.Equals("NPC Inventory")) continue;
+                    if (child.gameObject.name.Contains("Image"))
+                    {
+                        npcInventoryTooltipSprites[i] = child.gameObject.GetComponentInChildren<Image>();
+                        i++;
+                    }
+                    else
+                    {
+                        npcInventoryTooltipItemName[j] = child.gameObject.GetComponentInChildren<Text>(true);
+                        j++;
+                    }
                 }
             }
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
@@ -94,7 +106,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (image.gameObject.name.Equals("Safi Frame")) npcFrames[0] = image.gameObject;
             if (image.gameObject.name.Equals("Dem Frame")) npcFrames[1] = image.gameObject;
             if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
-            if (image.gameObject.name.Equals("Fred Frame")) npcFrames[3] = image.gameObject;
+            if (image.gameObject.name.Equals("Annette Frame")) npcFrames[3] = image.gameObject;
             if (image.gameObject.name.Equals("Carlos Frame")) npcFrames[4] = image.gameObject;
             if (image.gameObject.name.Equals("Bob Frame")) npcFrames[5] = image.gameObject;
             
@@ -122,6 +134,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(2);
+            pointsInScene = false;
             npcInteractedInScene = false;
             GlobalControls.CurrentObjective = 3;
             SetSegue();
@@ -131,6 +144,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
             npcInteractedInScene = false;
+            pointsInScene = false;
             if(GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 2;
             else if(!GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 1;
             SetExploring();
@@ -162,10 +176,47 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// SetKeyDown sets a specific key to be pressed for one update frame. Pass KeyCode.JoystickButton0 for none
+    /// </summary>
+    /// <param name="pressed"></param>
+    public void SetKeyDown(KeyCode pressed)
+    {
+        keyDown = pressed;
+    }
     
     // Update is called once per frame
     void Update()
     {
+        if (!virtualKeyboard)
+        {
+            if (Input.GetKeyDown(KeyCode.C)) keyDown = KeyCode.C;
+            else if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
+            else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
+            else if (Input.GetKeyDown(KeyCode.Return)) keyDown = KeyCode.Return;
+            else if (Input.GetKeyDown(KeyCode.Comma)) keyDown = KeyCode.Comma;
+            else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
+            else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
+            else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
+            else if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
+            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
+            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
+            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
+            else if (Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            foreach (var key in validInputs)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    keyDown = key;
+                    break;
+                }
+            }
+        }
+        
         if (gamemode == 1)
         {
             UpdateSegue();
@@ -186,11 +237,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             UpdateTrading();
         }
+        
+        keyDown = KeyCode.JoystickButton0;
     }
 
     private void UpdateSegue()
     {
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             SetExploring();
         }
@@ -199,28 +252,67 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void UpdateConversing()
     {
         // Change the cursor's location with < and >
-        if (Input.GetKeyDown(","))
+        if (keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
-            cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            if (cursorLocation < 0)
+            {
+                cursorLocation = dialogueManager.buttons.Length - 1;
+            }
+
+            if (dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
+            else
+            {
+                while (!dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+                {
+                    cursorLocation--;
+                    if (cursorLocation < 0)
+                    {
+                        cursorLocation = dialogueManager.buttons.Length - 1;
+                    }
+                }
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
         }
-        if (Input.GetKeyDown("."))
+        
+        if (keyDown.Equals(KeyCode.Period))
         {
-            cursorLocation++;   
-            cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            cursorLocation++;
+            if (cursorLocation > dialogueManager.buttons.Length - 1)
+            {
+                cursorLocation = 0;
+            }
+            if (dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+            {
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
+            else
+            {
+                while (!dialogueManager.buttons[cursorLocation].gameObject.activeSelf)
+                {
+                    cursorLocation++;
+                    if (cursorLocation > dialogueManager.buttons.Length - 1)
+                    {
+                        cursorLocation = 0;
+                    }
+                }
+                cursorLocation = dialogueManager.ChangeCursorLocations(cursorLocation);
+            }
         }
             
         
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (keyDown.Equals(KeyCode.Escape))
         {  
             SetExploring();
         }
         
         //Selects an option from the player options
-        if (Input.GetKeyDown("space"))
-        {
-            dialogueManager.EncapsulateSpace();
-            cursorLocation = dialogueManager.ChangeCursorLocations(0);
+        if (keyDown.Equals(KeyCode.Space))
+        { 
+            cursorLocation = dialogueManager.EncapsulateSpace();
         }
     }    
     
@@ -229,18 +321,25 @@ public class PlayerKeyboardManager : MonoBehaviour
         switch (crouchFlag)
         {
             // Crouch (c)
-            case true when Input.GetKeyDown(KeyCode.C):
+            case true when keyDown.Equals(KeyCode.C):
                 crouchFlag = !crouchFlag;
                 player.SetCrouching(crouchFlag);
                 break;
-            case false when Input.GetKeyDown(KeyCode.C):
+            case false when keyDown.Equals(KeyCode.C):
                 crouchFlag = !crouchFlag;
                 player.SetCrouching(crouchFlag);
                 break;
         }
-        
-        // Move (wasd or arrow keys)
-        float h = Input.GetAxisRaw("Horizontal");
+
+        // Move (wasd)
+        if (keyDown.Equals(KeyCode.W)) player.StartMoving(new Vector3(0,0,1));
+        else if (keyDown.Equals(KeyCode.A)) player.StartMoving(new Vector3(-1,0,0));
+        else if (keyDown.Equals(KeyCode.S)) player.StartMoving(new Vector3(0,0,-1));
+        else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1,0,0));
+
+
+
+        /*float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         if (Math.Abs(h) >= 1f)
         {
@@ -248,7 +347,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         } else if (Math.Abs(v) >= 1f)
         {
             player.StartMoving(new Vector3(0f, 0f, v));
-        }
+        }*/
             
             
         // Select from inventory (1-9)
@@ -256,7 +355,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             for (int i = 0; i < validInputs.Length; i++)
             {
-                if (Input.GetKey(validInputs[i]))
+                if (keyDown.Equals(validInputs[i]))
                 {
                     inventory.SelectSlotNumber(i);
                     cursorLocation = i;
@@ -267,7 +366,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             for (int i = 0; i < validNPCInputs.Length; i++)
             {
-                if (Input.GetKey(validNPCInputs[i]))
+                if (keyDown.Equals(validNPCInputs[i]))
                 {
                     cursorLocation = inventory.slotContents.Length + i;
                     for (int j = 0; j < validNPCInputs.Length; j++)
@@ -281,6 +380,23 @@ public class PlayerKeyboardManager : MonoBehaviour
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
                             tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
                         tooltipText.text = GlobalControls.NPCList[npcList[i]].description;
+                        npcInventoryTooltip.SetActive(true);
+                        npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
+                        for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
+                        {
+                            npcInventoryTooltipSprites[j].sprite = unselected;
+                            npcInventoryTooltipItemName[j].text = "";
+                        }
+                        foreach (Item item in GlobalItemList.ItemList.Values)
+                        {
+                            if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
+                            {
+                                GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                                Sprite sprite = prefab.GetComponent<Collectible>().sprite;
+                                npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
+                                npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
+                            }
+                        }
                     }
                     else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
@@ -288,12 +404,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
 
         
-        if (inventoryInScene && cursorLocation < inventory.slotContents.Length  && Input.GetKeyDown(KeyCode.Space))
+        if (inventoryInScene && cursorLocation < inventory.slotContents.Length  && keyDown.Equals(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
 
-        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.RightBracket))
+        if (inventory && npcInteractedCanvas.activeSelf && (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
         {
             if (cursorLocation > inventory.slotContents.Length - 1)
             {
@@ -301,6 +417,8 @@ public class PlayerKeyboardManager : MonoBehaviour
                 inventory.selectedSlotSprite = selected;
                 cursorLocation = 0;
                 inventory.SelectSlotNumber(cursorLocation);
+                
+                npcInventoryTooltip.SetActive(false);
             }
             else
             {
@@ -308,28 +426,37 @@ public class PlayerKeyboardManager : MonoBehaviour
                 inventory.selectedSlotSprite = unselected;
                 cursorLocation = inventory.slotContents.Length;
                 inventory.SelectSlotNumber(2);
+                
+                if (GlobalControls.TooltipsEnabled && GlobalControls.NPCList[npcList[0]].interracted)
+                {
+                    if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
+                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+                    tooltipText.text = GlobalControls.NPCList[npcList[0]].description;
+                    npcInventoryTooltip.SetActive(true);
+                    npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
+                    for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
+                    {
+                        npcInventoryTooltipSprites[j].sprite = unselected;
+                        npcInventoryTooltipItemName[j].text = "";
+                    }
+                    foreach (Item item in GlobalItemList.ItemList.Values)
+                    {
+                        if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
+                        {
+                            GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
+                            Sprite sprite = prefab.GetComponent<Collectible>().sprite;
+                            npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
+                            npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
+                        }
+                    }
+
+                    
+                }
+                else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
-        
-        if (inventory && npcInteractedCanvas.activeSelf && Input.GetKeyDown(KeyCode.LeftBracket))
-        {
-            if (cursorLocation > inventory.slotContents.Length - 1)
-            {
-                npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = unselected;
-                inventory.selectedSlotSprite = selected;
-                cursorLocation = 0;
-                inventory.SelectSlotNumber(cursorLocation);
-            }
-            else
-            {
-                npcFrames[0].GetComponent<Image>().sprite = selected;
-                inventory.selectedSlotSprite = unselected;
-                cursorLocation = inventory.slotContents.Length;
-                inventory.SelectSlotNumber(2);
-            }
-        }
-        
-        if (inventory && Input.GetKeyDown("."))
+
+        if (inventory && keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;
             if (npcInteractedCanvas.activeSelf && cursorLocation >= inventory.slotContents.Length + npcFrames.Length)
@@ -368,21 +495,20 @@ public class PlayerKeyboardManager : MonoBehaviour
                         tooltipText.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].description;
                         npcInventoryTooltip.SetActive(true);
                         npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
-                        int i = 0;
+                        for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
+                        {
+                            npcInventoryTooltipSprites[j].sprite = unselected;
+                            npcInventoryTooltipItemName[j].text = "";
+                        }
                         foreach (Item item in GlobalItemList.ItemList.Values)
                         {
                             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
                             {
                                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                                 Sprite sprite = prefab.GetComponent<Collectible>().sprite;
-                                npcInventoryTooltipSprites[i].sprite = sprite;
-                                i++;
+                                npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
+                                npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
                             }
-                        }
-
-                        for (int j = npcInventoryTooltipSprites.Length - 1; j > i; j--)
-                        {
-                            npcInventoryTooltipSprites[j].sprite = unselected;
                         }
                     }
                     else
@@ -407,7 +533,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (inventory && Input.GetKeyDown(","))
+        if (inventory && keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
             if (cursorLocation < 0)
@@ -441,21 +567,20 @@ public class PlayerKeyboardManager : MonoBehaviour
                         tooltipText.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].description;
                         npcInventoryTooltip.SetActive(true);
                         npcInventoryTooltipName.text = GlobalControls.NPCList[npcList[cursorLocation - inventory.slotContents.Length]].name + "'s Inventory";
-                        int i = 0;
+                        for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
+                        {
+                            npcInventoryTooltipSprites[j].sprite = unselected;
+                            npcInventoryTooltipItemName[j].text = "";
+                        }
                         foreach (Item item in GlobalItemList.ItemList.Values)
                         {
                             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.slotContents.Length]))
                             {
                                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                                 Sprite sprite = prefab.GetComponent<Collectible>().sprite;
-                                npcInventoryTooltipSprites[i].sprite = sprite;
-                                i++;
+                                npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
+                                npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
                             }
-                        }
-
-                        for (int j = npcInventoryTooltipSprites.Length - 1; j > i; j--)
-                        {
-                            npcInventoryTooltipSprites[j].sprite = unselected;
                         }
                     }
                     else
@@ -489,18 +614,18 @@ public class PlayerKeyboardManager : MonoBehaviour
     
     private void UpdateDeath()
     {
-        if (Input.GetKeyDown("space"))
+        if (keyDown.Equals(KeyCode.Space))
         {
             referenceManager.sceneManagement.GetComponent<SceneManagement>().Restart();
         }
     }
     private void UpdateTrading()
     {
-        if (Input.GetKeyDown(","))
+        if (keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
         }
-        if (Input.GetKeyDown("."))
+        if (keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;
         }
@@ -513,39 +638,49 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             inventoryNumber = 1;
         }
-        else if (cursorLocation > 9 && cursorLocation < 15)
+        else if (cursorLocation > 9 && cursorLocation < 14)
         {
             inventoryNumber = 2;
         }
-        else if (cursorLocation > 14 && cursorLocation < 20)
+        else if (cursorLocation > 13 && cursorLocation < 18)
         {
             inventoryNumber = 3;
         }
-        else if (cursorLocation > 19)
+        else if (cursorLocation > 17)
         {
             cursorLocation = 0;
             inventoryNumber = 0;
         }
         else if (cursorLocation < 0)
         {
-            cursorLocation = 19;
+            cursorLocation = 17;
             inventoryNumber = 3;
         }
 
         tradeManager.ChangeSelectedInventory(inventoryNumber);
-        tradeManager.SelectSlot(inventoryNumber, cursorLocation % 5);
-        
-        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        if (inventoryNumber == 0) tradeManager.SelectSlot(inventoryNumber, cursorLocation);
+        else if (inventoryNumber == 1) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 5);
+        else if (inventoryNumber == 2) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 10);
+        else if (inventoryNumber == 3) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 14);
+
+        if (keyDown.Equals(KeyCode.LeftBracket))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
-            cursorLocation = 5 * inventoryNumber;
+
+            if (inventoryNumber == 0) cursorLocation = 0;
+            else if (inventoryNumber == 1) cursorLocation = 5;
+            else if (inventoryNumber == 2) cursorLocation = 10;
+            else if (inventoryNumber == 3) cursorLocation = 14;
         }
-        if (Input.GetKeyDown(KeyCode.RightBracket))
+        if (keyDown.Equals(KeyCode.RightBracket))
         {
             inventoryNumber++;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
-            cursorLocation = 5 * inventoryNumber;
+            if (inventoryNumber == 0) cursorLocation = 0;
+            else if (inventoryNumber == 1) cursorLocation = 5;
+            else if (inventoryNumber == 2) cursorLocation = 10;
+            else if (inventoryNumber == 3) cursorLocation = 14;
         }
             
         //select slots
@@ -554,18 +689,21 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (Input.GetKey(validInputs[i]))
             {
                 tradeManager.SelectSlot(inventoryNumber, i);
-                cursorLocation = inventoryNumber * 5 + i;
+                if (inventoryNumber == 0) cursorLocation = 0 + i;
+                else if (inventoryNumber == 1) cursorLocation = 5 + i;
+                else if (inventoryNumber == 2) cursorLocation = 10 + i;
+                else if (inventoryNumber == 3) cursorLocation = 14 + i;
             }
         }
         
         
         // Transfer items (space)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyDown.Equals(KeyCode.Space))
         {
             tradeManager.EncapsulateSpace(inventoryNumber);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (keyDown.Equals(KeyCode.Return))
         {
             if (tradeManager.CheckValidTrade())
             {
@@ -577,7 +715,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else Debug.Log("Invalid Trade!");
         }
             
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (keyDown.Equals(KeyCode.Escape))
         {  
             tradeManager.LeaveTrading();
         }
@@ -601,7 +739,10 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
 
-        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        if (GlobalControls.TooltipsEnabled)
+        {
+            toolTips.SetActive(true);
+        }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (inventoryInScene)
         {
@@ -615,6 +756,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.SelectSlotNumber(0);
         }
 
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
+        
         if (npcInteractedInScene)
         {
             referenceManager.npcInteractedCanvas.SetActive(true);
@@ -649,7 +797,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
 
-
+        
 
     }
 
@@ -683,6 +831,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
         npcInventoryTooltip.SetActive(false);
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
+
     }
 
     public void SetTrading()
@@ -701,7 +856,10 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.npcInteractedCanvas.SetActive(false);
         objectives.SetActive(false);
-        if (GlobalControls.TooltipsEnabled) toolTips.SetActive(true);
+        if (GlobalControls.TooltipsEnabled)
+        {
+            toolTips.SetActive(true);
+        }
         else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
         if (GlobalControls.KeybindsEnabled)
         {
@@ -715,6 +873,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
         else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+        
+        if (pointsInScene)
+        {
+            referenceManager.pointsText.gameObject.SetActive(true);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        }
+        else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
         
         referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
         npcInventoryTooltip.SetActive(false);
@@ -735,8 +900,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(true);
-        
-
+        referenceManager.pointsText.gameObject.SetActive(false);
     }
 
     public void SetDeath()
@@ -753,6 +917,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         deathCanvas.SetActive(true);
         segueCanvas.SetActive(false);
+        referenceManager.pointsText.gameObject.SetActive(false);
         
     }
     

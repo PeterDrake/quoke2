@@ -38,6 +38,23 @@ public class Inventory : MonoBehaviour
     //Awake not start because Inventory must load first
     void Awake()
     {
+        slotFrames = new GameObject[5];
+        slotContents = new GameObject[5];
+        int frameCounter = 0;
+        int contentsCounter = 0;
+        foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
+        {
+            if (child.gameObject.name.Contains("Frame"))
+            {
+                slotFrames[frameCounter] = child.gameObject;
+                frameCounter++;
+            }
+            if (child.gameObject.name.Contains("Contents"))
+            {
+                slotContents[contentsCounter] = child.gameObject;
+                contentsCounter++;
+            }
+        }
         if (SceneManager.GetActiveScene().name.Equals("Yard"))
         {
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
@@ -64,7 +81,7 @@ public class Inventory : MonoBehaviour
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
         // Find layers for various interactions
-        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer");
+        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer", "WaterPurifying");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
         waterLayer = LayerMask.GetMask("Water");
@@ -105,19 +122,19 @@ public class Inventory : MonoBehaviour
             tempSlotFrames[i] = slotFrames[i];
         }
 
+        if (numSlots < slotFrames.Length)
+        {
+            for (int i = slotFrames.Length - 1; i >= numSlots; i--)
+            {
+                slotFrames[i].SetActive(false);
+            }
+        }
+        
         items = tempItems;
         slotContents = tempSlotContents;
         slotFrames = tempSlotFrames;
 
-        if (numSlots < 5)
-        {
-            for (int i = 4; i >= numSlots; i--)
-            {
-                GameObject.Find("Frame " + i).SetActive(false);
-            }
-        }
-        
-        
+
         // Select the first slot
         selectedSlotNumber = 0;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
@@ -142,56 +159,21 @@ public class Inventory : MonoBehaviour
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
-            referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = items[selectedSlotNumber].GetComponent<Comment>().notes;
+            {
+                if (items[selectedSlotNumber])
+                {
+                    Comment comment = items[selectedSlotNumber].GetComponent<Comment>();
+                    if (comment)
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = comment.notes;
+                    else
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
+                }
+
+            }
+            
         }
         else if(referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf) 
             referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
-    }
-
-    private void DropSelectedItem()
-    {
-        // Sends a Raycast out one space in front of the player, to check if there is anything in the way before item placement
-        if (!player.ObjectAhead(dropObstructionLayers))
-        {
-            int i = selectedSlotNumber; // Just to make the later expressions less hairy
-            if (SlotIsOccupied(i))
-            {
-                if (items[i].name.Equals("Chlorine Tablet(Clone)") && player.ObjectAhead(waterLayer))
-                {
-                    Debug.Log("Dropping chlorine tablet to water bottle");
-                    GlobalItemList.UpdateItemList("Chlorine Tablet", "", new Vector3(0,0,0), "");
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
-                    meters = referenceManager.metersCanvas.GetComponent<Meters>();
-                    meters.MarkTaskAsDone("water");
-                    
-                    GlobalItemList.UpdateItemList("Water Bottle", "", new Vector3(0,0,0), "");
-                    GameObject.Find("Water Bottle(Clone)").SetActive(false);
-                    GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
-                        player.destination.transform.position + player.transform.forward, "");
-                    
-                    GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
-                    GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward , Quaternion.identity);
-
-                }
-                else
-                {
-                    // Place item in front of player
-                    items[i].SetActive(true);
-                    items[i].transform.position = player.destination.transform.position + player.transform.forward;
-                
-                    //updates item list accordingly
-                    GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name, items[i].transform.position, "");
-                    // Remove item from inventory
-                    items[i] = null;
-                    slotContents[i].SetActive(false);
-                    //turn off tooltip
-                    if (tooltipText.gameObject.activeSelf)
-                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
-                }
-                
-            }
-        }
     }
 
     /// <summary>
@@ -221,6 +203,16 @@ public class Inventory : MonoBehaviour
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
                     items[i].transform.position, container.name);
 
+                if (items[i].name.Equals("Water Bottle Clean(Clone)"))
+                {
+                    GlobalControls.PlayerHasCleanWater = false;
+                }
+                
+                if (items[i].name.Equals("Wrench(Clone)"))
+                {
+                    GlobalControls.PlayerHasWrench = false;
+                }
+                
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -250,17 +242,11 @@ public class Inventory : MonoBehaviour
     
     void InteractWithLatrine()
     {
+        int i = 0;
         int x = 0;
-        int i = FirstEmptySlot();
-        if (i >= 0 && !SlotIsOccupied(i) && latrineStorage.contents)
+        if(SlotIsOccupied(selectedSlotNumber))
         {
-            GameObject item = latrineStorage.RemoveLatrineItem();
-            item.GetComponent<Collectible>().inStorageContainer = false;
-            PickUp(item);
-        }
-        else
-        {
-            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers))
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && !GlobalControls.PoopTaskCompleted && !latrineStorage.plywoodDone)
             {
                 latrineStorage.timesShoveled++;
                 GlobalControls.TimesShoveled++;
@@ -430,6 +416,20 @@ public class Inventory : MonoBehaviour
             
             // Remove item from the world
             item.SetActive(false);
+
+            if (item.name.Equals("Water Bottle Clean(Clone)"))
+            {
+                Debug.Log("Player Has Water!");
+                GlobalControls.PlayerHasCleanWater = true;
+            }
+            
+            if (item.name.Equals("Wrench(Clone)"))
+            {
+                Debug.Log("Player Has Wrench!");
+                GlobalControls.PlayerHasWrench = true;
+            }
+
+
         }
         //reselect slot to current slot number to update tooltip if necessary
         SelectSlotNumber(selectedSlotNumber);
@@ -462,7 +462,11 @@ public class Inventory : MonoBehaviour
             GameObject latrine = player.ObjectAhead(latrineContainerLayers);
             if (container)
             {
-                InteractWithStorageContainer(container.GetComponent<StorageContainer>());
+                if (container.name.Equals("Water Purifying Table"))
+                {
+                    InteractWithWaterPurifyingTable(container.GetComponent<StorageContainer>());
+                }
+                else InteractWithStorageContainer(container.GetComponent<StorageContainer>());
             }
             else if (latrine && !GlobalControls.ApartmentCondition)
             {
@@ -472,15 +476,67 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithTwoBucket();
             }
-            //check if the player is in front of the latrine
-
-
-
-            DropSelectedItem();
         }
     }
 
-    
+    private void InteractWithWaterPurifyingTable(StorageContainer container)
+    {
+        if (!container.contents && SlotIsOccupied(selectedSlotNumber))
+        {
+            if (items[selectedSlotNumber].name.Equals("Dirty Water Bottle(Clone)"))
+            {
+                Debug.Log("Dropping water bottle");
+                container.contents = items[selectedSlotNumber];
+                items[selectedSlotNumber].SetActive(true);
+                Transform t = player.transform;
+                items[selectedSlotNumber].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                items[selectedSlotNumber].GetComponent<Collectible>().inStorageContainer = true;
+                
+                GlobalItemList.UpdateItemList(items[selectedSlotNumber].name, SceneManager.GetActiveScene().name,
+                    items[selectedSlotNumber].transform.position, container.name);
+                
+                // Remove item from inventory
+                items[selectedSlotNumber] = null;
+                slotContents[selectedSlotNumber].SetActive(false);
+                if (tooltipText.gameObject.activeSelf)
+                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+            }
+        }
+        else if (container.contents && SlotIsOccupied(selectedSlotNumber))
+        {
+            if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
+            {
+                GlobalItemList.UpdateItemList("Bleach", "", new Vector3(0,0,0), "");
+                items[selectedSlotNumber] = null;
+                slotContents[selectedSlotNumber].SetActive(false);
+                meters = referenceManager.metersCanvas.GetComponent<Meters>();
+                meters.MarkTaskAsDone("water");
+                    
+                GlobalItemList.UpdateItemList("Dirty Water Bottle", "", new Vector3(0,0,0), "");
+                GameObject.Find("Dirty Water Bottle(Clone)").SetActive(false);
+                GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
+                    player.destination.transform.position + player.transform.forward + Vector3.up, "Water Purifying Table");
+                    
+                GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
+                GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward + Vector3.up, Quaternion.identity);
+                container.contents = waterBottleClean;
+            }
+        }
+        else
+        {
+            int i = FirstEmptySlot();
+            if (i >= 0 && !SlotIsOccupied(i) && container.contents)
+            {
+                //picking up the item
+                GameObject item = container.RemoveItem();
+                item.GetComponent<Collectible>().inStorageContainer = false;
+                PickUp(item);
+            }
+        }
+
+    }
+
+
     /** Only used by ItemLoader.cs */
     public void PickUpAtSlot(int slot, GameObject item)
     {
@@ -493,13 +549,15 @@ public class Inventory : MonoBehaviour
             slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
             // Add item to the items array
             items[i] = item;
+            if (item.name.Equals("Water Bottle Clean(Clone)"))
+                GlobalControls.PlayerHasCleanWater = true;
+            if (item.name.Equals("Wrench(Clone)"))
+                GlobalControls.PlayerHasWrench = true;
+
 
             // Remove item from the world
             item.SetActive(false);
         }
         
     }
-    
-    
-    
 }

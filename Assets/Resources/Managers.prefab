@@ -104,6 +104,7 @@ MonoBehaviour:
   keyboardManager: {fileID: 0}
   deathManager: {fileID: 0}
   sceneManagement: {fileID: 0}
+  keybinds: {fileID: 0}
   objectiveManager: {fileID: 0}
   itemLoader: {fileID: 0}
 --- !u!1 &3748763218506422894
@@ -171,19 +172,17 @@ MonoBehaviour:
 
     N => Restart Game at Prequake
 
-    U
-    => Trigger Quake in Yard/Street
+    L
+    => Load Latrine/Two Bucket items (Apartment or House condition)
 
-    L => Load Latrine/Two Bucket items (Apartment
-    or House condition)
+    V => Load
+    PreQuake items to Street/Yard (Apartment or House Condition)
 
-    V => Load PreQuake items to Street/Yard (Apartment or
-    House Condition)
+    Y => Give player
+    Water task Items
 
-    Y => Give player Water task Items
-
-    T => Change global
-    flag for Apartment Condition (Call in conjunction with a teleport to update map/items'
+    T => Change global flag for Apartment Condition (Call in
+    conjunction with a teleport to update map/items'
 --- !u!114 &3748763218506422899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +204,6 @@ MonoBehaviour:
   completeWater: 111
   completePoop: 112
   restart: 110
-  causeAftershock: 117
   loadPoopItems: 108
   loadWaterItems: 121
   loadPreQuakeItems: 118
