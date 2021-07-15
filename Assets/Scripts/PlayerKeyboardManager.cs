@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,7 +9,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 {
     private PlayerMover player;
     private Inventory inventory;
-    private bool crouchFlag = false;
+    private bool crouchFlag;
     public bool virtualKeyboard;
 
     private int gamemode; //{1 = segue, 2 = conversing, 3 = exploring, 4 = death, 5 = trading}
@@ -27,10 +24,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject segueCanvas;
     private GameObject npcInteractedCanvas;
     private GameObject metersCanvas;
-    private GameObject tooltipCanvas;
     private GameObject toolTips;
     private GameObject objectives;
-    private Text pointsText;
     private Text tooltipText;
     private Text npcInventoryTooltipName;
     private Image[] npcInventoryTooltipSprites;
@@ -61,7 +56,6 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
-        tooltipCanvas = referenceManager.tooltipCanvas;
         if (GlobalControls.TooltipsEnabled)
         {
             npcInventoryTooltipSprites = new Image[4];
