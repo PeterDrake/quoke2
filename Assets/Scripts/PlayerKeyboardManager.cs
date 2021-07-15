@@ -252,7 +252,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void UpdateConversing()
     {
         // Change the cursor's location with < and >
-        if (keyDown.Equals(KeyCode.Comma))
+        if (keyDown.Equals(KeyCode.Comma) || keyDown.Equals(KeyCode.W))
         {
             cursorLocation--;
             if (cursorLocation < 0)
@@ -278,7 +278,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
         
-        if (keyDown.Equals(KeyCode.Period))
+        if (keyDown.Equals(KeyCode.Period) || keyDown.Equals(KeyCode.S))
         {
             cursorLocation++;
             if (cursorLocation > dialogueManager.buttons.Length - 1)
