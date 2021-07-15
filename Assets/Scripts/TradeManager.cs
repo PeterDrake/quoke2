@@ -156,7 +156,16 @@ public class TradeManager : MonoBehaviour
         //fill lists of names
         foreach (GameObject item in inventoryPlayerBin.items)
         {
-            if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+            if (item)
+            {
+                playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = false;
+            }
+        }
+        
+        foreach (GameObject item in inventoryNPCBin.items)
+        {
+            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = true;
         }
 
         int playerTradePoints = 0;
@@ -168,7 +177,6 @@ public class TradeManager : MonoBehaviour
             {
                 playerTradePoints++; //add an extra trade point if offered a need
                 GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
-                
             }
         }
 
