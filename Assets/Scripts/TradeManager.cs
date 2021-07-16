@@ -504,12 +504,12 @@ public class TradeManager : MonoBehaviour
             }
         }
 
-        if (numContents[0] - numContents[2] <= 0 || numContents[3] - numContents[1] <= 0)
+        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
         {
             Debug.Log("Not Enough Inventory to complete trade!");
             return false;
         }
-        
+
         int playerTradePoints = 0;
         
         //will not trade away item they need
