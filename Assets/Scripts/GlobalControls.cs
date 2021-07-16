@@ -78,17 +78,17 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs a Dog Collar", 3, 0)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 4,0)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 4, 0)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 4, 0)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 4, 0)},
+                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -97,17 +97,17 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs a Dog Collar", 3, 0)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 4,0)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 4, 0)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 4, 0)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 4, 0)},
+                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 1;
         }
@@ -169,17 +169,17 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs a Dog Collar", 3, 0)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 4,0)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 4, 0)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 4, 0)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 4, 0)},
+                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -188,17 +188,17 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs a Dog Collar", 3, 0)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0)},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Mask", 4,0)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0)},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a Wrench", 4,0)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0)},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tarp", 4, 0)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs nothing", 4, 0)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0)},
                 {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs nothing", 4, 0)},
+                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 1;
         }
