@@ -35,7 +35,7 @@ public static class GlobalControls
     private static bool rainerInteracted;
     private static bool annetteInteracted;
     private static bool carlosInteracted;
-    private static bool bobInteracted;
+    private static bool angieInteracted;
 
     private static bool apartmentCondition = false;
 
@@ -44,7 +44,7 @@ public static class GlobalControls
     private static bool safiWaterActionDone = false;
     private static bool safiGasActionDone = false;
     private static bool safiRescued = false;
-    private static bool bobDrinkDone = false;
+    private static bool angieDrinkDone = false;
     private static bool carlosDrinkDone = false;
     private static bool rainerActionDone = false;
     private static bool rainerDrinkDone = false;
@@ -87,8 +87,8 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0)},
-                {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "angie0",
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -106,8 +106,8 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0)},
-                {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "angie0",
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 1;
         }
@@ -142,7 +142,7 @@ public static class GlobalControls
         rainerInteracted = false;
         annetteInteracted = false;
         carlosInteracted = false;
-        bobInteracted = false;
+        angieInteracted = false;
         adminMode = true;
 
         demActionDone = false;
@@ -150,7 +150,7 @@ public static class GlobalControls
         safiWaterActionDone = false;
         safiGasActionDone = false;
         safiRescued = false;
-        bobDrinkDone = false;
+        angieDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
@@ -178,8 +178,8 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0)},
-                {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "angie0",
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 2;
         }
@@ -197,8 +197,8 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0)},
-                {"bob0", new NPC("Bob", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "bob0",
-                    0, false, "Bob needs a First Aid Kit and Epi Pen", 4, 0)},
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi pen", "First Aid Kit"}, "angie0",
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0)},
             };
             currentObjective = 1;
         }
@@ -233,7 +233,7 @@ public static class GlobalControls
         rainerInteracted = false;
         annetteInteracted = false;
         carlosInteracted = false;
-        bobInteracted = false;
+        angieInteracted = false;
         adminMode = true;
         
         demActionDone = false;
@@ -241,7 +241,7 @@ public static class GlobalControls
         safiWaterActionDone = false;
         safiGasActionDone = false;
         safiRescued = false;
-        bobDrinkDone = false;
+        angieDrinkDone = false;
         carlosDrinkDone = false;
         rainerActionDone = false;
         rainerDrinkDone = false;
@@ -411,10 +411,10 @@ public static class GlobalControls
         get => carlosInteracted;
         set => carlosInteracted = value;
     }
-    public static bool BobInteracted
+    public static bool AngieInteracted
     {
-        get => bobInteracted;
-        set => bobInteracted = value;
+        get => angieInteracted;
+        set => angieInteracted = value;
     }
     
     public static bool DemActionDone
@@ -441,10 +441,10 @@ public static class GlobalControls
         set => safiGasActionDone = value;
     }
     
-    public static bool BobDrinkDone
+    public static bool AngieDrinkDone
     {
-        get => bobDrinkDone;
-        set => bobDrinkDone = value;
+        get => angieDrinkDone;
+        set => angieDrinkDone = value;
     }
     
     public static bool CarlosDrinkDone

@@ -132,10 +132,10 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Bob drinks is complete
-            if (currentNode.nodeName.Contains("bob0"))
+            //Turns off button if Angie drinks is complete
+            if (currentNode.nodeName.Contains("angie0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.BobDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AngieDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -209,7 +209,7 @@ public class DialogueManager : MonoBehaviour
             y = 1;
         if (GlobalControls.CurrentNPC.Equals("carlos0"))
             y = 2;
-        if (GlobalControls.CurrentNPC.Equals("bob0"))
+        if (GlobalControls.CurrentNPC.Equals("angie0"))
             y = 3;
         if (GlobalControls.CurrentNPC.Equals("rainer0"))
             y = 4;
@@ -291,9 +291,9 @@ public class DialogueManager : MonoBehaviour
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 3:
-                    GlobalControls.BobDrinkDone = true;
+                    GlobalControls.AngieDrinkDone = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
-                    GlobalControls.NPCList["bob0"].satisfaction++;
+                    GlobalControls.NPCList["angie0"].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text = GlobalControls.CurrentPoints.ToString();
                     break;
                 case 4:
@@ -434,10 +434,10 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Bob drinks is complete
-            if (currentNode.nodeName.Contains("bob0"))
+            //Turns off button if Angie drinks is complete
+            if (currentNode.nodeName.Contains("angie0"))
             {
-                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.BobDrinkDone)
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.AngieDrinkDone)
                 {
                     buttons[c].gameObject.SetActive(false);
                 }

@@ -503,23 +503,23 @@
             <npcText>Carlos Now Trading...</npcText>
         </tradecarlos>
 
-        <bob0>
+        <angie0>
             <playerOptions>
-                <option>Bob Drink</option>
-                <option>Bob Trade</option>
+                <option>Angie Drink</option>
+                <option>Angie Trade</option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>drinkbob2</keyName>
-                <keyName>tradebob</keyName>
+                <keyName>drinkangie2</keyName>
+                <keyName>tradeangie</keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </bob0>
+        </angie0>
     
-        <drinkbob2>
+        <drinkangie2>
             <playerOptions>
                 <option>I have water right here!</option>
                 <option>I don't have any water right now...</option>
@@ -527,15 +527,15 @@
             </playerOptions>
     
             <keys>
-                <keyName>givewaterbob</keyName>
-                <keyName>refusewaterbob</keyName>
+                <keyName>givewaterangie</keyName>
+                <keyName>refusewaterangie</keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkbob2>
+        </drinkangie2>
     
-        <givewaterbob>
+        <givewaterangie>
             <playerOptions>
                 <option>Go back</option>
                 <option></option>
@@ -543,15 +543,15 @@
             </playerOptions>
     
             <keys>
-                <keyName>bob0</keyName>
+                <keyName>angie0</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewaterbob>
+        </givewaterangie>
     
-        <refusewaterbob>
+        <refusewaterangie>
             <playerOptions>
                 <option>Go back</option>
                 <option></option>
@@ -559,29 +559,29 @@
             </playerOptions>
     
             <keys>
-                <keyName>bob0</keyName>
+                <keyName>angie0</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Oh I see. That's alright.</npcText>
-        </refusewaterbob>
+        </refusewaterangie>
     
-        <tradebob>
+        <tradeangie>
             <playerOptions>
-                <option>Bob Go Back</option>
+                <option>Angie Go Back</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>bob0</keyName>
-                <keyName>bob0</keyName>
-                <keyName>bob0</keyName>
+                <keyName>angie0</keyName>
+                <keyName>angie0</keyName>
+                <keyName>angie0</keyName>
             </keys>
     
-            <npcText>Bob Now Trading...</npcText>
-        </tradebob>
+            <npcText>Angie Now Trading...</npcText>
+        </tradeangie>
         		
 
 </convoForest>
