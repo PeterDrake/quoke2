@@ -505,55 +505,186 @@
 
         <angie0>
             <playerOptions>
-                <option>Angie Drink</option>
-                <option>Angie Trade</option>
+                <option>Hi there, I'm Duc!</option>
+                <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>drinkangie2</keyName>
-                <keyName>tradeangie</keyName>
+                <keyName>angie00</keyName>
+                <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
-            <npcText>That quake was no joke. Are you okay at least?</npcText>
+            <npcText>...</npcText>
         </angie0>
-    
-        <drinkangie2>
+
+        <angie00>
             <playerOptions>
-                <option>I have water right here!</option>
-                <option>I don't have any water right now...</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>givewaterangie</keyName>
-                <keyName>refusewaterangie</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkangie2>
-    
-        <givewaterangie>
-            <playerOptions>
-                <option>Go back</option>
+                <option>Your codename?</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName>
+                <keyName>angie000</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
-            <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewaterangie>
-    
-        <refusewaterangie>
+            <npcText>Shh! My codename's Red Jaguar!</npcText>
+        </angie00>
+
+        <angie000>
             <playerOptions>
-                <option>Go back</option>
+                <option>Come on kid, what's your real name?</option>
+                <option>Alright... my codename is Green Owl!</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.1</keyName>
+                <keyName>angie0.2</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Yeah! My codename! Do you have one?</npcText>
+        </angie000>
+
+        <angie0.1>
+            <playerOptions>
+                <option>Good to meet you... Angie.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.10</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Aw... you're no fun... My name is Angie...</npcText>
+        </angie0.1>
+
+        <checkpointangie0.10>
+            <playerOptions>
+                <option>Your head is bleeding! Are you okay?!</option>
+                <option>I have some things in my backpack. Do you have anything to trade?</option>
+                <option>Bye now!</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie1.1</keyName>
+                <keyName>tradeangie1</keyName>
+                <keyName>leaveangie1</keyName>
+            </keys>
+    
+            <npcText>So what do you want?</npcText>
+        </checkpointangie0.10>
+    
+        <angie0.2>
+            <playerOptions>
+                <option>Sure! What's the mission?</option>
+                <option>Cut the crap, kid. What's your real name?</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.3</keyName>
+                <keyName>angie0.1</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Green Owl, huh? Alright! Do you want to join my mission?</npcText>
+        </angie0.2>
+    
+        <angie0.3>
+            <playerOptions>
+                <option>Oh really?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.30</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I’ve been sent here by our secret organization to help people after the disaster!</npcText>
+        </angie0.3>
+
+        <angie0.30>
+            <playerOptions>
+                <option>Where'd you learn to do all that?</option>
+                <option>I've got an extra one right here!</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.4</keyName>
+                <keyName>angie0.5</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages in my First Aid Kit...</npcText>
+        </angie0.30>
+
+    <!-- There should be a checkpoint here, but the dialogue for Angie wouldn't make sense. (see npcText of this node) -->
+        <angie0.4>
+            <playerOptions>
+                <option>I wish my school had taught us that...</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.40</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive enough, so I went out and learned some more on my own!</npcText>
+        </angie0.4>
+        
+    
+        <angie0.4>
+            <playerOptions>
+                <option>I've got an extra kit right here!</option>
+                <option>I'll keep my eye out for a kit...</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0.5</keyName>
+                <keyName>leaveangie0.6</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Do you have an extra first aid kit?</npcText>
+        </angie0.4>
+
+        <angie0.5>
+            <playerOptions>
+                <option>What do you have?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie0.5</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Really? Yay! I'll give you some things I found for it!</npcText>
+        </angie0.5>
+
+    <!-- After exiting trading, go to leaveangie0.7 -->
+        <tradeangie0.5>
+            <playerOptions>
+                <option>Trading</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -564,24 +695,222 @@
                 <keyName></keyName>
             </keys>
     
-            <npcText>Oh I see. That's alright.</npcText>
-        </refusewaterangie>
-    
-        <tradeangie>
+            <npcText>Angie Trading</npcText>
+        </tradeangie0.5>
+
+        <leaveangie0.6>
             <playerOptions>
-                <option>Angie Go Back</option>
+                <option>Of course, Red Jaguar!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks, Green Owl!</npcText>
+        </leaveangie0.6>
+    
+        <leaveangie0.7>
+            <playerOptions>
+                <option>Let's leave her be for now...</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thank you so much! I'll get myself cleaned up.</npcText>
+        </leaveangie0.7>
+
+        <!-- Fun trading dialogue -->
+        <stockangie0>
+            <playerOptions>
+                <option>Show me your stock, Agent Red Jaguar!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks, Green Owl!</npcText>
+        </stockangie0>
+
+        <tradeangie0>
+            <playerOptions>
+                <option>Trading</option>
                 <option></option>
                 <option></option>
             </playerOptions>
     
             <keys>
                 <keyName>angie0</keyName>
-                <keyName>angie0</keyName>
-                <keyName>angie0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
             </keys>
     
-            <npcText>Angie Now Trading...</npcText>
-        </tradeangie>
+            <npcText>Angie Trading</npcText>
+        </tradeangie0>
+
+        <!-- Serious trading dialogue -->
+        <stockangie1>
+            <playerOptions>
+                <option>Great. Let me see.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie1</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I have a few things laying around here.</npcText>
+        </stockangie1>
+    
+        <tradeangie1>
+            <playerOptions>
+                <option>Trading</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Angie Trading</npcText>
+        </tradeangie1>
+
+        <leaveangie0>
+            <playerOptions>
+                <option>Farewell, Agent Red Jaguar. *beep*</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Fwoosh! See you later, Green Owl!</npcText>
+        </leaveangie0>
+    
+        <leaveangie1>
+            <playerOptions>
+                <option>Bye Duc.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Take care kid.</npcText>
+        </leaveangie1>
+    
+    <!-- TODO: Continue from Angie2.0 in Angie Dialogue -->
+    
+    
+
+    <!--        <angie0>-->
+<!--            <playerOptions>-->
+<!--                <option>Angie Drink</option>-->
+<!--                <option>Angie Trade</option>-->
+<!--                <option></option>-->
+<!--            </playerOptions>-->
+<!--    -->
+<!--            <keys>-->
+<!--                <keyName>drinkangie2</keyName>-->
+<!--                <keyName>tradeangie</keyName>-->
+<!--                <keyName></keyName>-->
+<!--            </keys>-->
+<!--    -->
+<!--            <npcText>That quake was no joke. Are you okay at least?</npcText>-->
+<!--        </angie0>-->
+<!--    -->
+<!--        <drinkangie2>-->
+<!--            <playerOptions>-->
+<!--                <option>I have water right here!</option>-->
+<!--                <option>I don't have any water right now...</option>-->
+<!--                <option></option>-->
+<!--            </playerOptions>-->
+<!--    -->
+<!--            <keys>-->
+<!--                <keyName>givewaterangie</keyName>-->
+<!--                <keyName>refusewaterangie</keyName>-->
+<!--                <keyName></keyName>-->
+<!--            </keys>-->
+<!--    -->
+<!--            <npcText>Oh, sure. Do you have any water?</npcText>-->
+<!--        </drinkangie2>-->
+<!--    -->
+<!--        <givewaterangie>-->
+<!--            <playerOptions>-->
+<!--                <option>Go back</option>-->
+<!--                <option></option>-->
+<!--                <option></option>-->
+<!--            </playerOptions>-->
+<!--    -->
+<!--            <keys>-->
+<!--                <keyName>angie0</keyName>-->
+<!--                <keyName></keyName>-->
+<!--                <keyName></keyName>-->
+<!--            </keys>-->
+<!--    -->
+<!--            <npcText>Oh thank you! This should help me for a bit.</npcText>-->
+<!--        </givewaterangie>-->
+<!--    -->
+<!--        <refusewaterangie>-->
+<!--            <playerOptions>-->
+<!--                <option>Go back</option>-->
+<!--                <option></option>-->
+<!--                <option></option>-->
+<!--            </playerOptions>-->
+<!--    -->
+<!--            <keys>-->
+<!--                <keyName>angie0</keyName>-->
+<!--                <keyName></keyName>-->
+<!--                <keyName></keyName>-->
+<!--            </keys>-->
+<!--    -->
+<!--            <npcText>Oh I see. That's alright.</npcText>-->
+<!--        </refusewaterangie>-->
+<!--    -->
+<!--        <tradeangie>-->
+<!--            <playerOptions>-->
+<!--                <option>Angie Go Back</option>-->
+<!--                <option></option>-->
+<!--                <option></option>-->
+<!--            </playerOptions>-->
+<!--    -->
+<!--            <keys>-->
+<!--                <keyName>angie0</keyName>-->
+<!--                <keyName>angie0</keyName>-->
+<!--                <keyName>angie0</keyName>-->
+<!--            </keys>-->
+<!--    -->
+<!--            <npcText>Angie Now Trading...</npcText>-->
+<!--        </tradeangie>-->
         		
 
 </convoForest>
