@@ -565,7 +565,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0.10</keyName>
+                <keyName>checkpointangie0.10</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -584,7 +584,7 @@
             <keys>
                 <keyName>angie1.1</keyName>
                 <keyName>tradeangie1</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>So what do you want?</npcText>
@@ -648,7 +648,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0.40</keyName>
+                <keyName>checkpointangie0.4</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -667,7 +667,7 @@
     
             <keys>
                 <keyName>angie0.5</keyName>
-                <keyName>leaveangie0.6</keyName>
+                <keyName>angie0.6</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -691,7 +691,7 @@
             <npcText>Really? Yay! I'll give you some things I found for it!</npcText>
         </angie0.5>
 
-        <!-- After exiting trading, go to leaveangie0.7 -->
+        <!-- After exiting trading, go to leaveangie0.7 somehow. -->
         <tradeangie0.5>
             <playerOptions>
                 <option>Trading</option>
@@ -700,14 +700,31 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName>
+                <keyName>angie0.7</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Angie Trading</npcText>
         </tradeangie0.5>
-
+    
+        <angie0.6>
+            <playerOptions>
+                <option>Of course, Red Jaguar!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie0.6</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks, Green Owl!</npcText>
+        </angie0.6>
+    
+        <!-- When the player enters this node, it forces them to start exploring -->
         <leaveangie0.6>
             <playerOptions>
                 <option>Of course, Red Jaguar!</option>
@@ -716,7 +733,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName>leaveangie0.6</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -725,7 +742,7 @@
         </leaveangie0.6>
 
         <!-- Set Checkpoint 4 -->
-        <leaveangie0.7>
+        <angie0.7>
             <playerOptions>
                 <option>Let's leave her be for now...</option>
                 <option></option>
@@ -733,12 +750,29 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie2.0</keyName> <!-- Enter Exploring -->
+                <keyName>leaveangie0.7</keyName> <!-- Enter Exploring -->
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Thank you so much! I'll get myself cleaned up.</npcText>
+        </angie0.7>
+    
+        <!-- When the player enters this node, it forces them to start exploring -->
+        <leaveangie0.7>
+            <playerOptions>
+                <option>Of course, Red Jaguar!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie0.7</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks, Green Owl!</npcText>
         </leaveangie0.7>
 
         <!-- Fun trading dialogue -->
@@ -806,7 +840,25 @@
     
             <npcText>Angie Trading</npcText>
         </tradeangie1>
-
+    
+        <!-- Leaving Angie 0 -->
+        <angie00000>
+            <playerOptions>
+                <option>Farewell, Agent Red Jaguar. *beep*</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie0</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Fwoosh! See you later, Green Owl!</npcText>
+        </angie00000>
+    
+        <!-- Enter this node to force the player to start exploring -->
         <leaveangie0>
             <playerOptions>
                 <option>Farewell, Agent Red Jaguar. *beep*</option>
@@ -822,7 +874,25 @@
     
             <npcText>Fwoosh! See you later, Green Owl!</npcText>
         </leaveangie0>
+
+        <!-- Leaving Angie 1 -->
+        <angie1>
+            <playerOptions>
+                <option>Take care, kid</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
     
+            <keys>
+                <keyName>leaveangie1</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Bye Duc.</npcText>
+        </angie1>
+
+        <!-- Enter this node to force the player to start exploring -->
         <leaveangie1>
             <playerOptions>
                 <option>Take care, kid</option>
@@ -850,7 +920,7 @@
             <keys>
                 <keyName>angie2.1</keyName> <!-- Enter Exploring -->
                 <keyName>tradeangie2.2</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
             </keys>
     
             <npcText>Hey, Green Owl!</npcText>
@@ -865,7 +935,7 @@
     
             <keys>
                 <keyName>tradeangie0.5</keyName> <!-- Enter Exploring -->
-                <keyName>leaveangie0.6</keyName>
+                <keyName>angie0.6</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -933,7 +1003,7 @@
             <keys>
                 <keyName>angie4.1</keyName>
                 <keyName>tradeangie0</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
             </keys>
     
             <npcText>Hey Green Owl!</npcText>
@@ -1014,7 +1084,7 @@
             <keys>
                 <keyName>angie6.1</keyName>
                 <keyName>tradeangie0</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
             </keys>
     
             <npcText>Hey Green Owl! What’s going on?</npcText>
@@ -1143,7 +1213,7 @@
     
             <keys>
                 <keyName>tradeangie0</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -1161,7 +1231,7 @@
             <keys>
                 <keyName>angie8.1</keyName>
                 <keyName>tradeangie0</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
             </keys>
     
             <npcText>What's up, Agent?</npcText>
@@ -1176,14 +1246,31 @@
             </playerOptions>
     
             <keys>
-                <keyName>leaveangie8.2</keyName>
-                <keyName>leaveangie8.3</keyName>
+                <keyName>angie8.20</keyName>
+                <keyName>angie8.30</keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
         </angie8.1>
-
+    
+        <angie8.20>
+            <playerOptions>
+                <option>You're welcome.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie8.2</keyName> <!-- Exit to exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks Green Owl! You're the best!</npcText>
+        </angie8.20>
+    
+        <!-- Forces the player to exit to exploring -->
         <leaveangie8.2>
             <playerOptions>
                 <option>You're welcome.</option>
@@ -1192,7 +1279,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Exit to exploring -->
+                <keyName>angie0</keyName> 
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -1200,6 +1287,23 @@
             <npcText>Thanks Green Owl! You're the best!</npcText>
         </leaveangie8.2>
     
+        <angie8.30>
+            <playerOptions>
+                <option>I'll keep a lookout.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie8.3</keyName> <!-- Exit to exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
+        </angie8.30>
+        
+        <!-- Forces the player to exit to exploring -->
         <leaveangie8.3>
             <playerOptions>
                 <option>I'll keep a lookout.</option>
@@ -1208,7 +1312,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Exit to exploring -->
+                <keyName>angie0</keyName> 
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -1227,7 +1331,7 @@
             <keys>
                 <keyName>angie10.1</keyName>
                 <keyName>tradeangie0</keyName>
-                <keyName>leaveangie0</keyName>
+                <keyName>angie00000</keyName>
             </keys>
     
             <npcText>Status report, Green Owl?</npcText>
@@ -1241,8 +1345,8 @@
             </playerOptions>
     
             <keys>
-                <keyName>leaveangie8.2</keyName> <!-- Exit to exploring -->
-                <keyName>leaveangie8.3</keyName>
+                <keyName>angie8.20</keyName> <!-- Exit to exploring -->
+                <keyName>angie8.30</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -1260,7 +1364,7 @@
             <keys>
                 <keyName>angie1.1</keyName> <!-- Exit to exploring -->
                 <keyName>tradeangie1.2</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>Hi there... Duc...</npcText>
@@ -1277,7 +1381,7 @@
             <keys>
                 <keyName>angie1.4</keyName> <!-- Exit to exploring -->
                 <keyName>tradeangie1.2</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>What's up, Duc?</npcText>
@@ -1324,7 +1428,7 @@
     
             <keys>
                 <keyName>tradeangie1</keyName> <!-- Start trading -->
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -1340,14 +1444,30 @@
     
             <keys>
                 <keyName>tradeangie1.2</keyName> <!-- Start trading -->
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>This cut on my head is getting worse. Did you find that First Aid Kit?</npcText>
         </angie1.4>
-
-        <!-- Set checkpoint 3 at checkpointangie3.0 -->
+    
+        <angie1.5>
+            <playerOptions>
+                <option>See you soon.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie1.5</keyName> <!-- Set Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks. I'll clean myself up now.</npcText>
+        </angie1.5>
+    
+        <!-- Forces the player to exit to exploring. Set checkpoint 3 at checkpointangie3.0 -->
         <leaveangie1.5>
             <playerOptions>
                 <option>See you soon.</option>
@@ -1375,7 +1495,7 @@
             <keys>
                 <keyName>angie3.1</keyName> 
                 <keyName>tradeangie3.2</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>Hey Duc.</npcText>
@@ -1390,7 +1510,7 @@
     
             <keys>
                 <keyName>tradeangie3.3</keyName> 
-                <keyName>leaveangie3.4</keyName>
+                <keyName>angie3.4</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -1431,7 +1551,23 @@
             <npcText>Angie Trading</npcText>
         </tradeangie3.3>
     
-        <!-- Set Checkpoint 5 at checkpointangie5.0 -->
+        <angie3.4>
+            <playerOptions>
+                <option>See you soon.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie3.4</keyName> <!-- Set Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks Duc!</npcText>
+        </angie3.4>
+
+    <!-- Forces the player to start exploring. Set Checkpoint 5 at checkpointangie5.0 -->
         <leaveangie3.4>
             <playerOptions>
                 <option>See you soon.</option>
@@ -1440,7 +1576,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Set Exploring -->
+                <keyName>angie0</keyName> 
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -1458,7 +1594,7 @@
             <keys>
                 <keyName>angie5.1</keyName>
                 <keyName>tradeangie1</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>Hey Duc.</npcText>
@@ -1473,7 +1609,7 @@
     
             <keys>
                 <keyName>tradeangie3.2</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
                 <keyName></keyName>
             </keys>
     
@@ -1490,7 +1626,7 @@
             <keys>
                 <keyName>angie7.1</keyName> 
                 <keyName>tradeangie1</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>Hello Duc.</npcText>
@@ -1505,14 +1641,33 @@
             </playerOptions>
     
             <keys>
-                <keyName>leaveangie7.2</keyName> 
-                <keyName>leaveangie7.3</keyName>
+                <keyName>angie7.2</keyName> 
+                <keyName>angie7.3</keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>I’m a little bit thirsty. Do you have any clean water? My sister drank all of mine.</npcText>
         </angie7.1>
+
+
+        <angie7.2>
+            <playerOptions>
+                <option>You're welcome. See you around.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
     
+            <keys>
+                <keyName>leaveangie7.2</keyName> <!-- Set Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thank you. I feel a lot better now.</npcText>
+        </angie7.2>
+
+
+        <!-- Forces the player to start exploring -->
         <leaveangie7.2>
             <playerOptions>
                 <option>You're welcome. See you around.</option>
@@ -1521,14 +1676,31 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Set Exploring -->
+                <keyName>angie0</keyName> 
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
     
             <npcText>Thank you. I feel a lot better now.</npcText>
         </leaveangie7.2>
+
+        <angie7.3>
+            <playerOptions>
+                <option>I'll come back if I find any.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
     
+            <keys>
+                <keyName>leaveangie7.3</keyName> <!-- Set Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Okay. Thanks anyway.</npcText>
+        </angie7.3>
+    
+        <!-- Forces the player to start exploring -->
         <leaveangie7.3>
             <playerOptions>
                 <option>I'll come back if I find any.</option>
@@ -1537,7 +1709,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Set Exploring -->
+                <keyName>angie0</keyName>
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -1556,7 +1728,7 @@
             <keys>
                 <keyName>angie9.1</keyName>
                 <keyName>tradeangie1</keyName>
-                <keyName>leaveangie1</keyName>
+                <keyName>angie1</keyName>
             </keys>
     
             <npcText>What's up, Duc.</npcText>
@@ -1570,8 +1742,8 @@
             </playerOptions>
     
             <keys>
-                <keyName>leaveangie7.2</keyName>
-                <keyName>leaveangie7.3</keyName>
+                <keyName>angie7.2</keyName>
+                <keyName>angie7.3</keyName>
                 <keyName></keyName>
             </keys>
     

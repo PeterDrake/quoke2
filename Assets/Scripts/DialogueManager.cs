@@ -324,6 +324,12 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.SetTrading();
         }
         
+        if (currentNode.nodeName.Contains("leave"))
+        {
+            buttons[cursorLocation].Select();
+            keyboardManager.SetExploring();
+        }
+        
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
