@@ -503,6 +503,7 @@
             <npcText>Carlos Now Trading...</npcText>
         </tradecarlos>
 
+        <!-- Starting Node Angie -->
         <angie0>
             <playerOptions>
                 <option>Hi there, I'm Duc!</option>
@@ -550,7 +551,9 @@
     
             <npcText>Yeah! My codename! Do you have one?</npcText>
         </angie000>
-
+    
+    
+        <!-- Serious Dialogue Split -->
         <angie0.1>
             <playerOptions>
                 <option>Good to meet you... Angie.</option>
@@ -567,6 +570,7 @@
             <npcText>Aw... you're no fun... My name is Angie...</npcText>
         </angie0.1>
 
+        <!-- Serious Checkpoint 1 -->
         <checkpointangie0.10>
             <playerOptions>
                 <option>Your head is bleeding! Are you okay?!</option>
@@ -582,7 +586,8 @@
     
             <npcText>So what do you want?</npcText>
         </checkpointangie0.10>
-    
+
+        <!-- Fun Split 1 -->
         <angie0.2>
             <playerOptions>
                 <option>Sure! What's the mission?</option>
@@ -598,6 +603,7 @@
     
             <npcText>Green Owl, huh? Alright! Do you want to join my mission?</npcText>
         </angie0.2>
+    
     
         <angie0.3>
             <playerOptions>
@@ -630,8 +636,7 @@
     
             <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages in my First Aid Kit...</npcText>
         </angie0.30>
-
-    <!-- There should be a checkpoint here, but the dialogue for Angie wouldn't make sense. (see npcText of this node) -->
+    
         <angie0.4>
             <playerOptions>
                 <option>I wish my school had taught us that...</option>
@@ -647,9 +652,10 @@
     
             <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive enough, so I went out and learned some more on my own!</npcText>
         </angie0.4>
-        
-    
-        <angie0.4>
+
+
+        <!-- Fun Checkpoint 1 -->
+        <checkpointangie0.4>
             <playerOptions>
                 <option>I've got an extra kit right here!</option>
                 <option>I'll keep my eye out for a kit...</option>
@@ -663,8 +669,9 @@
             </keys>
     
             <npcText>Do you have an extra first aid kit?</npcText>
-        </angie0.4>
+        </checkpointangie0.4>
 
+        <!-- Asking what Angie has to trade before going to trading screen/node -->
         <angie0.5>
             <playerOptions>
                 <option>What do you have?</option>
@@ -681,7 +688,7 @@
             <npcText>Really? Yay! I'll give you some things I found for it!</npcText>
         </angie0.5>
 
-    <!-- After exiting trading, go to leaveangie0.7 -->
+        <!-- After exiting trading, go to leaveangie0.7 -->
         <tradeangie0.5>
             <playerOptions>
                 <option>Trading</option>
@@ -713,7 +720,8 @@
     
             <npcText>Thanks, Green Owl!</npcText>
         </leaveangie0.6>
-    
+
+        <!-- Set Checkpoint 4 -->
         <leaveangie0.7>
             <playerOptions>
                 <option>Let's leave her be for now...</option>
@@ -722,7 +730,7 @@
             </playerOptions>
     
             <keys>
-                <keyName>angie0</keyName> <!-- Enter Exploring -->
+                <keyName>angie2.0</keyName> <!-- Enter Exploring -->
                 <keyName></keyName>
                 <keyName></keyName>
             </keys>
@@ -731,7 +739,7 @@
         </leaveangie0.7>
 
         <!-- Fun trading dialogue -->
-        <stockangie0>
+        <angie0000>
             <playerOptions>
                 <option>Show me your stock, Agent Red Jaguar!</option>
                 <option></option>
@@ -744,8 +752,8 @@
                 <keyName></keyName>
             </keys>
     
-            <npcText>Thanks, Green Owl!</npcText>
-        </stockangie0>
+            <npcText>I have important supplies for trade, fellow Agent! *laughs*</npcText>
+        </angie0000>
 
         <tradeangie0>
             <playerOptions>
@@ -814,7 +822,7 @@
     
         <leaveangie1>
             <playerOptions>
-                <option>Bye Duc.</option>
+                <option>Take care, kid</option>
                 <option></option>
                 <option></option>
             </playerOptions>
@@ -825,10 +833,78 @@
                 <keyName></keyName>
             </keys>
     
-            <npcText>Take care kid.</npcText>
+            <npcText>Bye Duc.</npcText>
         </leaveangie1>
+
+        <checkpointangie2.0>
+            <playerOptions>
+                <option>What did you need again?</option>
+                <option>I have some things in my backpack. Do you have anything to trade?</option>
+                <option>I’ve got important... er… agent things… to do. See you later!</option>
+            </playerOptions>
     
-    <!-- TODO: Continue from Angie2.0 in Angie Dialogue -->
+            <keys>
+                <keyName>angie2.1</keyName> <!-- Enter Exploring -->
+                <keyName>tradeangie2.2</keyName>
+                <keyName>leaveangie0</keyName>
+            </keys>
+    
+            <npcText>Hey, Green Owl!</npcText>
+        </checkpointangie2.0>
+    
+        <angie2.1>
+            <playerOptions>
+                <option>Yes I did!</option>
+                <option>I'll keep my eye out.</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie0.5</keyName> <!-- Enter Exploring -->
+                <keyName>leaveangie0.6</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>My head is really starting to pound. Did you find the first aid kit?</npcText>
+        </angie2.1>
+
+        <stockangie2.2>
+            <playerOptions>
+                <option>Alright!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie2.2</keyName> <!-- Enter Exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Take a look at what I've got!</npcText>
+        </stockangie2.2>
+        
+        <!-- If trades First Aid kit, Set Checkpoint 4.0, set Leave Spot leaveAngie0.7, else leaveAngie0 -->
+        <tradeangie2.2>
+            <playerOptions>
+                <option>Trading</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Angie Trading</npcText>
+        </tradeangie2.2>
+
+
+
+
+    <!-- TODO: Continue from Angie4.0 in Angie Dialogue -->
     
     
 
