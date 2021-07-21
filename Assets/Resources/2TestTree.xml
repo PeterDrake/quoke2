@@ -836,6 +836,7 @@
             <npcText>Bye Duc.</npcText>
         </leaveangie1>
 
+        <!-- Checkpoint 2 -->
         <checkpointangie2.0>
             <playerOptions>
                 <option>What did you need again?</option>
@@ -901,10 +902,351 @@
             <npcText>Angie Trading</npcText>
         </tradeangie2.2>
 
+         <!-- First flavour dialogue -->
+         <angie4.0>
+            <playerOptions>
+                <option>Hey Red Jaguar...</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie4.00</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Hey Green Owl!</npcText>
+        </angie4.0>
+        
+        <!-- Checkpoint 4 -->
+        <checkpointangie4.00>
+            <playerOptions>
+                <option>Where are your parents?</option>
+                <option>I have some things in my backpack. Do you have anything to trade?</option>
+                <option>I’ve got important... er... agent things... to do. See you.</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie4.1</keyName>
+                <keyName>tradeangie0</keyName>
+                <keyName>leaveangie0</keyName>
+            </keys>
+    
+            <npcText>Hey Green Owl!</npcText>
+        </checkpointangie4.00>
+    
+        <angie4.1>
+            <playerOptions>
+                <option>That must’ve hurt a lot, but what does it have to do with...?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie4.10</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I was in the library when *BOOM*, the entire building began to shake. I tried to duck under one of the desks and *WHAAM* I hit my head on the edge of the table.</npcText>
+        </angie4.1>
+    
+        <angie4.10>
+            <playerOptions>
+                <option>Your sister? But what about your parents?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie4.100</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>My parents? I’m getting there. Anyway, after the shaking stopped I dashed out of the library. I only thought about my little sister so I travelled across town to get here and find her.</npcText>
+        </angie4.10>
+    
+        <angie4.100>
+            <playerOptions>
+                <option>You should really go back home to your parents.</option>
+                <option>Is there anything else you need?</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie4.2</keyName>
+                <keyName>angie6.2</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Oh they’re probably at home and fine. Now that I’ve bandaged my head, I can keep helping out around here.</npcText>
+        </angie4.100>
+    
+        <angie4.2>
+            <playerOptions>
+                <option>Is there anything else you need?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.2</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I can’t until the roads clear up. I used the radio to contact them before you showed up so they know where I am. They told me to stay put, so I’ll help out as much as I can until they get here.</npcText>
+        </angie4.2>
+    
+        <!-- Checkpoint 6 -->
+        <checkpointangie6.0>
+            <playerOptions>
+                <option>What did you need again?</option>
+                <option>I have some things in my backpack if you want to trade.</option>
+                <option>Bye for now, Red Jaguar!</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.1</keyName>
+                <keyName>tradeangie0</keyName>
+                <keyName>leaveangie0</keyName>
+            </keys>
+    
+            <npcText>Hey Green Owl! What’s going on?</npcText>
+        </checkpointangie6.0>
 
+        <angie6.1>
+            <playerOptions>
+                <option>I have one right here!</option>
+                <option>I'll keep my eye out!</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie6.5</keyName>
+                <keyName>angie6.6</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I dropped my Epi Pen, so I’m looking for a new one. Did you find one?</npcText>
+        </angie6.1>
+    
+        <angie6.2>
+            <playerOptions>
+                <option>That sounds dangerous.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.20</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Now that you mention it, I think I dropped my epi pen when I was getting out of the library. It was crazy! There was glass everywhere so I had to dive over tables to get out!</npcText>
+        </angie6.2>
+    
+        <angie6.20>
+            <playerOptions>
+                <option>Wait you said an epi pen?! That's pretty important, isn't it?</option>
+                <option>[Let Angie keep talking...]</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.4</keyName>
+                <keyName>angie6.3</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I was careful enough. When I got to the street, the aftershock hit!</npcText>
+        </angie6.20>
 
+        <angie6.3>
+            <playerOptions>
+                <option>That must have been really scary!</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.30</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>And then, FWOOSH! The rest of the library came down behind me!</npcText>
+        </angie6.3>
+    
+        <angie6.30>
+            <playerOptions>
+                <option>But isn't an epi pen really important?</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie6.4</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>I guess it could have been scary for a normal civilian. Not for me!</npcText>
+        </angie6.30>
+    
+        <!-- Set a checkpoint at checkpointangie6.0 -->
+        <angie6.4>
+            <playerOptions>
+                <option>I think I have one in my backpack!</option>
+                <option>I'll keep my eye out for one.</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie6.5</keyName>
+                <keyName>angie6.6</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>It’s just a safety net. I haven’t run into anything I’m allergic to yet, but it would be nice to have.</npcText>
+        </angie6.4>
+    
+        <!-- Set checkpoint at checkpointangie8.0 -->
+        <tradeangie6.5>
+            <playerOptions>
+                <option>Trading</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName>
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Angie Trading</npcText>
+        </tradeangie6.5>
+    
+        <angie6.6>
+            <playerOptions>
+                <option>Well now that you mention it, I do have some things in my backpack if you want to trade.</option>
+                <option>See you later, Red Jaguar!</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>tradeangie0</keyName>
+                <keyName>leaveangie0</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks Green Owl! If there’s anything else that you need, just let me know!</npcText>
+        </angie6.6>
+    
+        <!-- Checkpoint 8 -->
+        <checkpointangie8.0>
+            <playerOptions>
+                <option>Is there anything else?</option>
+                <option>I have some things to trade!</option>
+                <option>Nothing to report yet.</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie8.1</keyName>
+                <keyName>tradeangie0</keyName>
+                <keyName>leaveangie0</keyName>
+            </keys>
+    
+            <npcText>What's up, Agent?</npcText>
+        </checkpointangie8.0>
+    
+        <!-- Set checkpoint 10 at checkpointangie10.0 -->
+        <angie8.1>
+            <playerOptions>
+                <option>Yes I do! Here, have a drink.</option>
+                <option>I don't have any on me right now.</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie8.2</keyName>
+                <keyName>leaveangie8.3</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
+        </angie8.1>
 
-    <!-- TODO: Continue from Angie4.0 in Angie Dialogue -->
+        <leaveangie8.2>
+            <playerOptions>
+                <option>You're welcome.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Exit to exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Thanks Green Owl! You're the best!</npcText>
+        </leaveangie8.2>
+    
+        <leaveangie8.3>
+            <playerOptions>
+                <option>I'll keep a lookout.</option>
+                <option></option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie0</keyName> <!-- Exit to exploring -->
+                <keyName></keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
+        </leaveangie8.3>
+    
+        <!-- Checkpoint 10 -->
+        <checkpointangie10.0>
+            <playerOptions>
+                <option>Are you still thirsty?</option>
+                <option>I have things to trade!</option>
+                <option>Nothing to report, Red Jaguar!</option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>angie10.1</keyName>
+                <keyName>tradeangie0</keyName>
+                <keyName>leaveangie0</keyName>
+            </keys>
+    
+            <npcText>Status report, Green Owl?</npcText>
+        </checkpointangie10.0>
+    
+        <angie10.1>
+            <playerOptions>
+                <option>Right here!</option>
+                <option>Not yet. Still looking.</option>
+                <option></option>
+            </playerOptions>
+    
+            <keys>
+                <keyName>leaveangie8.2</keyName> <!-- Exit to exploring -->
+                <keyName>leaveangie8.3</keyName>
+                <keyName></keyName>
+            </keys>
+    
+            <npcText>Yes... Have you found water yet?</npcText>
+        </angie10.1>
+        
+    <!-- TODO: Continue from Angie1.0 in Angie Dialogue -->
     
     
 
