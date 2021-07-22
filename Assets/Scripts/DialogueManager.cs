@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         //Paste the path of the xml file you want to look at here
         TextAsset text = Resources.Load<TextAsset>("2TestTree");
         convoFile.LoadXml(text.text);
-
+    
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
         foreach (XmlNode node in convoFile.LastChild) 
         {

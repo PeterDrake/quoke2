@@ -1,1836 +1,1817 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <convoForest>
-	
-		<safi0>
-			<playerOptions>
-                <option><b>Rescue Safi</b></option>
-				<option></option>
-				<option></option>
-			</playerOptions>
+
+    <safi0>
+        <playerOptions>
+            <option>
+                <b>Rescue Safi</b>
+            </option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+        </keys>
+
+        <npcText>Anyone there?! Help me!</npcText>
+    </safi0>
+
+    <checkpointsafi1>
+        <playerOptions>
+            <option>Shut Off Water</option>
+            <option>Shut of Gas</option>
+            <option>Trade</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>safishutoffwater</keyName>
+            <keyName>safishutoffgas</keyName>
+            <keyName>tradesafi5</keyName>
+        </keys>
+
+        <npcText>Thank you! But my house is still in danger! Halp!</npcText>
+    </checkpointsafi1>
+
+    <safishutoffwater>
+        <playerOptions>
+            <option>I have one right here! Let's get started!</option>
+            <option>I don't have one right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>safiwatersuccess</keyName>
+            <keyName>safinowrench</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+    </safishutoffwater>
+
+
+    <safiwatersuccess>
+        <playerOptions>
+            <option>You are welcome!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+        </keys>
+
+        <npcText>Okay thank you!</npcText>
+
+
+    </safiwatersuccess>
+
+    <safishutoffgas>
+        <playerOptions>
+            <option>I have one right here! Let's get started!</option>
+            <option>I don't have one right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>safigassuccess</keyName>
+            <keyName>safinowrench</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+    </safishutoffgas>
+
+
+    <safigassuccess>
+        <playerOptions>
+            <option>You are welcome!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+        </keys>
+
+        <npcText>Okay thank you!</npcText>
+
+
+    </safigassuccess>
+
+    <safinowrench>
+        <playerOptions>
+            <option>I will be right back!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpointsafi1</keyName>
+        </keys>
+
+        <npcText>Well hurry and find one!</npcText>
+    </safinowrench>
+
+    <tradesafi5>
+        <playerOptions>
+            <option>Safi Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>safi0</keyName>
+            <keyName>safi0</keyName>
+            <keyName>safi0</keyName>
+        </keys>
+
+        <npcText>Safi Now Trading...</npcText>
+    </tradesafi5>
+
+    <dem0>
+        <playerOptions>
+            <option>Help Demitrius with Foraging</option>
+            <option>Give Demitrius a Drink</option>
+            <option>Trade with Demitrius</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>actiondem1</keyName>
+            <keyName>drinkdem2</keyName>
+            <keyName>tradedem</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </dem0>
+
+    <actiondem1>
+        <playerOptions>
+            <option>You're Welcome!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dem0</keyName>
+            <keyName>dem0</keyName>
+            <keyName>dem0</keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
+    </actiondem1>
+
+    <drinkdem2>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>givewaterdem</keyName>
+            <keyName>refusewaterdem</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </drinkdem2>
+
+    <givewaterdem>
+        <playerOptions>
+            <option>Glad you're feeling better!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dem0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh thank you! This should help me for a bit.</npcText>
+    </givewaterdem>
+
+    <refusewaterdem>
+        <playerOptions>
+            <option>I'll try to find some...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dem0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh I see. That's alright.</npcText>
+    </refusewaterdem>
+
+    <tradedem>
+        <playerOptions>
+            <option>I think I'm done.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dem0</keyName>
+            <keyName>dem0</keyName>
+            <keyName>dem0</keyName>
+        </keys>
+
+        <npcText>Demitrius Now Trading...</npcText>
+    </tradedem>
+
+    <annette0>
+        <playerOptions>
+            <option>Help Annette with Translation</option>
+            <option>Give Annette a Drink</option>
+            <option>Trade with Annette</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>actionannette1</keyName>
+            <keyName>drinkannette2</keyName>
+            <keyName>tradeannette</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </annette0>
+
+    <actionannette1>
+        <playerOptions>
+            <option>Glad to help!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>annette0</keyName>
+            <keyName>annette0</keyName>
+            <keyName>annette0</keyName>
+        </keys>
+
+        <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
+    </actionannette1>
+
+    <drinkannette2>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>givewaterannette</keyName>
+            <keyName>refusewaterannette</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I could use some water. You got any on you?</npcText>
+    </drinkannette2>
+
+    <givewaterannette>
+        <playerOptions>
+            <option>Hydrate or diedrate!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>annette0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
+    </givewaterannette>
+
+    <refusewaterannette>
+        <playerOptions>
+            <option>I'll go find some!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>annette0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>If you happen to find any, I'll gladly take some.</npcText>
+    </refusewaterannette>
+
+    <tradeannette>
+        <playerOptions>
+            <option>Annette Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>annette0</keyName>
+            <keyName>annette0</keyName>
+            <keyName>annette0</keyName>
+        </keys>
+
+        <npcText>Annette Now Trading...</npcText>
+    </tradeannette>
+
+    <rainer0>
+        <playerOptions>
+            <option>Rainer Action</option>
+            <option>Rainer Drink</option>
+            <option>Rainer Trade</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>actionrainer1</keyName>
+            <keyName>drinkrainer2</keyName>
+            <keyName>traderainer</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </rainer0>
+
+    <actionrainer1>
+        <playerOptions>
+            <option>Rainer Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>rainer0</keyName>
+            <keyName>rainer0</keyName>
+            <keyName>rainer0</keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
+    </actionrainer1>
+
+    <drinkrainer2>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>givewaterrainer</keyName>
+            <keyName>refusewaterrainer</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </drinkrainer2>
+
+    <givewaterrainer>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>rainer0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh thank you! This should help me for a bit.</npcText>
+    </givewaterrainer>
+
+    <refusewaterrainer>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>rainer0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh I see. That's alright.</npcText>
+    </refusewaterrainer>
+
+    <traderainer>
+        <playerOptions>
+            <option>Rainer Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>rainer0</keyName>
+            <keyName>rainer0</keyName>
+            <keyName>rainer0</keyName>
+        </keys>
+
+        <npcText>Rainer Now Trading...</npcText>
+    </traderainer>
+
+    <carlos0>
+        <playerOptions>
+            <option>Carlos Drink</option>
+            <option>Carlos Trade</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>drinkcarlos2</keyName>
+            <keyName>tradecarlos</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </carlos0>
+
+    <drinkcarlos2>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>givewatercarlos</keyName>
+            <keyName>refusewatercarlos</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </drinkcarlos2>
+
+    <givewatercarlos>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>carlos0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh thank you! This should help me for a bit.</npcText>
+    </givewatercarlos>
+
+    <refusewatercarlos>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>carlos0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh I see. That's alright.</npcText>
+    </refusewatercarlos>
+
+    <tradecarlos>
+        <playerOptions>
+            <option>Carlos Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>carlos0</keyName>
+            <keyName>carlos0</keyName>
+            <keyName>carlos0</keyName>
+        </keys>
+
+        <npcText>Carlos Now Trading...</npcText>
+    </tradecarlos>
+
+    <angie0>
+        <playerOptions>
+            <option>Hi there, I'm Duc!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie00</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>...</npcText>
+    </angie0>
+
+    <angie00>
+        <playerOptions>
+            <option>Your codename?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie000</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Shh! My codename's Red Jaguar!</npcText>
+    </angie00>
+
+    <angie000>
+        <playerOptions>
+            <option>Come on kid, what's your real name?</option>
+            <option>Alright... my codename is Green Owl!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.1</keyName>
+            <keyName>angie0.2</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Yeah! My codename! Do you have one?</npcText>
+    </angie000>
+
+
+    <angie0.1>
+        <playerOptions>
+            <option>Good to meet you... Angie.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointangie0.10</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Aw... you're no fun... My name is Angie...</npcText>
+    </angie0.1>
+
+    <checkpointangie0.10>
+        <playerOptions>
+            <option>Your head is bleeding! Are you okay?!</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Bye now!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie1.1</keyName>
+            <keyName>tradeangie1</keyName>
+            <keyName>angie1</keyName>
+        </keys>
+
+        <npcText>So what do you want?</npcText>
+    </checkpointangie0.10>
+
+    <angie0.2>
+        <playerOptions>
+            <option>Sure! What's the mission?</option>
+            <option>Cut the crap, kid. What's your real name?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.3</keyName>
+            <keyName>angie0.1</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Green Owl, huh? Alright! Do you want to join my mission?</npcText>
+    </angie0.2>
+
+
+    <angie0.3>
+        <playerOptions>
+            <option>Oh really?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.30</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I’ve been sent here by our secret organization to help people after the disaster!</npcText>
+    </angie0.3>
+
+    <angie0.30>
+        <playerOptions>
+            <option>Where'd you learn to do all that?</option>
+            <option>I've got an extra one right here!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.4</keyName>
+            <keyName>angie0.5</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages
+            in my First Aid Kit...
+        </npcText>
+    </angie0.30>
+
+    <angie0.4>
+        <playerOptions>
+            <option>I wish my school had taught us that...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpointangie0.4</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive
+            enough, so I went out and learned some more on my own!
+        </npcText>
+    </angie0.4>
+
+
+    <checkpointangie0.4>
+        <playerOptions>
+            <option>I've got an extra kit right here!</option>
+            <option>I'll keep my eye out for a kit...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.5</keyName>
+            <keyName>angie0.6</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Do you have an extra first aid kit?</npcText>
+    </checkpointangie0.4>
+
+    <angie0.5>
+        <playerOptions>
+            <option>What do you have?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie0.5</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Really? Yay! I'll give you some things I found for it!</npcText>
+    </angie0.5>
+
+    <tradeangie0.5>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0.7</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie0.5>
+
+    <angie0.6>
+        <playerOptions>
+            <option>Of course, Red Jaguar!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie0.6</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks, Green Owl!</npcText>
+    </angie0.6>
+
+    <leaveangie0.6>
+        <playerOptions>
+            <option>Of course, Red Jaguar!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie0.6</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks, Green Owl!</npcText>
+    </leaveangie0.6>
+
+    <angie0.7>
+        <playerOptions>
+            <option>Let's leave her be for now...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie0.7</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thank you so much! I'll get myself cleaned up.</npcText>
+    </angie0.7>
+
+    <leaveangie0.7>
+        <playerOptions>
+            <option>Of course, Red Jaguar!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie0.7</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks, Green Owl!</npcText>
+    </leaveangie0.7>
+
+    <angie0000>
+        <playerOptions>
+            <option>Show me your stock, Agent Red Jaguar!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I have important supplies for trade, fellow Agent! *laughs*</npcText>
+    </angie0000>
+
+    <tradeangie0>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie0>
+
+    <stockangie1>
+        <playerOptions>
+            <option>Great. Let me see.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I have a few things laying around here.</npcText>
+    </stockangie1>
+
+    <tradeangie1>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie1>
+
+    <angie00000>
+        <playerOptions>
+            <option>Farewell, Agent Red Jaguar. *beep*</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Fwoosh! See you later, Green Owl!</npcText>
+    </angie00000>
+
+    <leaveangie0>
+        <playerOptions>
+            <option>Farewell, Agent Red Jaguar. *beep*</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName> 
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Fwoosh! See you later, Green Owl!</npcText>
+    </leaveangie0>
+
+    <angie1>
+        <playerOptions>
+            <option>Take care, kid</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Bye Duc.</npcText>
+    </angie1>
+
+    <leaveangie1>
+        <playerOptions>
+            <option>Take care, kid</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Bye Duc.</npcText>
+    </leaveangie1>
+
+    <checkpointangie2.0>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>I’ve got important... er… agent things… to do. See you later!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie2.1</keyName> 
+            <keyName>tradeangie2.2</keyName>
+            <keyName>angie00000</keyName>
+        </keys>
+
+        <npcText>Hey, Green Owl!</npcText>
+    </checkpointangie2.0>
+
+    <angie2.1>
+        <playerOptions>
+            <option>Yes I did!</option>
+            <option>I'll keep my eye out.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie0.5</keyName> 
+            <keyName>angie0.6</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My head is really starting to pound. Did you find the first aid kit?</npcText>
+    </angie2.1>
+
+    <stockangie2.2>
+        <playerOptions>
+            <option>Alright!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie2.2</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Take a look at what I've got!</npcText>
+    </stockangie2.2>
+
+    <tradeangie2.2>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie2.2>
+
+    <angie4.0>
+        <playerOptions>
+            <option>Hey Red Jaguar...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie4.00</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Hey Green Owl!</npcText>
+    </angie4.0>
+
+    <checkpointangie4.00>
+        <playerOptions>
+            <option>Where are your parents?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>I’ve got important... er... agent things... to do. See you.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie4.1</keyName>
+            <keyName>tradeangie0</keyName>
+            <keyName>angie00000</keyName>
+        </keys>
+
+        <npcText>Hey Green Owl!</npcText>
+    </checkpointangie4.00>
+
+    <angie4.1>
+        <playerOptions>
+            <option>That must’ve hurt a lot, but what does it have to do with...?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie4.10</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I was in the library when *BOOM*, the entire building began to shake. I tried to duck under one of the
+            desks and *WHAAM* I hit my head on the edge of the table.
+        </npcText>
+    </angie4.1>
+
+    <angie4.10>
+        <playerOptions>
+            <option>Your sister? But what about your parents?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie4.100</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My parents? I’m getting there. Anyway, after the shaking stopped I dashed out of the library. I only
+            thought about my little sister so I travelled across town to get here and find her.
+        </npcText>
+    </angie4.10>
+
+    <angie4.100>
+        <playerOptions>
+            <option>You should really go back home to your parents.</option>
+            <option>Is there anything else you need?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie4.2</keyName>
+            <keyName>angie6.2</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh they’re probably at home and fine. Now that I’ve bandaged my head, I can keep helping out around
+            here.
+        </npcText>
+    </angie4.100>
+
+    <angie4.2>
+        <playerOptions>
+            <option>Is there anything else you need?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I can’t until the roads clear up. I used the radio to contact them before you showed up so they know
+            where I am. They told me to stay put, so I’ll help out as much as I can until they get here.
+        </npcText>
+    </angie4.2>
+
+    <checkpointangie6.0>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I have some things in my backpack if you want to trade.</option>
+            <option>Bye for now, Red Jaguar!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.1</keyName>
+            <keyName>tradeangie0</keyName>
+            <keyName>angie00000</keyName>
+        </keys>
+
+        <npcText>Hey Green Owl! What’s going on?</npcText>
+    </checkpointangie6.0>
+
+    <angie6.1>
+        <playerOptions>
+            <option>I have one right here!</option>
+            <option>I'll keep my eye out!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie6.5</keyName>
+            <keyName>angie6.6</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I dropped my Epi Pen, so I’m looking for a new one. Did you find one?</npcText>
+    </angie6.1>
+
+    <angie6.2>
+        <playerOptions>
+            <option>That sounds dangerous.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.20</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Now that you mention it, I think I dropped my EpiPen when I was getting out of the library. It was
+            crazy! There was glass everywhere so I had to dive over tables to get out!
+        </npcText>
+    </angie6.2>
+
+    <angie6.20>
+        <playerOptions>
+            <option>Wait you said an EpiPen?! That's pretty important, isn't it?</option>
+            <option>[Let Angie keep talking...]</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.4</keyName>
+            <keyName>angie6.3</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I was careful enough. When I got to the street, the aftershock hit!</npcText>
+    </angie6.20>
+
+    <angie6.3>
+        <playerOptions>
+            <option>That must have been really scary!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.30</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>And then, FWOOSH! The rest of the library came down behind me!</npcText>
+    </angie6.3>
+
+    <angie6.30>
+        <playerOptions>
+            <option>But isn't an EpiPen really important?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie6.4</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I guess it could have been scary for a normal civilian. Not for me!</npcText>
+    </angie6.30>
+
+    <angie6.4>
+        <playerOptions>
+            <option>I think I have one in my backpack!</option>
+            <option>I'll keep my eye out for one.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie6.5</keyName>
+            <keyName>angie6.6</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>It’s just a safety net. I haven’t run into anything I’m allergic to yet, but it would be nice to
+            have.
+        </npcText>
+    </angie6.4>
+
+    <tradeangie6.5>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie6.5>
+
+    <angie6.6>
+        <playerOptions>
+            <option>Well now that you mention it, I do have some things in my backpack if you want to trade.</option>
+            <option>See you later, Red Jaguar!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie0</keyName>
+            <keyName>angie00000</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks Green Owl! If there’s anything else that you need, just let me know!</npcText>
+    </angie6.6>
+
+    <checkpointangie8.0>
+        <playerOptions>
+            <option>Is there anything else?</option>
+            <option>I have some things to trade!</option>
+            <option>Nothing to report yet.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie8.1</keyName>
+            <keyName>tradeangie0</keyName>
+            <keyName>angie00000</keyName>
+        </keys>
+
+        <npcText>What's up, Agent?</npcText>
+    </checkpointangie8.0>
+
+    <angie8.1>
+        <playerOptions>
+            <option>Yes I do! Here, have a drink.</option>
+            <option>I don't have any on me right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie8.20</keyName>
+            <keyName>angie8.30</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
+    </angie8.1>
+
+    <angie8.20>
+        <playerOptions>
+            <option>You're welcome.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie8.2</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks Green Owl! You're the best!</npcText>
+    </angie8.20>
+
+    <leaveangie8.2>
+        <playerOptions>
+            <option>You're welcome.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks Green Owl! You're the best!</npcText>
+    </leaveangie8.2>
+
+    <angie8.30>
+        <playerOptions>
+            <option>I'll keep a lookout.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie8.3</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
+    </angie8.30>
+
  
-            <keys>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-            </keys>
-	
-			<npcText>Anyone there?! Help me!</npcText>
-        </safi0>
-		
-        <checkpointsafi1>
-            <playerOptions>
-                <option>Shut Off Water</option>
-                <option>Shut of Gas</option>
-                <option>Trade</option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>safishutoffwater</keyName>
-                <keyName>safishutoffgas</keyName>
-                <keyName>tradesafi5</keyName>
-            </keys>
-    
-            <npcText>Thank you! But my house is still in danger! Halp!</npcText>
-        </checkpointsafi1>
-        
-        <safishutoffwater>
-            <playerOptions>
-                <option>I have one right here! Let's get started!</option>
-                <option>I don't have one right now.</option>
-                <option></option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>safiwatersuccess</keyName>
-                <keyName>safinowrench</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
-        </safishutoffwater>
-        
-        
-        <safiwatersuccess>
-            <playerOptions>
-				<option>You are welcome!</option>
-				<option></option>
-                <option></option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-            </keys>
-    
-            <npcText>Okay thank you!</npcText>
-        
-        
-        </safiwatersuccess>
+    <leaveangie8.3>
+        <playerOptions>
+            <option>I'll keep a lookout.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-        <safishutoffgas>
-            <playerOptions>
-                <option>I have one right here! Let's get started!</option>
-                <option>I don't have one right now.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>safigassuccess</keyName>
-                <keyName>safinowrench</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
-        </safishutoffgas>
-    
-    
-        <safigassuccess>
-            <playerOptions>
-                <option>You are welcome!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-            </keys>
-    
-            <npcText>Okay thank you!</npcText>
-    
-    
-        </safigassuccess>
-        
-        <safinowrench>
-            <playerOptions>
-                <option>I will be right back!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-                <keyName>checkpointsafi1</keyName>
-            </keys>
-    
-            <npcText>Well hurry and find one!</npcText>
-        </safinowrench>
-        
-        <tradesafi5>
-            <playerOptions>
-                <option>Safi Go Back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>safi0</keyName>
-                <keyName>safi0</keyName>
-                <keyName>safi0</keyName>
-            </keys>
-    
-            <npcText>Safi Now Trading...</npcText>
-        </tradesafi5>
-		
-        <dem0>
-            <playerOptions>
-                <option>Help Demitrius with Foraging</option>
-                <option>Give Demitrius a Drink</option>
-                <option>Trade with Demitrius</option>
-            </playerOptions>
- 
-            <keys>
-                <keyName>actiondem1</keyName>
-                <keyName>drinkdem2</keyName>
-                <keyName>tradedem</keyName>
-            </keys>
-    
-            <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </dem0>
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-        <actiondem1>
-            <playerOptions>
-                <option>You're Welcome!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
+        <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
+    </leaveangie8.3>
 
-            <keys>
-                <keyName>dem0</keyName>
-                <keyName>dem0</keyName>
-                <keyName>dem0</keyName>
-            </keys>
-            
-            <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
-        </actiondem1>
-        
-        <drinkdem2>
-            <playerOptions>
-                <option>I have water right here!</option>
-                <option>I don't have any water right now...</option>
-                <option></option>
-            </playerOptions>
-                 
-            <keys>
-                <keyName>givewaterdem</keyName>
-                <keyName>refusewaterdem</keyName>
-                <keyName></keyName>
-            </keys>
-                    
-            <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkdem2>
+    <checkpointangie10.0>
+        <playerOptions>
+            <option>Are you still thirsty?</option>
+            <option>I have things to trade!</option>
+            <option>Nothing to report, Red Jaguar!</option>
+        </playerOptions>
 
-        <givewaterdem>
-            <playerOptions>
-                <option>Glad you're feeling better!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-        
-            <keys>
-                <keyName>dem0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-        
-            <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewaterdem>
+        <keys>
+            <keyName>angie10.1</keyName>
+            <keyName>tradeangie0</keyName>
+            <keyName>angie00000</keyName>
+        </keys>
 
-        <refusewaterdem>
-            <playerOptions>
-                <option>I'll try to find some...</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>dem0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh I see. That's alright.</npcText>
-        </refusewaterdem>
-        
-        <tradedem>
-            <playerOptions>
-                <option>I think I'm done.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-            
-            <keys>
-                <keyName>dem0</keyName>
-                <keyName>dem0</keyName>
-                <keyName>dem0</keyName>
-            </keys>
-        
-            <npcText>Demitrius Now Trading...</npcText>
-        </tradedem>
+        <npcText>Status report, Green Owl?</npcText>
+    </checkpointangie10.0>
 
-        <annette0>
-            <playerOptions>
-                <option>Help Annette with Translation</option>
-                <option>Give Annette a Drink</option>
-                <option>Trade with Annette</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>actionannette1</keyName>
-                <keyName>drinkannette2</keyName>
-                <keyName>tradeannette</keyName>
-            </keys>
-    
-            <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </annette0>
-    
-        <actionannette1>
-            <playerOptions>
-                <option>Glad to help!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>annette0</keyName>
-                <keyName>annette0</keyName>
-                <keyName>annette0</keyName>
-            </keys>
-    
-            <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
-        </actionannette1>
-    
-        <drinkannette2>
-            <playerOptions>
-                <option>I have water right here!</option>
-                <option>I don't have any water right now...</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>givewaterannette</keyName>
-                <keyName>refusewaterannette</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I could use some water. You got any on you?</npcText>
-        </drinkannette2>
-    
-        <givewaterannette>
-            <playerOptions>
-                <option>Hydrate or diedrate!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>annette0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
-        </givewaterannette>
-    
-        <refusewaterannette>
-            <playerOptions>
-                <option>I'll go find some!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>annette0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>If you happen to find any, I'll gladly take some.</npcText>
-        </refusewaterannette>
-    
-        <tradeannette>
-                <playerOptions>
-                    <option>Annette Go Back</option>
-                    <option></option>
-                    <option></option>
-                </playerOptions>
-        
-                <keys>
-                    <keyName>annette0</keyName>
-                    <keyName>annette0</keyName>
-                    <keyName>annette0</keyName>
-                </keys>
-        
-                <npcText>Annette Now Trading...</npcText>
-        </tradeannette>
+    <angie10.1>
+        <playerOptions>
+            <option>Right here!</option>
+            <option>Not yet. Still looking.</option>
+            <option></option>
+        </playerOptions>
 
-        <rainer0>
-            <playerOptions>
-                <option>Rainer Action</option>
-                <option>Rainer Drink</option>
-                <option>Rainer Trade</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>actionrainer1</keyName>
-                <keyName>drinkrainer2</keyName>
-                <keyName>traderainer</keyName>
-            </keys>
-    
-            <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </rainer0>
-    
-        <actionrainer1>
-            <playerOptions>
-                <option>Rainer Go Back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>rainer0</keyName>
-                <keyName>rainer0</keyName>
-                <keyName>rainer0</keyName>
-            </keys>
-    
-            <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
-        </actionrainer1>
-    
-        <drinkrainer2>
-            <playerOptions>
-                <option>I have water right here!</option>
-                <option>I don't have any water right now...</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>givewaterrainer</keyName>
-                <keyName>refusewaterrainer</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkrainer2>
-    
-        <givewaterrainer>
-            <playerOptions>
-                <option>Go back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>rainer0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewaterrainer>
-    
-        <refusewaterrainer>
-            <playerOptions>
-                <option>Go back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>rainer0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh I see. That's alright.</npcText>
-        </refusewaterrainer>
-    
-            <traderainer>
-                <playerOptions>
-                    <option>Rainer Go Back</option>
-                    <option></option>
-                    <option></option>
-                </playerOptions>
-        
-                <keys>
-                    <keyName>rainer0</keyName>
-                    <keyName>rainer0</keyName>
-                    <keyName>rainer0</keyName>
-                </keys>
-        
-                <npcText>Rainer Now Trading...</npcText>
-            </traderainer>
-    
-        <carlos0>
-            <playerOptions>
-                <option>Carlos Drink</option>
-                <option>Carlos Trade</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>drinkcarlos2</keyName>
-                <keyName>tradecarlos</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>That quake was no joke. Are you okay at least?</npcText>
-        </carlos0>
-    
-        <drinkcarlos2>
-            <playerOptions>
-                <option>I have water right here!</option>
-                <option>I don't have any water right now...</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>givewatercarlos</keyName>
-                <keyName>refusewatercarlos</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh, sure. Do you have any water?</npcText>
-        </drinkcarlos2>
-    
-        <givewatercarlos>
-            <playerOptions>
-                <option>Go back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>carlos0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh thank you! This should help me for a bit.</npcText>
-        </givewatercarlos>
-    
-        <refusewatercarlos>
-            <playerOptions>
-                <option>Go back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>carlos0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh I see. That's alright.</npcText>
-        </refusewatercarlos>
-    
-        <tradecarlos>
-            <playerOptions>
-                <option>Carlos Go Back</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>carlos0</keyName>
-                <keyName>carlos0</keyName>
-                <keyName>carlos0</keyName>
-            </keys>
-    
-            <npcText>Carlos Now Trading...</npcText>
-        </tradecarlos>
+        <keys>
+            <keyName>angie8.20</keyName>
+            <keyName>angie8.30</keyName>
+            <keyName></keyName>
+        </keys>
 
-    
-    
-    
-        <!-- Starting Node Angie -->
-        <angie0>
-            <playerOptions>
-                <option>Hi there, I'm Duc!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie00</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>...</npcText>
-        </angie0>
+        <npcText>Yes... Have you found water yet?</npcText>
+    </angie10.1>
 
-        <angie00>
-            <playerOptions>
-                <option>Your codename?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie000</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Shh! My codename's Red Jaguar!</npcText>
-        </angie00>
+    <angie1.0>
+        <playerOptions>
+            <option>You're still bleeding! Are you okay?</option>
+            <option>I have some things in my backpack to trade.</option>
+            <option>Bye now!</option>
+        </playerOptions>
 
-        <angie000>
-            <playerOptions>
-                <option>Come on kid, what's your real name?</option>
-                <option>Alright... my codename is Green Owl!</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.1</keyName>
-                <keyName>angie0.2</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Yeah! My codename! Do you have one?</npcText>
-        </angie000>
-    
-    
-        <!-- Serious Dialogue Split -->
-        <angie0.1>
-            <playerOptions>
-                <option>Good to meet you... Angie.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>checkpointangie0.10</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Aw... you're no fun... My name is Angie...</npcText>
-        </angie0.1>
+        <keys>
+            <keyName>angie1.1</keyName> 
+            <keyName>tradeangie1.2</keyName>
+            <keyName>angie1</keyName>
+        </keys>
 
-        <!-- Serious Checkpoint 1 -->
-        <checkpointangie0.10>
-            <playerOptions>
-                <option>Your head is bleeding! Are you okay?!</option>
-                <option>I have some things in my backpack. Do you have anything to trade?</option>
-                <option>Bye now!</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie1.1</keyName>
-                <keyName>tradeangie1</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>So what do you want?</npcText>
-        </checkpointangie0.10>
+        <npcText>Hi there... Duc...</npcText>
+    </angie1.0>
 
-        <!-- Fun Split 1 -->
-        <angie0.2>
-            <playerOptions>
-                <option>Sure! What's the mission?</option>
-                <option>Cut the crap, kid. What's your real name?</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.3</keyName>
-                <keyName>angie0.1</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Green Owl, huh? Alright! Do you want to join my mission?</npcText>
-        </angie0.2>
-    
-    
-        <angie0.3>
-            <playerOptions>
-                <option>Oh really?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.30</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I’ve been sent here by our secret organization to help people after the disaster!</npcText>
-        </angie0.3>
+    <checkpointangie1.0>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I have some things in my backpack to trade.</option>
+            <option>Nothing much. Just passing through.</option>
+        </playerOptions>
 
-        <angie0.30>
-            <playerOptions>
-                <option>Where'd you learn to do all that?</option>
-                <option>I've got an extra one right here!</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.4</keyName>
-                <keyName>angie0.5</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages in my First Aid Kit...</npcText>
-        </angie0.30>
-    
-        <angie0.4>
-            <playerOptions>
-                <option>I wish my school had taught us that...</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>checkpointangie0.4</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive enough, so I went out and learned some more on my own!</npcText>
-        </angie0.4>
+        <keys>
+            <keyName>angie1.4</keyName> 
+            <keyName>tradeangie1.2</keyName>
+            <keyName>angie1</keyName>
+        </keys>
+
+        <npcText>What's up, Duc?</npcText>
+    </checkpointangie1.0>
+
+    <angie1.1>
+        <playerOptions>
+            <option>I've got an extra kit right here.</option>
+            <option>I'll keep my eye out for an extra kit.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie1.2</keyName> 
+            <keyName>angie1.3</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>It’s not that bad. I used my First Aid Kit to help some other people, but I didn’t bandage myself and
+            the cut opened further on my trip over here. Do you have bandages or a First Aid Kit? I'll trade for it.
+        </npcText>
+    </angie1.1>
+
+    <tradeangie1.2>
+        <playerOptions>
+            <option>Trading...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Angie Trading</npcText>
+    </tradeangie1.2>
+
+    <angie1.3>
+        <playerOptions>
+            <option>Now that you mention it, do you want to trade?</option>
+            <option>Nope. See you around.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie1</keyName>
+            <keyName>angie1</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks, it’s starting to hurt more now that I’m talking about it. Is there anything else you need?
+        </npcText>
+    </angie1.3>
+
+    <angie1.4>
+        <playerOptions>
+            <option>Right here.</option>
+            <option>No, sorry.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie1.2</keyName>
+            <keyName>angie1</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>This cut on my head is getting worse. Did you find that First Aid Kit?</npcText>
+    </angie1.4>
+
+    <angie1.5>
+        <playerOptions>
+            <option>See you soon.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie1.5</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks. I'll clean myself up now.</npcText>
+    </angie1.5>
+
+    <leaveangie1.5>
+        <playerOptions>
+            <option>See you soon.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thanks. I'll clean myself up now.</npcText>
+    </leaveangie1.5>
+
+    <checkpointangie3.0>
+        <playerOptions>
+            <option>How are you doing?</option>
+            <option>I have some things to trade.</option>
+            <option>Nevermind, sorry.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie3.1</keyName>
+            <keyName>tradeangie3.2</keyName>
+            <keyName>angie1</keyName>
+        </keys>
+
+        <npcText>Hey Duc.</npcText>
+    </checkpointangie3.0>
+
+    <angie3.1>
+        <playerOptions>
+            <option>I actually have one right here.</option>
+            <option>I will keep a look out.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie3.3</keyName>
+            <keyName>angie3.4</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Well, I looked through my backpack and realized that I must’ve dropped my EpiPen when I CRUNCHED over
+            the broken glass at the library. Could you keep an eye out for an extra one?
+        </npcText>
+    </angie3.1>
 
 
-        <!-- Fun Checkpoint 1 -->
-        <checkpointangie0.4>
-            <playerOptions>
-                <option>I've got an extra kit right here!</option>
-                <option>I'll keep my eye out for a kit...</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.5</keyName>
-                <keyName>angie0.6</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Do you have an extra first aid kit?</npcText>
-        </checkpointangie0.4>
+    <tradeangie3.2>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-        <!-- Asking what Angie has to trade before going to trading screen/node -->
-        <angie0.5>
-            <playerOptions>
-                <option>What do you have?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie0.5</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Really? Yay! I'll give you some things I found for it!</npcText>
-        </angie0.5>
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-        <!-- After exiting trading, go to leaveangie0.7 somehow. -->
-        <tradeangie0.5>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0.7</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie0.5>
-    
-        <angie0.6>
-            <playerOptions>
-                <option>Of course, Red Jaguar!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie0.6</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks, Green Owl!</npcText>
-        </angie0.6>
-    
-        <!-- When the player enters this node, it forces them to start exploring -->
-        <leaveangie0.6>
-            <playerOptions>
-                <option>Of course, Red Jaguar!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie0.6</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks, Green Owl!</npcText>
-        </leaveangie0.6>
+        <npcText>Angie Trading</npcText>
+    </tradeangie3.2>
 
-        <!-- Set Checkpoint 4 -->
-        <angie0.7>
-            <playerOptions>
-                <option>Let's leave her be for now...</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie0.7</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thank you so much! I'll get myself cleaned up.</npcText>
-        </angie0.7>
-    
-        <!-- When the player enters this node, it forces them to start exploring -->
-        <leaveangie0.7>
-            <playerOptions>
-                <option>Of course, Red Jaguar!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie0.7</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks, Green Owl!</npcText>
-        </leaveangie0.7>
+    <tradeangie3.3>
+        <playerOptions>
+            <option>Trading</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-        <!-- Fun trading dialogue -->
-        <angie0000>
-            <playerOptions>
-                <option>Show me your stock, Agent Red Jaguar!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I have important supplies for trade, fellow Agent! *laughs*</npcText>
-        </angie0000>
+        <keys>
+            <keyName>angie0</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-        <tradeangie0>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie0>
+        <npcText>Angie Trading</npcText>
+    </tradeangie3.3>
 
-        <!-- Serious trading dialogue -->
-        <stockangie1>
-            <playerOptions>
-                <option>Great. Let me see.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie1</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I have a few things laying around here.</npcText>
-        </stockangie1>
-    
-        <tradeangie1>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie1>
-    
-        <!-- Leaving Angie 0 -->
-        <angie00000>
-            <playerOptions>
-                <option>Farewell, Agent Red Jaguar. *beep*</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie0</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Fwoosh! See you later, Green Owl!</npcText>
-        </angie00000>
-    
-        <!-- Enter this node to force the player to start exploring -->
-        <leaveangie0>
-            <playerOptions>
-                <option>Farewell, Agent Red Jaguar. *beep*</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Fwoosh! See you later, Green Owl!</npcText>
-        </leaveangie0>
+    <angie3.4>
+        <playerOptions>
+            <option>See you soon.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-        <!-- Leaving Angie 1 -->
-        <angie1>
-            <playerOptions>
-                <option>Take care, kid</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie1</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Bye Duc.</npcText>
-        </angie1>
+        <keys>
+            <keyName>leaveangie3.4</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-        <!-- Enter this node to force the player to start exploring -->
-        <leaveangie1>
-            <playerOptions>
-                <option>Take care, kid</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Bye Duc.</npcText>
-        </leaveangie1>
+        <npcText>Thanks Duc!</npcText>
+    </angie3.4>
 
-        <!-- Checkpoint 2 -->
-        <checkpointangie2.0>
-            <playerOptions>
-                <option>What did you need again?</option>
-                <option>I have some things in my backpack. Do you have anything to trade?</option>
-                <option>I’ve got important... er… agent things… to do. See you later!</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie2.1</keyName> <!-- Enter Exploring -->
-                <keyName>tradeangie2.2</keyName>
-                <keyName>angie00000</keyName>
-            </keys>
-    
-            <npcText>Hey, Green Owl!</npcText>
-        </checkpointangie2.0>
-    
-        <angie2.1>
-            <playerOptions>
-                <option>Yes I did!</option>
-                <option>I'll keep my eye out.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie0.5</keyName> <!-- Enter Exploring -->
-                <keyName>angie0.6</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>My head is really starting to pound. Did you find the first aid kit?</npcText>
-        </angie2.1>
+    <leaveangie3.4>
+        <playerOptions>
+            <option>See you soon.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-        <stockangie2.2>
-            <playerOptions>
-                <option>Alright!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie2.2</keyName> <!-- Enter Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Take a look at what I've got!</npcText>
-        </stockangie2.2>
-        
-        <!-- If trades First Aid kit, Set Checkpoint 4.0, set Leave Spot leaveAngie0.7, else leaveAngie0 -->
-        <tradeangie2.2>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie2.2>
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-         <!-- First flavour dialogue -->
-         <angie4.0>
-            <playerOptions>
-                <option>Hey Red Jaguar...</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie4.00</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Hey Green Owl!</npcText>
-        </angie4.0>
-        
-        <!-- Checkpoint 4 -->
-        <checkpointangie4.00>
-            <playerOptions>
-                <option>Where are your parents?</option>
-                <option>I have some things in my backpack. Do you have anything to trade?</option>
-                <option>I’ve got important... er... agent things... to do. See you.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie4.1</keyName>
-                <keyName>tradeangie0</keyName>
-                <keyName>angie00000</keyName>
-            </keys>
-    
-            <npcText>Hey Green Owl!</npcText>
-        </checkpointangie4.00>
-    
-        <angie4.1>
-            <playerOptions>
-                <option>That must’ve hurt a lot, but what does it have to do with...?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie4.10</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I was in the library when *BOOM*, the entire building began to shake. I tried to duck under one of the desks and *WHAAM* I hit my head on the edge of the table.</npcText>
-        </angie4.1>
-    
-        <angie4.10>
-            <playerOptions>
-                <option>Your sister? But what about your parents?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie4.100</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>My parents? I’m getting there. Anyway, after the shaking stopped I dashed out of the library. I only thought about my little sister so I travelled across town to get here and find her.</npcText>
-        </angie4.10>
-    
-        <angie4.100>
-            <playerOptions>
-                <option>You should really go back home to your parents.</option>
-                <option>Is there anything else you need?</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie4.2</keyName>
-                <keyName>angie6.2</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Oh they’re probably at home and fine. Now that I’ve bandaged my head, I can keep helping out around here.</npcText>
-        </angie4.100>
-    
-        <angie4.2>
-            <playerOptions>
-                <option>Is there anything else you need?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.2</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I can’t until the roads clear up. I used the radio to contact them before you showed up so they know where I am. They told me to stay put, so I’ll help out as much as I can until they get here.</npcText>
-        </angie4.2>
-    
-        <!-- Checkpoint 6 -->
-        <checkpointangie6.0>
-            <playerOptions>
-                <option>What did you need again?</option>
-                <option>I have some things in my backpack if you want to trade.</option>
-                <option>Bye for now, Red Jaguar!</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.1</keyName>
-                <keyName>tradeangie0</keyName>
-                <keyName>angie00000</keyName>
-            </keys>
-    
-            <npcText>Hey Green Owl! What’s going on?</npcText>
-        </checkpointangie6.0>
+        <npcText>Thanks Duc!</npcText>
+    </leaveangie3.4>
 
-        <angie6.1>
-            <playerOptions>
-                <option>I have one right here!</option>
-                <option>I'll keep my eye out!</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie6.5</keyName>
-                <keyName>angie6.6</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I dropped my Epi Pen, so I’m looking for a new one. Did you find one?</npcText>
-        </angie6.1>
-    
-        <angie6.2>
-            <playerOptions>
-                <option>That sounds dangerous.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.20</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Now that you mention it, I think I dropped my EpiPen when I was getting out of the library. It was crazy! There was glass everywhere so I had to dive over tables to get out!</npcText>
-        </angie6.2>
-    
-        <angie6.20>
-            <playerOptions>
-                <option>Wait you said an EpiPen?! That's pretty important, isn't it?</option>
-                <option>[Let Angie keep talking...]</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.4</keyName>
-                <keyName>angie6.3</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I was careful enough. When I got to the street, the aftershock hit!</npcText>
-        </angie6.20>
+    <checkpointangie5.0>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>Want to trade?</option>
+            <option>Nevermind.</option>
+        </playerOptions>
 
-        <angie6.3>
-            <playerOptions>
-                <option>That must have been really scary!</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.30</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>And then, FWOOSH! The rest of the library came down behind me!</npcText>
-        </angie6.3>
-    
-        <angie6.30>
-            <playerOptions>
-                <option>But isn't an EpiPen really important?</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie6.4</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I guess it could have been scary for a normal civilian. Not for me!</npcText>
-        </angie6.30>
-    
-        <!-- Set a checkpoint at checkpointangie6.0 -->
-        <angie6.4>
-            <playerOptions>
-                <option>I think I have one in my backpack!</option>
-                <option>I'll keep my eye out for one.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie6.5</keyName>
-                <keyName>angie6.6</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>It’s just a safety net. I haven’t run into anything I’m allergic to yet, but it would be nice to have.</npcText>
-        </angie6.4>
-    
-        <!-- Set checkpoint at checkpointangie8.0 -->
-        <tradeangie6.5>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie6.5>
-    
-        <angie6.6>
-            <playerOptions>
-                <option>Well now that you mention it, I do have some things in my backpack if you want to trade.</option>
-                <option>See you later, Red Jaguar!</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie0</keyName>
-                <keyName>angie00000</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks Green Owl! If there’s anything else that you need, just let me know!</npcText>
-        </angie6.6>
-    
-        <!-- Checkpoint 8 -->
-        <checkpointangie8.0>
-            <playerOptions>
-                <option>Is there anything else?</option>
-                <option>I have some things to trade!</option>
-                <option>Nothing to report yet.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie8.1</keyName>
-                <keyName>tradeangie0</keyName>
-                <keyName>angie00000</keyName>
-            </keys>
-    
-            <npcText>What's up, Agent?</npcText>
-        </checkpointangie8.0>
-    
-        <!-- Set checkpoint 10 at checkpointangie10.0 -->
-        <angie8.1>
-            <playerOptions>
-                <option>Yes I do! Here, have a drink.</option>
-                <option>I don't have any on me right now.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie8.20</keyName>
-                <keyName>angie8.30</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
-        </angie8.1>
-    
-        <angie8.20>
-            <playerOptions>
-                <option>You're welcome.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie8.2</keyName> <!-- Exit to exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks Green Owl! You're the best!</npcText>
-        </angie8.20>
-    
-        <!-- Forces the player to exit to exploring -->
-        <leaveangie8.2>
-            <playerOptions>
-                <option>You're welcome.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> 
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks Green Owl! You're the best!</npcText>
-        </leaveangie8.2>
-    
-        <angie8.30>
-            <playerOptions>
-                <option>I'll keep a lookout.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie8.3</keyName> <!-- Exit to exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
-        </angie8.30>
-        
-        <!-- Forces the player to exit to exploring -->
-        <leaveangie8.3>
-            <playerOptions>
-                <option>I'll keep a lookout.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> 
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
-        </leaveangie8.3>
-    
-        <!-- Checkpoint 10 -->
-        <checkpointangie10.0>
-            <playerOptions>
-                <option>Are you still thirsty?</option>
-                <option>I have things to trade!</option>
-                <option>Nothing to report, Red Jaguar!</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie10.1</keyName>
-                <keyName>tradeangie0</keyName>
-                <keyName>angie00000</keyName>
-            </keys>
-    
-            <npcText>Status report, Green Owl?</npcText>
-        </checkpointangie10.0>
-    
-        <angie10.1>
-            <playerOptions>
-                <option>Right here!</option>
-                <option>Not yet. Still looking.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie8.20</keyName> <!-- Exit to exploring -->
-                <keyName>angie8.30</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Yes... Have you found water yet?</npcText>
-        </angie10.1>
+        <keys>
+            <keyName>angie5.1</keyName>
+            <keyName>tradeangie1</keyName>
+            <keyName>angie1</keyName>
+        </keys>
 
-        <!-- Serious route -->
-        <angie1.0>
-            <playerOptions>
-                <option>You're still bleeding! Are you okay?</option>
-                <option>I have some things in my backpack to trade.</option>
-                <option>Bye now!</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie1.1</keyName> <!-- Exit to exploring -->
-                <keyName>tradeangie1.2</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>Hi there... Duc...</npcText>
-        </angie1.0>
-    
-        <!-- Checkpoint 1 -->
-        <checkpointangie1.0>
-            <playerOptions>
-                <option>What did you need again?</option>
-                <option>I have some things in my backpack to trade.</option>
-                <option>Nothing much. Just passing through.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie1.4</keyName> <!-- Exit to exploring -->
-                <keyName>tradeangie1.2</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>What's up, Duc?</npcText>
-        </checkpointangie1.0>
-    
-        <angie1.1>
-            <playerOptions>
-                <option>I've got an extra kit right here.</option>
-                <option>I'll keep my eye out for an extra kit.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie1.2</keyName> <!-- Exit to exploring -->
-                <keyName>angie1.3</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>It’s not that bad. I used my First Aid Kit to help some other people, but I didn’t bandage myself and the cut opened further on my trip over here. Do you have bandages or a First Aid Kit? I'll trade for it.</npcText>
-        </angie1.1>
-    
-        <tradeangie1.2>
-            <playerOptions>
-                <option>Trading...</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Trading -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie1.2>
-    
-        <angie1.3>
-            <playerOptions>
-                <option>Now that you mention it, do you want to trade?</option>
-                <option>Nope. See you around.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie1</keyName> <!-- Start trading -->
-                <keyName>angie1</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks, it’s starting to hurt more now that I’m talking about it. Is there anything else you need?</npcText>
-        </angie1.3>
-    
-        <angie1.4>
-            <playerOptions>
-                <option>Right here.</option>
-                <option>No, sorry.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie1.2</keyName> <!-- Start trading -->
-                <keyName>angie1</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>This cut on my head is getting worse. Did you find that First Aid Kit?</npcText>
-        </angie1.4>
-    
-        <angie1.5>
-            <playerOptions>
-                <option>See you soon.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie1.5</keyName> <!-- Set Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks. I'll clean myself up now.</npcText>
-        </angie1.5>
-    
-        <!-- Forces the player to exit to exploring. Set checkpoint 3 at checkpointangie3.0 -->
-        <leaveangie1.5>
-            <playerOptions>
-                <option>See you soon.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Set Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks. I'll clean myself up now.</npcText>
-        </leaveangie1.5>
-    
-        <!-- Checkpoint 3 -->
-        <checkpointangie3.0>
-            <playerOptions>
-                <option>How are you doing?</option>
-                <option>I have some things to trade.</option>
-                <option>Nevermind, sorry.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie3.1</keyName> 
-                <keyName>tradeangie3.2</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>Hey Duc.</npcText>
-        </checkpointangie3.0>
-    
-        <angie3.1>
-            <playerOptions>
-                <option>I actually have one right here.</option>
-                <option>I will keep a look out.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie3.3</keyName> 
-                <keyName>angie3.4</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Well, I looked through my backpack and realized that I must’ve dropped my EpiPen when I CRUNCHED over the broken glass at the library. Could you keep an eye out for an extra one?</npcText>
-        </angie3.1>
+        <npcText>Hey Duc.</npcText>
+    </checkpointangie5.0>
+
+    <angie5.1>
+        <playerOptions>
+            <option>I do have one!</option>
+            <option>Still looking. I'll keep you posted.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie3.2</keyName>
+            <keyName>angie1</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I dropped my EpiPen. Have you found one?</npcText>
+    </angie5.1>
+
+    <checkpointangie7.0>
+        <playerOptions>
+            <option>Is there anything else I can help with?</option>
+            <option>Got some things to trade?</option>
+            <option>Nevermind.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie7.1</keyName>
+            <keyName>tradeangie1</keyName>
+            <keyName>angie1</keyName>
+        </keys>
+
+        <npcText>Hello Duc.</npcText>
+    </checkpointangie7.0>
+
+    <angie7.1>
+        <playerOptions>
+            <option>Yeah here. Take a sip.</option>
+            <option>Not yet. I was looking for some myself.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie7.2</keyName>
+            <keyName>angie7.3</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I’m a little bit thirsty. Do you have any clean water? My sister drank all of mine.</npcText>
+    </angie7.1>
 
 
-        <tradeangie3.2>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Trading -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie3.2>
-    
-        <!-- If gives EpiPen, activate checkpoint 7 at checkpointangie7.0 and leaveAngie3.4 -->
-        <tradeangie3.3>
-            <playerOptions>
-                <option>Trading</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> <!-- Trading -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Angie Trading</npcText>
-        </tradeangie3.3>
-    
-        <angie3.4>
-            <playerOptions>
-                <option>See you soon.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie3.4</keyName> <!-- Set Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks Duc!</npcText>
-        </angie3.4>
+    <angie7.2>
+        <playerOptions>
+            <option>You're welcome. See you around.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-    <!-- Forces the player to start exploring. Set Checkpoint 5 at checkpointangie5.0 -->
-        <leaveangie3.4>
-            <playerOptions>
-                <option>See you soon.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> 
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thanks Duc!</npcText>
-        </leaveangie3.4>
-    
-        <checkpointangie5.0>
-            <playerOptions>
-                <option>What did you need again?</option>
-                <option>Want to trade?</option>
-                <option>Nevermind.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie5.1</keyName>
-                <keyName>tradeangie1</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>Hey Duc.</npcText>
-        </checkpointangie5.0>
+        <keys>
+            <keyName>leaveangie7.2</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
 
-        <angie5.1>
-            <playerOptions>
-                <option>I do have one!</option>
-                <option>Still looking. I'll keep you posted.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>tradeangie3.2</keyName>
-                <keyName>angie1</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I dropped my EpiPen. Have you found one?</npcText>
-        </angie5.1>
-    
-        <checkpointangie7.0>
-            <playerOptions>
-                <option>Is there anything else I can help with?</option>
-                <option>Got some things to trade?</option>
-                <option>Nevermind.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie7.1</keyName> 
-                <keyName>tradeangie1</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>Hello Duc.</npcText>
-        </checkpointangie7.0>
-    
-        <!-- Set checkpoint 9 at checkpointangie9.0 -->
-        <angie7.1>
-            <playerOptions>
-                <option>Yeah here. Take a sip.</option>
-                <option>Not yet. I was looking for some myself.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie7.2</keyName> 
-                <keyName>angie7.3</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I’m a little bit thirsty. Do you have any clean water? My sister drank all of mine.</npcText>
-        </angie7.1>
+        <npcText>Thank you. I feel a lot better now.</npcText>
+    </angie7.2>
 
 
-        <angie7.2>
-            <playerOptions>
-                <option>You're welcome. See you around.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie7.2</keyName> <!-- Set Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thank you. I feel a lot better now.</npcText>
-        </angie7.2>
+    <leaveangie7.2>
+        <playerOptions>
+            <option>You're welcome. See you around.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thank you. I feel a lot better now.</npcText>
+    </leaveangie7.2>
+
+    <angie7.3>
+        <playerOptions>
+            <option>I'll come back if I find any.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leaveangie7.3</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Okay. Thanks anyway.</npcText>
+    </angie7.3>
+
+    <leaveangie7.3>
+        <playerOptions>
+            <option>I'll come back if I find any.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Okay. Thanks anyway.</npcText>
+    </leaveangie7.3>
+
+    <checkpointangie9.0>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>Got some things to trade?</option>
+            <option>Nevermind.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie9.1</keyName>
+            <keyName>tradeangie1</keyName>
+            <keyName>angie1</keyName>
+        </keys>
+
+        <npcText>What's up, Duc.</npcText>
+    </checkpointangie9.0>
+
+    <angie9.1>
+        <playerOptions>
+            <option>Found some finally. Here you go.</option>
+            <option>Not on me right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie7.2</keyName>
+            <keyName>angie7.3</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I’m still kind of thirsty. Have you found water?</npcText>
+    </angie9.1>
 
 
-        <!-- Forces the player to start exploring -->
-        <leaveangie7.2>
-            <playerOptions>
-                <option>You're welcome. See you around.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName> 
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Thank you. I feel a lot better now.</npcText>
-        </leaveangie7.2>
+    <angie0>
+        <playerOptions>
+            <option>Angie Drink</option>
+            <option>Angie Trade</option>
+            <option></option>
+        </playerOptions>
 
-        <angie7.3>
-            <playerOptions>
-                <option>I'll come back if I find any.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>leaveangie7.3</keyName> <!-- Set Exploring -->
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Okay. Thanks anyway.</npcText>
-        </angie7.3>
-    
-        <!-- Forces the player to start exploring -->
-        <leaveangie7.3>
-            <playerOptions>
-                <option>I'll come back if I find any.</option>
-                <option></option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie0</keyName>
-                <keyName></keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>Okay. Thanks anyway.</npcText>
-        </leaveangie7.3>
-    
-        <!-- Checkpoint 9 -->
-        <checkpointangie9.0>
-            <playerOptions>
-                <option>What did you need again?</option>
-                <option>Got some things to trade?</option>
-                <option>Nevermind.</option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie9.1</keyName>
-                <keyName>tradeangie1</keyName>
-                <keyName>angie1</keyName>
-            </keys>
-    
-            <npcText>What's up, Duc.</npcText>
-        </checkpointangie9.0>
-    
-        <angie9.1>
-            <playerOptions>
-                <option>Found some finally. Here you go.</option>
-                <option>Not on me right now.</option>
-                <option></option>
-            </playerOptions>
-    
-            <keys>
-                <keyName>angie7.2</keyName>
-                <keyName>angie7.3</keyName>
-                <keyName></keyName>
-            </keys>
-    
-            <npcText>I’m still kind of thirsty. Have you found water?</npcText>
-        </angie9.1>
-    
-    
+        <keys>
+            <keyName>drinkangie2</keyName>
+            <keyName>tradeangie</keyName>
+            <keyName></keyName>
+        </keys>
 
-    <!--        <angie0>-->
-<!--            <playerOptions>-->
-<!--                <option>Angie Drink</option>-->
-<!--                <option>Angie Trade</option>-->
-<!--                <option></option>-->
-<!--            </playerOptions>-->
-<!--    -->
-<!--            <keys>-->
-<!--                <keyName>drinkangie2</keyName>-->
-<!--                <keyName>tradeangie</keyName>-->
-<!--                <keyName></keyName>-->
-<!--            </keys>-->
-<!--    -->
-<!--            <npcText>That quake was no joke. Are you okay at least?</npcText>-->
-<!--        </angie0>-->
-<!--    -->
-<!--        <drinkangie2>-->
-<!--            <playerOptions>-->
-<!--                <option>I have water right here!</option>-->
-<!--                <option>I don't have any water right now...</option>-->
-<!--                <option></option>-->
-<!--            </playerOptions>-->
-<!--    -->
-<!--            <keys>-->
-<!--                <keyName>givewaterangie</keyName>-->
-<!--                <keyName>refusewaterangie</keyName>-->
-<!--                <keyName></keyName>-->
-<!--            </keys>-->
-<!--    -->
-<!--            <npcText>Oh, sure. Do you have any water?</npcText>-->
-<!--        </drinkangie2>-->
-<!--    -->
-<!--        <givewaterangie>-->
-<!--            <playerOptions>-->
-<!--                <option>Go back</option>-->
-<!--                <option></option>-->
-<!--                <option></option>-->
-<!--            </playerOptions>-->
-<!--    -->
-<!--            <keys>-->
-<!--                <keyName>angie0</keyName>-->
-<!--                <keyName></keyName>-->
-<!--                <keyName></keyName>-->
-<!--            </keys>-->
-<!--    -->
-<!--            <npcText>Oh thank you! This should help me for a bit.</npcText>-->
-<!--        </givewaterangie>-->
-<!--    -->
-<!--        <refusewaterangie>-->
-<!--            <playerOptions>-->
-<!--                <option>Go back</option>-->
-<!--                <option></option>-->
-<!--                <option></option>-->
-<!--            </playerOptions>-->
-<!--    -->
-<!--            <keys>-->
-<!--                <keyName>angie0</keyName>-->
-<!--                <keyName></keyName>-->
-<!--                <keyName></keyName>-->
-<!--            </keys>-->
-<!--    -->
-<!--            <npcText>Oh I see. That's alright.</npcText>-->
-<!--        </refusewaterangie>-->
-<!--    -->
-<!--        <tradeangie>-->
-<!--            <playerOptions>-->
-<!--                <option>Angie Go Back</option>-->
-<!--                <option></option>-->
-<!--                <option></option>-->
-<!--            </playerOptions>-->
-<!--    -->
-<!--            <keys>-->
-<!--                <keyName>angie0</keyName>-->
-<!--                <keyName>angie0</keyName>-->
-<!--                <keyName>angie0</keyName>-->
-<!--            </keys>-->
-<!--    -->
-<!--            <npcText>Angie Now Trading...</npcText>-->
-<!--        </tradeangie>-->
-        		
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </angie0>
+
+    <drinkangie2>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>givewaterangie</keyName>
+            <keyName>refusewaterangie</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </drinkangie2>
+
+    <givewaterangie>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh thank you! This should help me for a bit.</npcText>
+    </givewaterangie>
+
+    <refusewaterangie>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh I see. That's alright.</npcText>
+    </refusewaterangie>
+
+    <tradeangie>
+        <playerOptions>
+            <option>Angie Go Back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>angie0</keyName>
+            <keyName>angie0</keyName>
+            <keyName>angie0</keyName>
+        </keys>
+
+        <npcText>Angie Now Trading...</npcText>
+    </tradeangie>
+
 
 </convoForest>
