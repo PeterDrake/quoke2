@@ -151,9 +151,20 @@ public class DialogueManager : MonoBehaviour
                 //If Angie has the first aid kit...
                 if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
                 {
-                    //Change the conversation node to angie0.7
-                    Debug.Log("Change to angie0.7");
-                    currentNode = forest["angie0.7"];
+                    if (currentNode.nodeName.Equals("checkpointangie0.10"))
+                    {
+                        //Change the conversation node to angie0.7
+                        Debug.Log("Change to angie1.5");
+                        currentNode = forest["angie1.5"];
+                        GlobalControls.SetCheckpoint("checkpointangie3.0");
+                    }
+                    else
+                    {
+                        //Change the conversation node to angie0.7
+                        Debug.Log("Change to angie0.7");
+                        currentNode = forest["angie0.7"];
+                        GlobalControls.SetCheckpoint("angie4.0");
+                    }
                     
                     //Go through all the buttons and put that node's text into the buttons.
                     for (int i = 0; i < currentNode.playerArray.Count; i++)
