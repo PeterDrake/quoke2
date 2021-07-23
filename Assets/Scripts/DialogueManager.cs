@@ -147,7 +147,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[c].gameObject.SetActive(false);
                 }
             }
-
+            
             //If the player leaves a trading session...
             if (keyboardManager.leftTrading)
             {
@@ -172,21 +172,40 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["angie0.7"];
                         GlobalControls.SetCheckpoint("angie4.0");
                     }
-                    
-                    //Go through all the buttons and put that node's text into the buttons.
-                    for (int i = 0; i < currentNode.playerArray.Count; i++)
-                    {
-                        buttons[i].gameObject.SetActive(true);
-                        buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
 
-                        //Turns a button off if there is no text in the button
-                        if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
-                        {
-                            buttons[i].gameObject.SetActive(false);
-                        }
-                    }
-                    
                 }
+                //If trading but angie doesn't have the first aid kit
+                else
+                {
+                    //serious path
+                    if (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie1.0"))
+                    {
+                        //Change the conversation node to angie1
+                        Debug.Log("Change to angie1");
+                        currentNode = forest["angie1"];
+                    }
+                    //fun path
+                    else
+                    {
+                        //Change the conversation node to angie00000
+                        Debug.Log("Change to angie00000");
+                        currentNode = forest["angie00000"];
+                    }
+                }
+                //Go through all the buttons and put that node's text into the buttons.
+                for (int i = 0; i < currentNode.playerArray.Count; i++)
+                {
+                    buttons[i].gameObject.SetActive(true);
+                    buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
+
+                    //Turns a button off if there is no text in the button
+                    if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
+                    {
+                        buttons[i].gameObject.SetActive(false);
+                    }
+                }
+                
+                
             }
             
         }
@@ -365,6 +384,21 @@ public class DialogueManager : MonoBehaviour
         {
             GlobalControls.SetCheckpoint(currentNode.nodeName);
         }
+        
+        //** If the player is in the fun path of Angie's dialogue and does not have the first aid kit, set the
+        //   checkpoint to be checkpointangie2.0 */
+        if (currentNode.nodeName.Contains("angie0.6"))
+        {
+            Debug.Log("Setting Checkpoint to checkpointangie2.0");
+            GlobalControls.SetCheckpoint("checkpointangie2.0");
+        }
+        if (currentNode.nodeName.Contains("angie1.3"))
+        {
+            Debug.Log("Setting Checkpoint to checkpointangie1.0");
+            GlobalControls.SetCheckpoint("checkpointangie1.0");
+        }
+
+
 
         if (currentNode.nodeName.Contains("trade"))
         {

@@ -1379,7 +1379,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>tradeangie1.2</keyName> 
+            <keyName>angie1.2</keyName> 
             <keyName>angie1.3</keyName>
             <keyName></keyName>
         </keys>
@@ -1389,6 +1389,22 @@
         </npcText>
     </angie1.1>
 
+    <angie1.2>
+        <playerOptions>
+            <option>What do you have?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>tradeangie1.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh cool. I can trade some stuff with you for it.</npcText>
+    </angie1.2>
+    
     <tradeangie1.2>
         <playerOptions>
             <option>Trading...</option>
@@ -1424,13 +1440,13 @@
 
     <angie1.4>
         <playerOptions>
-            <option>Right here.</option>
+            <option>I've got an extra kit right here.</option>
             <option>No, sorry.</option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>tradeangie1.2</keyName>
+            <keyName>angie1.2</keyName>
             <keyName>angie1</keyName>
             <keyName></keyName>
         </keys>
@@ -1712,7 +1728,7 @@
             <keyName>angie1</keyName>
         </keys>
 
-        <npcText>What's up, Duc.</npcText>
+        <npcText>What's up, Duc?</npcText>
     </checkpointangie9.0>
 
     <angie9.1>
