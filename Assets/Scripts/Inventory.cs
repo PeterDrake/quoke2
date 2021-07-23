@@ -212,6 +212,9 @@ public class Inventory : MonoBehaviour
                 if (items[i].name.Equals("First Aid Kit(Clone)"))
                     GlobalControls.PlayerHasFirstAidKit = false;
                 
+                if (items[i].name.Equals("Epi Pen(Clone)"))
+                    GlobalControls.PlayerHasEpiPen = false;
+                
                 // Remove item from inventory
                 items[i] = null;
                 slotContents[i].SetActive(false);
@@ -434,6 +437,12 @@ public class Inventory : MonoBehaviour
                 GlobalControls.PlayerHasFirstAidKit = true;
             }
 
+            if (item.name.Equals("Epi Pen(Clone)"))
+            {
+                Debug.Log("Player Has Epi Pen!");
+                GlobalControls.PlayerHasEpiPen = true;
+            }
+
 
         }
         //reselect slot to current slot number to update tooltip if necessary
@@ -560,6 +569,8 @@ public class Inventory : MonoBehaviour
                 GlobalControls.PlayerHasWrench = true;
             if (item.name.Equals("First Aid Kit(Clone)"))
                 GlobalControls.PlayerHasFirstAidKit = true;
+            if (item.name.Equals("Epi Pen(Clone)"))
+                GlobalControls.PlayerHasEpiPen = true;
 
             // Remove item from the world
             item.SetActive(false);

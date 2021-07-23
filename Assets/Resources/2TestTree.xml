@@ -1603,7 +1603,7 @@
 
     <angie5.1>
         <playerOptions>
-            <option>I do have one!</option>
+            <option>I think I have one in my backpack.</option>
             <option>Still looking. I'll keep you posted.</option>
             <option></option>
         </playerOptions>
@@ -1746,87 +1746,5 @@
 
         <npcText>I’m still kind of thirsty. Have you found water?</npcText>
     </angie9.1>
-
-
-    <angie0>
-        <playerOptions>
-            <option>Angie Drink</option>
-            <option>Angie Trade</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>drinkangie2</keyName>
-            <keyName>tradeangie</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>That quake was no joke. Are you okay at least?</npcText>
-    </angie0>
-
-    <drinkangie2>
-        <playerOptions>
-            <option>I have water right here!</option>
-            <option>I don't have any water right now...</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>givewaterangie</keyName>
-            <keyName>refusewaterangie</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Oh, sure. Do you have any water?</npcText>
-    </drinkangie2>
-
-    <givewaterangie>
-        <playerOptions>
-            <option>Go back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>angie0</keyName>
-            <keyName></keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Oh thank you! This should help me for a bit.</npcText>
-    </givewaterangie>
-
-    <refusewaterangie>
-        <playerOptions>
-            <option>Go back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>angie0</keyName>
-            <keyName></keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Oh I see. That's alright.</npcText>
-    </refusewaterangie>
-
-    <tradeangie>
-        <playerOptions>
-            <option>Angie Go Back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>angie0</keyName>
-            <keyName>angie0</keyName>
-            <keyName>angie0</keyName>
-        </keys>
-
-        <npcText>Angie Now Trading...</npcText>
-    </tradeangie>
-
-
+    
 </convoForest>

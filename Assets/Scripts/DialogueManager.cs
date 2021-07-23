@@ -136,6 +136,7 @@ public class DialogueManager : MonoBehaviour
             //Turns off button if Angie drinks is complete
             if (currentNode.nodeName.Contains("angie"))
             {
+                //if the player has the first aid kit, activate the button that gives the kit to Angie.
                 if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I've got an extra kit right here"))
                 {
@@ -143,6 +144,18 @@ public class DialogueManager : MonoBehaviour
                 }
                 else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I've got an extra kit right here"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                //if the player has the epipen, activate the button that gives the pen to Angie.
+                if (GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I think I have one in my backpack"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I think I have one in my backpack"))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
@@ -172,7 +185,7 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["angie0.7"];
                         GlobalControls.SetCheckpoint("angie4.0");
                     }
-
+                    
                 }
                 //If trading but angie doesn't have the first aid kit
                 else
@@ -192,6 +205,52 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["angie00000"];
                     }
                 }
+
+                
+                //TODO: Figure out how to implement the same thing for the Epi Pen
+                // //If Angie has the Epi Pen...
+                // if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
+                // {
+                //     //serious path
+                //     if (currentNode.nodeName.Equals("checkpointangie5.0"))
+                //     {
+                //         //Change the conversation node to angie3.4
+                //         Debug.Log("Change to angie3.4");
+                //         currentNode = forest["angie3.4"];
+                //         GlobalControls.SetCheckpoint("checkpointangie7.0");
+                //     }
+                //     //fun path
+                //     else
+                //     {
+                //         //Change the conversation node to angie6.6
+                //         Debug.Log("Change to angie6.6");
+                //         currentNode = forest["angie6.6"];
+                //         GlobalControls.SetCheckpoint("checkpointangie8.0");
+                //     }
+                // }
+                // //If trading but angie doesn't have the epi pen
+                // else if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") &&
+                //          !GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
+                // {
+                //     //serious path
+                //     if (currentNode.nodeName.Equals("checkpointangie3.0") ||
+                //         currentNode.nodeName.Equals("checkpointangie5.0"))
+                //     {
+                //         //Change the conversation node to angie1
+                //         Debug.Log("Change to angie3.4");
+                //         currentNode = forest["angie3.4"];
+                //     }
+                //     //fun path
+                //     else
+                //     {
+                //         //Change the conversation node to angie6.6
+                //         Debug.Log("Change to angie6.6");
+                //         currentNode = forest["angie6.6"];
+                //     }
+                // }
+                
+                
+                
                 //Go through all the buttons and put that node's text into the buttons.
                 for (int i = 0; i < currentNode.playerArray.Count; i++)
                 {
@@ -440,6 +499,7 @@ public class DialogueManager : MonoBehaviour
             
             if (currentNode.nodeName.Contains("angie"))
             {
+                //if player has first aid kit, activate the button that gives the kit to Angie.
                 if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I've got an extra kit right here"))
                 {
@@ -447,6 +507,18 @@ public class DialogueManager : MonoBehaviour
                 }
                 else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
                     ("I've got an extra kit right here"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+                
+                //if the player has the epipen, activate the button that gives the pen to Angie.
+                if (GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I think I have one in my backpack"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I think I have one in my backpack"))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
