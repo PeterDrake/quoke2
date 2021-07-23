@@ -159,12 +159,14 @@ public class TradeManager : MonoBehaviour
             {
                 playerOffers.Add(item.name.Replace("(Clone)","").Trim());
                 if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = false;
+                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = false;
             }
         }
         
         foreach (GameObject item in inventoryNPCBin.items)
         {
             if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = true;
+            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = true;
         }
 
         int playerTradePoints = 0;

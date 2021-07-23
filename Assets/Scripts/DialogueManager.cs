@@ -134,13 +134,18 @@ public class DialogueManager : MonoBehaviour
             }
             
             //Turns off button if Angie drinks is complete
-            if (currentNode.nodeName.Contains("angie0"))
+            if (currentNode.nodeName.Contains("angie"))
             {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AngieDrinkDone)
+                if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I've got an extra kit right here"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I've got an extra kit right here"))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
-
             }
 
             //If the player leaves a trading session...
@@ -151,13 +156,15 @@ public class DialogueManager : MonoBehaviour
                 //If Angie has the first aid kit...
                 if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
                 {
+                    //serious path
                     if (currentNode.nodeName.Equals("checkpointangie0.10"))
                     {
-                        //Change the conversation node to angie0.7
+                        //Change the conversation node to angie1.5
                         Debug.Log("Change to angie1.5");
                         currentNode = forest["angie1.5"];
                         GlobalControls.SetCheckpoint("checkpointangie3.0");
                     }
+                    //fun path
                     else
                     {
                         //Change the conversation node to angie0.7
@@ -397,6 +404,20 @@ public class DialogueManager : MonoBehaviour
                 }
             }
             
+            if (currentNode.nodeName.Contains("angie"))
+            {
+                if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I've got an extra kit right here"))
+                {
+                    buttons[c].gameObject.SetActive(true);
+                }
+                else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+                    ("I've got an extra kit right here"))
+                {
+                    buttons[c].gameObject.SetActive(false);
+                }
+            }
+            
             if (currentNode.nodeName.Contains("safishutoffwater") || currentNode.nodeName.Contains("safishutoffgas"))
             {
                 if (GlobalControls.PlayerHasWrench && buttons[c].GetComponentInChildren<Text>(true).text.Contains
@@ -481,17 +502,7 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Angie drinks is complete
-            if (currentNode.nodeName.Contains("angie0"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>(true).text.Contains("Drink") && GlobalControls.AngieDrinkDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            
+           
         }
             
         //This will change the npc text based on the node

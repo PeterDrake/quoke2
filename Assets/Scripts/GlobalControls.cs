@@ -52,6 +52,7 @@ public static class GlobalControls
     private static bool annetteDrinkDone = false;
 
     private static bool playerHasCleanWater = false;
+    private static bool playerHasFirstAidKit = false;
     private static bool playerHasWrench = false;
     
     private static Dictionary<string, NPC> npcList;
@@ -158,6 +159,7 @@ public static class GlobalControls
         annetteDrinkDone = false;
 
         playerHasCleanWater = false;
+        playerHasFirstAidKit = false;
         playerHasWrench = false;
     }
 
@@ -249,6 +251,7 @@ public static class GlobalControls
         annetteDrinkDone = false;
 
         playerHasCleanWater = false;
+        playerHasFirstAidKit = false;
         playerHasWrench = false;
     }
 
@@ -482,7 +485,13 @@ public static class GlobalControls
         get => playerHasCleanWater;
         set => playerHasCleanWater = value;
     }
-    
+
+    public static bool PlayerHasFirstAidKit
+    {
+        get => playerHasFirstAidKit;
+        set => playerHasFirstAidKit = value;
+    }
+
     public static bool PlayerHasWrench
     {
         get => playerHasWrench;

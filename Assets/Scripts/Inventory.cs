@@ -204,14 +204,13 @@ public class Inventory : MonoBehaviour
                     items[i].transform.position, container.name);
 
                 if (items[i].name.Equals("Water Bottle Clean(Clone)"))
-                {
                     GlobalControls.PlayerHasCleanWater = false;
-                }
-                
+
                 if (items[i].name.Equals("Wrench(Clone)"))
-                {
                     GlobalControls.PlayerHasWrench = false;
-                }
+
+                if (items[i].name.Equals("First Aid Kit(Clone)"))
+                    GlobalControls.PlayerHasFirstAidKit = false;
                 
                 // Remove item from inventory
                 items[i] = null;
@@ -428,6 +427,12 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Player Has Wrench!");
                 GlobalControls.PlayerHasWrench = true;
             }
+            
+            if (item.name.Equals("First Aid Kit(Clone)"))
+            {
+                Debug.Log("Player Has First Aid Kit!");
+                GlobalControls.PlayerHasFirstAidKit = true;
+            }
 
 
         }
@@ -553,7 +558,8 @@ public class Inventory : MonoBehaviour
                 GlobalControls.PlayerHasCleanWater = true;
             if (item.name.Equals("Wrench(Clone)"))
                 GlobalControls.PlayerHasWrench = true;
-
+            if (item.name.Equals("First Aid Kit(Clone)"))
+                GlobalControls.PlayerHasFirstAidKit = true;
 
             // Remove item from the world
             item.SetActive(false);
