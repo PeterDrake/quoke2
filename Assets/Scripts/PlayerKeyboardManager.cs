@@ -33,6 +33,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject npcInventoryTooltip;
     private Text[] npcInventoryTooltipItemName;
 
+    public bool leftTrading = false;
+
     private int cursorLocation;
 
     private int inventoryNumber;
@@ -705,15 +707,8 @@ public class PlayerKeyboardManager : MonoBehaviour
             
         if (keyDown.Equals(KeyCode.Escape))
         {
+            leftTrading = true;
             tradeManager.LeaveTrading();
-            Debug.Log(GlobalItemList.ItemList["First Aid Kit"]);
-            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
-            {
-                Debug.Log("Change to angie0.7");
-                
-                //TODO: Figure out how to force the player to a specific dialogue node.
-                dialogueManager.currentNode = dialogueManager.forest["angie0.7"];
-            }
         }
     }
     

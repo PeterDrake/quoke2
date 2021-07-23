@@ -142,6 +142,34 @@ public class DialogueManager : MonoBehaviour
                 }
 
             }
+
+            //If the player leaves a trading session...
+            if (keyboardManager.leftTrading)
+            {
+                keyboardManager.leftTrading = false;
+                
+                //If Angie has the first aid kit...
+                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
+                {
+                    //Change the conversation node to angie0.7
+                    Debug.Log("Change to angie0.7");
+                    currentNode = forest["angie0.7"];
+                    
+                    //Go through all the buttons and put that node's text into the buttons.
+                    for (int i = 0; i < currentNode.playerArray.Count; i++)
+                    {
+                        buttons[i].gameObject.SetActive(true);
+                        buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
+
+                        //Turns a button off if there is no text in the button
+                        if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
+                        {
+                            buttons[i].gameObject.SetActive(false);
+                        }
+                    }
+                    
+                }
+            }
             
         }
         //This displays the initial nodes npc text
@@ -191,7 +219,8 @@ public class DialogueManager : MonoBehaviour
             return cursorLocation;
         }
         //This will change the node you're looking at
-        currentNode = forest[currentNode.nextNode[cursorLocation]]; 
+        currentNode = forest[currentNode.nextNode[cursorLocation]];
+        Debug.Log("Current Node " + currentNode.nodeName);
         
         //switch statement cases for actions
         int x = 0;
