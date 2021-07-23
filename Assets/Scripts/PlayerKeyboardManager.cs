@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -305,7 +306,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             
         
         if (keyDown.Equals(KeyCode.Escape))
-        {  
+        {
             SetExploring();
         }
         
@@ -703,8 +704,16 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
             
         if (keyDown.Equals(KeyCode.Escape))
-        {  
+        {
             tradeManager.LeaveTrading();
+            Debug.Log(GlobalItemList.ItemList["First Aid Kit"]);
+            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
+            {
+                Debug.Log("Change to angie0.7");
+                
+                //TODO: Figure out how to force the player to a specific dialogue node.
+                dialogueManager.currentNode = dialogueManager.forest["angie0.7"];
+            }
         }
     }
     

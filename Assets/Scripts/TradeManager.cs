@@ -21,7 +21,7 @@ public class TradeManager : MonoBehaviour
     private Sprite selected;
     private Inventory parentInventory;
     private Inventory inventoryPlayer;
-    private Inventory inventoryNPC;
+    public Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
     private Inventory inventoryIOU;
@@ -54,7 +54,6 @@ public class TradeManager : MonoBehaviour
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
-
     }
 
     public void BeginTrading()
@@ -197,8 +196,10 @@ public class TradeManager : MonoBehaviour
             if(i < endIouTotal) inventoryIOU.slotFrames[i].SetActive(true);
             else inventoryIOU.slotFrames[i].SetActive(false);
         }
+        
         button.interactable = false;
         referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+
     }
 
     private IEnumerator SelectButton()
