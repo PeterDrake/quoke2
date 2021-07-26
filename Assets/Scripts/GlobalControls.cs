@@ -55,6 +55,8 @@ public static class GlobalControls
     private static bool playerHasFirstAidKit = false;
     private static bool playerHasEpiPen = false;
     private static bool playerHasWrench = false;
+
+    private static bool angieSeriousDialogue = false;
     
     private static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
@@ -163,6 +165,8 @@ public static class GlobalControls
         playerHasFirstAidKit = false;
         playerHasEpiPen = false;
         playerHasWrench = false;
+        
+        angieSeriousDialogue = false;
     }
 
 
@@ -256,6 +260,8 @@ public static class GlobalControls
         playerHasFirstAidKit = false;
         playerHasEpiPen = false;
         playerHasWrench = false;
+        
+        angieSeriousDialogue = false;
     }
 
     public static Dictionary<string,int> Points
@@ -507,5 +513,10 @@ public static class GlobalControls
         set => playerHasWrench = value;
     }
 
+    public static bool AngieSeriousDialogue
+    {
+        get => angieSeriousDialogue;
+        set => angieSeriousDialogue = value;
+    }
 }
 
