@@ -165,86 +165,96 @@ public class DialogueManager : MonoBehaviour
             if (keyboardManager.leftTrading)
             {
                 keyboardManager.leftTrading = false;
+
+                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
+                    GlobalControls.AngieHasFirstAidKit = true;
+                if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
+                    GlobalControls.AngieHasEpiPen = true;
+
+                Debug.Log("Current Node: " + currentNode.nodeName);
                 
                 //If Angie has the first aid kit...
-                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
+                if (GlobalControls.AngieHasFirstAidKit && 
+                    (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie0.4") ||
+                    currentNode.nodeName.Equals("checkpointangie1.0") || currentNode.nodeName.Equals("checkpointangie2.0")))
                 {
+                    Debug.Log("Angie has first aid kit");
                     //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie0.10"))
+                    if (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie1.0"))
                     {
                         //Change the conversation node to angie1.5
-                        Debug.Log("Change to angie1.5");
+                        Debug.Log("MED KIT SERIOUS PATH Change to angie1.5");
                         currentNode = forest["angie1.5"];
                         GlobalControls.SetCheckpoint("checkpointangie3.0");
                     }
                     //fun path
-                    else
+                    else if (currentNode.nodeName.Equals("checkpointangie0.4") || currentNode.nodeName.Equals("checkpointangie2.0"))
                     {
                         //Change the conversation node to angie0.7
-                        Debug.Log("Change to angie0.7");
+                        Debug.Log("MED KIT FUN PATH Change to angie0.7");
                         currentNode = forest["angie0.7"];
                         GlobalControls.SetCheckpoint("angie4.0");
                     }
                     
                 }
                 //If trading but angie doesn't have the first aid kit
-                else
+                else if (!GlobalControls.AngieHasFirstAidKit && !GlobalControls.AngieHasEpiPen)
                 {
+                    Debug.Log("Angie DOES NOT have first aid kit");
                     //serious path
                     if (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie1.0"))
                     {
                         //Change the conversation node to angie1
-                        Debug.Log("Change to angie1");
+                        Debug.Log("MED KIT SERIOUS PATH Change to angie1");
                         currentNode = forest["angie1"];
                     }
                     //fun path
-                    else
+                    else if (currentNode.nodeName.Equals("checkpointangie0.4"))
                     {
                         //Change the conversation node to angie00000
-                        Debug.Log("Change to angie00000");
+                        Debug.Log("MED KIT FUN PATH Change to angie00000");
                         currentNode = forest["angie00000"];
                     }
                 }
-
-                
-                //TODO: Figure out how to implement the same thing for the Epi Pen
                 //If Angie has the Epi Pen...
-                if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
+                else if (GlobalControls.AngieHasFirstAidKit && GlobalControls.AngieHasEpiPen)
                 {
+                    Debug.Log("Angie has epi pen");
                     //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie5.0"))
+                    if (currentNode.nodeName.Equals("checkpointangie3.0"))
                     {
                         //Change the conversation node to angie3.4
-                        Debug.Log("Change to angie3.4");
+                        Debug.Log("EPI PEN SERIOUS PATH Change to angie3.4");
                         currentNode = forest["angie3.4"];
                         GlobalControls.SetCheckpoint("checkpointangie7.0");
                     }
                     //fun path
-                    else
+                    else if (currentNode.nodeName.Equals("checkpointangie4.00"))
                     {
                         //Change the conversation node to angie6.6
-                        Debug.Log("Change to angie6.6");
+                        Debug.Log("EPI PEN FUN PATH Change to angie6.6");
                         currentNode = forest["angie6.6"];
                         GlobalControls.SetCheckpoint("checkpointangie8.0");
                     }
                 }
                 //If trading but angie doesn't have the epi pen
-                else if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") &&
-                         !GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
+                else if (GlobalControls.AngieHasFirstAidKit && !GlobalControls.AngieHasEpiPen)
                 {
+                    Debug.Log("Angie DOES NOT have epi pen");
                     //serious path
                     if (currentNode.nodeName.Equals("checkpointangie3.0") ||
                         currentNode.nodeName.Equals("checkpointangie5.0"))
                     {
                         //Change the conversation node to angie1
-                        Debug.Log("Change to angie3.4");
+                        Debug.Log("EPI PEN SERIOUS PATH Change to angie3.4");
                         currentNode = forest["angie3.4"];
                     }
                     //fun path
-                    else
+                    else if (currentNode.nodeName.Equals("checkpointangie4.00"))
                     {
                         //Change the conversation node to angie6.6
-                        Debug.Log("Change to angie6.6");
+                        Debug.Log("EPI PEN FUN PATH Change to angie6.6");
+                        GlobalControls.SetCheckpoint("checkpointangie6.0");
                         currentNode = forest["angie6.6"];
                     }
                 }

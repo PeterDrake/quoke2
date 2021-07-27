@@ -55,7 +55,9 @@ public static class GlobalControls
     private static bool playerHasFirstAidKit = false;
     private static bool playerHasEpiPen = false;
     private static bool playerHasWrench = false;
-
+    
+    private static bool angieHasEpiPen = false;
+    private static bool angieHasFirstAidKit = false;
     private static bool angieSeriousDialogue = false;
     
     private static Dictionary<string, NPC> npcList;
@@ -166,6 +168,8 @@ public static class GlobalControls
         playerHasEpiPen = false;
         playerHasWrench = false;
         
+        angieHasEpiPen = false;
+        angieHasFirstAidKit = false;
         angieSeriousDialogue = false;
     }
 
@@ -261,6 +265,8 @@ public static class GlobalControls
         playerHasEpiPen = false;
         playerHasWrench = false;
         
+        angieHasFirstAidKit = false;
+        angieSeriousDialogue = false;
         angieSeriousDialogue = false;
     }
 
@@ -517,6 +523,18 @@ public static class GlobalControls
     {
         get => angieSeriousDialogue;
         set => angieSeriousDialogue = value;
+    }
+
+    public static bool AngieHasEpiPen
+    {
+        get => angieHasEpiPen;
+        set => angieHasEpiPen = value;
+    }
+
+    public static bool AngieHasFirstAidKit
+    {
+        get => angieHasFirstAidKit;
+        set => angieHasFirstAidKit = value;
     }
 }
 
