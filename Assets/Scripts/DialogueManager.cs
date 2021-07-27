@@ -229,7 +229,7 @@ public class DialogueManager : MonoBehaviour
                         GlobalControls.SetCheckpoint("checkpointangie7.0");
                     }
                     //fun path
-                    else if (currentNode.nodeName.Equals("checkpointangie4.00"))
+                    else if (currentNode.nodeName.Equals("checkpointangie4.00") || currentNode.nodeName.Equals("checkpointangie6.0"))
                     {
                         //Change the conversation node to angie6.6
                         Debug.Log("EPI PEN FUN PATH Change to angie6.6");
@@ -257,6 +257,11 @@ public class DialogueManager : MonoBehaviour
                         GlobalControls.SetCheckpoint("checkpointangie6.0");
                         currentNode = forest["angie6.6"];
                     }
+                }
+                else
+                {
+                    Debug.Log("ERROR ANGIE");
+                    currentNode = forest["errorangie"];
                 }
                 
                 
@@ -466,6 +471,11 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Setting Checkpoint to checkpointangie1.0");
             GlobalControls.SetCheckpoint("checkpointangie1.0");
         }
+        if (currentNode.nodeName.Contains("angie6.6"))
+        {
+            Debug.Log("Setting Checkpoint to checkpointangie6.0");
+            GlobalControls.SetCheckpoint("checkpointangie6.0");
+        }
 
         if (currentNode.nodeName.Equals("angie0.1"))
         {
@@ -531,13 +541,19 @@ public class DialogueManager : MonoBehaviour
                 }
                 
                 //if the player has the epipen, activate the button that gives the pen to Angie.
-                if (GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I think I have one in my backpack"))
+                if (GlobalControls.PlayerHasEpiPen && 
+                    (buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one in my backpack") || 
+                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one right here") ||
+                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") || 
+                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I actually have one right here")))
                 {
                     buttons[c].gameObject.SetActive(true);
                 }
-                else if (!GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I think I have one in my backpack"))
+                else if (!GlobalControls.PlayerHasEpiPen && 
+                         (buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one in my backpack") || 
+                         buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one right here") ||
+                         buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") || 
+                         buttons[c].GetComponentInChildren<Text>(true).text.Contains("I actually have one right here")))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
