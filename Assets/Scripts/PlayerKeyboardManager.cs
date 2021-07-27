@@ -252,7 +252,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void UpdateConversing()
     {
         // Change the cursor's location with < and >
-        if (keyDown.Equals(KeyCode.Comma))
+        if (keyDown.Equals(KeyCode.Comma) || keyDown.Equals(KeyCode.W))
         {
             cursorLocation--;
             if (cursorLocation < 0)
@@ -278,7 +278,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
         
-        if (keyDown.Equals(KeyCode.Period))
+        if (keyDown.Equals(KeyCode.Period) || keyDown.Equals(KeyCode.S))
         {
             cursorLocation++;
             if (cursorLocation > dialogueManager.buttons.Length - 1)
@@ -335,21 +335,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         if (keyDown.Equals(KeyCode.W)) player.StartMoving(new Vector3(0,0,1));
         else if (keyDown.Equals(KeyCode.A)) player.StartMoving(new Vector3(-1,0,0));
         else if (keyDown.Equals(KeyCode.S)) player.StartMoving(new Vector3(0,0,-1));
-        else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1,0,0));
-
-
-
-        /*float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        if (Math.Abs(h) >= 1f)
-        {
-            player.StartMoving(new Vector3(h, 0f, 0f));
-        } else if (Math.Abs(v) >= 1f)
-        {
-            player.StartMoving(new Vector3(0f, 0f, v));
-        }*/
-            
-            
+        else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1, 0, 0));
+        
         // Select from inventory (1-9)
         if (cursorLocation < inventory.slotContents.Length && inventory)
         {

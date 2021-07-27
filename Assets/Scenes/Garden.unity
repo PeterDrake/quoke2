@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: Bob needs a thing
+  notes: Bob needs a First Aid Kit and Epi Pen
 --- !u!114 &254935138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: Carlos needs a thing
+  notes: Carlos needs a Radio and Batteries
 --- !u!114 &1151322454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1668,6 +1668,26 @@ PrefabInstance:
     - target: {fileID: 5668351774691285907, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905280716864698374, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905280716864698374, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905280716955902645, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905280716955902645, guid: 4f310032ac595ff40b25e031ea8fbc69,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8006134552911436690, guid: 4f310032ac595ff40b25e031ea8fbc69,
