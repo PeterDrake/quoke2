@@ -500,12 +500,14 @@ public class DialogueManager : MonoBehaviour
         {
             buttons[cursorLocation].Select();
             keyboardManager.SetTrading();
+            return cursorLocation;
         }
         
         if (currentNode.nodeName.Contains("leave"))
         {
             buttons[cursorLocation].Select();
             keyboardManager.SetExploring();
+            return cursorLocation;
         }
         
         
