@@ -29,8 +29,16 @@ public class DialogueUI : MonoBehaviour
             if (text.gameObject.name.Equals("Name Text"))
             {
                 text.text = name;
-                if (name.Equals("Duc")) text.alignment = TextAnchor.MiddleLeft;
-                else text.alignment = TextAnchor.MiddleRight;
+                if (name.Equals("Duc"))
+                {
+                    text.alignment = TextAnchor.MiddleLeft;
+                    text.gameObject.GetComponentInParent<Image>().color = Color.green;
+                }
+                else
+                {
+                    text.alignment = TextAnchor.MiddleRight;
+                    text.gameObject.GetComponentInParent<Image>().color = Color.cyan;
+                }
             }
 
             if (text.gameObject.name.Equals("Dialogue Text"))

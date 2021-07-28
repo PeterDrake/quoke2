@@ -338,8 +338,8 @@ public class DialogueManager : MonoBehaviour
             return cursorLocation;
         }
         //This will change the node you're looking at
-        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.CurrentNPC);
-        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.CurrentNPC));
+        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
+        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name));
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
