@@ -8,15 +8,14 @@ public class DialogueUI : MonoBehaviour
     private GameObject prefab;
     private ReferenceManager referenceManager;
     private DialogueManager dialogueManager;
+    private ScrollRect scrollRect;
 
 
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
-        
-        AddDialogue("hello im duc", "Duc");
-        AddDialogue("hello im NPC", "NPC");
+        scrollRect = dialogueManager.gameObject.GetComponentInChildren<ScrollRect>(true);
     }
 
     public void AddDialogue(string dialogue, string name)
@@ -39,7 +38,10 @@ public class DialogueUI : MonoBehaviour
                 text.text = dialogue;
             }
         }
-        
+
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 0f;
+
     }
 
     public void ClearDialogue()
