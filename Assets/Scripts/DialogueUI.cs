@@ -54,10 +54,9 @@ public class DialogueUI : MonoBehaviour
     public void LoadNPC(string npcName)
     {
         ClearDialogue();
-        
-        foreach (string node in GlobalControls.NPCList[npcName].dialogueList)
+        foreach (DialogueNode node in GlobalControls.NPCList[npcName].dialogueList)
         {
-            AddDialogue(node,GlobalControls.NPCList[npcName].name);
+            AddDialogue(node.text,node.name);
         }
     }
 }
