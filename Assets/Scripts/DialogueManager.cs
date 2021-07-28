@@ -22,13 +22,18 @@ public class DialogueManager : MonoBehaviour
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
 
+    private void Start()
+    {
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+    }
+
     private void OnEnable()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        
     }
 
     public void BeginConversation()

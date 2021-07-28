@@ -1,25 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
-    public GameObject prefab;
+    private GameObject prefab;
     private ReferenceManager referenceManager;
     private DialogueManager dialogueManager;
 
-    void OnEnable()
+    void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         
-        AddDialogue("Hello world");
+        AddDialogue("hello im duc", "Duc");
+        AddDialogue("hello im NPC", "NPC");
     }
 
-    public void AddDialogue(string dialogue)
+    public void AddDialogue(string dialogue, string name)
     {
+        Debug.Log("Adding a new dialogue");
+        prefab = (GameObject) Resources.Load("Dialogue Box");
         GameObject dialogueText;
-        dialogueText = (GameObject)Instantiate(prefab, transform);
+        dialogueText = (GameObject) Instantiate(prefab, transform);
+        foreach (Text text in dialogueText.GetComponentsInChildren<Text>(true))
+        {
+            if (text.gameObject.name.Equals("Name Text"))
+            {
+                text.text = name;
+                if (name.Equals("Duc")) text.alignment = TextAnchor.MiddleLeft;
+                else text.alignment = TextAnchor.MiddleRight;
+            }
+
+            if (text.gameObject.name.Equals("Dialogue Text"))
+            {
+                text.text = dialogue;
+            }
+        }
         
     }
 }
