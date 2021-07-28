@@ -9,6 +9,7 @@ public class DialogueUI : MonoBehaviour
     private ReferenceManager referenceManager;
     private DialogueManager dialogueManager;
 
+
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -39,5 +40,23 @@ public class DialogueUI : MonoBehaviour
             }
         }
         
+    }
+
+    public void ClearDialogue()
+    {
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
+        {
+            Object.Destroy(child.gameObject);
+        }
+    }
+
+    public void LoadNPC(string npcName)
+    {
+        ClearDialogue();
+        
+        foreach (string node in GlobalControls.NPCList[npcName].dialogueList)
+        {
+            AddDialogue(node,GlobalControls.NPCList[npcName].name);
+        }
     }
 }
