@@ -46,7 +46,8 @@ public class DialogueUI : MonoBehaviour
     {
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
         {
-            Object.Destroy(child.gameObject);
+            if(!child.name.Equals(this.gameObject.name))
+                Object.Destroy(child.gameObject);
         }
     }
 

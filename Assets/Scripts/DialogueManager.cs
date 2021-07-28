@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginConversation()
     {
-        dialogueUI.LoadNPC(npcName);
+        dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
         
         //Paste the path of the xml file you want to look at here
         TextAsset text = Resources.Load<TextAsset>("2TestTree");
@@ -338,8 +338,8 @@ public class DialogueManager : MonoBehaviour
             return cursorLocation;
         }
         //This will change the node you're looking at
-        dialogueUI.AddDialogue(currentNode.npcText, npcName);
-        GlobalControls.NPCList[npcName].dialogueList.Add(currentNode.npcText);
+        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.CurrentNPC);
+        //GlobalControls.NPCList[npcName].dialogueList.Add(currentNode.npcText);
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
         
