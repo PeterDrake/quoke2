@@ -202,14 +202,22 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
             else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
             else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
-            else if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
-            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
-            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
-            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
-            else if (Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
-            else if (Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
-            else if (Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
-            else if (Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.D)) keyDown = KeyCode.D;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.RightArrow)) keyDown = KeyCode.D;
             foreach (var key in validInputs)
             {
                 if (Input.GetKeyDown(key))
@@ -219,7 +227,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
             }
         }
-        
+
         if (gamemode == 1)
         {
             UpdateSegue();
