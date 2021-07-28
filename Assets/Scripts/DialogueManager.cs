@@ -14,7 +14,6 @@ public class DialogueManager : MonoBehaviour
 {
     public int cursorLocation;
     public Button[] buttons;
-    public GameObject npcText;
     private String npcName;
     private XmlDocument convoFile;
     public Dictionary<string, ConvoNode> forest;
@@ -292,7 +291,6 @@ public class DialogueManager : MonoBehaviour
             
         }
         //This displays the initial nodes npc text
-        npcText.GetComponentInChildren<Text>().text = currentNode.npcText;
         dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
         
         if (cursorLocation > buttons.Length - 1)
@@ -343,8 +341,6 @@ public class DialogueManager : MonoBehaviour
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
-        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
-        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name));
         //switch statement cases for actions
         int x = 0;
         if (GlobalControls.CurrentNPC.Equals("dem0"))
@@ -657,10 +653,10 @@ public class DialogueManager : MonoBehaviour
             
            
         }
-            
-        //This will change the npc text based on the node
-        npcText.GetComponentInChildren<Text>(true).text = currentNode.npcText;
         
+        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
+        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name));
+
         if (cursorLocation > buttons.Length - 1)
         {
             cursorLocation = 0;
