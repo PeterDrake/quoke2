@@ -21,10 +21,12 @@ public class DialogueManager : MonoBehaviour
     public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private DialogueUI dialogueUI;
 
     private void Start()
     {
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
     }
 
     private void OnEnable()
