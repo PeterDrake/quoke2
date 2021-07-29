@@ -336,6 +336,20 @@ public class DialogueManager : MonoBehaviour
         {
             return cursorLocation;
         }
+        
+        if (currentNode.nodeName.Contains("trade") || currentNode.nodeName.Contains("need"))
+        {
+            buttons[cursorLocation].Select();
+            keyboardManager.SetTrading();
+            return cursorLocation;
+        }
+        
+        if (currentNode.nodeName.Contains("leave"))
+        {
+            buttons[cursorLocation].Select();
+            keyboardManager.SetExploring();
+            return cursorLocation;
+        }
         //This will change the node you're looking at
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
@@ -495,21 +509,6 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Entering Angie Fun Path");
             GlobalControls.AngieSeriousDialogue = false;
         }
-
-        if (currentNode.nodeName.Contains("trade"))
-        {
-            buttons[cursorLocation].Select();
-            keyboardManager.SetTrading();
-            return cursorLocation;
-        }
-        
-        if (currentNode.nodeName.Contains("leave"))
-        {
-            buttons[cursorLocation].Select();
-            keyboardManager.SetExploring();
-            return cursorLocation;
-        }
-        
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
