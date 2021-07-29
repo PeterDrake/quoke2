@@ -355,6 +355,16 @@ public class DialogueManager : MonoBehaviour
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
+        
+        
+        
+        
+        
+        //TODO: MOST CODE BELOW ARE OBS0LETE. WILL REMOVE LATER
+
+        
+        
+        
         //switch statement cases for actions
         int x = 0;
         if (GlobalControls.CurrentNPC.Equals("dem0"))
