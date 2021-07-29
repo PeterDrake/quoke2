@@ -131,7 +131,7 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi Pen", "First Aid Kit"}, "angie0",
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "angie0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
             };
             currentObjective = 2;
@@ -150,7 +150,7 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi Pen", "First Aid Kit"}, "angie0",
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "angie0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
             };
             currentObjective = 1;
@@ -228,7 +228,7 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi Pen", "First Aid Kit"}, "angie0",
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "angie0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
             };
             currentObjective = 2;
@@ -247,7 +247,7 @@ public static class GlobalControls
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"Epi Pen", "First Aid Kit"}, "angie0",
+                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "angie0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
             };
             currentObjective = 1;
