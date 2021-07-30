@@ -191,11 +191,13 @@ public class DialogueManager : MonoBehaviour
                     if(!GlobalControls.AngieSeriousDialogue)
                     {                        
                         GlobalControls.SetCheckpoint("basic_angie_8.0");
+                        currentNode = forest["leave_angie_0"];
                         GlobalControls.AngieHasEpiPen = true;
                     }
                     else
                     {                        
                         GlobalControls.SetCheckpoint("basic_angie_9.0");
+                        currentNode = forest["leave_angie_1"];
                         GlobalControls.AngieHasEpiPen = true;
                     }
                 else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
@@ -326,13 +328,18 @@ public class DialogueManager : MonoBehaviour
             if (currentNode.nodeName.Equals("checkpoint_angie_1.1"))
                 GlobalControls.SetCheckpoint("basic_angie_3.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
+            {
+                GlobalControls.AngieSeriousDialogue = true;
                 GlobalControls.SetCheckpoint("basic_angie_1.0");
+            }
             if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
                 GlobalControls.SetCheckpoint("basic_angie_2.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_5.1"))
                 GlobalControls.SetCheckpoint("basic_angie_7.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_6.4"))
                 GlobalControls.SetCheckpoint("basic_angie_6.0");
+            if (currentNode.nodeName.Equals("checkpoint_angie_8.1"))
+                GlobalControls.SetCheckpoint("basic_angie_10.0");
         }
         
         
@@ -478,11 +485,7 @@ public class DialogueManager : MonoBehaviour
         //     GlobalControls.SetCheckpoint("checkpointangie6.0");
         // }
         //
-        // if (currentNode.nodeName.Equals("angie0.1"))
-        // {
-        //     Debug.Log("Entering Angie Serious Path");
-        //     GlobalControls.AngieSeriousDialogue = true;
-        // }
+        
         // else
         // {
         //     Debug.Log("Entering Angie Fun Path");
