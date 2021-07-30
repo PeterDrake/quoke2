@@ -336,11 +336,49 @@ public class DialogueManager : MonoBehaviour
         {
             return cursorLocation;
         }
+        
+        if (currentNode.nodeName.Contains("trade") || currentNode.nodeName.Contains("need"))
+        {
+            buttons[cursorLocation].Select();
+            keyboardManager.SetTrading();
+            return cursorLocation;
+        }
+        
+        if (currentNode.nodeName.Contains("leave"))
+        {
+            buttons[cursorLocation].Select();
+            keyboardManager.SetExploring();
+            return cursorLocation;
+        }
+        
+        
+        for (int i = 0; i < currentNode.nextNode.Count; i++)
+        {
+            string node = currentNode.nextNode[i];
+            if (node.Contains("need"))
+            {
+                //This checks the itemList for the item that the npc needs at the index specified in the key name
+                //need0_angie_12.2
+                //Here the index is 0
+                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(node.Substring(4, 5))]].containerName.Equals("Player"))
+                {
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
+
         //This will change the node you're looking at
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
+
+        //TODO: MOST CODE BELOW ARE OBS0LETE. WILL REMOVE LATER
+
+        
+        
+        
         //switch statement cases for actions
         int x = 0;
         if (GlobalControls.CurrentNPC.Equals("dem0"))
@@ -495,21 +533,6 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Entering Angie Fun Path");
             GlobalControls.AngieSeriousDialogue = false;
         }
-
-        if (currentNode.nodeName.Contains("trade"))
-        {
-            buttons[cursorLocation].Select();
-            keyboardManager.SetTrading();
-            return cursorLocation;
-        }
-        
-        if (currentNode.nodeName.Contains("leave"))
-        {
-            buttons[cursorLocation].Select();
-            keyboardManager.SetExploring();
-            return cursorLocation;
-        }
-        
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
