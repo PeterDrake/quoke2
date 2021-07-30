@@ -1134,7 +1134,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>success0_angie_8.2</keyName>
+            <keyName>success0_angie_8.3</keyName>
             <keyName>leave_angie_8.4</keyName>
             <keyName></keyName>
         </keys>
@@ -1442,7 +1442,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_angie_9.1</keyName>
+            <keyName>action0_angie_9.2</keyName>
             <keyName>trade_angie_1</keyName>
             <keyName>leave_angie_1</keyName>
         </keys>
@@ -1450,36 +1450,20 @@
         <npcText>Hello Duc.</npcText>
     </basic_angie_9.0>
 
-    <basic_angie_9.1>
-        <playerOptions>
-            <option>Yeah I have some!</option>
-            <option>Not yet. I'll let you know if I find some.</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>action0_angie_9.2</keyName>
-            <keyName>leave_angie_1</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>I’m a little bit thirsty. Do you have any clean water? My sister drank all of mine.</npcText>
-    </basic_angie_9.1>
-    
     <action0_angie_9.2>
         <playerOptions>
             <option>Yes here you go!</option>
-            <option></option>
+            <option>No, I don't have any water.</option>
             <option></option>
         </playerOptions>
 
         <keys>
             <keyName>success0_angie_9.3</keyName> 
-            <keyName></keyName>
+            <keyName>leave_angie_0</keyName>
             <keyName></keyName>
         </keys>
 
-        <npcText>Oh really! Can I have some?</npcText>
+        <npcText>I’m a little bit thirsty. Do you have any clean water? My sister drank all of mine.</npcText>
     </action0_angie_9.2>
 
     <success0_angie_9.3>

@@ -164,6 +164,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("First Aid Kit", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Epi Pen", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
                 sceneManagement.ChangeScene("Garden");
             }
             
