@@ -21,6 +21,7 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode loadWaterItems = KeyCode.Y;
     public KeyCode loadPreQuakeItems = KeyCode.V;
     public KeyCode changeCondition = KeyCode.T;
+    public KeyCode angieItems = KeyCode.F;
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class CheatKeyboardController : MonoBehaviour
                 else if (Input.GetKeyDown(loadWaterItems)) keyDown = loadWaterItems;
                 else if (Input.GetKeyDown(loadPreQuakeItems)) keyDown = loadPreQuakeItems;
                 else if (Input.GetKeyDown(changeCondition)) keyDown = changeCondition;
+                else if (Input.GetKeyDown(angieItems)) keyDown = angieItems;
             }
             
             if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
@@ -156,7 +158,16 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalControls.ApartmentCondition = !GlobalControls.ApartmentCondition;
                 GlobalItemList.Reset();
             }
-
+            if (keyDown.Equals(angieItems))
+            {
+                Debug.Log("Giving Angie Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("First Aid Kit", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Epi Pen", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("Garden");
+            }
+            
             keyDown = KeyCode.JoystickButton0;
         }
     }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,6 +33,8 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject npcInventoryTooltip;
     private Text[] npcInventoryTooltipItemName;
 
+    public bool leftTrading = false;
+
     private int cursorLocation;
 
     private int inventoryNumber;
@@ -41,7 +44,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
         KeyCode.Alpha6};
-    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "annette0", "carlos0", "bob0"};
+    private readonly string[] npcList = {"safi0", "dem0", "rainer0", "annette0", "carlos0", "angie0"};
     private readonly GameObject[] npcFrames = new GameObject[6];
     private Sprite unselected;
     private Sprite selected;
@@ -108,7 +111,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
             if (image.gameObject.name.Equals("Annette Frame")) npcFrames[3] = image.gameObject;
             if (image.gameObject.name.Equals("Carlos Frame")) npcFrames[4] = image.gameObject;
-            if (image.gameObject.name.Equals("Bob Frame")) npcFrames[5] = image.gameObject;
+            if (image.gameObject.name.Equals("Angie Frame")) npcFrames[5] = image.gameObject;
             
         }
         
@@ -199,14 +202,22 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
             else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
             else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
-            else if (Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
-            else if (Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
-            else if (Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
-            else if (Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
-            else if (Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
-            else if (Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
-            else if (Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
-            else if (Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.D)) keyDown = KeyCode.D;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (gamemode != 2 && Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.UpArrow)) keyDown = KeyCode.W;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.LeftArrow)) keyDown = KeyCode.A;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.DownArrow)) keyDown = KeyCode.S;
+            else if (gamemode == 2 && Input.GetKeyDown(KeyCode.RightArrow)) keyDown = KeyCode.D;
             foreach (var key in validInputs)
             {
                 if (Input.GetKeyDown(key))
@@ -216,7 +227,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
             }
         }
-        
+
         if (gamemode == 1)
         {
             UpdateSegue();
@@ -305,7 +316,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             
         
         if (keyDown.Equals(KeyCode.Escape))
-        {  
+        {
             SetExploring();
         }
         
@@ -703,7 +714,8 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
             
         if (keyDown.Equals(KeyCode.Escape))
-        {  
+        {
+            leftTrading = true;
             tradeManager.LeaveTrading();
         }
     }
