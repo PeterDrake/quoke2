@@ -394,7 +394,7 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SetCheckpoint("basic_angie_7.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_6.4"))
                 GlobalControls.SetCheckpoint("basic_angie_6.0");
-            if (currentNode.nodeName.Equals("checkpoint_angie_8.1"))
+            if (currentNode.nodeName.Equals("checkpoint_angie_10.2"))
                 GlobalControls.SetCheckpoint("basic_angie_10.0");
         }
         
