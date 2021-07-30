@@ -72,73 +72,73 @@ public class DialogueManager : MonoBehaviour
             }
             
             //Turns off button if Demitrius drinks or Demitrius action is complete
-            if (currentNode.nodeName.Contains("dem0"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Foraging") && GlobalControls.DemActionDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-                
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            if (currentNode.nodeName.Contains("checkpointsafi1"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Water") && GlobalControls.SafiWaterActionDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-                
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Gas") && GlobalControls.SafiGasActionDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            //Turns off button if Annette drinks or Annette action is complete
-            if (currentNode.nodeName.Contains("annette0"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Translation") && GlobalControls.AnnetteActionDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-                
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            //Turns off button if Rainer drinks or Rainer action is complete
-            if (currentNode.nodeName.Contains("rainer0"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.RainerActionDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-                
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.RainerDrinkDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
-            
-            //Turns off button if Carlos drinks is complete
-            if (currentNode.nodeName.Contains("carlos0"))
-            {
-                if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-
-            }
+            // if (currentNode.nodeName.Contains("dem0"))
+            // {
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Foraging") && GlobalControls.DemActionDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //     
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.DemDrinkDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //
+            // }
+            //
+            // if (currentNode.nodeName.Contains("checkpointsafi1"))
+            // {
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Water") && GlobalControls.SafiWaterActionDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //     
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Gas") && GlobalControls.SafiGasActionDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //
+            // }
+            //
+            // //Turns off button if Annette drinks or Annette action is complete
+            // if (currentNode.nodeName.Contains("annette0"))
+            // {
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Translation") && GlobalControls.AnnetteActionDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //     
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.AnnetteDrinkDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //
+            // }
+            //
+            // //Turns off button if Rainer drinks or Rainer action is complete
+            // if (currentNode.nodeName.Contains("rainer0"))
+            // {
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Action") && GlobalControls.RainerActionDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //     
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.RainerDrinkDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //
+            // }
+            //
+            // //Turns off button if Carlos drinks is complete
+            // if (currentNode.nodeName.Contains("carlos0"))
+            // {
+            //     if (buttons[c].GetComponentInChildren<Text>().text.Contains("Drink") && GlobalControls.CarlosDrinkDone)
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //
+            // }
             
             // if (currentNode.nodeName.Contains("angie"))
             // {
@@ -212,30 +212,31 @@ public class DialogueManager : MonoBehaviour
 
             Debug.Log("Current Node: " + currentNode.nodeName);
 
-            //Go through all the buttons and put that node's text into the buttons.
-            for (int i = 0; i < currentNode.playerArray.Count; i++)
-            {
-                buttons[i].gameObject.SetActive(true);
-                buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[i];
-
-                //Turns a button off if there is no text in the button
-                if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
-                {
-                    buttons[i].gameObject.SetActive(false);
-                }
-                if (currentNode.nextNode[i].Contains("action"))
-                {
-                    if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
-                        Parse(currentNode.nextNode[i].Substring(6, 1))])
-                    {
-                        Debug.Log("Action Complete");
-                        buttons[i].gameObject.SetActive(false);
-                    }
-                }
-            }
-
+           
         }
 
+        //Go through all the buttons and put that node's text into the buttons.
+        for (int i = 0; i < currentNode.playerArray.Count; i++)
+        {
+            buttons[i].gameObject.SetActive(true);
+            buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[i];
+
+            //Turns a button off if there is no text in the button
+            if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
+            {
+                buttons[i].gameObject.SetActive(false);
+            }
+            
+            if (currentNode.nextNode[i].Contains("action"))
+            {
+                if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                    Parse(currentNode.nextNode[i].Substring(6, 1))])
+                {
+                    Debug.Log("Action Complete");
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+        }
         
         //This displays the initial nodes npc text
         dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
