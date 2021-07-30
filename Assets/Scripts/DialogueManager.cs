@@ -140,139 +140,73 @@ public class DialogueManager : MonoBehaviour
 
             }
             
-            //Turns off button if Angie drinks is complete
-            if (currentNode.nodeName.Contains("angie"))
-            {
-                //if the player has the first aid kit, activate the button that gives the kit to Angie.
-                if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I've got an extra kit right here"))
-                {
-                    buttons[c].gameObject.SetActive(true);
-                }
-                else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I've got an extra kit right here"))
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-                
-                //if the player has the epipen, activate the button that gives the pen to Angie.
-                if (GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I think I have one in my backpack"))
-                {
-                    buttons[c].gameObject.SetActive(true);
-                }
-                else if (!GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I think I have one in my backpack"))
-                {
-                    buttons[c].gameObject.SetActive(false);
-                }
-            }
+            // if (currentNode.nodeName.Contains("angie"))
+            // {
+            //     //if the player has the first aid kit, activate the button that gives the kit to Angie.
+            //     if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+            //         ("I've got an extra kit right here"))
+            //     {
+            //         buttons[c].gameObject.SetActive(true);
+            //     }
+            //     else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+            //         ("I've got an extra kit right here"))
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //     
+            //     //if the player has the epipen, activate the button that gives the pen to Angie.
+            //     if (GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+            //         ("I think I have one in my backpack"))
+            //     {
+            //         buttons[c].gameObject.SetActive(true);
+            //     }
+            //     else if (!GlobalControls.PlayerHasEpiPen && buttons[c].GetComponentInChildren<Text>(true).text.Contains
+            //         ("I think I have one in my backpack"))
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            // }
             
             //If the player leaves a trading session...
             if (keyboardManager.leftTrading)
             {
                 keyboardManager.leftTrading = false;
 
-                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0"))
-                    GlobalControls.AngieHasFirstAidKit = true;
-                if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0"))
-                    GlobalControls.AngieHasEpiPen = true;
+                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") && 
+                    !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
+                    if(!GlobalControls.AngieSeriousDialogue)
+                    {                        
+                        GlobalControls.SetCheckpoint("basic_angie_4.0");
+                        currentNode = forest["leave_angie_0.7"];
+                        GlobalControls.AngieHasFirstAidKit = true;
+                    }
+                    else
+                    {                        
+                        GlobalControls.SetCheckpoint("basic_angie_5.0");
+                        currentNode = forest["leave_angie_1.4"];
+                        GlobalControls.AngieHasFirstAidKit = true;
+                    }
+                else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0") && 
+                    !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
+                    if(!GlobalControls.AngieSeriousDialogue)
+                    {                        
+                        GlobalControls.SetCheckpoint("basic_angie_8.0");
+                        GlobalControls.AngieHasEpiPen = true;
+                    }
+                    else
+                    {                        
+                        GlobalControls.SetCheckpoint("basic_angie_9.0");
+                        GlobalControls.AngieHasEpiPen = true;
+                    }
+                else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+                    currentNode = forest["leave_angie_0"];
+                else if (GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+                    currentNode = forest["leave_angie_1"];
+                else
+                    currentNode = forest["leave_error"];
 
                 Debug.Log("Current Node: " + currentNode.nodeName);
-                
-                //If Angie has the first aid kit...
-                if (GlobalControls.AngieHasFirstAidKit && 
-                    (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie0.4") ||
-                    currentNode.nodeName.Equals("checkpointangie1.0") || currentNode.nodeName.Equals("checkpointangie2.0")))
-                {
-                    Debug.Log("Angie has first aid kit");
-                    //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie1.0"))
-                    {
-                        //Change the conversation node to angie1.5
-                        Debug.Log("MED KIT SERIOUS PATH Change to angie1.5");
-                        currentNode = forest["angie1.5"];
-                        GlobalControls.SetCheckpoint("checkpointangie3.0");
-                    }
-                    //fun path
-                    else if (currentNode.nodeName.Equals("checkpointangie0.4") || currentNode.nodeName.Equals("checkpointangie2.0"))
-                    {
-                        //Change the conversation node to angie0.7
-                        Debug.Log("MED KIT FUN PATH Change to angie0.7");
-                        currentNode = forest["angie0.7"];
-                        GlobalControls.SetCheckpoint("angie4.0");
-                    }
-                    
-                }
-                //If trading but angie doesn't have the first aid kit
-                else if (!GlobalControls.AngieHasFirstAidKit && !GlobalControls.AngieHasEpiPen)
-                {
-                    Debug.Log("Angie DOES NOT have first aid kit");
-                    //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie0.10") || currentNode.nodeName.Equals("checkpointangie1.0"))
-                    {
-                        //Change the conversation node to angie1
-                        Debug.Log("MED KIT SERIOUS PATH Change to angie1");
-                        currentNode = forest["angie1"];
-                    }
-                    //fun path
-                    else if (currentNode.nodeName.Equals("checkpointangie0.4"))
-                    {
-                        //Change the conversation node to angie00000
-                        Debug.Log("MED KIT FUN PATH Change to angie00000");
-                        currentNode = forest["angie00000"];
-                    }
-                }
-                //If Angie has the Epi Pen...
-                else if (GlobalControls.AngieHasFirstAidKit && GlobalControls.AngieHasEpiPen)
-                {
-                    Debug.Log("Angie has epi pen");
-                    //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie3.0"))
-                    {
-                        //Change the conversation node to angie3.4
-                        Debug.Log("EPI PEN SERIOUS PATH Change to angie3.4");
-                        currentNode = forest["angie3.4"];
-                        GlobalControls.SetCheckpoint("checkpointangie7.0");
-                    }
-                    //fun path
-                    else if (currentNode.nodeName.Equals("checkpointangie4.00") || currentNode.nodeName.Equals("checkpointangie6.0"))
-                    {
-                        //Change the conversation node to angie6.6
-                        Debug.Log("EPI PEN FUN PATH Change to angie6.6");
-                        currentNode = forest["angie6.6"];
-                        GlobalControls.SetCheckpoint("checkpointangie8.0");
-                    }
-                }
-                //If trading but angie doesn't have the epi pen
-                else if (GlobalControls.AngieHasFirstAidKit && !GlobalControls.AngieHasEpiPen)
-                {
-                    Debug.Log("Angie DOES NOT have epi pen");
-                    //serious path
-                    if (currentNode.nodeName.Equals("checkpointangie3.0") ||
-                        currentNode.nodeName.Equals("checkpointangie5.0"))
-                    {
-                        //Change the conversation node to angie1
-                        Debug.Log("EPI PEN SERIOUS PATH Change to angie3.4");
-                        currentNode = forest["angie3.4"];
-                    }
-                    //fun path
-                    else if (currentNode.nodeName.Equals("checkpointangie4.00"))
-                    {
-                        //Change the conversation node to angie6.6
-                        Debug.Log("EPI PEN FUN PATH Change to angie6.6");
-                        GlobalControls.SetCheckpoint("checkpointangie6.0");
-                        currentNode = forest["angie6.6"];
-                    }
-                }
-                else
-                {
-                    Debug.Log("ERROR ANGIE");
-                    currentNode = forest["errorangie"];
-                }
-                
-                
-                
+
                 //Go through all the buttons and put that node's text into the buttons.
                 for (int i = 0; i < currentNode.playerArray.Count; i++)
                 {
@@ -285,6 +219,7 @@ public class DialogueManager : MonoBehaviour
                         buttons[i].gameObject.SetActive(false);
                     }
                 }
+                
                 
                 
             }
@@ -386,7 +321,19 @@ public class DialogueManager : MonoBehaviour
             }
         }
         
-        
+        if (currentNode.nodeName.Contains("checkpoint"))
+        {
+            if (currentNode.nodeName.Equals("checkpoint_angie_1.1"))
+                GlobalControls.SetCheckpoint("basic_angie_3.0");
+            if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
+                GlobalControls.SetCheckpoint("basic_angie_1.0");
+            if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
+                GlobalControls.SetCheckpoint("basic_angie_2.0");
+            if (currentNode.nodeName.Equals("checkpoint_angie_5.1"))
+                GlobalControls.SetCheckpoint("basic_angie_7.0");
+            if (currentNode.nodeName.Equals("checkpoint_angie_6.4"))
+                GlobalControls.SetCheckpoint("basic_angie_6.0");
+        }
         
         
         //TODO: MOST CODE BELOW ARE OBS0LETE. WILL REMOVE LATER
@@ -510,11 +457,8 @@ public class DialogueManager : MonoBehaviour
         //
         // }
         //
-        //
-        // if (currentNode.nodeName.Contains("checkpoint"))
-        // {
-        //     GlobalControls.SetCheckpoint(currentNode.nodeName);
-        // }
+        
+ 
         //
         // //** If the player is in the fun path of Angie's dialogue and does not have the first aid kit, set the
         // //   checkpoint to be checkpointangie2.0 */
