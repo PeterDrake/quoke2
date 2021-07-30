@@ -21,7 +21,7 @@ public class TradeManager : MonoBehaviour
     private Sprite selected;
     private Inventory parentInventory;
     private Inventory inventoryPlayer;
-    public Inventory inventoryNPC;
+    private Inventory inventoryNPC;
     private Inventory inventoryPlayerBin;
     private Inventory inventoryNPCBin;
     private Inventory inventoryIOU;
@@ -54,6 +54,7 @@ public class TradeManager : MonoBehaviour
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
+
     }
 
     public void BeginTrading()
@@ -159,18 +160,12 @@ public class TradeManager : MonoBehaviour
             {
                 playerOffers.Add(item.name.Replace("(Clone)","").Trim());
                 if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = false;
-                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = false;
-                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = false;
-
             }
         }
         
         foreach (GameObject item in inventoryNPCBin.items)
         {
             if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = true;
-            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = true;
-            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = true;
-
         }
 
         int playerTradePoints = 0;
@@ -202,10 +197,8 @@ public class TradeManager : MonoBehaviour
             if(i < endIouTotal) inventoryIOU.slotFrames[i].SetActive(true);
             else inventoryIOU.slotFrames[i].SetActive(false);
         }
-        
         button.interactable = false;
         referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
-
     }
 
     private IEnumerator SelectButton()
@@ -511,12 +504,12 @@ public class TradeManager : MonoBehaviour
             }
         }
 
-        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
+        if (numContents[0] - numContents[2] <= 0 || numContents[3] - numContents[1] <= 0)
         {
             Debug.Log("Not Enough Inventory to complete trade!");
             return false;
         }
-
+        
         int playerTradePoints = 0;
         
         //will not trade away item they need

@@ -15,28 +15,28 @@ public class NPCInteracted : MonoBehaviour
     public bool rainerInteracted;
     public bool annetteInteracted;
     public bool carlosInteracted;
-    public bool angieInteracted;
+    public bool bobInteracted;
 
     private GameObject safiImage;
     private GameObject demImage;
     private GameObject rainerImage;
     private GameObject annetteImage;
     private GameObject carlosImage;
-    private GameObject angieImage;
+    private GameObject bobImage;
     
     private GameObject safiSatisfaction;
     private GameObject demSatisfaction;
     private GameObject rainerSatisfaction;
     private GameObject annetteSatisfaction;
     private GameObject carlosSatisfaction;
-    private GameObject angieSatisfaction;
+    private GameObject bobSatisfaction;
 
     private GameObject safiOwes;
     private GameObject demOwes;
     private GameObject rainerOwes;
     private GameObject annetteOwes;
     private GameObject carlosOwes;
-    private GameObject angieOwes;
+    private GameObject bobOwes;
 
 
     private void OnEnable()
@@ -51,15 +51,15 @@ public class NPCInteracted : MonoBehaviour
             + GlobalControls.NPCList["annette0"].totalSatisfaction;
         if(carlosSatisfaction) carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
             + GlobalControls.NPCList["carlos0"].totalSatisfaction;
-        if(angieSatisfaction) angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-            + GlobalControls.NPCList["angie0"].totalSatisfaction;
+        if(bobSatisfaction) bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
+            + GlobalControls.NPCList["bob0"].totalSatisfaction;
         
         if(safiOwes) safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["safi0"].owes.ToString();
         if(demOwes) demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["dem0"].owes.ToString();
         if(rainerOwes) rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["rainer0"].owes.ToString();
         if(annetteOwes) annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["annette0"].owes.ToString();
         if(carlosOwes) carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["carlos0"].owes.ToString();
-        if(angieOwes) angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
+        if(bobOwes) bobOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["bob0"].owes.ToString();
         
         if(safiOwes && GlobalControls.NPCList["safi0"].owes != 0) 
             safiOwes.SetActive(true);
@@ -81,10 +81,10 @@ public class NPCInteracted : MonoBehaviour
             carlosOwes.SetActive(true);
         else if(carlosOwes && GlobalControls.NPCList["carlos0"].owes == 0)
             carlosOwes.SetActive(false);
-        if(angieOwes && GlobalControls.NPCList["angie0"].owes != 0) 
-            angieOwes.SetActive(true);
-        else if(angieOwes && GlobalControls.NPCList["angie0"].owes == 0)
-            angieOwes.SetActive(false);
+        if(bobOwes && GlobalControls.NPCList["bob0"].owes != 0) 
+            bobOwes.SetActive(true);
+        else if(bobOwes && GlobalControls.NPCList["bob0"].owes == 0)
+            bobOwes.SetActive(false);
     }
 
     void Start()
@@ -103,19 +103,19 @@ public class NPCInteracted : MonoBehaviour
                 else if (child.name.Equals("Rainer Met Image")) rainerImage = child.gameObject;
                 else if (child.name.Equals("Annette Met Image")) annetteImage = child.gameObject;
                 else if (child.name.Equals("Carlos Met Image")) carlosImage = child.gameObject;
-                else if (child.name.Equals("Angie Met Image")) angieImage = child.gameObject;
+                else if (child.name.Equals("Bob Met Image")) bobImage = child.gameObject;
                 else if (child.name.Equals("Safi Satisfaction")) safiSatisfaction = child.gameObject;
                 else if (child.name.Equals("Dem Satisfaction")) demSatisfaction = child.gameObject;
                 else if (child.name.Equals("Rainer Satisfaction")) rainerSatisfaction = child.gameObject;
                 else if (child.name.Equals("Annette Satisfaction")) annetteSatisfaction = child.gameObject;
                 else if (child.name.Equals("Carlos Satisfaction")) carlosSatisfaction = child.gameObject;
-                else if (child.name.Equals("Angie Satisfaction")) angieSatisfaction = child.gameObject;
+                else if (child.name.Equals("Bob Satisfaction")) bobSatisfaction = child.gameObject;
                 else if (child.name.Equals("Safi Owes")) safiOwes = child.gameObject;
                 else if (child.name.Equals("Dem Owes")) demOwes = child.gameObject;
                 else if (child.name.Equals("Rainer Owes")) rainerOwes = child.gameObject;
                 else if (child.name.Equals("Annette Owes")) annetteOwes = child.gameObject;
                 else if (child.name.Equals("Carlos Owes")) carlosOwes = child.gameObject;
-                else if (child.name.Equals("Angie Owes")) angieOwes = child.gameObject;
+                else if (child.name.Equals("Bob Owes")) bobOwes = child.gameObject;
             }
 
             safiInteracted = GlobalControls.SafiInteracted;
@@ -123,7 +123,7 @@ public class NPCInteracted : MonoBehaviour
             rainerInteracted = GlobalControls.RainerInteracted;
             annetteInteracted = GlobalControls.AnnetteInteracted;
             carlosInteracted = GlobalControls.CarlosInteracted;
-            angieInteracted = GlobalControls.AngieInteracted;
+            bobInteracted = GlobalControls.BobInteracted;
 
             safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
                 + GlobalControls.NPCList["safi0"].totalSatisfaction;
@@ -135,15 +135,15 @@ public class NPCInteracted : MonoBehaviour
                 + GlobalControls.NPCList["annette0"].totalSatisfaction;
             carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
                 + GlobalControls.NPCList["carlos0"].totalSatisfaction;
-            angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-                + GlobalControls.NPCList["angie0"].totalSatisfaction;
+            bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
+                + GlobalControls.NPCList["bob0"].totalSatisfaction;
 
             safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["safi0"].owes.ToString();
             demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["dem0"].owes.ToString();
             rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["rainer0"].owes.ToString();
             annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["annette0"].owes.ToString();
             carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["carlos0"].owes.ToString();
-            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
+            bobOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["bob0"].owes.ToString();
 
             if (!safiInteracted)
             {
@@ -215,18 +215,18 @@ public class NPCInteracted : MonoBehaviour
                 else if (GlobalControls.NPCList["carlos0"].owes == 0) carlosOwes.SetActive(false);
             }
             
-            if (!angieInteracted)
+            if (!bobInteracted)
             {
-                angieImage.SetActive(false);
-                angieSatisfaction.SetActive(false);
-                angieOwes.SetActive(false);
+                bobImage.SetActive(false);
+                bobSatisfaction.SetActive(false);
+                bobOwes.SetActive(false);
             }
             else
             {
-                angieImage.SetActive(true);
-                angieSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["angie0"].owes != 0) angieOwes.SetActive(true);
-                else if (GlobalControls.NPCList["angie0"].owes == 0) angieOwes.SetActive(false);
+                bobImage.SetActive(true);
+                bobSatisfaction.SetActive(true);
+                if(GlobalControls.NPCList["bob0"].owes != 0) bobOwes.SetActive(true);
+                else if (GlobalControls.NPCList["bob0"].owes == 0) bobOwes.SetActive(false);
             }
         }
 
@@ -295,17 +295,17 @@ public class NPCInteracted : MonoBehaviour
             carlosImage.SetActive(true);
             carlosSatisfaction.SetActive(true);
         }
-        else if (name.Equals("angie0"))
+        else if (name.Equals("bob0"))
         {
-            angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-                + GlobalControls.NPCList["angie0"].totalSatisfaction;
-            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
-            angieInteracted = true;
-            GlobalControls.AngieInteracted = true;
-            GlobalControls.NPCList["angie0"].interracted = true;
-            if(GlobalControls.NPCList["angie0"].owes != 0) angieOwes.SetActive(true);
-            angieImage.SetActive(true);
-            angieSatisfaction.SetActive(true);
+            bobSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["bob0"].satisfaction + " / " 
+                + GlobalControls.NPCList["bob0"].totalSatisfaction;
+            bobOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["bob0"].owes.ToString();
+            bobInteracted = true;
+            GlobalControls.BobInteracted = true;
+            GlobalControls.NPCList["bob0"].interracted = true;
+            if(GlobalControls.NPCList["bob0"].owes != 0) bobOwes.SetActive(true);
+            bobImage.SetActive(true);
+            bobSatisfaction.SetActive(true);
         }
     }
 }

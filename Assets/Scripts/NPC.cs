@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NPC
 {
@@ -14,14 +13,8 @@ public class NPC
     public bool interracted;
     public string description;
     public int owes;
-    public List<DialogueNode> dialogueList;
-    public Dictionary<string, string> actions;
-    public List<string> actionRequirements;
-    public bool[] actionsComplete = new bool[3];
 
-    public NPC(string name, string scene, List<string> needs, string node, int satisfaction, 
-        bool interracted, string description, int totalSatisfaction, int owes, Dictionary<string, string> actions,
-        List<string> actionRequirements)
+    public NPC(string name, string scene, List<string> needs, string node, int satisfaction, bool interracted, string description, int totalSatisfaction, int owes)
     {
         this.name = name;
         this.scene = scene;
@@ -32,19 +25,5 @@ public class NPC
         this.description = description;
         this.totalSatisfaction = totalSatisfaction;
         this.owes = owes;
-        this.dialogueList = new List<DialogueNode>();
-        this.actions = actions;
-        this.actionRequirements = actionRequirements;
-    }
-}
-
-public class DialogueNode
-{
-    public string text;
-    public string name;
-    public DialogueNode(string text, string name)
-    {
-        this.text = text;
-        this.name = name;
     }
 }
