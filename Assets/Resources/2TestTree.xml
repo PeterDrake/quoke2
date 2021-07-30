@@ -1118,7 +1118,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_angie_8.1</keyName>
+            <keyName>action0_angie_8.1</keyName>
             <keyName>trade_angie_0</keyName>
             <keyName>leave_angie_0</keyName>
         </keys>
@@ -1126,7 +1126,7 @@
         <npcText>What's up, Agent?</npcText>
     </basic_angie_8.0>
 
-    <basic_angie_8.1>
+    <action0_angie_8.1>
         <playerOptions>
             <option>Yes I do!</option>
             <option>I don't have any on me right now.</option>
@@ -1134,29 +1134,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>action0_angie_8.2</keyName>
+            <keyName>success0_angie_8.2</keyName>
             <keyName>leave_angie_8.4</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
-    </basic_angie_8.1>
-
-    <action0_angie_8.2>
-        <playerOptions>
-            <option>Yeah!</option>
-            <option>Nope see you around!</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>success0_angie_8.3</keyName> 
-            <keyName>leave_angie_0</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Really! Can I have some please?</npcText>
-    </action0_angie_8.2>
+    </action0_angie_8.1>
 
     <success0_angie_8.3>
         <playerOptions>
