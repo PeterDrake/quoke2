@@ -270,7 +270,8 @@ public class DialogueManager : MonoBehaviour
             }
             if (node.Contains("success"))
             {
-                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
+                if (!GlobalControls.NPCList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))].Equals("") &&
+                    !GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
                 {
                     Debug.Log("BATTAN AAF");
                     buttons[i].gameObject.SetActive(false);
