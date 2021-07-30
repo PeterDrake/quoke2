@@ -326,7 +326,7 @@ public class DialogueManager : MonoBehaviour
                     Substring(7, 1))].Equals("Water Bottle Clean"))
                 {
                     GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
-                        Parse(currentNode.nodeName.Substring(6, 1))] = true;
+                        Parse(currentNode.nodeName.Substring(7, 1))] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                     GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
@@ -335,7 +335,7 @@ public class DialogueManager : MonoBehaviour
                 else
                 {
                     GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
-                        Parse(currentNode.nodeName.Substring(6, 1))] = true;
+                        Parse(currentNode.nodeName.Substring(7, 1))] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
@@ -372,7 +372,7 @@ public class DialogueManager : MonoBehaviour
                 if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].
                     actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
                 {
-                    Debug.Log("Player Does Not Have Action Item");
+                    Debug.Log("BATTAN AAF");
                     buttons[i].gameObject.SetActive(false);
                 }
             }
