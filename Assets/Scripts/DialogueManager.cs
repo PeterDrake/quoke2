@@ -350,30 +350,30 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.SetExploring();
             return cursorLocation;
         }
-        
-        
-        for (int i = 0; i < currentNode.nextNode.Count; i++)
-        {
-            string node = currentNode.nextNode[i];
-            if (node.Contains("need"))
-            {
-                //This checks the itemList for the item that the npc needs at the index specified in the key name
-                //need0_angie_12.2
-                //Here the index is 0
-                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(node.Substring(4, 1))]].containerName.Equals("Player"))
-                {
-                    buttons[i].gameObject.SetActive(false);
-                }
-            }
-        }
-
 
         //This will change the node you're looking at
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
-
+        
+        for (int i = 0; i < currentNode.nextNode.Count; i++)
+        {
+            
+            string node = currentNode.nextNode[i];
+            if (node.Contains("need"))
+            {
+                Debug.Log( "The next node's name" + currentNode.nextNode[i]);
+                //This checks the itemList for the item that the npc needs at the index specified in the key name
+                //need0_angie_12.2
+                //Here the index is 0
+                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(node.Substring(4, 1))]].containerName.Equals("Player"))
+                {
+                    Debug.Log("turning off one of the need's button");
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+        }
         //TODO: MOST CODE BELOW ARE OBS0LETE. WILL REMOVE LATER
 
         
@@ -536,54 +536,57 @@ public class DialogueManager : MonoBehaviour
         //
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
-            buttons[c].gameObject.SetActive(true);
+            // buttons[c].gameObject.SetActive(true);
 
             //This will change the player text based on the node we're looking at
-            buttons[c].GetComponentInChildren<Text>(true).text = currentNode.playerArray[c];
-            if (buttons[c].GetComponentInChildren<Text>(true).text.Equals(""))
+            if (buttons[c].gameObject.activeSelf)
             {
-                buttons[c].gameObject.SetActive(false);
-            }
-            
-            
-            
-            
-            if (currentNode.nodeName.Contains("angie"))
-            {
-                //if player has first aid kit, activate the button that gives the kit to Angie.
-                if (GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I've got an extra kit right here"))
-                {
-                    buttons[c].gameObject.SetActive(true);
-                }
-                else if (!GlobalControls.PlayerHasFirstAidKit && buttons[c].GetComponentInChildren<Text>(true).text.Contains
-                    ("I've got an extra kit right here"))
+                buttons[c].GetComponentInChildren<Text>(true).text = currentNode.playerArray[c];
+                if (buttons[c].GetComponentInChildren<Text>(true).text.Equals(""))
                 {
                     buttons[c].gameObject.SetActive(false);
                 }
-                 
-                //if the player has the epipen, activate the button that gives the pen to Angie.
-                if (GlobalControls.PlayerHasEpiPen && 
-                    (buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one in my backpack") || 
-                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one right here") ||
-                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") || 
-                     buttons[c].GetComponentInChildren<Text>(true).text.Contains("I actually have one right here")))
-                {
-                    buttons[c].gameObject.SetActive(true);
-                }
-                else if (!GlobalControls.PlayerHasEpiPen &&
-                         (buttons[c].GetComponentInChildren<Text>(true).text
-                              .Contains("I think I have one in my backpack") ||
-                          buttons[c].GetComponentInChildren<Text>(true).text
-                              .Contains("I think I have one right here") ||
-                          buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") ||
-                          buttons[c].GetComponentInChildren<Text>(true).text
-                              .Contains("I actually have one right here")))
-                {
-                    buttons[c].gameObject.SetActive(false); 
-                    
-                }
             }
+
+
+
+
+            // if (currentNode.nodeName.Contains("angie"))
+            // {
+            //     //if player has first aid kit, activate the button that gives the kit to Angie.
+            //     if (GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(currentNode.ToString()
+            //         .Substring(4, 1))]].containerName.Equals("Player") && currentNode.nodeName.Contains("need0"))
+            //     {
+            //         buttons[c].gameObject.SetActive(true);
+            //     }
+            //     else if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(currentNode.ToString()
+            //         .Substring(4, 1))]].containerName.Equals("Player") && currentNode.nodeName.Contains("need0"))
+            //     {
+            //         buttons[c].gameObject.SetActive(false);
+            //     }
+            //      
+            //     //if the player has the epipen, activate the button that gives the pen to Angie.
+            //     if (GlobalControls.PlayerHasEpiPen && 
+            //         (buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one in my backpack") || 
+            //          buttons[c].GetComponentInChildren<Text>(true).text.Contains("I think I have one right here") ||
+            //          buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") || 
+            //          buttons[c].GetComponentInChildren<Text>(true).text.Contains("I actually have one right here")))
+            //     {
+            //         buttons[c].gameObject.SetActive(true);
+            //     }
+            //     else if (!GlobalControls.PlayerHasEpiPen &&
+            //              (buttons[c].GetComponentInChildren<Text>(true).text
+            //                   .Contains("I think I have one in my backpack") ||
+            //               buttons[c].GetComponentInChildren<Text>(true).text
+            //                   .Contains("I think I have one right here") ||
+            //               buttons[c].GetComponentInChildren<Text>(true).text.Contains("I have one right here") ||
+            //               buttons[c].GetComponentInChildren<Text>(true).text
+            //                   .Contains("I actually have one right here")))
+            //     {
+            //         buttons[c].gameObject.SetActive(false); 
+            //         
+            //     }
+            // }
         }
         //
         //     if (currentNode.nodeName.Contains("drink"))
