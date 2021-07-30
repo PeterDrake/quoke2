@@ -75,7 +75,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>need0_safi_1.3</keyName>
+            <keyName>success0_safi_1.3</keyName>
             <keyName>leave_safi_0</keyName>
             <keyName></keyName>
         </keys>
@@ -108,8 +108,8 @@
         </playerOptions>
 
         <keys>
-            <keyName>safigassuccess</keyName>
-            <keyName>safinowrench</keyName>
+            <keyName>success1_safi_1.4</keyName>
+            <keyName>leave_safi_0</keyName>
             <keyName></keyName>
         </keys>
 
@@ -117,7 +117,7 @@
     </aciton1_safi_1.2>
 
 
-    <safigassuccess>
+    <need0_safi_1.3>
         <playerOptions>
             <option>You are welcome!</option>
             <option></option>
@@ -125,49 +125,16 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
         </keys>
 
         <npcText>Okay thank you!</npcText>
-
-
-    </safigassuccess>
-
-    <safinowrench>
-        <playerOptions>
-            <option>I will be right back!</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
-        </keys>
-
-        <npcText>Well hurry and find one!</npcText>
-    </safinowrench>
-
-    <tradesafi5>
-        <playerOptions>
-            <option>Safi Go Back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>safi0</keyName>
-            <keyName>safi0</keyName>
-            <keyName>safi0</keyName>
-        </keys>
-
-        <npcText>Safi Now Trading...</npcText>
-    </tradesafi5>
-
-    <dem0>
+        
+    </need0_safi_1.3>
+    
+    <basic_dem_0>
         <playerOptions>
             <option>Help Demitrius with Foraging</option>
             <option>Give Demitrius a Drink</option>
@@ -175,31 +142,47 @@
         </playerOptions>
 
         <keys>
-            <keyName>actiondem1</keyName>
-            <keyName>drinkdem2</keyName>
-            <keyName>tradedem</keyName>
+            <keyName>action0_dem_0.1</keyName>
+            <keyName>action1_dem_0.3</keyName>
+            <keyName>trade_dem_0</keyName>
         </keys>
 
         <npcText>That quake was no joke. Are you okay at least?</npcText>
-    </dem0>
+    </basic_dem_0>
 
-    <actiondem1>
+    <action0_dem_0.1>
         <playerOptions>
-            <option>You're Welcome!</option>
+            <option>Do the thing!</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>dem0</keyName>
-            <keyName>dem0</keyName>
-            <keyName>dem0</keyName>
+            <keyName>success0_dem_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
         </keys>
 
-        <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
-    </actiondem1>
+        <npcText>Oh wow, thank you! Teach me your ways</npcText>
+    </action0_dem_0.1>
 
-    <drinkdem2>
+    <success0_dem_0.2>
+        <playerOptions>
+            <option>Complete foraging</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you!</npcText>
+    </success0_dem_0.2>
+
+    <action1_dem_0.3>
         <playerOptions>
             <option>I have water right here!</option>
             <option>I don't have any water right now...</option>
@@ -207,63 +190,63 @@
         </playerOptions>
 
         <keys>
-            <keyName>givewaterdem</keyName>
+            <keyName>success1_dem_0.4</keyName>
             <keyName>refusewaterdem</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Oh, sure. Do you have any water?</npcText>
-    </drinkdem2>
+    </action1_dem_0.3>
 
-    <givewaterdem>
+    <success0_dem_0.4>
         <playerOptions>
-            <option>Glad you're feeling better!</option>
+            <option>Complete water</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>dem0</keyName>
+            <keyName>leave_dem_0</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
 
-        <npcText>Oh thank you! This should help me for a bit.</npcText>
-    </givewaterdem>
+        <npcText>Oh wow, thank you! *Slurp*</npcText>
+    </success0_dem_0.4>
 
-    <refusewaterdem>
+    <trade_dem_0>
         <playerOptions>
-            <option>I'll try to find some...</option>
+            <option>(Start Trading)</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>dem0</keyName>
+            <keyName>leave_error</keyName>
             <keyName></keyName>
             <keyName></keyName>
-        </keys>
-
-        <npcText>Oh I see. That's alright.</npcText>
-    </refusewaterdem>
-
-    <tradedem>
-        <playerOptions>
-            <option>I think I'm done.</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>dem0</keyName>
-            <keyName>dem0</keyName>
-            <keyName>dem0</keyName>
         </keys>
 
         <npcText>Demitrius Now Trading...</npcText>
-    </tradedem>
+    </trade_dem_0>
 
-    <annette0>
+    <leave_dem_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Goodbye!</npcText>
+    </leave_dem_0>
+
+    <basic_annette_0>
         <playerOptions>
             <option>Help Annette with Translation</option>
             <option>Give Annette a Drink</option>
@@ -271,15 +254,31 @@
         </playerOptions>
 
         <keys>
-            <keyName>actionannette1</keyName>
-            <keyName>drinkannette2</keyName>
-            <keyName>tradeannette</keyName>
+            <keyName>action0_annette_0.1</keyName>
+            <keyName>action1_annette_0.3</keyName>
+            <keyName>trade_annette_0</keyName>
         </keys>
 
         <npcText>That quake was no joke. Are you okay at least?</npcText>
-    </annette0>
+    </basic_annette_0>
 
-    <actionannette1>
+    <action0_annette_0.1>
+        <playerOptions>
+            <option>I'ma help ya!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_annette_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Tanks hooman!</npcText>
+    </action0_annette_0.1>
+
+    <success0_annette_0.2>
         <playerOptions>
             <option>Glad to help!</option>
             <option></option>
@@ -287,15 +286,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>annette0</keyName>
-            <keyName>annette0</keyName>
-            <keyName>annette0</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
         </keys>
 
         <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
-    </actionannette1>
-
-    <drinkannette2>
+    </success0_annette_0.2>
+    
+    <action1_annette_0.3>
         <playerOptions>
             <option>I have water right here!</option>
             <option>I don't have any water right now...</option>
@@ -303,15 +302,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>givewaterannette</keyName>
-            <keyName>refusewaterannette</keyName>
+            <keyName>success1_annette_0.4</keyName>
+            <keyName>leave_annette_0</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>I could use some water. You got any on you?</npcText>
-    </drinkannette2>
+    </action1_annette_0.3>
 
-    <givewaterannette>
+    <success1_annette_0.4>
         <playerOptions>
             <option>Hydrate or diedrate!</option>
             <option></option>
@@ -319,47 +318,47 @@
         </playerOptions>
 
         <keys>
-            <keyName>annette0</keyName>
+            <keyName>leave_annette_0</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
-    </givewaterannette>
+    </success1_annette_0.4>
 
-    <refusewaterannette>
+    <trade_annette_0>
         <playerOptions>
-            <option>I'll go find some!</option>
+            <option>(Start Trading)</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>annette0</keyName>
+            <keyName>leave_error</keyName>
             <keyName></keyName>
             <keyName></keyName>
-        </keys>
-
-        <npcText>If you happen to find any, I'll gladly take some.</npcText>
-    </refusewaterannette>
-
-    <tradeannette>
-        <playerOptions>
-            <option>Annette Go Back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>annette0</keyName>
-            <keyName>annette0</keyName>
-            <keyName>annette0</keyName>
         </keys>
 
         <npcText>Annette Now Trading...</npcText>
-    </tradeannette>
+    </trade_annette_0>
 
-    <rainer0>
+    <leave_annette_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Annette Goodbye</npcText>
+    </leave_annette_0>
+
+    <basic_rainer_0>
         <playerOptions>
             <option>Rainer Action</option>
             <option>Rainer Drink</option>
@@ -367,31 +366,47 @@
         </playerOptions>
 
         <keys>
-            <keyName>actionrainer1</keyName>
-            <keyName>drinkrainer2</keyName>
-            <keyName>traderainer</keyName>
+            <keyName>action0_rainer_0.1</keyName>
+            <keyName>action1_rainer_0.3</keyName>
+            <keyName>trade_rainer_0</keyName>
         </keys>
 
         <npcText>That quake was no joke. Are you okay at least?</npcText>
-    </rainer0>
+    </basic_rainer_0>
 
-    <actionrainer1>
+    <action0_rainer_0.1>
         <playerOptions>
-            <option>Rainer Go Back</option>
+            <option>Rainer Start action</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>rainer0</keyName>
-            <keyName>rainer0</keyName>
-            <keyName>rainer0</keyName>
+            <keyName>success0_rainer_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
         </keys>
 
-        <npcText>Oh wow, thank you! I probably wouldn't have known.</npcText>
-    </actionrainer1>
+        <npcText>Oh wow, thank you! Save me!</npcText>
+    </action0_rainer_0.1>
+    
+    <success0_rainer_0.2>
+        <playerOptions>
+            <option>Rainer Finish action</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
 
-    <drinkrainer2>
+        <keys>
+            <keyName>leave_rainer_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you!</npcText>
+    </success0_rainer_0.2>
+    
+    <action1_rainer_0.3>
         <playerOptions>
             <option>I have water right here!</option>
             <option>I don't have any water right now...</option>
@@ -399,15 +414,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>givewaterrainer</keyName>
-            <keyName>refusewaterrainer</keyName>
+            <keyName>success1_rainer_0.4</keyName>
+            <keyName>leave_rainer_0</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Oh, sure. Do you have any water?</npcText>
-    </drinkrainer2>
+    </action1_rainer_0.3>
 
-    <givewaterrainer>
+    <success1_rainer_0.4>
         <playerOptions>
             <option>Go back</option>
             <option></option>
@@ -415,47 +430,47 @@
         </playerOptions>
 
         <keys>
-            <keyName>rainer0</keyName>
+            <keyName>leave_rainer_0</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Oh thank you! This should help me for a bit.</npcText>
-    </givewaterrainer>
+    </success1_rainer_0.4>
 
-    <refusewaterrainer>
+    <trade_rainer_0>
         <playerOptions>
-            <option>Go back</option>
+            <option>(Start Trading)</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>rainer0</keyName>
+            <keyName>leave_error</keyName>
             <keyName></keyName>
             <keyName></keyName>
-        </keys>
-
-        <npcText>Oh I see. That's alright.</npcText>
-    </refusewaterrainer>
-
-    <traderainer>
-        <playerOptions>
-            <option>Rainer Go Back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>rainer0</keyName>
-            <keyName>rainer0</keyName>
-            <keyName>rainer0</keyName>
         </keys>
 
         <npcText>Rainer Now Trading...</npcText>
-    </traderainer>
+    </trade_rainer_0>
 
-    <carlos0>
+    <leave_rainer_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Rainer Goodbye</npcText>
+    </leave_rainer_0>
+
+    <basic_carlos_0>
         <playerOptions>
             <option>Carlos Drink</option>
             <option>Carlos Trade</option>
@@ -463,15 +478,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>drinkcarlos2</keyName>
-            <keyName>tradecarlos</keyName>
+            <keyName>action0_carlos_0.1</keyName>
+            <keyName>trade_carlos_0</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>That quake was no joke. Are you okay at least?</npcText>
-    </carlos0>
+    </basic_carlos_0>
 
-    <drinkcarlos2>
+    <action0_carlos_0.1>
         <playerOptions>
             <option>I have water right here!</option>
             <option>I don't have any water right now...</option>
@@ -479,61 +494,61 @@
         </playerOptions>
 
         <keys>
-            <keyName>givewatercarlos</keyName>
-            <keyName>refusewatercarlos</keyName>
+            <keyName>success0_carlos_0.2</keyName>
+            <keyName>leave_carlos_0</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Oh, sure. Do you have any water?</npcText>
-    </drinkcarlos2>
+    </action0_carlos_0.1>
 
-    <givewatercarlos>
+    <success0_carlos_0.2>
         <playerOptions>
-            <option>Go back</option>
+            <option>You're welcome</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>carlos0</keyName>
+            <keyName>leave_carlos_0</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
 
-        <npcText>Oh thank you! This should help me for a bit.</npcText>
-    </givewatercarlos>
+        <npcText>*SLURP*</npcText>
+    </success0_carlos_0.2>
 
-    <refusewatercarlos>
+    <trade_carlos_0>
         <playerOptions>
-            <option>Go back</option>
+            <option>(Start Trading)</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>carlos0</keyName>
+            <keyName>leave_error</keyName>
             <keyName></keyName>
             <keyName></keyName>
-        </keys>
-
-        <npcText>Oh I see. That's alright.</npcText>
-    </refusewatercarlos>
-
-    <tradecarlos>
-        <playerOptions>
-            <option>Carlos Go Back</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>carlos0</keyName>
-            <keyName>carlos0</keyName>
-            <keyName>carlos0</keyName>
         </keys>
 
         <npcText>Carlos Now Trading...</npcText>
-    </tradecarlos>
+    </trade_carlos_0>
+
+    <leave_carlos_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Carlos Goodbye</npcText>
+    </leave_carlos_0>
 
     <trade_angie_0>
         <playerOptions>
