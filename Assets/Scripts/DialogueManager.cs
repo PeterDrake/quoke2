@@ -34,7 +34,6 @@ public class DialogueManager : MonoBehaviour
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        
     }
 
     public void BeginConversation()
