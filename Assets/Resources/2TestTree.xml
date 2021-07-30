@@ -1126,39 +1126,55 @@
         <npcText>What's up, Agent?</npcText>
     </basic_angie_8.0>
 
-    <checkpoint_angie_8.1>
+    <basic_angie_8.1>
         <playerOptions>
-            <option>Yes I do! Here, have a drink.</option>
+            <option>Yes I do!</option>
             <option>I don't have any on me right now.</option>
             <option></option>
         </playerOptions>
 
         <keys>
             <keyName>action0_angie_8.2</keyName>
-            <keyName>leave_angie_8.3</keyName>
+            <keyName>leave_angie_8.4</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Now that you mention it, I’m kind of thirsty. Do you have any water?</npcText>
-    </checkpoint_angie_8.1>
+    </basic_angie_8.1>
 
     <action0_angie_8.2>
         <playerOptions>
-            <option>Yeah! Do you have anything to trade?</option>
+            <option>Yeah!</option>
             <option>Nope see you around!</option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>trade_angie_0</keyName> 
+            <keyName>success0_angie_8.3</keyName> 
             <keyName>leave_angie_0</keyName>
             <keyName></keyName>
         </keys>
 
-        <npcText>Thanks Green Owl! You're the best! Is there anything else you need?</npcText>
+        <npcText>Really! Can I have some please?</npcText>
     </action0_angie_8.2>
 
-    <leave_angie_8.3>
+    <success0_angie_8.3>
+        <playerOptions>
+            <option>Is there anything else you need?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpoint_angie_10.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Thank you so much! *Slurp*</npcText>
+    </success0_angie_8.3>
+    
+    <leave_angie_8.4>
         <playerOptions>
             <option>(Start Exploring)</option>
             <option></option>
@@ -1172,17 +1188,17 @@
         </keys>
 
         <npcText>Okay. If you find any, let me know. I really could use a couple sips.</npcText>
-    </leave_angie_8.3>
+    </leave_angie_8.4>
 
     <basic_angie_10.0>
         <playerOptions>
-            <option>Are you still thirsty?</option>
+            <option>Is there anything else you need?</option>
             <option>I have things to trade!</option>
             <option>Nothing to report, Red Jaguar!</option>
         </playerOptions>
 
         <keys>
-            <keyName>action0_angie_10.1</keyName>
+            <keyName>checkpoint_angie_10.2</keyName>
             <keyName>trade_angie_0</keyName>
             <keyName>leave_angie_0</keyName>
         </keys>
@@ -1190,21 +1206,37 @@
         <npcText>Status report, Green Owl?</npcText>
     </basic_angie_10.0>
 
-    <action0_angie_10.1>
+    <checkpoint_angie_10.2>
         <playerOptions>
-            <option>Right here!</option>
-            <option>Not yet. Still looking.</option>
+            <option>See you around</option>
+            <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>action0_angie_8.2</keyName>
-            <keyName>leave_angie_8.3</keyName>
+            <keyName>leave_angie_10.3</keyName>
+            <keyName></keyName>
             <keyName></keyName>
         </keys>
 
-        <npcText>Yes... Have you found water yet?</npcText>
-    </action0_angie_10.1>
+        <npcText>Nope! You've been a big help!</npcText>
+    </checkpoint_angie_10.2>
+    
+    <leave_angie_10.3>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Bye!</npcText>
+    </leave_angie_10.3>
 
     <basic_angie_1.0>
         <playerOptions>
@@ -1436,7 +1468,7 @@
 
     <basic_angie_9.1>
         <playerOptions>
-            <option>Yeah here. Take a sip.</option>
+            <option>Yeah I have some!</option>
             <option>Not yet. I'll let you know if I find some.</option>
             <option></option>
         </playerOptions>
@@ -1458,15 +1490,31 @@
         </playerOptions>
 
         <keys>
-            <keyName>leave_angie_9.3</keyName> 
+            <keyName>success0_angie_9.3</keyName> 
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh really! Can I have some?</npcText>
+    </action0_angie_9.2>
+
+    <success0_angie_9.3>
+        <playerOptions>
+            <option>See you around!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_angie_9.4</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>Thank you. I feel a lot better now.</npcText>
-    </action0_angie_9.2>
+    </success0_angie_9.3>
     
-    <leave_angie_9.3>
+    <leave_angie_9.4>
         <playerOptions>
             <option>(Start Exploring)</option>
             <option></option>
@@ -1480,7 +1528,7 @@
         </keys>
 
         <npcText>Nope. I can take care of it myself!</npcText>
-    </leave_angie_9.3>
+    </leave_angie_9.4>
 
     <leave_error>
         <playerOptions>
