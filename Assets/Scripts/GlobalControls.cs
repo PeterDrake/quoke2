@@ -122,17 +122,23 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
+                    new List<string>{"","Wrench","Wrench"})},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
+                    new List<string>{""})},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
+                    new List<string>{""})},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
+                    new List<string>{""})},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
+                    new List<string>{"Water Bottle Clean"})},
                 {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
+                    new List<string>{"Water Bottle Clean"})},
             };
             currentObjective = 2;
         }
@@ -141,17 +147,24 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
+                    new List<string>{"","Wrench","Wrench"})},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
+                    new List<string>{""})},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
+                    new List<string>{""})},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
+                    new List<string>{""})},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
+                    new List<string>{"Water Bottle Clean"})},
                 {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
+                    new List<string>{"Water Bottle Clean"})},
+                
             };
             currentObjective = 1;
         }
@@ -219,17 +232,24 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
+                    new List<string>{"","Wrench","Wrench"})},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
+                    new List<string>{""})},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
+                    new List<string>{""})},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
+                    new List<string>{""})},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
+                    new List<string>{"Water Bottle Clean"})},
                 {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
+                    new List<string>{"Water Bottle Clean"})},
+                
             };
             currentObjective = 2;
         }
@@ -238,17 +258,24 @@ public static class GlobalControls
             npcList = new Dictionary<string, NPC>
             {
                 {"safi0", new NPC("Safi", "Park", new List<string>{""}, "safi0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions)},
+                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
+                    new List<string>{"","Wrench","Wrench"})},
                 {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "dem0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions)},
+                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
+                    new List<string>{""})},
                 {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "annette0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions)},
+                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
+                    new List<string>{""})},
                 {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "rainer0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions)},
+                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
+                    new List<string>{""})},
                 {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "carlos0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions)},
+                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
+                    new List<string>{"Water Bottle Clean"})},
                 {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions)},
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
+                    new List<string>{"Water Bottle Clean"})},
+                
             };
             currentObjective = 1;
         }

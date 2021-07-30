@@ -166,67 +166,77 @@ public class DialogueManager : MonoBehaviour
             //         buttons[c].gameObject.SetActive(false);
             //     }
             // }
+
             
-            //If the player leaves a trading session...
-            if (keyboardManager.leftTrading)
-            {
-                keyboardManager.leftTrading = false;
+        }
+            
+        //If the player leaves a trading session...
+        if (keyboardManager.leftTrading)
+        {
+            keyboardManager.leftTrading = false;
 
-                if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") && 
-                    !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
-                    if(!GlobalControls.AngieSeriousDialogue)
-                    {                        
-                        GlobalControls.SetCheckpoint("basic_angie_4.0");
-                        currentNode = forest["leave_angie_0.7"];
-                        GlobalControls.AngieHasFirstAidKit = true;
-                    }
-                    else
-                    {                        
-                        GlobalControls.SetCheckpoint("basic_angie_5.0");
-                        currentNode = forest["leave_angie_1.4"];
-                        GlobalControls.AngieHasFirstAidKit = true;
-                    }
-                else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0") && 
-                    !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
-                    if(!GlobalControls.AngieSeriousDialogue)
-                    {                        
-                        GlobalControls.SetCheckpoint("basic_angie_8.0");
-                        currentNode = forest["leave_angie_0"];
-                        GlobalControls.AngieHasEpiPen = true;
-                    }
-                    else
-                    {                        
-                        GlobalControls.SetCheckpoint("basic_angie_9.0");
-                        currentNode = forest["leave_angie_1"];
-                        GlobalControls.AngieHasEpiPen = true;
-                    }
-                else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
-                    currentNode = forest["leave_angie_0"];
-                else if (GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
-                    currentNode = forest["leave_angie_1"];
+            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") && 
+                !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.AngieSeriousDialogue)
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_4.0");
+                    currentNode = forest["leave_angie_0.7"];
+                    GlobalControls.AngieHasFirstAidKit = true;
+                }
                 else
-                    currentNode = forest["leave_error"];
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_5.0");
+                    currentNode = forest["leave_angie_1.4"];
+                    GlobalControls.AngieHasFirstAidKit = true;
+                }
+            else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0") && 
+                !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.AngieSeriousDialogue)
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_8.0");
+                    currentNode = forest["leave_angie_0"];
+                    GlobalControls.AngieHasEpiPen = true;
+                }
+                else
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_9.0");
+                    currentNode = forest["leave_angie_1"];
+                    GlobalControls.AngieHasEpiPen = true;
+                }
+            else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+                currentNode = forest["leave_angie_0"];
+            else if (GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+                currentNode = forest["leave_angie_1"];
+            else
+                currentNode = forest["leave_error"];
 
-                Debug.Log("Current Node: " + currentNode.nodeName);
+            Debug.Log("Current Node: " + currentNode.nodeName);
 
-                //Go through all the buttons and put that node's text into the buttons.
-                for (int i = 0; i < currentNode.playerArray.Count; i++)
+            //Go through all the buttons and put that node's text into the buttons.
+            for (int i = 0; i < currentNode.playerArray.Count; i++)
+            {
+                buttons[i].gameObject.SetActive(true);
+                buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[i];
+
+                //Turns a button off if there is no text in the button
+                if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
                 {
-                    buttons[i].gameObject.SetActive(true);
-                    buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
-
-                    //Turns a button off if there is no text in the button
-                    if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
+                    buttons[i].gameObject.SetActive(false);
+                }
+                if (currentNode.nextNode[i].Contains("action"))
+                {
+                    if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                        Parse(currentNode.nextNode[i].Substring(6, 1))])
                     {
+                        Debug.Log("Action Complete");
                         buttons[i].gameObject.SetActive(false);
                     }
                 }
-                
-                
-                
             }
-            
+
         }
+
+        
         //This displays the initial nodes npc text
         dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
         
@@ -308,6 +318,31 @@ public class DialogueManager : MonoBehaviour
                 }
             }
 
+            if (currentNode.nodeName.Contains("success"))
+            {
+                if (!GlobalControls.NPCList[GlobalControls.CurrentNPC].
+                    actionRequirements[Int32.Parse(currentNode.nodeName.
+                    Substring(7, 1))].Equals("Water Bottle Clean"))
+                {
+                    GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                        Parse(currentNode.nodeName.Substring(6, 1))] = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+                    GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
+                        GlobalControls.CurrentPoints.ToString();
+                }
+                else
+                {
+                    GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                        Parse(currentNode.nodeName.Substring(6, 1))] = true;
+                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
+                    GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
+                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
+                        GlobalControls.CurrentPoints.ToString();
+                }
+                     
+            }
+            
             string node = currentNode.nextNode[i];
             if (node.Contains("need"))
             {
@@ -315,12 +350,32 @@ public class DialogueManager : MonoBehaviour
                 //This checks the itemList for the item that the npc needs at the index specified in the key name
                 //need0_angie_12.2
                 //Here the index is 0
-                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].needs[Int32.Parse(node.Substring(4, 1))]].containerName.Equals("Player"))
+                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].
+                    needs[Int32.Parse(node.Substring(4, 1))]].containerName.Equals("Player"))
                 {
                     Debug.Log("turning off one of the need's button");
                     buttons[i].gameObject.SetActive(false);
                 }
             }
+
+            if (node.Contains("action"))
+            {
+                if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.Parse(node.Substring(6, 1))])
+                {
+                    Debug.Log("Action Complete");
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+            if (node.Contains("success"))
+            {
+                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].
+                    actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
+                {
+                    Debug.Log("Player Does Not Have Action Item");
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+            
         }
         
         if (currentNode.nodeName.Contains("checkpoint"))
