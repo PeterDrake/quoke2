@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <convoForest>
 
-    <safi0>
+    <basic_safi_0>
         <playerOptions>
             <option>
                 <b>Rescue Safi</b>
@@ -11,15 +11,47 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpointsafi1</keyName>
+            <keyName>checkpoint_safi_1</keyName>
             <keyName>checkpointsafi1</keyName>
             <keyName>checkpointsafi1</keyName>
         </keys>
 
         <npcText>Anyone there?! Help me!</npcText>
-    </safi0>
+    </basic_safi_0>
 
-    <checkpointsafi1>
+    <trade_safi_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Let's trade!</npcText>
+    </trade_safi_0>
+    
+    <leave_safi_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Goodbye!</npcText>
+    </leave_safi_0>
+    
+    <checkpoint_safi_1>
         <playerOptions>
             <option>Shut Off Water</option>
             <option>Shut of Gas</option>
@@ -27,15 +59,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>safishutoffwater</keyName>
-            <keyName>safishutoffgas</keyName>
-            <keyName>tradesafi5</keyName>
+            <keyName>action0_safi_1.1</keyName>
+            <keyName>action1_safi_1.2</keyName>
+            <keyName>trade_safi_0</keyName>
         </keys>
 
         <npcText>Thank you! But my house is still in danger! Halp!</npcText>
-    </checkpointsafi1>
+    </checkpoint_safi_1>
 
-    <safishutoffwater>
+    <action0_safi_1.1>
         <playerOptions>
             <option>I have one right here! Let's get started!</option>
             <option>I don't have one right now.</option>
@@ -43,16 +75,15 @@
         </playerOptions>
 
         <keys>
-            <keyName>safiwatersuccess</keyName>
-            <keyName>safinowrench</keyName>
+            <keyName>need0_safi_1.3</keyName>
+            <keyName>leave_safi_0</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
-    </safishutoffwater>
-
-
-    <safiwatersuccess>
+    </action0_safi_1.1>
+    
+    <need0_safi_1.3>
         <playerOptions>
             <option>You are welcome!</option>
             <option></option>
@@ -60,17 +91,16 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
-            <keyName>checkpointsafi1</keyName>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
         </keys>
 
         <npcText>Okay thank you!</npcText>
+        
+    </need0_safi_1.3>
 
-
-    </safiwatersuccess>
-
-    <safishutoffgas>
+    <aciton1_safi_1.2>
         <playerOptions>
             <option>I have one right here! Let's get started!</option>
             <option>I don't have one right now.</option>
@@ -84,7 +114,7 @@
         </keys>
 
         <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
-    </safishutoffgas>
+    </aciton1_safi_1.2>
 
 
     <safigassuccess>
@@ -797,7 +827,7 @@
         <npcText>Hey, Green Owl!</npcText>
     </basic_angie_2.0>
 
-    <need0_angie_2.1>
+    <basic_angie_2.1>
         <playerOptions>
             <option>I've got an extra kit right here.</option>
             <option>I'll keep my eye out.</option>
@@ -805,13 +835,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_angie_0.5</keyName> 
+            <keyName>need0_angie_0.5</keyName> 
             <keyName>leave_angie_0.6</keyName>
             <keyName></keyName>
         </keys>
 
         <npcText>My head is really starting to pound. Did you find the first aid kit?</npcText>
-    </need0_angie_2.1>
+    </basic_angie_2.1>
 
     <trade_angie_2.2>
         <playerOptions>
@@ -1224,8 +1254,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>Thanks, it’s starting to hurt more now that I’m talking about it. Is there anything else you need?
-        </npcText>
+        <npcText>Thanks, it’s starting to hurt more now that I’m talking about it. Is there anything else you need?</npcText>
     </basic_angie_1.3>
 
     <leave_angie_1.4>
