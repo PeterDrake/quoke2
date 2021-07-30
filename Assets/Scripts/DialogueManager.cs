@@ -310,13 +310,10 @@ public class DialogueManager : MonoBehaviour
             buttons[i].gameObject.SetActive(true);
 
             //This will change the player text based on the node we're looking at
-            if (buttons[i].gameObject.activeSelf)
+            buttons[i].GetComponentInChildren<Text>(true).text = currentNode.playerArray[i];
+            if (buttons[i].GetComponentInChildren<Text>(true).text.Equals(""))
             {
-                buttons[i].GetComponentInChildren<Text>(true).text = currentNode.playerArray[i];
-                if (buttons[i].GetComponentInChildren<Text>(true).text.Equals(""))
-                {
-                    buttons[i].gameObject.SetActive(false);
-                }
+                buttons[i].gameObject.SetActive(false);
             }
 
             if (currentNode.nodeName.Contains("success"))
