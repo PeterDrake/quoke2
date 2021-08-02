@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 public class TestPreQuakeHouse
 {
@@ -43,6 +45,18 @@ public class TestPreQuakeHouse
         yield return null;
     }
 
+    /// <summary>
+    /// Presses each of the indicated keys, with a pause after each one to allow time to move to the next grid space.
+    /// </summary>
+    private IEnumerator SimulateKeyboardInput(string keys)
+    {
+        foreach (char c in keys)
+        {
+            KeyCode k = (KeyCode) Enum.Parse(typeof(KeyCode), Char.ToUpper(c).ToString());
+            playerKeyboard.SetKeyDown(k);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
     
     [UnityTest]
     public IEnumerator Cabinet1IsInitiallyEmpty()
@@ -63,16 +77,7 @@ public class TestPreQuakeHouse
         GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
         Assert.NotNull(sunscreen);
         // Take some steps
-        for (int i = 0; i < 5; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.W);
-            yield return new WaitForSeconds(0.5f);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.D);
-            yield return new WaitForSeconds(0.5f);
-        }
+        yield return SimulateKeyboardInput("wwdd");
         // Verify that the sunscreen was picked up
         Assert.AreEqual(sunscreen, inventory.items[0]);
     }
@@ -80,27 +85,14 @@ public class TestPreQuakeHouse
     [UnityTest]
     public IEnumerator VirtualPlayerMoves()
     {
-        playerKeyboard.SetKeyDown(KeyCode.W);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-3.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.S);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-4.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.A);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(3.5f,0.5f,-4.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.D);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-4.5f), referenceManager.player.transform.position);
+        yield return SimulateKeyboardInput("w");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-0.5f), referenceManager.player.transform.position);
+        yield return SimulateKeyboardInput("s");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
+        yield return SimulateKeyboardInput("a");
+        Assert.AreEqual(new Vector3(3.5f,0.5f,-1.5f), referenceManager.player.transform.position);
+        yield return SimulateKeyboardInput("d");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
     }
 
     [UnityTest]
@@ -108,13 +100,10 @@ public class TestPreQuakeHouse
     {
         cheatKeyboard.SetKeyDown(KeyCode.L);
         yield return new WaitForSeconds(1.5f);
-        
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        
         Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[1].name);
     }
-
     
 }
