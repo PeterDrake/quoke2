@@ -1043,7 +1043,7 @@
         <npcText>And then, FWOOSH! The rest of the library came down behind me!</npcText>
     </basic_angie_6.3>
 
-    <angie6.30>
+    <basic_angie_6.30>
         <playerOptions>
             <option>But isn't an EpiPen really important?</option>
             <option></option>
@@ -1057,7 +1057,7 @@
         </keys>
 
         <npcText>I guess it could have been scary for a normal civilian. Not for me!</npcText>
-    </angie6.30>
+    </basic_angie_6.30>
 
     <checkpoint_angie_6.4>
         <playerOptions>
@@ -1068,7 +1068,7 @@
 
         <keys>
             <keyName>need1_angie_6.5</keyName>
-            <keyName>angie_6.6</keyName>
+            <keyName>basic_angie_6.6</keyName>
             <keyName></keyName>
         </keys>
 
@@ -1452,13 +1452,13 @@
     <action0_angie_9.2>
         <playerOptions>
             <option>Yes here you go!</option>
-            <option>No, I don't have any water.</option>
+            <option>No. Let me go find some.</option>
             <option></option>
         </playerOptions>
 
         <keys>
             <keyName>success0_angie_9.3</keyName> 
-            <keyName>leave_angie_0</keyName>
+            <keyName>leave_angie_1</keyName>
             <keyName></keyName>
         </keys>
 
