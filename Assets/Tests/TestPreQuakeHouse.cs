@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 public class TestPreQuakeHouse
 {
@@ -43,6 +45,29 @@ public class TestPreQuakeHouse
         yield return null;
     }
 
+    /// <summary>
+    /// Presses each of the indicated keys, with a pause after each one, if needed, to allow time for the game to
+    /// respond.
+    /// </summary>
+    private IEnumerator Press(string keys)
+    {
+        foreach (char c in keys)
+        {
+            KeyCode k = (KeyCode) Enum.Parse(typeof(KeyCode), Char.ToUpper(c).ToString());
+            // There are two different objects receiving keypresses, but only one will react to a given key
+            playerKeyboard.SetKeyDown(k);
+            cheatKeyboard.SetKeyDown(k);
+            if ("WASDL".IndexOf(Char.ToUpper(c)) != -1)
+            {
+                // This key take some time for the game to complete its response (e.g., movement)
+                yield return new WaitForSeconds(0.25f);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
     
     [UnityTest]
     public IEnumerator Cabinet1IsInitiallyEmpty()
@@ -63,16 +88,7 @@ public class TestPreQuakeHouse
         GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
         Assert.NotNull(sunscreen);
         // Take some steps
-        for (int i = 0; i < 5; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.W);
-            yield return new WaitForSeconds(0.5f);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            playerKeyboard.SetKeyDown(KeyCode.D);
-            yield return new WaitForSeconds(0.5f);
-        }
+        yield return Press("wwdd");
         // Verify that the sunscreen was picked up
         Assert.AreEqual(sunscreen, inventory.items[0]);
     }
@@ -80,41 +96,24 @@ public class TestPreQuakeHouse
     [UnityTest]
     public IEnumerator VirtualPlayerMoves()
     {
-        playerKeyboard.SetKeyDown(KeyCode.W);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-3.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.S);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-4.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.A);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(3.5f,0.5f,-4.5f), referenceManager.player.transform.position);
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        playerKeyboard.SetKeyDown(KeyCode.D);
-        yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual(new Vector3(4.5f,0.5f,-4.5f), referenceManager.player.transform.position);
+        yield return Press("w");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-0.5f), referenceManager.player.transform.position);
+        yield return Press("s");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
+        yield return Press("a");
+        Assert.AreEqual(new Vector3(3.5f,0.5f,-1.5f), referenceManager.player.transform.position);
+        yield return Press("d");
+        Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
     }
 
     [UnityTest]
     public IEnumerator CheatKeyboardWorks()
     {
-        cheatKeyboard.SetKeyDown(KeyCode.L);
-        yield return new WaitForSeconds(1.5f);
-        
+        yield return Press("l");
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        
         Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[1].name);
     }
-
     
 }
