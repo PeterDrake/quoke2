@@ -43,13 +43,22 @@ public class DialogueUI : MonoBehaviour
 
             if (text.gameObject.name.Equals("Dialogue Text"))
             {
-                text.text = dialogue;
-                text.alignment = TextAnchor.UpperCenter;
+                if (name.Equals("Duc"))
+                {
+                    text.text = dialogue;
+                    text.alignment = TextAnchor.UpperLeft;
+                }
+                else
+                {
+                    text.text = dialogue;
+                    text.alignment = TextAnchor.UpperRight;
+
+                }
             }
         }
 
         Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 0f;
+        scrollRect.verticalNormalizedPosition = -2.5f;
 
     }
 
