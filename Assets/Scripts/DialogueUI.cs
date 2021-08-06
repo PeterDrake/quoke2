@@ -31,12 +31,12 @@ public class DialogueUI : MonoBehaviour
                 text.text = name;
                 if (name.Equals("Duc"))
                 {
-                    text.alignment = TextAnchor.MiddleLeft;
+                    text.alignment = TextAnchor.UpperLeft;
                     text.gameObject.GetComponentInParent<Image>().color = Color.green;
                 }
                 else
                 {
-                    text.alignment = TextAnchor.MiddleRight;
+                    text.alignment = TextAnchor.UpperRight;
                     text.gameObject.GetComponentInParent<Image>().color = Color.cyan;
                 }
             }
@@ -44,6 +44,7 @@ public class DialogueUI : MonoBehaviour
             if (text.gameObject.name.Equals("Dialogue Text"))
             {
                 text.text = dialogue;
+                text.alignment = TextAnchor.UpperCenter;
             }
         }
 
