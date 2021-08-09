@@ -9,9 +9,7 @@ using UnityEngine.UI;
 public class NPCInteracted : MonoBehaviour
 {
     private ReferenceManager referenceManager;
-
-    // public HashSet<string> interacted = new HashSet<string>();
-
+    
     private GameObject safiImage;
     private GameObject demImage;
     private GameObject rainerImage;
@@ -112,61 +110,7 @@ public class NPCInteracted : MonoBehaviour
                 else if (child.name.Equals("Carlos Owes")) carlosOwes = child.gameObject;
                 else if (child.name.Equals("Angie Owes")) angieOwes = child.gameObject;
             }
-
-            // if (GlobalControls.SafiInteracted)
-            // {
-            //     interacted.Add("safi");
-            // }
-            // else
-            // {
-            //     interacted.Remove("safi");
-            // }
-            //
-            // if (GlobalControls.DemInteracted)
-            // {
-            //     interacted.Add("dem");
-            // }
-            // else
-            // {
-            //     interacted.Remove("dem");
-            // }
-            //
-            // if (GlobalControls.RainerInteracted)
-            // {
-            //     interacted.Add("rainer");
-            // }
-            // else
-            // {
-            //     interacted.Remove("rainer");
-            // }
-            //
-            // if (GlobalControls.AnnetteInteracted)
-            // {
-            //     interacted.Add("annette");
-            // }
-            // else
-            // {
-            //     interacted.Remove("annette");
-            // }
-            //
-            // if (GlobalControls.CarlosInteracted)
-            // {
-            //     interacted.Add("carlos");
-            // }
-            // else
-            // {
-            //     interacted.Remove("carlos");
-            // }
-            //
-            // if (GlobalControls.AngieInteracted)
-            // {
-            //     interacted.Add("angie");
-            // }
-            // else
-            // {
-            //     interacted.Remove("angie");
-            // }
-            //
+            
             safiSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["safi0"].satisfaction + " / " 
                 + GlobalControls.npcList["safi0"].totalSatisfaction;
             demSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["dem0"].satisfaction + " / " 
