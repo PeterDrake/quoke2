@@ -104,17 +104,15 @@ public class PlayerKeyboardManager : MonoBehaviour
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
         selected = Resources.Load<Sprite>("SelectedSlot 1");
 
-        foreach (Image image in npcInteractedCanvas.GetComponentsInChildren<Image>(true))
+        int k = 0;
+        foreach (Transform child in npcInteractedCanvas.GetComponentsInChildren<Transform>(true))
         {
-            if (image.gameObject.name.Equals("Safi Frame")) npcFrames[0] = image.gameObject;
-            if (image.gameObject.name.Equals("Dem Frame")) npcFrames[1] = image.gameObject;
-            if (image.gameObject.name.Equals("Rainer Frame")) npcFrames[2] = image.gameObject;
-            if (image.gameObject.name.Equals("Annette Frame")) npcFrames[3] = image.gameObject;
-            if (image.gameObject.name.Equals("Carlos Frame")) npcFrames[4] = image.gameObject;
-            if (image.gameObject.name.Equals("Angie Frame")) npcFrames[5] = image.gameObject;
-            
+            if (child.name.EndsWith("Panel"))
+            {
+                npcFrames[k] = child.Find("Frame").Find("Image").gameObject;
+                k++;
+            }
         }
-        
         
         //Handle start of scene things
         if (SceneManager.GetActiveScene().name.Contains("Quake"))
