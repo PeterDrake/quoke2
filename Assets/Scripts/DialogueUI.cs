@@ -31,24 +31,34 @@ public class DialogueUI : MonoBehaviour
                 text.text = name;
                 if (name.Equals("Duc"))
                 {
-                    text.alignment = TextAnchor.MiddleLeft;
+                    text.alignment = TextAnchor.UpperLeft;
                     text.gameObject.GetComponentInParent<Image>().color = Color.green;
                 }
                 else
                 {
-                    text.alignment = TextAnchor.MiddleRight;
+                    text.alignment = TextAnchor.UpperRight;
                     text.gameObject.GetComponentInParent<Image>().color = Color.cyan;
                 }
             }
 
             if (text.gameObject.name.Equals("Dialogue Text"))
             {
-                text.text = dialogue;
+                if (name.Equals("Duc"))
+                {
+                    text.text = dialogue;
+                    text.alignment = TextAnchor.UpperLeft;
+                }
+                else
+                {
+                    text.text = dialogue;
+                    text.alignment = TextAnchor.UpperRight;
+
+                }
             }
         }
 
         Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 0f;
+        scrollRect.verticalNormalizedPosition = -2.5f;
 
     }
 

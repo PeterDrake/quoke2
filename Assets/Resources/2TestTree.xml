@@ -738,8 +738,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages
-            in my First Aid Kit...
+        <npcText>Yeah! I’ve already helped some people by bandaging up their cuts and scrapes, but I’m out of bandages in my First Aid Kit...
         </npcText>
     </basic_angie_0.30>
 
@@ -756,8 +755,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive
-            enough, so I went out and learned some more on my own!
+        <npcText>We had a unit on first aid in my Biology class at West Linn High School. It wasn’t nearly comprehensive enough, so I went out and learned some more on my own!
         </npcText>
     </basic_angie_0.4>
 
@@ -902,8 +900,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>I was in the library when *BOOM*, the entire building began to shake. I tried to duck under one of the
-            desks and *WHAAM* I hit my head on the edge of the table.
+        <npcText>I was in the library when *BOOM*, the entire building began to shake. I tried to duck under one of the desks and *WHAAM* I hit my head on the edge of the table.
         </npcText>
     </basic_angie_4.1>
 
@@ -920,8 +917,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>My parents? I’m getting there. Anyway, after the shaking stopped I dashed out of the library. I only
-            thought about my little sister so I travelled across town to get here and find her.
+        <npcText>My parents? I’m getting there. Anyway, after the shaking stopped I dashed out of the library. I only thought about my little sister so I travelled across town to get here and find her.
         </npcText>
     </basic_angie_4.10>
 
@@ -938,8 +934,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>Oh they’re probably at home and fine. Now that I’ve bandaged my head, I can keep helping out around
-            here.
+        <npcText>Oh they’re probably at home and fine. Now that I’ve bandaged my head, I can keep helping out around here.
         </npcText>
     </basic_angie_4.100>
 
@@ -1043,7 +1038,7 @@
         <npcText>And then, FWOOSH! The rest of the library came down behind me!</npcText>
     </basic_angie_6.3>
 
-    <angie6.30>
+    <basic_angie_6.30>
         <playerOptions>
             <option>But isn't an EpiPen really important?</option>
             <option></option>
@@ -1057,7 +1052,7 @@
         </keys>
 
         <npcText>I guess it could have been scary for a normal civilian. Not for me!</npcText>
-    </angie6.30>
+    </basic_angie_6.30>
 
     <checkpoint_angie_6.4>
         <playerOptions>
@@ -1068,7 +1063,7 @@
 
         <keys>
             <keyName>need1_angie_6.5</keyName>
-            <keyName>angie_6.6</keyName>
+            <keyName>basic_angie_6.6</keyName>
             <keyName></keyName>
         </keys>
 
@@ -1250,8 +1245,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>It’s not that bad. I used my First Aid Kit to help some other people, but I didn’t bandage myself and
-            the cut opened further on my trip over here. Do you have bandages or a First Aid Kit? I'll trade for it.
+        <npcText>It’s not that bad. I used my First Aid Kit to help some other people, but I didn’t bandage myself and the cut opened further on my trip over here. Do you have bandages or a First Aid Kit? I'll trade for it.
         </npcText>
     </checkpoint_angie_1.1>
 
@@ -1364,8 +1358,7 @@
             <keyName></keyName>
         </keys>
 
-        <npcText>Well, I looked through my backpack and realized that I must’ve dropped my EpiPen when I CRUNCHED over
-            the broken glass at the library. Could you keep an eye out for an extra one?
+        <npcText>Well, I looked through my backpack and realized that I must’ve dropped my EpiPen when I CRUNCHED over the broken glass at the library. Could you keep an eye out for an extra one?
         </npcText>
     </checkpoint_angie_5.1>
 
@@ -1452,13 +1445,13 @@
     <action0_angie_9.2>
         <playerOptions>
             <option>Yes here you go!</option>
-            <option>No, I don't have any water.</option>
+            <option>No. Let me go find some.</option>
             <option></option>
         </playerOptions>
 
         <keys>
             <keyName>success0_angie_9.3</keyName> 
-            <keyName>leave_angie_0</keyName>
+            <keyName>leave_angie_1</keyName>
             <keyName></keyName>
         </keys>
 
