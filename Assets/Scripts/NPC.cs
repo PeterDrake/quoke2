@@ -11,7 +11,7 @@ public class NPC
     public string node;
     public int satisfaction;
     public int totalSatisfaction;
-    public bool interracted;
+    public bool interacted;
     public string description;
     public int owes;
     public List<DialogueNode> dialogueList;
@@ -20,7 +20,7 @@ public class NPC
     public bool[] actionsComplete = new bool[3];
 
     public NPC(string name, string scene, List<string> needs, string node, int satisfaction, 
-        bool interracted, string description, int totalSatisfaction, int owes, Dictionary<string, string> actions,
+        bool interacted, string description, int totalSatisfaction, int owes, Dictionary<string, string> actions,
         List<string> actionRequirements)
     {
         this.name = name;
@@ -28,7 +28,7 @@ public class NPC
         this.needs = needs;
         this.node = node;
         this.satisfaction = satisfaction;
-        this.interracted = interracted;
+        this.interacted = interacted;
         this.description = description;
         this.totalSatisfaction = totalSatisfaction;
         this.owes = owes;

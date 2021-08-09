@@ -30,14 +30,8 @@ public static class GlobalControls
     private static int turnNumber = 0;
     private static string currentNPC;
 
-    public static HashSet<string> interacted;
-
-    // private static bool safiInteracted;
-    // private static bool demInteracted;
-    // private static bool rainerInteracted;
-    // private static bool annetteInteracted;
-    // private static bool carlosInteracted;
-    // private static bool angieInteracted;
+    public static string[] npcNames = { "safi0","dem0","rainer0","annette0","carlos0","angie0" };
+    // public static HashSet<string> interacted;
 
     private static bool apartmentCondition = false;
 
@@ -62,7 +56,7 @@ public static class GlobalControls
     private static bool angieHasFirstAidKit = false;
     private static bool angieSeriousDialogue = false;
     
-    private static Dictionary<string, NPC> npcList;
+    public static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
 
     private static Dictionary<string, int> points = new Dictionary<string, int>
@@ -196,7 +190,11 @@ public static class GlobalControls
         turnNumber = 0;
         currentNPC = "";
 
-        interacted = new HashSet<string>();
+        foreach (string name in npcNames)
+        {
+            npcList[name].interacted = false;
+        }
+        
         adminMode = true;
 
         demActionDone = false;
@@ -302,8 +300,11 @@ public static class GlobalControls
         turnNumber = 0;
         currentNPC = "";
 
-        interacted = new HashSet<string>();
-
+        foreach (string name in npcNames)
+        {
+            npcList[name].interacted = false;
+        }
+        
         adminMode = true;
         
         demActionDone = false;
@@ -395,9 +396,7 @@ public static class GlobalControls
         get => adminMode;
         set => adminMode = value;
     }
-
-    public static Dictionary<string, NPC> NPCList => npcList;
-
+    
     public static Dictionary<string, string> Keybinds => keybinds;
 
     public static bool MetersEnabled
@@ -456,43 +455,9 @@ public static class GlobalControls
     }
     public static void SetCheckpoint(string nodeName)
     {
-        NPCList[currentNPC].node = nodeName;
+        npcList[currentNPC].node = nodeName;
     }
-    
-    // public static bool SafiInteracted
-    // {
-    //     get => safiInteracted;
-    //     set => safiInteracted = value;
-    // }
-    //
-    // public static bool DemInteracted
-    // {
-    //     get => demInteracted;
-    //     set => demInteracted = value;
-    // }
-    //
-    // public static bool RainerInteracted
-    // {
-    //     get => rainerInteracted;
-    //     set => rainerInteracted = value;
-    // }
-    //
-    // public static bool AnnetteInteracted
-    // {
-    //     get => annetteInteracted;
-    //     set => annetteInteracted = value;
-    // }
-    // public static bool CarlosInteracted
-    // {
-    //     get => carlosInteracted;
-    //     set => carlosInteracted = value;
-    // }
-    // public static bool AngieInteracted
-    // {
-    //     get => angieInteracted;
-    //     set => angieInteracted = value;
-    // }
-    
+
     public static bool DemActionDone
     {
         get => demActionDone;

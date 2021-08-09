@@ -36,49 +36,49 @@ public class NPCInteracted : MonoBehaviour
 
     private void OnEnable()
     {
-        if(safiSatisfaction) safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
-            + GlobalControls.NPCList["safi0"].totalSatisfaction;
-        if(demSatisfaction) demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
-            + GlobalControls.NPCList["dem0"].totalSatisfaction;
-        if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
-            + GlobalControls.NPCList["rainer0"].totalSatisfaction;
-        if(annetteSatisfaction) annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
-            + GlobalControls.NPCList["annette0"].totalSatisfaction;
-        if(carlosSatisfaction) carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
-            + GlobalControls.NPCList["carlos0"].totalSatisfaction;
-        if(angieSatisfaction) angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-            + GlobalControls.NPCList["angie0"].totalSatisfaction;
+        if(safiSatisfaction) safiSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["safi0"].satisfaction + " / " 
+            + GlobalControls.npcList["safi0"].totalSatisfaction;
+        if(demSatisfaction) demSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["dem0"].satisfaction + " / " 
+            + GlobalControls.npcList["dem0"].totalSatisfaction;
+        if(rainerSatisfaction) rainerSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["rainer0"].satisfaction + " / " 
+            + GlobalControls.npcList["rainer0"].totalSatisfaction;
+        if(annetteSatisfaction) annetteSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["annette0"].satisfaction + " / " 
+            + GlobalControls.npcList["annette0"].totalSatisfaction;
+        if(carlosSatisfaction) carlosSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["carlos0"].satisfaction + " / " 
+            + GlobalControls.npcList["carlos0"].totalSatisfaction;
+        if(angieSatisfaction) angieSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["angie0"].satisfaction + " / " 
+            + GlobalControls.npcList["angie0"].totalSatisfaction;
         
-        if(safiOwes) safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["safi0"].owes.ToString();
-        if(demOwes) demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["dem0"].owes.ToString();
-        if(rainerOwes) rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["rainer0"].owes.ToString();
-        if(annetteOwes) annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["annette0"].owes.ToString();
-        if(carlosOwes) carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["carlos0"].owes.ToString();
-        if(angieOwes) angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
+        if(safiOwes) safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["safi0"].owes.ToString();
+        if(demOwes) demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["dem0"].owes.ToString();
+        if(rainerOwes) rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["rainer0"].owes.ToString();
+        if(annetteOwes) annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["annette0"].owes.ToString();
+        if(carlosOwes) carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["carlos0"].owes.ToString();
+        if(angieOwes) angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["angie0"].owes.ToString();
         
-        if(safiOwes && GlobalControls.NPCList["safi0"].owes != 0) 
+        if(safiOwes && GlobalControls.npcList["safi0"].owes != 0) 
             safiOwes.SetActive(true);
-        else if(safiOwes && GlobalControls.NPCList["safi0"].owes == 0)
+        else if(safiOwes && GlobalControls.npcList["safi0"].owes == 0)
             safiOwes.SetActive(false);
-        if(demOwes && GlobalControls.NPCList["dem0"].owes != 0) 
+        if(demOwes && GlobalControls.npcList["dem0"].owes != 0) 
             demOwes.SetActive(true);
-        else if(demOwes && GlobalControls.NPCList["dem0"].owes == 0)
+        else if(demOwes && GlobalControls.npcList["dem0"].owes == 0)
             demOwes.SetActive(false);
-        if(rainerOwes && GlobalControls.NPCList["rainer0"].owes != 0) 
+        if(rainerOwes && GlobalControls.npcList["rainer0"].owes != 0) 
             rainerOwes.SetActive(true);
-        else if(rainerOwes && GlobalControls.NPCList["rainer0"].owes == 0)
+        else if(rainerOwes && GlobalControls.npcList["rainer0"].owes == 0)
             rainerOwes.SetActive(false);
-        if(annetteOwes && GlobalControls.NPCList["annette0"].owes != 0) 
+        if(annetteOwes && GlobalControls.npcList["annette0"].owes != 0) 
             annetteOwes.SetActive(true);
-        else if(annetteOwes && GlobalControls.NPCList["annette0"].owes == 0)
+        else if(annetteOwes && GlobalControls.npcList["annette0"].owes == 0)
             annetteOwes.SetActive(false);
-        if(carlosOwes && GlobalControls.NPCList["carlos0"].owes != 0) 
+        if(carlosOwes && GlobalControls.npcList["carlos0"].owes != 0) 
             carlosOwes.SetActive(true);
-        else if(carlosOwes && GlobalControls.NPCList["carlos0"].owes == 0)
+        else if(carlosOwes && GlobalControls.npcList["carlos0"].owes == 0)
             carlosOwes.SetActive(false);
-        if(angieOwes && GlobalControls.NPCList["angie0"].owes != 0) 
+        if(angieOwes && GlobalControls.npcList["angie0"].owes != 0) 
             angieOwes.SetActive(true);
-        else if(angieOwes && GlobalControls.NPCList["angie0"].owes == 0)
+        else if(angieOwes && GlobalControls.npcList["angie0"].owes == 0)
             angieOwes.SetActive(false);
     }
 
@@ -167,27 +167,27 @@ public class NPCInteracted : MonoBehaviour
             //     interacted.Remove("angie");
             // }
             //
-            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
-                + GlobalControls.NPCList["safi0"].totalSatisfaction;
-            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
-                + GlobalControls.NPCList["dem0"].totalSatisfaction;
-            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
-                + GlobalControls.NPCList["rainer0"].totalSatisfaction;
-            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
-                + GlobalControls.NPCList["annette0"].totalSatisfaction;
-            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
-                + GlobalControls.NPCList["carlos0"].totalSatisfaction;
-            angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-                + GlobalControls.NPCList["angie0"].totalSatisfaction;
+            safiSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["safi0"].satisfaction + " / " 
+                + GlobalControls.npcList["safi0"].totalSatisfaction;
+            demSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["dem0"].satisfaction + " / " 
+                + GlobalControls.npcList["dem0"].totalSatisfaction;
+            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["rainer0"].satisfaction + " / " 
+                + GlobalControls.npcList["rainer0"].totalSatisfaction;
+            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["annette0"].satisfaction + " / " 
+                + GlobalControls.npcList["annette0"].totalSatisfaction;
+            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["carlos0"].satisfaction + " / " 
+                + GlobalControls.npcList["carlos0"].totalSatisfaction;
+            angieSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["angie0"].satisfaction + " / " 
+                + GlobalControls.npcList["angie0"].totalSatisfaction;
 
-            safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["safi0"].owes.ToString();
-            demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["dem0"].owes.ToString();
-            rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["rainer0"].owes.ToString();
-            annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["annette0"].owes.ToString();
-            carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["carlos0"].owes.ToString();
-            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
+            safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["safi0"].owes.ToString();
+            demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["dem0"].owes.ToString();
+            rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["rainer0"].owes.ToString();
+            annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["annette0"].owes.ToString();
+            carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["carlos0"].owes.ToString();
+            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["angie0"].owes.ToString();
 
-            if (!GlobalControls.interacted.Contains("safi"))
+            if (!GlobalControls.npcList["safi0"].interacted)
             {
                 safiImage.SetActive(false);
                 safiSatisfaction.SetActive(false);
@@ -197,11 +197,11 @@ public class NPCInteracted : MonoBehaviour
             {
                 safiImage.SetActive(true);
                 safiSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["safi0"].owes != 0) safiOwes.SetActive(true);
-                else if (GlobalControls.NPCList["safi0"].owes == 0) safiOwes.SetActive(false);
+                if(GlobalControls.npcList["safi0"].owes != 0) safiOwes.SetActive(true);
+                else if (GlobalControls.npcList["safi0"].owes == 0) safiOwes.SetActive(false);
             }
 
-            if (!GlobalControls.interacted.Contains("dem"))
+            if (!GlobalControls.npcList["dem0"].interacted)
             {
                 demImage.SetActive(false);
                 demSatisfaction.SetActive(false);
@@ -211,11 +211,11 @@ public class NPCInteracted : MonoBehaviour
             {
                 demImage.SetActive(true);
                 demSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["dem0"].owes != 0) demOwes.SetActive(true);
-                else if (GlobalControls.NPCList["dem0"].owes == 0) demOwes.SetActive(false);
+                if(GlobalControls.npcList["dem0"].owes != 0) demOwes.SetActive(true);
+                else if (GlobalControls.npcList["dem0"].owes == 0) demOwes.SetActive(false);
             }
 
-            if (!GlobalControls.interacted.Contains("rainer"))
+            if (!GlobalControls.npcList["rainer0"].interacted)
             {
                 rainerImage.SetActive(false);
                 rainerSatisfaction.SetActive(false);
@@ -225,11 +225,11 @@ public class NPCInteracted : MonoBehaviour
             {
                 rainerImage.SetActive(true);
                 rainerSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["rainer0"].owes != 0) rainerOwes.SetActive(true);
-                else if (GlobalControls.NPCList["rainer0"].owes == 0) rainerOwes.SetActive(false);
+                if(GlobalControls.npcList["rainer0"].owes != 0) rainerOwes.SetActive(true);
+                else if (GlobalControls.npcList["rainer0"].owes == 0) rainerOwes.SetActive(false);
             }
 
-            if (!GlobalControls.interacted.Contains("annette"))
+            if (!GlobalControls.npcList["annette0"].interacted)
             {
                 annetteImage.SetActive(false);
                 annetteSatisfaction.SetActive(false);
@@ -239,11 +239,11 @@ public class NPCInteracted : MonoBehaviour
             {
                 annetteImage.SetActive(true);
                 annetteSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["annette0"].owes != 0) annetteOwes.SetActive(true);
-                else if (GlobalControls.NPCList["annette0"].owes == 0) annetteOwes.SetActive(false);
+                if(GlobalControls.npcList["annette0"].owes != 0) annetteOwes.SetActive(true);
+                else if (GlobalControls.npcList["annette0"].owes == 0) annetteOwes.SetActive(false);
             }
             
-            if (!GlobalControls.interacted.Contains("carlos"))
+            if (!GlobalControls.npcList["carlos0"].interacted)
             {
                 carlosImage.SetActive(false);
                 carlosSatisfaction.SetActive(false);
@@ -253,11 +253,11 @@ public class NPCInteracted : MonoBehaviour
             {
                 carlosImage.SetActive(true);
                 carlosSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["carlos0"].owes != 0) carlosOwes.SetActive(true);
-                else if (GlobalControls.NPCList["carlos0"].owes == 0) carlosOwes.SetActive(false);
+                if(GlobalControls.npcList["carlos0"].owes != 0) carlosOwes.SetActive(true);
+                else if (GlobalControls.npcList["carlos0"].owes == 0) carlosOwes.SetActive(false);
             }
             
-            if (!GlobalControls.interacted.Contains("angie"))
+            if (!GlobalControls.npcList["angie0"].interacted)
             {
                 angieImage.SetActive(false);
                 angieSatisfaction.SetActive(false);
@@ -267,8 +267,8 @@ public class NPCInteracted : MonoBehaviour
             {
                 angieImage.SetActive(true);
                 angieSatisfaction.SetActive(true);
-                if(GlobalControls.NPCList["angie0"].owes != 0) angieOwes.SetActive(true);
-                else if (GlobalControls.NPCList["angie0"].owes == 0) angieOwes.SetActive(false);
+                if(GlobalControls.npcList["angie0"].owes != 0) angieOwes.SetActive(true);
+                else if (GlobalControls.npcList["angie0"].owes == 0) angieOwes.SetActive(false);
             }
         }
 
@@ -278,74 +278,74 @@ public class NPCInteracted : MonoBehaviour
     {
         if (name.Equals("safi0"))
         {
-            safiSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["safi0"].satisfaction + " / " 
-                + GlobalControls.NPCList["safi0"].totalSatisfaction;
-            safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["safi0"].owes.ToString();
-            GlobalControls.interacted.Add("safi");
+            safiSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["safi0"].satisfaction + " / " 
+                + GlobalControls.npcList["safi0"].totalSatisfaction;
+            safiOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["safi0"].owes.ToString();
+            GlobalControls.npcList["safi0"].interacted = true;
             // GlobalControls.SafiInteracted = true;
-            GlobalControls.NPCList["safi0"].interracted = true;
-            if(GlobalControls.NPCList["safi0"].owes != 0) safiOwes.SetActive(true);
+            GlobalControls.npcList["safi0"].interacted = true;
+            if(GlobalControls.npcList["safi0"].owes != 0) safiOwes.SetActive(true);
             safiImage.SetActive(true);
             safiSatisfaction.SetActive(true);
         }
         else if (name.Equals("dem0"))
         {
-            demSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["dem0"].satisfaction + " / " 
-                + GlobalControls.NPCList["dem0"].totalSatisfaction;
-            demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["dem0"].owes.ToString();
-            GlobalControls.interacted.Add("dem");
+            demSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["dem0"].satisfaction + " / " 
+                + GlobalControls.npcList["dem0"].totalSatisfaction;
+            demOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["dem0"].owes.ToString();
+            GlobalControls.npcList["dem0"].interacted = true;
             // GlobalControls.DemInteracted = true;
-            GlobalControls.NPCList["dem0"].interracted = true;
-            if(GlobalControls.NPCList["dem0"].owes != 0) demOwes.SetActive(true);
+            GlobalControls.npcList["dem0"].interacted = true;
+            if(GlobalControls.npcList["dem0"].owes != 0) demOwes.SetActive(true);
             demImage.SetActive(true);
             demSatisfaction.SetActive(true);
         }
         else if (name.Equals("rainer0"))
         {
-            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["rainer0"].satisfaction + " / " 
-                + GlobalControls.NPCList["rainer0"].totalSatisfaction;
-            rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["rainer0"].owes.ToString();
-            GlobalControls.interacted.Add("rainer");
+            rainerSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["rainer0"].satisfaction + " / " 
+                + GlobalControls.npcList["rainer0"].totalSatisfaction;
+            rainerOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["rainer0"].owes.ToString();
+            GlobalControls.npcList["rainer0"].interacted = true;
             // GlobalControls.RainerInteracted = true;
-            GlobalControls.NPCList["rainer0"].interracted = true;
-            if(GlobalControls.NPCList["rainer0"].owes != 0) rainerOwes.SetActive(true);
+            GlobalControls.npcList["rainer0"].interacted = true;
+            if(GlobalControls.npcList["rainer0"].owes != 0) rainerOwes.SetActive(true);
             rainerImage.SetActive(true);
             rainerSatisfaction.SetActive(true);
         }
         else if (name.Equals("annette0"))
         {
-            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["annette0"].satisfaction + " / " 
-                + GlobalControls.NPCList["annette0"].totalSatisfaction;
-            GlobalControls.interacted.Add("annette");
+            annetteSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["annette0"].satisfaction + " / " 
+                + GlobalControls.npcList["annette0"].totalSatisfaction;
+            GlobalControls.npcList["annette0"].interacted = true;
             // GlobalControls.AnnetteInteracted = true;
-            GlobalControls.NPCList["annette0"].interracted = true;
+            GlobalControls.npcList["annette0"].interacted = true;
             annetteImage.SetActive(true);
             annetteSatisfaction.SetActive(true);
 
-            annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["annette0"].owes.ToString();
-            if(GlobalControls.NPCList["annette0"].owes != 0) annetteOwes.SetActive(true);
+            annetteOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["annette0"].owes.ToString();
+            if(GlobalControls.npcList["annette0"].owes != 0) annetteOwes.SetActive(true);
         }
         else if (name.Equals("carlos0"))
         {
-            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["carlos0"].satisfaction + " / " 
-                + GlobalControls.NPCList["carlos0"].totalSatisfaction;
-            carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["carlos0"].owes.ToString();
-            GlobalControls.interacted.Add("carlos");
+            carlosSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["carlos0"].satisfaction + " / " 
+                + GlobalControls.npcList["carlos0"].totalSatisfaction;
+            carlosOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["carlos0"].owes.ToString();
+            GlobalControls.npcList["carlos0"].interacted = true;
             // GlobalControls.CarlosInteracted = true;
-            GlobalControls.NPCList["carlos0"].interracted = true;
-            if(GlobalControls.NPCList["carlos0"].owes != 0) carlosOwes.SetActive(true);
+            GlobalControls.npcList["carlos0"].interacted = true;
+            if(GlobalControls.npcList["carlos0"].owes != 0) carlosOwes.SetActive(true);
             carlosImage.SetActive(true);
             carlosSatisfaction.SetActive(true);
         }
         else if (name.Equals("angie0"))
         {
-            angieSatisfaction.GetComponent<Text>().text = GlobalControls.NPCList["angie0"].satisfaction + " / " 
-                + GlobalControls.NPCList["angie0"].totalSatisfaction;
-            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.NPCList["angie0"].owes.ToString();
-            GlobalControls.interacted.Add("angie");
+            angieSatisfaction.GetComponent<Text>().text = GlobalControls.npcList["angie0"].satisfaction + " / " 
+                + GlobalControls.npcList["angie0"].totalSatisfaction;
+            angieOwes.GetComponentInChildren<Text>(true).text = GlobalControls.npcList["angie0"].owes.ToString();
+            GlobalControls.npcList["angie0"].interacted = true;
             // GlobalControls.AngieInteracted = true;
-            GlobalControls.NPCList["angie0"].interracted = true;
-            if(GlobalControls.NPCList["angie0"].owes != 0) angieOwes.SetActive(true);
+            GlobalControls.npcList["angie0"].interacted = true;
+            if(GlobalControls.npcList["angie0"].owes != 0) angieOwes.SetActive(true);
             angieImage.SetActive(true);
             angieSatisfaction.SetActive(true);
         }
