@@ -30,12 +30,14 @@ public static class GlobalControls
     private static int turnNumber = 0;
     private static string currentNPC;
 
-    private static bool safiInteracted;
-    private static bool demInteracted;
-    private static bool rainerInteracted;
-    private static bool annetteInteracted;
-    private static bool carlosInteracted;
-    private static bool angieInteracted;
+    public static HashSet<string> interacted;
+
+    // private static bool safiInteracted;
+    // private static bool demInteracted;
+    // private static bool rainerInteracted;
+    // private static bool annetteInteracted;
+    // private static bool carlosInteracted;
+    // private static bool angieInteracted;
 
     private static bool apartmentCondition = false;
 
@@ -193,13 +195,8 @@ public static class GlobalControls
 
         turnNumber = 0;
         currentNPC = "";
-        
-        safiInteracted = false;
-        demInteracted = false;
-        rainerInteracted = false;
-        annetteInteracted = false;
-        carlosInteracted = false;
-        angieInteracted = false;
+
+        interacted = new HashSet<string>();
         adminMode = true;
 
         demActionDone = false;
@@ -304,13 +301,9 @@ public static class GlobalControls
 
         turnNumber = 0;
         currentNPC = "";
-        
-        safiInteracted = false;
-        demInteracted = false;
-        rainerInteracted = false;
-        annetteInteracted = false;
-        carlosInteracted = false;
-        angieInteracted = false;
+
+        interacted = new HashSet<string>();
+
         adminMode = true;
         
         demActionDone = false;
@@ -466,39 +459,39 @@ public static class GlobalControls
         NPCList[currentNPC].node = nodeName;
     }
     
-    public static bool SafiInteracted
-    {
-        get => safiInteracted;
-        set => safiInteracted = value;
-    }
-    
-    public static bool DemInteracted
-    {
-        get => demInteracted;
-        set => demInteracted = value;
-    }
-    
-    public static bool RainerInteracted
-    {
-        get => rainerInteracted;
-        set => rainerInteracted = value;
-    }
-    
-    public static bool AnnetteInteracted
-    {
-        get => annetteInteracted;
-        set => annetteInteracted = value;
-    }
-    public static bool CarlosInteracted
-    {
-        get => carlosInteracted;
-        set => carlosInteracted = value;
-    }
-    public static bool AngieInteracted
-    {
-        get => angieInteracted;
-        set => angieInteracted = value;
-    }
+    // public static bool SafiInteracted
+    // {
+    //     get => safiInteracted;
+    //     set => safiInteracted = value;
+    // }
+    //
+    // public static bool DemInteracted
+    // {
+    //     get => demInteracted;
+    //     set => demInteracted = value;
+    // }
+    //
+    // public static bool RainerInteracted
+    // {
+    //     get => rainerInteracted;
+    //     set => rainerInteracted = value;
+    // }
+    //
+    // public static bool AnnetteInteracted
+    // {
+    //     get => annetteInteracted;
+    //     set => annetteInteracted = value;
+    // }
+    // public static bool CarlosInteracted
+    // {
+    //     get => carlosInteracted;
+    //     set => carlosInteracted = value;
+    // }
+    // public static bool AngieInteracted
+    // {
+    //     get => angieInteracted;
+    //     set => angieInteracted = value;
+    // }
     
     public static bool DemActionDone
     {
