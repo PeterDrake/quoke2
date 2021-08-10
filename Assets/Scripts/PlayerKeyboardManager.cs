@@ -109,7 +109,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         {
             if (child.name.EndsWith("Panel"))
             {
-                npcFrames[k] = child.Find("Frame").Find("Image").gameObject;
+                npcFrames[k] = child.Find("Frame").gameObject;
                 k++;
             }
         }
