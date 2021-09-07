@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
         {
             keyboardManager.leftTrading = false;
 
-            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") && 
+            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
                 !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
                 if(!GlobalControls.AngieSeriousDialogue)
                 {                        
@@ -87,7 +87,7 @@ public class DialogueManager : MonoBehaviour
                     currentNode = forest["leave_angie_1.4"];
                     GlobalControls.AngieHasFirstAidKit = true;
                 }
-            else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0") && 
+            else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
                 !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
                 if(!GlobalControls.AngieSeriousDialogue)
                 {                        
