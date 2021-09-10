@@ -22,6 +22,8 @@ public class Inventory : MonoBehaviour
 
     // These are the actual 3D GameObjects that the player has picked up.
     public GameObject[] items;
+
+    private InventoryUI inventoryUI;
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
     private int storageContainerLayers;
@@ -38,6 +40,7 @@ public class Inventory : MonoBehaviour
     //Awake not start because Inventory must load first
     void Awake()
     {
+        inventoryUI = this.gameObject.GetComponent<InventoryUI>();
         slotFrames = new GameObject[5];
         slotContents = new GameObject[5];
         int frameCounter = 0;
@@ -65,15 +68,7 @@ public class Inventory : MonoBehaviour
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
-        // Set initial state of all the arrays
-        foreach (GameObject frame in slotFrames)
-        {
-            frame.GetComponent<Image>().sprite = unselectedSlotSprite;
-        }
-        foreach (GameObject item in slotContents)
-        {
-            item.SetActive(false);
-        }
+
         
         items = new GameObject[slotFrames.Length];
         
@@ -111,69 +106,22 @@ public class Inventory : MonoBehaviour
 
     public void SetAvailableSlots(int numSlots)
     {
-        GameObject[] tempSlotFrames = new GameObject[numSlots];
+        inventoryUI.SetAvailableSlots(numSlots);
+
         GameObject[] tempItems = new GameObject[numSlots];
-        GameObject[] tempSlotContents = new GameObject[numSlots];
         
         for (int i = 0; i < numSlots; i++)
         {
             tempItems[i] = items[i];
-            tempSlotContents[i] = slotContents[i];
-            tempSlotFrames[i] = slotFrames[i];
         }
 
-        if (numSlots < slotFrames.Length)
-        {
-            for (int i = slotFrames.Length - 1; i >= numSlots; i--)
-            {
-                slotFrames[i].SetActive(false);
-            }
-        }
-        
         items = tempItems;
-        slotContents = tempSlotContents;
-        slotFrames = tempSlotFrames;
-
-
-        // Select the first slot
-        selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
-        SelectSlotNumber(0);
     }
     
     
     public void SelectSlotNumber(int slotNumber)
     {
-        if (slotNumber < 0 || slotNumber >= slotFrames.Length)
-        {
-            return;
-        }
-
-        slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
-        if (selectedSlotNumber != slotNumber)
-        {
-            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
-            selectedSlotNumber = slotNumber;
-        }
-        if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
-        {
-            if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
-                referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
-            {
-                if (items[selectedSlotNumber])
-                {
-                    Comment comment = items[selectedSlotNumber].GetComponent<Comment>();
-                    if (comment)
-                        referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = comment.notes;
-                    else
-                        referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
-                }
-
-            }
-            
-        }
-        else if(referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf) 
-            referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
+        inventoryUI.SelectSlotNumber(slotNumber);
     }
 
     /// <summary>
@@ -217,9 +165,7 @@ public class Inventory : MonoBehaviour
                 
                 // Remove item from inventory
                 items[i] = null;
-                slotContents[i].SetActive(false);
-                if (tooltipText.gameObject.activeSelf)
-                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                inventoryUI.RemoveFromSlot(i);
             }
         }
     }
@@ -236,10 +182,8 @@ public class Inventory : MonoBehaviour
         GameObject.Find(items[i].name).SetActive(false);
         // Remove item from inventory
         items[i] = null;
-        slotContents[i].SetActive(false);
+        inventoryUI.RemoveFromSlot(i);
         latrineStorage.contents = null;
-        if (tooltipText.gameObject.activeSelf)
-            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
     
     void InteractWithLatrine()
@@ -391,15 +335,13 @@ public class Inventory : MonoBehaviour
         GameObject.Find(items[i].name).SetActive(false);
         // Remove item from inventory
         items[i] = null;
-        slotContents[i].SetActive(false);
+        inventoryUI.RemoveFromSlot(i);
         twoBucket.contents = null;
-        if (tooltipText.gameObject.activeSelf)
-            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
     }
     
     private bool SlotIsOccupied(int i)
     {
-        return slotContents[i].activeSelf;
+        return items[i] != null;
     }
     
     public void PickUp(GameObject item)
@@ -407,9 +349,8 @@ public class Inventory : MonoBehaviour
         int i = FirstEmptySlot();
         if (i >= 0)
         {
-            // Display the sprite for this item
-            slotContents[i].SetActive(true);
-            slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            inventoryUI.AddToSlot(i, item.GetComponent<Collectible>().sprite);
+
             // Add item to the items array
             items[i] = item;
 
@@ -442,11 +383,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Player Has Epi Pen!");
                 GlobalControls.PlayerHasEpiPen = true;
             }
-
-
         }
-        //reselect slot to current slot number to update tooltip if necessary
-        SelectSlotNumber(selectedSlotNumber);
     }
 
     /// <summary>
@@ -454,9 +391,9 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     private int FirstEmptySlot()
     {
-        for (int i = 0; i < slotFrames.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (!slotContents[i].activeSelf)
+            if (items[i] == null)
             {
                 return i;
             }
@@ -558,9 +495,8 @@ public class Inventory : MonoBehaviour
         int i = slot;
         if (i >= 0)
         {
-            // Display the sprite for this item
-            slotContents[i].SetActive(true);
-            slotContents[i].GetComponent<Image>().sprite = item.GetComponent<Collectible>().sprite;
+            inventoryUI.AddToSlot(slot, item.GetComponent<Collectible>().sprite);
+            
             // Add item to the items array
             items[i] = item;
             if (item.name.Equals("Water Bottle Clean(Clone)"))
