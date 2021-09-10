@@ -6,29 +6,29 @@ using UnityEngine.SceneManagement;
 
 public static class GlobalControls
 {
-    private static int noStoredWaterTime = 2;
+    public static int noStoredWaterTime = 2;
     /* poopTimeLeft and waterTimeLeft should be set to initial values after the quake,
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
     // metersEnabled is currently set to true for testing purposes
-    private static bool tooltipsEnabled = true;
-    private static bool adminMode = true;
-    private static bool metersEnabled = true;
-    private static bool objectivesEnabled = true;
-    private static bool keybindsEnabled = true;
-    private static int currentObjective;
-    private static int currentPoints = 0;
-    private static int poopTimeLeft = 24;
-    private static int waterTimeLeft = 12;
-    private static bool poopTaskCompleted;
-    private static bool waterTaskCompleted;
-    private static bool[] poopTaskProgress;
-    private static int timesShoveled;
-    private static int currentScene;
-    private static bool isStrategicMap;
+    public static bool tooltipsEnabled = true;
+    public static bool adminMode = true;
+    public static bool metersEnabled = true;
+    public static bool objectivesEnabled = true;
+    public static bool keybindsEnabled = true;
+    public static int currentObjective;
+    public static int currentPoints = 0;
+    public static int poopTimeLeft = 24;
+    public static int waterTimeLeft = 12;
+    public static bool poopTaskCompleted;
+    public static bool waterTaskCompleted;
+    public static bool[] poopTaskProgress;
+    public static int timesShoveled;
+    public static int currentScene;
+    public static bool isStrategicMap;
 
-    private static int turnNumber = 0;
-    private static string currentNPC;
+    public static int turnNumber = 0;
+    public static string currentNPC;
 
     public static string[] npcNames = { "Safi","Dem","Rainer","Annette","Carlos","Angie" };
     // public static HashSet<string> interacted;
@@ -43,33 +43,33 @@ public static class GlobalControls
         {"Demitrius","Demitrius"},
     };
     
-    private static bool apartmentCondition = false;
+    public static bool apartmentCondition = false;
 
-    private static bool demActionDone = false;
-    private static bool demDrinkDone = false;
-    private static bool safiWaterActionDone = false;
-    private static bool safiGasActionDone = false;
-    private static bool safiRescued = false;
-    private static bool angieDrinkDone = false;
-    private static bool carlosDrinkDone = false;
-    private static bool rainerActionDone = false;
-    private static bool rainerDrinkDone = false;
-    private static bool annetteActionDone = false;
-    private static bool annetteDrinkDone = false;
+    public static bool demActionDone = false;
+    public static bool demDrinkDone = false;
+    public static bool safiWaterActionDone = false;
+    public static bool safiGasActionDone = false;
+    public static bool safiRescued = false;
+    public static bool angieDrinkDone = false;
+    public static bool carlosDrinkDone = false;
+    public static bool rainerActionDone = false;
+    public static bool rainerDrinkDone = false;
+    public static bool annetteActionDone = false;
+    public static bool annetteDrinkDone = false;
 
-    private static bool playerHasCleanWater = false;
-    private static bool playerHasFirstAidKit = false;
-    private static bool playerHasEpiPen = false;
-    private static bool playerHasWrench = false;
+    public static bool playerHasCleanWater = false;
+    public static bool playerHasFirstAidKit = false;
+    public static bool playerHasEpiPen = false;
+    public static bool playerHasWrench = false;
     
-    private static bool angieHasEpiPen = false;
-    private static bool angieHasFirstAidKit = false;
-    private static bool angieSeriousDialogue = false;
+    public static bool angieHasEpiPen = false;
+    public static bool angieHasFirstAidKit = false;
+    public static bool angieSeriousDialogue = false;
     
     public static Dictionary<string, NPC> npcList;
-    private static Dictionary<string, string> keybinds;
+    public static Dictionary<string, string> keybinds;
 
-    private static Dictionary<string, int> points = new Dictionary<string, int>
+    public static Dictionary<string, int> points = new Dictionary<string, int>
     {
         {"safirescue", 10},
         {"favors", 5},
@@ -82,37 +82,37 @@ public static class GlobalControls
         {"aftershockdeath", -5},
     };
 
-    private static Dictionary<string, string> angieActions = new Dictionary<string, string>
+    public static Dictionary<string, string> angieActions = new Dictionary<string, string>
     {
         {"angie0", "action0_angie_8.2"},
         {"angie1", "action0_angie_7.2"},
     };
-    private static Dictionary<string, string> safiActions = new Dictionary<string, string>
+    public static Dictionary<string, string> safiActions = new Dictionary<string, string>
     {
         //shut of gas, shut of water, and rescue
         {"safi0", ""},
         {"safi1", ""},
         {"safi2", ""},
     };
-    private static Dictionary<string, string> demActions = new Dictionary<string, string>
+    public static Dictionary<string, string> demActions = new Dictionary<string, string>
     {
         //sip of water and foraging
         {"dem0", ""},
         {"dem1", ""},
     };
-    private static Dictionary<string, string> rainerActions = new Dictionary<string, string>
+    public static Dictionary<string, string> rainerActions = new Dictionary<string, string>
     {
         //sip of water and comforting words
         {"rainer0", ""},
         {"rainer1", ""},
     };
-    private static Dictionary<string, string> annetteActions = new Dictionary<string, string>
+    public static Dictionary<string, string> annetteActions = new Dictionary<string, string>
     {
         //sip of water and translation
         {"annette0", ""},
         {"annette1", ""},
     };
-    private static Dictionary<string, string> carlosActions = new Dictionary<string, string>
+    public static Dictionary<string, string> carlosActions = new Dictionary<string, string>
     {
         //sip of water
         {"carlos0", ""},
