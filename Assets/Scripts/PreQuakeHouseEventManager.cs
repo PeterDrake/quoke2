@@ -9,7 +9,7 @@ public class PreQuakeHouseEventManager : MonoBehaviour
     {
         if (AllContainersFull())
         {
-            if (GlobalControls.ApartmentCondition)
+            if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
             {
                 foreach (StorageContainer container in containers)
                 {

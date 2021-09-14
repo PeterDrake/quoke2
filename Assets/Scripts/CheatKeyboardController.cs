@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -39,6 +41,13 @@ public class CheatKeyboardController : MonoBehaviour
         keyDown = pressed;
     }
     
+    void DisplaySet(HashSet<string> set)
+    {
+        foreach (string i in set)
+            Debug.Log("Printing thing: "  + i);
+    }
+
+    
     void Update()
     {
         if (GlobalControls.AdminMode)
@@ -61,7 +70,7 @@ public class CheatKeyboardController : MonoBehaviour
             
             if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
             {
-                if (GlobalControls.ApartmentCondition)
+                if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
                     sceneManagement.ChangeScene("PreQuakeApartment");
                 }
@@ -72,7 +81,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (keyDown.Equals(quakeTeleport))//Load QuakeHouse
             {
-                if (GlobalControls.ApartmentCondition)
+                if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
                     sceneManagement.ChangeScene("QuakeApartment");
                 }
@@ -103,7 +112,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (keyDown.Equals(loadPoopItems)) //Load Yard with Latrine Items
             {
-                if (GlobalControls.ApartmentCondition)
+                if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
                     GlobalItemList.Reset();
                     GlobalItemList.UpdateItemList("Bucket", "Inventory", new Vector3(0, 0, 0),"Player" );
@@ -134,7 +143,7 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (keyDown.Equals(loadPreQuakeItems)) //Load Yard with PreQuake Items
             {
-                if (GlobalControls.ApartmentCondition)
+                if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
                     GlobalItemList.Reset();
                     GlobalItemList.UpdateItemList("Bleach", "Street", new Vector3(4.5f,1.5f,-8.5f), "Go Bag 1");
@@ -153,10 +162,25 @@ public class CheatKeyboardController : MonoBehaviour
             }
             if (keyDown.Equals(changeCondition))
             {
-                Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.ApartmentCondition + 
-                          " to " + !GlobalControls.ApartmentCondition);
-                GlobalControls.ApartmentCondition = !GlobalControls.ApartmentCondition;
-                GlobalItemList.Reset();
+                if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
+                {
+                    Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.globalControlsProperties.Contains("apartmentCondition") + 
+                              " to " + !GlobalControls.globalControlsProperties.Contains("apartmentCondition"));
+                    GlobalControls.globalControlsProperties.Remove("apartmentCondition");
+                    DisplaySet(GlobalControls.globalControlsProperties);
+                    Debug.Log("Removed Apartment Condition");
+                    GlobalItemList.Reset();
+                }
+                else if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
+                {
+                    Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.globalControlsProperties.Contains("apartmentCondition") + 
+                              " to " + !GlobalControls.globalControlsProperties.Contains("apartmentCondition"));
+                    GlobalControls.globalControlsProperties.Add("apartmentCondition");
+                    DisplaySet(GlobalControls.globalControlsProperties);
+                    Debug.Log("Added Apartment Condition");
+                    GlobalItemList.Reset();    
+                }
+                
             }
             if (keyDown.Equals(angieItems))
             {

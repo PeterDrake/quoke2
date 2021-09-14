@@ -482,11 +482,11 @@ public class Inventory : MonoBehaviour
                 }
                 else InteractWithStorageContainer(container.GetComponent<StorageContainer>());
             }
-            else if (latrine && !GlobalControls.ApartmentCondition)
+            else if (latrine && !GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
             {
                 InteractWithLatrine();
             }
-            else if (GlobalControls.ApartmentCondition && latrine)
+            else if (GlobalControls.globalControlsProperties.Contains("apartmentCondition") && latrine)
             {
                 InteractWithTwoBucket();
             }

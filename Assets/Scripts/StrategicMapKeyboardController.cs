@@ -14,7 +14,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
     
     private void Start()
     {
-        if (!GlobalControls.ApartmentCondition)
+        if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             Transform[] children = GameObject.Find("Locations").GetComponentsInChildren<Transform>(true);
             foreach (Transform child in children)
@@ -45,7 +45,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         }
 
         ReferenceManager references = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        if (!GlobalControls.ApartmentCondition)
+        if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             locations = new []
             {

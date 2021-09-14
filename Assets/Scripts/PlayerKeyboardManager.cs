@@ -146,8 +146,8 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.SetAvailableSlots(1);
             npcInteractedInScene = false;
             pointsInScene = false;
-            if(GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 2;
-            else if(!GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 1;
+            if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) GlobalControls.CurrentObjective = 2;
+            else if(!GlobalControls.globalControlsProperties.Contains("apartmentCondition")) GlobalControls.CurrentObjective = 1;
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))

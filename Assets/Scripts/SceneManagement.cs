@@ -9,7 +9,7 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
-        if(GlobalControls.ApartmentCondition) previousScenes = new []{"School", "Park", "Street", "Garden"};
+        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"School", "Park", "Street", "Garden"};
         else previousScenes = new []{"School", "Park", "Yard","Garden"};
     }
 
@@ -17,7 +17,7 @@ public class SceneManagement : MonoBehaviour
     {
         GlobalControls.Reset();
         GlobalItemList.Reset();
-        if (GlobalControls.ApartmentCondition)
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             ChangeScene("PreQuakeApartment");
         }
