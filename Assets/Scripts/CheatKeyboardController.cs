@@ -40,14 +40,7 @@ public class CheatKeyboardController : MonoBehaviour
     {
         keyDown = pressed;
     }
-    
-    void DisplaySet(HashSet<string> set)
-    {
-        foreach (string i in set)
-            Debug.Log("Printing thing: "  + i);
-    }
 
-    
     void Update()
     {
         if (GlobalControls.AdminMode)
@@ -160,28 +153,28 @@ public class CheatKeyboardController : MonoBehaviour
                     sceneManagement.ChangeScene("Yard");
                 }
             }
+
             if (keyDown.Equals(changeCondition))
             {
                 if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
-                    Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.globalControlsProperties.Contains("apartmentCondition") + 
+                    Debug.Log("Changing Global Apartment condition flag from " +
+                              GlobalControls.globalControlsProperties.Contains("apartmentCondition") +
                               " to " + !GlobalControls.globalControlsProperties.Contains("apartmentCondition"));
                     GlobalControls.globalControlsProperties.Remove("apartmentCondition");
-                    DisplaySet(GlobalControls.globalControlsProperties);
-                    Debug.Log("Removed Apartment Condition");
                     GlobalItemList.Reset();
                 }
                 else if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
-                    Debug.Log("Changing Global Apartment condition flag from " + GlobalControls.globalControlsProperties.Contains("apartmentCondition") + 
+                    Debug.Log("Changing Global Apartment condition flag from " +
+                              GlobalControls.globalControlsProperties.Contains("apartmentCondition") +
                               " to " + !GlobalControls.globalControlsProperties.Contains("apartmentCondition"));
                     GlobalControls.globalControlsProperties.Add("apartmentCondition");
-                    DisplaySet(GlobalControls.globalControlsProperties);
-                    Debug.Log("Added Apartment Condition");
-                    GlobalItemList.Reset();    
+                    GlobalItemList.Reset();
                 }
-                
+
             }
+
             if (keyDown.Equals(angieItems))
             {
                 Debug.Log("Giving Angie Required Items");
