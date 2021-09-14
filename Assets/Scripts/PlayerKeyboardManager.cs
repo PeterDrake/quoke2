@@ -10,6 +10,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 {
     private PlayerMover player;
     private Inventory inventory;
+    private InventoryUI inventoryUI;
     private bool crouchFlag;
     public bool virtualKeyboard;
 
@@ -57,6 +58,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         if (GlobalControls.TooltipsEnabled)
@@ -412,7 +414,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (cursorLocation > inventory.slotContents.Length - 1)
             {
                 npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = unselected;
-                inventory.selectedSlotSprite = selected;
+                inventoryUI.EnableSelectedSlot();
                 cursorLocation = 0;
                 inventory.SelectSlotNumber(cursorLocation);
                 
@@ -421,7 +423,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else
             {
                 npcFrames[0].GetComponent<Image>().sprite = selected;
-                inventory.selectedSlotSprite = unselected;
+                inventoryUI.DisableSelectedSlot();
                 cursorLocation = inventory.slotContents.Length;
                 inventory.SelectSlotNumber(2);
                 
@@ -460,7 +462,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             if (npcInteractedCanvas.activeSelf && cursorLocation >= inventory.slotContents.Length + npcFrames.Length)
             {
                 cursorLocation = 0;
-                inventory.selectedSlotSprite = selected;
+                inventoryUI.EnableSelectedSlot();
                 inventory.SelectSlotNumber(0); 
         
                 for (int i = 0; i < validNPCInputs.Length; i++)
@@ -478,7 +480,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             {
                 if (npcInteractedCanvas.activeSelf)
                 {
-                    inventory.selectedSlotSprite = unselected;
+                    inventoryUI.DisableSelectedSlot();
                     inventory.SelectSlotNumber(1);
 
                     npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = selected;
@@ -550,7 +552,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             {
                 if (npcInteractedCanvas.activeSelf)
                 {
-                    inventory.selectedSlotSprite = unselected;
+                    inventoryUI.DisableSelectedSlot();
                     inventory.SelectSlotNumber(1);
 
                     npcFrames[cursorLocation - inventory.slotContents.Length].GetComponent<Image>().sprite = selected;
@@ -603,7 +605,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
 
                 npcInventoryTooltip.SetActive(false);
-                inventory.selectedSlotSprite = selected;
+                inventoryUI.EnableSelectedSlot();
                 inventory.SelectSlotNumber(cursorLocation);
             }
         }

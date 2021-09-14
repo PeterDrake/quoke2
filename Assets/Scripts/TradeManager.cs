@@ -68,6 +68,7 @@ public class TradeManager : MonoBehaviour
         
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        parentInventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
@@ -98,18 +99,18 @@ public class TradeManager : MonoBehaviour
         }
 
         //Set unused slots to null if not already.
-        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
+        for (int i = 0; i < inventoryPlayerUI.slotContents.Length; i++)
         {
-            if (!playerSlotsUsed.Contains(i) && inventoryPlayer.slotContents[i].activeSelf)
+            if (!playerSlotsUsed.Contains(i) && inventoryPlayerUI.slotContents[i].activeSelf)
             {
                 inventoryPlayer.items[i] = null;
                 inventoryPlayerUI.slotContents[i].SetActive(false);
             }
         }
 
-        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
+        for (int i = 0; i < inventoryNPCUI.slotContents.Length; i++)
         {
-            if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
+            if (!npcSlotsUsed.Contains(i) && inventoryNPCUI.slotContents[i].activeSelf)
             {
                 inventoryNPC.items[i] = null;
                 inventoryNPCUI.slotContents[i].SetActive(false);
@@ -128,7 +129,7 @@ public class TradeManager : MonoBehaviour
         }
         //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
 
-        foreach (GameObject game in inventoryIOU.slotContents)
+        foreach (GameObject game in inventoryIOUUI.slotContents)
         {
             game.SetActive(true);
             Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
@@ -147,14 +148,14 @@ public class TradeManager : MonoBehaviour
         
         for (int i = 0; i < inventoryPlayerBinUI.slotFrames.Length; i++)
         {
-            if (inventoryPlayerBin.slotContents[i].activeSelf)
+            if (inventoryPlayerBinUI.slotContents[i].activeSelf)
             {
                 numContents[0]++; //number items
             }
         }
         for (int i = 0; i < inventoryNPCBinUI.slotFrames.Length; i++)
         {
-            if (inventoryNPCBin.slotContents[i].activeSelf)
+            if (inventoryNPCBinUI.slotContents[i].activeSelf)
             {
                 numContents[1]++; //number items
             }
@@ -206,15 +207,15 @@ public class TradeManager : MonoBehaviour
 
         int endIouTotal = playerTradePoints - numContents[1] + numContents[2];
 
-        for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
+        for (int i = 0; i < inventoryPlayerBinUI.slotContents.Length; i++)
         {
-            if (inventoryPlayerBin.slotContents[i].activeSelf)
+            if (inventoryPlayerBinUI.slotContents[i].activeSelf)
                 TransferItem(inventoryPlayerBin, inventoryPlayerBinUI,
                     inventoryNPC, inventoryNPCUI, i);
         }
-        for (int i = 0; i < inventoryNPCBin.slotContents.Length; i++)
+        for (int i = 0; i < inventoryNPCBinUI.slotContents.Length; i++)
         {
-            if (inventoryNPCBin.slotContents[i].activeSelf)
+            if (inventoryNPCBinUI.slotContents[i].activeSelf)
                 TransferItem(inventoryNPCBin, inventoryNPCBinUI,
                     inventoryPlayer, inventoryPlayerUI, i);
         }
@@ -277,10 +278,10 @@ public class TradeManager : MonoBehaviour
         if (cursorLocation == 0)
         {
             //change selected slot sprite
-            inventoryPlayerUI.selectedSlotSprite = selected;
-            inventoryPlayerBinUI.selectedSlotSprite = unselected;
-            inventoryNPCBinUI.selectedSlotSprite = unselected;
-            inventoryNPCUI.selectedSlotSprite = unselected;
+            inventoryPlayerUI.EnableSelectedSlot();
+            inventoryPlayerBinUI.DisableSelectedSlot();
+            inventoryNPCBinUI.DisableSelectedSlot();
+            inventoryNPCUI.DisableSelectedSlot();
             inventoryPlayerBin.SelectSlotNumber(0);
             inventoryNPCBin.SelectSlotNumber(0);
             inventoryNPC.SelectSlotNumber(0);
@@ -289,10 +290,10 @@ public class TradeManager : MonoBehaviour
         else if (cursorLocation == 1)
         {
             //change selected slot sprite
-            inventoryPlayerUI.selectedSlotSprite = unselected;
-            inventoryPlayerBinUI.selectedSlotSprite = selected;
-            inventoryNPCBinUI.selectedSlotSprite = unselected;
-            inventoryNPCUI.selectedSlotSprite = unselected;
+            inventoryPlayerUI.DisableSelectedSlot();
+            inventoryPlayerBinUI.EnableSelectedSlot();
+            inventoryNPCBinUI.DisableSelectedSlot();
+            inventoryNPCUI.DisableSelectedSlot();
             inventoryPlayer.SelectSlotNumber(0);
             inventoryNPCBin.SelectSlotNumber(0);
             inventoryNPC.SelectSlotNumber(0);
@@ -301,10 +302,10 @@ public class TradeManager : MonoBehaviour
         else if (cursorLocation == 2)
         {
             //change selected slot sprite
-            inventoryPlayerUI.selectedSlotSprite = unselected;
-            inventoryPlayerBinUI.selectedSlotSprite = unselected;
-            inventoryNPCBinUI.selectedSlotSprite = selected;
-            inventoryNPCUI.selectedSlotSprite = unselected;
+            inventoryPlayerUI.DisableSelectedSlot();
+            inventoryPlayerBinUI.DisableSelectedSlot();
+            inventoryNPCBinUI.EnableSelectedSlot();
+            inventoryNPCUI.DisableSelectedSlot();
             inventoryPlayerBin.SelectSlotNumber(0);
             inventoryPlayer.SelectSlotNumber(0);
             inventoryNPC.SelectSlotNumber(0);
@@ -313,10 +314,10 @@ public class TradeManager : MonoBehaviour
         else if (cursorLocation == 3)
         {
             //change selected slot sprite
-            inventoryPlayerUI.selectedSlotSprite = unselected;
-            inventoryPlayerBinUI.selectedSlotSprite = unselected;
-            inventoryNPCBinUI.selectedSlotSprite = unselected;
-            inventoryNPCUI.selectedSlotSprite = selected;
+            inventoryPlayerUI.DisableSelectedSlot();
+            inventoryPlayerBinUI.DisableSelectedSlot();
+            inventoryNPCBinUI.DisableSelectedSlot();
+            inventoryNPCUI.EnableSelectedSlot();
             inventoryPlayerBin.SelectSlotNumber(0);
             inventoryPlayer.SelectSlotNumber(0);
             inventoryNPCBin.SelectSlotNumber(0);
@@ -403,7 +404,7 @@ public class TradeManager : MonoBehaviour
                 }
             }
             
-            for (int i = 0; i < parentInventory.slotContents.Length; i++)
+            for (int i = 0; i < parentInventoryUI.slotContents.Length; i++)
             {
                 if(parentInventoryUI.slotContents[i].activeSelf) parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
             }

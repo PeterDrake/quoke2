@@ -121,7 +121,14 @@ public class Inventory : MonoBehaviour
     
     public void SelectSlotNumber(int slotNumber)
     {
-        inventoryUI.SelectSlotNumber(slotNumber);
+        if (slotNumber < 0 || slotNumber >= items.Length) return;
+
+        if (selectedSlotNumber != slotNumber)
+        {
+            inventoryUI.SelectSlotNumber(slotNumber);
+            selectedSlotNumber = slotNumber;
+        }
+        
     }
 
     /// <summary>

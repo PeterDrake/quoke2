@@ -10,6 +10,8 @@ public class InventoryUI : MonoBehaviour
     public int selectedSlotNumber;
     public Sprite unselectedSlotSprite;
     public Sprite selectedSlotSprite;
+    public Sprite unselectedSlotSpriteInUse;
+    public Sprite selectedSlotSpriteInUse;
 
     private Inventory inventory;
     
@@ -46,10 +48,13 @@ public class InventoryUI : MonoBehaviour
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
+        unselectedSlotSpriteInUse = unselectedSlotSprite;
+        selectedSlotSpriteInUse = selectedSlotSprite;
+        
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
-            frame.GetComponent<Image>().sprite = unselectedSlotSprite;
+            frame.GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
         }
         foreach (GameObject item in slotContents)
         {
@@ -58,7 +63,7 @@ public class InventoryUI : MonoBehaviour
 
         // Select the first slot
         selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 
     // Start is called before the first frame update
@@ -80,14 +85,13 @@ public class InventoryUI : MonoBehaviour
     
     public void SelectSlotNumber(int slotNumber)
     {
-        if (slotNumber < 0 || slotNumber >= slotFrames.Length) return;
-
         if (selectedSlotNumber != slotNumber)
         {
-            slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
-            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
+            slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
             selectedSlotNumber = slotNumber;
         }
+        
         if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
@@ -134,7 +138,7 @@ public class InventoryUI : MonoBehaviour
 
         // Select the first slot
         selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
         SelectSlotNumber(0);
     }
     
@@ -164,5 +168,17 @@ public class InventoryUI : MonoBehaviour
             if (tooltipText.gameObject.activeSelf)
                 tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
         }
+    }
+
+    public void DisableSelectedSlot()
+    {
+        selectedSlotSpriteInUse = unselectedSlotSprite;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+    }
+    
+    public void EnableSelectedSlot()
+    {
+        selectedSlotSpriteInUse = selectedSlotSprite;
+        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 }
