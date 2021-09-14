@@ -11,14 +11,6 @@ public class Inventory : MonoBehaviour
 {
     public int selectedSlotNumber;
     public PlayerMover player;
-    public Sprite unselectedSlotSprite;
-    public Sprite selectedSlotSprite;
-
-    // These are UI Images showing sprites (either unselectedSlotSprite or selectedSlotSprite).
-    public GameObject[] slotFrames;
-
-    // These are UI Images showing sprites for occupied slots. They're inactive for unoccupied slots.
-    public GameObject[] slotContents;
 
     // These are the actual 3D GameObjects that the player has picked up.
     public GameObject[] items;
@@ -31,7 +23,6 @@ public class Inventory : MonoBehaviour
     private int waterLayer;
 
     private ReferenceManager referenceManager;
-    private Text tooltipText;
     private Meters meters;
 
     private LatrineStorage latrineStorage;
@@ -41,23 +32,7 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         inventoryUI = this.gameObject.GetComponent<InventoryUI>();
-        slotFrames = new GameObject[5];
-        slotContents = new GameObject[5];
-        int frameCounter = 0;
-        int contentsCounter = 0;
-        foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
-        {
-            if (child.gameObject.name.Contains("Frame"))
-            {
-                slotFrames[frameCounter] = child.gameObject;
-                frameCounter++;
-            }
-            if (child.gameObject.name.Contains("Contents"))
-            {
-                slotContents[contentsCounter] = child.gameObject;
-                contentsCounter++;
-            }
-        }
+
         if (SceneManager.GetActiveScene().name.Equals("Yard"))
         {
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
@@ -70,11 +45,10 @@ public class Inventory : MonoBehaviour
         
 
         
-        items = new GameObject[slotFrames.Length];
+        items = new GameObject[5];
         
         // Select the first slot
         selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSprite;
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer", "WaterPurifying");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
@@ -85,16 +59,6 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
-        if (GlobalControls.TooltipsEnabled)
-        {
-            foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
-            {
-                if (image.gameObject.name.Equals("Tooltip"))
-                {
-                    tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
-                }
-            }
-        }
 
         SelectSlotNumber(0);
     }
@@ -128,7 +92,8 @@ public class Inventory : MonoBehaviour
             inventoryUI.SelectSlotNumber(slotNumber);
             selectedSlotNumber = slotNumber;
         }
-        
+
+        inventoryUI.UpdateTooltip();
     }
 
     /// <summary>
@@ -391,6 +356,8 @@ public class Inventory : MonoBehaviour
                 GlobalControls.PlayerHasEpiPen = true;
             }
         }
+        //reselect slot to current slot number to update tooltip if necessary
+        SelectSlotNumber(selectedSlotNumber);
     }
 
     /// <summary>
@@ -455,9 +422,7 @@ public class Inventory : MonoBehaviour
                 
                 // Remove item from inventory
                 items[selectedSlotNumber] = null;
-                slotContents[selectedSlotNumber].SetActive(false);
-                if (tooltipText.gameObject.activeSelf)
-                    tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
+                inventoryUI.RemoveFromSlot(selectedSlotNumber);
             }
         }
         else if (container.contents && SlotIsOccupied(selectedSlotNumber))
@@ -466,7 +431,6 @@ public class Inventory : MonoBehaviour
             {
                 GlobalItemList.UpdateItemList("Bleach", "", new Vector3(0,0,0), "");
                 items[selectedSlotNumber] = null;
-                slotContents[selectedSlotNumber].SetActive(false);
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
                     

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
@@ -23,7 +24,6 @@ public class InventoryUI : MonoBehaviour
     
     private ReferenceManager referenceManager;
     private Text tooltipText;
-    private Meters meters;
 
     private void Awake()
     {
@@ -91,7 +91,12 @@ public class InventoryUI : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
             selectedSlotNumber = slotNumber;
         }
-        
+
+        UpdateTooltip();
+    }
+
+    public void UpdateTooltip()
+    {
         if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
