@@ -43,7 +43,7 @@ public class CheatKeyboardController : MonoBehaviour
 
     void Update()
     {
-        if (GlobalControls.AdminMode)
+        if (GlobalControls.globalControlsProperties.Contains("adminMode"))
         {
             if (!virtualKeyboard)
             {

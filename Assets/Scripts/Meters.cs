@@ -29,11 +29,11 @@ public class Meters : MonoBehaviour
         
         if (SceneManager.GetActiveScene().name.Contains("Quake"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled"); 
         }
         else
         {
-            GlobalControls.MetersEnabled = true;
+            GlobalControls.globalControlsProperties.Add("metersEnabled");
         }
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
@@ -72,7 +72,7 @@ public class Meters : MonoBehaviour
             waterDoneIndicator.SetActive(true);
         }
         
-        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled") && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
         {
             GlobalControls.CurrentObjective = 5;
             GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
@@ -115,7 +115,7 @@ public class Meters : MonoBehaviour
         poopProgressObject.GetComponent<Slider>().value = poopTimeLeft / 24f;
         waterProgressObject.GetComponent<Slider>().value = waterTimeLeft / 24f;
         
-        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted && GlobalControls.CurrentObjective != 6)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled") && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted && GlobalControls.CurrentObjective != 6)
         {
             GlobalControls.CurrentObjective = 6;
             referenceManager.objectiveManager.UpdateObjectiveBanner();

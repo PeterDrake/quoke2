@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {
@@ -155,7 +155,7 @@ public class Inventory : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
             selectedSlotNumber = slotNumber;
         }
-        if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);

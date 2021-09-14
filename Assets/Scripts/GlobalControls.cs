@@ -11,21 +11,21 @@ public static class GlobalControls
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
     // metersEnabled is currently set to true for testing purposes
-    private static bool tooltipsEnabled = true;
-    private static bool adminMode = true;
-    private static bool metersEnabled = true;
-    private static bool objectivesEnabled = true;
-    private static bool keybindsEnabled = true;
+    // private static bool tooltipsEnabled = true;
+    // private static bool adminMode = true;
+    // private static bool metersEnabled = true;
+    // private static bool objectivesEnabled = true;
+    // private static bool keybindsEnabled = true;
+    // private static bool isStrategicMap;
+    private static bool poopTaskCompleted;
+    private static bool waterTaskCompleted;
+    private static bool[] poopTaskProgress;
     private static int currentObjective;
     private static int currentPoints = 0;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
-    private static bool poopTaskCompleted;
-    private static bool waterTaskCompleted;
-    private static bool[] poopTaskProgress;
     private static int timesShoveled;
     private static int currentScene;
-    private static bool isStrategicMap;
 
     private static int turnNumber = 0;
     private static string currentNPC;
@@ -192,10 +192,11 @@ public static class GlobalControls
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
         
-        metersEnabled = true;
-        tooltipsEnabled = true;
-        objectivesEnabled = true;
-        keybindsEnabled = true;
+        globalControlsProperties.Add("metersEnabled");
+        globalControlsProperties.Add("tooltipsEnabled");
+        globalControlsProperties.Add("objectivesEnabled");
+        globalControlsProperties.Add("keybindsEnabled");
+       
         poopTimeLeft = 24;
         waterTimeLeft = 12;
         poopTaskCompleted = false;
@@ -203,7 +204,7 @@ public static class GlobalControls
         poopTaskProgress = new bool[5];
         timesShoveled = 0;
         currentScene = -1;
-        isStrategicMap = false;
+        globalControlsProperties.Remove("isStrategicMap");
         currentPoints = 0;
 
         turnNumber = 0;
@@ -214,8 +215,8 @@ public static class GlobalControls
             npcList[name].interacted = false;
         }
         
-        adminMode = true;
-
+        globalControlsProperties.Add("adminMode");
+        
         globalControlsProperties.Remove("demActionDone");
         globalControlsProperties.Remove("demDrinkDone");
         globalControlsProperties.Remove("safiWaterActionDone");
@@ -265,16 +266,7 @@ public static class GlobalControls
     //     get => apartmentCondition;
     //     set => apartmentCondition = value;
     // }
-    public static bool KeybindsEnabled
-    {
-        get => keybindsEnabled;
-        set => keybindsEnabled = value;
-    }
-    public static bool ObjectivesEnabled
-    {
-        get => objectivesEnabled;
-        set => objectivesEnabled = value;
-    }
+    
     
     public static bool[] PoopTaskProgress
     {
@@ -282,31 +274,7 @@ public static class GlobalControls
         set => poopTaskProgress = value;
     }
     
-    public static bool IsStrategicMap
-    {
-        get => isStrategicMap;
-        set => isStrategicMap = value;
-    }
-
-    public static bool TooltipsEnabled
-    {
-        get => tooltipsEnabled;
-        set => tooltipsEnabled = value;
-    }
-    
-    public static bool AdminMode
-    {
-        get => adminMode;
-        set => adminMode = value;
-    }
-    
     public static Dictionary<string, string> Keybinds => keybinds;
-
-    public static bool MetersEnabled
-    {
-        get => metersEnabled;
-        set => metersEnabled = value;
-    }
 
     public static int PoopTimeLeft
     {

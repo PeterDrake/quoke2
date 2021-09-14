@@ -67,12 +67,12 @@ public class StrategicMapKeyboardController : MonoBehaviour
         references.dialogueCanvas.SetActive(false);
         references.tradeCanvas.SetActive(false);
         references.npcInteractedCanvas.SetActive(false);
-        if (GlobalControls.KeybindsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             references.keybinds.SetActive(true);
             references.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["StrategicMap"];
         }
-        else if (GlobalControls.KeybindsEnabled) references.keybinds.SetActive(false);
+        else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled")) references.keybinds.SetActive(false);
 
         GameObject.Find("NPC Inventory").SetActive(false);
     }
@@ -109,7 +109,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         }
         if (keyDown.Equals(KeyCode.Space))
         {
-            GlobalControls.IsStrategicMap = false;
+            GlobalControls.globalControlsProperties.Remove("isStrategicMap");
             SceneManagement sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
             sceneManagement.ChangeScene(locations[playerLocation].GetComponent<MapMarker>().mapName);
         }

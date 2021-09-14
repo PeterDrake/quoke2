@@ -35,20 +35,20 @@ public class SceneManagement : MonoBehaviour
 
         if (sceneToLoad.Equals("StrategicMap"))
         {
-            GlobalControls.IsStrategicMap = true;
+            GlobalControls.globalControlsProperties.Add("isStrategicMap");
         }
         else if (sceneToLoad.Equals("GameEnd"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled");
         }
         else if (sceneToLoad.Contains("Quake"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled");
         }
         else
         {
-            GlobalControls.MetersEnabled = true;
-            GlobalControls.IsStrategicMap = false;
+            GlobalControls.globalControlsProperties.Add("metersEnabled");
+            GlobalControls.globalControlsProperties.Remove("isStrategicMap");
             if(!GlobalControls.PoopTaskCompleted) GlobalControls.PoopTimeLeft--;
             if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
         }
