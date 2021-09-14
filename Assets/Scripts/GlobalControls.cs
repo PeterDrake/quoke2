@@ -47,26 +47,26 @@ public static class GlobalControls
     
     // private static bool apartmentCondition = false;
 
-    private static bool demActionDone = false;
-    private static bool demDrinkDone = false;
-    private static bool safiWaterActionDone = false;
-    private static bool safiGasActionDone = false;
-    private static bool safiRescued = false;
-    private static bool angieDrinkDone = false;
-    private static bool carlosDrinkDone = false;
-    private static bool rainerActionDone = false;
-    private static bool rainerDrinkDone = false;
-    private static bool annetteActionDone = false;
-    private static bool annetteDrinkDone = false;
+    // private static bool demActionDone = false;
+    // private static bool demDrinkDone = false;
+    // private static bool safiWaterActionDone = false;
+    // private static bool safiGasActionDone = false;
+    // private static bool safiRescued = false;
+    // private static bool angieDrinkDone = false;
+    // private static bool carlosDrinkDone = false;
+    // private static bool rainerActionDone = false;
+    // private static bool rainerDrinkDone = false;
+    // private static bool annetteActionDone = false;
+    // private static bool annetteDrinkDone = false;
 
-    private static bool playerHasCleanWater = false;
-    private static bool playerHasFirstAidKit = false;
-    private static bool playerHasEpiPen = false;
-    private static bool playerHasWrench = false;
+    // private static bool playerHasCleanWater = false;
+    // private static bool playerHasFirstAidKit = false;
+    // private static bool playerHasEpiPen = false;
+    // private static bool playerHasWrench = false;
     
-    private static bool angieHasEpiPen = false;
-    private static bool angieHasFirstAidKit = false;
-    private static bool angieSeriousDialogue = false;
+    // private static bool angieHasEpiPen = false;
+    // private static bool angieHasFirstAidKit = false;
+    // private static bool angieSeriousDialogue = false;
     
     public static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
@@ -215,38 +215,32 @@ public static class GlobalControls
         }
         
         adminMode = true;
-        
-        demActionDone = false;
-        demDrinkDone = false;
-        safiWaterActionDone = false;
-        safiGasActionDone = false;
-        safiRescued = false;
-        angieDrinkDone = false;
-        carlosDrinkDone = false;
-        rainerActionDone = false;
-        rainerDrinkDone = false;
-        annetteActionDone = false;
-        annetteDrinkDone = false;
 
-        playerHasCleanWater = false;
-        playerHasFirstAidKit = false;
-        playerHasEpiPen = false;
-        playerHasWrench = false;
-        
-        angieHasFirstAidKit = false;
-        angieSeriousDialogue = false;
-        angieSeriousDialogue = false;
+        globalControlsProperties.Remove("demActionDone");
+        globalControlsProperties.Remove("demDrinkDone");
+        globalControlsProperties.Remove("safiWaterActionDone");
+        globalControlsProperties.Remove("safiGasActionDone");
+        globalControlsProperties.Remove("safiRescued");
+        globalControlsProperties.Remove("angieDrinkDone");
+        globalControlsProperties.Remove("carlosDrinkDone");
+        globalControlsProperties.Remove("rainerActionDone");
+        globalControlsProperties.Remove("rainerDrinkDone");
+        globalControlsProperties.Remove("annetteActionDone");
+        globalControlsProperties.Remove("annetteDrinkDone");
+      
+        globalControlsProperties.Remove("playerHasCleanWater");
+        globalControlsProperties.Remove("playerHasFirstAidKit");
+        globalControlsProperties.Remove("playerHasEpiPen");
+        globalControlsProperties.Remove("playerHasWrench");
+
+        globalControlsProperties.Remove("angieHasFirstAidKit");
+        globalControlsProperties.Remove("angieSeriousDialogue");
+        globalControlsProperties.Remove("angieHasEpiPen");
     }
 
     public static Dictionary<string,int> Points
     {
         get => points;
-    }
-    
-    public static bool SafiRescued
-    {
-        get => safiRescued;
-        set => safiRescued = value;
     }
     
     public static int NoStoredWaterTime
@@ -365,108 +359,6 @@ public static class GlobalControls
     public static void SetCheckpoint(string nodeName)
     {
         npcList[currentNPC].node = nodeName;
-    }
-
-    public static bool DemActionDone
-    {
-        get => demActionDone;
-        set => demActionDone = value;
-    }
-    
-    public static bool DemDrinkDone
-    {
-        get => demDrinkDone;
-        set => demDrinkDone = value;
-    }
-    
-    public static bool SafiWaterActionDone
-    {
-        get => safiWaterActionDone;
-        set => safiWaterActionDone = value;
-    }
-    
-    public static bool SafiGasActionDone
-    {
-        get => safiGasActionDone;
-        set => safiGasActionDone = value;
-    }
-    
-    public static bool AngieDrinkDone
-    {
-        get => angieDrinkDone;
-        set => angieDrinkDone = value;
-    }
-    
-    public static bool CarlosDrinkDone
-    {
-        get => carlosDrinkDone;
-        set => carlosDrinkDone = value;
-    }
-    
-    public static bool RainerActionDone
-    {
-        get => rainerActionDone;
-        set => rainerActionDone = value;
-    }
-    
-    public static bool RainerDrinkDone
-    {
-        get => rainerDrinkDone;
-        set => rainerDrinkDone = value;
-    }
-    
-    public static bool AnnetteActionDone
-    {
-        get => annetteActionDone;
-        set => annetteActionDone = value;
-    }
-    
-    public static bool AnnetteDrinkDone
-    {
-        get => annetteDrinkDone;
-        set => annetteDrinkDone = value;
-    }
-    
-    public static bool PlayerHasCleanWater
-    {
-        get => playerHasCleanWater;
-        set => playerHasCleanWater = value;
-    }
-
-    public static bool PlayerHasFirstAidKit
-    {
-        get => playerHasFirstAidKit;
-        set => playerHasFirstAidKit = value;
-    }
-
-    public static bool PlayerHasEpiPen
-    {
-        get => playerHasEpiPen;
-        set => playerHasEpiPen = value;
-    }
-
-    public static bool PlayerHasWrench
-    {
-        get => playerHasWrench;
-        set => playerHasWrench = value;
-    }
-
-    public static bool AngieSeriousDialogue
-    {
-        get => angieSeriousDialogue;
-        set => angieSeriousDialogue = value;
-    }
-
-    public static bool AngieHasEpiPen
-    {
-        get => angieHasEpiPen;
-        set => angieHasEpiPen = value;
-    }
-
-    public static bool AngieHasFirstAidKit
-    {
-        get => angieHasFirstAidKit;
-        set => angieHasFirstAidKit = value;
     }
 }
 

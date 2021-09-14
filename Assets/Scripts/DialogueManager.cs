@@ -74,36 +74,35 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.leftTrading = false;
 
             if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
-                !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
-                if(!GlobalControls.AngieSeriousDialogue)
+                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_4.0");
                     currentNode = forest["leave_angie_0.7"];
-                    GlobalControls.AngieHasFirstAidKit = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                 }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_5.0");
                     currentNode = forest["leave_angie_1.4"];
-                    GlobalControls.AngieHasFirstAidKit = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                 }
             else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
-                !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
-                if(!GlobalControls.AngieSeriousDialogue)
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_8.0");
                     currentNode = forest["leave_angie_0"];
-                    GlobalControls.AngieHasEpiPen = true;
-                }
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");                }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_9.0");
                     currentNode = forest["leave_angie_1"];
-                    GlobalControls.AngieHasEpiPen = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
                 }
-            else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
                 currentNode = forest["leave_angie_0"];
-            else if (GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
                 currentNode = forest["leave_angie_1"];
             else
                 currentNode = forest["leave_error"];
@@ -282,7 +281,7 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SetCheckpoint("basic_angie_3.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
             {
-                GlobalControls.AngieSeriousDialogue = true;
+                GlobalControls.globalControlsProperties.Add("angieSeriousDialogue");
                 GlobalControls.SetCheckpoint("basic_angie_1.0");
             }
             if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
