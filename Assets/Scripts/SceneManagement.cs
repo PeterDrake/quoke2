@@ -49,8 +49,8 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.globalControlsProperties.Add("metersEnabled");
             GlobalControls.globalControlsProperties.Remove("isStrategicMap");
-            if(!GlobalControls.PoopTaskCompleted) GlobalControls.PoopTimeLeft--;
-            if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
+            if(!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted")) GlobalControls.PoopTimeLeft--;
+            if(!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted")) GlobalControls.WaterTimeLeft--;
         }
 
        

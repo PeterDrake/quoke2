@@ -248,7 +248,8 @@ public class Inventory : MonoBehaviour
         int x = 0;
         if(SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && !GlobalControls.PoopTaskCompleted && !latrineStorage.plywoodDone)
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
+                !GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") && !latrineStorage.plywoodDone)
             {
                 latrineStorage.timesShoveled++;
                 GlobalControls.TimesShoveled++;

@@ -11,14 +11,7 @@ public static class GlobalControls
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
     // metersEnabled is currently set to true for testing purposes
-    // private static bool tooltipsEnabled = true;
-    // private static bool adminMode = true;
-    // private static bool metersEnabled = true;
-    // private static bool objectivesEnabled = true;
-    // private static bool keybindsEnabled = true;
-    // private static bool isStrategicMap;
-    private static bool poopTaskCompleted;
-    private static bool waterTaskCompleted;
+    
     private static bool[] poopTaskProgress;
     private static int currentObjective;
     private static int currentPoints = 0;
@@ -44,29 +37,6 @@ public static class GlobalControls
     };
 
     public static HashSet<string> globalControlsProperties = new HashSet<string>();
-    
-    // private static bool apartmentCondition = false;
-
-    // private static bool demActionDone = false;
-    // private static bool demDrinkDone = false;
-    // private static bool safiWaterActionDone = false;
-    // private static bool safiGasActionDone = false;
-    // private static bool safiRescued = false;
-    // private static bool angieDrinkDone = false;
-    // private static bool carlosDrinkDone = false;
-    // private static bool rainerActionDone = false;
-    // private static bool rainerDrinkDone = false;
-    // private static bool annetteActionDone = false;
-    // private static bool annetteDrinkDone = false;
-
-    // private static bool playerHasCleanWater = false;
-    // private static bool playerHasFirstAidKit = false;
-    // private static bool playerHasEpiPen = false;
-    // private static bool playerHasWrench = false;
-    
-    // private static bool angieHasEpiPen = false;
-    // private static bool angieHasFirstAidKit = false;
-    // private static bool angieSeriousDialogue = false;
     
     public static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
@@ -199,8 +169,10 @@ public static class GlobalControls
        
         poopTimeLeft = 24;
         waterTimeLeft = 12;
-        poopTaskCompleted = false;
-        waterTaskCompleted = false;
+
+        globalControlsProperties.Remove("poopTaskCompleted");
+        globalControlsProperties.Remove("waterTaskCompleted");
+        
         poopTaskProgress = new bool[5];
         timesShoveled = 0;
         currentScene = -1;
@@ -261,13 +233,7 @@ public static class GlobalControls
         get => currentObjective;
         set => currentObjective = value;
     }
-    // public static bool ApartmentCondition
-    // {
-    //     get => apartmentCondition;
-    //     set => apartmentCondition = value;
-    // }
-    
-    
+
     public static bool[] PoopTaskProgress
     {
         get => poopTaskProgress;
@@ -293,18 +259,7 @@ public static class GlobalControls
         get => waterTimeLeft;
         set => waterTimeLeft = value;
     }
-
-    public static bool PoopTaskCompleted
-    {
-        get => poopTaskCompleted;
-        set => poopTaskCompleted = value;
-    }
-
-    public static bool WaterTaskCompleted
-    {
-        get => waterTaskCompleted;
-        set => waterTaskCompleted = value;
-    }
+    
 
     public static int TurnNumber
     {
