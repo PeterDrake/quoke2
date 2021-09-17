@@ -29,11 +29,11 @@ public class Meters : MonoBehaviour
         
         if (SceneManager.GetActiveScene().name.Contains("Quake"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled"); 
         }
         else
         {
-            GlobalControls.MetersEnabled = true;
+            GlobalControls.globalControlsProperties.Add("metersEnabled");
         }
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
@@ -52,8 +52,8 @@ public class Meters : MonoBehaviour
         poopTimeLeft = GlobalControls.PoopTimeLeft;
         waterTimeLeft = GlobalControls.WaterTimeLeft;
 
-        poopDoneIndicator.SetActive(GlobalControls.PoopTaskCompleted);
-        waterDoneIndicator.SetActive(GlobalControls.WaterTaskCompleted);
+        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
+        waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
 
         UpdateVisualText();
     }
@@ -63,16 +63,18 @@ public class Meters : MonoBehaviour
     {
         if (task == "poop")
         {
-            GlobalControls.PoopTaskCompleted = true;
+            GlobalControls.globalControlsProperties.Add("poopTaskCompleted");
             poopDoneIndicator.SetActive(true);
         }
         if (task == "water")
         {
-            GlobalControls.WaterTaskCompleted = true;
+            GlobalControls.globalControlsProperties.Add("waterTaskCompleted");
             waterDoneIndicator.SetActive(true);
         }
         
-        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled") && 
+            GlobalControls.globalControlsProperties.Contains("waterTaskCompleted") &&
+            GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
             GlobalControls.CurrentObjective = 5;
             GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
@@ -86,7 +88,7 @@ public class Meters : MonoBehaviour
         poopLevelNumber.text = poopTimeLeft.ToString();
         waterLevelNumber.text = waterTimeLeft.ToString();
 
-        if (GlobalControls.PoopTaskCompleted)
+        if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
             poopDoneIndicator.SetActive(true);
             poopDoneImage.color = Color.yellow;
@@ -99,7 +101,7 @@ public class Meters : MonoBehaviour
             poopProgressFill.color = Color.white;
         }
 
-        if (GlobalControls.WaterTaskCompleted)
+        if (GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"))
         {
             waterDoneIndicator.SetActive(true);
             waterDoneImage.color = Color.yellow;
@@ -115,7 +117,10 @@ public class Meters : MonoBehaviour
         poopProgressObject.GetComponent<Slider>().value = poopTimeLeft / 24f;
         waterProgressObject.GetComponent<Slider>().value = waterTimeLeft / 24f;
         
-        if (GlobalControls.ObjectivesEnabled && GlobalControls.WaterTaskCompleted && GlobalControls.PoopTaskCompleted && GlobalControls.CurrentObjective != 6)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled") && 
+            GlobalControls.globalControlsProperties.Contains("waterTaskCompleted") && 
+            GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") && 
+            GlobalControls.CurrentObjective != 6)
         {
             GlobalControls.CurrentObjective = 6;
             referenceManager.objectiveManager.UpdateObjectiveBanner();

@@ -21,7 +21,7 @@ public class ObjectiveManager : MonoBehaviour
     public void UpdateObjectiveBanner()
     {
         SetCurrentObjective(GlobalControls.CurrentObjective);
-        if (GlobalControls.ObjectivesEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {

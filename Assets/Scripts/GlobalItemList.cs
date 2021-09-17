@@ -14,7 +14,7 @@ public static class GlobalItemList
 
     static GlobalItemList()
     {
-        if (GlobalControls.ApartmentCondition)
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             itemList = new Dictionary<string, Item>
             {
@@ -151,7 +151,7 @@ public static class GlobalItemList
 
     public static void Reset()
     {
-        if (GlobalControls.ApartmentCondition)
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             itemList = new Dictionary<string, Item>
             {

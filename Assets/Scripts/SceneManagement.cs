@@ -9,7 +9,7 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
-        if(GlobalControls.ApartmentCondition) previousScenes = new []{"School", "Park", "Street", "Garden"};
+        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"School", "Park", "Street", "Garden"};
         else previousScenes = new []{"School", "Park", "Yard","Garden"};
     }
 
@@ -17,7 +17,7 @@ public class SceneManagement : MonoBehaviour
     {
         GlobalControls.Reset();
         GlobalItemList.Reset();
-        if (GlobalControls.ApartmentCondition)
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
             ChangeScene("PreQuakeApartment");
         }
@@ -35,22 +35,22 @@ public class SceneManagement : MonoBehaviour
 
         if (sceneToLoad.Equals("StrategicMap"))
         {
-            GlobalControls.IsStrategicMap = true;
+            GlobalControls.globalControlsProperties.Add("isStrategicMap");
         }
         else if (sceneToLoad.Equals("GameEnd"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled");
         }
         else if (sceneToLoad.Contains("Quake"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled");
         }
         else
         {
-            GlobalControls.MetersEnabled = true;
-            GlobalControls.IsStrategicMap = false;
-            if(!GlobalControls.PoopTaskCompleted) GlobalControls.PoopTimeLeft--;
-            if(!GlobalControls.WaterTaskCompleted) GlobalControls.WaterTimeLeft--;
+            GlobalControls.globalControlsProperties.Add("metersEnabled");
+            GlobalControls.globalControlsProperties.Remove("isStrategicMap");
+            if(!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted")) GlobalControls.PoopTimeLeft--;
+            if(!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted")) GlobalControls.WaterTimeLeft--;
         }
 
        

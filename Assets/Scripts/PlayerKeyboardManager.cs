@@ -59,7 +59,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             npcInventoryTooltipSprites = new Image[4];
             npcInventoryTooltipItemName = new Text[4];
@@ -117,21 +117,22 @@ public class PlayerKeyboardManager : MonoBehaviour
         //Handle start of scene things
         if (SceneManager.GetActiveScene().name.Contains("Quake"))
         {
-            GlobalControls.MetersEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("metersEnabled");
         }
         else
         {
-            GlobalControls.MetersEnabled = true;
+            GlobalControls.globalControlsProperties.Add("metersEnabled");
         }
         
         if (SceneManager.GetActiveScene().name.Equals("GameEnd"))
         {
             inventoryInScene = false;
-            GlobalControls.ObjectivesEnabled = false;
+            GlobalControls.globalControlsProperties.Remove("objectivesEnabled");
             npcInteractedInScene = false;
             SetExploring();
         }
-        else if (SceneManager.GetActiveScene().name.Equals("QuakeApartment") || SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        else if (SceneManager.GetActiveScene().name.Equals("QuakeApartment") || 
+                 SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(2);
@@ -140,14 +141,17 @@ public class PlayerKeyboardManager : MonoBehaviour
             GlobalControls.CurrentObjective = 3;
             SetSegue();
         }
-        else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        else if(SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") || 
+                SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
         {
             if(!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
             inventory.SetAvailableSlots(1);
             npcInteractedInScene = false;
             pointsInScene = false;
-            if(GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 2;
-            else if(!GlobalControls.ApartmentCondition) GlobalControls.CurrentObjective = 1;
+            if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) 
+                GlobalControls.CurrentObjective = 2;
+            else if(!GlobalControls.globalControlsProperties.Contains("apartmentCondition")) 
+                GlobalControls.CurrentObjective = 1;
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
@@ -162,14 +166,15 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else SetExploring();
         
-        if (!SceneManager.GetActiveScene().name.Equals("StrategicMap") && GlobalControls.MetersEnabled)
+        if (!SceneManager.GetActiveScene().name.Equals("StrategicMap") && 
+            GlobalControls.globalControlsProperties.Contains("metersEnabled"))
         {
-            if (!GlobalControls.PoopTaskCompleted && GlobalControls.PoopTimeLeft == 0)
+            if (!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") && GlobalControls.PoopTimeLeft == 0)
             {
                 Debug.Log("You died by poop meter going to zero!!");
                 GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 4);
             }
-            if (!GlobalControls.WaterTaskCompleted && GlobalControls.WaterTimeLeft == 0)
+            if (!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted") && GlobalControls.WaterTimeLeft == 0)
             {
                 Debug.Log("You died of thirst!");
                 GameObject.Find("Managers").GetComponent<ReferenceManager>().deathManager.GetComponent<PlayerDeath>().KillPlayer(metersCanvas, 2);
@@ -371,7 +376,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                         else npcFrames[j].GetComponent<Image>().sprite = unselected;
                     }
                 
-                    if (GlobalControls.TooltipsEnabled && GlobalControls.npcList[npcList[i]].interacted)
+                    if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && GlobalControls.npcList[npcList[i]].interacted)
                     {
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
                             tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
@@ -423,7 +428,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                 cursorLocation = inventory.slotContents.Length;
                 inventory.SelectSlotNumber(2);
                 
-                if (GlobalControls.TooltipsEnabled && GlobalControls.npcList[npcList[0]].interacted)
+                if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && GlobalControls.npcList[npcList[0]].interacted)
                 {
                     if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
                         tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
@@ -483,7 +488,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                     if(cursorLocation - inventory.slotContents.Length > 0)
                         npcFrames[cursorLocation - inventory.slotContents.Length - 1].GetComponent<Image>().sprite = unselected;
 
-                    if (GlobalControls.TooltipsEnabled && 
+                    if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && 
                         GlobalControls.npcList[npcList[cursorLocation - inventory.slotContents.Length]].interacted)
                     {
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
@@ -555,7 +560,7 @@ public class PlayerKeyboardManager : MonoBehaviour
                     if(cursorLocation != inventory.slotContents.Length + npcFrames.Length - 1)
                         npcFrames[cursorLocation - inventory.slotContents.Length + 1].GetComponent<Image>().sprite = unselected;
 
-                    if (GlobalControls.TooltipsEnabled && 
+                    if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && 
                         GlobalControls.npcList[npcList[cursorLocation - inventory.slotContents.Length]].interacted)
                     {
                         if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
@@ -725,22 +730,22 @@ public class PlayerKeyboardManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
-        if(GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(true);
-        else if(!GlobalControls.MetersEnabled) referenceManager.metersCanvas.SetActive(false);
+        if(GlobalControls.globalControlsProperties.Contains("metersEnabled")) referenceManager.metersCanvas.SetActive(true);
+        else if(!GlobalControls.globalControlsProperties.Contains("metersEnabled")) referenceManager.metersCanvas.SetActive(false);
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        if (GlobalControls.ObjectivesEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         {
             objectives.SetActive(true);
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
-        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+        else if(!GlobalControls.globalControlsProperties.Contains("objectivesEnabled")) objectives.SetActive(false);
 
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             toolTips.SetActive(true);
         }
-        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
+        else if(!GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")) toolTips.SetActive(false);
         if (inventoryInScene)
         {
             referenceManager.tooltipCanvas.SetActive(true);
@@ -773,7 +778,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         npcInventoryTooltip.SetActive(false);
         
-        if (GlobalControls.KeybindsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
             string exploringText = GlobalControls.Keybinds["Exploring"];
@@ -792,7 +797,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
             referenceManager.keybinds.GetComponentInChildren<Text>().text = exploringText;
         }
-        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
+        else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled")) referenceManager.keybinds.SetActive(false);
 
         
 
@@ -812,18 +817,18 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
         referenceManager.npcInteractedCanvas.SetActive(false);
-        if (GlobalControls.ObjectivesEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         {
             objectives.SetActive(true);
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
-        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
-        if (GlobalControls.KeybindsEnabled)
+        else if(!GlobalControls.globalControlsProperties.Contains("objectivesEnabled")) objectives.SetActive(false);
+        if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
             referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Conversing"];
         }
-        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
+        else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled")) referenceManager.keybinds.SetActive(false);
         toolTips.SetActive(false);
         
         referenceManager.dialogueCanvas.GetComponent<DialogueManager>().BeginConversation();
@@ -853,23 +858,23 @@ public class PlayerKeyboardManager : MonoBehaviour
         referenceManager.tradeCanvas.SetActive(true);
         referenceManager.npcInteractedCanvas.SetActive(false);
         objectives.SetActive(false);
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             toolTips.SetActive(true);
         }
-        else if(!GlobalControls.TooltipsEnabled) toolTips.SetActive(false);
-        if (GlobalControls.KeybindsEnabled)
+        else if(!GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")) toolTips.SetActive(false);
+        if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
             referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Trading"];
         }
-        else if (GlobalControls.KeybindsEnabled) referenceManager.keybinds.SetActive(false);
-        if (GlobalControls.ObjectivesEnabled)
+        else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled")) referenceManager.keybinds.SetActive(false);
+        if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         {
             objectives.SetActive(true);
             referenceManager.objectiveManager.UpdateObjectiveBanner();
         }
-        else if(!GlobalControls.ObjectivesEnabled) objectives.SetActive(false);
+        else if(!GlobalControls.globalControlsProperties.Contains("objectivesEnabled")) objectives.SetActive(false);
         
         if (pointsInScene)
         {

@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {
@@ -155,7 +155,7 @@ public class Inventory : MonoBehaviour
             slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSprite;
             selectedSlotNumber = slotNumber;
         }
-        if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
@@ -204,16 +204,16 @@ public class Inventory : MonoBehaviour
                     items[i].transform.position, container.name);
 
                 if (items[i].name.Equals("Water Bottle Clean(Clone)"))
-                    GlobalControls.PlayerHasCleanWater = false;
+                    GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
 
                 if (items[i].name.Equals("Wrench(Clone)"))
-                    GlobalControls.PlayerHasWrench = false;
+                    GlobalControls.globalControlsProperties.Remove("playerHasWrench");
 
                 if (items[i].name.Equals("First Aid Kit(Clone)"))
-                    GlobalControls.PlayerHasFirstAidKit = false;
+                    GlobalControls.globalControlsProperties.Remove("playerHasFirstAidKit");
                 
                 if (items[i].name.Equals("Epi Pen(Clone)"))
-                    GlobalControls.PlayerHasEpiPen = false;
+                    GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
                 
                 // Remove item from inventory
                 items[i] = null;
@@ -248,7 +248,8 @@ public class Inventory : MonoBehaviour
         int x = 0;
         if(SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && !GlobalControls.PoopTaskCompleted && !latrineStorage.plywoodDone)
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && 
+                !GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") && !latrineStorage.plywoodDone)
             {
                 latrineStorage.timesShoveled++;
                 GlobalControls.TimesShoveled++;
@@ -422,25 +423,25 @@ public class Inventory : MonoBehaviour
             if (item.name.Equals("Water Bottle Clean(Clone)"))
             {
                 Debug.Log("Player Has Water!");
-                GlobalControls.PlayerHasCleanWater = true;
+                GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
             }
             
             if (item.name.Equals("Wrench(Clone)"))
             {
                 Debug.Log("Player Has Wrench!");
-                GlobalControls.PlayerHasWrench = true;
+                GlobalControls.globalControlsProperties.Add("playerHasWrench");
             }
             
             if (item.name.Equals("First Aid Kit(Clone)"))
             {
                 Debug.Log("Player Has First Aid Kit!");
-                GlobalControls.PlayerHasFirstAidKit = true;
+                GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
             }
 
             if (item.name.Equals("Epi Pen(Clone)"))
             {
                 Debug.Log("Player Has Epi Pen!");
-                GlobalControls.PlayerHasEpiPen = true;
+                GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
             }
 
 
@@ -482,11 +483,11 @@ public class Inventory : MonoBehaviour
                 }
                 else InteractWithStorageContainer(container.GetComponent<StorageContainer>());
             }
-            else if (latrine && !GlobalControls.ApartmentCondition)
+            else if (latrine && !GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
             {
                 InteractWithLatrine();
             }
-            else if (GlobalControls.ApartmentCondition && latrine)
+            else if (GlobalControls.globalControlsProperties.Contains("apartmentCondition") && latrine)
             {
                 InteractWithTwoBucket();
             }
@@ -564,14 +565,14 @@ public class Inventory : MonoBehaviour
             // Add item to the items array
             items[i] = item;
             if (item.name.Equals("Water Bottle Clean(Clone)"))
-                GlobalControls.PlayerHasCleanWater = true;
+                GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
             if (item.name.Equals("Wrench(Clone)"))
-                GlobalControls.PlayerHasWrench = true;
+                GlobalControls.globalControlsProperties.Add("playerHasWrench");
             if (item.name.Equals("First Aid Kit(Clone)"))
-                GlobalControls.PlayerHasFirstAidKit = true;
+                GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
             if (item.name.Equals("Epi Pen(Clone)"))
-                GlobalControls.PlayerHasEpiPen = true;
-
+                GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
+            
             // Remove item from the world
             item.SetActive(false);
         }

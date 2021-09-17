@@ -158,18 +158,18 @@ public class TradeManager : MonoBehaviour
             if (item)
             {
                 playerOffers.Add(item.name.Replace("(Clone)","").Trim());
-                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = false;
-                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = false;
-                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = false;
+                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
+                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasFirstAidKit");
+                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
 
             }
         }
         
         foreach (GameObject item in inventoryNPCBin.items)
         {
-            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = true;
-            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = true;
-            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = true;
+            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
+            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
+            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
 
         }
 
