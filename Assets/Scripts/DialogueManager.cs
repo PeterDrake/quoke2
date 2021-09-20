@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
 
         // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
         // "theirName0" to get to the appropriate starting node
-        currentNode = forest[GlobalControls.NPCList[GlobalControls.CurrentNPC].node]; 
+        currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node]; 
         
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
@@ -73,37 +73,36 @@ public class DialogueManager : MonoBehaviour
         {
             keyboardManager.leftTrading = false;
 
-            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("angie0") && 
-                !GlobalControls.AngieHasFirstAidKit && GlobalControls.CurrentNPC.Contains("angie"))
-                if(!GlobalControls.AngieSeriousDialogue)
+            if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
+                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_4.0");
                     currentNode = forest["leave_angie_0.7"];
-                    GlobalControls.AngieHasFirstAidKit = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                 }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_5.0");
                     currentNode = forest["leave_angie_1.4"];
-                    GlobalControls.AngieHasFirstAidKit = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                 }
-            else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("angie0") && 
-                !GlobalControls.AngieHasEpiPen && GlobalControls.CurrentNPC.Contains("angie"))
-                if(!GlobalControls.AngieSeriousDialogue)
+            else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("angie"))
+                if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_8.0");
                     currentNode = forest["leave_angie_0"];
-                    GlobalControls.AngieHasEpiPen = true;
-                }
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");                }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_9.0");
                     currentNode = forest["leave_angie_1"];
-                    GlobalControls.AngieHasEpiPen = true;
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
                 }
-            else if (!GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
                 currentNode = forest["leave_angie_0"];
-            else if (GlobalControls.AngieSeriousDialogue && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
                 currentNode = forest["leave_angie_1"];
             else
                 currentNode = forest["leave_error"];
@@ -127,7 +126,7 @@ public class DialogueManager : MonoBehaviour
             
             if (currentNode.nextNode[i].Contains("action"))
             {
-                if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                if (GlobalControls.npcList[GlobalControls.CurrentNPC].actionsComplete[Int32.
                     Parse(currentNode.nextNode[i].Substring(6, 1))])
                 {
                     Debug.Log("Action Complete");
@@ -137,7 +136,7 @@ public class DialogueManager : MonoBehaviour
         }
         
         //This displays the initial nodes npc text
-        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
+        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.npcList[GlobalControls.CurrentNPC].name);
         
         if (cursorLocation > buttons.Length - 1)
         {
@@ -199,7 +198,7 @@ public class DialogueManager : MonoBehaviour
 
         //This will change the node you're looking at
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
-        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
+        GlobalControls.npcList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         currentNode = forest[currentNode.nextNode[cursorLocation]];
         Debug.Log("Current Node " + currentNode.nodeName);
         
@@ -216,23 +215,23 @@ public class DialogueManager : MonoBehaviour
 
             if (currentNode.nodeName.Contains("success"))
             {
-                if (!GlobalControls.NPCList[GlobalControls.CurrentNPC].
+                if (!GlobalControls.npcList[GlobalControls.CurrentNPC].
                     actionRequirements[Int32.Parse(currentNode.nodeName.
                     Substring(7, 1))].Equals("Water Bottle Clean"))
                 {
-                    GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                    GlobalControls.npcList[GlobalControls.CurrentNPC].actionsComplete[Int32.
                         Parse(currentNode.nodeName.Substring(7, 1))] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
-                    GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
+                    GlobalControls.npcList[GlobalControls.CurrentNPC].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
                 }
                 else
                 {
-                    GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.
+                    GlobalControls.npcList[GlobalControls.CurrentNPC].actionsComplete[Int32.
                         Parse(currentNode.nodeName.Substring(7, 1))] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
-                    GlobalControls.NPCList[GlobalControls.CurrentNPC].satisfaction++;
+                    GlobalControls.npcList[GlobalControls.CurrentNPC].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
                 }
@@ -246,7 +245,7 @@ public class DialogueManager : MonoBehaviour
                 //This checks the itemList for the item that the npc needs at the index specified in the key name
                 //need0_angie_12.2
                 //Here the index is 0
-                if (!GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].
+                if (!GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].
                     needs[Int32.Parse(node.Substring(4, 1))]].containerName.Equals("Player"))
                 {
                     Debug.Log("turning off one of the need's button");
@@ -256,7 +255,7 @@ public class DialogueManager : MonoBehaviour
 
             if (node.Contains("action"))
             {
-                if (GlobalControls.NPCList[GlobalControls.CurrentNPC].actionsComplete[Int32.Parse(node.Substring(6, 1))])
+                if (GlobalControls.npcList[GlobalControls.CurrentNPC].actionsComplete[Int32.Parse(node.Substring(6, 1))])
                 {
                     Debug.Log("Action Complete");
                     buttons[i].gameObject.SetActive(false);
@@ -264,8 +263,8 @@ public class DialogueManager : MonoBehaviour
             }
             if (node.Contains("success"))
             {
-                if (!GlobalControls.NPCList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))].Equals("") &&
-                    !GlobalItemList.ItemList[GlobalControls.NPCList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
+                if (!GlobalControls.npcList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))].Equals("") &&
+                    !GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].actionRequirements[Int32.Parse(node.Substring(7, 1))]].containerName.Equals("Player"))
                 {
                     Debug.Log("BATTAN AAF");
                     buttons[i].gameObject.SetActive(false);
@@ -282,7 +281,7 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SetCheckpoint("basic_angie_3.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
             {
-                GlobalControls.AngieSeriousDialogue = true;
+                GlobalControls.globalControlsProperties.Add("angieSeriousDialogue");
                 GlobalControls.SetCheckpoint("basic_angie_1.0");
             }
             if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
@@ -297,8 +296,8 @@ public class DialogueManager : MonoBehaviour
         
         
         
-        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name);
-        GlobalControls.NPCList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.NPCList[GlobalControls.CurrentNPC].name));
+        dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.npcList[GlobalControls.CurrentNPC].name);
+        GlobalControls.npcList[GlobalControls.CurrentNPC].dialogueList.Add(new DialogueNode(currentNode.npcText, GlobalControls.npcList[GlobalControls.CurrentNPC].name));
 
         if (cursorLocation > buttons.Length - 1)
         {

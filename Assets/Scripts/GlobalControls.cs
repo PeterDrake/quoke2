@@ -11,56 +11,34 @@ public static class GlobalControls
        if the player has stored water, they should have the default 12 hours on the water meter, if not
        only 3; then the meters should be enabled in this script*/
     // metersEnabled is currently set to true for testing purposes
-    private static bool tooltipsEnabled = true;
-    private static bool adminMode = true;
-    private static bool metersEnabled = true;
-    private static bool objectivesEnabled = true;
-    private static bool keybindsEnabled = true;
+    
+    private static bool[] poopTaskProgress;
     private static int currentObjective;
     private static int currentPoints = 0;
     private static int poopTimeLeft = 24;
     private static int waterTimeLeft = 12;
-    private static bool poopTaskCompleted;
-    private static bool waterTaskCompleted;
-    private static bool[] poopTaskProgress;
     private static int timesShoveled;
     private static int currentScene;
-    private static bool isStrategicMap;
 
     private static int turnNumber = 0;
     private static string currentNPC;
 
-    private static bool safiInteracted;
-    private static bool demInteracted;
-    private static bool rainerInteracted;
-    private static bool annetteInteracted;
-    private static bool carlosInteracted;
-    private static bool angieInteracted;
-
-    private static bool apartmentCondition = false;
-
-    private static bool demActionDone = false;
-    private static bool demDrinkDone = false;
-    private static bool safiWaterActionDone = false;
-    private static bool safiGasActionDone = false;
-    private static bool safiRescued = false;
-    private static bool angieDrinkDone = false;
-    private static bool carlosDrinkDone = false;
-    private static bool rainerActionDone = false;
-    private static bool rainerDrinkDone = false;
-    private static bool annetteActionDone = false;
-    private static bool annetteDrinkDone = false;
-
-    private static bool playerHasCleanWater = false;
-    private static bool playerHasFirstAidKit = false;
-    private static bool playerHasEpiPen = false;
-    private static bool playerHasWrench = false;
+    public static string[] npcNames = { "Safi","Dem","Rainer","Annette","Carlos","Angie" };
+    // public static HashSet<string> interacted;
     
-    private static bool angieHasEpiPen = false;
-    private static bool angieHasFirstAidKit = false;
-    private static bool angieSeriousDialogue = false;
+    public static Dictionary<string, string> namesList = new Dictionary<string, string>
+    {
+        {"Safi","Safi"},
+        {"Rainer","Rainer"},
+        {"Carlos","Carlos"},
+        {"Annette","Annette"},
+        {"Angie","Angie"},
+        {"Demitrius","Demitrius"},
+    };
+
+    public static HashSet<string> globalControlsProperties = new HashSet<string>();
     
-    private static Dictionary<string, NPC> npcList;
+    public static Dictionary<string, NPC> npcList;
     private static Dictionary<string, string> keybinds;
 
     private static Dictionary<string, int> points = new Dictionary<string, int>
@@ -117,136 +95,32 @@ public static class GlobalControls
     static GlobalControls()
     {
         Debug.Log("Starting Global Controls");
-        if (apartmentCondition)
-        {
-            npcList = new Dictionary<string, NPC>
-            {
-                {"safi0", new NPC("Safi", "Park", new List<string>{""}, "basic_safi_0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
-                    new List<string>{"","Wrench","Wrench"})},
-                {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
-                    new List<string>{""})},
-                {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
-                    new List<string>{""})},
-                {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
-                    new List<string>{""})},
-                {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
-                    new List<string>{"Water Bottle Clean"})},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
-                    new List<string>{"Water Bottle Clean"})},
-            };
-            currentObjective = 2;
-        }
-        else
-        {
-            npcList = new Dictionary<string, NPC>
-            {
-                {"safi0", new NPC("Safi", "Park", new List<string>{""}, "basic_safi_0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
-                    new List<string>{"","Wrench","Wrench"})},
-                {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
-                    new List<string>{""})},
-                {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
-                    new List<string>{""})},
-                {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
-                    0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
-                    new List<string>{""})},
-                {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
-                    0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
-                    new List<string>{"Water Bottle Clean"})},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
-                    new List<string>{"Water Bottle Clean"})},
-                
-            };
-            currentObjective = 1;
-        }
-
-        keybinds = new Dictionary<string, string>()
-        {
-            {"Exploring", "WASD => Move Character \nC => Crouch \nSPACE => Drop/Interact \n< > => Move slots \n[ ] => Switch inventory"},
-            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
-            {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
-            {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
-        };
-        
-        metersEnabled = true;
-        objectivesEnabled = true;
-        tooltipsEnabled = true;
-        keybindsEnabled = true;
-        poopTimeLeft = 24;
-        waterTimeLeft = 12;
-        poopTaskCompleted = false;
-        waterTaskCompleted = false;
-        poopTaskProgress = new bool[5];
-        timesShoveled = 0;
-        currentScene = -1;
-        isStrategicMap = false;
-        currentPoints = 0;
-
-        turnNumber = 0;
-        currentNPC = "";
-        
-        safiInteracted = false;
-        demInteracted = false;
-        rainerInteracted = false;
-        annetteInteracted = false;
-        carlosInteracted = false;
-        angieInteracted = false;
-        adminMode = true;
-
-        demActionDone = false;
-        demDrinkDone = false;
-        safiWaterActionDone = false;
-        safiGasActionDone = false;
-        safiRescued = false;
-        angieDrinkDone = false;
-        carlosDrinkDone = false;
-        rainerActionDone = false;
-        rainerDrinkDone = false;
-        annetteActionDone = false;
-        annetteDrinkDone = false;
-
-        playerHasCleanWater = false;
-        playerHasFirstAidKit = false;
-        playerHasEpiPen = false;
-        playerHasWrench = false;
-        
-        angieHasEpiPen = false;
-        angieHasFirstAidKit = false;
-        angieSeriousDialogue = false;
+        Reset();
     }
 
 
     public static void Reset()
     {
-        if (apartmentCondition)
+        if (globalControlsProperties.Contains("apartmentCondition"))
         {
             npcList = new Dictionary<string, NPC>
             {
-                {"safi0", new NPC("Safi", "Park", new List<string>{""}, "basic_safi_0", 
+                {"Safi", new NPC(namesList["Safi"], "Park", new List<string>{""}, "basic_safi_0", 
                     0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
                     new List<string>{"","Wrench","Wrench"})},
-                {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
+                {"Dem", new NPC(namesList["Demitrius"], "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
                     0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
                     new List<string>{""})},
-                {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
+                {"Annette", new NPC(namesList["Annette"], "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
                     0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
                     new List<string>{""})},
-                {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
+                {"Rainer", new NPC(namesList["Rainer"], "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
                     new List<string>{""})},
-                {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
+                {"Carlos", new NPC(namesList["Carlos"], "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
                     new List<string>{"Water Bottle Clean"})},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
+                {"Angie", new NPC(namesList["Angie"], "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
                     new List<string>{"Water Bottle Clean"})},
                 
@@ -257,22 +131,22 @@ public static class GlobalControls
         {
             npcList = new Dictionary<string, NPC>
             {
-                {"safi0", new NPC("Safi", "Park", new List<string>{""}, "basic_safi_0", 
+                {"Safi", new NPC(namesList["Safi"], "Park", new List<string>{""}, "basic_safi_0", 
                     0, false, "Safi needs you to turn off her Gas and Water.", 3, 0, safiActions,
                     new List<string>{"","Wrench","Wrench"})},
-                {"dem0", new NPC("Demitrius", "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
+                {"Dem", new NPC(namesList["Demitrius"], "Park", new List<string>{"Canned Food", "Can Opener"}, "basic_dem_0",
                     0, false, "Demitrius needs a Can Opener and Canned Food", 4,0, demActions,
                     new List<string>{""})},
-                {"annette0", new NPC("Annette", "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
+                {"Annette", new NPC(namesList["Annette"], "School", new List<string>{"Leash", "Dog Crate"}, "basic_annette_0", 
                     0, false, "Annette needs a leash and Dog Crate", 4,0, annetteActions,
                     new List<string>{""})},
-                {"rainer0", new NPC("Rainer", "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
+                {"Rainer", new NPC(namesList["Rainer"], "School", new List<string>{"Tent", "Blanket"}, "basic_annette_0",
                     0, false, "Rainer needs a Tent and Blanket", 4, 0, rainerActions,
                     new List<string>{""})},
-                {"carlos0", new NPC("Carlos", "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
+                {"Carlos", new NPC(namesList["Carlos"], "Garden", new List<string> {"Radio", "Batteries"}, "basic_carlos_0",
                     0, false, "Carlos needs a Radio and Batteries", 4, 0, carlosActions,
                     new List<string>{"Water Bottle Clean"})},
-                {"angie0", new NPC("Angie", "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
+                {"Angie", new NPC(namesList["Angie"], "Garden", new List<string> {"First Aid Kit", "Epi Pen"}, "basic_angie_0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", 4, 0, angieActions,
                     new List<string>{"Water Bottle Clean"})},
                 
@@ -288,62 +162,58 @@ public static class GlobalControls
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
         
-        metersEnabled = true;
-        tooltipsEnabled = true;
-        objectivesEnabled = true;
-        keybindsEnabled = true;
+        globalControlsProperties.Add("metersEnabled");
+        globalControlsProperties.Add("tooltipsEnabled");
+        globalControlsProperties.Add("objectivesEnabled");
+        globalControlsProperties.Add("keybindsEnabled");
+       
         poopTimeLeft = 24;
         waterTimeLeft = 12;
-        poopTaskCompleted = false;
-        waterTaskCompleted = false;
+
+        globalControlsProperties.Remove("poopTaskCompleted");
+        globalControlsProperties.Remove("waterTaskCompleted");
+        
         poopTaskProgress = new bool[5];
         timesShoveled = 0;
         currentScene = -1;
-        isStrategicMap = false;
+        globalControlsProperties.Remove("isStrategicMap");
         currentPoints = 0;
 
         turnNumber = 0;
         currentNPC = "";
-        
-        safiInteracted = false;
-        demInteracted = false;
-        rainerInteracted = false;
-        annetteInteracted = false;
-        carlosInteracted = false;
-        angieInteracted = false;
-        adminMode = true;
-        
-        demActionDone = false;
-        demDrinkDone = false;
-        safiWaterActionDone = false;
-        safiGasActionDone = false;
-        safiRescued = false;
-        angieDrinkDone = false;
-        carlosDrinkDone = false;
-        rainerActionDone = false;
-        rainerDrinkDone = false;
-        annetteActionDone = false;
-        annetteDrinkDone = false;
 
-        playerHasCleanWater = false;
-        playerHasFirstAidKit = false;
-        playerHasEpiPen = false;
-        playerHasWrench = false;
+        foreach (string name in npcNames)
+        {
+            npcList[name].interacted = false;
+        }
         
-        angieHasFirstAidKit = false;
-        angieSeriousDialogue = false;
-        angieSeriousDialogue = false;
+        globalControlsProperties.Add("adminMode");
+        
+        globalControlsProperties.Remove("demActionDone");
+        globalControlsProperties.Remove("demDrinkDone");
+        globalControlsProperties.Remove("safiWaterActionDone");
+        globalControlsProperties.Remove("safiGasActionDone");
+        globalControlsProperties.Remove("safiRescued");
+        globalControlsProperties.Remove("angieDrinkDone");
+        globalControlsProperties.Remove("carlosDrinkDone");
+        globalControlsProperties.Remove("rainerActionDone");
+        globalControlsProperties.Remove("rainerDrinkDone");
+        globalControlsProperties.Remove("annetteActionDone");
+        globalControlsProperties.Remove("annetteDrinkDone");
+      
+        globalControlsProperties.Remove("playerHasCleanWater");
+        globalControlsProperties.Remove("playerHasFirstAidKit");
+        globalControlsProperties.Remove("playerHasEpiPen");
+        globalControlsProperties.Remove("playerHasWrench");
+
+        globalControlsProperties.Remove("angieHasFirstAidKit");
+        globalControlsProperties.Remove("angieSeriousDialogue");
+        globalControlsProperties.Remove("angieHasEpiPen");
     }
 
     public static Dictionary<string,int> Points
     {
         get => points;
-    }
-    
-    public static bool SafiRescued
-    {
-        get => safiRescued;
-        set => safiRescued = value;
     }
     
     public static int NoStoredWaterTime
@@ -363,55 +233,14 @@ public static class GlobalControls
         get => currentObjective;
         set => currentObjective = value;
     }
-    public static bool ApartmentCondition
-    {
-        get => apartmentCondition;
-        set => apartmentCondition = value;
-    }
-    public static bool KeybindsEnabled
-    {
-        get => keybindsEnabled;
-        set => keybindsEnabled = value;
-    }
-    public static bool ObjectivesEnabled
-    {
-        get => objectivesEnabled;
-        set => objectivesEnabled = value;
-    }
-    
+
     public static bool[] PoopTaskProgress
     {
         get => poopTaskProgress;
         set => poopTaskProgress = value;
     }
     
-    public static bool IsStrategicMap
-    {
-        get => isStrategicMap;
-        set => isStrategicMap = value;
-    }
-
-    public static bool TooltipsEnabled
-    {
-        get => tooltipsEnabled;
-        set => tooltipsEnabled = value;
-    }
-    
-    public static bool AdminMode
-    {
-        get => adminMode;
-        set => adminMode = value;
-    }
-
-    public static Dictionary<string, NPC> NPCList => npcList;
-
     public static Dictionary<string, string> Keybinds => keybinds;
-
-    public static bool MetersEnabled
-    {
-        get => metersEnabled;
-        set => metersEnabled = value;
-    }
 
     public static int PoopTimeLeft
     {
@@ -430,18 +259,7 @@ public static class GlobalControls
         get => waterTimeLeft;
         set => waterTimeLeft = value;
     }
-
-    public static bool PoopTaskCompleted
-    {
-        get => poopTaskCompleted;
-        set => poopTaskCompleted = value;
-    }
-
-    public static bool WaterTaskCompleted
-    {
-        get => waterTaskCompleted;
-        set => waterTaskCompleted = value;
-    }
+    
 
     public static int TurnNumber
     {
@@ -463,143 +281,7 @@ public static class GlobalControls
     }
     public static void SetCheckpoint(string nodeName)
     {
-        NPCList[currentNPC].node = nodeName;
-    }
-    
-    public static bool SafiInteracted
-    {
-        get => safiInteracted;
-        set => safiInteracted = value;
-    }
-    
-    public static bool DemInteracted
-    {
-        get => demInteracted;
-        set => demInteracted = value;
-    }
-    
-    public static bool RainerInteracted
-    {
-        get => rainerInteracted;
-        set => rainerInteracted = value;
-    }
-    
-    public static bool AnnetteInteracted
-    {
-        get => annetteInteracted;
-        set => annetteInteracted = value;
-    }
-    public static bool CarlosInteracted
-    {
-        get => carlosInteracted;
-        set => carlosInteracted = value;
-    }
-    public static bool AngieInteracted
-    {
-        get => angieInteracted;
-        set => angieInteracted = value;
-    }
-    
-    public static bool DemActionDone
-    {
-        get => demActionDone;
-        set => demActionDone = value;
-    }
-    
-    public static bool DemDrinkDone
-    {
-        get => demDrinkDone;
-        set => demDrinkDone = value;
-    }
-    
-    public static bool SafiWaterActionDone
-    {
-        get => safiWaterActionDone;
-        set => safiWaterActionDone = value;
-    }
-    
-    public static bool SafiGasActionDone
-    {
-        get => safiGasActionDone;
-        set => safiGasActionDone = value;
-    }
-    
-    public static bool AngieDrinkDone
-    {
-        get => angieDrinkDone;
-        set => angieDrinkDone = value;
-    }
-    
-    public static bool CarlosDrinkDone
-    {
-        get => carlosDrinkDone;
-        set => carlosDrinkDone = value;
-    }
-    
-    public static bool RainerActionDone
-    {
-        get => rainerActionDone;
-        set => rainerActionDone = value;
-    }
-    
-    public static bool RainerDrinkDone
-    {
-        get => rainerDrinkDone;
-        set => rainerDrinkDone = value;
-    }
-    
-    public static bool AnnetteActionDone
-    {
-        get => annetteActionDone;
-        set => annetteActionDone = value;
-    }
-    
-    public static bool AnnetteDrinkDone
-    {
-        get => annetteDrinkDone;
-        set => annetteDrinkDone = value;
-    }
-    
-    public static bool PlayerHasCleanWater
-    {
-        get => playerHasCleanWater;
-        set => playerHasCleanWater = value;
-    }
-
-    public static bool PlayerHasFirstAidKit
-    {
-        get => playerHasFirstAidKit;
-        set => playerHasFirstAidKit = value;
-    }
-
-    public static bool PlayerHasEpiPen
-    {
-        get => playerHasEpiPen;
-        set => playerHasEpiPen = value;
-    }
-
-    public static bool PlayerHasWrench
-    {
-        get => playerHasWrench;
-        set => playerHasWrench = value;
-    }
-
-    public static bool AngieSeriousDialogue
-    {
-        get => angieSeriousDialogue;
-        set => angieSeriousDialogue = value;
-    }
-
-    public static bool AngieHasEpiPen
-    {
-        get => angieHasEpiPen;
-        set => angieHasEpiPen = value;
-    }
-
-    public static bool AngieHasFirstAidKit
-    {
-        get => angieHasFirstAidKit;
-        set => angieHasFirstAidKit = value;
+        npcList[currentNPC].node = nodeName;
     }
 }
 

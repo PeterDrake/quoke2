@@ -67,7 +67,8 @@ public class PlayerMover : MonoBehaviour
             // TODO This seems to be assuming the only interactables are NPCs
             if (ahead)
             {
-                if (ahead.name.Equals("Tent") && GlobalControls.PoopTaskCompleted && GlobalControls.WaterTaskCompleted)
+                if (ahead.name.Equals("Tent") && GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") && 
+                    GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"))
                 {
                     referenceManager.sceneManagement.GetComponent<SceneManagement>().ChangeScene("GameEnd");
                 }

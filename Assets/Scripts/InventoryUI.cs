@@ -69,7 +69,7 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (GlobalControls.TooltipsEnabled)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {
@@ -97,10 +97,12 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateTooltip()
     {
-        if (GlobalControls.TooltipsEnabled && slotContents[selectedSlotNumber].activeSelf)
+        if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
+            && slotContents[selectedSlotNumber].activeSelf)
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
-                referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(true);
+                referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
+                    .gameObject.SetActive(true);
             {
                 if (inventory.items[selectedSlotNumber])
                 {

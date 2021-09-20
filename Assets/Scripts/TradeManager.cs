@@ -123,11 +123,11 @@ public class TradeManager : MonoBehaviour
         //Load IOU inventory
         inventoryIOUUI.selectedSlotSprite = unselected;
         inventoryIOU.SelectSlotNumber(0);
-        for (int i = inventoryIOUUI.slotFrames.Length - 1; i > GlobalControls.NPCList[npcName].owes - 1; i--)
+        for (int i = inventoryIOUUI.slotFrames.Length - 1; i > GlobalControls.npcList[npcName].owes - 1; i--)
         {
             inventoryIOUUI.slotFrames[i].SetActive(false);
         }
-        //inventoryIOU.SetAvailableSlots(GlobalControls.NPCList[npcName].owes);
+        //inventoryIOU.SetAvailableSlots(GlobalControls.npcList[npcName].owes);
 
         foreach (GameObject game in inventoryIOUUI.slotContents)
         {
@@ -176,25 +176,25 @@ public class TradeManager : MonoBehaviour
             if (item)
             {
                 playerOffers.Add(item.name.Replace("(Clone)","").Trim());
-                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = false;
-                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = false;
-                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = false;
+                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
+                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasFirstAidKit");
+                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
 
             }
         }
         
         foreach (GameObject item in inventoryNPCBin.items)
         {
-            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.PlayerHasCleanWater = true;
-            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.PlayerHasFirstAidKit = true;
-            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.PlayerHasEpiPen = true;
+            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
+            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
+            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
 
         }
 
         int playerTradePoints = 0;
         
         //will not trade away item they need
-        foreach (string need in GlobalControls.NPCList[npcName].needs)
+        foreach (string need in GlobalControls.npcList[npcName].needs)
         {
             if (playerOffers.Contains(need))
             {
@@ -354,18 +354,18 @@ public class TradeManager : MonoBehaviour
                 inventoryNPC.items[i].name = inventoryNPC.items[i].name.Replace("(Clone)","").Trim();
                 //If new item for NPC and it's one of their needs increase satisfaction
                 if (!GlobalItemList.ItemList[inventoryNPC.items[i].name].containerName.Equals(npcName) && 
-                    GlobalControls.NPCList[npcName].needs.Contains(inventoryNPC.items[i].name))
+                    GlobalControls.npcList[npcName].needs.Contains(inventoryNPC.items[i].name))
                 {
-                    GlobalControls.NPCList[npcName].satisfaction++;
-                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.NPCList[npcName].satisfaction);
-                    if (GlobalControls.NPCList[npcName].needs.Count == GlobalControls.NPCList[npcName].satisfaction)
-                        GlobalControls.NPCList[npcName].description = GlobalControls.NPCList[npcName].name + " is happy and needs nothing more";
+                    GlobalControls.npcList[npcName].satisfaction++;
+                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.npcList[npcName].satisfaction);
+                    if (GlobalControls.npcList[npcName].needs.Count == GlobalControls.npcList[npcName].satisfaction)
+                        GlobalControls.npcList[npcName].description = GlobalControls.npcList[npcName].name + " is happy and needs nothing more";
                     else
                     {
-                        string description = GlobalControls.NPCList[npcName].description;
+                        string description = GlobalControls.npcList[npcName].description;
                         description = description.Replace(inventoryNPC.items[i].name,"").Trim();
                         description = description.Replace("and","").Trim();
-                        GlobalControls.NPCList[npcName].description = description;
+                        GlobalControls.npcList[npcName].description = description;
                     }
                 }
                 
@@ -381,7 +381,7 @@ public class TradeManager : MonoBehaviour
             if (game.activeSelf) counter++;
         }
 
-        GlobalControls.NPCList[npcName].owes = counter;
+        GlobalControls.npcList[npcName].owes = counter;
         
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)
@@ -549,7 +549,7 @@ public class TradeManager : MonoBehaviour
         int playerTradePoints = 0;
         
         //will not trade away item they need
-        foreach (string need in GlobalControls.NPCList[npcName].needs)
+        foreach (string need in GlobalControls.npcList[npcName].needs)
         {
             if (npcOffers.Contains(need)) return false;
             if (playerOffers.Contains(need))

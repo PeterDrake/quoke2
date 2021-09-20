@@ -1327,7 +1327,7 @@ GameObject:
   - component: {fileID: 129728785106321254}
   - component: {fileID: 129728785106321253}
   m_Layer: 5
-  m_Name: Annette Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,8 +1345,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728785432622308}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 14
+  m_Father: {fileID: 5371966200651201683}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1651,7 +1651,7 @@ GameObject:
   - component: {fileID: 129728785152594834}
   - component: {fileID: 129728785152594833}
   m_Layer: 5
-  m_Name: Safi Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1801,7 +1801,7 @@ GameObject:
   - component: {fileID: 129728785170966233}
   - component: {fileID: 129728785170966232}
   m_Layer: 5
-  m_Name: Carlos Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,7 +2866,7 @@ GameObject:
   - component: {fileID: 129728785307091705}
   - component: {fileID: 129728785307091704}
   m_Layer: 5
-  m_Name: Dem Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2879,12 +2879,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728785307091710}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 7
+  m_Father: {fileID: 5338561021931664607}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3343,7 +3343,7 @@ GameObject:
   - component: {fileID: 129728785343063035}
   - component: {fileID: 129728785343063034}
   m_Layer: 5
-  m_Name: Safi Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3361,8 +3361,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728785152594832}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 2
+  m_Father: {fileID: 5750147510127685530}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3611,7 +3611,7 @@ GameObject:
   - component: {fileID: 129728785397195486}
   - component: {fileID: 129728785397195485}
   m_Layer: 5
-  m_Name: Carlos Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3624,12 +3624,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728785397195491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 19
+  m_Father: {fileID: 5250771034115385539}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3769,7 +3769,7 @@ GameObject:
   - component: {fileID: 129728785432622310}
   - component: {fileID: 129728785432622309}
   m_Layer: 5
-  m_Name: Annette Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4877,7 +4877,7 @@ GameObject:
   - component: {fileID: 129728785615705590}
   - component: {fileID: 129728785615705589}
   m_Layer: 5
-  m_Name: Safi Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4890,13 +4890,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728785615705595}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728786256540893}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 4
+  m_Father: {fileID: 5750147510127685530}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4953,7 +4953,7 @@ GameObject:
   - component: {fileID: 129728785638046717}
   - component: {fileID: 129728785638046716}
   m_Layer: 5
-  m_Name: Rainer Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4966,13 +4966,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728785638046466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728786690948082}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 12
+  m_Father: {fileID: 1815978324873820629}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5540,7 +5540,7 @@ GameObject:
   - component: {fileID: 129728785718036463}
   - component: {fileID: 129728785718036462}
   m_Layer: 5
-  m_Name: Dem Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5766,7 +5766,7 @@ GameObject:
   - component: {fileID: 129728785742130398}
   - component: {fileID: 129728785742130397}
   m_Layer: 5
-  m_Name: Annette Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6334,7 +6334,7 @@ GameObject:
   - component: {fileID: 129728785787079888}
   - component: {fileID: 129728785787079895}
   m_Layer: 5
-  m_Name: Angie Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6352,8 +6352,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728786146449715}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 22
+  m_Father: {fileID: 4783189677117519594}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7578,7 +7578,7 @@ GameObject:
   - component: {fileID: 129728785993386871}
   - component: {fileID: 129728785993386870}
   m_Layer: 5
-  m_Name: Dem Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7595,8 +7595,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 5
+  m_Father: {fileID: 5338561021931664607}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7693,7 +7693,7 @@ GameObject:
   - component: {fileID: 129728786021838826}
   - component: {fileID: 129728786021838825}
   m_Layer: 5
-  m_Name: Rainer Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7711,8 +7711,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728786951045454}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 10
+  m_Father: {fileID: 1815978324873820629}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8410,7 +8410,7 @@ GameObject:
   - component: {fileID: 129728786091829550}
   - component: {fileID: 129728786091829549}
   m_Layer: 5
-  m_Name: Carlos Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8568,7 +8568,7 @@ GameObject:
   - component: {fileID: 129728786119729202}
   - component: {fileID: 129728786119729201}
   m_Layer: 5
-  m_Name: Angie Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8581,12 +8581,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786119729207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 23
+  m_Father: {fileID: 4783189677117519594}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8984,7 +8984,7 @@ GameObject:
   - component: {fileID: 129728786134403752}
   - component: {fileID: 129728786134403759}
   m_Layer: 5
-  m_Name: Safi Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8997,12 +8997,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786134403757}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 1
+  m_Father: {fileID: 5750147510127685530}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9063,7 +9063,7 @@ GameObject:
   - component: {fileID: 129728786146449709}
   - component: {fileID: 129728786146449708}
   m_Layer: 5
-  m_Name: Angie Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9264,7 +9264,7 @@ GameObject:
   - component: {fileID: 129728786178302009}
   - component: {fileID: 129728786178302008}
   m_Layer: 5
-  m_Name: Angie Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9281,8 +9281,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 21
+  m_Father: {fileID: 4783189677117519594}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9422,7 +9422,7 @@ GameObject:
   - component: {fileID: 129728786188816415}
   - component: {fileID: 129728786188816414}
   m_Layer: 5
-  m_Name: Angie Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9732,7 +9732,7 @@ GameObject:
   - component: {fileID: 129728786256540895}
   - component: {fileID: 129728786256540894}
   m_Layer: 5
-  m_Name: Safi Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9999,30 +9999,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 129728785194015444}
-  - {fileID: 129728786134403758}
-  - {fileID: 129728785343063033}
-  - {fileID: 129728786766820188}
-  - {fileID: 129728785615705588}
-  - {fileID: 129728785993386869}
-  - {fileID: 129728786941535301}
-  - {fileID: 129728785307091711}
-  - {fileID: 129728786405029973}
-  - {fileID: 129728786886075247}
-  - {fileID: 129728786021838824}
-  - {fileID: 129728787058559019}
-  - {fileID: 129728785638046467}
-  - {fileID: 129728786420940350}
-  - {fileID: 129728785106321252}
-  - {fileID: 129728786431323533}
-  - {fileID: 129728786383950019}
-  - {fileID: 129728786891921407}
-  - {fileID: 129728786519619964}
-  - {fileID: 129728785397195484}
-  - {fileID: 129728786592427100}
-  - {fileID: 129728786178302015}
-  - {fileID: 129728785787079894}
-  - {fileID: 129728786119729200}
-  - {fileID: 129728786522821750}
+  - {fileID: 5750147510127685530}
+  - {fileID: 5338561021931664607}
+  - {fileID: 1815978324873820629}
+  - {fileID: 5371966200651201683}
+  - {fileID: 5250771034115385539}
+  - {fileID: 4783189677117519594}
   m_Father: {fileID: 129728785712210862}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10104,12 +10086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87717486ee314ec7b3845706e3bfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safiInteracted: 0
-  demInteracted: 0
-  rainerInteracted: 0
-  annetteInteracted: 0
-  carlosInteracted: 0
-  angieInteracted: 0
 --- !u!1 &129728786313639829
 GameObject:
   m_ObjectHideFlags: 0
@@ -10551,7 +10527,7 @@ GameObject:
   - component: {fileID: 129728786383950013}
   - component: {fileID: 129728786383950012}
   m_Layer: 5
-  m_Name: Annette Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10564,13 +10540,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786383950018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728785742130396}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 16
+  m_Father: {fileID: 5371966200651201683}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10627,7 +10603,7 @@ GameObject:
   - component: {fileID: 129728786405029975}
   - component: {fileID: 129728786405029974}
   m_Layer: 5
-  m_Name: Dem Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10640,13 +10616,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786405029972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728786754138701}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 8
+  m_Father: {fileID: 5338561021931664607}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10873,7 +10849,7 @@ GameObject:
   - component: {fileID: 129728786420940344}
   - component: {fileID: 129728786420940351}
   m_Layer: 5
-  m_Name: Annette Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10890,8 +10866,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 13
+  m_Father: {fileID: 5371966200651201683}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11028,7 +11004,7 @@ GameObject:
   - component: {fileID: 129728786431323535}
   - component: {fileID: 129728786431323534}
   m_Layer: 5
-  m_Name: Annette Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11041,12 +11017,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786431323532}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 15
+  m_Father: {fileID: 5371966200651201683}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11494,7 +11470,7 @@ GameObject:
   - component: {fileID: 129728786519619966}
   - component: {fileID: 129728786519619965}
   m_Layer: 5
-  m_Name: Carlos Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11512,8 +11488,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728785170966239}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 18
+  m_Father: {fileID: 5250771034115385539}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11570,7 +11546,7 @@ GameObject:
   - component: {fileID: 129728786522821744}
   - component: {fileID: 129728786522821751}
   m_Layer: 5
-  m_Name: Angie Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11583,13 +11559,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786522821749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728786188816413}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 24
+  m_Father: {fileID: 4783189677117519594}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11804,7 +11780,7 @@ GameObject:
   - component: {fileID: 129728786592427102}
   - component: {fileID: 129728786592427101}
   m_Layer: 5
-  m_Name: Carlos Owes
+  m_Name: Owes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11817,13 +11793,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786592427107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 129728786091829548}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 20
+  m_Father: {fileID: 5250771034115385539}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12799,7 +12775,7 @@ GameObject:
   - component: {fileID: 129728786690948076}
   - component: {fileID: 129728786690948083}
   m_Layer: 5
-  m_Name: Rainer Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13046,7 +13022,7 @@ GameObject:
   - component: {fileID: 129728786754138703}
   - component: {fileID: 129728786754138702}
   m_Layer: 5
-  m_Name: Dem Owes Number
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13202,7 +13178,7 @@ GameObject:
   - component: {fileID: 129728786766820190}
   - component: {fileID: 129728786766820189}
   m_Layer: 5
-  m_Name: Safi Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13215,12 +13191,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728786766820195}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 3
+  m_Father: {fileID: 5750147510127685530}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14021,7 +13997,7 @@ GameObject:
   - component: {fileID: 129728786886075241}
   - component: {fileID: 129728786886075240}
   m_Layer: 5
-  m_Name: Rainer Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14038,8 +14014,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 9
+  m_Father: {fileID: 1815978324873820629}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14100,7 +14076,7 @@ GameObject:
   - component: {fileID: 129728786891921401}
   - component: {fileID: 129728786891921400}
   m_Layer: 5
-  m_Name: Carlos Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14117,8 +14093,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 17
+  m_Father: {fileID: 5250771034115385539}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14595,7 +14571,7 @@ GameObject:
   - component: {fileID: 129728786941535303}
   - component: {fileID: 129728786941535302}
   m_Layer: 5
-  m_Name: Dem Frame
+  m_Name: Frame
   m_TagString: Slots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14613,8 +14589,8 @@ RectTransform:
   m_LocalScale: {x: 0.68034, y: 0.68034, z: 0.68034}
   m_Children:
   - {fileID: 129728785718036461}
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 6
+  m_Father: {fileID: 5338561021931664607}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14671,7 +14647,7 @@ GameObject:
   - component: {fileID: 129728786951045448}
   - component: {fileID: 129728786951045455}
   m_Layer: 5
-  m_Name: Rainer Met Image
+  m_Name: Image
   m_TagString: SlotItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15252,7 +15228,7 @@ GameObject:
   - component: {fileID: 129728787058559013}
   - component: {fileID: 129728787058559012}
   m_Layer: 5
-  m_Name: Rainer Satisfaction
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15265,12 +15241,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129728787058559018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 129728786313038980}
-  m_RootOrder: 11
+  m_Father: {fileID: 1815978324873820629}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15483,3 +15459,237 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &346275429519051341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5371966200651201683}
+  m_Layer: 5
+  m_Name: Annette Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5371966200651201683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346275429519051341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728786420940350}
+  - {fileID: 129728785106321252}
+  - {fileID: 129728786431323533}
+  - {fileID: 129728786383950019}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &362279020689824288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4783189677117519594}
+  m_Layer: 5
+  m_Name: Angie Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4783189677117519594
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362279020689824288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728786178302015}
+  - {fileID: 129728785787079894}
+  - {fileID: 129728786119729200}
+  - {fileID: 129728786522821750}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4745351100110710481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5338561021931664607}
+  m_Layer: 5
+  m_Name: Dem Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5338561021931664607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745351100110710481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728785993386869}
+  - {fileID: 129728786941535301}
+  - {fileID: 129728785307091711}
+  - {fileID: 129728786405029973}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6089157369269340767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5750147510127685530}
+  m_Layer: 5
+  m_Name: Safi Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5750147510127685530
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089157369269340767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728786134403758}
+  - {fileID: 129728785343063033}
+  - {fileID: 129728786766820188}
+  - {fileID: 129728785615705588}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8169099019389082526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815978324873820629}
+  m_Layer: 5
+  m_Name: Rainer Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1815978324873820629
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8169099019389082526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728786886075247}
+  - {fileID: 129728786021838824}
+  - {fileID: 129728787058559019}
+  - {fileID: 129728785638046467}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8834166181260907135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5250771034115385539}
+  m_Layer: 5
+  m_Name: Carlos Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5250771034115385539
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834166181260907135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 129728786891921407}
+  - {fileID: 129728786519619964}
+  - {fileID: 129728785397195484}
+  - {fileID: 129728786592427100}
+  m_Father: {fileID: 129728786313038980}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
