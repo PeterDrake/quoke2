@@ -27,11 +27,13 @@ public class TradeManager : MonoBehaviour
     private Inventory inventoryIOU;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private TradeManagerLogic myLogic;
     private Text tooltipText;
 
     // Start is called before the first frame update
     private void OnEnable()
     {
+
         foreach (Inventory child in GetComponentsInChildren<Inventory>(true))
         {
             if (child.gameObject.name.Equals("Inventory (Player)")) inventoryPlayer = child;
@@ -45,23 +47,28 @@ public class TradeManager : MonoBehaviour
         inventoryNPC.gameObject.SetActive(true);
         inventoryNPCBin.gameObject.SetActive(true);
         inventoryIOU.gameObject.SetActive(true);
-        
+
+        myLogic = new TradeManagerLogic(inventoryNPC, inventoryPlayer, inventoryPlayerBin, inventoryNPCBin, inventoryIOU); // Pass the references to the logic class
+
+        inventoryNPCBin.SetAvailableSlots(4); //This is where the error occurs, and I'm not sure how, since the class is just being enabled.
         inventoryNPC.SetAvailableSlots(4);
-        inventoryNPCBin.SetAvailableSlots(4);
-        
+
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
+
+
     }
 
     public void BeginTrading()
     {
         npcName = GlobalControls.CurrentNPC;
+        List<int> playerUsedSlots = new List<int>();
+        List<int> npcUsedSlots = new List<int>();
 
-        List<int> playerSlotsUsed = new List<int>();
-        List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcName))
@@ -69,47 +76,35 @@ public class TradeManager : MonoBehaviour
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryNPC.PickUpAtSlot((int) item.location.x, itemInInventory);
-                npcSlotsUsed.Add((int) item.location.x);
+                npcUsedSlots.Add((int)item.location.x);
+
             }
             else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
             {
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
                 inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
-                playerSlotsUsed.Add((int) item.location.x);
+                playerUsedSlots.Add((int)item.location.x);
+       
             }
         }
+        myLogic.NPCSetNullSlots(npcUsedSlots);
+        myLogic.PlayerSetNullSlots(playerUsedSlots);
 
-        //Set unused slots to null if not already.
-        for (int i = 0; i < inventoryPlayer.slotContents.Length; i++)
-        {
-            if (!playerSlotsUsed.Contains(i) && inventoryPlayer.slotContents[i].activeSelf)
-            {
-                inventoryPlayer.items[i] = null;
-                inventoryPlayer.slotContents[i].SetActive(false);
-            }
-        }
+        //Set empty slots to null
 
-        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
-        {
-            if (!npcSlotsUsed.Contains(i) && inventoryNPC.slotContents[i].activeSelf)
-            {
-                inventoryNPC.items[i] = null;
-                inventoryNPC.slotContents[i].SetActive(false);
-            }
-        }
 
 
         button.interactable = false;
-
         //Load IOU inventory
         inventoryIOU.selectedSlotSprite = unselected;
+        //inventoryIOU.SetAvailableSlots(GlobalControls.npcList[npcName].owes);
         inventoryIOU.SelectSlotNumber(0);
+
         for (int i = inventoryIOU.slotFrames.Length - 1; i > GlobalControls.npcList[npcName].owes - 1; i--)
         {
             inventoryIOU.slotFrames[i].SetActive(false);
         }
-        //inventoryIOU.SetAvailableSlots(GlobalControls.npcList[npcName].owes);
 
         foreach (GameObject game in inventoryIOU.slotContents)
         {
@@ -120,6 +115,11 @@ public class TradeManager : MonoBehaviour
 
         ChangeSelectedInventory(0);
     }
+
+
+
+    
+
     
     public void CompleteTrade()
     {
@@ -149,45 +149,9 @@ public class TradeManager : MonoBehaviour
                 numContents[2]++;
             }
         }
-        
-        List<string> playerOffers = new List<string>(); //list of names of items player offered
 
-        //fill lists of names
-        foreach (GameObject item in inventoryPlayerBin.items)
-        {
-            if (item)
-            {
-                playerOffers.Add(item.name.Replace("(Clone)","").Trim());
-                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
-                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasFirstAidKit");
-                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
-
-            }
-        }
-        
-        foreach (GameObject item in inventoryNPCBin.items)
-        {
-            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
-            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
-            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
-
-        }
-
-        int playerTradePoints = 0;
-        
-        //will not trade away item they need
-        foreach (string need in GlobalControls.npcList[npcName].needs)
-        {
-            if (playerOffers.Contains(need))
-            {
-                playerTradePoints++; //add an extra trade point if offered a need
-                GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
-            }
-        }
-
-        playerTradePoints += numContents[0];
-
-        int endIouTotal = playerTradePoints - numContents[1] + numContents[2];
+        myLogic.CompleteTradeLogic(numContents, npcName);
+        int endIouTotal = myLogic.endIouTot;
 
         for (int i = 0; i < inventoryPlayerBin.slotContents.Length; i++)
         {
@@ -321,35 +285,9 @@ public class TradeManager : MonoBehaviour
                 TransferItem(inventoryNPCBin, inventoryNPC, i);
         }
 
-        //Update globalItemList
 
-        for (int i = 0; i < inventoryNPC.slotContents.Length; i++)
-        {
-            if (inventoryNPC.slotContents[i].activeSelf)
-            {
-                inventoryNPC.items[i].name = inventoryNPC.items[i].name.Replace("(Clone)","").Trim();
-                //If new item for NPC and it's one of their needs increase satisfaction
-                if (!GlobalItemList.ItemList[inventoryNPC.items[i].name].containerName.Equals(npcName) && 
-                    GlobalControls.npcList[npcName].needs.Contains(inventoryNPC.items[i].name))
-                {
-                    GlobalControls.npcList[npcName].satisfaction++;
-                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.npcList[npcName].satisfaction);
-                    if (GlobalControls.npcList[npcName].needs.Count == GlobalControls.npcList[npcName].satisfaction)
-                        GlobalControls.npcList[npcName].description = GlobalControls.npcList[npcName].name + " is happy and needs nothing more";
-                    else
-                    {
-                        string description = GlobalControls.npcList[npcName].description;
-                        description = description.Replace(inventoryNPC.items[i].name,"").Trim();
-                        description = description.Replace("and","").Trim();
-                        GlobalControls.npcList[npcName].description = description;
-                    }
-                }
-                
-                GlobalItemList.UpdateItemList(inventoryNPC.items[i].name, "Inventory",
-                    new Vector3(i, 0, 0), npcName);
-            }
-        }
-
+        myLogic.LeaveTrade();
+        
         //update IOUs
         int counter = 0;
         foreach (GameObject game in inventoryIOU.slotFrames)
