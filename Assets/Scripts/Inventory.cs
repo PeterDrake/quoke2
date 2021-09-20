@@ -17,7 +17,8 @@ public class Inventory : MonoBehaviour
 
     private InventoryUI inventoryUI;
     
-    private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall) is in front of you.
+    private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall)
+                                        // is in front of you.
     private int storageContainerLayers;
     private int latrineContainerLayers;
     private int waterLayer;
@@ -43,14 +44,13 @@ public class Inventory : MonoBehaviour
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
-
-        
         items = new GameObject[5];
         
         // Select the first slot
         selectedSlotNumber = 0;
         // Find layers for various interactions
-        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer", "LatrineContainer", "WaterPurifying");
+        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer",
+            "LatrineContainer", "WaterPurifying");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
         waterLayer = LayerMask.GetMask("Water");
@@ -117,7 +117,8 @@ public class Inventory : MonoBehaviour
                 container.contents = items[i];
                 items[i].SetActive(true);
                 Transform t = player.transform;
-                items[i].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                items[i].transform.position =
+                    player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[i].GetComponent<Collectible>().inStorageContainer = true;
                 
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
@@ -164,7 +165,10 @@ public class Inventory : MonoBehaviour
         int x = 0;
         if(SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)") && player.ObjectAhead(latrineContainerLayers) && !GlobalControls.PoopTaskCompleted && !latrineStorage.plywoodDone)
+            if (items[selectedSlotNumber].name.Equals("Shovel(Clone)")
+                && player.ObjectAhead(latrineContainerLayers)
+                && !GlobalControls.PoopTaskCompleted
+                && !latrineStorage.plywoodDone)
             {
                 latrineStorage.timesShoveled++;
                 GlobalControls.TimesShoveled++;
@@ -327,7 +331,10 @@ public class Inventory : MonoBehaviour
             items[i] = item;
 
             //updates item list to add item to list
-            GlobalItemList.UpdateItemList(item.name, "Inventory", new Vector3(i, 0, 0), "Player");
+            GlobalItemList.UpdateItemList(item.name,
+                "Inventory",
+                new Vector3(i, 0, 0),
+                "Player");
             
             // Remove item from the world
             item.SetActive(false);
@@ -414,7 +421,8 @@ public class Inventory : MonoBehaviour
                 container.contents = items[selectedSlotNumber];
                 items[selectedSlotNumber].SetActive(true);
                 Transform t = player.transform;
-                items[selectedSlotNumber].transform.position = player.destination.transform.position + player.transform.forward + Vector3.up;
+                items[selectedSlotNumber].transform.position =
+                    player.destination.transform.position + player.transform.forward + Vector3.up;
                 items[selectedSlotNumber].GetComponent<Collectible>().inStorageContainer = true;
                 
                 GlobalItemList.UpdateItemList(items[selectedSlotNumber].name, SceneManager.GetActiveScene().name,
@@ -429,18 +437,28 @@ public class Inventory : MonoBehaviour
         {
             if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
             {
-                GlobalItemList.UpdateItemList("Bleach", "", new Vector3(0,0,0), "");
+                GlobalItemList.UpdateItemList("Bleach",
+                    "",
+                    new Vector3(0,0,0),
+                    "");
                 items[selectedSlotNumber] = null;
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
                     
-                GlobalItemList.UpdateItemList("Dirty Water Bottle", "", new Vector3(0,0,0), "");
+                GlobalItemList.UpdateItemList("Dirty Water Bottle",
+                    "",
+                    new Vector3(0,0,0),
+                    "");
                 GameObject.Find("Dirty Water Bottle(Clone)").SetActive(false);
-                GlobalItemList.UpdateItemList("Water Bottle Clean", SceneManager.GetActiveScene().name, 
-                    player.destination.transform.position + player.transform.forward + Vector3.up, "Water Purifying Table");
+                GlobalItemList.UpdateItemList("Water Bottle Clean",
+                    SceneManager.GetActiveScene().name, 
+                    player.destination.transform.position + player.transform.forward + Vector3.up,
+                    "Water Purifying Table");
                     
                 GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
-                GameObject waterBottleClean = Instantiate(prefab,player.destination.transform.position + player.transform.forward + Vector3.up, Quaternion.identity);
+                GameObject waterBottleClean = Instantiate(prefab,
+                    player.destination.transform.position + player.transform.forward + Vector3.up,
+                    Quaternion.identity);
                 container.contents = waterBottleClean;
             }
         }

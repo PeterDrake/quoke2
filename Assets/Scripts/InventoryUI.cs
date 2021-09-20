@@ -106,9 +106,11 @@ public class InventoryUI : MonoBehaviour
                 {
                     Comment comment = inventory.items[selectedSlotNumber].GetComponent<Comment>();
                     if (comment)
-                        referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text = comment.notes;
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text =
+                            comment.notes;
                     else
-                        referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
+                        referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
+                            .gameObject.SetActive(false);
                 }
 
             }
