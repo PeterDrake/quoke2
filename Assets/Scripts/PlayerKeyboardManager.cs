@@ -29,10 +29,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     private GameObject toolTips;
     private GameObject objectives;
     private Text tooltipText;
-    private Text npcInventoryTooltipName;
-    private Image[] npcInventoryTooltipSprites;
-    private GameObject npcInventoryTooltip;
-    private Text[] npcInventoryTooltipItemName;
+    public Text npcInventoryTooltipName;
+    public Image[] npcInventoryTooltipSprites;
+    public GameObject npcInventoryTooltip;
+    public Text[] npcInventoryTooltipItemName;
 
     public bool leftTrading = false;
 
@@ -45,12 +45,12 @@ public class PlayerKeyboardManager : MonoBehaviour
         KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0};
     private readonly KeyCode[] validNPCInputs = {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, 
         KeyCode.Alpha6};
-    private readonly string[] npcList = {"Safi", "Dem", "Rainer", "Annette", "Carlos", "Angie"};
-    private readonly GameObject[] npcFrames = new GameObject[6];
-    private Sprite unselected;
-    private Sprite selected;
+    public readonly string[] npcList = {"Safi", "Dem", "Rainer", "Annette", "Carlos", "Angie"};
+    public readonly GameObject[] npcFrames = new GameObject[6];
+    public Sprite unselected;
+    public Sprite selected;
 
-    private KeyCode keyDown = KeyCode.JoystickButton0;
+    public KeyCode keyDown = KeyCode.JoystickButton0;
     
     void Start()
     {
@@ -354,58 +354,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1, 0, 0));
         
         // Select from inventory (1-9)
-        // TODO: This probably should be in Inventory UI
-        if (cursorLocation < inventory.items.Length && inventory)
-        {
-            for (int i = 0; i < validInputs.Length; i++)
-            {
-                if (keyDown.Equals(validInputs[i]))
-                {
-                    inventory.SelectSlotNumber(i);
-                    cursorLocation = i;
-                }
-            }
-        } 
-        else if (cursorLocation >= inventory.items.Length && npcInteractedCanvas.activeSelf)
-        {
-            for (int i = 0; i < validNPCInputs.Length; i++)
-            {
-                if (keyDown.Equals(validNPCInputs[i]))
-                {
-                    cursorLocation = inventory.items.Length + i;
-                    for (int j = 0; j < validNPCInputs.Length; j++)
-                    {
-                        if(j == i) npcFrames[j].GetComponent<Image>().sprite = selected;
-                        else npcFrames[j].GetComponent<Image>().sprite = unselected;
-                    }
-                
-                    if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && GlobalControls.npcList[npcList[i]].interacted)
-                    {
-                        if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
-                            tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
-                        tooltipText.text = GlobalControls.npcList[npcList[i]].description;
-                        npcInventoryTooltip.SetActive(true);
-                        npcInventoryTooltipName.text = GlobalControls.npcList[npcList[cursorLocation - inventory.items.Length]].name + "'s Inventory";
-                        for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
-                        {
-                            npcInventoryTooltipSprites[j].sprite = unselected;
-                            npcInventoryTooltipItemName[j].text = "";
-                        }
-                        foreach (Item item in GlobalItemList.ItemList.Values)
-                        {
-                            if (item.scene.Equals("Inventory") && item.containerName.Equals(npcList[cursorLocation - inventory.items.Length]))
-                            {
-                                GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
-                                Sprite sprite = prefab.GetComponent<Collectible>().sprite;
-                                npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
-                                npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
-                            }
-                        }
-                    }
-                    else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
-                }
-            }
-        }
+        
 
         // TODO: This probably should be in inventory functionality, as it is dropping or picking up an item.
         if (inventoryInScene && cursorLocation < inventory.items.Length  && keyDown.Equals(KeyCode.Space))
