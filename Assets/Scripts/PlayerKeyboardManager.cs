@@ -354,6 +354,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1, 0, 0));
         
         // Select from inventory (1-9)
+        // TODO: This probably should be in Inventory UI
         if (cursorLocation < inventory.items.Length && inventory)
         {
             for (int i = 0; i < validInputs.Length; i++)
@@ -406,13 +407,15 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        
+        // TODO: This probably should be in inventory functionality, as it is dropping or picking up an item.
         if (inventoryInScene && cursorLocation < inventory.items.Length  && keyDown.Equals(KeyCode.Space))
         {
             inventory.PickUpOrDrop();
         }
 
-        if (inventory && npcInteractedCanvas.activeSelf && (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
+        // TODO: This probably should be in Inventory UI, as moves the cursor between NPCInteracted UI and Player Inventory UI
+        if (inventory && npcInteractedCanvas.activeSelf 
+                      && (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
         {
             if (cursorLocation > inventory.items.Length - 1)
             {
@@ -459,6 +462,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
+        // TODO: This probably should be in Inventory UI, as moves the cursor DOWN the Inventory Slots 
         if (inventory && keyDown.Equals(KeyCode.Period))
         {
             cursorLocation++;
@@ -536,6 +540,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
+        // TODO: This probably should be in Inventory UI, as moves the cursor UP the Inventory Slots
         if (inventory && keyDown.Equals(KeyCode.Comma))
         {
             cursorLocation--;
