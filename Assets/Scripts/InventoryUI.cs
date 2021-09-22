@@ -22,8 +22,7 @@ public class InventoryUI : MonoBehaviour
         KeyCode.Alpha6};
 
     private Inventory inventory;
-    private InventoryUI inventoryUI;
-
+    
     // These are UI Images showing sprites (either unselectedSlotSprite or selectedSlotSprite).
     public GameObject[] slotFrames;
     
@@ -41,7 +40,6 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         inventory = this.gameObject.GetComponent<Inventory>();
-        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         slotFrames = new GameObject[5];
         slotContents = new GameObject[5];
         int frameCounter = 0;
@@ -158,55 +156,6 @@ public class InventoryUI : MonoBehaviour
                     }
                     else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
                 }
-            }
-        }
-        
-        // TODO: This probably should be in Inventory UI, as moves the cursor between NPCInteracted UI and Player Inventory UI
-        if (inventory && npcInteractedCanvas.activeSelf 
-                      && (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
-        {
-            if (cursorLocation > inventory.items.Length - 1)
-            {
-                keyboardManager.npcFrames[cursorLocation - inventory.items.Length].GetComponent<Image>().sprite = keyboardManager.unselected;
-                inventoryUI.EnableSelectedSlot();
-                cursorLocation = 0;
-                inventory.SelectSlotNumber(cursorLocation);
-                
-                keyboardManager.npcInventoryTooltip.SetActive(false);
-            }
-            else
-            {
-                keyboardManager.npcFrames[0].GetComponent<Image>().sprite = keyboardManager.selected;
-                inventoryUI.DisableSelectedSlot();
-                cursorLocation = inventory.items.Length;
-                inventory.SelectSlotNumber(2);
-                
-                if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled") && GlobalControls.npcList[keyboardManager.npcList[0]].interacted)
-                {
-                    if(!tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.activeSelf)
-                        tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(true);
-                    tooltipText.text = GlobalControls.npcList[keyboardManager.npcList[0]].description;
-                    keyboardManager.npcInventoryTooltip.SetActive(true);
-                    keyboardManager.npcInventoryTooltipName.text = GlobalControls.npcList[keyboardManager.npcList[cursorLocation - inventory.items.Length]].name + "'s Inventory";
-                    for (int j = keyboardManager.npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
-                    {
-                        keyboardManager.npcInventoryTooltipSprites[j].sprite = keyboardManager.unselected;
-                        keyboardManager.npcInventoryTooltipItemName[j].text = "";
-                    }
-                    foreach (Item item in GlobalItemList.ItemList.Values)
-                    {
-                        if (item.scene.Equals("Inventory") && item.containerName.Equals(keyboardManager.npcList[cursorLocation - inventory.items.Length]))
-                        {
-                            GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
-                            Sprite sprite = prefab.GetComponent<Collectible>().sprite;
-                            keyboardManager.npcInventoryTooltipSprites[(int) item.location.x].sprite = sprite;
-                            keyboardManager.npcInventoryTooltipItemName[(int) item.location.x].text = item.name;
-                        }
-                    }
-
-                    
-                }
-                else tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
             }
         }
 
