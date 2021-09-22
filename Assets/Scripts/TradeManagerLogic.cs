@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class TradeManagerLogic
 {
@@ -23,30 +26,30 @@ public class TradeManagerLogic
         
     }
 
-    public void PlayerSetNullSlots(List<int> playerUsedSlots) //handle functionality of the begin process
-    {  
-        //Set unused slots to null if not already.
-        for (int i = 0; i < playerInventory.slotContents.Length; i++)
-        {
-            if (!playerUsedSlots.Contains(i) && playerInventory.slotContents[i].activeSelf)
-            {
-                playerInventory.items[i] = null;
-                playerInventory.slotContents[i].SetActive(false);
-            }
-        }
-    }
-    public void NPCSetNullSlots(List<int> npcUsedSlots)
+    public void SetNullSlots(List<int> playerUsedSlots, List<int> npcUsedSlots, InventoryUI playerInventoryUI, InventoryUI npcInventoryUI)
     {
-        
-        for (int i = 0; i < npcInventory.slotContents.Length; i++)
+
+        for (int i = 0; i < npcInventoryUI.slotContents.Length; i++)
         {
-            if (!npcUsedSlots.Contains(i) && npcInventory.slotContents[i].activeSelf)
+            if (!npcUsedSlots.Contains(i) && npcInventoryUI.slotContents[i].activeSelf)
             {
                 npcInventory.items[i] = null;
-                npcInventory.slotContents[i].SetActive(false);
+                npcInventoryUI.slotContents[i].SetActive(false);
             }
         }
+        //Set unused slots to null if not already.
+        for (int i = 0; i < playerInventoryUI.slotContents.Length; i++)
+        {
+            if (!playerUsedSlots.Contains(i) && playerInventoryUI.slotContents[i].activeSelf)
+            {
+                playerInventory.items[i] = null;
+                playerInventoryUI.slotContents[i].SetActive(false);
+            }
+        }
+
+
     }
+
 
     public void CompleteTradeLogic(int[] numOfContents, string nameOfNPC)
     {
@@ -90,13 +93,13 @@ public class TradeManagerLogic
         endIouTot = playerTradePoints - numOfContents[1] + numOfContents[2];
     }
     
-    public void LeaveTrade()
+    public void LeaveTrade(InventoryUI inventoryNPCUI)
     {
         //Update globalItemList
 
-        for (int i = 0; i < npcInventory.slotContents.Length; i++)
+        for (int i = 0; i < inventoryNPCUI.slotContents.Length; i++)
         {
-            if (npcInventory.slotContents[i].activeSelf)
+            if (inventoryNPCUI.slotContents[i].activeSelf)
             {
                 npcInventory.items[i].name = npcInventory.items[i].name.Replace("(Clone)", "").Trim();
                 //If new item for NPC and it's one of their needs increase satisfaction
@@ -121,4 +124,40 @@ public class TradeManagerLogic
             }
         }
     }
+
+
+    /*
+     * Transfers an Item from an inventory to a destination inventory at a certain slot
+     */
+    public void TransferItem(Inventory inventory, InventoryUI inventoryUI, Inventory destination, InventoryUI destinationUI, int slotNumber)
+    {
+        var i = slotNumber;
+
+        //copied private method FindEmptySlot
+        var firstSlot = 0;
+        for (var j = 0; j < destinationUI.slotFrames.Length; j++)
+        {
+            if (destinationUI.slotContents[j].activeSelf) continue;
+            firstSlot = j;
+            break;
+        }
+
+        //Customized inventory.PickUp() method
+        if (inventoryUI.slotContents[i].activeSelf)
+        {
+            //inventory.items[i].SetActive(true);
+
+            // Add item to destination
+            destinationUI.slotContents[firstSlot].SetActive(true);
+            destinationUI.slotContents[firstSlot].GetComponent<Image>().sprite = inventory.items[i].GetComponent<Collectible>().sprite;
+            destination.items[firstSlot] = inventory.items[i];
+
+            // Remove item from inventory
+            inventory.items[i] = null;
+            inventoryUI.slotContents[i].SetActive(false);
+
+        }
+        inventory.SelectSlotNumber(i);
+    }
+
 }
