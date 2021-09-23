@@ -20,7 +20,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private bool pointsInScene = true;
 
     private ReferenceManager referenceManager;
-    private TradeManager tradeManager;
+    private TradeManagerUI tradeManager;
     private DialogueManager dialogueManager;
     private GameObject deathCanvas;
     private GameObject segueCanvas;
@@ -55,7 +55,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManager>();
+        tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
@@ -885,7 +885,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         }
         else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
         
-        referenceManager.tradeCanvas.GetComponent<TradeManager>().BeginTrading();
+        referenceManager.tradeCanvas.GetComponent<TradeManagerUI>().BeginTrading();
         npcInventoryTooltip.SetActive(false);
         
     }
