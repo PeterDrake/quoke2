@@ -6,17 +6,23 @@ using UnityEngine.UI;
 
 public class TradeManager 
 {
+
     Inventory[] inventories;
     InventoryUI[] inventoryUIs;
 
+
+
     public TradeManager(Inventory[] invs, InventoryUI[] invUIs)
     {
+
         inventories = invs;
         inventoryUIs = invUIs;
+
     }
 
     public void SetNullSlots(List<int> slotsUsed, InventoryE who)
     {
+
         for (int i = 0; i < inventoryUIs[(int)who].slotContents.Length; i++)
         {
             if (!slotsUsed.Contains(i) && inventoryUIs[(int)who].slotContents[i].activeSelf)
@@ -25,20 +31,25 @@ public class TradeManager
                 inventoryUIs[(int)who].slotContents[i].SetActive(false);
             }
         }
+
     }
     public void increaseNumContent(List<int> currentContents, InventoryE who, int slot)
     {
+
         for (int i = 0; i < inventoryUIs[(int)who].slotFrames.Length; i++)
         {
             if (who == InventoryE.IOU)
+
             {
                 if (inventoryUIs[(int)who].slotFrames[i].activeSelf)
                     currentContents[slot]++; //number items
             }
+
             else
             {
                 if (inventoryUIs[(int)who].slotContents[i].activeSelf)
                     currentContents[slot]++; //number items
+
             }
         }
     }
@@ -56,10 +67,12 @@ public class TradeManager
             break;
         }
 
+
         //Customized inventory.PickUp() method
         if (inventoryUIs[(int)sender].slotContents[i].activeSelf)
         {
             //inventory.items[i].SetActive(true);
+
 
             // Add item to destination
             inventoryUIs[(int)reciever].slotContents[firstSlot].SetActive(true);
@@ -71,15 +84,19 @@ public class TradeManager
             inventories[(int)sender].items[i] = null;
             inventoryUIs[(int)sender].slotContents[i].SetActive(false);
 
+
         }
         inventories[(int)sender].SelectSlotNumber(i);
+
     }
 
     public void UpdateGlobalItemList(string npcName)
     {
+
         for (int i = 0; i < inventoryUIs[(int)InventoryE.NPC].slotContents.Length; i++)
         {
             if (inventoryUIs[(int)InventoryE.NPC].slotContents[i].activeSelf)
+
             {
                 inventories[(int)InventoryE.NPC].items[i].name = inventories[(int)InventoryE.NPC].items[i].name.Replace("(Clone)", "").Trim();
                 //If new item for NPC and it's one of their needs increase satisfaction
@@ -103,6 +120,7 @@ public class TradeManager
                     new Vector3(i, 0, 0), npcName);
             }
         }
+
     }
     public bool IsValidTrade(string npcName)
     {
@@ -121,39 +139,49 @@ public class TradeManager
         }
 
         //Will not trade if not enough inventory
+
         int[] numContents = { 0, inventoryUIs[(int)InventoryE.PlayerBin].slotFrames.Length, inventoryUIs[(int)InventoryE.NPC].slotFrames.Length, 0, 0 };
 
         for (int i = 0; i < inventoryUIs[(int)InventoryE.Player].slotFrames.Length; i++)
         {
             if (!inventoryUIs[(int)InventoryE.Player].slotContents[i].activeSelf)
+
             {
                 numContents[0]++;
             }
         }
+
         for (int i = 0; i < inventoryUIs[(int)InventoryE.PlayerBin].slotFrames.Length; i++)
         {
             if (!inventoryUIs[(int)InventoryE.PlayerBin].slotContents[i].activeSelf)
+
             {
                 numContents[1]--; //number items
             }
         }
+
         for (int i = 0; i < inventoryUIs[(int)InventoryE.NPCBin].slotFrames.Length; i++)
         {
             if (!inventoryUIs[(int)InventoryE.NPCBin].slotContents[i].activeSelf)
+
             {
                 numContents[2]--; //number items
             }
         }
+
         for (int i = 0; i < inventoryUIs[(int)InventoryE.NPC].slotFrames.Length; i++)
         {
             if (!inventoryUIs[(int)InventoryE.NPC].slotContents[i].activeSelf)
+
             {
                 numContents[3]++;
             }
         }
+
         for (int i = 0; i < inventoryUIs[(int)InventoryE.IOU].slotFrames.Length; i++)
         {
             if (inventoryUIs[(int)InventoryE.IOU].slotFrames[i].activeSelf)
+
             {
                 numContents[4]++;
             }
