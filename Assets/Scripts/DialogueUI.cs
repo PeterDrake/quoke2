@@ -61,7 +61,7 @@ public class DialogueUI : MonoBehaviour
         scrollRect.content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
         scrollRect.content.GetComponent<ContentSizeFitter>().SetLayoutVertical();
 
-        scrollRect.verticalNormalizedPosition = 0 ;
+        scrollRect.verticalNormalizedPosition = 0;
     }
 
     public void ClearDialogue()
