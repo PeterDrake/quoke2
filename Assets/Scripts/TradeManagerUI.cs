@@ -12,185 +12,230 @@ using UnityEngine.UI;
  * * Make button flash
  * * Update GlobalItemList
  */
+
+public enum InventoryE{
+    Parent = 0, Player = 1, PlayerBin = 2, NPC = 3, NPCBin = 4,  IOU = 5 
+}
+
 public class TradeManagerUI : MonoBehaviour
 {
+
+    public Inventory[] inventories;
+    public InventoryUI[] inventoryUIs;
     private string npcName;
     private int cursorLocation = 0;
     public Button button;
     private Sprite unselected;
     private Sprite selected;
-
-    private Inventory parentInventory;
-    private Inventory inventoryPlayer;
-    public Inventory inventoryNPC;
-    private Inventory inventoryPlayerBin;
-    private Inventory inventoryNPCBin;
-    private Inventory inventoryIOU;
-
-    private InventoryUI parentInventoryUI;
-    private InventoryUI inventoryPlayerUI;
-    public InventoryUI inventoryNPCUI;
-    private InventoryUI inventoryPlayerBinUI;
-    private InventoryUI inventoryNPCBinUI;
-    private InventoryUI inventoryIOUUI;
-
+ 
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
-    private TradeManagerLogic myLogic;
+    private TradeManager tradeLogic;
     private Text tooltipText;
 
-
-    // Start is called before the first frame update
     private void OnEnable()
     {
+        InitializeInventories();
+        tradeLogic = new TradeManager(inventories, inventoryUIs); // Passes the references to the logic class
+        ConnectToManagers();
+    }
+
+    private void InitializeInventories()
+    {
+        inventories = new Inventory[6];
+        inventoryUIs = new InventoryUI[6];
 
         foreach (Inventory child in GetComponentsInChildren<Inventory>(true))
         {
-            if (child.gameObject.name.Equals("Inventory (Player)")) inventoryPlayer = child;
-            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventoryPlayerBin = child;
-            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventoryNPC = child;
-            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventoryNPCBin = child;
-            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventoryIOU = child;
+            if (child.gameObject.name.Equals("Inventory (Player)")) inventories[(int) InventoryE.Player] = child;
+            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventories[(int)InventoryE.PlayerBin] = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventories[(int)InventoryE.NPC] = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventories[(int)InventoryE.NPCBin] = child;
+            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventories[(int)InventoryE.IOU] = child;
         }
-
         foreach (InventoryUI child in GetComponentsInChildren<InventoryUI>(true))
         {
-            if (child.gameObject.name.Equals("Inventory (Player)")) inventoryPlayerUI = child;
-            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventoryPlayerBinUI = child;
-            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventoryNPCUI = child;
-            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventoryNPCBinUI = child;
-            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventoryIOUUI = child;
+            if (child.gameObject.name.Equals("Inventory (Player)")) inventoryUIs[(int)InventoryE.Player] = child;
+            else if (child.gameObject.name.Equals("Inventory (Player To Trade)")) inventoryUIs[(int)InventoryE.PlayerBin] = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC)")) inventoryUIs[(int)InventoryE.NPC] = child;
+            else if (child.gameObject.name.Equals("Inventory (NPC To Trade)")) inventoryUIs[(int)InventoryE.NPCBin] = child;
+            else if (child.gameObject.name.Equals("Inventory (IOU)")) inventoryUIs[(int)InventoryE.IOU] = child;
         }
 
-        inventoryPlayer.gameObject.SetActive(true);
-        inventoryPlayerBin.gameObject.SetActive(true);
-        inventoryNPC.gameObject.SetActive(true);
-        inventoryNPCBin.gameObject.SetActive(true);
-        inventoryIOU.gameObject.SetActive(true);
+        for (int i = 1; i < inventories.Length; i++)
+            inventories[i].gameObject.SetActive(true);
 
-        myLogic = new TradeManagerLogic(inventoryNPC, inventoryPlayer, inventoryPlayerBin, inventoryNPCBin, inventoryIOU); // Pass the references to the logic class
-
-        inventoryNPCBin.SetAvailableSlots(4);
-        inventoryNPC.SetAvailableSlots(4);
-
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        parentInventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        parentInventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
-        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-
-        selected = Resources.Load<Sprite>("SelectedSlot 1");
-        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
-
-
+        inventories[(int)InventoryE.NPC].SetAvailableSlots(4);
+        inventories[(int)InventoryE.NPCBin].SetAvailableSlots(4);
     }
 
+
+    private void ConnectToManagers()
+    {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        inventories[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        inventoryUIs[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+        selected = Resources.Load<Sprite>("SelectedSlot 1");
+        unselected = Resources.Load<Sprite>("UnselectedSlot 1");
+    }
+    
+    
     public void BeginTrading()
     {
         npcName = GlobalControls.CurrentNPC;
-        List<int> playerUsedSlots = new List<int>();
-        List<int> npcUsedSlots = new List<int>();
 
+        List<int> playerSlotsUsed = new List<int>();
+        List<int> npcSlotsUsed = new List<int>();
         foreach (Item item in GlobalItemList.ItemList.Values)
         {
             if (item.scene.Equals("Inventory") && item.containerName.Equals(npcName))
             {
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
-                inventoryNPC.PickUpAtSlot((int) item.location.x, itemInInventory);
-                npcUsedSlots.Add((int)item.location.x);
-
+                inventories[(int)InventoryE.NPC].PickUpAtSlot((int) item.location.x, itemInInventory);
+                npcSlotsUsed.Add((int) item.location.x);
             }
             else if (item.scene.Equals("Inventory") && item.containerName.Equals("Player"))
             {
                 GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                 GameObject itemInInventory = Instantiate(prefab, item.location, Quaternion.identity);
-                inventoryPlayer.PickUpAtSlot((int) item.location.x, itemInInventory);
-                playerUsedSlots.Add((int)item.location.x);
-       
+                inventories[(int)InventoryE.Player].PickUpAtSlot((int) item.location.x, itemInInventory);
+                playerSlotsUsed.Add((int) item.location.x);
             }
         }
 
-        myLogic.SetNullSlots(playerUsedSlots, npcUsedSlots, inventoryPlayerUI, inventoryNPCUI);
-
-
-        //Set empty slots to null
-
-
+        //Set unused slots to null if not already.
+        tradeLogic.SetNullSlots(playerSlotsUsed, InventoryE.Player);
+        tradeLogic.SetNullSlots(npcSlotsUsed, InventoryE.NPC);
 
         button.interactable = false;
+        ActivateIOU();
+
+    }
+
+    
+    public void ActivateIOU()
+    {
         //Load IOU inventory
-        inventoryIOUUI.selectedSlotSprite = unselected;
-        //inventoryIOU.SetAvailableSlots(GlobalControls.npcList[npcName].owes);
-        inventoryIOUUI.SelectSlotNumber(0);
-
-        for (int i = inventoryIOUUI.slotFrames.Length - 1; i > GlobalControls.npcList[npcName].owes - 1; i--)
+        inventoryUIs[(int)InventoryE.IOU].selectedSlotSprite = unselected;
+        inventoryUIs[(int)InventoryE.IOU].SelectSlotNumber(0);
+        for (int i = inventoryUIs[(int)InventoryE.IOU].slotFrames.Length - 1; i > GlobalControls.npcList[npcName].owes - 1; i--)
         {
-            inventoryIOUUI.slotFrames[i].SetActive(false);
+            inventoryUIs[(int)InventoryE.IOU].slotFrames[i].SetActive(false);
         }
-
-        foreach (GameObject game in inventoryIOUUI.slotContents)
+        //inventoryIOU.SetAvailableSlots(GlobalControls.npcList[npcName].owes);
+        foreach (GameObject game in inventoryUIs[(int)InventoryE.IOU].slotContents)
         {
             game.SetActive(true);
-            Sprite prefab = (Sprite) Resources.Load("IOU Sprite", typeof(Sprite));
+            Sprite prefab = (Sprite)Resources.Load("IOU Sprite", typeof(Sprite));
             game.GetComponent<Image>().sprite = prefab;
         }
-
         ChangeSelectedInventory(0);
     }
 
+    public int ChangeSelectedInventory(int location)
+    {
+        cursorLocation = location;
+        InventoryE CurrentInventory = InventoryE.Player;
+        if (cursorLocation < 0)
+        {
+            cursorLocation = 3;
+        }
+        else if (cursorLocation > 3)
+        {
+            cursorLocation = 0;
+        }
 
+        //reset highlight locations (must be done to clear selected slot of past inventory
+        for (int i = 0; i <= 3; i++)
+        {
 
-    
+            if (i == 0)
+                CurrentInventory = InventoryE.Player;
+            else if (i == 1)
+                CurrentInventory = InventoryE.PlayerBin;
+            else if (i == 2)
+                CurrentInventory = InventoryE.NPCBin;
+            else if (i == 3)
+                CurrentInventory = InventoryE.NPC;
+            if (cursorLocation == i)
+            {
+                for (int j = (int)InventoryE.Player; j <= (int)InventoryE.NPCBin; j++)
+                {
+                    if (j == (int)CurrentInventory)
+                        inventoryUIs[j].EnableSelectedSlot();
+                    else
+                        inventoryUIs[j].DisableSelectedSlot();
+                    inventories[j].SelectSlotNumber(0);
+                }
+                
+            }
 
-    
+        }      
+        return cursorLocation;
+    }
     public void CompleteTrade()
     {
         //StartCoroutine(SelectButton());
         button.Select();
         
-        int[] numContents = {0,0,0};
+        List<int> numContents = new List<int>{0,0,0};    
+
+        tradeLogic.increaseNumContent(numContents, InventoryE.PlayerBin, 0);
+        tradeLogic.increaseNumContent(numContents, InventoryE.NPCBin, 1);
+        tradeLogic.increaseNumContent(numContents, InventoryE.IOU, 2);
+
+        List<string> playerOffers = new List<string>(); //list of names of items player offered
+        //fill lists of names
+        foreach (GameObject item in inventories[(int) InventoryE.PlayerBin].items)
+        {
+            if (item)
+            {
+                playerOffers.Add(item.name.Replace("(Clone)","").Trim());
+                if (item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
+                if (item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasFirstAidKit");
+                if (item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
+
+            }
+        }
         
-        for (int i = 0; i < inventoryPlayerBinUI.slotFrames.Length; i++)
+        foreach (GameObject item in inventories[(int)InventoryE.NPCBin].items)
         {
-            if (inventoryPlayerBinUI.slotContents[i].activeSelf)
-            {
-                numContents[0]++; //number items
-            }
+            if (item && item.name.Equals("Water Bottle Clean(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasCleanWater");
+            if (item && item.name.Equals("First Aid Kit(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasFirstAidKit");
+            if (item && item.name.Equals("Epi Pen(Clone)")) GlobalControls.globalControlsProperties.Add("playerHasEpiPen");
+
         }
-        for (int i = 0; i < inventoryNPCBinUI.slotFrames.Length; i++)
+        int playerTradePoints = 0;  
+        //will not trade away item they need
+        foreach (string need in GlobalControls.npcList[npcName].needs)
         {
-            if (inventoryNPCBinUI.slotContents[i].activeSelf)
+            if (playerOffers.Contains(need))
             {
-                numContents[1]++; //number items
-            }
-        }
-        for (int i = 0; i < inventoryIOUUI.slotFrames.Length; i++)
-        {
-            if (inventoryIOUUI.slotFrames[i].activeSelf)
-            {
-                numContents[2]++;
+                playerTradePoints++; //add an extra trade point if offered a need
+                GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
             }
         }
 
-        myLogic.CompleteTradeLogic(numContents, npcName);
-        int endIouTotal = myLogic.endIouTot;
+        playerTradePoints += numContents[0];
 
-        for (int i = 0; i < inventoryPlayerBinUI.slotContents.Length; i++)
+        int endIouTotal = playerTradePoints - numContents[1] + numContents[2];
+
+        for (int i = 0; i < inventoryUIs[(int) InventoryE.PlayerBin].slotContents.Length; i++)
         {
-            if (inventoryPlayerBinUI.slotContents[i].activeSelf) 
-                TransferItem(inventoryPlayerBin, inventoryPlayerBinUI,
-    inventoryNPC, inventoryNPCUI, i);
+            if (inventoryUIs[(int)InventoryE.PlayerBin].slotContents[i].activeSelf)
+                tradeLogic.TransferItem(InventoryE.PlayerBin, InventoryE.NPC, i);
         }
-        for (int i = 0; i < inventoryNPCBinUI.slotContents.Length; i++)
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.NPCBin].slotContents.Length; i++)
         {
-            if (inventoryNPCBinUI.slotContents[i].activeSelf) 
-                TransferItem(inventoryNPCBin, inventoryNPCBinUI,
-                    inventoryPlayer, inventoryPlayerUI, i);
+            if (inventoryUIs[(int)InventoryE.NPCBin].slotContents[i].activeSelf)
+                tradeLogic.TransferItem(InventoryE.NPCBin, InventoryE.Player, i);
         }
-        for (int i = 0; i < inventoryIOUUI.slotFrames.Length; i++)
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.IOU].slotFrames.Length; i++)
         {
-            if(i < endIouTotal) inventoryIOUUI.slotFrames[i].SetActive(true);
-            else inventoryIOUUI.slotFrames[i].SetActive(false);
+            if(i < endIouTotal) inventoryUIs[(int)InventoryE.IOU].slotFrames[i].SetActive(true);
+            else inventoryUIs[(int)InventoryE.IOU].slotFrames[i].SetActive(false);
         }
         
         button.interactable = false;
@@ -198,11 +243,12 @@ public class TradeManagerUI : MonoBehaviour
 
     }
 
+
+
     private IEnumerator SelectButton()
     {
         button.Select();
-        yield return new WaitForSeconds(0.1f);
-        
+        yield return new WaitForSeconds(0.1f);  
         button.interactable = false;
         button.interactable = true;
         yield return new WaitForSeconds(0.1f);
@@ -213,215 +259,92 @@ public class TradeManagerUI : MonoBehaviour
     {
         this.cursorLocation = location;
         if (cursorLocation == 0)
-        {
-            inventoryPlayer.SelectSlotNumber(slotNumber);
-        }
+            inventories[(int)InventoryE.Player].SelectSlotNumber(slotNumber);
         else if (cursorLocation == 1)
-        {
-            inventoryPlayerBin.SelectSlotNumber(slotNumber);
-        }
+            inventories[(int)InventoryE.PlayerBin].SelectSlotNumber(slotNumber);
         else if (cursorLocation == 2)
-        {
-            inventoryNPCBin.SelectSlotNumber(slotNumber);
-        }
+            inventories[(int)InventoryE.NPCBin].SelectSlotNumber(slotNumber);
         else if (cursorLocation == 3)
-        {
-            inventoryNPC.SelectSlotNumber(slotNumber);
-        }
-
+            inventories[(int)InventoryE.NPC].SelectSlotNumber(slotNumber);
     }    
     
-    public int ChangeSelectedInventory(int location)
-    {
-        cursorLocation = location;
-        if (cursorLocation < 0)
-        {
-            cursorLocation = 3;
-        }
-        else if (cursorLocation > 3)
-        {
-            cursorLocation = 0;
-        }
 
-        if (cursorLocation == 0)
-        {
-            //change selected slot sprite
-            inventoryPlayerUI.EnableSelectedSlot();
-            inventoryPlayerBinUI.DisableSelectedSlot();
-            inventoryNPCBinUI.DisableSelectedSlot();
-            inventoryNPCUI.DisableSelectedSlot();
-            inventoryPlayerBin.SelectSlotNumber(0);
-            inventoryNPCBin.SelectSlotNumber(0);
-            inventoryNPC.SelectSlotNumber(0);
-            inventoryPlayer.SelectSlotNumber(0);
-        }
-        else if (cursorLocation == 1)
-        {
-            //change selected slot sprite
-            inventoryPlayerUI.DisableSelectedSlot();
-            inventoryPlayerBinUI.EnableSelectedSlot();
-            inventoryNPCBinUI.DisableSelectedSlot();
-            inventoryNPCUI.DisableSelectedSlot();
-            inventoryPlayer.SelectSlotNumber(0);
-            inventoryNPCBin.SelectSlotNumber(0);
-            inventoryNPC.SelectSlotNumber(0);
-            inventoryPlayerBin.SelectSlotNumber(0);
-        }
-        else if (cursorLocation == 2)
-        {
-            //change selected slot sprite
-            inventoryPlayerUI.DisableSelectedSlot();
-            inventoryPlayerBinUI.EnableSelectedSlot();
-            inventoryNPCBinUI.DisableSelectedSlot();
-            inventoryNPCUI.DisableSelectedSlot();
-            inventoryPlayerBin.SelectSlotNumber(0);
-            inventoryPlayer.SelectSlotNumber(0);
-            inventoryNPC.SelectSlotNumber(0);
-            inventoryNPCBin.SelectSlotNumber(0);
-        }
-        else if (cursorLocation == 3)
-        {
-            //change selected slot sprite
-            inventoryPlayerUI.DisableSelectedSlot();
-            inventoryPlayerBinUI.EnableSelectedSlot();
-            inventoryNPCBinUI.DisableSelectedSlot();
-            inventoryNPCUI.DisableSelectedSlot();
-            inventoryPlayerBin.SelectSlotNumber(0);
-            inventoryPlayer.SelectSlotNumber(0);
-            inventoryNPCBin.SelectSlotNumber(0);
-            inventoryNPC.SelectSlotNumber(0);
-        }
-        
-        //reset highlight locations (must be done to clear selected slot of past inventory
-        
-        
-        return cursorLocation;
-    }
 
     public void LeaveTrading()
     {
-        for (int i = 0; i < inventoryPlayerBinUI.slotContents.Length; i++)
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.PlayerBin].slotContents.Length; i++)
         {
-            if (inventoryPlayerBinUI.slotContents[i].activeSelf)
-                TransferItem(inventoryPlayerBin, inventoryPlayerBinUI,
-                    inventoryPlayer, inventoryPlayerUI, i);
+            if (inventoryUIs[(int)InventoryE.PlayerBin].slotContents[i].activeSelf)
+                tradeLogic.TransferItem(InventoryE.PlayerBin, InventoryE.Player, i);
         }
-        for (int i = 0; i < inventoryNPCBinUI.slotContents.Length; i++)
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.NPCBin].slotContents.Length; i++)
         {
-            if (inventoryNPCBinUI.slotContents[i].activeSelf)
-                TransferItem(inventoryNPCBin, inventoryNPCBinUI,
-                    inventoryNPC, inventoryNPCUI, i);
+            if (inventoryUIs[(int)InventoryE.NPCBin].slotContents[i].activeSelf)
+                tradeLogic.TransferItem(InventoryE.NPCBin,InventoryE.NPC, i);
         }
-
-
-        myLogic.LeaveTrade(inventoryNPCUI); 
-        
+        tradeLogic.UpdateGlobalItemList(npcName);
+       
         //update IOUs
         int counter = 0;
-        foreach (GameObject game in inventoryIOUUI.slotFrames)
+        foreach (GameObject go in inventoryUIs[(int)InventoryE.IOU].slotFrames)
         {
-            if (game.activeSelf) counter++;
+            if (go.activeSelf) counter++;
         }
 
         GlobalControls.npcList[npcName].owes = counter;
-        
         referenceManager.inventoryCanvas.SetActive(true);
         if (referenceManager.inventoryCanvas)
         {
             //overwrite parent inventory with inventory here
-            for (int i = 0; i < inventoryPlayerUI.slotContents.Length; i++)
+            for (int i = 0; i < inventoryUIs[(int)InventoryE.Player].slotContents.Length; i++)
             {
-                if (inventoryPlayerUI.slotContents[i].activeSelf)
+                if (inventoryUIs[(int)InventoryE.Player].slotContents[i].activeSelf)
                 {
-                    parentInventory.items[i] = null;
-                    parentInventoryUI.slotContents[i].SetActive(false);
-                    TransferItem(inventoryPlayer, inventoryPlayerUI,
-                        parentInventory, parentInventoryUI, i);
-
+                    inventories[(int)InventoryE.Parent].items[i] = null;
+                    inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
+                    tradeLogic.TransferItem(InventoryE.Player, InventoryE.Parent, i);
+                    
                 }
-                else if (parentInventoryUI.slotContents[i].activeSelf)
+                else if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf)
                 {
-                    parentInventory.items[i] = null;
-                    parentInventoryUI.slotContents[i].SetActive(false);
+                    inventories[(int)InventoryE.Parent].items[i] = null;
+                    inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
                 }
             }
             
-            for (int i = 0; i < parentInventoryUI.slotContents.Length; i++)
+            for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
             {
-                if(parentInventoryUI.slotContents[i].activeSelf) parentInventory.items[i].GetComponent<Collectible>().inventory = parentInventory;
+                if(inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) inventories[(int)InventoryE.Parent].items[i].GetComponent<Collectible>().inventory = inventories[(int)InventoryE.Parent];
             }
             
-            for (int i = 0; i < parentInventoryUI.slotContents.Length; i++)
+            for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
             {
-                if (parentInventoryUI.slotContents[i].activeSelf) 
-                    GlobalItemList.UpdateItemList(parentInventory.items[i].name, "Inventory", 
+                if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) 
+                    GlobalItemList.UpdateItemList(inventories[(int)InventoryE.Parent].items[i].name, "Inventory", 
                         new Vector3(i, 0, 0), "Player");
-            }
-            
+            }  
         }
-        
         keyboardManager.SetConversing();
     }
+
     
     public void EncapsulateSpace(int location)
     {
         cursorLocation = location;
+
         if (cursorLocation == 0)
-        {
-            TransferItem(inventoryPlayer, inventoryPlayerUI,
-                inventoryPlayerBin, inventoryPlayerBinUI, inventoryPlayer.selectedSlotNumber);
-        }
+            tradeLogic.TransferItem(InventoryE.Player, InventoryE.PlayerBin, inventories[(int) InventoryE.Player].selectedSlotNumber);
         else if (cursorLocation == 1)
-        {
-            TransferItem(inventoryPlayerBin, inventoryPlayerBinUI,
-                inventoryPlayer, inventoryPlayerUI, inventoryPlayerBin.selectedSlotNumber);
-        }
+            tradeLogic.TransferItem(InventoryE.PlayerBin, InventoryE.Player, inventories[(int)InventoryE.PlayerBin].selectedSlotNumber);
         else if (cursorLocation == 2)
-        {
-            TransferItem(inventoryNPCBin, inventoryNPCBinUI,
-                inventoryNPC, inventoryNPCUI, inventoryNPCBin.selectedSlotNumber);
-        }
+            tradeLogic.TransferItem(InventoryE.NPCBin, InventoryE.NPC, inventories[(int)InventoryE.NPCBin].selectedSlotNumber);
         else if (cursorLocation == 3)
-        {
-            TransferItem(inventoryNPC, inventoryNPCUI,
-                inventoryNPCBin, inventoryNPCBinUI, inventoryNPC.selectedSlotNumber);
-        }
+            tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
 
         if (CheckValidTrade()) button.interactable = true;
         else button.interactable = false;
     }
     
-    private void TransferItem(Inventory inventory, InventoryUI inventoryUI, Inventory destination, InventoryUI destinationUI, int slotNumber)
-    {
-        var i = slotNumber;
-        
-        //copied private method FindEmptySlot
-        var firstSlot = 0;
-        for (var j = 0; j < destinationUI.slotFrames.Length; j++)
-        {
-            if (destinationUI.slotContents[j].activeSelf) continue;
-            firstSlot = j;
-            break;
-        }
-        
-        //Customized inventory.PickUp() method
-        if (inventoryUI.slotContents[i].activeSelf)
-        {
-            //inventory.items[i].SetActive(true);
-            
-            // Add item to destination
-            destinationUI.slotContents[firstSlot].SetActive(true);
-            destinationUI.slotContents[firstSlot].GetComponent<Image>().sprite = inventory.items[i].GetComponent<Collectible>().sprite;
-            destination.items[firstSlot] = inventory.items[i];
-            
-            // Remove item from inventory
-            inventory.items[i] = null;
-            inventoryUI.slotContents[i].SetActive(false);
-
-        }
-        inventory.SelectSlotNumber(i);
-    }
-
     /// <summary>
     /// returns false if no items offered, not enough inventory, NPC offered need, incorrect number of items offered.
     /// Returns true if Exact :1 of unneeded items, or Exact 1:2 if 1 is item NPC needs.
@@ -429,86 +352,6 @@ public class TradeManagerUI : MonoBehaviour
     /// <returns></returns>
     public bool CheckValidTrade()
     {
-        List<string> npcOffers = new List<string>(); //list of names of items NPC offered
-        List<string> playerOffers = new List<string>(); //list of names of items player offered
-        List<bool> playerOfferedNeed = new List<bool>(); //Counts number of needs player offered
-        
-        //fill lists of names
-        foreach (GameObject item in inventoryNPCBin.items)
-        {
-            if(item) npcOffers.Add(item.name.Replace("(Clone)","").Trim());
-        }
-        foreach (GameObject item in inventoryPlayerBin.items)
-        {
-            if(item) playerOffers.Add(item.name.Replace("(Clone)","").Trim());
-        }
-
-        //Will not trade if not enough inventory
-        int[] numContents = {0,inventoryPlayerBinUI.slotFrames.Length,inventoryNPCUI.slotFrames.Length,0,0};
-        
-        for (int i = 0; i < inventoryPlayerUI.slotFrames.Length; i++)
-        {
-            if (!inventoryPlayerUI.slotContents[i].activeSelf)
-            {
-                numContents[0]++;
-            }
-        }
-        for (int i = 0; i < inventoryPlayerBinUI.slotFrames.Length; i++)
-        {
-            if (!inventoryPlayerBinUI.slotContents[i].activeSelf)
-            {
-                numContents[1]--; //number items
-            }
-        }
-        for (int i = 0; i < inventoryNPCBinUI.slotFrames.Length; i++)
-        {
-            if (!inventoryNPCBinUI.slotContents[i].activeSelf)
-            {
-                numContents[2]--; //number items
-            }
-        }
-        for (int i = 0; i < inventoryNPCUI.slotFrames.Length; i++)
-        {
-            if (!inventoryNPCUI.slotContents[i].activeSelf)
-            {
-                numContents[3]++;
-            }
-        }
-        for (int i = 0; i < inventoryIOUUI.slotFrames.Length; i++)
-        {
-            if (inventoryIOUUI.slotFrames[i].activeSelf)
-            {
-                numContents[4]++;
-            }
-        }
-
-        if (numContents[0] - numContents[2] < 0 || numContents[3] - numContents[1] < 0)
-        {
-            Debug.Log("Not Enough Inventory to complete trade!");
-            return false;
-        }
-
-        int playerTradePoints = 0;
-        
-        //will not trade away item they need
-        foreach (string need in GlobalControls.npcList[npcName].needs)
-        {
-            if (npcOffers.Contains(need)) return false;
-            if (playerOffers.Contains(need))
-            {
-                playerOfferedNeed.Add(true);
-                playerTradePoints++; //add an extra trade point if offered a need
-            }
-        }
-
-        playerTradePoints += playerOffers.Count; //add number of player offered items
-
-        if (playerTradePoints == 0 && npcOffers.Count == 0) return false; //if player and npc offer no items return false
-
-        if (playerTradePoints + numContents[4] - npcOffers.Count > 5) return false; //if player will end with more than 5 IOUs return false
-
-        if (playerTradePoints + numContents[4] >= npcOffers.Count) return true; //if combined IOU and player offers are >= than npcOffers
-        
-        return false;
+        return tradeLogic.IsValidTrade(npcName);
     }
 }

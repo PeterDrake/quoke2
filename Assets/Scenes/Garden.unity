@@ -124,32 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &43799852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728786048003415, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &43799853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43799852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!1 &208272518
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,32 +219,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208272518}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &233560961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728785282524587, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &233560962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233560961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!1 &254935135
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,32 +374,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &415564701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728786414060470, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &415564702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415564701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!1001 &539535118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,32 +823,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980378220}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &998482306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728785664050515, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &998482307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998482306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!1 &1024843621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,32 +1584,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1374944186}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1966591203 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728784949136393, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1966591204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966591203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!1001 &129728786299396988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1729,26 +1599,6 @@ PrefabInstance:
     - target: {fileID: 129728785097119346, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728785135950522, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728785135950522, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728785135950522, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728785135950522, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 129728785262642542, guid: 4f310032ac595ff40b25e031ea8fbc69,
@@ -1831,16 +1681,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 129728786160542588, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728786160542588, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 129728786975850179, guid: 4f310032ac595ff40b25e031ea8fbc69,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1851,60 +1691,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 129728787055956456, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 129728787055956456, guid: 4f310032ac595ff40b25e031ea8fbc69,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6242990575204217128, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
-    - {fileID: 8480995603989327421, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
-    - {fileID: 1629637706640555334, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
-    - {fileID: 3298391973605540858, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
-    - {fileID: 4470267114683935653, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
-    - {fileID: 6819200336262088704, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f310032ac595ff40b25e031ea8fbc69, type: 3}
---- !u!1 &129728786299396989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 129728784954182211, guid: 4f310032ac595ff40b25e031ea8fbc69,
-    type: 3}
-  m_PrefabInstance: {fileID: 129728786299396988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &129728786299396990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129728786299396989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad809718785cd44092e937694d87b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  slotFrames:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  slotContents:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &7045846560970606125
 PrefabInstance:
   m_ObjectHideFlags: 0

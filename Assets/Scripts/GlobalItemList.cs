@@ -10,13 +10,136 @@ public static class GlobalItemList
         get => itemList;
         set => itemList = value;
     }
-
-    public static bool isInApartment;
+    
 
     static GlobalItemList()
     {
-        isInApartment = GlobalControls.globalControlsProperties.Contains("apartmentCondition");
-        initiateItemDictionary();
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
+        {
+            itemList = new Dictionary<string, Item>
+            {
+                {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen", 
+                    "PreQuakeHouse", "")},
+                {"Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach", 
+                    "PreQuakeHouse", "")},
+                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
+                    "PreQuakeHouse", "")},
+                {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight", 
+                    "PreQuakeHouse", "")},
+                {"Dirty Water Bottle", new Item(new Vector3(0,0f,0), "Dirty Water Bottle", 
+                    "Inventory", "Dem")},
+                {"Tent", new Item(new Vector3(1,0f,0), "Tent", 
+                    "Inventory", "Dem")},
+                {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate", 
+                    "Inventory", "Dem")},
+                {"Rubber Chicken", new Item(new Vector3(3,0f,0), "Rubber Chicken", 
+                    "Inventory", "Dem")},
+                {"Toilet Paper", new Item(new Vector3(0,0,0), "Toilet Paper", 
+                    "Inventory", "Rainer")},
+                {"Batteries", new Item(new Vector3(1,0f,0), "Batteries", 
+                    "Inventory", "Rainer")},
+                {"Epi Pen", new Item(new Vector3(2,0f,0), "Epi Pen", 
+                    "Inventory", "Rainer")},
+                {"Wrench", new Item(new Vector3(3,0f,0), "Wrench", 
+                    "Inventory", "Rainer")},
+                {"Bucket", new Item(new Vector3(0,0f,0), "Bucket", 
+                    "Inventory", "Carlos")},
+                {"Can Opener", new Item(new Vector3(1,0f,0), "Can Opener", 
+                    "Inventory", "Carlos")},
+                {"Leash", new Item(new Vector3(2,0f,0), "Leash", 
+                    "Inventory", "Carlos")},
+                {"Whistle", new Item(new Vector3(3,0f,0), "Whistle", 
+                    "Inventory", "Carlos")},
+                {"Bucket 2", new Item(new Vector3(0,0f,0), "Bucket 2", 
+                    "Inventory", "Angie")},
+                {"Radio", new Item(new Vector3(1,0f,0), "Radio", 
+                    "Inventory", "Angie")},
+                {"Blanket", new Item(new Vector3(2,0f,0), "Blanket", 
+                    "Inventory", "Angie")},
+                {"Knife", new Item(new Vector3(3,0f,0), "Knife", 
+                    "Inventory", "Angie")},
+                {"Bag", new Item(new Vector3(0,0f,0), "Bag", 
+                    "Inventory", "Annette")},
+                {"First Aid Kit", new Item(new Vector3(1,0f,0), "First Aid Kit", 
+                    "Inventory", "Annette")},
+                {"N95 Mask", new Item(new Vector3(2,0f,0), "N95 Mask", 
+                    "Inventory", "Annette")},
+                {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher", 
+                    "Inventory", "Annette")},
+                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips", 
+                    "Inventory", "Safi")},
+                {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food", 
+                    "Inventory", "Safi")},
+                {"Gloves", new Item(new Vector3(2,0f,0), "Gloves", 
+                    "Inventory", "Safi")},
+                {"Playing Cards", new Item(new Vector3(3,0f,0), "Playing Cards", 
+                    "Inventory", "Safi")},
+                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
+                    "", "")},
+
+            };
+        }
+        else itemList = new Dictionary<string, Item>
+        {
+            {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen", 
+                    "PreQuakeHouse", "")},
+            {"Dirty Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Dirty Water Bottle", 
+                "PreQuakeHouse", "")},
+            {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
+                "PreQuakeHouse", "")},
+            {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight", 
+                "PreQuakeHouse", "")},
+            {"Bleach", new Item(new Vector3(0,0f,0), "Bleach", 
+                "Inventory", "Dem")},
+            {"Tent", new Item(new Vector3(1,0f,0), "Tent", 
+                "Inventory", "Dem")},
+            {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate", 
+                "Inventory", "Dem")},
+            {"Rubber Chicken", new Item(new Vector3(3,0f,0), "Rubber Chicken", 
+                "Inventory", "Dem")},
+            {"Toilet Paper", new Item(new Vector3(0,0,0), "Toilet Paper", 
+                "Inventory", "Rainer")},
+            {"Batteries", new Item(new Vector3(1,0f,0), "Batteries", 
+                "Inventory", "Rainer")},
+            {"Epi Pen", new Item(new Vector3(2,0f,0), "Epi Pen", 
+                "Inventory", "Rainer")},
+            {"Wrench", new Item(new Vector3(3,0f,0), "Wrench", 
+                "Inventory", "Rainer")},
+            {"Plywood", new Item(new Vector3(0,0f,0), "Plywood", 
+                "Inventory", "Carlos")},
+            {"Can Opener", new Item(new Vector3(1,0f,0), "Can Opener", 
+                "Inventory", "Carlos")},
+            {"Leash", new Item(new Vector3(2,0f,0), "Leash", 
+                "Inventory", "Carlos")},
+            {"Whistle", new Item(new Vector3(3,0f,0), "Whistle", 
+                "Inventory", "Carlos")},
+            {"Tarp", new Item(new Vector3(0,0f,0), "Tarp", 
+                "Inventory", "Angie")},
+            {"Radio", new Item(new Vector3(1,0f,0), "Radio", 
+                "Inventory", "Angie")},
+            {"Blanket", new Item(new Vector3(2,0f,0), "Blanket", 
+                "Inventory", "Angie")},
+            {"Knife", new Item(new Vector3(3,0f,0), "Knife", 
+                "Inventory", "Angie")},
+            {"Rope", new Item(new Vector3(0,0f,0), "Rope", 
+                "Inventory", "Annette")},
+            {"First Aid Kit", new Item(new Vector3(1,0f,0), "First Aid Kit", 
+                "Inventory", "Annette")},
+            {"N95 Mask", new Item(new Vector3(2,0f,0), "N95 Mask", 
+                "Inventory", "Annette")},
+            {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher", 
+                "Inventory", "Annette")},
+            {"Shovel", new Item(new Vector3(0,0f,0), "Shovel", 
+                "Inventory", "Safi")},
+            {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food", 
+                "Inventory", "Safi")},
+            {"Gloves", new Item(new Vector3(2,0f,0), "Gloves", 
+                "Inventory", "Safi")},
+            {"Playing Cards", new Item(new Vector3(3,0f,0), "Playing Cards", 
+                "Inventory", "Safi")},
+            {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
+                "", "")},
+        };
     }
 
     /** Updates itemList with the picked up item's position and scene. */
@@ -28,91 +151,134 @@ public static class GlobalItemList
 
     public static void Reset()
     {
-        initiateItemDictionary();
-    }
-
-    public static void initiateItemDictionary() 
-    {
-        isInApartment = GlobalControls.globalControlsProperties.Contains("apartmentCondition");
-        itemList = new Dictionary<string, Item>
+        if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
+        {
+            itemList = new Dictionary<string, Item>
             {
-                {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen",
+                {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen", 
                     "PreQuakeHouse", "")},
-                {"Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
+                {"Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach", 
                     "PreQuakeHouse", "")},
-                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book",
+                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
                     "PreQuakeHouse", "")},
-                {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight",
+                {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight", 
                     "PreQuakeHouse", "")},
-                {"Dirty Water Bottle", new Item(new Vector3(0,0f,0), "Dirty Water Bottle",
+                {"Dirty Water Bottle", new Item(new Vector3(0,0f,0), "Dirty Water Bottle", 
                     "Inventory", "Dem")},
-                {"Tent", new Item(new Vector3(1,0f,0), "Tent",
+                {"Tent", new Item(new Vector3(1,0f,0), "Tent", 
                     "Inventory", "Dem")},
-                {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate",
+                {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate", 
                     "Inventory", "Dem")},
-                {"Rubber Chicken", new Item(new Vector3(3,0f,0), "Rubber Chicken",
+                {"Rubber Chicken", new Item(new Vector3(3,0f,0), "Rubber Chicken", 
                     "Inventory", "Dem")},
-                {"Toilet Paper", new Item(new Vector3(0,0,0), "Toilet Paper",
+                {"Toilet Paper", new Item(new Vector3(0,0,0), "Toilet Paper", 
                     "Inventory", "Rainer")},
-                {"Batteries", new Item(new Vector3(1,0f,0), "Batteries",
+                {"Batteries", new Item(new Vector3(1,0f,0), "Batteries", 
                     "Inventory", "Rainer")},
-                {"Epi Pen", new Item(new Vector3(2,0f,0), "Epi Pen",
+                {"Epi Pen", new Item(new Vector3(2,0f,0), "Epi Pen", 
                     "Inventory", "Rainer")},
-                {"Wrench", new Item(new Vector3(3,0f,0), "Wrench",
+                {"Wrench", new Item(new Vector3(3,0f,0), "Wrench", 
                     "Inventory", "Rainer")},
-                {"Can Opener", new Item(new Vector3(1,0f,0), "Can Opener",
+                {"Bucket", new Item(new Vector3(0,0f,0), "Bucket", 
                     "Inventory", "Carlos")},
-                {"Leash", new Item(new Vector3(2,0f,0), "Leash",
+                {"Can Opener", new Item(new Vector3(1,0f,0), "Can Opener", 
                     "Inventory", "Carlos")},
-                {"Whistle", new Item(new Vector3(3,0f,0), "Whistle",
+                {"Leash", new Item(new Vector3(2,0f,0), "Leash", 
                     "Inventory", "Carlos")},
-                {"Radio", new Item(new Vector3(1,0f,0), "Radio",
+                {"Whistle", new Item(new Vector3(3,0f,0), "Whistle", 
+                    "Inventory", "Carlos")},
+                {"Bucket 2", new Item(new Vector3(0,0f,0), "Bucket 2", 
                     "Inventory", "Angie")},
-                {"Blanket", new Item(new Vector3(2,0f,0), "Blanket",
+                {"Radio", new Item(new Vector3(1,0f,0), "Radio", 
                     "Inventory", "Angie")},
-                {"Knife", new Item(new Vector3(3,0f,0), "Knife",
+                {"Blanket", new Item(new Vector3(2,0f,0), "Blanket", 
                     "Inventory", "Angie")},
-                {"First Aid Kit", new Item(new Vector3(1,0f,0), "First Aid Kit",
+                {"Knife", new Item(new Vector3(3,0f,0), "Knife", 
+                    "Inventory", "Angie")},
+                {"Bag", new Item(new Vector3(0,0f,0), "Bag", 
                     "Inventory", "Annette")},
-                {"N95 Mask", new Item(new Vector3(2,0f,0), "N95 Mask",
+                {"First Aid Kit", new Item(new Vector3(1,0f,0), "First Aid Kit", 
                     "Inventory", "Annette")},
-                {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher",
+                {"N95 Mask", new Item(new Vector3(2,0f,0), "N95 Mask", 
                     "Inventory", "Annette")},
-                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips",
+                {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher", 
+                    "Inventory", "Annette")},
+                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips", 
                     "Inventory", "Safi")},
-                {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food",
+                {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food", 
                     "Inventory", "Safi")},
-                {"Gloves", new Item(new Vector3(2,0f,0), "Gloves",
+                {"Gloves", new Item(new Vector3(2,0f,0), "Gloves", 
                     "Inventory", "Safi")},
-                {"Playing Cards", new Item(new Vector3(3,0f,0), "Playing Cards",
+                {"Playing Cards", new Item(new Vector3(3,0f,0), "Playing Cards", 
                     "Inventory", "Safi")},
-                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean",
+                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
                     "", "")},
-
             };
-        if (isInApartment)
-        {
-            itemList.Add(
-                "Bucket", new Item(new Vector3(0, 0f, 0), "Bucket",
-          "Inventory", "Carlos"));
-            itemList.Add(
-                "Bucket 2", new Item(new Vector3(0, 0f, 0), "Bucket 2",
-                    "Inventory", "Angie"));
-            itemList.Add(
-                "Bag", new Item(new Vector3(0, 0f, 0), "Bag",
-                    "Inventory", "Annette"));
         }
-        else
+        else 
         {
-            itemList.Add(
-                "Plywood", new Item(new Vector3(0, 0f, 0), "Plywood",
-                "Inventory", "Carlos"));
-            itemList.Add(
-                "Tarp", new Item(new Vector3(0, 0f, 0), "Tarp",
-                "Inventory", "Angie"));
-            itemList.Add(
-                "Rope", new Item(new Vector3(0, 0f, 0), "Rope",
-                "Inventory", "Annette"));
+            itemList = new Dictionary<string, Item>
+            {
+                {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen", 
+                    "PreQuakeHouse", "")},
+                {"Dirty Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Dirty Water Bottle", 
+                    "PreQuakeHouse", "")},
+                {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book", 
+                    "PreQuakeHouse", "")},
+                {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight", 
+                    "PreQuakeHouse", "")},
+                {"Bleach", new Item(new Vector3(0,0f,0), "Bleach", 
+                    "Inventory", "Dem")},
+                {"Tent", new Item(new Vector3(1,0f,0), "Tent", 
+                    "Inventory", "Dem")},
+                {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate", 
+                    "Inventory", "Dem")},
+                {"Rubber Chicken", new Item(new Vector3(3,0f,0), "Rubber Chicken", 
+                    "Inventory", "Dem")},
+                {"Toilet Paper", new Item(new Vector3(0,0,0), "Toilet Paper", 
+                    "Inventory", "Rainer")},
+                {"Batteries", new Item(new Vector3(1,0f,0), "Batteries", 
+                    "Inventory", "Rainer")},
+                {"Epi Pen", new Item(new Vector3(2,0f,0), "Epi Pen", 
+                    "Inventory", "Rainer")},
+                {"Wrench", new Item(new Vector3(3,0f,0), "Wrench", 
+                    "Inventory", "Rainer")},
+                {"Plywood", new Item(new Vector3(0,0f,0), "Plywood", 
+                    "Inventory", "Carlos")},
+                {"Can Opener", new Item(new Vector3(1,0f,0), "Can Opener", 
+                    "Inventory", "Carlos")},
+                {"Leash", new Item(new Vector3(2,0f,0), "Leash", 
+                    "Inventory", "Carlos")},
+                {"Whistle", new Item(new Vector3(3,0f,0), "Whistle", 
+                    "Inventory", "Carlos")},
+                {"Tarp", new Item(new Vector3(0,0f,0), "Tarp", 
+                    "Inventory", "Angie")},
+                {"Radio", new Item(new Vector3(1,0f,0), "Radio", 
+                    "Inventory", "Angie")},
+                {"Blanket", new Item(new Vector3(2,0f,0), "Blanket", 
+                    "Inventory", "Angie")},
+                {"Knife", new Item(new Vector3(3,0f,0), "Knife", 
+                    "Inventory", "Angie")},
+                {"Rope", new Item(new Vector3(0,0f,0), "Rope", 
+                    "Inventory", "Annette")},
+                {"First Aid Kit", new Item(new Vector3(1,0f,0), "First Aid Kit", 
+                    "Inventory", "Annette")},
+                {"N95 Mask", new Item(new Vector3(2,0f,0), "N95 Mask", 
+                    "Inventory", "Annette")},
+                {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher", 
+                    "Inventory", "Annette")},
+                {"Shovel", new Item(new Vector3(0,0f,0), "Shovel", 
+                    "Inventory", "Safi")},
+                {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food", 
+                    "Inventory", "Safi")},
+                {"Gloves", new Item(new Vector3(2,0f,0), "Gloves", 
+                    "Inventory", "Safi")},
+                {"Playing Cards", new Item(new Vector3(3,0f,0), "Playing Cards", 
+                    "Inventory", "Safi")},
+                {"Water Bottle Clean", new Item(new Vector3(-7.5f,0.5f,0.5f), "Water Bottle Clean", 
+                    "", "")},
+            };
+            
         }
     }
     
