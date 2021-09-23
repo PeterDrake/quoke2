@@ -14,7 +14,10 @@ public class PreQuakeHouseEventManager : MonoBehaviour
                 foreach (StorageContainer container in containers)
                 {
                     GameObject item = container.contents;
-                    GlobalItemList.UpdateItemList(item.name, "QuakeApartment", item.transform.position, container.name);
+                    if (item)
+                    {
+                        GlobalItemList.UpdateItemList(item.name, "QuakeApartment", item.transform.position, container.name);
+                    }
                 }
 
                 SceneManager.LoadScene("QuakeApartment");
@@ -24,7 +27,10 @@ public class PreQuakeHouseEventManager : MonoBehaviour
                 foreach (StorageContainer container in containers)
                 {
                     GameObject item = container.contents;
-                    GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
+                    if (item)
+                    {
+                        GlobalItemList.UpdateItemList(item.name, "QuakeHouse", item.transform.position, container.name);
+                    }
                 }
 
                 SceneManager.LoadScene("QuakeHouse");
@@ -34,13 +40,16 @@ public class PreQuakeHouseEventManager : MonoBehaviour
     
     private bool AllContainersFull()
     {
+        int fullCount = 0;
         foreach (StorageContainer container in containers)
         {
-            if (!container.contents)
+            if (container.contents)
             {
-                return false;
+                fullCount++;
             }
         }
+
+        if (fullCount < 2) return false;
         return true;
     }
 }
