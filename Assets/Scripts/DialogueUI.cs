@@ -10,7 +10,6 @@ public class DialogueUI : MonoBehaviour
     private DialogueManager dialogueManager;
     private ScrollRect scrollRect;
 
-
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -58,8 +57,11 @@ public class DialogueUI : MonoBehaviour
         }
 
         Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = -2.5f;
 
+        scrollRect.content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
+        scrollRect.content.GetComponent<ContentSizeFitter>().SetLayoutVertical();
+
+        scrollRect.verticalNormalizedPosition = 0 ;
     }
 
     public void ClearDialogue()
