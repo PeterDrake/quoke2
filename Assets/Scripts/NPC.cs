@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NPC
 {
     public List<string> needs;
+    public List<bool> needsMet;
     public string name;
     public string scene;
     public string node;
@@ -19,13 +20,14 @@ public class NPC
     public List<string> actionRequirements;
     public bool[] actionsComplete = new bool[3];
 
-    public NPC(string name, string scene, List<string> needs, string node, int satisfaction, 
+    public NPC(string name, string scene, List<string> needs, List<bool> needsMet, string node, int satisfaction, 
         bool interacted, string description, int totalSatisfaction, int owes, Dictionary<string, string> actions,
         List<string> actionRequirements)
     {
         this.name = name;
         this.scene = scene;
         this.needs = needs;
+        this.needsMet = needsMet;
         this.node = node;
         this.satisfaction = satisfaction;
         this.interacted = interacted;

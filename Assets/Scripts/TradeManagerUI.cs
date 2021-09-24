@@ -340,12 +340,18 @@ public class TradeManagerUI : MonoBehaviour
             tradeLogic.TransferItem(InventoryE.NPCBin, InventoryE.NPC, inventories[(int)InventoryE.NPCBin].selectedSlotNumber);
         else if (cursorLocation == 3)
         {
+            int selectedSlot = inventories[(int) InventoryE.NPC].selectedSlotNumber;
             bool notNeeded = true;
-            foreach (string item in GlobalControls.npcList[npcName].needs)
+            for (int i = 0; i < GlobalControls.npcList[npcName].needs.Count; i++)
             {
-                if (inventories[(int) InventoryE.NPC].items[inventories[(int) InventoryE.NPC].selectedSlotNumber]
-                    .name == item) notNeeded = false;
+                Debug.Log(i);
+                if (GlobalControls.npcList[npcName].needsMet[i])
+                {
+                    if (inventoryUIs[(int) InventoryE.NPC].slotContents[selectedSlot].activeSelf
+                        && inventories[(int) InventoryE.NPC].items[selectedSlot].name == GlobalControls.npcList[npcName].needs[i]) notNeeded = false;
+                }
             }
+            Debug.Log(notNeeded);
             if (notNeeded) tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
         }
 
