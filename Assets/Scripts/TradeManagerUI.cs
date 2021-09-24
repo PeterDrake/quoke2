@@ -339,7 +339,15 @@ public class TradeManagerUI : MonoBehaviour
         else if (cursorLocation == 2)
             tradeLogic.TransferItem(InventoryE.NPCBin, InventoryE.NPC, inventories[(int)InventoryE.NPCBin].selectedSlotNumber);
         else if (cursorLocation == 3)
-            tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
+        {
+            bool notNeeded = true;
+            foreach (string item in GlobalControls.npcList[npcName].needs)
+            {
+                if (inventories[(int) InventoryE.NPC].items[inventories[(int) InventoryE.NPC].selectedSlotNumber]
+                    .name == item) notNeeded = false;
+            }
+            if (notNeeded) tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
+        }
 
         if (CheckValidTrade()) button.interactable = true;
         else button.interactable = false;
