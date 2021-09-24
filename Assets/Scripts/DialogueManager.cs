@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 public class DialogueManager : MonoBehaviour
@@ -55,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
-            
+
             //This displays the initial nodes player text
             buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];     
             
@@ -109,7 +111,6 @@ public class DialogueManager : MonoBehaviour
 
             Debug.Log("Current Node: " + currentNode.nodeName);
 
-           
         }
 
         //Go through all the buttons and put that node's text into the buttons.
@@ -171,6 +172,7 @@ public class DialogueManager : MonoBehaviour
         {
             cursorLocation = 0;
         }
+        EventSystem.current.SetSelectedGameObject(null);
         buttons[cursorLocation].Select();
         return cursorLocation;
     }
