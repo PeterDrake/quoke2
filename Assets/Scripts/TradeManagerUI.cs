@@ -344,14 +344,13 @@ public class TradeManagerUI : MonoBehaviour
             bool notNeeded = true;
             for (int i = 0; i < GlobalControls.npcList[npcName].needs.Count; i++)
             {
-                Debug.Log(i);
                 if (GlobalControls.npcList[npcName].needsMet[i])
                 {
                     if (inventoryUIs[(int) InventoryE.NPC].slotContents[selectedSlot].activeSelf
-                        && inventories[(int) InventoryE.NPC].items[selectedSlot].name == GlobalControls.npcList[npcName].needs[i]) notNeeded = false;
+                        && inventories[(int) InventoryE.NPC].items[selectedSlot].name.Replace("(Clone)", "").Trim()
+                        == GlobalControls.npcList[npcName].needs[i]) notNeeded = false;
                 }
             }
-            Debug.Log(notNeeded);
             if (notNeeded) tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
         }
 
