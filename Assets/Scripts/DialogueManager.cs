@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     private DialogueUI dialogueUI;
+    private GameObject npcInteractedCanvas;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class DialogueManager : MonoBehaviour
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
+        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
     }
 
     public void BeginConversation()
@@ -80,12 +82,14 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.SetCheckpoint("basic_angie_4.0");
                     currentNode = forest["leave_angie_0.7"];
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_5.0");
                     currentNode = forest["leave_angie_1.4"];
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
             else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
                 !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("Angie"))
@@ -93,12 +97,15 @@ public class DialogueManager : MonoBehaviour
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_8.0");
                     currentNode = forest["leave_angie_0"];
-                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");                }
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
+                }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_9.0");
                     currentNode = forest["leave_angie_1"];
                     GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
             else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("Angie"))
                 currentNode = forest["leave_angie_0"];
@@ -235,7 +242,6 @@ public class DialogueManager : MonoBehaviour
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
                 }
-                     
             }
             
             string node = currentNode.nextNode[i];
