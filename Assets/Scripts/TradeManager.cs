@@ -107,7 +107,6 @@ public class TradeManager
                     && !GlobalItemList.ItemList[inventories[(int)InventoryE.NPC].items[i].name]
                         .containerName.Equals(npcName)
                     && !GlobalControls.npcList[npcName].needsMet[indexInNPCNeeds])
-                    //GlobalControls.npcList[npcName].needs.Contains(inventories[(int)InventoryE.NPC].items[i].name
                 {
                     GlobalControls.npcList[npcName].satisfaction++;
                     Debug.Log(npcName

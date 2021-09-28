@@ -195,14 +195,11 @@ public class InventoryUI : MonoBehaviour
 
     public void EnableSlotGrayscale(int slot)
     {
-        Debug.Log("Grayscaling " + slot);
-        Debug.Log(slotFrames[slot].transform.childCount == 1);
         if (slotFrames[slot].transform.childCount == 1) Instantiate(grayscaleOverlay, slotFrames[slot].transform);
     }
     
     public void DisableSlotGrayscale(int slot)
     {
-        Debug.Log("Ungrayscaling " + slot);
         if (slotFrames[slot].transform.childCount != 1)
         {
             foreach (Transform child in slotFrames[slot].transform)
