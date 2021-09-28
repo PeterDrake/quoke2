@@ -74,7 +74,7 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.leftTrading = false;
 
             if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("Angie"))
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_4.0");
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                 }
             else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("Angie"))
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_8.0");
@@ -100,9 +100,9 @@ public class DialogueManager : MonoBehaviour
                     currentNode = forest["leave_angie_1"];
                     GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
                 }
-            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("Angie"))
                 currentNode = forest["leave_angie_0"];
-            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("Angie"))
                 currentNode = forest["leave_angie_1"];
             else
                 currentNode = forest["leave_error"];
