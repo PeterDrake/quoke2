@@ -136,21 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728786776717472}
-  - {fileID: 129728785384215407}
-  - {fileID: 129728785611990049}
-  - {fileID: 129728786604444096}
-  - {fileID: 129728786912357016}
-  slotContents:
-  - {fileID: 129728785846590972}
-  - {fileID: 129728786825411457}
-  - {fileID: 129728785304202721}
-  - {fileID: 129728786370568901}
-  - {fileID: 129728785041677483}
   items: []
 --- !u!114 &6819200336262088704
 MonoBehaviour:
@@ -168,6 +153,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames: []
   slotContents: []
 --- !u!1 &129728784954182211
@@ -306,21 +293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728785268495915}
-  - {fileID: 129728785967531411}
-  - {fileID: 129728785920959481}
-  - {fileID: 129728784965417760}
-  - {fileID: 129728786496019697}
-  slotContents:
-  - {fileID: 129728785768130729}
-  - {fileID: 129728785768762833}
-  - {fileID: 129728785693716270}
-  - {fileID: 129728786915560272}
-  - {fileID: 129728785169233436}
   items: []
 --- !u!114 &6242990575204217128
 MonoBehaviour:
@@ -338,6 +310,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames:
   - {fileID: 0}
   - {fileID: 0}
@@ -2745,21 +2719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728786061606138}
-  - {fileID: 129728785533894036}
-  - {fileID: 129728785065255082}
-  - {fileID: 129728785472798250}
-  - {fileID: 129728786122404666}
-  slotContents:
-  - {fileID: 129728785792823342}
-  - {fileID: 129728784992804363}
-  - {fileID: 129728787057832956}
-  - {fileID: 129728785332278667}
-  - {fileID: 129728785171979525}
   items: []
 --- !u!114 &1629637706640555334
 MonoBehaviour:
@@ -2777,6 +2736,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames: []
   slotContents: []
 --- !u!1 &129728785304202721
@@ -5153,21 +5114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728786429043013}
-  - {fileID: 129728786835542092}
-  - {fileID: 129728785240738498}
-  - {fileID: 129728785762529982}
-  - {fileID: 129728785723876770}
-  slotContents:
-  - {fileID: 129728786615194911}
-  - {fileID: 129728786632291946}
-  - {fileID: 129728785966739210}
-  - {fileID: 129728785012649281}
-  - {fileID: 129728786230872329}
   items: []
 --- !u!114 &3298391973605540858
 MonoBehaviour:
@@ -5185,6 +5131,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames: []
   slotContents: []
 --- !u!1 &129728785665917456
@@ -7968,21 +7916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728786487504766}
-  - {fileID: 129728785220111562}
-  - {fileID: 129728786792889746}
-  - {fileID: 129728785843675582}
-  - {fileID: 129728785683988048}
-  slotContents:
-  - {fileID: 129728785780152704}
-  - {fileID: 129728787020124788}
-  - {fileID: 129728785498741002}
-  - {fileID: 129728786710277244}
-  - {fileID: 129728785469745773}
   items: []
 --- !u!114 &8480995603989327421
 MonoBehaviour:
@@ -8000,6 +7933,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames: []
   slotContents: []
 --- !u!1 &129728786061606138
@@ -8199,8 +8134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e3038e5f858b84dba81e45aa8529ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventories: []
+  inventoryUIs: []
   button: {fileID: 129728786862601901}
-  inventoryNPC: {fileID: 0}
 --- !u!1 &129728786075462846
 GameObject:
   m_ObjectHideFlags: 0
@@ -10086,6 +10022,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87717486ee314ec7b3845706e3bfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
+    type: 3}
+  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
+    type: 3}
+  selectedSlotSpriteInUse: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23,
+    type: 3}
 --- !u!1 &129728786313639829
 GameObject:
   m_ObjectHideFlags: 0
@@ -10803,21 +10746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0
   player: {fileID: 0}
-  unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
-    type: 3}
-  selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
-  slotFrames:
-  - {fileID: 129728785686091198}
-  - {fileID: 129728785049601148}
-  - {fileID: 129728786789777655}
-  - {fileID: 129728785833775017}
-  - {fileID: 129728785892022132}
-  slotContents:
-  - {fileID: 129728786654076600}
-  - {fileID: 129728785730394191}
-  - {fileID: 129728786274104680}
-  - {fileID: 129728786125428804}
-  - {fileID: 129728785665917456}
   items: []
 --- !u!114 &4470267114683935653
 MonoBehaviour:
@@ -10835,6 +10763,8 @@ MonoBehaviour:
   unselectedSlotSprite: {fileID: 21300000, guid: 4e1e63ad95e86304f8fee907a5029c34,
     type: 3}
   selectedSlotSprite: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23, type: 3}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
   slotFrames: []
   slotContents: []
 --- !u!1 &129728786420940349
