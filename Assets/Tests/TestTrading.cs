@@ -46,22 +46,22 @@ public class TestTrading
     }
     
     [UnityTest]
-    public IEnumerator PicksUpAnItem()
+    public IEnumerator TradesItemSuccessfully()
     {
-        // Find some objects
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
-        //GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
-        //Assert.NotNull(sunscreen);
         // Walk into Angie
         yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwddddd", playerKeyboard, cheatKeyboard);
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
         // Navigate through dialogue to trading
         yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
-        yield return new WaitForSeconds(2f);
-        Assert.True(true);
-        // Verify that the sunscreen was picked up
-        //Assert.AreEqual(sunscreen, inventory.items[0]);
+        // Trade thing with Angie
+        yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
+        // Check that the items were traded successfully 
+        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPC].items[2].name == "First Aid Kit(Clone)");
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Knife(Clone)"
+            && playerInventory.items[3].name == "Blanket(Clone)");
     }
 }
