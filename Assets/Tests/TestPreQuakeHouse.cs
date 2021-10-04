@@ -45,30 +45,6 @@ public class TestPreQuakeHouse
         yield return null;
     }
 
-    /// <summary>
-    /// Presses each of the indicated keys, with a pause after each one, if needed, to allow time for the game to
-    /// respond.
-    /// </summary>
-    private IEnumerator Press(string keys)
-    {
-        foreach (char c in keys)
-        {
-            KeyCode k = (KeyCode) Enum.Parse(typeof(KeyCode), Char.ToUpper(c).ToString());
-            // There are two different objects receiving keypresses, but only one will react to a given key
-            playerKeyboard.SetKeyDown(k);
-            cheatKeyboard.SetKeyDown(k);
-            if ("WASDL".IndexOf(Char.ToUpper(c)) != -1)
-            {
-                // This key take some time for the game to complete its response (e.g., movement)
-                yield return new WaitForSeconds(0.25f);
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-    }
-    
     [UnityTest]
     public IEnumerator Cabinet1IsInitiallyEmpty()
     {
@@ -88,7 +64,7 @@ public class TestPreQuakeHouse
         GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
         Assert.NotNull(sunscreen);
         // Take some steps
-        yield return Press("wwdd");
+        yield return QuokeTestUtils.Press("wwdd", playerKeyboard, cheatKeyboard);
         // Verify that the sunscreen was picked up
         Assert.AreEqual(sunscreen, inventory.items[0]);
     }
@@ -96,20 +72,20 @@ public class TestPreQuakeHouse
     [UnityTest]
     public IEnumerator VirtualPlayerMoves()
     {
-        yield return Press("w");
+        yield return QuokeTestUtils.Press("w", playerKeyboard, cheatKeyboard);
         Assert.AreEqual(new Vector3(4.5f,0.5f,-0.5f), referenceManager.player.transform.position);
-        yield return Press("s");
+        yield return QuokeTestUtils.Press("s", playerKeyboard, cheatKeyboard);
         Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
-        yield return Press("a");
+        yield return QuokeTestUtils.Press("a", playerKeyboard, cheatKeyboard);
         Assert.AreEqual(new Vector3(3.5f,0.5f,-1.5f), referenceManager.player.transform.position);
-        yield return Press("d");
+        yield return QuokeTestUtils.Press("d", playerKeyboard, cheatKeyboard);
         Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
     }
 
     [UnityTest]
     public IEnumerator CheatKeyboardWorks()
     {
-        yield return Press("l");
+        yield return QuokeTestUtils.Press("l", playerKeyboard, cheatKeyboard);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
