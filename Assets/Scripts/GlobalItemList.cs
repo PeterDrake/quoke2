@@ -36,7 +36,7 @@ public static class GlobalItemList
         isInApartment = GlobalControls.globalControlsProperties.Contains("apartmentCondition");
         itemList = new Dictionary<string, Item>
             {
-                {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen",
+                {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight",
                     "PreQuakeHouse", "")},
                 {"Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
                     "PreQuakeHouse", "")},
