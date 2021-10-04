@@ -240,7 +240,7 @@ public class TradeManagerUI : MonoBehaviour
         
         button.interactable = false;
         referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
-
+        CheckForNeededItemInNPCInventory();
     }
 
 
@@ -339,7 +339,15 @@ public class TradeManagerUI : MonoBehaviour
         else if (cursorLocation == 2)
             tradeLogic.TransferItem(InventoryE.NPCBin, InventoryE.NPC, inventories[(int)InventoryE.NPCBin].selectedSlotNumber);
         else if (cursorLocation == 3)
-            tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
+        {
+            int selectedSlot = inventories[(int) InventoryE.NPC].selectedSlotNumber;
+            if (!(inventoryUIs[(int) InventoryE.NPC].slotContents[selectedSlot].activeSelf
+            && GlobalControls.npcList[npcName].needs.Contains(
+                inventories[(int) InventoryE.NPC].items[selectedSlot].name.Replace("(Clone)", "").Trim())))
+            {
+                tradeLogic.TransferItem(InventoryE.NPC, InventoryE.NPCBin, inventories[(int)InventoryE.NPC].selectedSlotNumber);
+            }
+        }
 
         if (CheckValidTrade()) button.interactable = true;
         else button.interactable = false;
@@ -353,5 +361,19 @@ public class TradeManagerUI : MonoBehaviour
     public bool CheckValidTrade()
     {
         return tradeLogic.IsValidTrade(npcName);
+    }
+
+    private void CheckForNeededItemInNPCInventory()
+    {
+        for (int i = 0; i < inventories[(int)InventoryE.NPC].items.Length; i++)
+        {
+            GameObject item = inventories[(int)InventoryE.NPC].items[i];
+            if (item
+                && GlobalControls.npcList[npcName].needs.Contains(item.name.Replace("(Clone)", "").Trim()))
+            {
+                inventoryUIs[(int) InventoryE.NPC].EnableSlotGrayscale(i);
+            } 
+            else inventoryUIs[(int)InventoryE.NPC].DisableSlotGrayscale(i);
+        }
     }
 }

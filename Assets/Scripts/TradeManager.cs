@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -77,7 +78,8 @@ public class TradeManager
             // Add item to destination
             inventoryUIs[(int)reciever].slotContents[firstSlot].SetActive(true);
             
-            inventoryUIs[(int)reciever].slotContents[firstSlot].GetComponent<Image>().sprite = inventories[(int)sender].items[i].GetComponent<Collectible>().sprite;
+            inventoryUIs[(int)reciever].slotContents[firstSlot].GetComponent<Image>().sprite
+                = inventories[(int)sender].items[i].GetComponent<Collectible>().sprite;
             inventories[(int)reciever].items[firstSlot] = inventories[(int)sender].items[i];
 
             // Remove item from inventory
@@ -92,35 +94,51 @@ public class TradeManager
 
     public void UpdateGlobalItemList(string npcName)
     {
-
         for (int i = 0; i < inventoryUIs[(int)InventoryE.NPC].slotContents.Length; i++)
         {
-            if (inventoryUIs[(int)InventoryE.NPC].slotContents[i].activeSelf)
-
+            if (inventoryUIs[(int)InventoryE.NPC].slotContents[i].activeSelf) 
             {
-                inventories[(int)InventoryE.NPC].items[i].name = inventories[(int)InventoryE.NPC].items[i].name.Replace("(Clone)", "").Trim();
+                inventories[(int)InventoryE.NPC].items[i].name
+                    = inventories[(int)InventoryE.NPC].items[i].name.Replace("(Clone)", "").Trim();
                 //If new item for NPC and it's one of their needs increase satisfaction
-                if (!GlobalItemList.ItemList[inventories[(int)InventoryE.NPC].items[i].name].containerName.Equals(npcName) &&
-                    GlobalControls.npcList[npcName].needs.Contains(inventories[(int)InventoryE.NPC].items[i].name))
+                int indexInNPCNeeds = GlobalControls.npcList[npcName].needs
+                    .IndexOf(inventories[(int) InventoryE.NPC].items[i].name);
+                if (indexInNPCNeeds >= 0 
+                    && !GlobalItemList.ItemList[inventories[(int)InventoryE.NPC].items[i].name]
+                        .containerName.Equals(npcName)
+                    && !GlobalControls.npcList[npcName].needsMet[indexInNPCNeeds])
                 {
                     GlobalControls.npcList[npcName].satisfaction++;
-                    Debug.Log(npcName + " Satisfaction increased to " + GlobalControls.npcList[npcName].satisfaction);
-                    if (GlobalControls.npcList[npcName].needs.Count == GlobalControls.npcList[npcName].satisfaction)
-                        GlobalControls.npcList[npcName].description = GlobalControls.npcList[npcName].name + " is happy and needs nothing more";
-                    else
+                    Debug.Log(npcName
+                              + " Satisfaction increased to " + GlobalControls.npcList[npcName].satisfaction);
+                    GlobalControls.npcList[npcName].needsMet[indexInNPCNeeds] = true;
+                    // adjust the NPC's description to be only what they still need
+                    List<string> neededItems = new List<string>();
+                    for (int j = 0; j < GlobalControls.npcList[npcName].needsMet.Count; j++)
                     {
-                        string description = GlobalControls.npcList[npcName].description;
-                        description = description.Replace(inventories[(int)InventoryE.NPC].items[i].name, "").Trim();
-                        description = description.Replace("and", "").Trim();
-                        GlobalControls.npcList[npcName].description = description;
+                        if (!GlobalControls.npcList[npcName].needsMet[j])
+                        {
+                            neededItems.Add(GlobalControls.npcList[npcName].needs[j]);
+                        }
                     }
+                    string description;
+                    if (neededItems.Count == 0) {
+                        description = GlobalControls.npcList[npcName].name + " is happy and needs nothing more";
+                    }
+                    else if (neededItems.Count == 1)
+                    {
+                        description = GlobalControls.npcList[npcName].name + " needs a " + neededItems[0];
+                    }
+                    else {
+                        description = GlobalControls.npcList[npcName].name + " needs a " + neededItems[0] +
+                                       " and a " + neededItems[1];
+                    }
+                    GlobalControls.npcList[npcName].description = description;
                 }
-
                 GlobalItemList.UpdateItemList(inventories[(int)InventoryE.NPC].items[i].name, "Inventory",
                     new Vector3(i, 0, 0), npcName);
             }
         }
-
     }
     public bool IsValidTrade(string npcName)
     {
@@ -140,7 +158,9 @@ public class TradeManager
 
         //Will not trade if not enough inventory
 
-        int[] numContents = { 0, inventoryUIs[(int)InventoryE.PlayerBin].slotFrames.Length, inventoryUIs[(int)InventoryE.NPC].slotFrames.Length, 0, 0 };
+        int[] numContents = { 0,
+            inventoryUIs[(int)InventoryE.PlayerBin].slotFrames.Length,
+            inventoryUIs[(int)InventoryE.NPC].slotFrames.Length, 0, 0 };
 
         for (int i = 0; i < inventoryUIs[(int)InventoryE.Player].slotFrames.Length; i++)
         {

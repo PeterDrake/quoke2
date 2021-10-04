@@ -15,6 +15,8 @@ public class InventoryUI : MonoBehaviour
     public Sprite selectedSlotSpriteInUse;
 
     private Inventory inventory;
+
+    [SerializeField] private GameObject grayscaleOverlay;
     
     // These are UI Images showing sprites (either unselectedSlotSprite or selectedSlotSprite).
     public GameObject[] slotFrames;
@@ -189,5 +191,21 @@ public class InventoryUI : MonoBehaviour
     {
         selectedSlotSpriteInUse = selectedSlotSprite;
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+    }
+
+    public void EnableSlotGrayscale(int slot)
+    {
+        if (slotFrames[slot].transform.childCount == 1) Instantiate(grayscaleOverlay, slotFrames[slot].transform);
+    }
+    
+    public void DisableSlotGrayscale(int slot)
+    {
+        if (slotFrames[slot].transform.childCount != 1)
+        {
+            foreach (Transform child in slotFrames[slot].transform)
+            {
+                if (child.name.Replace("(Clone)", "").Trim() == grayscaleOverlay.name) Destroy(child);
+            }
+        }
     }
 }
