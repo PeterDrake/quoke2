@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
     private DialogueUI dialogueUI;
+    private GameObject npcInteractedCanvas;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class DialogueManager : MonoBehaviour
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
+        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
     }
 
     public void BeginConversation()
@@ -55,7 +58,6 @@ public class DialogueManager : MonoBehaviour
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
-            
             //This displays the initial nodes player text
             buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];     
             
@@ -74,42 +76,48 @@ public class DialogueManager : MonoBehaviour
             keyboardManager.leftTrading = false;
 
             if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("Angie"))
+
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_4.0");
                     currentNode = forest["leave_angie_0.7"];
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_5.0");
                     currentNode = forest["leave_angie_1.4"];
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
             else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("Angie"))
+            
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_8.0");
                     currentNode = forest["leave_angie_0"];
-                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");                }
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
+                }
                 else
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_9.0");
                     currentNode = forest["leave_angie_1"];
                     GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
-            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("Angie"))
                 currentNode = forest["leave_angie_0"];
-            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("angie"))
+            else if (GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue") && GlobalControls.CurrentNPC.Contains("Angie"))
                 currentNode = forest["leave_angie_1"];
             else
                 currentNode = forest["leave_error"];
 
             Debug.Log("Current Node: " + currentNode.nodeName);
 
-           
         }
 
         //Go through all the buttons and put that node's text into the buttons.
@@ -171,6 +179,7 @@ public class DialogueManager : MonoBehaviour
         {
             cursorLocation = 0;
         }
+        EventSystem.current.SetSelectedGameObject(null);
         buttons[cursorLocation].Select();
         return cursorLocation;
     }
@@ -235,7 +244,6 @@ public class DialogueManager : MonoBehaviour
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
                 }
-                     
             }
             
             string node = currentNode.nextNode[i];

@@ -9,6 +9,14 @@ public class NPCInteracted : MonoBehaviour
     private ReferenceManager referenceManager;
 
     private List<Transform> panels;
+
+    private int selectedSlotNumber;
+    
+    public Sprite unselectedSlotSprite;
+    public Sprite selectedSlotSprite;
+    public Sprite unselectedSlotSpriteInUse;
+    public Sprite selectedSlotSpriteInUse;
+    
     
     void Start()
     {
@@ -64,5 +72,22 @@ public class NPCInteracted : MonoBehaviour
         image.SetActive(true);
         satisfaction.gameObject.SetActive(true);
         owes.gameObject.SetActive(npc.owes != 0);
+    }
+    
+    public void SelectSlotNumber(int slotNumber)
+    {
+        if (selectedSlotNumber != slotNumber)
+        {
+            panels[slotNumber].Find("Frame").GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+            panels[selectedSlotNumber].Find("Frame").GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
+            selectedSlotNumber = slotNumber;
+        }
+
+        // UpdateTooltip();
+    }
+
+    public void UpdateTooltip()
+    {
+        
     }
 }
