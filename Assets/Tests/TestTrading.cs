@@ -64,4 +64,29 @@ public class TestTrading
         Assert.True(playerInventory.items[0].name == "Knife(Clone)"
             && playerInventory.items[3].name == "Blanket(Clone)");
     }
+    
+    [UnityTest]
+    public IEnumerator UnableToTradeNPCNeededItem()
+    {
+        // Walk into Angie
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        // Navigate through dialogue to trading
+        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
+        // Trade thing with Angie
+        yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
+        // Check that the items were traded successfully 
+        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPC].items[2].name == "First Aid Kit(Clone)");
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Knife(Clone)"
+                    && playerInventory.items[3].name == "Blanket(Clone)");
+        // Attempt to add the First Aid Kit back to us
+        yield return QuokeTestUtils.Press(" ", playerKeyboard, cheatKeyboard);
+        // Check to make sure the item was not added to the NPC bin
+        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPCBin].items[0] == null);
+    }
 }
