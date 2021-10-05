@@ -48,12 +48,10 @@ public class TestTrading
     [UnityTest]
     public IEnumerator TradesItemSuccessfully()
     {
-        // Walk into Angie
-        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+        yield return WalkToAngie();
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
-        // Navigate through dialogue to trading
-        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
+        yield return GetToTradeAngie();
         // Trade thing with Angie
         yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
         // Check that the items were traded successfully 
@@ -68,12 +66,11 @@ public class TestTrading
     [UnityTest]
     public IEnumerator UnableToTradeNPCNeededItem()
     {
-        // Walk into Angie
-        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+        yield return WalkToAngie();
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
-        // Navigate through dialogue to trading
-        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
+        // Navigate through the dialogue to trade with Angie if we've already spoken with her before
+        yield return QuokeTestUtils.Press(">  ", playerKeyboard, cheatKeyboard);
         // Trade thing with Angie
         yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
         // Check that the items were traded successfully 
@@ -86,7 +83,20 @@ public class TestTrading
         // Attempt to add the First Aid Kit back to us
         yield return QuokeTestUtils.Press(" ", playerKeyboard, cheatKeyboard);
         // Check to make sure the item was not added to the NPC bin
-        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
-            .inventories[(int)InventoryE.NPCBin].items[0] == null);
+        Assert.Null(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPCBin].items[0]);
+    }
+    
+    public IEnumerator WalkToAngie()
+    {
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+    }
+    
+    /*
+     * Gets the player through the first dialogue tree of Angie's so they are able to trade with her.
+     */
+    public IEnumerator GetToTradeAngie()
+    {
+        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
     }
 }
