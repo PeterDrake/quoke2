@@ -16,6 +16,9 @@ public class TestTrading
     [UnitySetUp]
     public IEnumerator Setup()
     {
+        GlobalControls.Reset();
+        GlobalItemList.Reset();
+        
         SceneManager.LoadScene("TitleScreen");
         
         yield return null;
@@ -69,8 +72,7 @@ public class TestTrading
         yield return WalkToAngie();
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
-        // Navigate through the dialogue to trade with Angie if we've already spoken with her before
-        yield return QuokeTestUtils.Press(">  ", playerKeyboard, cheatKeyboard);
+        yield return GetToTradeAngie();
         // Trade thing with Angie
         yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
         // Check that the items were traded successfully 
