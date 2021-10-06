@@ -88,7 +88,47 @@ public class TestTrading
         Assert.Null(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
             .inventories[(int)InventoryE.NPCBin].items[0]);
     }
-    
+
+    [UnityTest]
+    public IEnumerator ValidTradesForUnneededItems()
+    {
+        yield return WalkToAngie();
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        yield return GetToTradeAngie();
+        // Try invalid trade with Angie
+        yield return QuokeTestUtils.Press(">> <<< < ", playerKeyboard, cheatKeyboard);
+        // Check that the items weren't traded successfully
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.Null(playerInventory.items[2]);
+        // Try a valid trade
+        yield return QuokeTestUtils.Press("<<<<<  ~", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        // Check that the items were traded successfully 
+        Assert.True(playerInventory.items[2].name == "Knife(Clone)");
+    }
+
+    [UnityTest]
+    public IEnumerator IOUReceiveAndFunction()
+    {
+        yield return WalkToAngie();
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        yield return GetToTradeAngie();
+        // Trade with Angie
+        yield return QuokeTestUtils.Press(" < ~", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        // Check that the items were traded successfully 
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Knife(Clone)");
+        yield return new WaitForSeconds(0.5f);
+        // Trade using the IOU
+        yield return QuokeTestUtils.Press("< ~", playerKeyboard, cheatKeyboard);
+        Assert.True(playerInventory.items[3].name == "Blanket(Clone)");
+    }
+
     public IEnumerator WalkToAngie()
     {
         yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
