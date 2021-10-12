@@ -41,8 +41,7 @@ public class NPCInteracted : MonoBehaviour
                 string name = GlobalControls.npcNames[i];
                 NPC npc = GlobalControls.npcList[name];
                 // Update display of how satisfied this NPC is
-                Text satisfaction = panels[i].Find("Satisfaction").GetComponent<Text>();
-                satisfaction.text = npc.satisfaction + " / " + npc.totalSatisfaction;
+                Transform satisfaction = panels[i].Find("Satisfaction").GetComponent<Transform>();
                 // Update display of how much this NPC owes us
                 Text owes = panels[i].Find("Owes").Find("Number").GetComponent<Text>();
                 owes.text = npc.owes.ToString();
@@ -50,18 +49,41 @@ public class NPCInteracted : MonoBehaviour
                 GameObject image = panels[i].Find("Frame").Find("Image").gameObject;
                 image.SetActive(npc.interacted);
                 satisfaction.gameObject.SetActive(npc.interacted);
+                UpdateSatisfactionStars(npc, i);
                 owes.gameObject.SetActive(npc.owes != 0);
             }
         }
     }
 
+    private void UpdateSatisfactionStars(NPC npc, int index)
+    {
+        List<Transform> stars = new List<Transform>();
+        foreach (Transform child in panels[index].Find("Satisfaction").GetComponentsInChildren<Transform>(true))
+        {
+                stars.Add(child);
+        }
+        for (int i = 0; i <= npc.totalSatisfaction; i++)
+        {
+            if(npc.satisfaction >= i)
+            {
+                stars[i].gameObject.SetActive(true);
+
+            }
+            else
+            {
+                stars[i].gameObject.SetActive(false);
+            }
+
+        }
+
+    }
     public void UpdateNPCInteracted(string name)
     {
         NPC npc = GlobalControls.npcList[name];
         int i = Array.IndexOf(GlobalControls.npcNames, name);
         // Update display of how satisfied this NPC is
-        Text satisfaction = panels[i].Find("Satisfaction").GetComponent<Text>();
-        satisfaction.text = npc.satisfaction + " / " + npc.totalSatisfaction;
+        
+        Transform satisfaction = panels[i].Find("Satisfaction").GetComponent<Transform>();
         // Update display of how much this NPC owes us
         Text owes = panels[i].Find("Owes").Find("Number").GetComponent<Text>();
         owes.text = npc.owes.ToString();
@@ -71,6 +93,7 @@ public class NPCInteracted : MonoBehaviour
         GameObject image = panels[i].Find("Frame").Find("Image").gameObject;
         image.SetActive(true);
         satisfaction.gameObject.SetActive(true);
+        UpdateSatisfactionStars(npc, i);
         owes.gameObject.SetActive(npc.owes != 0);
     }
     
