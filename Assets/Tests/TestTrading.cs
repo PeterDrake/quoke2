@@ -49,7 +49,7 @@ public class TestTrading
     public IEnumerator TradesItemSuccessfully()
     {
         // Walk into Angie
-        yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwddddd", playerKeyboard, cheatKeyboard);
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
         // Navigate through dialogue to trading
