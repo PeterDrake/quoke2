@@ -46,10 +46,6 @@ public static class GlobalItemList
                     "PreQuakeHouse", "")},
                 {"Sunscreen", new Item(new Vector3(6.5f,0.5f,0.5f), "Sunscreen",
                     "PreQuakeHouse", "")},
-                {"Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
-                    "PreQuakeHouse", "")},
-                {"Dirty Water Bottle", new Item(new Vector3(0,0f,0), "Dirty Water Bottle",
-                    "Inventory", "Dem")},
                 {"Tent", new Item(new Vector3(1,0f,0), "Tent",
                     "Inventory", "Dem")},
                 {"Dog Crate", new Item(new Vector3(2,0f,0), "Dog Crate",
@@ -97,6 +93,9 @@ public static class GlobalItemList
         if (isInApartment)
         {
             itemList.Add(
+                "Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
+                    "PreQuakeHouse", ""));
+            itemList.Add(
                 "Bucket", new Item(new Vector3(0, 0f, 0), "Bucket",
           "Inventory", "Carlos"));
             itemList.Add(
@@ -105,9 +104,15 @@ public static class GlobalItemList
             itemList.Add(
                 "Bag", new Item(new Vector3(0, 0f, 0), "Bag",
                     "Inventory", "Annette"));
+            itemList.Add(
+                "Dirty Water Bottle", new Item(new Vector3(0,0f,0), "Dirty Water Bottle",
+                "Inventory", "Dem"));
         }
         else
         {
+            itemList.Add(
+                "Dirty Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Dirty Water Bottle",
+                "PreQuakeHouse", ""));
             itemList.Add(
                 "Plywood", new Item(new Vector3(0, 0f, 0), "Plywood",
                 "Inventory", "Carlos"));
@@ -117,6 +122,9 @@ public static class GlobalItemList
             itemList.Add(
                 "Rope", new Item(new Vector3(0, 0f, 0), "Rope",
                 "Inventory", "Annette"));
+            itemList.Add(
+                "Bleach", new Item(new Vector3(0,0f,0), "Bleach",
+                    "Inventory", "Dem"));
         }
     }
     
