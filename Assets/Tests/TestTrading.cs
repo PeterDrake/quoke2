@@ -16,6 +16,9 @@ public class TestTrading
     [UnitySetUp]
     public IEnumerator Setup()
     {
+        GlobalControls.Reset();
+        GlobalItemList.Reset();
+        
         SceneManager.LoadScene("TitleScreen");
         
         yield return null;
@@ -48,12 +51,10 @@ public class TestTrading
     [UnityTest]
     public IEnumerator TradesItemSuccessfully()
     {
-        // Walk into Angie
-        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+        yield return WalkToAngie();
         // Wait for trading UI
         yield return new WaitForSeconds(0.5f);
-        // Navigate through dialogue to trading
-        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
+        yield return GetToTradeAngie();
         // Trade thing with Angie
         yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
         // Check that the items were traded successfully 
@@ -63,5 +64,81 @@ public class TestTrading
             .inventories[(int)InventoryE.Player];
         Assert.True(playerInventory.items[0].name == "Knife(Clone)"
             && playerInventory.items[3].name == "Blanket(Clone)");
+    }
+    
+    [UnityTest]
+    public IEnumerator UnableToTradeNPCNeededItem()
+    {
+        yield return WalkToAngie();
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        yield return GetToTradeAngie();
+        // Trade thing with Angie
+        yield return QuokeTestUtils.Press(" < < ~", playerKeyboard, cheatKeyboard);
+        // Check that the items were traded successfully 
+        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPC].items[2].name == "First Aid Kit(Clone)");
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Knife(Clone)"
+                    && playerInventory.items[3].name == "Blanket(Clone)");
+        // Attempt to add the First Aid Kit back to us
+        yield return QuokeTestUtils.Press(" ", playerKeyboard, cheatKeyboard);
+        // Check to make sure the item was not added to the NPC bin
+        Assert.Null(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPCBin].items[0]);
+    }
+
+    [UnityTest]
+    public IEnumerator ValidTradesForUnneededItems()
+    {
+        yield return WalkToAngie();
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        yield return GetToTradeAngie();
+        // Try invalid trade with Angie
+        yield return QuokeTestUtils.Press(">> <<< < ", playerKeyboard, cheatKeyboard);
+        // Check that the items weren't traded successfully
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.Null(playerInventory.items[2]);
+        // Try a valid trade
+        yield return QuokeTestUtils.Press("<<<<<  ~", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        // Check that the items were traded successfully 
+        Assert.True(playerInventory.items[2].name == "Knife(Clone)");
+    }
+
+    [UnityTest]
+    public IEnumerator IOUReceiveAndFunction()
+    {
+        yield return WalkToAngie();
+        // Wait for trading UI
+        yield return new WaitForSeconds(0.5f);
+        yield return GetToTradeAngie();
+        // Trade with Angie
+        yield return QuokeTestUtils.Press(" < ~", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        // Check that the items were traded successfully 
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Knife(Clone)");
+        yield return new WaitForSeconds(0.5f);
+        // Trade using the IOU
+        yield return QuokeTestUtils.Press("< ~", playerKeyboard, cheatKeyboard);
+        Assert.True(playerInventory.items[3].name == "Blanket(Clone)");
+    }
+
+    public IEnumerator WalkToAngie()
+    {
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard, cheatKeyboard);
+    }
+    
+    /*
+     * Gets the player through the first dialogue tree of Angie's so they are able to trade with her.
+     */
+    public IEnumerator GetToTradeAngie()
+    {
+        yield return QuokeTestUtils.Press("    >  ", playerKeyboard, cheatKeyboard);
     }
 }
