@@ -40,16 +40,16 @@ public class PreQuakeHouseEventManager : MonoBehaviour
     
     private bool AllContainersFull()
     {
-        int fullCount = 0;
+        int goodPlaceFullCount = 0;
         foreach (StorageContainer container in containers)
         {
-            if (container.contents)
+            if (container.contents && container.isGoodPlace)
             {
-                fullCount++;
+                goodPlaceFullCount++;
             }
         }
 
-        if (fullCount < 2) return false;
+        if (goodPlaceFullCount < 2) return false;
         return true;
     }
 }
