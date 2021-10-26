@@ -61,7 +61,7 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private KeyCode keyDown = KeyCode.JoystickButton0;
 
-    void Start()
+    void InitalizeManagers()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         tradeManager = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>();
@@ -70,6 +70,10 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         metersCanvas = referenceManager.metersCanvas;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+    }
+
+    void HandleTooltip()
+    {
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
             npcInventoryTooltipSprites = new Image[4];
@@ -107,6 +111,11 @@ public class PlayerKeyboardManager : MonoBehaviour
 
             referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
+    }
+    void Start()
+    {
+        InitalizeManagers();
+        HandleTooltip();
 
         player = referenceManager.player.GetComponent<PlayerMover>();
         deathCanvas = referenceManager.deathCanvas;
@@ -117,13 +126,13 @@ public class PlayerKeyboardManager : MonoBehaviour
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
         selected = Resources.Load<Sprite>("SelectedSlot 1");
 
-        int k = 0;
+        int index = 0;
         foreach (Transform child in npcInteractedCanvas.GetComponentsInChildren<Transform>(true))
         {
             if (child.name.EndsWith("Panel"))
             {
-                npcFrames[k] = child.Find("Frame").gameObject;
-                k++;
+                npcFrames[index] = child.Find("Frame").gameObject;
+                index++;
             }
         }
 
