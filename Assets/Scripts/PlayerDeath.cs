@@ -78,7 +78,7 @@ public class PlayerDeath : MonoBehaviour
     }
     public void KillPlayer(GameObject callingObject, int y)
     {
-        GameObject.Find("Managers").GetComponent<ReferenceManager>().keyboardManager.GetComponent<PlayerKeyboardManager>().SetDeath();
+        GameObject.Find("Managers").GetComponent<ReferenceManager>().gameStateManager.GetComponent<GameStateManager>().SetDeath();
         playerDeath = true;
         callingObject.SetActive(false);
         DeathType(y);

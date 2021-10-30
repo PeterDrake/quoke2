@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,25 +14,25 @@ public class TooltipManager : MonoBehaviour
     private Image[] npcInventoryTooltipSprites;
     private GameObject npcInventoryTooltip;
     private Text[] npcInventoryTooltipItemName;
+    public Text pointsText;
     
     private Sprite unselected;
     private Sprite selected;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
+        {
+            if (child.gameObject.name.Equals("Points")) pointsText = child.gameObject.GetComponentInChildren<Text>();
+        }
+        
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
         selected = Resources.Load<Sprite>("SelectedSlot 1");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void HandleTooltip()
     {
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
@@ -40,14 +41,17 @@ public class TooltipManager : MonoBehaviour
             npcInventoryTooltipItemName = new Text[4];
             int i = 0;
             int j = 0;
-            foreach (Transform child in referenceManager.tooltipCanvas.GetComponentsInChildren<Transform>(true))
+            foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
             {
                 if (child.gameObject.name.Equals("Tooltip"))
                 {
                     toolTips = child.gameObject;
                     tooltipText = child.gameObject.GetComponentInChildren<Text>(true);
                 }
-                else if (child.gameObject.name.Equals("Objectives")) objectives = child.gameObject;
+                else if (child.gameObject.name.Equals("Objectives"))
+                {
+                    objectives = child.gameObject;
+                }
                 else if (child.gameObject.name.Equals("NPC Inventory"))
                 {
                     npcInventoryTooltip = child.gameObject;
@@ -69,7 +73,7 @@ public class TooltipManager : MonoBehaviour
                 }
             }
 
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+            pointsText.text = GlobalControls.CurrentPoints.ToString();
         }
     }
 

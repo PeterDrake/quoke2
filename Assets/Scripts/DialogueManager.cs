@@ -16,12 +16,14 @@ public class DialogueManager : MonoBehaviour
     public ConvoNode currentNode;
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private GameStateManager gameStateManager;
     private DialogueUI dialogueUI;
     private GameObject npcInteractedCanvas;
 
     private void Start()
     {
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
     }
 
@@ -36,6 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginConversation()
     {
+        Debug.Log(dialogueUI);
         dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
         
         //Paste the path of the xml file you want to look at here
@@ -194,14 +197,14 @@ public class DialogueManager : MonoBehaviour
         if (currentNode.nodeName.Contains("trade") || currentNode.nodeName.Contains("need"))
         {
             buttons[cursorLocation].Select();
-            keyboardManager.SetTrading();
+            gameStateManager.SetTrading();
             return cursorLocation;
         }
         
         if (currentNode.nodeName.Contains("leave"))
         {
             buttons[cursorLocation].Select();
-            keyboardManager.SetExploring();
+            gameStateManager.SetExploring();
             return cursorLocation;
         }
 

@@ -30,6 +30,7 @@ public class TradeManagerUI : MonoBehaviour
  
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager keyboardManager;
+    private GameStateManager gameStateManager;
     private TradeManager tradeLogic;
     private Text tooltipText;
 
@@ -74,6 +75,7 @@ public class TradeManagerUI : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         inventories[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUIs[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
@@ -324,7 +326,7 @@ public class TradeManagerUI : MonoBehaviour
                         new Vector3(i, 0, 0), "Player");
             }  
         }
-        keyboardManager.SetConversing();
+        gameStateManager.SetConversing();
     }
 
     

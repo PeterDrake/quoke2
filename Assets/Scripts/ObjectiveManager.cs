@@ -14,8 +14,9 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentObjective = "";
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+
+        currentObjective = "";
     }
     
     public void UpdateObjectiveBanner()
