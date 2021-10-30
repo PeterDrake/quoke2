@@ -38,7 +38,6 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginConversation()
     {
-        Debug.Log(dialogueUI);
         dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
         
         //Paste the path of the xml file you want to look at here
