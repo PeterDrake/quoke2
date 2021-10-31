@@ -63,6 +63,8 @@ public class SceneManagement : MonoBehaviour
                 GameObject.Find("Shed 2").GetComponent<StorageContainer>(),
                 GameObject.Find("Cabinet 1").GetComponent<StorageContainer>(),
                 GameObject.Find("Cabinet 2").GetComponent<StorageContainer>(),
+                GameObject.Find("Cabinet 3").GetComponent<StorageContainer>(),
+                GameObject.Find("Cabinet 4").GetComponent<StorageContainer>(),
             };
             foreach (StorageContainer container in containers)
             {
@@ -91,6 +93,8 @@ public class SceneManagement : MonoBehaviour
                 GameObject.Find("Shed 2").GetComponent<StorageContainer>(),
                 GameObject.Find("Cabinet 1").GetComponent<StorageContainer>(),
                 GameObject.Find("Cabinet 2").GetComponent<StorageContainer>(),
+                GameObject.Find("Cabinet 3").GetComponent<StorageContainer>(),
+                GameObject.Find("Cabinet 4").GetComponent<StorageContainer>(),
             };
             foreach (StorageContainer container in containers)
             {
