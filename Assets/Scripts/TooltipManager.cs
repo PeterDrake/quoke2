@@ -87,8 +87,7 @@ public class TooltipManager : MonoBehaviour
             tooltipText.text = GlobalControls.npcList[npc].description;
             npcInventoryTooltip.SetActive(true);
             npcInventoryTooltipName.text =
-                GlobalControls.npcList[npc].name + //GlobalControls.npcList[npcList[cursorLocation - inventory.items.Length]].name +
-                "'s Inventory";
+                GlobalControls.npcList[npc].name + "'s Inventory";
         
             for (int j = npcInventoryTooltipSprites.Length - 1; j >= 0; j--)
             {
@@ -99,7 +98,7 @@ public class TooltipManager : MonoBehaviour
             foreach (Item item in GlobalItemList.ItemList.Values)
             {
                 if (item.scene.Equals("Inventory") &&
-                    item.containerName.Equals(npc)) // Equals(npcList[cursorLocation - inventory.items.Length]))
+                    item.containerName.Equals(npc))
                 {
                     GameObject prefab = (GameObject) Resources.Load(item.name, typeof(GameObject));
                     Sprite sprite = prefab.GetComponent<Collectible>().sprite;

@@ -83,17 +83,6 @@ public class PlayerKeyboardManager : MonoBehaviour
                 index++;
             }
         }
-        
-        if (gameStateManager.NPCInteractedInScene())
-        {
-            referenceManager.npcInteractedCanvas.SetActive(true);
-
-            for (int i = 0; i < validNPCInputs.Length; i++)
-            {
-                npcFrames[i].GetComponent<Image>().sprite = unselected;
-            }
-        }
-        else referenceManager.npcInteractedCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -566,5 +555,30 @@ public class PlayerKeyboardManager : MonoBehaviour
     public void SetInventoryNumber(int number)
     {
         inventoryNumber = number;
+    }
+
+    public void EnableStrategicMapKeyboard()
+    {
+        gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
+    }
+    
+    public void DisableStrategicMapKeyboard()
+    {
+        gameObject.GetComponent<StrategicMapKeyboardController>().enabled = false;
+    }
+
+    public void EnableNPCInteracted()
+    {
+        // GameStateManager will call this method once before PlayerKeyboardManager has run it's start method
+        // This check is to prevent that from throwing an error
+        if (referenceManager)
+        {
+            referenceManager.npcInteractedCanvas.SetActive(true);
+            
+            for (int i = 0; i < validNPCInputs.Length; i++)
+            {
+                npcFrames[i].GetComponent<Image>().sprite = unselected;
+            }
+        }
     }
 }

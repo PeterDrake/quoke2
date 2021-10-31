@@ -30,6 +30,7 @@ public class GameStateManager : MonoBehaviour
     private bool pointsInScene = true;
     
     private Inventory inventory;
+    private InventoryUI inventoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,8 @@ public class GameStateManager : MonoBehaviour
         metersCanvas = referenceManager.metersCanvas;
 
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        
+        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+
         tooltipManager.HandleTooltip();
 
         //Handle start of scene things
@@ -89,7 +91,7 @@ public class GameStateManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
         {
-            gameObject.GetComponent<StrategicMapKeyboardController>().enabled = true;
+            keyboardManager.EnableStrategicMapKeyboard();
             enabled = false;
         }
         else if (GlobalControls.CurrentObjective <= 4)
@@ -157,7 +159,7 @@ public class GameStateManager : MonoBehaviour
             keyboardManager.SetCursorLocation(0);
 
             //Update to show Inventory selected
-            //inventoryUI.EnableSelectedSlot(); see if removing this breaks anything
+            inventoryUI.EnableSelectedSlot();
             inventory.SelectSlotNumber(0);
         }
 
@@ -167,6 +169,12 @@ public class GameStateManager : MonoBehaviour
             referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
         }
         else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
+        
+        if (npcInteractedInScene)
+        {
+            keyboardManager.EnableNPCInteracted();
+        }
+        else referenceManager.npcInteractedCanvas.SetActive(false);
 
         tooltipManager.SetNPCInventoryTooltipInactive();
 
