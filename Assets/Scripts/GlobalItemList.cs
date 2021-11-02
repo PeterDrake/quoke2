@@ -36,10 +36,6 @@ public static class GlobalItemList
         isInApartment = GlobalControls.globalControlsProperties.Contains("apartmentCondition");
         itemList = new Dictionary<string, Item>
             {
-                {"Baseball Cap", new Item(new Vector3(-2.5f,0.5f,7.5f), "Baseball Cap",
-                    "PreQuakeHouse", "")},
-                {"Hand Lotion", new Item(new Vector3(6.5f,0.5f,-7.5f), "Hand Lotion",
-                    "PreQuakeHouse", "")},
                 {"Book", new Item(new Vector3(-5.5f,0.5f,-7.5f), "Book",
                     "PreQuakeHouse", "")},
                 {"Flashlight", new Item(new Vector3(3.5f,0.5f,3.5f), "Flashlight",
@@ -93,6 +89,12 @@ public static class GlobalItemList
         if (isInApartment)
         {
             itemList.Add(
+                "Hand Lotion", new Item(new Vector3(4.5f,0.5f,-8.5f), "Hand Lotion",
+                    "PreQuakeHouse", ""));
+            itemList.Add(
+                "Baseball Cap", new Item(new Vector3(0f,0.5f,7.5f), "Baseball Cap",
+                    "PreQuakeHouse", ""));
+            itemList.Add(
                 "Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
                     "PreQuakeHouse", ""));
             itemList.Add(
@@ -110,6 +112,12 @@ public static class GlobalItemList
         }
         else
         {
+            itemList.Add(
+                "Hand Lotion", new Item(new Vector3(6.5f,0.5f,-7.5f), "Hand Lotion",
+                "PreQuakeHouse", ""));
+            itemList.Add(
+                "Baseball Cap", new Item(new Vector3(-2.5f,0.5f,7.5f), "Baseball Cap",
+                "PreQuakeHouse", ""));
             itemList.Add(
                 "Dirty Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Dirty Water Bottle",
                 "PreQuakeHouse", ""));

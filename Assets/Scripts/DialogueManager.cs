@@ -77,8 +77,13 @@ public class DialogueManager : MonoBehaviour
         {
             keyboardManager.leftTrading = false;
 
+            //If Angie is given the first aid kit, update globalControlsProperties to say Angie has the first aid kit
+            //Move to the appropriate dialogue node
             if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && GlobalControls.CurrentNPC.Contains("Angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && 
+                GlobalControls.CurrentNPC.Contains("Angie") && 
+                !GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen"))
 
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
@@ -94,8 +99,12 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                     npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
+            //If Angie is given the epi pen and already has the first aid kit, update globalControlsProperties to say
+            //Angie has the epi pen. Move to the appropriate dialogue node
             else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") && 
-                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("Angie"))
+                !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") && GlobalControls.CurrentNPC.Contains("Angie") && 
+                GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") && 
+                GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit"))
             
                 if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
                 {                        
@@ -108,6 +117,30 @@ public class DialogueManager : MonoBehaviour
                 {                        
                     GlobalControls.SetCheckpoint("basic_angie_9.0");
                     currentNode = forest["leave_angie_1"];
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
+                }
+            //If Angie is given the first aid kit and the epi pen at the same time, update globalControlsProperties to
+            //say Angie has the first aid kit and the epi pen. Move to the appropriate dialogue node
+            else if (!GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") &&
+                     !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") && 
+                     GlobalControls.CurrentNPC.Contains("Angie") && 
+                     GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") &&
+                     GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie"))
+            
+                if(!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_8.0");
+                    currentNode = forest["leave_angie_0"];
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
+                    GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
+                    npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
+                }
+                else
+                {                        
+                    GlobalControls.SetCheckpoint("basic_angie_9.0");
+                    currentNode = forest["leave_angie_1"];
+                    GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                     GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
                     npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                 }
