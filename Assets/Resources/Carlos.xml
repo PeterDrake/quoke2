@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+    <basic_carlos_0>
+        <playerOptions>
+            <option>Carlos Drink</option>
+            <option>Carlos Trade</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_carlos_0.1</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </basic_carlos_0>
+
+    <action0_carlos_0.1>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_carlos_0.2</keyName>
+            <keyName>leave_carlos_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </action0_carlos_0.1>
+
+    <success0_carlos_0.2>
+        <playerOptions>
+            <option>You're welcome</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_carlos_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>*SLURP*</npcText>
+    </success0_carlos_0.2>
+
+    <trade_carlos_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Carlos Now Trading...</npcText>
+    </trade_carlos_0>
+
+    <leave_carlos_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Carlos Goodbye</npcText>
+    </leave_carlos_0>
+
+</convoForest>

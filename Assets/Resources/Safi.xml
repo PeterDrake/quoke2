@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+
+    <basic_safi_0>
+        <playerOptions>
+            <option>
+                <b>Rescue Safi</b>
+            </option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>checkpoint_safi_1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Anyone there?! Help me!</npcText>
+    </basic_safi_0>
+
+    <trade_safi_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Let's trade!</npcText>
+    </trade_safi_0>
+
+    <leave_safi_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Goodbye!</npcText>
+    </leave_safi_0>
+
+    <checkpoint_safi_1>
+        <playerOptions>
+            <option>Shut Off Water</option>
+            <option>Shut of Gas</option>
+            <option>Trade</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_safi_1.1</keyName>
+            <keyName>action1_safi_1.2</keyName>
+            <keyName>trade_safi_0</keyName>
+        </keys>
+
+        <npcText>Thank you! But my house is still in danger! Halp!</npcText>
+    </checkpoint_safi_1>
+
+    <action0_safi_1.1>
+        <playerOptions>
+            <option>I have one right here! Let's get started!</option>
+            <option>I don't have one right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_safi_1.3</keyName>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+    </action0_safi_1.1>
+
+    <success0_safi_1.3>
+        <playerOptions>
+            <option>You are welcome!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Okay thank you!</npcText>
+
+    </success0_safi_1.3>
+
+    <action1_safi_1.2>
+        <playerOptions>
+            <option>I have one right here! Let's get started!</option>
+            <option>I don't have one right now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success1_safi_1.4</keyName>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>My water heater needs to be shut off! Do you have a wrench?</npcText>
+    </action1_safi_1.2>
+
+    <success1_safi_1.4>
+        <playerOptions>
+            <option>You are welcome!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Okay thank you!</npcText>
+
+    </success1_safi_1.4>
+    
+</convoForest>

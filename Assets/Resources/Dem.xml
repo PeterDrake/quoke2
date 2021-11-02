@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+
+    <basic_dem_0>
+        <playerOptions>
+            <option>Help Demitrius with Foraging</option>
+            <option>Give Demitrius a Drink</option>
+            <option>Trade with Demitrius</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_dem_0.1</keyName>
+            <keyName>action1_dem_0.3</keyName>
+            <keyName>trade_dem_0</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </basic_dem_0>
+
+    <action0_dem_0.1>
+        <playerOptions>
+            <option>Do the thing!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_dem_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you! Teach me your ways</npcText>
+    </action0_dem_0.1>
+
+    <success0_dem_0.2>
+        <playerOptions>
+            <option>Complete foraging</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you!</npcText>
+    </success0_dem_0.2>
+
+    <action1_dem_0.3>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success1_dem_0.4</keyName>
+            <keyName>refusewaterdem</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </action1_dem_0.3>
+
+    <success0_dem_0.4>
+        <playerOptions>
+            <option>Complete water</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you! *Slurp*</npcText>
+    </success0_dem_0.4>
+
+    <trade_dem_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Demitrius Now Trading...</npcText>
+    </trade_dem_0>
+
+    <leave_dem_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Goodbye!</npcText>
+    </leave_dem_0>
+    
+</convoForest>

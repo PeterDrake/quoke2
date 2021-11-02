@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+    <basic_rainer_0>
+        <playerOptions>
+            <option>Rainer Action</option>
+            <option>Rainer Drink</option>
+            <option>Rainer Trade</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_rainer_0.1</keyName>
+            <keyName>action1_rainer_0.3</keyName>
+            <keyName>trade_rainer_0</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </basic_rainer_0>
+
+    <action0_rainer_0.1>
+        <playerOptions>
+            <option>Rainer Start action</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_rainer_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you! Save me!</npcText>
+    </action0_rainer_0.1>
+
+    <success0_rainer_0.2>
+        <playerOptions>
+            <option>Rainer Finish action</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_rainer_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh wow, thank you!</npcText>
+    </success0_rainer_0.2>
+
+    <action1_rainer_0.3>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success1_rainer_0.4</keyName>
+            <keyName>leave_rainer_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh, sure. Do you have any water?</npcText>
+    </action1_rainer_0.3>
+
+    <success1_rainer_0.4>
+        <playerOptions>
+            <option>Go back</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_rainer_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Oh thank you! This should help me for a bit.</npcText>
+    </success1_rainer_0.4>
+
+    <trade_rainer_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Rainer Now Trading...</npcText>
+    </trade_rainer_0>
+
+    <leave_rainer_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Rainer Goodbye</npcText>
+    </leave_rainer_0>
+</convoForest>

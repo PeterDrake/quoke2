@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
 
         //Paste the path of the xml file you want to look at here
-        TextAsset text = Resources.Load<TextAsset>("2TestTree");
+        TextAsset text = Resources.Load<TextAsset>(GlobalControls.CurrentNPC);
         convoFile.LoadXml(text.text);
 
         //looks through all the npc nodes instead of looking at just the <convoForest> tag
@@ -147,7 +147,6 @@ public class DialogueManager : MonoBehaviour
                 else
                     currentNode = forest["leave_error"];
             }
-
             Debug.Log("Current Node: " + currentNode.nodeName);
         }
 

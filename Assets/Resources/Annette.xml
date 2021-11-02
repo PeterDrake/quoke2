@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+    <basic_annette_0>
+        <playerOptions>
+            <option>Help Annette with Translation</option>
+            <option>Give Annette a Drink</option>
+            <option>Trade with Annette</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_annette_0.1</keyName>
+            <keyName>action1_annette_0.3</keyName>
+            <keyName>trade_annette_0</keyName>
+        </keys>
+
+        <npcText>That quake was no joke. Are you okay at least?</npcText>
+    </basic_annette_0>
+
+    <action0_annette_0.1>
+        <playerOptions>
+            <option>I'ma help ya!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_annette_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Tanks hooman!</npcText>
+    </action0_annette_0.1>
+
+    <success0_annette_0.2>
+        <playerOptions>
+            <option>Glad to help!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_annette_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
+    </success0_annette_0.2>
+
+    <action1_annette_0.3>
+        <playerOptions>
+            <option>I have water right here!</option>
+            <option>I don't have any water right now...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success1_annette_0.4</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>I could use some water. You got any on you?</npcText>
+    </action1_annette_0.3>
+
+    <success1_annette_0.4>
+        <playerOptions>
+            <option>Hydrate or diedrate!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_annette_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
+    </success1_annette_0.4>
+
+    <trade_annette_0>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Annette Now Trading...</npcText>
+    </trade_annette_0>
+
+    <leave_annette_0>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+
+        <npcText>Annette Goodbye</npcText>
+    </leave_annette_0>
+    
+</convoForest>
