@@ -4590,6 +4590,7 @@ GameObject:
   - component: {fileID: 129728785581336382}
   - component: {fileID: 129728785581336381}
   - component: {fileID: 129728785581336380}
+  - component: {fileID: 1062009340694651273}
   m_Layer: 5
   m_Name: Tooltip Canvas
   m_TagString: Untagged
@@ -4682,6 +4683,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1062009340694651273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728785581336386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b947169c571f4048a2081ee104d84d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &129728785611990049
 GameObject:
   m_ObjectHideFlags: 0
@@ -9085,8 +9098,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129728785262642543}
   m_HandleRect: {fileID: 129728785262642542}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14906,7 +14919,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129728785097119347}
   m_HandleRect: {fileID: 129728785097119346}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
