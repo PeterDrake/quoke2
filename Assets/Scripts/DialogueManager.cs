@@ -242,7 +242,31 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.npcList[GlobalControls.CurrentNPC].dialogueList
             .Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
-        currentNode = forest[currentNode.nextNode[cursorLocation]];
+        string nextNode = currentNode.nextNode[cursorLocation];
+        if (nextNode.Contains("dynamic_option"))
+        {
+            if (currentNode.nodeName.Equals("basic_rainer_3.0"))
+            {
+                if (!GlobalItemList.ItemList["Tent"].containerName.Equals("Rainer"))
+                {
+                    currentNode = forest["basic_rainer_3.1"];
+                }
+                else currentNode = forest["basic_rainer_3.2"];
+            }
+            
+            if (currentNode.nodeName.Equals("basic_rainer_4.0"))
+            {
+                if (true) // Have not comforted Rainer
+                {
+                    currentNode = forest["basic_rainer_3.1"];
+                }
+                else currentNode = forest["leave_rainer_4.1"];
+            }
+        }
+        else
+        {
+            currentNode = forest[nextNode];
+        }
         Debug.Log("Current Node " + currentNode.nodeName);
 
         for (int i = 0; i < currentNode.nextNode.Count; i++)
@@ -295,8 +319,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[i].gameObject.SetActive(false);
                 }
             }
-
-            if (node.Contains("action"))
+            else if (node.Contains("action"))
             {
                 if (GlobalControls.npcList[GlobalControls.CurrentNPC]
                     .actionsComplete[Int32.Parse(node.Substring(6, 1))])
@@ -305,8 +328,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[i].gameObject.SetActive(false);
                 }
             }
-
-            if (node.Contains("success"))
+            else if (node.Contains("success"))
             {
                 if (!GlobalControls.npcList[GlobalControls.CurrentNPC]
                         .actionRequirements[Int32.Parse(node.Substring(7, 1))].Equals("") &&
