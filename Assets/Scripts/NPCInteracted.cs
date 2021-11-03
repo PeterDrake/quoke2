@@ -66,11 +66,13 @@ public class NPCInteracted : MonoBehaviour
         {
             if(npc.satisfaction >= i)
             {
+                Debug.Log("satisfaction up!");
                 stars[i].gameObject.SetActive(true);
 
             }
             else
             {
+                Debug.Log("satisfaction down...");
                 stars[i].gameObject.SetActive(false);
             }
 
