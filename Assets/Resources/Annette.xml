@@ -1,86 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <convoForest>
     <basic_annette_0>
+        <npcText>...</npcText>
         <playerOptions>
-            <option>Help Annette with Translation</option>
-            <option>Give Annette a Drink</option>
-            <option>Trade with Annette</option>
+            <option>*remain silent*</option>
+            <option>Hello?</option>
+            <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>action0_annette_0.1</keyName>
-            <keyName>action1_annette_0.3</keyName>
-            <keyName>trade_annette_0</keyName>
+            <keyName>basic_annette_0.1</keyName>
+            <keyName>basic_annette_2.1</keyName>
+            <keyName></keyName>
         </keys>
-
-        <npcText>That quake was no joke. Are you okay at least?</npcText>
     </basic_annette_0>
 
-    <action0_annette_0.1>
+    <basic_annette_0.1>
+        <npcText>....</npcText>
         <playerOptions>
-            <option>I'ma help ya!</option>
+            <option>*remain silent*</option>
+            <option>Hello?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_annette_0.2</keyName>
+            <keyName>basic_annette_2.1</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_0.1>
+    
+    <basic_annette_0.2>
+        <npcText>.....</npcText>
+        <playerOptions>
+            <option>*remain silent*</option>
+            <option>Hello?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_annette_0.3</keyName>
+            <keyName>basic_annette_2.1</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_0.2>
+
+    <basic_annette_0.3>
+        <npcText>......</npcText>
+        <playerOptions>
+            <option>*remain silent*</option>
+            <option>Hello?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_annette_0.4</keyName>
+            <keyName>basic_annette_2.1</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_0.3>
+
+    <basic_annette_0.4>
+        <npcText>I've got it! I need a leash and a dog crate.</npcText>
+        <playerOptions>
+            <option>What?</option>
             <option></option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>success0_annette_0.2</keyName>
+            <keyName>basic_annette_0.4.1</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
+    </basic_annette_0.4>
 
-        <npcText>Tanks hooman!</npcText>
-    </action0_annette_0.1>
-
-    <success0_annette_0.2>
+    <basic_annette_0.4.1>
+        <npcText>Sorry. I should introduce myself. I’m Annette, a NET. I need a leash and a dog crate to catch that dog. If it keeps running around, it is bound to get hurt.</npcText>
         <playerOptions>
-            <option>Glad to help!</option>
-            <option></option>
-            <option></option>
+            <option>I’ll keep my eye out for those.</option>
+            <option>I actually have a leash right here!</option>
+            <option>I have a dog crate right here!</option>
         </playerOptions>
 
         <keys>
-            <keyName>leave_annette_0</keyName>
-            <keyName></keyName>
-            <keyName></keyName>
+            <keyName>basic_annette_0.4.2</keyName>
+            <keyName>trade_annette_0.5</keyName>
+            <keyName>trade_annette_0.5</keyName>
         </keys>
+    </basic_annette_0.4.1>
 
-        <npcText>Appreciate it, kid. Now we can at least communicate better.</npcText>
-    </success0_annette_0.2>
-
-    <action1_annette_0.3>
-        <playerOptions>
-            <option>I have water right here!</option>
-            <option>I don't have any water right now...</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>success1_annette_0.4</keyName>
-            <keyName>leave_annette_0</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>I could use some water. You got any on you?</npcText>
-    </action1_annette_0.3>
-
-    <success1_annette_0.4>
-        <playerOptions>
-            <option>Hydrate or diedrate!</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>leave_annette_0</keyName>
-            <keyName></keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>You're a literal life saver, kid. Appreciate it.</npcText>
-    </success1_annette_0.4>
-
-    <trade_annette_0>
+    <trade_annette_0.5>
+        <npcText>Really?! I could give you some supplies for that.</npcText>
         <playerOptions>
             <option>(Start Trading)</option>
             <option></option>
@@ -92,11 +103,55 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
+    </trade_annette_0.5>
 
-        <npcText>Annette Now Trading...</npcText>
-    </trade_annette_0>
+    <basic_annette_0.6>
+        <npcText>Thank you! Is there anything else you need?</npcText>
+        <playerOptions>
+            <option>I think a better question is, do you need anything else?</option>
+            <option>Now that you mention it, I have some more things to trade.</option>
+            <option>No, I’m good. See you around!</option>
+        </playerOptions>
 
-    <leave_annette_0>
+        <keys>
+            <keyName>basic_annette_0.8</keyName>
+            <keyName>trade_annette_0.7</keyName>
+            <keyName>leave_annette_0</keyName>
+        </keys>
+    </basic_annette_0.6>
+
+    <trade_annette_0.7>
+        <npcText>Okay. I have some supplies around here.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_annette_0.7>
+
+    <basic_annette_0.8>
+        <npcText>I have somebody here who only speaks Vietnamese. Their tone tells me that they need something, but I have no clue what they need. I learned the basics of many languages while I was overseas, but Vietnamese wasn’t one of them.</npcText>
+        <playerOptions>
+            <option>I speak Vietnamese! Let me talk to them.</option>
+            <option>That’s really hard. Good luck finding someone who speaks Vietnamese.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0</keyName>
+            <keyName>leave_annette_0.9</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_0.8>
+    
+    <leave_annette_0.9>
+        <npcText>Thanks. If you need anything let me know.</npcText>
         <playerOptions>
             <option>(Start Exploring)</option>
             <option></option>
@@ -108,8 +163,337 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
+    </leave_annette_0.9>
 
-        <npcText>Annette Goodbye</npcText>
-    </leave_annette_0>
-    
+    <basic_annette_2.1>
+        <npcText>What is it? Can’t you see that I’m busy?!</npcText>
+        <playerOptions>
+            <option>What is it that you’re busy with?</option>
+            <option>I’ll leave you alone.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_annette_2.3</keyName>
+            <keyName>leave_annette_2.2</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_2.1>
+
+    <leave_annette_2.2>
+        <npcText>Thank you. I need to get back to work.</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_annette_2.2>
+
+    <basic_annette_2.3>
+        <npcText>I need to catch this dog. It’s going to hurt itself. In order to do that I need a leash and a dog crate. Unless you can get me those, please let me work.</npcText>
+        <playerOptions>
+            <option>I actually have that on me right now!</option>
+            <option>I’ll keep my eye out for that.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_annette_0.5</keyName>
+            <keyName>basic_annette_0.6</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_2.3>
+
+    <basic_annette_1.0>
+        <npcText>Hey Duc. What’s up?</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I need some supplies. Do you want to trade?</option>
+            <option>Nothing much.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_annette_1.1</keyName>
+            <keyName>trade_annette_0</keyName>
+            <keyName>leave_annette_0</keyName>
+        </keys>
+    </basic_annette_1.0>
+
+    <basic_annette_1.1>
+        <npcText>I want to catch the dog that’s running through the square. I need a leash and a crate to do that.</npcText>
+        <playerOptions>
+            <option>I have that here!</option>
+            <option>I’ll keep my eye out for those.</option>
+            <option>Is there anything else I can help with?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_annette_1.2</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName>dynamic_option</keyName>
+        </keys>
+    </basic_annette_1.1>
+
+    <trade_annette_1.2>
+        <npcText>Perfect!</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_annette_1.2>
+
+    <basic_annette_1.3>
+        <npcText>Nope. I just need those two things.</npcText>
+        <playerOptions>
+            <option>I might have one in my backpack.</option>
+            <option>I’ll keep my eye out.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_annette_1.2</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_1.3>
+
+    <basic_annette_1.4>
+        <npcText>Maybe. I have somebody here who only speaks Vietnamese. Their tone tells me that they need something, but I have no clue what they need. I learned the basics of many languages while I was overseas, but Vietnamese wasn’t one of them.</npcText>
+        <playerOptions>
+            <option>I speak Vietnamese! Let me talk to them.</option>
+            <option>That’s really hard. Good luck finding someone who speaks Vietnamese.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0</keyName>
+            <keyName>leave_annette_0.9</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_1.4>
+
+    <basic_annette_3.0>
+        <npcText>Do you need something?</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I need some supplies. Do you have a surplus?</option>
+            <option>Nope.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>trade_annette_0</keyName>
+            <keyName>leave_annette_0</keyName>
+        </keys>
+    </basic_annette_3.0>
+
+    <basic_annette_3.1>
+        <npcText>I still need a leash to catch the dog. It’s really hard to corral them into the crate.</npcText>
+        <playerOptions>
+            <option>I have a leash here!</option>
+            <option>I’ll keep my eye out for the leash.</option>
+            <option>Is there anything else you need?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_annette_1.2</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName>basic_annette_1.4</keyName>
+        </keys>
+    </basic_annette_3.1>
+
+    <basic_annette_3.2>
+        <npcText>I still need a dog crate to keep the dog safe. This dog was not well trained and would have flunked out of basic training in an instant.</npcText>
+        <playerOptions>
+            <option>I have a crate here!</option>
+            <option>I’ll keep my eye out for the crate.</option>
+            <option>Is there anything else you need?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_annette_1.2</keyName>
+            <keyName>leave_annette_0</keyName>
+            <keyName>basic_annette_1.4</keyName>
+        </keys>
+    </basic_annette_3.2>
+
+    <basic_annette_5.0>
+        <npcText>Thanks for all your help Duc. What do you need?</npcText>
+        <playerOptions>
+            <option>I could ask you the same question, do you need anything else?</option>
+            <option>Want to trade?</option>
+            <option>Just checking on you. Stay safe!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>trade_annette_0</keyName>
+            <keyName>leave_annette_0</keyName>
+        </keys>
+    </basic_annette_5.0>
+
+    <basic_annette_5.1>
+        <npcText>You’ve been a big help around here already. I can handle the rest of it on my own.</npcText>
+        <playerOptions>
+            <option>Good to hear.</option>
+            <option>So why did you decide to become a NET?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_annette_0</keyName>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_annette_5.1>
+
+    <translation_annette_0>
+        <npcText>Come on! Can someone please tell me what’s going on?</npcText>
+        <playerOptions>
+            <option>Hi. I’m Duc. What’s your name?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.0.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0>
+
+    <translation_annette_0.0.1>
+        <npcText>Wait. That was Vietnamese! I almost missed it because I’m so used to not being able to understand people.</npcText>
+        <playerOptions>
+            <option>I can imagine that would make this whole situation a lot more difficult.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.0.1>
+
+    <translation_annette_0.0.2>
+        <npcText>You have no idea.</npcText>
+        <playerOptions>
+            <option>Are you hurt?</option>
+            <option>Who are you?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.1</keyName>
+            <keyName>translation_annette_0.2</keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.0.2>
+
+    <translation_annette_0.1>
+        <npcText>I’m not hurt, but I’m worried about my niece. Also, I’m tired of not understanding the people around me.</npcText>
+        <playerOptions>
+            <option>I'm glad you aren't hurt.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.1>
+
+    <translation_annette_0.2>
+        <npcText>Sorry. I should introduce myself. I’m TranslationName. I got off of the plane at PDX a couple of hours ago. Is it normal for people to take pictures of their feet?</npcText>
+        <playerOptions>
+            <option>Yeah... Welcome to Portland, Oregon.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.2.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.2>
+
+    <translation_annette_0.2.1>
+        <npcText>That’s a funny tradition. I was supposed to meet up with my niece and spend some time with her but the earthquake hit and now I don’t know how to find her. The phones are down so I can’t call her and I don’t know the city well enough to find my way.</npcText>
+        <playerOptions>
+            <option>I can help you out. Where do you need to go?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.3</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.2.1>
+
+    <translation_annette_0.3>
+        <npcText>She lives in the Park Avenue West Apartments, but I don’t know where those are.</npcText>
+        <playerOptions>
+            <option>I’ve been there! My friend NieceName lives there! If you walk down Yamhill Street two blocks and then turn right, you’ll get to the building.</option>
+            <option>I’ll let Annette know. She’ll point it out on a map for you.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>translation_annette_0.4</keyName>
+            <keyName>translation_annette_0.4</keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.3>
+
+    <translation_annette_0.4>
+        <npcText>Thank you so much! I’m so glad I met you Duc.</npcText>
+        <playerOptions>
+            <option>My pleasure.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </translation_annette_0.4>
+
+    <leave_error>
+        <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered
+            "Dialogue Error Exit Code 0". We will resume from my last checkpoint
+        </npcText>
+        <playerOptions>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+        </keys>
+    </leave_error>
 </convoForest>
