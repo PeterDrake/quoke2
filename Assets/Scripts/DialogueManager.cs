@@ -324,6 +324,7 @@ public class DialogueManager : MonoBehaviour
             }
 
             string node = currentNode.nextNode[i];
+            // I believe the need section is currently broken
             if (node.Contains("need"))
             {
                 Debug.Log("The next node's name" + currentNode.nextNode[i]);
@@ -339,6 +340,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[i].gameObject.SetActive(false);
                 }
             }
+            // If the player has already completed the action corresponding to this node/option, don't show it
             else if (node.Contains("action"))
             {
                 if (GlobalControls.npcList[GlobalControls.CurrentNPC]
@@ -348,6 +350,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[i].gameObject.SetActive(false);
                 }
             }
+            // If the player has doesn't have the item needed to complete an action, don't let them
             else if (node.Contains("success"))
             {
                 if (!GlobalControls.npcList[GlobalControls.CurrentNPC]
