@@ -90,7 +90,6 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["leave_angie_0"];
                         GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                         GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
                     else
                     {
@@ -98,7 +97,6 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["leave_angie_1"];
                         GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                         GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
 
                 //If Angie is given the first aid kit, update globalControlsProperties to say Angie has the first aid kit
@@ -111,14 +109,12 @@ public class DialogueManager : MonoBehaviour
                         GlobalControls.SetCheckpoint("basic_angie_4.0");
                         currentNode = forest["leave_angie_0.7"];
                         GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
                     else
                     {
                         GlobalControls.SetCheckpoint("basic_angie_5.0");
                         currentNode = forest["leave_angie_1.4"];
                         GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
                 //If Angie is given the epi pen (we assume that she already has the first aid kit),
                 //update globalControlsProperties to say Angie has the epi pen. Move to the appropriate dialogue node
@@ -130,14 +126,12 @@ public class DialogueManager : MonoBehaviour
                         GlobalControls.SetCheckpoint("basic_angie_8.0");
                         currentNode = forest["leave_angie_0"];
                         GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
                     else
                     {
                         GlobalControls.SetCheckpoint("basic_angie_9.0");
                         currentNode = forest["leave_angie_1"];
                         GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
-                        npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Angie");
                     }
 
                 else if (!GlobalControls.globalControlsProperties.Contains("angieSeriousDialogue"))
@@ -147,6 +141,34 @@ public class DialogueManager : MonoBehaviour
                 else
                     currentNode = forest["leave_error"];
             }
+            else 
+            {
+                int propertiesSet = 0;
+                string checkpoint = "basic_" + GlobalControls.CurrentNPC.ToLower() + "_";
+                string leave = "leave_" + GlobalControls.CurrentNPC.ToLower() + "_0";
+                // iterate through the npc's needs
+                foreach (string need in GlobalControls.npcList[GlobalControls.CurrentNPC].needs)
+                {
+                    string property = GlobalControls.CurrentNPC.ToLower() + "Has" + RemoveWhitespace(need);
+                    Debug.Log(property);
+                    // if we just traded it to them
+                    if (GlobalItemList.ItemList[need].containerName.Equals(GlobalControls.CurrentNPC) &&
+                        !GlobalControls.globalControlsProperties.Contains(property))
+                    {
+                        propertiesSet++;
+                        // set checkpoint to 3.0
+                        GlobalControls.SetCheckpoint(checkpoint + "3.0");
+                        // set the global controls property about it
+                        GlobalControls.globalControlsProperties.Add(property);
+                    }
+                    else if (GlobalControls.globalControlsProperties.Contains(property)) propertiesSet++;
+                }
+                // then if we set both are set now, set checkpoint to 4.0
+                if (propertiesSet == 2) GlobalControls.SetCheckpoint(checkpoint + "4.0");
+                currentNode = forest[leave];
+            }
+            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
+
             Debug.Log("Current Node: " + currentNode.nodeName);
         }
 
@@ -394,5 +416,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         return cursorLocation;
+    }
+    
+    public string RemoveWhitespace(string str) {
+        return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
     }
 }
