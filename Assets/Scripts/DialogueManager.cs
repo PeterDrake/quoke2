@@ -146,24 +146,22 @@ public class DialogueManager : MonoBehaviour
                 int propertiesSet = 0;
                 string checkpoint = "basic_" + GlobalControls.CurrentNPC.ToLower() + "_";
                 string leave = "leave_" + GlobalControls.CurrentNPC.ToLower() + "_0";
-                // iterate through the npc's needs
                 foreach (string need in GlobalControls.npcList[GlobalControls.CurrentNPC].needs)
                 {
                     string property = GlobalControls.CurrentNPC.ToLower() + "Has" + RemoveWhitespace(need);
                     Debug.Log(property);
-                    // if we just traded it to them
+                    // If we just traded this needed item to the NPC and therefore the GlobalControls property for it
+                    // has not yet been set
                     if (GlobalItemList.ItemList[need].containerName.Equals(GlobalControls.CurrentNPC) &&
                         !GlobalControls.globalControlsProperties.Contains(property))
                     {
                         propertiesSet++;
-                        // set checkpoint to 3.0
                         GlobalControls.SetCheckpoint(checkpoint + "3.0");
-                        // set the global controls property about it
                         GlobalControls.globalControlsProperties.Add(property);
                     }
                     else if (GlobalControls.globalControlsProperties.Contains(property)) propertiesSet++;
                 }
-                // then if we set both are set now, set checkpoint to 4.0
+                // If both properties are set now, set checkpoint to corresponding checkpoint
                 if (propertiesSet == 2) GlobalControls.SetCheckpoint(checkpoint + "4.0");
                 currentNode = forest[leave];
             }
