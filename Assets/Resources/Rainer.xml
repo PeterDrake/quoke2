@@ -24,7 +24,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_rainer_1.1</keyName>
+            <keyName>basic_rainer_1.1_checkpoint</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
@@ -39,13 +39,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_rainer_1.1</keyName>
+            <keyName>basic_rainer_1.1_checkpoint</keyName>
             <keyName>trade_rainer_0</keyName>
             <keyName>leave_rainer_0</keyName>
         </keys>
     </basic_rainer_1.0>
 
-    <basic_rainer_1.1>
+    <basic_rainer_1.1_checkpoint>
         <npcText>A little while after the earthquake a tree branch fell on my tent. I don’t have anywhere else to stay so I’m looking for a tent and a blanket. I can build myself back up, but I definitely need something to stave off the weather.</npcText>
         <playerOptions>
             <option>I have something that might help!</option>
@@ -54,13 +54,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_rainer_1.2</keyName>
+            <keyName>trade_rainer_1.2_checkpoint</keyName>
             <keyName>leave_rainer_0</keyName>
             <keyName>basic_rainer_2.2</keyName>
         </keys>
-    </basic_rainer_1.1>
+    </basic_rainer_1.1_checkpoint>
 
-    <trade_rainer_1.2>
+    <trade_rainer_1.2_checkpoint>
         <npcText>We’ve all been hit pretty hard, so I’ll give you something for it.</npcText>
         <playerOptions>
             <option>(Start Trading)</option>
@@ -73,7 +73,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </trade_rainer_1.2>
+    </trade_rainer_1.2_checkpoint>
 
     <basic_rainer_1.3>
         <npcText>Thank you so much! Is there anything else you wanted to talk about?</npcText>
@@ -114,7 +114,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_rainer_1.2</keyName>
+            <keyName>trade_rainer_1.2_checkpoint</keyName>
             <keyName>leave_rainer_0</keyName>
             <keyName>basic_rainer_2.2</keyName>
         </keys>
