@@ -131,7 +131,7 @@
 
         <keys>
             <keyName>basic_carlos_0.2</keyName>
-            <keyName>checkpoint_carlos_0.3</keyName>
+            <keyName>basic_carlos_0.3_checkpoint</keyName>
             <keyName></keyName>
         </keys>
     </basic_carlos_0.10>
@@ -145,13 +145,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpoint_carlos_1.1</keyName>
-            <keyName>checkpoint_carlos_0.3</keyName>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
+            <keyName>basic_carlos_0.3_checkpoint</keyName>
             <keyName></keyName>
         </keys>
     </basic_carlos_0.2>
 
-    <checkpoint_carlos_0.3>
+    <basic_carlos_0.3_checkpoint>
         <npcText>I suppose you're right. Do you need anything?</npcText>
         <playerOptions>
             <option>Do you have a plan to contact your family?</option>
@@ -160,11 +160,11 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpoint_carlos_1.1</keyName>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
             <keyName>trade_carlos_0</keyName>
             <keyName>leave_carlos_0</keyName>
         </keys>
-    </checkpoint_carlos_0.3>
+    </basic_carlos_0.3_checkpoint>
 
     <basic_carlos_1.0>
         <npcText>What’s happening Duc?</npcText>
@@ -175,13 +175,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpoint_carlos_1.1</keyName>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
             <keyName>trade_carlos_0</keyName>
             <keyName>leave_carlos_0</keyName>
         </keys>
     </basic_carlos_1.0>
 
-    <checkpoint_carlos_1.1>
+    <basic_carlos_1.1_checkpoint>
         <npcText>I could probably contact my family if I had a radio and perhaps some spare batteries.</npcText>
         <playerOptions>
             <option>How would you do that?</option>
@@ -194,7 +194,7 @@
             <keyName>trade_carlos_1.3_checkpoint</keyName>
             <keyName>trade_carlos_1.3_checkpoint</keyName>
         </keys>
-    </checkpoint_carlos_1.1>
+    </basic_carlos_1.1_checkpoint>
 
     <basic_carlos_1.2>
         <npcText>My family and I planned for a disaster like this. A couple years ago we decided on a ham radio channel just in case the cell towers went down.</npcText>
