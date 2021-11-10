@@ -203,15 +203,21 @@ public static class GlobalControls
         
         globalControlsProperties.Remove("demActionDone");
         globalControlsProperties.Remove("demDrinkDone");
+        
         globalControlsProperties.Remove("safiWaterActionDone");
         globalControlsProperties.Remove("safiGasActionDone");
         globalControlsProperties.Remove("safiRescued");
+        
         globalControlsProperties.Remove("angieDrinkDone");
+        
         globalControlsProperties.Remove("carlosDrinkDone");
+        
         globalControlsProperties.Remove("rainerActionDone");
         globalControlsProperties.Remove("rainerDrinkDone");
+        
         globalControlsProperties.Remove("annetteActionDone");
-        globalControlsProperties.Remove("annetteDrinkDone");
+        globalControlsProperties.Remove("annetteHasLeash");
+        globalControlsProperties.Remove("annetteHasDogCrate");
       
         globalControlsProperties.Remove("playerHasCleanWater");
         globalControlsProperties.Remove("playerHasFirstAidKit");

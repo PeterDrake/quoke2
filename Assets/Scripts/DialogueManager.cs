@@ -265,23 +265,92 @@ public class DialogueManager : MonoBehaviour
         string nextNode = currentNode.nextNode[cursorLocation];
         if (nextNode.Contains("dynamic_option"))
         {
-            if (currentNode.nodeName.Equals("basic_rainer_3.0"))
+            switch (GlobalControls.CurrentNPC)
             {
-                if (!GlobalItemList.ItemList["Tent"].containerName.Equals("Rainer"))
-                {
-                    currentNode = forest["basic_rainer_3.1"];
-                }
-                else currentNode = forest["basic_rainer_3.2"];
+                case "Rainer":
+                    if (currentNode.nodeName.Equals("basic_rainer_3.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("rainerHasTent"))
+                        {
+                            currentNode = forest["basic_rainer_3.1"];
+                        }
+                        else currentNode = forest["basic_rainer_3.2"];
+                    }
+                    else if (currentNode.nodeName.Equals("basic_rainer_4.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("rainerActionDone"))
+                        {
+                            currentNode = forest["basic_rainer_3.1"];
+                        }
+                        else currentNode = forest["leave_rainer_4.1"];
+                    }
+                    break;
+                case "Annette":
+                    if (currentNode.nodeName.Equals("basic_annette_1.1"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("annetteActionDone"))
+                        {
+                            currentNode = forest["basic_annette_1.3"];
+                        }
+                        else currentNode = forest["basic_annette_1.4"];
+                    }
+                    else if (currentNode.nodeName.Equals("basic_annette_3.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("annetteHasLeash"))
+                        {
+                            currentNode = forest["basic_annette_3.2"];
+                        }
+                        else currentNode = forest["basic_annette_3.1"];
+                    }
+                    else if (currentNode.nodeName.Equals("basic_annette_4.0"))
+                    {
+                        if (!GlobalControls.globalControlsProperties.Contains("annetteActionDone"))
+                        {
+                            currentNode = forest["basic_annette_1.4"];
+                        }
+                        else currentNode = forest["basic_annette_4.1"];
+                    }
+                    break;
+                case "Carlos": 
+                    if (currentNode.nodeName.Equals("basic_carlos_3.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("carlosHasBatteries"))
+                        {
+                            currentNode = forest["basic_carlos_3.1"];
+                        }
+                        else currentNode = forest["basic_carlos_3.2"];
+                    }
+                    else if (currentNode.nodeName.Equals("basic_carlos_5.1"))
+                    {
+                        if (!GlobalControls.globalControlsProperties.Contains("carlosActionDone"))
+                        {
+                            currentNode = forest["basic_carlos_5.2"];
+                        }
+                        else currentNode = forest["basic_carlos_5.3"];
+                    }
+                    break;
+                case "Dem":
+                    if (currentNode.nodeName.Equals("basic_dem_3.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("demHasCanOpener"))
+                        {
+                            currentNode = forest["basic_dem_3.1"];
+                        }
+                        else currentNode = forest["basic_dem_3.2"];
+                    }
+                    else if (currentNode.nodeName.Equals("basic_dem_4.0"))
+                    {
+                        if (GlobalControls.globalControlsProperties.Contains("demActionDone"))
+                        {
+                            currentNode = forest["leave_dem_4.1"];
+                        }
+                        else currentNode = forest["basic_dem_1.3"];
+                    }
+                    break;
             }
             
-            if (currentNode.nodeName.Equals("basic_rainer_4.0"))
-            {
-                if (true) // Have not comforted Rainer
-                {
-                    currentNode = forest["basic_rainer_3.1"];
-                }
-                else currentNode = forest["leave_rainer_4.1"];
-            }
+            
+            
         }
         else
         {
