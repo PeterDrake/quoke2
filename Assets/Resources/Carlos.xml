@@ -16,7 +16,7 @@
         </keys>
     </trade_carlos_0>
 
-    <trade_carlos_1.3_checkpoint>
+    <trade_carlos_1.3_checkpoint_needsEither>
         <npcText>Oh cool! I can give you some stuff for that.</npcText>
         <playerOptions>
             <option>START TRADING</option>
@@ -29,7 +29,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </trade_carlos_1.3_checkpoint>
+    </trade_carlos_1.3_checkpoint_needsEither>
 
     <leave_carlos_0>
         <npcText>See you around!</npcText>
@@ -185,14 +185,14 @@
         <npcText>I could probably contact my family if I had a radio and perhaps some spare batteries.</npcText>
         <playerOptions>
             <option>How would you do that?</option>
-            <option>I have a radio here!</option>
-            <option>I have some spare batteries in my bag!</option>
+            <option>I think I might have one of those!</option>
+            <option>I will keep an eye out for what you need.</option>
         </playerOptions>
 
         <keys>
             <keyName>basic_carlos_1.2</keyName>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
         </keys>
     </basic_carlos_1.1_checkpoint>
 
@@ -205,26 +205,26 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_carlos_1.20</keyName>
+            <keyName>basic_carlos_1.2.1</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
     </basic_carlos_1.2>
 
-    <basic_carlos_1.20>
+    <basic_carlos_1.2.1>
         <npcText>Yeah I’m glad we did it because, what do you know, the cell service is down! I really want to check on my sisters and father. I can’t get to them because the roads are broken and the bridges aren’t safe yet.</npcText>
         <playerOptions>
-            <option>I have a radio here!</option>
-            <option>I have some spare batteries in my bag!</option>
+            <option>I have one of those things here!</option>
             <option>I'll keep an eye out for what you need.</option>
+            <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
             <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
         </keys>
-    </basic_carlos_1.20>
+    </basic_carlos_1.2.1>
 
     <basic_carlos_2.0>
         <npcText>What's up, Duc?</npcText>
@@ -244,15 +244,15 @@
     <basic_carlos_2.1>
         <npcText>I need to check on my Father and sisters. Have you found a radio and some extra batteries?</npcText>
         <playerOptions>
-            <option>I have a radio here!</option>
-            <option>I have some spare batteries in my bag!</option>
+            <option>I have one of those things in my bag!</option>
             <option>I'll keep an eye out for what you need.</option>
+            <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
             <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
         </keys>
     </basic_carlos_2.1>
 
@@ -280,7 +280,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
             <keyName>leave_carlos_1.4</keyName>
             <keyName></keyName>
         </keys>
@@ -295,7 +295,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_carlos_1.3_checkpoint</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
             <keyName>leave_carlos_1.4</keyName>
             <keyName></keyName>
         </keys>

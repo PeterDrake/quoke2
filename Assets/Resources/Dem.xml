@@ -99,13 +99,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_dem_1.2</keyName>
+            <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
             <keyName>basic_dem_1.3</keyName>
         </keys>
     </basic_dem_1.1>
 
-    <trade_dem_1.2>
+    <trade_dem_1.2_needsEither>
         <npcText>Really? Here, you can have something for that.</npcText>
         <playerOptions>
             <option>(Start Trading)</option>
@@ -118,7 +118,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </trade_dem_1.2>
+    </trade_dem_1.2_needsEither>
 
     <basic_dem_1.3>
         <npcText>If you give a man some food, feed him for a day. However, if you teach a man to fish, you feed him forever. I’m interested in learning how to forage for my own food. I think it would be a good skill to have, you know?</npcText>
@@ -168,15 +168,15 @@
     <basic_dem_2.1>
         <npcText>I’m hungry and looking to stock up on some food. Do you have a can of food, or a can opener?</npcText>
         <playerOptions>
-            <option>I have a can opener right here!</option>
-            <option>I have some canned food right here!</option>
+            <option>I have one right here!</option>
             <option>I’ll keep looking around.</option>
+            <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>trade_dem_1.2</keyName>
-            <keyName>trade_dem_1.2</keyName>
+            <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
         </keys>
     </basic_dem_2.1>
 
@@ -204,7 +204,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_dem_1.2</keyName>
+            <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
             <keyName>basic_dem_1.3</keyName>
         </keys>
@@ -219,7 +219,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_dem_1.2</keyName>
+            <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
             <keyName>basic_dem_1.3</keyName>
         </keys>

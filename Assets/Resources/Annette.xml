@@ -79,18 +79,18 @@
         <npcText>Sorry. I should introduce myself. I’m Annette, a NET. I need a leash and a dog crate to catch that dog. If it keeps running around, it is bound to get hurt.</npcText>
         <playerOptions>
             <option>I’ll keep my eye out for those.</option>
-            <option>I actually have a leash right here!</option>
-            <option>I have a dog crate right here!</option>
+            <option>I actually one of those right now!</option>
+            <option></option>
         </playerOptions>
 
         <keys>
             <keyName>basic_annette_0.4.2</keyName>
-            <keyName>trade_annette_0.5</keyName>
-            <keyName>trade_annette_0.5</keyName>
+            <keyName>trade_annette_0.5_needsEither</keyName>
+            <keyName></keyName>
         </keys>
     </basic_annette_0.4.1_checkpoint>
 
-    <trade_annette_0.5>
+    <trade_annette_0.5_needsEither>
         <npcText>Really?! I could give you some supplies for that.</npcText>
         <playerOptions>
             <option>(Start Trading)</option>
@@ -103,7 +103,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </trade_annette_0.5>
+    </trade_annette_0.5_needsEither>
 
     <basic_annette_0.6>
         <npcText>Thank you! Is there anything else you need?</npcText>
@@ -204,7 +204,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_annette_0.5</keyName>
+            <keyName>trade_annette_0.5_needsEither</keyName>
             <keyName>basic_annette_0.6</keyName>
             <keyName></keyName>
         </keys>
@@ -234,13 +234,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_annette_1.2</keyName>
+            <keyName>trade_annette_1.2_needsEither</keyName>
             <keyName>leave_annette_0</keyName>
             <keyName>dynamic_option</keyName>
         </keys>
     </basic_annette_1.1>
 
-    <trade_annette_1.2>
+    <trade_annette_1.2_needsEither>
         <npcText>Perfect!</npcText>
         <playerOptions>
             <option>(Start Trading)</option>
@@ -253,7 +253,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </trade_annette_1.2>
+    </trade_annette_1.2_needsEither>
 
     <basic_annette_1.3>
         <npcText>Nope. I just need those two things.</npcText>
@@ -264,7 +264,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_annette_1.2</keyName>
+            <keyName>trade_annette_1.2_needsEither</keyName>
             <keyName>leave_annette_0</keyName>
             <keyName></keyName>
         </keys>
@@ -309,7 +309,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_annette_1.2</keyName>
+            <keyName>trade_annette_1.2_needsEither</keyName>
             <keyName>leave_annette_0</keyName>
             <keyName>basic_annette_1.4</keyName>
         </keys>
@@ -324,7 +324,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>trade_annette_1.2</keyName>
+            <keyName>trade_annette_1.2_needsEither</keyName>
             <keyName>leave_annette_0</keyName>
             <keyName>basic_annette_1.4</keyName>
         </keys>

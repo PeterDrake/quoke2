@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -400,13 +401,25 @@ public class DialogueManager : MonoBehaviour
             // I believe the need section is currently broken
             if (node.Contains("need"))
             {
+                if (node.Contains("needsEither"))
+                {
+                    if (!GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[0]]
+                        .containerName.Equals("Player") || 
+                        !GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[1]]
+                        .containerName.Equals("Player"))
+                    {
+                        Debug.Log("turning off one of the need's button");
+                        buttons[i].gameObject.SetActive(false);
+                    }
+                }
                 Debug.Log("The next node's name" + currentNode.nextNode[i]);
                 //This checks the itemList for the item that the npc needs at the index specified in the key name
                 //need0_angie_12.2
                 //Here the index is 0
+                int needIndex = Int32.Parse(node.Substring(node.IndexOf("need") + 4, 1));
                 if (!GlobalItemList
                     .ItemList[
-                        GlobalControls.npcList[GlobalControls.CurrentNPC].needs[Int32.Parse(node.Substring(4, 1))]]
+                        GlobalControls.npcList[GlobalControls.CurrentNPC].needs[needIndex]]
                     .containerName.Equals("Player"))
                 {
                     Debug.Log("turning off one of the need's button");
