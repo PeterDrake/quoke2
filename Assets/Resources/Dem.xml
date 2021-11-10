@@ -101,7 +101,7 @@
         <keys>
             <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
-            <keyName>basic_dem_1.3</keyName>
+            <keyName>action0_dem_1.3</keyName>
         </keys>
     </basic_dem_1.1>
 
@@ -120,7 +120,7 @@
         </keys>
     </trade_dem_1.2_needsEither>
 
-    <basic_dem_1.3>
+    <action0_dem_1.3>
         <npcText>If you give a man some food, feed him for a day. However, if you teach a man to fish, you feed him forever. I’m interested in learning how to forage for my own food. I think it would be a good skill to have, you know?</npcText>
         <playerOptions>
             <option>I actually know some of the basics, I could teach you if you’d like?</option>
@@ -129,26 +129,26 @@
         </playerOptions>
 
         <keys>
-            <keyName>foraging_dem_0</keyName>
+            <keyName>success0_dem_1.4</keyName>
             <keyName>leave_dem_0</keyName>
             <keyName></keyName>
         </keys>
-    </basic_dem_1.3>
+    </action0_dem_1.3>
 
-    <basic_dem_1.4>
+    <success0_dem_1.4>
         <npcText>Thank you so much! You helped me, so I want to help you, is there anything you need?</npcText>
         <playerOptions>
             <option>I have some other things I want to trade.</option>
             <option>Nope, See you around!</option>
-            <option>I’ll turn that question back around on you. Is there anything else you need?</option>
+            <option></option>
         </playerOptions>
 
         <keys>
             <keyName>trade_dem_0</keyName>
             <keyName>leave_dem_0</keyName>
-            <keyName>basic_dem_1.3</keyName>
+            <keyName></keyName>
         </keys>
-    </basic_dem_1.4>
+    </success0_dem_1.4>
 
     <basic_dem_2.0>
         <npcText>Hi Friend!</npcText>
@@ -206,7 +206,7 @@
         <keys>
             <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
-            <keyName>basic_dem_1.3</keyName>
+            <keyName>action0_dem_1.3</keyName>
         </keys>
     </basic_dem_3.1>
 
@@ -221,7 +221,7 @@
         <keys>
             <keyName>trade_dem_1.2_needsEither</keyName>
             <keyName>leave_dem_0</keyName>
-            <keyName>basic_dem_1.3</keyName>
+            <keyName>action0_dem_1.3</keyName>
         </keys>
     </basic_dem_3.2>
 
@@ -254,38 +254,6 @@
             <keyName></keyName>
         </keys>
     </success0_dem_0.2>
-
-    <action1_dem_0.3>
-        <playerOptions>
-            <option>I have water right here!</option>
-            <option>I don't have any water right now...</option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>success1_dem_0.4</keyName>
-            <keyName>refusewaterdem</keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Oh, sure. Do you have any water?</npcText>
-    </action1_dem_0.3>
-
-    <success0_dem_0.4>
-        <playerOptions>
-            <option>Complete water</option>
-            <option></option>
-            <option></option>
-        </playerOptions>
-
-        <keys>
-            <keyName>leave_dem_0</keyName>
-            <keyName></keyName>
-            <keyName></keyName>
-        </keys>
-
-        <npcText>Oh wow, thank you! *Slurp*</npcText>
-    </success0_dem_0.4>
 
     <trade_dem_0>
         <npcText>I think we can work something out.</npcText>

@@ -349,7 +349,7 @@ public class DialogueManager : MonoBehaviour
                         {
                             currentNode = forest["leave_dem_4.1"];
                         }
-                        else currentNode = forest["basic_dem_1.3"];
+                        else currentNode = forest["action0_dem_1.3"];
                     }
                     break;
             }
@@ -376,21 +376,13 @@ public class DialogueManager : MonoBehaviour
 
             if (currentNode.nodeName.Contains("success"))
             {
+                int actionIndex = Int32.Parse(currentNode.nodeName.Substring(7, 1));
                 if (!GlobalControls.npcList[GlobalControls.CurrentNPC]
-                    .actionRequirements[Int32.Parse(currentNode.nodeName.Substring(7, 1))].Equals("Water Bottle Clean"))
+                    .actionsComplete[actionIndex])
                 {
                     GlobalControls.npcList[GlobalControls.CurrentNPC]
-                        .actionsComplete[Int32.Parse(currentNode.nodeName.Substring(7, 1))] = true;
+                        .actionsComplete[actionIndex] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
-                    GlobalControls.npcList[GlobalControls.CurrentNPC].satisfaction++;
-                    referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
-                        GlobalControls.CurrentPoints.ToString();
-                }
-                else
-                {
-                    GlobalControls.npcList[GlobalControls.CurrentNPC]
-                        .actionsComplete[Int32.Parse(currentNode.nodeName.Substring(7, 1))] = true;
-                    GlobalControls.CurrentPoints += GlobalControls.Points["drink"];
                     GlobalControls.npcList[GlobalControls.CurrentNPC].satisfaction++;
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
@@ -490,10 +482,12 @@ public class DialogueManager : MonoBehaviour
             if (currentNode.nodeName.Equals("basic_carlos_1.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_carlos_1.0");
 
+            // gas leak, after completed should set checkpoint of basic_safi_3.0
             if (currentNode.nodeName.Equals("leave_safi_1.2_checkpoint"))
-                GlobalControls.SetCheckpoint("basic_safi_3.0");
+                GlobalControls.SetCheckpoint("leave_safi_1.3");
+            // water heater, after completed should set checkpoint of basic_safi_5.0
             if (currentNode.nodeName.Equals("leave_safi_3.2_checkpoint"))
-                GlobalControls.SetCheckpoint("basic_safi_5.0");
+                GlobalControls.SetCheckpoint("leave_safi_3.3");
             if (currentNode.nodeName.Equals("basic_safi_0.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_1.0");
             if (currentNode.nodeName.Equals("basic_safi_0.4_checkpoint"))

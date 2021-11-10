@@ -331,22 +331,21 @@
         </keys>
     </basic_carlos_5.1>
 
-    <basic_carlos_5.2>
+    <action0_carlos_5.2>
         <npcText>Now that you mention it, I’m kind of thirsty. Do you have any spare water?</npcText>
         <playerOptions>
             <option>Yeah! Here you can have some.</option>
-            <option>No but I'll keep a lookout.</option>
+            <option>No, but I’ll come and give you some if I get some.</option>
             <option></option>
         </playerOptions>
 
         <keys>
-            <keyName>leave_carlos_5.4</keyName>
+            <keyName>success0_carlos_5.4</keyName>
             <keyName>leave_carlos_0</keyName>
             <keyName></keyName>
         </keys>
-    </basic_carlos_5.2>
-
-
+    </action0_carlos_5.2>
+    
     <basic_carlos_5.3>
         <npcText>You've been a big help. I'm good for now.</npcText>
         <playerOptions>
@@ -362,7 +361,7 @@
         </keys>
     </basic_carlos_5.3>
 
-    <basic_carlos_5.4>
+    <success0_carlos_5.4>
         <npcText>Thanks. That's very refreshing.</npcText>
         <playerOptions>
             <option>Do you need help with anything else?</option>
@@ -375,7 +374,7 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </basic_carlos_5.4>
+    </success0_carlos_5.4>
     
     <leave_error>
         <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered "Dialogue Error Exit Code 0". We will resume from my last checkpoint</npcText>
