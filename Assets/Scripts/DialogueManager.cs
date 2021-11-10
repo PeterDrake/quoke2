@@ -447,56 +447,56 @@ public class DialogueManager : MonoBehaviour
         {
             if (currentNode.nodeName.Equals("checkpoint_angie_1.1"))
                 GlobalControls.SetCheckpoint("basic_angie_3.0");
-            if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
+            else if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
             {
                 GlobalControls.globalControlsProperties.Add("angieSeriousDialogue");
                 GlobalControls.SetCheckpoint("basic_angie_1.0");
             }
 
-            if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
+            else if (currentNode.nodeName.Equals("checkpoint_angie_0.4"))
                 GlobalControls.SetCheckpoint("basic_angie_2.0");
-            if (currentNode.nodeName.Equals("checkpoint_angie_5.1"))
+            else if (currentNode.nodeName.Equals("checkpoint_angie_5.1"))
                 GlobalControls.SetCheckpoint("basic_angie_7.0");
-            if (currentNode.nodeName.Equals("checkpoint_angie_6.4"))
+            else if (currentNode.nodeName.Equals("checkpoint_angie_6.4"))
                 GlobalControls.SetCheckpoint("basic_angie_6.0");
-            if (currentNode.nodeName.Equals("checkpoint_angie_10.2"))
+            else if (currentNode.nodeName.Equals("checkpoint_angie_10.2"))
                 GlobalControls.SetCheckpoint("basic_angie_10.0");
             
-            if (currentNode.nodeName.Equals("basic_dem_0.2_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_dem_0.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_dem_1.0");
             
-            if (currentNode.nodeName.Equals("basic_annette_0.4.1_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_annette_0.4.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
-            if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
-            if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
             
-            if (currentNode.nodeName.Equals("basic_rainer_1.1_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_rainer_1.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_rainer_1.0");
-            if (currentNode.nodeName.Equals("trade_rainer_1.2_checkpoint"))
+            else if (currentNode.nodeName.Equals("trade_rainer_1.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_rainer_2.0");
             
-            if (currentNode.nodeName.Equals("trade_carlos_1.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("trade_carlos_1.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_carlos_2.0");
-            if (currentNode.nodeName.Equals("basic_carlos_1.1_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_carlos_1.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_carlos_1.0");
 
             // gas leak, after completed should set checkpoint of basic_safi_3.0
-            if (currentNode.nodeName.Equals("leave_safi_1.2_checkpoint"))
+            else if (currentNode.nodeName.Equals("leave_safi_1.2_checkpoint"))
                 GlobalControls.SetCheckpoint("leave_safi_1.3");
             // water heater, after completed should set checkpoint of basic_safi_5.0
-            if (currentNode.nodeName.Equals("leave_safi_3.2_checkpoint"))
+            else if (currentNode.nodeName.Equals("leave_safi_3.2_checkpoint"))
                 GlobalControls.SetCheckpoint("leave_safi_3.3");
-            if (currentNode.nodeName.Equals("basic_safi_0.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_safi_0.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_1.0");
-            if (currentNode.nodeName.Equals("basic_safi_0.4_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_safi_0.4_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_1.0");
-            if (currentNode.nodeName.Equals("basic_safi_1.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_safi_1.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_2.0");
-            if (currentNode.nodeName.Equals("basic_safi_3.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_safi_3.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_4.0");
-            if (currentNode.nodeName.Equals("basic_safi_3.2_checkpoint"))
+            else if (currentNode.nodeName.Equals("basic_safi_3.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_5.0");
         }
 
