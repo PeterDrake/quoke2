@@ -310,6 +310,10 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["basic_annette_4.1"];
                     }
+                    else if (currentNode.nodeName.Equals("translation_annette_0.4"))
+                    {
+                        currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
+                    }
                     break;
                 case "Carlos": 
                     if (currentNode.nodeName.Equals("basic_carlos_3.0"))
@@ -437,8 +441,6 @@ public class DialogueManager : MonoBehaviour
 
         if (currentNode.nodeName.Contains("checkpoint"))
         {
-            if (currentNode.nodeName.Equals("checkpoint_safi_1"))
-                GlobalControls.SetCheckpoint("checkpoint_safi_1");
             if (currentNode.nodeName.Equals("checkpoint_angie_1.1"))
                 GlobalControls.SetCheckpoint("basic_angie_3.0");
             if (currentNode.nodeName.Equals("checkpoint_angie_0.10"))
@@ -456,7 +458,40 @@ public class DialogueManager : MonoBehaviour
             if (currentNode.nodeName.Equals("checkpoint_angie_10.2"))
                 GlobalControls.SetCheckpoint("basic_angie_10.0");
             
+            if (currentNode.nodeName.Equals("basic_dem_0.2_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_dem_1.0");
+            
+            if (currentNode.nodeName.Equals("basic_annette_0.4.1_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_annette_1.0");
+            if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_annette_1.0");
+            if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_annette_1.0");
+            
+            if (currentNode.nodeName.Equals("basic_rainer_1.1_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_rainer_1.0");
+            if (currentNode.nodeName.Equals("trade_rainer_1.2_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_rainer_2.0");
+            
+            if (currentNode.nodeName.Equals("trade_carlos_1.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_carlos_2.0");
+            if (currentNode.nodeName.Equals("basic_carlos_1.1_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_carlos_1.0");
 
+            if (currentNode.nodeName.Equals("leave_safi_1.2_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_3.0");
+            if (currentNode.nodeName.Equals("leave_safi_3.2_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_5.0");
+            if (currentNode.nodeName.Equals("basic_safi_0.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_1.0");
+            if (currentNode.nodeName.Equals("basic_safi_0.4_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_1.0");
+            if (currentNode.nodeName.Equals("basic_safi_1.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_2.0");
+            if (currentNode.nodeName.Equals("basic_safi_3.3_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_4.0");
+            if (currentNode.nodeName.Equals("basic_safi_3.2_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_5.0");
         }
 
 

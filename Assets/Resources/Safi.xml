@@ -71,7 +71,7 @@
 
         <keys>
             <keyName>basic_safi_0.1</keyName>
-            <keyName>checkpoint_safi_0.2</keyName>
+            <keyName>basic_safi_0.2</keyName>
             <keyName></keyName>
         </keys>
     </basic_safi_0>
@@ -85,13 +85,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>checkpoint_safi_0.3</keyName>
+            <keyName>basic_safi_0.3_checkpoint</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
     </basic_safi_0.1>
 
-    <basic_safi_0.2_checkpoint>
+    <basic_safi_0.2>
         <npcText>*sigh* Thank you so much, Duc! My name is Safi. I was worried that I would be stuck there forever! I fell off of my bike and a tree branch fell in front of me when the shaking started. I need to get home.</npcText>
         <playerOptions>
             <option>Why do you need to get home?</option>
@@ -104,7 +104,7 @@
             <keyName>trade_safi_0</keyName>
             <keyName>leave_safi_0</keyName>
         </keys>
-    </basic_safi_0.2_checkpoint>
+    </basic_safi_0.2>
 
     <basic_safi_0.3_checkpoint>
         <npcText>*sigh* Thank you so much! I was worried that I would be stuck there forever!</npcText>
