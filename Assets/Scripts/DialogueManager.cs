@@ -398,7 +398,6 @@ public class DialogueManager : MonoBehaviour
             }
 
             string node = currentNode.nextNode[i];
-            // I believe the need section is currently broken
             if (node.Contains("need"))
             {
                 if (node.Contains("needsEither"))
