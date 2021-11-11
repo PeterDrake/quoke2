@@ -301,7 +301,7 @@
         </keys>
     </basic_carlos_3.2>
 
-    <basic_carlos_5.0>
+    <basic_carlos_4.0>
         <npcText>Hey Duc!</npcText>
         <playerOptions>
             <option>How is your family?</option>
@@ -310,13 +310,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_carlos_5.1</keyName>
+            <keyName>basic_carlos_4.1</keyName>
             <keyName>trade_carlos_0</keyName>
             <keyName>leave_carlos_0</keyName>
         </keys>
-    </basic_carlos_5.0>
+    </basic_carlos_4.0>
 
-    <basic_carlos_5.1>
+    <basic_carlos_4.1>
         <npcText>Thankfully my family is safe. I'll go see them in person once the bridges are checked and safe.</npcText>
         <playerOptions>
             <option>Is there anything else you need?</option>
@@ -329,9 +329,9 @@
             <keyName>leave_carlos_0</keyName>
             <keyName></keyName>
         </keys>
-    </basic_carlos_5.1>
+    </basic_carlos_4.1>
 
-    <action0_carlos_5.2>
+    <action0_carlos_4.2>
         <npcText>Now that you mention it, I’m kind of thirsty. Do you have any spare water?</npcText>
         <playerOptions>
             <option>Yeah! Here you can have some.</option>
@@ -340,13 +340,13 @@
         </playerOptions>
 
         <keys>
-            <keyName>success0_carlos_5.4</keyName>
+            <keyName>success0_carlos_4.4</keyName>
             <keyName>leave_carlos_0</keyName>
             <keyName></keyName>
         </keys>
-    </action0_carlos_5.2>
+    </action0_carlos_4.2>
     
-    <basic_carlos_5.3>
+    <basic_carlos_4.3>
         <npcText>You've been a big help. I'm good for now.</npcText>
         <playerOptions>
             <option>Okay! Bye!</option>
@@ -359,9 +359,9 @@
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </basic_carlos_5.3>
+    </basic_carlos_4.3>
 
-    <success0_carlos_5.4>
+    <success0_carlos_4.4>
         <npcText>Thanks. That's very refreshing.</npcText>
         <playerOptions>
             <option>Do you need help with anything else?</option>
@@ -370,11 +370,11 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_carlos_5.3</keyName>
+            <keyName>basic_carlos_4.3</keyName>
             <keyName></keyName>
             <keyName></keyName>
         </keys>
-    </success0_carlos_5.4>
+    </success0_carlos_4.4>
     
     <leave_error>
         <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered "Dialogue Error Exit Code 0". We will resume from my last checkpoint</npcText>

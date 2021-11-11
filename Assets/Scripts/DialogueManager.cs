@@ -56,6 +56,7 @@ public class DialogueManager : MonoBehaviour
 
         // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
         // "theirName0" to get to the appropriate starting node
+        Debug.Log(GlobalControls.npcList[GlobalControls.CurrentNPC].node);
         currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
 
         for (int c = 0; c < currentNode.playerArray.Count; c++)
@@ -158,12 +159,17 @@ public class DialogueManager : MonoBehaviour
                     {
                         propertiesSet++;
                         GlobalControls.SetCheckpoint(checkpoint + "3.0");
+                        Debug.Log(checkpoint + "3.0");
                         GlobalControls.globalControlsProperties.Add(property);
                     }
                     else if (GlobalControls.globalControlsProperties.Contains(property)) propertiesSet++;
                 }
                 // If both properties are set now, set checkpoint to corresponding checkpoint
-                if (propertiesSet == 2) GlobalControls.SetCheckpoint(checkpoint + "4.0");
+                if (propertiesSet == 2)
+                {
+                    GlobalControls.SetCheckpoint(checkpoint + "4.0");
+                    Debug.Log(checkpoint + "4.0");
+                }
                 currentNode = forest[leave];
             }
             npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
@@ -403,19 +409,18 @@ public class DialogueManager : MonoBehaviour
                         buttons[i].gameObject.SetActive(false);
                     }
                 }
-                Debug.Log("The next node's name" + currentNode.nextNode[i]);
                 //This checks the itemList for the item that the npc needs at the index specified in the key name
                 //need0_angie_12.2
                 //Here the index is 0
-                int needIndex = Int32.Parse(node.Substring(node.IndexOf("need") + 4, 1));
-                if (!GlobalItemList
-                    .ItemList[
-                        GlobalControls.npcList[GlobalControls.CurrentNPC].needs[needIndex]]
+                else if (!GlobalItemList.ItemList[
+                        GlobalControls.npcList[GlobalControls.CurrentNPC].needs[
+                            Int32.Parse(node.Substring(node.IndexOf("need") + 4, 1))]]
                     .containerName.Equals("Player"))
                 {
                     Debug.Log("turning off one of the need's button");
                     buttons[i].gameObject.SetActive(false);
                 }
+                Debug.Log("The next node's name" + currentNode.nextNode[i]);
             }
             // If the player has already completed the action corresponding to this node/option, don't show it
             else if (node.Contains("action"))
