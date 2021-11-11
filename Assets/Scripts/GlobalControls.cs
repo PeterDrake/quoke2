@@ -20,6 +20,7 @@ public static class GlobalControls
     private static int timesShoveled;
     private static int currentScene;
 
+    private static int npcTotalSatisfaction = 3;
     private static int turnNumber = 0;
     private static string currentNPC;
 
@@ -68,21 +69,18 @@ public static class GlobalControls
     };
     private static Dictionary<string, string> demActions = new Dictionary<string, string>
     {
-        //sip of water and foraging
+        //Foraging
         {"dem0", ""},
-        {"dem1", ""},
     };
     private static Dictionary<string, string> rainerActions = new Dictionary<string, string>
     {
-        //sip of water and comforting words
+        //Comforting words
         {"rainer0", ""},
-        {"rainer1", ""},
     };
     private static Dictionary<string, string> annetteActions = new Dictionary<string, string>
     {
-        //sip of water and translation
+        //Translation
         {"annette0", ""},
-        {"annette1", ""},
     };
     private static Dictionary<string, string> carlosActions = new Dictionary<string, string>
     {
@@ -101,70 +99,39 @@ public static class GlobalControls
 
     public static void Reset()
     {
-        if (globalControlsProperties.Contains("apartmentCondition"))
-        {
-            npcList = new Dictionary<string, NPC>
+        npcList = new Dictionary<string, NPC>
             {
                 {"Safi", new NPC(namesList["Safi"], "Park",
-                    new List<string>{""}, new List<bool>{}, "basic_safi_0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3,
+                    new List<string>{""}, new List<bool>{}, "basic_safi_0",
+                    0, false, "Safi needs you to turn off her Gas and Water.", npcTotalSatisfaction,
                     0, safiActions, new List<string>{"","Wrench","Wrench"})},
                 {"Dem", new NPC(namesList["Demitrius"], "Park",
                     new List<string>{"Canned Food", "Can Opener"}, new List<bool>{false, false}, "basic_dem_0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,
+                    0, false, "Demitrius needs a Can Opener and Canned Food", npcTotalSatisfaction,
                     0, demActions, new List<string>{""})},
                 {"Annette", new NPC(namesList["Annette"], "School",
-                    new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,
+                    new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0",
+                    0, false, "Annette needs a leash and Dog Crate", npcTotalSatisfaction,
                     0, annetteActions, new List<string>{""})},
                 {"Rainer", new NPC(namesList["Rainer"], "School",
                     new List<string>{"Tent", "Blanket"}, new List<bool>{false, false}, "basic_annette_0",
-                    0, false, "Rainer needs a Tent and Blanket", 4,
+                    0, false, "Rainer needs a Tent and Blanket", npcTotalSatisfaction,
                     0, rainerActions, new List<string>{""})},
                 {"Carlos", new NPC(namesList["Carlos"], "Garden",
                     new List<string> {"Radio", "Batteries"}, new List<bool>{false, false}, "basic_carlos_0",
-                    0, false, "Carlos needs a Radio and Batteries", 4,
+                    0, false, "Carlos needs a Radio and Batteries", npcTotalSatisfaction,
                     0, carlosActions, new List<string>{"Water Bottle Clean"})},
                 {"Angie", new NPC(namesList["Angie"], "Garden",
                     new List<string> {"First Aid Kit", "Epi Pen"}, new List<bool>{false, false}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4,
+                    0, false, "Angie needs a First Aid Kit and Epi Pen", npcTotalSatisfaction,
                     0, angieActions, new List<string>{"Water Bottle Clean"})},
-                
+
             };
+        if (globalControlsProperties.Contains("apartmentCondition"))          
             currentObjective = 2;
-        }
         else
-        {
-            npcList = new Dictionary<string, NPC>
-            {
-                {"Safi", new NPC(namesList["Safi"], "Park",
-                    new List<string>{""}, new List<bool>{}, "basic_safi_0", 
-                    0, false, "Safi needs you to turn off her Gas and Water.", 3,
-                    0, safiActions, new List<string>{"","Wrench","Wrench"})},
-                {"Dem", new NPC(namesList["Demitrius"], "Park",
-                    new List<string>{"Canned Food", "Can Opener"}, new List<bool>{false, false}, "basic_dem_0",
-                    0, false, "Demitrius needs a Can Opener and Canned Food", 4,
-                    0, demActions, new List<string>{""})},
-                {"Annette", new NPC(namesList["Annette"], "School",
-                    new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0", 
-                    0, false, "Annette needs a leash and Dog Crate", 4,
-                    0, annetteActions, new List<string>{""})},
-                {"Rainer", new NPC(namesList["Rainer"], "School",
-                    new List<string>{"Tent", "Blanket"}, new List<bool>{false, false}, "basic_annette_0",
-                    0, false, "Rainer needs a Tent and Blanket", 4,
-                    0, rainerActions, new List<string>{""})},
-                {"Carlos", new NPC(namesList["Carlos"], "Garden",
-                    new List<string> {"Radio", "Batteries"}, new List<bool>{false, false}, "basic_carlos_0",
-                    0, false, "Carlos needs a Radio and Batteries", 4,
-                    0, carlosActions, new List<string>{"Water Bottle Clean"})},
-                {"Angie", new NPC(namesList["Angie"], "Garden",
-                    new List<string> {"First Aid Kit", "Epi Pen"}, new List<bool>{false, false}, "basic_angie_0",
-                    0, false, "Angie needs a First Aid Kit and Epi Pen", 4,
-                    0, angieActions, new List<string>{"Water Bottle Clean"})},
-                
-            };
             currentObjective = 1;
-        }
+     
 
         keybinds = new Dictionary<string, string>()
         {
