@@ -335,7 +335,7 @@ public class DialogueManager : MonoBehaviour
                     {
                         if (!GlobalControls.globalControlsProperties.Contains("carlosActionDone"))
                         {
-                            currentNode = forest["basic_carlos_4.2"];
+                            currentNode = forest["action0_carlos_4.2"];
                         }
                         else currentNode = forest["basic_carlos_4.3"];
                     }
