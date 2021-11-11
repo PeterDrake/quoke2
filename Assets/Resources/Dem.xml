@@ -90,6 +90,21 @@
         </keys>
     </basic_dem_0.2_checkpoint>
 
+    <basic_dem_1.0>
+        <npcText>Hi friend!</npcText>
+        <playerOptions>
+            <option>I have some things to trade.</option>
+            <option>Hi, I’ve got to go.</option>
+            <option>What did you need again?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>basic_dem_1.1</keyName>
+        </keys>
+    </basic_dem_1.0>
+    
     <basic_dem_1.1>
         <npcText>I am hungry. I don’t need much, but if you have some canned food and a can opener I’d very much appreciate it.</npcText>
         <playerOptions>
@@ -151,7 +166,7 @@
     </success0_dem_1.4>
 
     <basic_dem_2.0>
-        <npcText>Hi Friend!</npcText>
+        <npcText>Hi friend!</npcText>
         <playerOptions>
             <option>I have some things to trade.</option>
             <option>Hi, I’ve got to go.</option>
