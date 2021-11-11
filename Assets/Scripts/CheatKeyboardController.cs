@@ -15,15 +15,20 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode preQuakeTeleport = KeyCode.H;
     public KeyCode quakeTeleport = KeyCode.J;
     public KeyCode strategicMapTeleport = KeyCode.K;
-    public KeyCode parkTeleport = KeyCode.B;
     public KeyCode completeWater = KeyCode.O;
     public KeyCode completePoop = KeyCode.P;
     public KeyCode restart = KeyCode.N;
     public KeyCode loadPoopItems = KeyCode.L;
     public KeyCode loadWaterItems = KeyCode.Y;
-    public KeyCode loadPreQuakeItems = KeyCode.V;
+    public KeyCode loadPreQuakeItems = KeyCode.F;
     public KeyCode changeCondition = KeyCode.T;
-    public KeyCode angieItems = KeyCode.F;
+    public KeyCode angieItems = KeyCode.Z;
+    public KeyCode carlosItems = KeyCode.X;
+    public KeyCode demItems = KeyCode.V;
+    public KeyCode annetteItems = KeyCode.B;
+    public KeyCode safiItems = KeyCode.N;
+    public KeyCode rainerItems = KeyCode.M;
+    
 
     void Start()
     {
@@ -50,7 +55,6 @@ public class CheatKeyboardController : MonoBehaviour
                 if (Input.GetKeyDown(preQuakeTeleport)) keyDown = preQuakeTeleport;
                 else if (Input.GetKeyDown(quakeTeleport)) keyDown = quakeTeleport;
                 else if (Input.GetKeyDown(strategicMapTeleport)) keyDown = strategicMapTeleport;
-                else if (Input.GetKeyDown(parkTeleport)) keyDown = parkTeleport;
                 else if (Input.GetKeyDown(completeWater)) keyDown = completeWater;
                 else if (Input.GetKeyDown(completePoop)) keyDown = completePoop;
                 else if (Input.GetKeyDown(restart)) keyDown = restart;
@@ -59,6 +63,12 @@ public class CheatKeyboardController : MonoBehaviour
                 else if (Input.GetKeyDown(loadPreQuakeItems)) keyDown = loadPreQuakeItems;
                 else if (Input.GetKeyDown(changeCondition)) keyDown = changeCondition;
                 else if (Input.GetKeyDown(angieItems)) keyDown = angieItems;
+                else if (Input.GetKeyDown(carlosItems)) keyDown = carlosItems;
+                else if (Input.GetKeyDown(demItems)) keyDown = demItems;
+                else if (Input.GetKeyDown(annetteItems)) keyDown = annetteItems;
+                else if (Input.GetKeyDown(safiItems)) keyDown = safiItems;
+                else if (Input.GetKeyDown(rainerItems)) keyDown = rainerItems;
+
             }
             
             if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
@@ -86,10 +96,6 @@ public class CheatKeyboardController : MonoBehaviour
             if (keyDown.Equals(strategicMapTeleport))//Load Strategic Map
             {
                 sceneManagement.ChangeScene("StrategicMap");
-            }
-            if (keyDown.Equals(parkTeleport))//Load Park
-            {
-                sceneManagement.ChangeScene("Park");
             }
             if (meters && keyDown.Equals(completeWater)) //Complete Water
             {
@@ -183,6 +189,50 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Epi Pen", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
                 sceneManagement.ChangeScene("Garden");
+            }
+            else if (keyDown.Equals(carlosItems))
+            {
+                Debug.Log("Giving Carlos Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Radio", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Batteries", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("Garden");
+            }
+            else if (keyDown.Equals(demItems))
+            {
+                Debug.Log("Giving Dem Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Canned Food", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Can Opener", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("Park");
+            }
+            else if (keyDown.Equals(annetteItems))
+            {
+                Debug.Log("Giving Annette Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Dog Crate", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Leash", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("School");
+            }
+            else if (keyDown.Equals(safiItems))
+            {
+                Debug.Log("Giving Safi Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Wrench", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("Park");
+            }
+            else if (keyDown.Equals(rainerItems))
+            {
+                Debug.Log("Giving Rainer Required Items");
+                GlobalItemList.Reset();
+                GlobalItemList.UpdateItemList("Tent", "Inventory", new Vector3(0, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Blanket", "Inventory", new Vector3(1, 0, 0),"Player" );
+                GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
+                sceneManagement.ChangeScene("School");
             }
             
             keyDown = KeyCode.JoystickButton0;
