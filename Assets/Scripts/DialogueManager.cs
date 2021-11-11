@@ -359,7 +359,7 @@ public class DialogueManager : MonoBehaviour
                 case "Dem":
                     if (currentNode.nodeName.Equals("basic_dem_3.0"))
                     {
-                        if (GlobalControls.globalControlsProperties.Contains("demHasCanOpener"))
+                        if (!GlobalControls.globalControlsProperties.Contains("demHasCanOpener"))
                         {
                             currentNode = forest["basic_dem_3.1"];
                         }
