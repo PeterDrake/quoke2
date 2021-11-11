@@ -331,13 +331,13 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["basic_carlos_3.2"];
                     }
-                    else if (currentNode.nodeName.Equals("basic_carlos_5.1"))
+                    else if (currentNode.nodeName.Equals("basic_carlos_4.1"))
                     {
                         if (!GlobalControls.globalControlsProperties.Contains("carlosActionDone"))
                         {
-                            currentNode = forest["basic_carlos_5.2"];
+                            currentNode = forest["basic_carlos_4.2"];
                         }
-                        else currentNode = forest["basic_carlos_5.3"];
+                        else currentNode = forest["basic_carlos_4.3"];
                     }
                     break;
                 case "Dem":
