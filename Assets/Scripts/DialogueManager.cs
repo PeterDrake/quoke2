@@ -143,7 +143,7 @@ public class DialogueManager : MonoBehaviour
                 else
                     currentNode = forest["leave_error"];
             }
-            else 
+            else if (!GlobalControls.CurrentNPC.Contains("Safi"))
             {
                 int propertiesSet = 0;
                 string checkpoint = "basic_" + GlobalControls.CurrentNPC.ToLower() + "_";
@@ -183,6 +183,10 @@ public class DialogueManager : MonoBehaviour
                 {
                     currentNode = forest[leave];
                 }
+            }
+            else
+            {
+                currentNode = forest["leave_" + GlobalControls.CurrentNPC.ToLower() + "_0"];
             }
             npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
             
@@ -291,15 +295,15 @@ public class DialogueManager : MonoBehaviour
                     {
                         if (GlobalControls.globalControlsProperties.Contains("rainerHasTent"))
                         {
-                            currentNode = forest["basic_rainer_3.1"];
+                            currentNode = forest["basic_rainer_3.2"];
                         }
-                        else currentNode = forest["basic_rainer_3.2"];
+                        else currentNode = forest["basic_rainer_3.1"];
                     }
                     else if (currentNode.nodeName.Equals("basic_rainer_4.0"))
                     {
-                        if (GlobalControls.globalControlsProperties.Contains("rainerActionDone"))
+                        if (!GlobalControls.globalControlsProperties.Contains("rainerActionDone"))
                         {
-                            currentNode = forest["basic_rainer_3.1"];
+                            currentNode = forest["action0_rainer_2.2"];
                         }
                         else currentNode = forest["leave_rainer_4.1"];
                     }
@@ -398,6 +402,7 @@ public class DialogueManager : MonoBehaviour
                 if (!GlobalControls.npcList[GlobalControls.CurrentNPC]
                     .actionsComplete[actionIndex])
                 {
+                    Debug.Log(GlobalControls.CurrentNPC + "'s action completed");
                     GlobalControls.npcList[GlobalControls.CurrentNPC]
                         .actionsComplete[actionIndex] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
@@ -506,9 +511,11 @@ public class DialogueManager : MonoBehaviour
             // water heater, after completed should set checkpoint of basic_safi_5.0
             else if (currentNode.nodeName.Equals("leave_safi_3.2_checkpoint"))
                 GlobalControls.SetCheckpoint("leave_safi_3.3");
-            else if (currentNode.nodeName.Equals("basic_safi_0.3_checkpoint"))
+            else if (currentNode.nodeName.Equals("success0_safi_0.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_1.0");
-            else if (currentNode.nodeName.Equals("basic_safi_0.4_checkpoint"))
+            else if (currentNode.nodeName.Equals("success0_safi_0.4_checkpoint"))
+                GlobalControls.SetCheckpoint("basic_safi_1.0");
+            else if (currentNode.nodeName.Equals("success0_safi_0.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_1.0");
             else if (currentNode.nodeName.Equals("basic_safi_1.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_safi_2.0");
