@@ -84,7 +84,7 @@
         </playerOptions>
 
         <keys>
-            <keyName>basic_annette_0.4.2</keyName>
+            <keyName>basic_annette_0.6</keyName>
             <keyName>trade_annette_0.5_needsEither</keyName>
             <keyName></keyName>
         </keys>
@@ -480,6 +480,36 @@
         </keys>
     </success0_annette_0.4>
 
+    <leave_annette_0>
+        <npcText>See you later!</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_annette_0>
+
+    <trade_annette_0>
+        <npcText>Great! I have some stuff on me.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_annette_0>
+    
     <leave_error>
         <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered
             "Dialogue Error Exit Code 0". We will resume from my last checkpoint

@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
         if (keyboardManager.leftTrading)
         {
             keyboardManager.leftTrading = false;
-
+            
             if (GlobalControls.CurrentNPC.Contains("Angie"))
             {
                 //If Angie is given the first aid kit and the epi pen at the same time, update globalControlsProperties to
@@ -170,10 +170,22 @@ public class DialogueManager : MonoBehaviour
                     GlobalControls.SetCheckpoint(checkpoint + "4.0");
                     Debug.Log(checkpoint + "4.0");
                 }
-                currentNode = forest[leave];
+                
+                // Handles specific cases where dialogue should continue after trading with an NPC
+                // In the case that the player just traded Annette some needed items in the 0 series of nodes
+                if (currentNode.nodeName.Equals("basic_annette_1.0")
+                && (GlobalControls.globalControlsProperties.Contains("annetteHasLeash")
+                    || GlobalControls.globalControlsProperties.Contains("annetteHasDogCrate")))
+                {
+                    currentNode = forest["basic_annette_0.6"];
+                }
+                else
+                {
+                    currentNode = forest[leave];
+                }
             }
             npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
-
+            
             Debug.Log("Current Node: " + currentNode.nodeName);
         }
 
@@ -317,7 +329,7 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["basic_annette_4.1"];
                     }
-                    else if (currentNode.nodeName.Equals("translation_annette_0.4"))
+                    else if (currentNode.nodeName.Equals("success0_annette_0.4"))
                     {
                         currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
                     }
@@ -390,6 +402,7 @@ public class DialogueManager : MonoBehaviour
                         .actionsComplete[actionIndex] = true;
                     GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
                     GlobalControls.npcList[GlobalControls.CurrentNPC].satisfaction++;
+                    GlobalControls.globalControlsProperties.Add(GlobalControls.CurrentNPC.ToLower() + "ActionDone");
                     referenceManager.pointsText.GetComponentInChildren<Text>(true).text =
                         GlobalControls.CurrentPoints.ToString();
                 }
@@ -401,7 +414,7 @@ public class DialogueManager : MonoBehaviour
                 if (node.Contains("needsEither"))
                 {
                     if (!GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[0]]
-                        .containerName.Equals("Player") || 
+                        .containerName.Equals("Player") && 
                         !GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[1]]
                         .containerName.Equals("Player"))
                     {
