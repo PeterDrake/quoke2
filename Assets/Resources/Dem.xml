@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+    <basic_dem_0>
+        <npcText>*Stares at Duc*</npcText>
+        <playerOptions>
+            <option>Yes?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_0.0.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_0>
+
+    <basic_dem_0.0.1>
+        <npcText>I haven’t seen you around, who are you?</npcText>
+        <playerOptions>
+            <option>I'm Duc.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_0.0.2</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_0.0.1>
+
+    <basic_dem_0.0.2>
+        <npcText>Duc....Duc....</npcText>
+        <playerOptions>
+            <option>I live just south of 405 near PSU.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_0.0.3</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_0.0.2>
+
+    <basic_dem_0.0.3>
+        <npcText>Oh that Duc! You just moved in a couple weeks ago!</npcText>
+        <playerOptions>
+            <option>Who are you?</option>
+            <option>How are you doing?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_0.1</keyName>
+            <keyName>basic_dem_0.2_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_0.0.3>
+
+    <basic_dem_0.1>
+        <npcText>I’m Demetrius. I live a block over from you!</npcText>
+        <playerOptions>
+            <option>Oh yeah! I’ve seen you around. How are you doing?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_0.2_checkpoint</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_0.1>
+
+    <basic_dem_0.2_checkpoint>
+        <npcText>I’m doing pretty alright all things considered.</npcText>
+        <playerOptions>
+            <option>Is there anything you need?</option>
+            <option>I have some things to trade, do you have anything?</option>
+            <option>Bye for now!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_dem_1.1</keyName>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+        </keys>
+    </basic_dem_0.2_checkpoint>
+
+    <basic_dem_1.0>
+        <npcText>Hi friend!</npcText>
+        <playerOptions>
+            <option>I have some things to trade.</option>
+            <option>Hi, I’ve got to go.</option>
+            <option>What did you need again?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>basic_dem_1.1</keyName>
+        </keys>
+    </basic_dem_1.0>
+    
+    <basic_dem_1.1>
+        <npcText>I am hungry. I don’t need much, but if you have some canned food and a can opener I’d very much appreciate it.</npcText>
+        <playerOptions>
+            <option>Yeah, I think I might have something for you!</option>
+            <option>I’ll keep looking around.</option>
+            <option>Is there anything else you need?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_1.2_needsEither</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>action0_dem_1.3</keyName>
+        </keys>
+    </basic_dem_1.1>
+
+    <trade_dem_1.2_needsEither>
+        <npcText>Really? Here, you can have something for that.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_dem_1.2_needsEither>
+
+    <action0_dem_1.3>
+        <npcText>If you give a man some food, feed him for a day. However, if you teach a man to fish, you feed him forever. I’m interested in learning how to forage for my own food. I think it would be a good skill to have, you know?</npcText>
+        <playerOptions>
+            <option>I actually know some of the basics, I could teach you if you’d like?</option>
+            <option>That sounds like a good idea. Good luck!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_dem_1.4</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </action0_dem_1.3>
+
+    <success0_dem_1.4>
+        <npcText>Thank you so much! You helped me, so I want to help you, is there anything you need?</npcText>
+        <playerOptions>
+            <option>I have some other things I want to trade.</option>
+            <option>Nope, See you around!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </success0_dem_1.4>
+
+    <basic_dem_2.0>
+        <npcText>Hi friend!</npcText>
+        <playerOptions>
+            <option>I have some things to trade.</option>
+            <option>Hi, I’ve got to go.</option>
+            <option>What did you need again?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>basic_dem_2.1</keyName>
+        </keys>
+    </basic_dem_2.0>
+
+    <basic_dem_2.1>
+        <npcText>I’m hungry and looking to stock up on some food. Do you have a can of food, or a can opener?</npcText>
+        <playerOptions>
+            <option>I have one right here!</option>
+            <option>I’ll keep looking around.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_1.2_needsEither</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_dem_2.1>
+
+    <basic_dem_3.0>
+        <npcText>I hope you’re staying safe!</npcText>
+        <playerOptions>
+            <option>I have some things to trade!</option>
+            <option>I am, you stay safe!</option>
+            <option>What did you need again?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>dynamic_option</keyName>
+        </keys>
+    </basic_dem_3.0>
+
+    <basic_dem_3.1>
+        <npcText>I’m hungry and looking to stock up on some food. Do you have a can opener?</npcText>
+        <playerOptions>
+            <option>I have a can opener right here!</option>
+            <option>I’ll keep my eye out.</option>
+            <option>Is there anything else you need?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_1.2_needsEither</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>action0_dem_1.3</keyName>
+        </keys>
+    </basic_dem_3.1>
+
+    <basic_dem_3.2>
+        <npcText>I’m hungry and looking to stock up on some food. Do you have a can of food?</npcText>
+        <playerOptions>
+            <option>I have some canned food right here!</option>
+            <option>I’ll keep my eye out.</option>
+            <option>Is there anything else you need?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_1.2_needsEither</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>action0_dem_1.3</keyName>
+        </keys>
+    </basic_dem_3.2>
+
+    <basic_dem_4.0>
+        <npcText>Thank you for everything, what’s up?</npcText>
+        <playerOptions>
+            <option>I have some things to trade.</option>
+            <option>Nothing. See ya!</option>
+            <option>What did you need again?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_dem_0</keyName>
+            <keyName>leave_dem_0</keyName>
+            <keyName>dynamic_option</keyName>
+        </keys>
+    </basic_dem_4.0>
+    
+    <success0_dem_0.2>
+        <npcText>You’ve helped me out so much already. I don’t need anything else.</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </success0_dem_0.2>
+
+    <trade_dem_0>
+        <npcText>I think we can work something out.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_dem_0>
+
+    <leave_dem_0>
+        <npcText>See you around!</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_dem_0>
+
+    <leave_dem_4.1>
+        <npcText>You've helped me out so much already. I don't need anything else.</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_dem_4.1>
+    
+</convoForest>

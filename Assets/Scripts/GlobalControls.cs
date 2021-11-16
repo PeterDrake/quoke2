@@ -54,42 +54,6 @@ public static class GlobalControls
         {"diedrate", -7},
         {"aftershockdeath", -5},
     };
-
-    private static Dictionary<string, string> angieActions = new Dictionary<string, string>
-    {
-        {"angie0", "action0_angie_8.2"},
-        {"angie1", "action0_angie_7.2"},
-    };
-    private static Dictionary<string, string> safiActions = new Dictionary<string, string>
-    {
-        //shut of gas, shut of water, and rescue
-        {"safi0", ""},
-        {"safi1", ""},
-        {"safi2", ""},
-    };
-    private static Dictionary<string, string> demActions = new Dictionary<string, string>
-    {
-        //Foraging
-        {"dem0", ""},
-    };
-    private static Dictionary<string, string> rainerActions = new Dictionary<string, string>
-    {
-        //Comforting words
-        {"rainer0", ""},
-    };
-    private static Dictionary<string, string> annetteActions = new Dictionary<string, string>
-    {
-        //Translation
-        {"annette0", ""},
-    };
-    private static Dictionary<string, string> carlosActions = new Dictionary<string, string>
-    {
-        //sip of water
-        {"carlos0", ""},
-    };
-
-
-
     static GlobalControls()
     {
         Debug.Log("Starting Global Controls");
@@ -102,36 +66,39 @@ public static class GlobalControls
         npcList = new Dictionary<string, NPC>
             {
                 {"Safi", new NPC(namesList["Safi"], "Park",
-                    new List<string>{""}, new List<bool>{}, "basic_safi_0",
+                    new List<string>{""}, new List<bool>{}, "basic_safi_0", 
                     0, false, "Safi needs you to turn off her Gas and Water.", npcTotalSatisfaction,
-                    0, safiActions, new List<string>{"","Wrench","Wrench"})},
+                    0, new bool[3], new List<string>{"","Wrench","Wrench"})},
                 {"Dem", new NPC(namesList["Demitrius"], "Park",
                     new List<string>{"Canned Food", "Can Opener"}, new List<bool>{false, false}, "basic_dem_0",
                     0, false, "Demitrius needs a Can Opener and Canned Food", npcTotalSatisfaction,
-                    0, demActions, new List<string>{""})},
+                    0, new bool[1], new List<string>{""})},
                 {"Annette", new NPC(namesList["Annette"], "School",
-                    new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0",
+                    new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0", 
                     0, false, "Annette needs a leash and Dog Crate", npcTotalSatisfaction,
-                    0, annetteActions, new List<string>{""})},
+                    0, new bool[1], new List<string>{""})},
                 {"Rainer", new NPC(namesList["Rainer"], "School",
-                    new List<string>{"Tent", "Blanket"}, new List<bool>{false, false}, "basic_annette_0",
+                    new List<string>{"Tent", "Blanket"}, new List<bool>{false, false}, "basic_rainer_0",
                     0, false, "Rainer needs a Tent and Blanket", npcTotalSatisfaction,
-                    0, rainerActions, new List<string>{""})},
+                    0, new bool[1], new List<string>{""})},
                 {"Carlos", new NPC(namesList["Carlos"], "Garden",
                     new List<string> {"Radio", "Batteries"}, new List<bool>{false, false}, "basic_carlos_0",
                     0, false, "Carlos needs a Radio and Batteries", npcTotalSatisfaction,
-                    0, carlosActions, new List<string>{"Water Bottle Clean"})},
+                    0, new bool[1], new List<string>{"Water Bottle Clean"})},
                 {"Angie", new NPC(namesList["Angie"], "Garden",
                     new List<string> {"First Aid Kit", "Epi Pen"}, new List<bool>{false, false}, "basic_angie_0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", npcTotalSatisfaction,
-                    0, angieActions, new List<string>{"Water Bottle Clean"})},
-
+                    0, new bool[1], new List<string>{"Water Bottle Clean"})},
+                
             };
-        if (globalControlsProperties.Contains("apartmentCondition"))          
+        if (globalControlsProperties.Contains("apartmentCondition"))
+        {
             currentObjective = 2;
+        }
         else
+        {
             currentObjective = 1;
-     
+        }
 
         keybinds = new Dictionary<string, string>()
         {
@@ -170,15 +137,21 @@ public static class GlobalControls
         
         globalControlsProperties.Remove("demActionDone");
         globalControlsProperties.Remove("demDrinkDone");
+        
         globalControlsProperties.Remove("safiWaterActionDone");
         globalControlsProperties.Remove("safiGasActionDone");
         globalControlsProperties.Remove("safiRescued");
+        
         globalControlsProperties.Remove("angieDrinkDone");
+        
         globalControlsProperties.Remove("carlosDrinkDone");
+        
         globalControlsProperties.Remove("rainerActionDone");
         globalControlsProperties.Remove("rainerDrinkDone");
+        
         globalControlsProperties.Remove("annetteActionDone");
-        globalControlsProperties.Remove("annetteDrinkDone");
+        globalControlsProperties.Remove("annetteHasLeash");
+        globalControlsProperties.Remove("annetteHasDogCrate");
       
         globalControlsProperties.Remove("playerHasCleanWater");
         globalControlsProperties.Remove("playerHasFirstAidKit");

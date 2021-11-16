@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+
+    <trade_carlos_0>
+        <npcText>I think we can work something out.</npcText>
+        <playerOptions>
+            <option>START TRADING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_carlos_0>
+
+    <trade_carlos_1.3_checkpoint_needsEither>
+        <npcText>Oh cool! I can give you some stuff for that.</npcText>
+        <playerOptions>
+            <option>START TRADING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_carlos_1.3_checkpoint_needsEither>
+
+    <leave_carlos_0>
+        <npcText>See you around!</npcText>
+        <playerOptions>
+            <option>ENTER EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_carlos_0>
+
+    <leave_carlos_1.4>
+        <npcText>Thanks. See you around.</npcText>
+        <playerOptions>
+            <option>ENTER EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_carlos_1.4>
+    
+    <basic_carlos_0>
+        <npcText>Hello! I like your hair.</npcText>
+        <playerOptions>
+            <option>Thanks...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_00</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_0>
+
+    <basic_carlos_00>
+        <npcText>Sorry, it’s been a while since I talked to someone. My name’s Carlos.</npcText>
+        <playerOptions>
+            <option>I’m Duc...</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_000</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_00>
+
+    <basic_carlos_000>
+        <npcText>So what's up?</npcText>
+        <playerOptions>
+            <option>What do you mean by "been a while"? Are you okay?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_0.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_000>
+
+    <basic_carlos_0.1>
+        <npcText>Yeah I’m alright. This earthquake threw off my whole week.</npcText>
+        <playerOptions>
+            <option>Yeah things have really gotten shaken up.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_0.10</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_0.1>
+
+    <basic_carlos_0.10>
+        <npcText>Hahaha... very funny... Hopefully things will get back on track soon though. I miss my family.</npcText>
+        <playerOptions>
+            <option>Is your family okay?</option>
+            <option>I’m sure we all miss our families.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_0.2</keyName>
+            <keyName>basic_carlos_0.3_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_0.10>
+
+    <basic_carlos_0.2>
+        <npcText>I hope so. I haven’t been able to contact them yet.</npcText>
+        <playerOptions>
+            <option>Do you have a plan to contact them?</option>
+            <option>I’m sure we all miss our families.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
+            <keyName>basic_carlos_0.3_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_0.2>
+
+    <basic_carlos_0.3_checkpoint>
+        <npcText>I suppose you're right. Do you need anything?</npcText>
+        <playerOptions>
+            <option>Do you have a plan to contact your family?</option>
+            <option>Do you have anything to trade?</option>
+            <option>No, I'm alright for now. Thanks!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName>leave_carlos_0</keyName>
+        </keys>
+    </basic_carlos_0.3_checkpoint>
+
+    <basic_carlos_1.0>
+        <npcText>What’s happening Duc?</npcText>
+        <playerOptions>
+            <option>Do you have a plan to contact your family?</option>
+            <option>Do you have anything extra laying around?</option>
+            <option>Nothing that I know of.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_1.1_checkpoint</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName>leave_carlos_0</keyName>
+        </keys>
+    </basic_carlos_1.0>
+
+    <basic_carlos_1.1_checkpoint>
+        <npcText>I could probably contact my family if I had a radio and perhaps some spare batteries.</npcText>
+        <playerOptions>
+            <option>How would you do that?</option>
+            <option>I think I might have one of those!</option>
+            <option>I will keep an eye out for what you need.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_1.2</keyName>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
+        </keys>
+    </basic_carlos_1.1_checkpoint>
+
+    <basic_carlos_1.2>
+        <npcText>My family and I planned for a disaster like this. A couple years ago we decided on a ham radio channel just in case the cell towers went down.</npcText>
+        <playerOptions>
+            <option>That’s really smart.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_1.2.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_1.2>
+
+    <basic_carlos_1.2.1>
+        <npcText>Yeah I’m glad we did it because, what do you know, the cell service is down! I really want to check on my sisters and father. I can’t get to them because the roads are broken and the bridges aren’t safe yet.</npcText>
+        <playerOptions>
+            <option>I have one of those things here!</option>
+            <option>I'll keep an eye out for what you need.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_1.2.1>
+
+    <basic_carlos_2.0>
+        <npcText>What's up, Duc?</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>Do you have anything laying around?</option>
+            <option>Nothing much, Carlos!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_2.1</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName>leave_carlos_0</keyName>
+        </keys>
+    </basic_carlos_2.0>
+
+    <basic_carlos_2.1>
+        <npcText>I need to check on my Father and sisters. Have you found a radio and some extra batteries?</npcText>
+        <playerOptions>
+            <option>I have one of those things in my bag!</option>
+            <option>I'll keep an eye out for what you need.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_2.1>
+
+    <basic_carlos_3.0>
+        <npcText>What's up, Duc?</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>Do you have anything laying around?</option>
+            <option>Nothing much, Carlos!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName>leave_carlos_0</keyName>
+        </keys>
+    </basic_carlos_3.0>
+
+    <basic_carlos_3.1>
+        <npcText>I need to check on my Father and sisters. Have you found a radio?</npcText>
+        <playerOptions>
+            <option>I have a radio here!</option>
+            <option>I'll keep an eye out for what you need.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_3.1>
+
+    <basic_carlos_3.2>
+        <npcText>I need to check on my Father and sisters. Have you found some extra batteries?</npcText>
+        <playerOptions>
+            <option>I have some spare batteries in my bag!</option>
+            <option>I'll keep an eye out for what you need.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_carlos_1.3_checkpoint_needsEither</keyName>
+            <keyName>leave_carlos_1.4</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_3.2>
+
+    <basic_carlos_4.0>
+        <npcText>Hey Duc!</npcText>
+        <playerOptions>
+            <option>How is your family?</option>
+            <option>I have some things to trade!</option>
+            <option>Hey! Just saying hi!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_4.1</keyName>
+            <keyName>trade_carlos_0</keyName>
+            <keyName>leave_carlos_0</keyName>
+        </keys>
+    </basic_carlos_4.0>
+
+    <basic_carlos_4.1>
+        <npcText>Thankfully my family is safe. I'll go see them in person once the bridges are checked and safe.</npcText>
+        <playerOptions>
+            <option>Is there anything else you need?</option>
+            <option>That's good to hear. Was just checking in. I have to go now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>leave_carlos_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_4.1>
+
+    <action0_carlos_4.2>
+        <npcText>Now that you mention it, I’m kind of thirsty. Do you have any spare water?</npcText>
+        <playerOptions>
+            <option>Yeah! Here you can have some.</option>
+            <option>No, but I’ll come and give you some if I get some.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_carlos_4.4</keyName>
+            <keyName>leave_carlos_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </action0_carlos_4.2>
+    
+    <basic_carlos_4.3>
+        <npcText>You've been a big help. I'm good for now.</npcText>
+        <playerOptions>
+            <option>Okay! Bye!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_carlos_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_carlos_4.3>
+
+    <success0_carlos_4.4>
+        <npcText>Thanks. That's very refreshing.</npcText>
+        <playerOptions>
+            <option>Do you need help with anything else?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_carlos_4.3</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </success0_carlos_4.4>
+    
+    <leave_error>
+        <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered "Dialogue Error Exit Code 0". We will resume from my last checkpoint</npcText>
+        <playerOptions>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+        </keys>
+    </leave_error>
+
+</convoForest>

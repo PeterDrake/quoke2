@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+    <basic_rainer_0>
+        <npcText>...</npcText>
+        <playerOptions>
+            <option>Hello, I’m Duc.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_rainer_0.0.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_rainer_0>
+
+    <basic_rainer_0.0.1>
+        <npcText>I’m Rainer.</npcText>
+        <playerOptions>
+            <option>What’s your story?</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_rainer_1.1_checkpoint</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_rainer_0.0.1>
+
+    <basic_rainer_1.0>
+        <npcText>Hey Duc!</npcText>
+        <playerOptions>
+            <option>How are you doing?</option>
+            <option>I have some things to trade.</option>
+            <option>Bye now!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_rainer_1.1_checkpoint</keyName>
+            <keyName>trade_rainer_0</keyName>
+            <keyName>leave_rainer_0</keyName>
+        </keys>
+    </basic_rainer_1.0>
+
+    <basic_rainer_1.1_checkpoint>
+        <npcText>A little while after the earthquake a tree branch fell on my tent. I don’t have anywhere else to stay so I’m looking for a tent and a blanket. I can build myself back up, but I definitely need something to stave off the weather.</npcText>
+        <playerOptions>
+            <option>I have something that might help!</option>
+            <option>I’ll keep my eye out for anything you can use.</option>
+            <option>Is there anything else bugging you?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_rainer_1.2_checkpoint_needsEither</keyName>
+            <keyName>leave_rainer_0</keyName>
+            <keyName>action0_rainer_2.2</keyName>
+        </keys>
+    </basic_rainer_1.1_checkpoint>
+
+    <trade_rainer_1.2_checkpoint_needsEither>
+        <npcText>We’ve all been hit pretty hard, so I’ll give you something for it.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_rainer_1.2_checkpoint_needsEither>
+
+    <basic_rainer_1.3>
+        <npcText>Thank you so much! Is there anything else you wanted to talk about?</npcText>
+        <playerOptions>
+            <option>How are you holding up?</option>
+            <option>Actually, I have some more things to trade.</option>
+            <option>Nope! See you around!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>action0_rainer_2.2</keyName>
+            <keyName>trade_rainer_0</keyName>
+            <keyName>leave_rainer_0</keyName>
+        </keys>
+    </basic_rainer_1.3>
+
+    <basic_rainer_2.0>
+        <npcText>Hey Duc!</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I have some things to trade.</option>
+            <option>Bye now!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_rainer_2.1</keyName>
+            <keyName>trade_rainer_0</keyName>
+            <keyName>leave_rainer_0</keyName>
+        </keys>
+    </basic_rainer_2.0>
+
+    <basic_rainer_2.1>
+        <npcText>A tree fell on my tent, so I’m looking for a new tent and a blanket.</npcText>
+        <playerOptions>
+            <option>I have something that might help!</option>
+            <option>I’ll keep my eye out for anything you can use.</option>
+            <option>Is there anything else bugging you?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_rainer_1.2_checkpoint_needsEither</keyName>
+            <keyName>leave_rainer_0</keyName>
+            <keyName>action0_rainer_2.2</keyName>
+        </keys>
+    </basic_rainer_2.1>
+
+    <action0_rainer_2.2>
+        <npcText>I don’t know. The whole situation with the earthquake and my tent. I just got that tent and now it’s gone. I guess it just really has me down.</npcText>
+        <playerOptions>
+            <option>That sucks buddy. We’re all sad.</option>
+            <option>I mean… You’re allowed to have your feelings.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_rainer_2.3</keyName>
+            <keyName>comfort_rainer_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </action0_rainer_2.2>
+
+    <leave_rainer_2.3>
+        <npcText>I suppose you’re right...</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_rainer_2.3>
+
+    <basic_rainer_3.0>
+        <npcText>Hi there!</npcText>
+        <playerOptions>
+            <option>What did you need again?</option>
+            <option>I have some things to trade.</option>
+            <option>Bye now!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>trade_rainer_0</keyName>
+            <keyName>leave_rainer_0</keyName>
+        </keys>
+    </basic_rainer_3.0>
+
+    <basic_rainer_3.1>
+        <npcText>Thank you for bringing me a blanket, but I still need a tent to sleep in tonight.</npcText>
+        <playerOptions>
+            <option>I have a tent right here!</option>
+            <option>I’ll see if I can find a tent.</option>
+            <option>Is there anything else bothering you?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_rainer_3.3</keyName>
+            <keyName>leave_rainer_0</keyName>
+            <keyName>action0_rainer_2.2</keyName>
+        </keys>
+    </basic_rainer_3.1>
+
+    <basic_rainer_3.2>
+        <npcText>Thank you for bringing me a tent, but I still need a blanket to stay warm tonight.</npcText>
+        <playerOptions>
+            <option>I have a blanket right here!</option>
+            <option>I’ll see if I can find a blanket.</option>
+            <option>Is there anything else bothering you?</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_rainer_3.3</keyName>
+            <keyName>leave_rainer_0</keyName>
+            <keyName>action0_rainer_2.2</keyName>
+        </keys>
+    </basic_rainer_3.2>
+
+    <trade_rainer_3.3>
+        <npcText>Oh cool! I’ll give you something for it.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_rainer_3.3>
+
+    <leave_rainer_3.4>
+        <npcText>Thank you so much! See you around!</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_rainer_3.4>
+
+    <basic_rainer_4.0>
+        <npcText>Thank you for everything! What’s up?</npcText>
+        <playerOptions>
+            <option>Is there anything else you need?</option>
+            <option>I have some things to trade if you’d like.</option>
+            <option>Nothing’s up, see ya!</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>dynamic_option</keyName>
+            <keyName>trade_rainer_0</keyName>
+            <keyName>leave_rainer_0</keyName>
+        </keys>
+    </basic_rainer_4.0>
+
+    <leave_rainer_4.1>
+        <npcText>You’ve helped me out a lot already. I think I can manage from here.</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_rainer_4.1>
+
+    <comfort_rainer_0>
+        <npcText>I guess, but other people were hit harder than I was.</npcText>
+        <playerOptions>
+            <option>That may be true, but you deserve the same amount of attention that they do.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_rainer_0.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </comfort_rainer_0>
+
+    <success0_rainer_0.1>
+        <npcText>I guess you’re right. Thanks, I feel a lot better.</npcText>
+        <playerOptions>
+            <option>My pleasure!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_rainer_0</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </success0_rainer_0.1>
+
+    <trade_rainer_0>
+        <npcText>I think we can work something out.</npcText>
+        <playerOptions>
+            <option>(Start Trading)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_rainer_0>
+
+    <leave_rainer_0>
+        <npcText>See you around!</npcText>
+        <playerOptions>
+            <option>(Start Exploring)</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_rainer_0>
+</convoForest>
