@@ -89,10 +89,10 @@ public static class GlobalItemList
         if (isInApartment)
         {
             itemList.Add(
-                "Hand Lotion", new Item(new Vector3(4.5f,0.5f,-8.5f), "Hand Lotion",
+                "Succulent", new Item(new Vector3(4.5f,0.5f,-8.5f), "Succulent",
                     "PreQuakeHouse", ""));
             itemList.Add(
-                "Baseball Cap", new Item(new Vector3(0f,0.5f,7.5f), "Baseball Cap",
+                "Vintage Game Console", new Item(new Vector3(0f,0.5f,7.5f), "Vintage Game Console",
                     "PreQuakeHouse", ""));
             itemList.Add(
                 "Bleach", new Item(new Vector3(-6.5f,0.5f,0.5f), "Bleach",
@@ -113,10 +113,10 @@ public static class GlobalItemList
         else
         {
             itemList.Add(
-                "Hand Lotion", new Item(new Vector3(6.5f,0.5f,-7.5f), "Hand Lotion",
+                "Succulent", new Item(new Vector3(6.5f,0.5f,-7.5f), "Succulent",
                 "PreQuakeHouse", ""));
             itemList.Add(
-                "Baseball Cap", new Item(new Vector3(-2.5f,0.5f,7.5f), "Baseball Cap",
+                "Vintage Game Console", new Item(new Vector3(-2.5f,0.5f,7.5f), "Vintage Game Console",
                 "PreQuakeHouse", ""));
             itemList.Add(
                 "Dirty Water Bottle", new Item(new Vector3(-6.5f,0.5f,0.5f), "Dirty Water Bottle",
