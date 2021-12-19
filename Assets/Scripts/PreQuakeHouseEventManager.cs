@@ -48,8 +48,9 @@ public class PreQuakeHouseEventManager : MonoBehaviour
                 goodPlaceFullCount++;
             }
         }
+        Debug.Log("GoodPlaceFullCount = "+goodPlaceFullCount);
 
-        if (goodPlaceFullCount < 2) return false;
+        if (goodPlaceFullCount != 6) return false;
         return true;
     }
 }
