@@ -278,6 +278,7 @@ public class DialogueManager : MonoBehaviour
         {
             buttons[cursorLocation].Select();
             gameStateManager.SetExploring();
+            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
             return cursorLocation;
         }
 
