@@ -437,10 +437,9 @@ public class Inventory : MonoBehaviour
         {
             if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
             {
-                GlobalItemList.UpdateItemList("Bleach",
-                    "",
-                    new Vector3(0,0,0),
-                    "");
+                Debug.Log("Dropping bleach");
+                items[selectedSlotNumber] = null;
+                inventoryUI.RemoveFromSlot(selectedSlotNumber);
                 items[selectedSlotNumber] = null;
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
