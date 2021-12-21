@@ -24,7 +24,7 @@ public class TestTrading
         yield return null;
         
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.F);
+        referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.Z);
         
         yield return new WaitForSeconds(1.5f);
 

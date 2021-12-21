@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convoForest>
+
+    <trade_safi_0>
+        <npcText>Take a look.</npcText>
+        <playerOptions>
+            <option>START TRADING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </trade_safi_0>
+
+    <leave_safi_0>
+        <npcText>Alright, bye.</npcText>
+        <playerOptions>
+            <option>ENTER EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_safi_0>
+
+    <leave_safi_1.2_checkpoint>
+        <npcText>Thank you so much!</npcText>
+        <playerOptions>
+            <option>EXIT EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_safi_1.2_checkpoint>
+
+    <leave_safi_3.2_checkpoint>
+        <npcText>You're a lifesaver!!</npcText>
+        <playerOptions>
+            <option>EXIT EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_safi_3.2_checkpoint>
+
+    <basic_safi_0>
+        <npcText>Help! Is anyone out there?! This tree branch fell in front of me and I can’t get through!</npcText>
+        <playerOptions>
+            <option>I hear you! I'm Duc! Are you hurt?!</option>
+            <option>My name is Duc! I’ll get you out of there!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_0.1</keyName>
+            <keyName>success0_safi_0.2_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_0>
+
+    <basic_safi_0.1>
+        <npcText>Hi Duc! My name is Safi. I’m not injured, but I fell off of my bike and a tree branch fell in front of me when the shaking started. </npcText>
+        <playerOptions>
+            <option>Okay. I’ll hold the tree up for a moment, that should be long enough for you to crawl out.</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>success0_safi_0.3_checkpoint</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_0.1>
+
+    <success0_safi_0.2_checkpoint>
+        <npcText>*sigh* Thank you so much, Duc! My name is Safi. I was worried that I would be stuck there forever! I fell off of my bike and a tree branch fell in front of me when the shaking started. I need to get home.</npcText>
+        <playerOptions>
+            <option>Why do you need to get home?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_1.1</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </success0_safi_0.2_checkpoint>
+
+    <success0_safi_0.3_checkpoint>
+        <npcText>*sigh* Thank you so much! I was worried that I would be stuck there forever!</npcText>
+        <playerOptions>
+            <option>Why do you need to get home?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_1.1</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </success0_safi_0.3_checkpoint>
+
+    <basic_safi_1.1>
+        <npcText>I’m doing alright right now, but my house won’t be for much longer!</npcText>
+        <playerOptions>
+            <option>Oh no! What’s wrong?!</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_1.1.1</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_1.1>
+
+    <basic_safi_1.1.1>
+        <npcText>I haven’t managed to turn off the gas for my house yet! They taught us how to do it last year in my teacher’s emergency training class, but I need a non-sparking wrench. I’m worried that something will leak! </npcText>
+        <playerOptions>
+            <option>I have a wrench right here! Point out your house and I can turn off the gas.</option>
+            <option>I don’t have a wrench right now, but I’ll keep my eye out for one!</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_1.2_checkpoint</keyName>
+            <keyName>basic_safi_1.3_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_1.1.1>
+
+    <basic_safi_1.3_checkpoint>
+        <npcText>That’s too bad, I’m really worried.</npcText>
+        <playerOptions>
+            <option>I'll get going then.</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_0</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_1.3_checkpoint>
+
+    <leave_safi_1.3>
+        <npcText>Have you fixed the gas leak yet? The valve should be around the back of the house.</npcText>
+        <playerOptions>
+            <option>ENTER EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_safi_1.3>
+
+    <leave_safi_3.3>
+        <npcText>Have you fixed the water heater yet? It should be in my garage.</npcText>
+        <playerOptions>
+            <option>ENTER EXPLORING</option>
+            <option></option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName></keyName>
+            <keyName></keyName>
+        </keys>
+    </leave_safi_3.3>
+
+    <basic_safi_1.0>
+        <npcText>Hey Duc. What's up?</npcText>
+        <playerOptions>
+            <option>How are you doing?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_1.1</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </basic_safi_1.0>
+
+    <basic_safi_2.0>
+        <npcText>Hey Duc. What's up?</npcText>
+        <playerOptions>
+            <option>I found the wrench you needed.</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_1.2_checkpoint</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </basic_safi_2.0>
+
+    <basic_safi_3.0>
+        <npcText>Hey Duc! What's up?</npcText>
+        <playerOptions>
+            <option>Is there anything else you need?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_3.1</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </basic_safi_3.0>
+
+    <basic_safi_3.1>
+        <npcText>My water heater started leaking! I set up a bucket to catch the water, but it won’t hold all of it. Do you still have that wrench?</npcText>
+        <playerOptions>
+            <option>Yes I do! I’ll go turn that off for you.</option>
+            <option>Oh no! I left it somewhere...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_3.2_checkpoint</keyName>
+            <keyName>basic_safi_3.3_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_3.1>
+
+    <basic_safi_3.1>
+        <npcText>My water heater started leaking! I set up a bucket to catch the water, but it won’t hold all of it. Do you still have that wrench?</npcText>
+        <playerOptions>
+            <option>Yes I do! I’ll go turn that off for you.</option>
+            <option>Oh no! I left it somewhere...</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_3.2_checkpoint</keyName>
+            <keyName>basic_safi_3.3_checkpoint</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_3.1>
+
+    <basic_safi_3.3_checkpoint>
+        <npcText>That’s too bad. My parents are going to be so mad.</npcText>
+        <playerOptions>
+            <option>I'll be right back with that wrench.</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_0</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_3.3_checkpoint>
+
+    <basic_safi_4.0>
+        <npcText>Hey Duc.</npcText>
+        <playerOptions>
+            <option>I found the wrench again.</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_safi_3.2_checkpoint</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </basic_safi_4.0>
+
+    <basic_safi_5.0>
+        <npcText>Hey Duc! Thank you for everything!</npcText>
+        <playerOptions>
+            <option>How are you doing?</option>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>basic_safi_5.1</keyName>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+        </keys>
+    </basic_safi_5.0>
+
+    <basic_safi_5.1>
+        <npcText>I’m doing pretty well. I’m worried about my parents, but I’m sure they’ll be fine.</npcText>
+        <playerOptions>
+            <option>I have some things in my backpack. Do you have anything to trade?</option>
+            <option>Well good luck. I have to go for now.</option>
+            <option></option>
+        </playerOptions>
+
+        <keys>
+            <keyName>trade_safi_0</keyName>
+            <keyName>leave_safi_0</keyName>
+            <keyName></keyName>
+        </keys>
+    </basic_safi_5.1>
+    
+    <leave_error>
+        <npcText>It seems you ran into an error with my dialogue. Please tell your proctor that you encountered "Dialogue Error Exit Code 0". We will resume from my last checkpoint</npcText>
+        <playerOptions>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+            <option>Dialogue Error Exit Code 0</option>
+        </playerOptions>
+
+        <keys>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+            <keyName>leave_error</keyName>
+        </keys>
+    </leave_error>
+    
+</convoForest>
