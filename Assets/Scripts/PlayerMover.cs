@@ -38,13 +38,14 @@ public class PlayerMover : MonoBehaviour
     {
         Vector3 direction = transform.forward;
         // Get all things in the space on the grid the player is trying to move to
-        Collider[] hitColliders = Physics.OverlapSphere(destination.position + direction, 0.2f, layers);
-        if (hitColliders.Length == 1)  // There should be 0 or 1 such objects
+        Collider[] hitColliders = Physics.OverlapBox(destination.position + direction, new Vector3(0.2f, 0.2f, 0.2f),Quaternion.identity ,layers);
+        //Collider[] hitColliders = Physics.OverlapSphere(destination.position + direction, 0.2f, layers);
+        if (hitColliders.Length > 0)  // There should be 0 or 1 such objects
         {
             // It's okay to move into (under) a table if you're crouching
             if (crouching && hitColliders[0].gameObject.layer == LayerMask.NameToLayer("Table"))
             {
-                Collider[] tableCheckColliders = Physics.OverlapSphere(transform.position, 0.2f, obstacleLayers);
+                Collider[] tableCheckColliders = Physics.OverlapBox(destination.position + direction, new Vector3(0.2f, 0.2f, 0.2f), Quaternion.identity, obstacleLayers); ;
                 underTable = tableCheckColliders.Length != 0;
                 return null;
             }
