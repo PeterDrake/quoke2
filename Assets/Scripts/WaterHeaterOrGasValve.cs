@@ -1,26 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterHeaterOrGasValve : MonoBehaviour
 {
-    private bool hasWrench;
-    private bool gasDone;
+
+    private ReferenceManager referenceManager;
+    private PlayerMover player;
+    private LayerMask gasValve, waterHeater; 
+    private GameObject npcCanvas;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        hasWrench = GlobalControls.globalControlsProperties.Contains("playerHasWrench");
-        gasDone = GlobalControls.globalControlsProperties.Contains("safiGasDone");
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        player = referenceManager.player.GetComponent<PlayerMover>();
+        npcCanvas = referenceManager.npcInteractedCanvas;
+        gasValve = LayerMask.GetMask("GasValve");
+        waterHeater = LayerMask.GetMask("WaterHeater");
+
     }
 
-    private bool GasDone()
+    private void Update()
     {
-        return hasWrench;
+        CheckSafiActions(); //Checks for player input in order to complete the two Safi actions with wrench
+    }
+
+    void CheckSafiActions()
+    {
+        if ((Input.GetKeyDown(KeyCode.Space) && HasWrench()))
+        {
+            UpdateInteractables("Heater", waterHeater);
+            UpdateInteractables("Gas", gasValve);
+        }
+    }
+
+    void UpdateInteractables(string interactable ,LayerMask layer)
+    {
+        if (player.ObjectAhead(layer) && (!GlobalControls.globalControlsProperties.Contains("safi" + interactable+ "Done")))
+        {
+            GlobalControls.globalControlsProperties.Add("safi" + interactable + "Done");
+            GlobalControls.npcList["Safi"].satisfaction++;
+            GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+            npcCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+
+        }
     }
     
-    private bool HeaterDone()
+
+    
+
+    private bool HasWrench()
     {
-        return hasWrench && gasDone;
+        if (GlobalItemList.ItemList["Wrench"].containerName.Equals("Player"))
+        {
+            GlobalControls.globalControlsProperties.Add("playerHasWrench");
+            return true;
+        }
+        return false;
+
     }
 }
+
+

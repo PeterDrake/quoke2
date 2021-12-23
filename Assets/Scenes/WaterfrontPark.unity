@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 1206098125}
   - component: {fileID: 1206098128}
   - component: {fileID: 1206098127}
+  - component: {fileID: 1206098129}
   - component: {fileID: 1206098126}
   m_Layer: 17
   m_Name: Gas Valve
@@ -829,6 +830,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206098124}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1206098129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206098124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3742d2e4f453744bcd0a3549cf5db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1291811205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1377,7 @@ GameObject:
   - component: {fileID: 2000444737}
   - component: {fileID: 2000444736}
   - component: {fileID: 2000444735}
+  - component: {fileID: 2000444738}
   m_Layer: 18
   m_Name: Water Heater
   m_TagString: Untagged
@@ -1447,6 +1461,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000444733}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2000444738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000444733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3742d2e4f453744bcd0a3549cf5db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5078228284213196783
 PrefabInstance:
   m_ObjectHideFlags: 0

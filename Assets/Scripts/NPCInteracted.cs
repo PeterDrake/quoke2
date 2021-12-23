@@ -64,8 +64,8 @@ public class NPCInteracted : MonoBehaviour
         }
         for (int i = 0; i <= npc.totalSatisfaction; i++)
         {
-            Debug.Log("TOTAL SATISFACTION = " + npc.totalSatisfaction);
-            Debug.Log("NPC SATISFACTION = " + npc.satisfaction);
+            //Debug.Log("TOTAL SATISFACTION = " + npc.totalSatisfaction);
+            //Debug.Log("NPC SATISFACTION = " + npc.satisfaction);
             if(npc.satisfaction >= i)
             {
                 Debug.Log(npc.name + " satisfaction up!");
