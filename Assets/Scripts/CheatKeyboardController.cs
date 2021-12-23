@@ -17,7 +17,7 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode strategicMapTeleport = KeyCode.K;
     public KeyCode completeWater = KeyCode.O;
     public KeyCode completePoop = KeyCode.P;
-    public KeyCode restart = KeyCode.N;
+    public KeyCode restart = KeyCode.R;
     public KeyCode loadPoopItems = KeyCode.L;
     public KeyCode loadWaterItems = KeyCode.Y;
     public KeyCode loadPreQuakeItems = KeyCode.F;

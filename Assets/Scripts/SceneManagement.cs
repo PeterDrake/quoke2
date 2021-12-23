@@ -9,8 +9,8 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
-        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"School", "Park", "Street", "Garden"};
-        else previousScenes = new []{"School", "Park", "Yard","Garden"};
+        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PioneerCourthouseSquare", "WaterfrontPark", "Street", "PSU"};
+        else previousScenes = new []{ "PioneerCourthouseSquare", "WaterfrontPark", "Yard", "PSU" };
     }
 
     public void Restart()
@@ -19,7 +19,7 @@ public class SceneManagement : MonoBehaviour
         GlobalItemList.Reset();
         if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
         {
-            ChangeScene("PreQuakeApartment");
+            ChangeScene("PreQuakeApartmentStylizedv3");
         }
         else ChangeScene("PreQuakeHouse");
     }
@@ -105,7 +105,7 @@ public class SceneManagement : MonoBehaviour
                 }
             }
         }
-        else if (sceneToLoad.Equals("QuakeApartment") && SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
+        else if (sceneToLoad.Equals("QuakeApartment") && SceneManager.GetActiveScene().name.Equals("PreQuakeApartmentStylizedv3"))
         {
             StorageContainer[] containers = new StorageContainer[]
             {
