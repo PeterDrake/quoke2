@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
 
-        //Paste the path of the xml file you want to look at here
+        //Load the conversation XML file of whatever NPC you talk to.
         TextAsset text = Resources.Load<TextAsset>(GlobalControls.CurrentNPC);
         convoFile.LoadXml(text.text);
 
@@ -53,9 +53,7 @@ public class DialogueManager : MonoBehaviour
                 forest.Add(node.Name, new ConvoNode(node));
             }
         }
-
-        // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
-        // "theirName0" to get to the appropriate starting node
+        
         Debug.Log(GlobalControls.npcList[GlobalControls.CurrentNPC].node);
         currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
 
@@ -72,6 +70,10 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        // This huge thing is mostly for the NPC named Angie. It was an experimental version of the DialogueManager.
+        // Code lower than this is more modern code, but this experimental version was a bit too large to
+        // be worth fixing.
+        
         //If the player leaves a trading session...
         if (keyboardManager.leftTrading)
         {

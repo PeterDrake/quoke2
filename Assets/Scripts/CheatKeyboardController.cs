@@ -6,8 +6,7 @@ using UnityEngine.UIElements;
 
 public class CheatKeyboardController : MonoBehaviour
 {
-    // For scenes with no meters (before and during the quake), this can remain null
-    public Meters meters;
+    public Meters meters;     // For scenes with no meters (before and during the quake), this can remain null
     public SceneManagement sceneManagement;
     private string currentScene;
     public bool virtualKeyboard;
