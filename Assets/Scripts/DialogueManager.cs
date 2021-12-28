@@ -145,6 +145,14 @@ public class DialogueManager : MonoBehaviour
             }
             else if (GlobalControls.CurrentNPC.Equals("Safi"))
             {
+                // if (gas valve fixed)
+                // {
+                //     Move to appropriate node
+                // }
+                // if (water valve fixed)
+                // {
+                //     Move to appropriate node
+                // }                
                 currentNode = forest["leave_safi_0"];
             }
             else
