@@ -83,6 +83,7 @@ public class NPCInteracted : MonoBehaviour
     }
     public void UpdateNPCInteracted(string name)
     {
+        Debug.Log("name: " + name);
         NPC npc = GlobalControls.npcList[name];
         int i = Array.IndexOf(GlobalControls.npcNames, name);
         // Update display of how satisfied this NPC is

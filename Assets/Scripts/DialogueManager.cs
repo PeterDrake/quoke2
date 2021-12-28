@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
         if (keyboardManager.leftTrading)
         {
             keyboardManager.leftTrading = false;
-            
+
             if (GlobalControls.CurrentNPC.Contains("Angie"))
             {
                 //If Angie is given the first aid kit and the epi pen at the same time, update globalControlsProperties to
@@ -143,8 +143,13 @@ public class DialogueManager : MonoBehaviour
                 else
                     currentNode = forest["leave_error"];
             }
-            else if (!GlobalControls.CurrentNPC.Contains("Safi"))
+            else if (GlobalControls.CurrentNPC.Equals("Safi"))
             {
+                currentNode = forest["leave_safi_0"];
+            }
+            else
+            {
+                // Current NPC is *not* Safi
                 int propertiesSet = 0;
                 string checkpoint = "basic_" + GlobalControls.CurrentNPC.ToLower() + "_";
                 string leave = "leave_" + GlobalControls.CurrentNPC.ToLower() + "_0";
@@ -164,18 +169,19 @@ public class DialogueManager : MonoBehaviour
                     }
                     else if (GlobalControls.globalControlsProperties.Contains(property)) propertiesSet++;
                 }
+
                 // If both properties are set now, set checkpoint to corresponding checkpoint
                 if (propertiesSet == 2)
                 {
                     GlobalControls.SetCheckpoint(checkpoint + "4.0");
                     Debug.Log(checkpoint + "4.0");
                 }
-                
+
                 // Handles specific cases where dialogue should continue after trading with an NPC
                 // In the case that the player just traded Annette some needed items in the 0 series of nodes
                 if (currentNode.nodeName.Equals("basic_annette_1.0")
-                && (GlobalControls.globalControlsProperties.Contains("annetteHasLeash")
-                    || GlobalControls.globalControlsProperties.Contains("annetteHasDogCrate")))
+                    && (GlobalControls.globalControlsProperties.Contains("annetteHasLeash")
+                        || GlobalControls.globalControlsProperties.Contains("annetteHasDogCrate")))
                 {
                     currentNode = forest["basic_annette_0.6"];
                 }
@@ -184,13 +190,10 @@ public class DialogueManager : MonoBehaviour
                     currentNode = forest[leave];
                 }
             }
-            else
-            {
-                currentNode = forest["leave_" + GlobalControls.CurrentNPC.ToLower() + "_0"];
-            }
+
             npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
-            
-            Debug.Log("Current Node: " + currentNode.nodeName);
+
+            Debug.Log("Current Node A: " + currentNode.nodeName);
         }
 
         //Go through all the buttons and put that node's text into the buttons.
@@ -308,6 +311,7 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["leave_rainer_4.1"];
                     }
+
                     break;
                 case "Annette":
                     if (currentNode.nodeName.Equals("basic_annette_1.1"))
@@ -338,8 +342,9 @@ public class DialogueManager : MonoBehaviour
                     {
                         currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
                     }
+
                     break;
-                case "Carlos": 
+                case "Carlos":
                     if (currentNode.nodeName.Equals("basic_carlos_3.0"))
                     {
                         if (GlobalControls.globalControlsProperties.Contains("carlosHasBatteries"))
@@ -356,6 +361,7 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["basic_carlos_4.3"];
                     }
+
                     break;
                 case "Dem":
                     if (currentNode.nodeName.Equals("basic_dem_3.0"))
@@ -374,17 +380,16 @@ public class DialogueManager : MonoBehaviour
                         }
                         else currentNode = forest["action0_dem_1.3"];
                     }
+
                     break;
             }
-            
-            
-            
         }
         else
         {
             currentNode = forest[nextNode];
         }
-        Debug.Log("Current Node " + currentNode.nodeName);
+
+        Debug.Log("Current Node B: " + currentNode.nodeName);
 
         for (int i = 0; i < currentNode.nextNode.Count; i++)
         {
@@ -397,6 +402,16 @@ public class DialogueManager : MonoBehaviour
                 buttons[i].gameObject.SetActive(false);
             }
 
+            if (currentNode.nodeName.Equals("basic_safi_1.1.1"))
+            {
+                GlobalControls.globalControlsProperties.Add("safiAsksForGasHelp");
+                Debug.Log("Safi asked for gas help");
+            }
+            else if (currentNode.nodeName.Equals("basic_safi_3.1"))
+            {
+                GlobalControls.globalControlsProperties.Add("safiAsksForWaterHelp");
+            }
+            
             if (currentNode.nodeName.Contains("success"))
             {
                 int actionIndex = Int32.Parse(currentNode.nodeName.Substring(7, 1));
@@ -420,9 +435,9 @@ public class DialogueManager : MonoBehaviour
                 if (node.Contains("needsEither"))
                 {
                     if (!GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[0]]
-                        .containerName.Equals("Player") && 
+                            .containerName.Equals("Player") &&
                         !GlobalItemList.ItemList[GlobalControls.npcList[GlobalControls.CurrentNPC].needs[1]]
-                        .containerName.Equals("Player"))
+                            .containerName.Equals("Player"))
                     {
                         Debug.Log("turning off one of the need's button");
                         buttons[i].gameObject.SetActive(false);
@@ -439,6 +454,7 @@ public class DialogueManager : MonoBehaviour
                     Debug.Log("turning off one of the need's button");
                     buttons[i].gameObject.SetActive(false);
                 }
+
                 Debug.Log("The next node's name" + currentNode.nextNode[i]);
             }
             // If the player has already completed the action corresponding to this node/option, don't show it
@@ -485,22 +501,22 @@ public class DialogueManager : MonoBehaviour
                 GlobalControls.SetCheckpoint("basic_angie_6.0");
             else if (currentNode.nodeName.Equals("checkpoint_angie_10.2"))
                 GlobalControls.SetCheckpoint("basic_angie_10.0");
-            
+
             else if (currentNode.nodeName.Equals("basic_dem_0.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_dem_1.0");
-            
+
             else if (currentNode.nodeName.Equals("basic_annette_0.4.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
             else if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
             else if (currentNode.nodeName.Equals("basic_annette_2.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_annette_1.0");
-            
+
             else if (currentNode.nodeName.Equals("basic_rainer_1.1_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_rainer_1.0");
             else if (currentNode.nodeName.Equals("trade_rainer_1.2_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_rainer_2.0");
-            
+
             else if (currentNode.nodeName.Equals("trade_carlos_1.3_checkpoint"))
                 GlobalControls.SetCheckpoint("basic_carlos_2.0");
             else if (currentNode.nodeName.Equals("basic_carlos_1.1_checkpoint"))
@@ -556,8 +572,9 @@ public class DialogueManager : MonoBehaviour
 
         return cursorLocation;
     }
-    
-    public string RemoveWhitespace(string str) {
+
+    public string RemoveWhitespace(string str)
+    {
         return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
     }
 }

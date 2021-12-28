@@ -30,10 +30,16 @@ public class WaterHeaterOrGasValve : MonoBehaviour
 
     void CheckSafiActions()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) && HasWrench()))
+        if (Input.GetKeyDown(KeyCode.Space) && HasWrench())
         {
-            UpdateInteractables("Heater", waterHeater);
-            UpdateInteractables("Gas", gasValve);
+            if (GlobalControls.globalControlsProperties.Contains("safiAsksForGasHelp"))
+            {
+                UpdateInteractables("Gas", gasValve);
+            }
+            if (GlobalControls.globalControlsProperties.Contains("safiAsksForWaterHelp"))
+            {
+                UpdateInteractables("Heater", waterHeater);
+            }
         }
     }
 
@@ -44,7 +50,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
             GlobalControls.globalControlsProperties.Add("safi" + interactable + "Done");
             GlobalControls.npcList["Safi"].satisfaction++;
             GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
-            npcCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
+            npcCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Safi");
             referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
 
         }
