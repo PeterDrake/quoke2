@@ -245,50 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: 'Cheat Codes:
+  notes: 'CHEAT CODES DOCUMENT:
 
-    H => Teleport to PreQuake (house or apartment depending
-    on condition)
-
-    J => Teleport to Quake (house or apartment depending on condition)
-
-    K
-    => Teleport to StrategicMap
-
-    O => Complete Water Meter
-
-    P => Complete
-    Poop Meter
-
-    N => Restart Game at Prequake
-
-    L => Load Latrine/Two Bucket
-    items (Apartment or House condition)
-
-    F => Load PreQuake items to Street/Yard
-    (Apartment or House Condition)
-
-    Y => Give player Water task Items
-
-    T
-    => Change global flag for Apartment Condition (Call in conjunction with a teleport
-    to update map/items
-
-    Z => Give all required items for Angie''s dialogue
-
-    X
-    => Give all required items for Carlos''s dialogue
-
-    V => Give all required
-    items for Demitrius''s dialogue
-
-    B => Give all required items for Annette''s
-    dialogue
-
-    N => Give all required items for Safi''s dialogue
-
-    M => Give
-    all required items for Rainer''s dialogue'
+    https://docs.google.com/document/d/11-pQNKFdTvky1OzgJLcb0TdVmNy5TC4S-SGOnyTW1Xc/edit?usp=sharing'
 --- !u!114 &7045846560509495175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,10 +266,9 @@ MonoBehaviour:
   preQuakeTeleport: 104
   quakeTeleport: 106
   strategicMapTeleport: 107
-  parkTeleport: 98
   completeWater: 111
   completePoop: 112
-  restart: 110
+  restart: 114
   loadPoopItems: 108
   loadWaterItems: 121
   loadPreQuakeItems: 102
