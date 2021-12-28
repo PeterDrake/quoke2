@@ -455,12 +455,10 @@ public class Inventory : MonoBehaviour
         }
         else if (container.contents && SlotIsOccupied(selectedSlotNumber))
         {
-            if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
+            if (items[selectedSlotNumber].name.Equals("Bleach(Clone)") && !GlobalControls.globalControlsProperties.Contains("waterPurified"))
             {
-                Debug.Log("Dropping bleach");
-                items[selectedSlotNumber] = null;
-                inventoryUI.RemoveFromSlot(selectedSlotNumber);
-                items[selectedSlotNumber] = null;
+                Debug.Log("Using bleach");
+
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
                     
@@ -473,6 +471,7 @@ public class Inventory : MonoBehaviour
                     SceneManager.GetActiveScene().name, 
                     player.destination.transform.position + player.transform.forward + Vector3.up,
                     "Water Purifying Table");
+                GlobalControls.globalControlsProperties.Add("waterPurified");
                     
                 GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
                 GameObject waterBottleClean = Instantiate(prefab,
