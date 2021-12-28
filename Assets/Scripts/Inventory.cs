@@ -457,10 +457,8 @@ public class Inventory : MonoBehaviour
         {
             if (items[selectedSlotNumber].name.Equals("Bleach(Clone)"))
             {
-                Debug.Log("Dropping bleach");
-                items[selectedSlotNumber] = null;
-                inventoryUI.RemoveFromSlot(selectedSlotNumber);
-                items[selectedSlotNumber] = null;
+                Debug.Log("Using bleach");
+
                 meters = referenceManager.metersCanvas.GetComponent<Meters>();
                 meters.MarkTaskAsDone("water");
                     
