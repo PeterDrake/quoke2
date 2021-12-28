@@ -17,7 +17,7 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode strategicMapTeleport = KeyCode.K;
     public KeyCode completeWater = KeyCode.O;
     public KeyCode completePoop = KeyCode.P;
-    public KeyCode restart = KeyCode.N;
+    public KeyCode restart = KeyCode.R;
     public KeyCode loadPoopItems = KeyCode.L;
     public KeyCode loadWaterItems = KeyCode.Y;
     public KeyCode loadPreQuakeItems = KeyCode.F;
@@ -188,7 +188,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("First Aid Kit", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Epi Pen", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("Garden");
+                sceneManagement.ChangeScene("PSU");
             }
             else if (keyDown.Equals(carlosItems))
             {
@@ -197,7 +197,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Radio", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Batteries", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("Garden");
+                sceneManagement.ChangeScene("PSU");
             }
             else if (keyDown.Equals(demItems))
             {
@@ -206,7 +206,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Canned Food", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Can Opener", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("Park");
+                sceneManagement.ChangeScene("WaterfrontPark");
             }
             else if (keyDown.Equals(annetteItems))
             {
@@ -215,7 +215,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Dog Crate", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Leash", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("School");
+                sceneManagement.ChangeScene("PioneerCourthouseSquare");
             }
             else if (keyDown.Equals(safiItems))
             {
@@ -223,7 +223,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.Reset();
                 GlobalItemList.UpdateItemList("Wrench", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("Park");
+                sceneManagement.ChangeScene("WaterfrontPark");
             }
             else if (keyDown.Equals(rainerItems))
             {
@@ -232,7 +232,7 @@ public class CheatKeyboardController : MonoBehaviour
                 GlobalItemList.UpdateItemList("Tent", "Inventory", new Vector3(0, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Blanket", "Inventory", new Vector3(1, 0, 0),"Player" );
                 GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(2, 0, 0),"Player" );
-                sceneManagement.ChangeScene("School");
+                sceneManagement.ChangeScene("PioneerCourthouseSquare");
             }
             
             keyDown = KeyCode.JoystickButton0;

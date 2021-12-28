@@ -64,8 +64,8 @@ public class NPCInteracted : MonoBehaviour
         }
         for (int i = 0; i <= npc.totalSatisfaction; i++)
         {
-            Debug.Log("TOTAL SATISFACTION = " + npc.totalSatisfaction);
-            Debug.Log("NPC SATISFACTION = " + npc.satisfaction);
+            //Debug.Log("TOTAL SATISFACTION = " + npc.totalSatisfaction);
+            //Debug.Log("NPC SATISFACTION = " + npc.satisfaction);
             if(npc.satisfaction >= i)
             {
                 Debug.Log(npc.name + " satisfaction up!");
@@ -83,6 +83,7 @@ public class NPCInteracted : MonoBehaviour
     }
     public void UpdateNPCInteracted(string name)
     {
+        Debug.Log("name: " + name);
         NPC npc = GlobalControls.npcList[name];
         int i = Array.IndexOf(GlobalControls.npcNames, name);
         // Update display of how satisfied this NPC is

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Plastic.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -21,6 +22,8 @@ public class Inventory : MonoBehaviour
                                         // is in front of you.
     private int storageContainerLayers;
     private int latrineContainerLayers;
+    private int WaterHeaterLayers;
+    private int GasValveLayers;
     private int waterLayer;
 
     private ReferenceManager referenceManager;
@@ -50,9 +53,11 @@ public class Inventory : MonoBehaviour
         selectedSlotNumber = 0;
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer",
-            "LatrineContainer", "WaterPurifying");
+            "LatrineContainer", "WaterPurifying", "GasValve", "WaterHeater");
         storageContainerLayers = LayerMask.GetMask("StorageContainer");
         latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
+        GasValveLayers = LayerMask.GetMask("GasValve");
+        WaterHeaterLayers = LayerMask.GetMask("WaterHeater");
         waterLayer = LayerMask.GetMask("Water");
     }
 
@@ -135,6 +140,9 @@ public class Inventory : MonoBehaviour
                 
                 if (items[i].name.Equals("Epi Pen(Clone)"))
                     GlobalControls.globalControlsProperties.Remove("playerHasEpiPen");
+                
+                if (items[i].name.Equals("Wrench(Clone)"))
+                    GlobalControls.globalControlsProperties.Remove("playerHasWrench");
                 
                 // Remove item from inventory
                 items[i] = null;
@@ -392,6 +400,8 @@ public class Inventory : MonoBehaviour
         {
             GameObject container = player.ObjectAhead(storageContainerLayers);
             GameObject latrine = player.ObjectAhead(latrineContainerLayers);
+            GameObject heater = player.ObjectAhead(WaterHeaterLayers);
+            GameObject gas = player.ObjectAhead(GasValveLayers);
             if (container)
             {
                 if (container.name.Equals("Water Purifying Table"))
@@ -408,7 +418,17 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithTwoBucket();
             }
+            else if (heater || gas)
+            {
+                InteractWithWaterHeaterOrGasValve();
+            }
         }
+    }
+
+    private void InteractWithWaterHeaterOrGasValve()
+    {
+        
+
     }
 
     private void InteractWithWaterPurifyingTable(StorageContainer container)
