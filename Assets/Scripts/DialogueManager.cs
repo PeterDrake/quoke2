@@ -145,14 +145,6 @@ public class DialogueManager : MonoBehaviour
             }
             else if (GlobalControls.CurrentNPC.Equals("Safi"))
             {
-                // if (gas valve fixed)
-                // {
-                //     Move to appropriate node
-                // }
-                // if (water valve fixed)
-                // {
-                //     Move to appropriate node
-                // }                
                 currentNode = forest["leave_safi_0"];
             }
             else
@@ -202,6 +194,20 @@ public class DialogueManager : MonoBehaviour
             npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.CurrentNPC);
 
             Debug.Log("Current Node A: " + currentNode.nodeName);
+        }
+
+        if (GlobalControls.CurrentNPC.Equals("Safi"))
+        {
+            if (GlobalControls.globalControlsProperties.Contains("safiGasDone") &&
+                !GlobalControls.globalControlsProperties.Contains("safiHeaterDone"))
+            {
+                currentNode = forest["basic_safi_3.0"];
+            }
+
+            if (GlobalControls.globalControlsProperties.Contains("safiHeaterDone"))
+            {
+                currentNode = forest["basic_safi_5.0"];
+            }            
         }
 
         //Go through all the buttons and put that node's text into the buttons.
