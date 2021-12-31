@@ -74,7 +74,7 @@ public static class GlobalItemList
                     "Inventory", "Annette")},
                 {"Fire Extinguisher", new Item(new Vector3(3,0f,0), "Fire Extinguisher",
                     "Inventory", "Annette")},
-                {"Wood Chips", new Item(new Vector3(0,0f,0), "Wood Chips",
+                {"Shovel", new Item(new Vector3(0,0f,0), "Shovel",
                     "Inventory", "Safi")},
                 {"Canned Food", new Item(new Vector3(1,0f,0), "Canned Food",
                     "Inventory", "Safi")},
