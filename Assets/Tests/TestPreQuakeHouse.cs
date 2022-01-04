@@ -17,15 +17,8 @@ public class TestPreQuakeHouse
     [UnitySetUp]
     public IEnumerator Setup()
     {
-        SceneManager.LoadScene("PreQuakeHouse");
-        
-        yield return null;
-        
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        // referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.N);
-        
+        SceneManager.LoadScene("PreQuakeHouse"); 
         yield return new WaitForSeconds(1.5f);
-
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
@@ -33,6 +26,7 @@ public class TestPreQuakeHouse
         playerKeyboard.virtualKeyboard = true;
         cheatKeyboard.virtualKeyboard = true;
         strategicMapKeyboard.virtualKeyboard = true;
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
     }
 
     [UnityTearDown]
@@ -50,10 +44,7 @@ public class TestPreQuakeHouse
     public IEnumerator Cabinet1IsInitiallyEmpty()
     {
         GameObject cabinet = GameObject.Find("Cabinet 1");
-        // Debug.Log("cabinet is " + cabinet);
-        // Debug.Log(cabinet == null);
         Assert.Null(cabinet.GetComponent<StorageContainer>().contents);
-       
         yield return null;
     }
     
@@ -62,7 +53,6 @@ public class TestPreQuakeHouse
     {
         // Find some objects
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        PlayerMover player = referenceManager.player.GetComponent<PlayerMover>();
         GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
         Assert.NotNull(sunscreen);
         // Take some steps

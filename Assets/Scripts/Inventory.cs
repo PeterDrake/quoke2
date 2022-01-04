@@ -39,11 +39,9 @@ public class Inventory : MonoBehaviour
             twoBucket = GameObject.Find("Two Bucket Spot").GetComponent<TwoBucketScript>();
         }
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        
-        items = new GameObject[5];
-        
-        // Select the first slot
-        selectedSlotNumber = 0;
+
+        Clear();
+
         // Find layers for various interactions
         dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer",
             "LatrineContainer", "WaterPurifying", "GasValve", "WaterHeater");
@@ -54,6 +52,15 @@ public class Inventory : MonoBehaviour
         waterLayer = LayerMask.GetMask("Water");
     }
 
+    /// <summary>
+    /// Sets the inventory to contain no items, with slot 0 selected.
+    /// </summary>
+    public void Clear()
+    {
+        items = new GameObject[5];
+        selectedSlotNumber = 0;
+    }
+    
     private void Start()
     {
         player = referenceManager.player.GetComponent<PlayerMover>();
