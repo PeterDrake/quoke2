@@ -10,6 +10,7 @@ public class TestWalkthrough
 {
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager playerKeyboard;
+    private GameStateManager gameStateManager;
     
     // A Test behaves as an ordinary method
     [UnitySetUp]
@@ -19,6 +20,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
     }
 
@@ -37,7 +39,23 @@ public class TestWalkthrough
     public IEnumerator GetsToQuake()
     {
         yield return QuokeTestUtils.Press("aaawwaaaaaaadddssssssss aads ", playerKeyboard);
-        // yield return new WaitForSeconds(1.5f);
         Assert.AreEqual("QuakeHouse", SceneManager.GetActiveScene().name);
+    }
+    
+    [UnityTest]
+    public IEnumerator GetsOutsideAfterQuake()
+    {
+        SceneManager.LoadScene("QuakeHouse"); 
+        
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
+        gameStateManager.SetExploring();
+        
+        yield return QuokeTestUtils.Press("cwwwwwwwwda", playerKeyboard);
+        yield return new WaitForSeconds(5f);
+        yield return QuokeTestUtils.Press("aasssaa", playerKeyboard);
+        Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
 }

@@ -159,7 +159,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         keyDown = KeyCode.JoystickButton0;
     }
 
-    private void UpdateSegue()
+    public void UpdateSegue()
     {
         if (keyDown.Equals(KeyCode.Space))
         {
