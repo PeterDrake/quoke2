@@ -23,7 +23,7 @@ public class TestPreQuakeHouse
     }
 
     [UnityTearDown]
-    public IEnumerator Teardown()
+    public IEnumerator TearDown()
     {
         // Destroy all objects
         foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())

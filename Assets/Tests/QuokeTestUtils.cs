@@ -8,11 +8,12 @@ using Object = UnityEngine.Object;
 
 public class QuokeTestUtils
 {
+
     /// <summary>
     /// Presses each of the indicated keys, with a pause after each one, if needed, to allow time for the game to
     /// respond.
     /// </summary>
-    public static IEnumerator Press(string keys, PlayerKeyboardManager playerKeyboard, CheatKeyboardController cheatKeyboard)
+    public static IEnumerator Press(string keys, PlayerKeyboardManager playerKeyboard, CheatKeyboardController cheatKeyboard = null)
     {
         foreach (char c in keys)
         {
@@ -44,7 +45,10 @@ public class QuokeTestUtils
             }
             // There are two different objects receiving keypresses, but only one will react to a given key
             playerKeyboard.SetKeyDown(k);
-            cheatKeyboard.SetKeyDown(k);
+            if (cheatKeyboard)
+            {
+                cheatKeyboard.SetKeyDown(k);
+            }
             if ("WASDL <>".IndexOf(Char.ToUpper(c)) != -1)
             {
                 // This key take some time for the game to complete its response (e.g., movement)
