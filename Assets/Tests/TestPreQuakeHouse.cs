@@ -46,12 +46,10 @@ public class TestPreQuakeHouse
     {
         // Find some objects
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        GameObject sunscreen = GameObject.Find("Sunscreen(Clone)");
-        Assert.NotNull(sunscreen);
         // Take some steps
         yield return QuokeTestUtils.Press("wwdd", playerKeyboard, cheatKeyboard);
         // Verify that the sunscreen was picked up
-        Assert.AreEqual(sunscreen, inventory.items[0]);
+        Assert.AreEqual("Sunscreen(Clone)", inventory.items[0].name);
     }
     
     [UnityTest]

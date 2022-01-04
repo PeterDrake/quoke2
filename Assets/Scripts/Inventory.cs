@@ -59,6 +59,10 @@ public class Inventory : MonoBehaviour
     {
         items = new GameObject[5];
         selectedSlotNumber = 0;
+        for (int i = 0; i < inventoryUI.slotContents.Length; i++)
+        {
+            inventoryUI.RemoveFromSlot(i);
+        }
     }
     
     private void Start()
