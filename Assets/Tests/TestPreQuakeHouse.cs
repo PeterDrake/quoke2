@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using Object = UnityEngine.Object;
@@ -21,7 +22,7 @@ public class TestPreQuakeHouse
         yield return null;
         
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.N);
+        // referenceManager.keyboardManager.GetComponent<CheatKeyboardController>().SetKeyDown(KeyCode.N);
         
         yield return new WaitForSeconds(1.5f);
 
@@ -49,12 +50,13 @@ public class TestPreQuakeHouse
     public IEnumerator Cabinet1IsInitiallyEmpty()
     {
         GameObject cabinet = GameObject.Find("Cabinet 1");
+        // Debug.Log("cabinet is " + cabinet);
+        // Debug.Log(cabinet == null);
         Assert.Null(cabinet.GetComponent<StorageContainer>().contents);
        
         yield return null;
     }
-
-
+    
     [UnityTest]
     public IEnumerator PicksUpAnItem()
     {
@@ -81,7 +83,7 @@ public class TestPreQuakeHouse
         yield return QuokeTestUtils.Press("d", playerKeyboard, cheatKeyboard);
         Assert.AreEqual(new Vector3(4.5f,0.5f,-1.5f), referenceManager.player.transform.position);
     }
-
+    
     [UnityTest]
     public IEnumerator CheatKeyboardWorks()
     {
