@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using Object = UnityEngine.Object;
@@ -12,7 +10,6 @@ public class TestPreQuakeHouse
     private ReferenceManager referenceManager;
     private PlayerKeyboardManager playerKeyboard;
     private CheatKeyboardController cheatKeyboard;
-    private StrategicMapKeyboardController strategicMapKeyboard;
     
     [UnitySetUp]
     public IEnumerator Setup()
@@ -22,10 +19,6 @@ public class TestPreQuakeHouse
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
-        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
-        playerKeyboard.virtualKeyboard = true;
-        cheatKeyboard.virtualKeyboard = true;
-        strategicMapKeyboard.virtualKeyboard = true;
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
     }
 
