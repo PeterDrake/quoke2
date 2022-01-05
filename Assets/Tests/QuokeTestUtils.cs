@@ -13,7 +13,8 @@ public class QuokeTestUtils
     /// Presses each of the indicated keys, with a pause after each one, if needed, to allow time for the game to
     /// respond.
     /// </summary>
-    public static IEnumerator Press(string keys, PlayerKeyboardManager playerKeyboard, CheatKeyboardController cheatKeyboard = null)
+    public static IEnumerator Press(string keys, PlayerKeyboardManager playerKeyboard, 
+        CheatKeyboardController cheatKeyboard = null, StrategicMapKeyboardController strategicMapKeyboard = null)
     {
         foreach (char c in keys)
         {
@@ -49,6 +50,11 @@ public class QuokeTestUtils
             {
                 cheatKeyboard.SetKeyDown(k);
             }
+            else if (strategicMapKeyboard)
+            {
+                strategicMapKeyboard.SetKeyDown(k);
+            }
+
             if ("WASDL <>".IndexOf(Char.ToUpper(c)) != -1)
             {
                 // This key take some time for the game to complete its response (e.g., movement)

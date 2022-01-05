@@ -12,6 +12,7 @@ public class TestWalkthrough
     private PlayerKeyboardManager playerKeyboard;
     private GameStateManager gameStateManager;
     private ItemLoader itemLoader;
+    private StrategicMapKeyboardController strategicMapKeyboard;
     
     // A Test behaves as an ordinary method
     [UnitySetUp]
@@ -23,6 +24,7 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         GlobalItemList.Reset();
     }
@@ -103,6 +105,16 @@ public class TestWalkthrough
         Assert.AreEqual("Book(Clone)", inventory.items[0].name);
         yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwww", playerKeyboard);
         Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return new WaitForSeconds(1.5f);
+        yield return QuokeTestUtils.Press("< ", playerKeyboard, null, strategicMapKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
     }
 
 
