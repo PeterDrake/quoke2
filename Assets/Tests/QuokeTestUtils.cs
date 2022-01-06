@@ -19,7 +19,7 @@ public class QuokeTestUtils
         foreach (char c in keys)
         {
             KeyCode k;
-            if (" ~<>".IndexOf(Char.ToUpper(c)) == -1)
+            if (" ~<>`".IndexOf(Char.ToUpper(c)) == -1)
             {
                 k = (KeyCode) Enum.Parse(typeof(KeyCode), Char.ToUpper(c).ToString());
             }
@@ -38,6 +38,9 @@ public class QuokeTestUtils
                         break;
                     case '~':
                         k = KeyCode.Return;
+                        break;
+                    case '`':
+                        k = KeyCode.Escape;
                         break;
                     default:
                         k = KeyCode.Space;

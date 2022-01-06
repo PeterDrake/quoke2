@@ -135,6 +135,8 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         GlobalItemList.UpdateItemList("Book", "Inventory", new Vector3(0,0,0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("WaterfrontPark");
+
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToTradeBleach();
     }
@@ -156,8 +158,61 @@ public class TestWalkthrough
             .inventories[(int)InventoryE.Player];
         Assert.True(playerInventory.items[0].name == "Bleach(Clone)");
         
+        yield return QuokeTestUtils.Press("``", playerKeyboard, cheatKeyboard);
+        yield return QuokeTestUtils.Press("ddddwwwwwwwwwwwwwww", playerKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return new WaitForSeconds(1.5f);
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
+        
     }
 
+
+    [UnityTest]
+    public IEnumerator PurifiesWater()
+    {
+        SceneManager.LoadScene("Yard");
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,1.5f,-8.5f), "Shed 2");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("Yard");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToPurifyWater();
+    }
+    public IEnumerator MakesMovesToPurifyWater()
+    {
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+
+        yield return QuokeTestUtils.Press("aassssssss ", playerKeyboard);
+        Assert.AreEqual("Dirty Water Bottle(Clone)", inventory.items[1].name);
+        yield return QuokeTestUtils.Press("wwwwwwwwaaaaaaa", playerKeyboard);
+        yield return QuokeTestUtils.Press("> < ", playerKeyboard);
+        Assert.AreEqual(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"),
+            true);
+
+    }
+
+            
+
+
+    
+    
 
 
     [UnityTest]
@@ -168,5 +223,6 @@ public class TestWalkthrough
         yield return MakesMovesToGetOutsideAfterQuake();
         yield return MakesMovesToPickUpBookAndLeaveYard();
         yield return MakesMovesToTradeBleach();
+        yield return MakesMovesToPurifyWater();
     }
 }
