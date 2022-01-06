@@ -11,7 +11,6 @@ public class TestWalkthrough
     private ReferenceManager referenceManager;
     private GameStateManager gameStateManager;
     private ItemLoader itemLoader;
-    private NPCInteracted npcInteracted;
     private PlayerKeyboardManager playerKeyboard;
     private StrategicMapKeyboardController strategicMapKeyboard;
     private CheatKeyboardController cheatKeyboard;
@@ -26,11 +25,11 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-        npcInteracted = referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalControls.ResetNPCInteracted();
         GlobalItemList.Reset();
     }
 
@@ -50,7 +49,9 @@ public class TestWalkthrough
     {
         SceneManager.LoadScene("PreQuakeHouse");
         yield return new WaitForSeconds(1.5f);
+        GlobalControls.ResetNPCInteracted();
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGetToQuake();
     }
     public IEnumerator MakesMovesToGetToQuake()
@@ -68,6 +69,7 @@ public class TestWalkthrough
     public IEnumerator GetsOutsideAfterQuake()
     {
         SceneManager.LoadScene("QuakeHouse");
+        GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
@@ -96,7 +98,8 @@ public class TestWalkthrough
         GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,1.5f,-8.5f), "Shed 2");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
-        
+        GlobalControls.ResetNPCInteracted();
+
         yield return MakesMovesToPickUpBookAndLeaveYard();
     }
     public IEnumerator MakesMovesToPickUpBookAndLeaveYard()
@@ -132,6 +135,7 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         GlobalItemList.UpdateItemList("Book", "Inventory", new Vector3(0,0,0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToTradeBleach();
     }
     public IEnumerator MakesMovesToTradeBleach()

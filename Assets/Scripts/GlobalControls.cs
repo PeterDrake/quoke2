@@ -61,7 +61,7 @@ public static class GlobalControls
     }
 
 
-    public static void Reset()
+    public static void ResetNPCInteracted()
     {
         npcList = new Dictionary<string, NPC>
             {
@@ -91,6 +91,16 @@ public static class GlobalControls
                     0, new bool[1], new List<string>{"Water Bottle Clean"})},
                 
             };
+        foreach (string name in npcNames)
+        {
+            npcList[name].interacted = false;
+        }
+    }
+    
+    public static void Reset()
+    {
+        ResetNPCInteracted();
+        
         if (globalControlsProperties.Contains("apartmentCondition"))
         {
             currentObjective = 2;
@@ -127,11 +137,6 @@ public static class GlobalControls
 
         turnNumber = 0;
         currentNPC = "";
-
-        foreach (string name in npcNames)
-        {
-            npcList[name].interacted = false;
-        }
         
         globalControlsProperties.Add("adminMode");
         
