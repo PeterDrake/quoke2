@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 public class TestWalkthrough
 {
     private ReferenceManager referenceManager;
-    private PlayerKeyboardManager playerKeyboard;
     private GameStateManager gameStateManager;
     private ItemLoader itemLoader;
+    private NPCInteracted npcInteracted;
+    private PlayerKeyboardManager playerKeyboard;
     private StrategicMapKeyboardController strategicMapKeyboard;
+    private CheatKeyboardController cheatKeyboard;
+
     
     // A Test behaves as an ordinary method
     [UnitySetUp]
@@ -21,10 +24,12 @@ public class TestWalkthrough
         SceneManager.LoadScene("PreQuakeHouse"); 
         yield return new WaitForSeconds(1.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+        npcInteracted = referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         GlobalItemList.Reset();
     }
@@ -116,6 +121,39 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.5f);
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
     }
+    
+    
+    [UnityTest]
+    public IEnumerator TradesBleach()
+    {
+        SceneManager.LoadScene("WaterfrontPark");
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        GlobalItemList.UpdateItemList("Book", "Inventory", new Vector3(0,0,0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        yield return MakesMovesToTradeBleach();
+    }
+    public IEnumerator MakesMovesToTradeBleach()
+    {
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
+        yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaa", playerKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        yield return QuokeTestUtils.Press("     >  ", playerKeyboard, cheatKeyboard);
+        yield return QuokeTestUtils.Press(" <<<< ~", playerKeyboard, cheatKeyboard);
+
+        // Check that the items were traded successfully 
+        Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.NPC].items[0].name == "Book(Clone)");
+        Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
+            .inventories[(int)InventoryE.Player];
+        Assert.True(playerInventory.items[0].name == "Bleach(Clone)");
+        
+    }
+
 
 
     [UnityTest]
@@ -125,5 +163,6 @@ public class TestWalkthrough
         yield return MakesMovesToGetToQuake();
         yield return MakesMovesToGetOutsideAfterQuake();
         yield return MakesMovesToPickUpBookAndLeaveYard();
+        yield return MakesMovesToTradeBleach();
     }
 }
