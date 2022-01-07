@@ -184,6 +184,7 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
         GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
         GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,1.5f,-8.5f), "Shed 2");
@@ -205,10 +206,52 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("> < ", playerKeyboard);
         Assert.AreEqual(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"),
             true);
+        yield return QuokeTestUtils.Press("dwwwwwww", playerKeyboard);
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
 
     }
 
-            
+
+    
+    [UnityTest]
+    public IEnumerator GoToAnnetteToTradeBleach()
+    {
+        SceneManager.LoadScene("PioneerCourthouseSquare");
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PioneerCourthouseSquare");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToGoToAnnetteToTradeBleach();
+    }
+    public IEnumerator MakesMovesToGoToAnnetteToTradeBleach()
+    {
+        yield return new WaitForSeconds(1.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+
+        yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        yield return QuokeTestUtils.Press("                   d>   <<< ~``", playerKeyboard);
+        yield return new WaitForSeconds(1.5f);
+        Assert.AreEqual("First Aid Kit(Clone)", inventory.items[0].name);
+
+
+    }
 
 
     
@@ -224,5 +267,6 @@ public class TestWalkthrough
         yield return MakesMovesToPickUpBookAndLeaveYard();
         yield return MakesMovesToTradeBleach();
         yield return MakesMovesToPurifyWater();
+        yield return MakesMovesToGoToAnnetteToTradeBleach();
     }
 }

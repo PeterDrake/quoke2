@@ -9,8 +9,8 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
-        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PioneerCourthouseSquare", "WaterfrontPark", "Street", "PSU"};
-        else previousScenes = new []{ "PioneerCourthouseSquare", "WaterfrontPark", "Yard", "PSU" };
+        if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PSU", "WaterfrontPark", "Street", "PioneerCourthouseSquare"};
+        else previousScenes = new []{ "PSU", "WaterfrontPark", "Yard", "PioneerCourthouseSquare" };
     }
 
     public void Restart()
