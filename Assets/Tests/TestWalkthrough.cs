@@ -44,6 +44,14 @@ public class TestWalkthrough
         yield return null;
     }
 
+    
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    None            None            None                None            None
     [UnityTest]
     public IEnumerator GetsToQuake()
     {
@@ -65,6 +73,14 @@ public class TestWalkthrough
     }
 
     
+        
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    None            None            None                None            None
     [UnityTest]
     public IEnumerator GetsOutsideAfterQuake()
     {
@@ -87,6 +103,14 @@ public class TestWalkthrough
     }
     
     
+        
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    None            None            None                None            None
     [UnityTest]
     public IEnumerator PicksUpBookAndLeavesYard()
     {
@@ -126,6 +150,14 @@ public class TestWalkthrough
     }
     
     
+        
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    BOOK            None            None                None            None
     [UnityTest]
     public IEnumerator TradesBleach()
     {
@@ -176,6 +208,14 @@ public class TestWalkthrough
     }
 
 
+        
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    BLEACH          None            None                None            None
     [UnityTest]
     public IEnumerator PurifiesWater()
     {
@@ -220,7 +260,13 @@ public class TestWalkthrough
     }
 
 
-    
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    BLEACH          None            None                None            None
     [UnityTest]
     public IEnumerator GoToAnnetteToTradeBleach()
     {
@@ -261,6 +307,13 @@ public class TestWalkthrough
     }
 
 
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
+    // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+    // Annette Inventory:   Rope,           BLEACH,         Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    FIRST AID KIT   None            None                None            None
     [UnityTest]
     public IEnumerator GoToAngieAndCarlosToTrade()
     {
@@ -291,6 +344,13 @@ public class TestWalkthrough
         Assert.AreEqual("Radio(Clone)", inventory.items[0].name);
         Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
         
+        // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+        // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
+        // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+        // Carlos Inventory:    Plywood,        Can Opener,     Leash,              Whistle
+        // Annette Inventory:   Rope,           BLEACH,         Fire Extinguisher,  N95 Mask
+        // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+        // Player Inventory:    RADIO           TARP            None                None            None
         yield return QuokeTestUtils.Press("ssssssssssssdsssssssssssssssssaa", playerKeyboard);
         yield return new WaitForSeconds(1.5f);
         Assert.AreEqual("Carlos", GlobalControls.CurrentNPC);
@@ -311,6 +371,13 @@ public class TestWalkthrough
     }
 
 
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
+    // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    RADIO,          Can Opener,     NONE,               Whistle
+    // Annette Inventory:   Rope,           BLEACH,         Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    LEASH           TARP            PLYWOOD             None            None
     [UnityTest]
     public IEnumerator GoToAnnetteToTradeDogLeash()
     {
@@ -358,6 +425,19 @@ public class TestWalkthrough
     
     
 
+    // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
+    // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
+    // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
+    // Carlos Inventory:    RADIO,          Can Opener,     NONE,               Whistle
+    // Annette Inventory:   LEASH,          NONE,           Fire Extinguisher,  N95 Mask
+    // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
+    // Player Inventory:    BLEACH          TARP            PLYWOOD             ROPE            None
+    
+    
+    
+    
+    
+    
     
     
     
