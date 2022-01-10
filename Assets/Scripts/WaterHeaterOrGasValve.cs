@@ -28,7 +28,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
         CheckSafiActions(); //Checks for player input in order to complete the two Safi actions with wrench
     }
 
-    void CheckSafiActions()
+    public void CheckSafiActions()
     {
         if (Input.GetKeyDown(KeyCode.Space) && HasWrench())
         {
@@ -43,7 +43,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
         }
     }
 
-    void UpdateInteractables(string interactable ,LayerMask layer)
+    public void UpdateInteractables(string interactable ,LayerMask layer)
     {
         if (player.ObjectAhead(layer) && (!GlobalControls.globalControlsProperties.Contains("safi" + interactable+ "Done")))
         {
