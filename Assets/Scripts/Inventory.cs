@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.Plastic.Antlr3.Runtime;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using Image = UnityEngine.UI.Image;
 
 public class Inventory : MonoBehaviour
 {
