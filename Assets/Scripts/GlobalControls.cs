@@ -118,7 +118,7 @@ public static class GlobalControls
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
         
-        globalControlsProperties.Add("metersEnabled");
+        // globalControlsProperties.Add("metersEnabled");
         globalControlsProperties.Add("tooltipsEnabled");
         globalControlsProperties.Add("objectivesEnabled");
         globalControlsProperties.Add("keybindsEnabled");

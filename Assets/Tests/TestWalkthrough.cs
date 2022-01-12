@@ -10,6 +10,7 @@ public class TestWalkthrough
 {
     private ReferenceManager referenceManager;
     private GameStateManager gameStateManager;
+    private SceneManagement sceneManagement;
     private ItemLoader itemLoader;
     private WaterHeaterOrGasValve waterHeaterOrGasValve;
     private PlayerKeyboardManager playerKeyboard;
@@ -27,6 +28,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
+        sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -91,8 +93,12 @@ public class TestWalkthrough
     [UnityTest]
     public IEnumerator GetsOutsideAfterQuake()
     {
-        SceneManager.LoadScene("QuakeHouse");
-        GlobalControls.ResetNPCInteracted();
+        sceneManagement.ChangeScene("QuakeHouse");
+        yield return new WaitForSeconds(1.5f);
+        
+        GlobalControls.Reset();
+        Debug.Log("Water Task: " + GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
+        Debug.Log("Poop Task: " + GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
