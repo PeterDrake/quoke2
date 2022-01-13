@@ -35,7 +35,7 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
     
-    private void SetCurrentObjective(int objective)
+    public void SetCurrentObjective(int objective)
     {
         switch (objective)
         {

@@ -33,7 +33,7 @@ public class GameStateManager : MonoBehaviour
     private InventoryUI inventoryUI;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         tooltipManager = referenceManager.tooltipManager;
@@ -129,6 +129,7 @@ public class GameStateManager : MonoBehaviour
         deathCanvas.SetActive(false);
         segueCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
+        
         if (GlobalControls.globalControlsProperties.Contains("metersEnabled"))
             referenceManager.metersCanvas.SetActive(true);
         else if (!GlobalControls.globalControlsProperties.Contains("metersEnabled"))

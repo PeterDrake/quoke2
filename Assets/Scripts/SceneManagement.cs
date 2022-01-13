@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 
 {
-    private string[] previousScenes;
+    private string[] previousScenes; 
+    private ReferenceManager referenceManager;
+    private ObjectiveManager objectiveManager;
 
+    
     private void Start()
     {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
+
         if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PSU", "WaterfrontPark", "Street", "PioneerCourthouseSquare"};
         else previousScenes = new []{ "PSU", "WaterfrontPark", "Yard", "PioneerCourthouseSquare" };
     }

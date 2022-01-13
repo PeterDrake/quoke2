@@ -11,6 +11,7 @@ public class TestWalkthrough
     private ReferenceManager referenceManager;
     private GameStateManager gameStateManager;
     private SceneManagement sceneManagement;
+    private ObjectiveManager objectiveManager;
     private ItemLoader itemLoader;
     private WaterHeaterOrGasValve waterHeaterOrGasValve;
     private PlayerKeyboardManager playerKeyboard;
@@ -29,6 +30,7 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
+        objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -95,10 +97,14 @@ public class TestWalkthrough
     {
         sceneManagement.ChangeScene("QuakeHouse");
         yield return new WaitForSeconds(1.5f);
-        
+
         GlobalControls.Reset();
-        Debug.Log("Water Task: " + GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
-        Debug.Log("Poop Task: " + GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
+        sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>(); 
+        
+        gameStateManager.Start();
+
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
