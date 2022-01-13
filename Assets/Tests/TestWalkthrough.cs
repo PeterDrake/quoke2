@@ -12,6 +12,7 @@ public class TestWalkthrough
     private GameStateManager gameStateManager;
     private SceneManagement sceneManagement;
     private ObjectiveManager objectiveManager;
+    private QuakeManager quakeManager;
     private ItemLoader itemLoader;
     private WaterHeaterOrGasValve waterHeaterOrGasValve;
     private PlayerKeyboardManager playerKeyboard;
@@ -31,6 +32,8 @@ public class TestWalkthrough
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
         objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
+        quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
+        
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -102,6 +105,7 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>(); 
+        quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
         
         gameStateManager.Start();
 
@@ -117,7 +121,7 @@ public class TestWalkthrough
         gameStateManager.SetExploring();
         yield return QuokeTestUtils.Press("cwwwwwwwwda", playerKeyboard);
         yield return new WaitForSeconds(5f);
-        yield return QuokeTestUtils.Press("aasssaa", playerKeyboard);
+        yield return QuokeTestUtils.Press("aasssaaa", playerKeyboard);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
     
