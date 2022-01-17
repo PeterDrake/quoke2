@@ -101,7 +101,7 @@ public class TestWalkthrough
     public IEnumerator GetsOutsideAfterQuake()
     {
         sceneManagement.ChangeScene("QuakeHouse");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         GlobalControls.Reset();
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -113,16 +113,32 @@ public class TestWalkthrough
 
         gameStateManager.Start();
         quakeManager.ResetQuake();
+        GlobalControls.TurnNumber = 26;
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
     {
-        yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        
+        quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
+        quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
+        yield return new WaitForSeconds(0.5f);
+
         gameStateManager.SetExploring();
+        // Debug.Log("GlobalControls.TurnNumber: " + GlobalControls.TurnNumber);
+        // Debug.Log("quakeManager.turnsTillQuakeStart: " + quakeManager.turnsTillQuakeStart); 
+        // Debug.Log("quakeManager.initialTurn: " + quakeManager.turnsTillQuakeStart);
+        // Debug.Log("quakeManager.quakeStartTurn: " + quakeManager.quakeStartTurn);
+        // Debug.Log("quakeManager.isQuakeTime: " + quakeManager.isQuakeTime );
+        // Debug.Log("quakeManager.firstQuakeCompleted: " + quakeManager.firstQuakeCompleted);
+        // Debug.Log("quakeManager.turnsTillDeath: " + quakeManager.turnsTillDeath);
+        // Debug.Log("quakeManager.underCoverTurn: " + quakeManager.underCoverTurn );
+        // Debug.Log("quakeManager.isUnderCover: " + quakeManager.isUnderCover );
+        // Debug.Log("quakeManager.hasBeenUnderCover: " + quakeManager.hasBeenUnderCover);
+        // Debug.Log("quakeManager.turnsTillAftershock: " + quakeManager.turnsTillAftershock );
+        // Debug.Log("quakeManager.isAftershockTime: " + quakeManager.isAftershockTime );
+        // Debug.Log("quakeManager.automaticAftershock: " + quakeManager.automaticAftershock);
         yield return QuokeTestUtils.Press("cwwwwwwwwda", playerKeyboard);
         yield return new WaitForSeconds(5f);
         yield return QuokeTestUtils.Press("aasssaaa", playerKeyboard);
