@@ -50,7 +50,6 @@ public class QuakeManager : MonoBehaviour
     [Tooltip("Should an aftershock trigger and kill the player if they step into the house?")]
     public bool automaticAftershock = false;
 
-
     // door shaking objects
     private GameObject[] doors;
     private Rigidbody[] bodies;
@@ -72,6 +71,16 @@ public class QuakeManager : MonoBehaviour
     // so, when implemented, we will subscribe sound/other effects to this event
     public UnityEvent OnQuake;
 
+    public void ResetQuake()
+    {
+        turnsTillQuakeStart = 5;
+        isQuakeTime = false;
+        firstQuakeCompleted = false;
+        turnsTillDeath = 5;
+        turnsTillAftershock = 5;
+        isAftershockTime = false;
+        automaticAftershock = false;
+    }
 
     private void Awake()
     {

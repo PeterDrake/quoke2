@@ -13,6 +13,7 @@ public class TestWalkthrough
     private SceneManagement sceneManagement;
     private ObjectiveManager objectiveManager;
     private QuakeManager quakeManager;
+    private QuakeSafeZoneManager quakeSafeZoneManager;
     private ItemLoader itemLoader;
     private WaterHeaterOrGasValve waterHeaterOrGasValve;
     private PlayerKeyboardManager playerKeyboard;
@@ -33,6 +34,7 @@ public class TestWalkthrough
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
         objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
+        quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
         
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
@@ -106,9 +108,11 @@ public class TestWalkthrough
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>(); 
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
-        
-        gameStateManager.Start();
+        quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
+        yield return new WaitForSeconds(0.5f);
 
+        gameStateManager.Start();
+        quakeManager.ResetQuake();
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
