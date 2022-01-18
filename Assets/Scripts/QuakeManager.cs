@@ -84,7 +84,7 @@ public class QuakeManager : MonoBehaviour
         underCoverTurn = 0;
         isUnderCover = false;
         hasBeenUnderCover = false;
-        turnsTillAftershock = 5;
+        turnsTillAftershock = 8;
         isAftershockTime = false;
         automaticAftershock = false;
     }

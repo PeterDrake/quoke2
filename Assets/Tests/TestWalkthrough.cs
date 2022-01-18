@@ -109,11 +109,16 @@ public class TestWalkthrough
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>(); 
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
         quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         yield return new WaitForSeconds(0.5f);
-
+        
+        GlobalItemList.UpdateItemList("Book", "QuakeHouse", new Vector3(0,0,0), "Shed 1");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "QuakeHouse", new Vector3(-2.5f,0.5f,-8.5f), "Shed 2");
+        
+        itemLoader.LoadItems("QuakeHouse");
         gameStateManager.Start();
         quakeManager.ResetQuake();
-        GlobalControls.TurnNumber = 26;
+        GlobalControls.TurnNumber = -5;
         yield return MakesMovesToGetOutsideAfterQuake();
     }
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
@@ -121,8 +126,8 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
-        quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
+        // quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
+        // quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
         yield return new WaitForSeconds(0.5f);
 
         gameStateManager.SetExploring();
