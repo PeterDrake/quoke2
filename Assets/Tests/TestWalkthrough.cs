@@ -12,6 +12,7 @@ public class TestWalkthrough
     private GameStateManager gameStateManager;
     private SceneManagement sceneManagement;
     private ObjectiveManager objectiveManager;
+    private DialogueManager dialogueManager;
     private QuakeManager quakeManager;
     private QuakeSafeZoneManager quakeSafeZoneManager;
     private ItemLoader itemLoader;
@@ -33,6 +34,7 @@ public class TestWalkthrough
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
         objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
+        dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
         quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
         
@@ -144,9 +146,9 @@ public class TestWalkthrough
         // Debug.Log("quakeManager.turnsTillAftershock: " + quakeManager.turnsTillAftershock );
         // Debug.Log("quakeManager.isAftershockTime: " + quakeManager.isAftershockTime );
         // Debug.Log("quakeManager.automaticAftershock: " + quakeManager.automaticAftershock);
-        yield return QuokeTestUtils.Press("cwwwwwwwwda", playerKeyboard);
+        yield return QuokeTestUtils.Press("cwwadadadad", playerKeyboard);
         yield return new WaitForSeconds(5f);
-        yield return QuokeTestUtils.Press("aasssaaa", playerKeyboard);
+        yield return QuokeTestUtils.Press("aaawwwwa", playerKeyboard);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
     
@@ -166,7 +168,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-        GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-3.5f,0.5f,-8.5f), "Shed 1");
+        GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-3.5f,1.5f,-8.5f), "Shed 1");
         GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,0.5f,-8.5f), "Shed 2");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
@@ -275,10 +277,11 @@ public class TestWalkthrough
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
         GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,0.5f,-8.5f), "Shed 2");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,1.5f,-8.5f), "Shed 2");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
         GlobalControls.ResetNPCInteracted();
+        GlobalControls.globalControlsProperties.Remove("waterTaskCompleted");
         yield return MakesMovesToPurifyWater();
     }
     public IEnumerator MakesMovesToPurifyWater()
@@ -289,6 +292,7 @@ public class TestWalkthrough
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
 
         yield return QuokeTestUtils.Press("aassssssss ", playerKeyboard);
+        Assert.AreEqual("Bleach(Clone)", inventory.items[1].name);
         Assert.AreEqual("Dirty Water Bottle(Clone)", inventory.items[1].name);
         yield return QuokeTestUtils.Press("wwwwwwwwaaaaaaa", playerKeyboard);
         yield return QuokeTestUtils.Press("> < ", playerKeyboard);
@@ -328,6 +332,7 @@ public class TestWalkthrough
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("PioneerCourthouseSquare");
         GlobalControls.ResetNPCInteracted();
+        
         yield return MakesMovesToGoToAnnetteToTradeBleach();
     }
     public IEnumerator MakesMovesToGoToAnnetteToTradeBleach()
@@ -432,15 +437,24 @@ public class TestWalkthrough
         SceneManager.LoadScene("PioneerCourthouseSquare");
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-
+        
         GlobalItemList.UpdateItemList("Leash", "Inventory", new Vector3(0,0,0), "Player");
         GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
         GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
+
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(0,0,0), "Annette");
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(1,0,0), "Annette");
+        GlobalItemList.UpdateItemList("Fire Extinguisher", "Inventory", new Vector3(2,0,0), "Annette");
+        GlobalItemList.UpdateItemList("N95 Mask", "Inventory", new Vector3(3,0,0), "Annette");
+
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("PioneerCourthouseSquare");
         GlobalControls.ResetNPCInteracted();
+        yield return new WaitForSeconds(0.5f);
         yield return MakesMovesToGoToAnnetteToTradeDogLeash();
     }
     public IEnumerator MakesMovesToGoToAnnetteToTradeDogLeash()
@@ -449,10 +463,12 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        dialogueManager.currentNode = dialogueManager.forest["basic_annette_1.0"];
         yield return QuokeTestUtils.Press("    <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Bleach(Clone)", inventory.items[0].name);
@@ -503,11 +519,13 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
 
         yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Dem", GlobalControls.CurrentNPC);
+        dialogueManager.currentNode = dialogueManager.forest["basic_dem_2.0"];
         yield return QuokeTestUtils.Press("   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Tent(Clone)", inventory.items[0].name);
@@ -681,6 +699,7 @@ public class TestWalkthrough
         GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4,0,0), "Player");        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
         GlobalControls.ResetNPCInteracted();
+        GlobalControls.globalControlsProperties.Remove("poopTaskCompleted");
         yield return MakesMovesToGoToCompleteLatrine();
     }
     public IEnumerator MakesMovesToGoToCompleteLatrine()
