@@ -148,7 +148,7 @@ public class TestWalkthrough
         // Debug.Log("quakeManager.automaticAftershock: " + quakeManager.automaticAftershock);
         yield return QuokeTestUtils.Press("cwwadadadad", playerKeyboard);
         yield return new WaitForSeconds(5f);
-        yield return QuokeTestUtils.Press("aaawwwwa", playerKeyboard);
+        yield return QuokeTestUtils.Press("aaawwwwaa", playerKeyboard);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
     
@@ -292,7 +292,7 @@ public class TestWalkthrough
         Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
 
         yield return QuokeTestUtils.Press("aassssssss ", playerKeyboard);
-        Assert.AreEqual("Bleach(Clone)", inventory.items[1].name);
+        Assert.AreEqual("Bleach(Clone)", inventory.items[0].name);
         Assert.AreEqual("Dirty Water Bottle(Clone)", inventory.items[1].name);
         yield return QuokeTestUtils.Press("wwwwwwwwaaaaaaa", playerKeyboard);
         yield return QuokeTestUtils.Press("> < ", playerKeyboard);
