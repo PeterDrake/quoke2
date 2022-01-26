@@ -716,9 +716,62 @@ public class TestWalkthrough
             true);
 
     }
-    
-    
-    
+
+    [UnityTest]
+    public IEnumerator GetOutOfHomeToTradeShovelWithSafi()
+    {
+        SceneManager.LoadScene("Yard");
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
+        GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0), "Player");
+        itemLoader.LoadItems("Yard");
+        GlobalControls.ResetNPCInteracted();
+
+        yield return MakesMovesToGetOutOfHomeToTradeShovelWithSafi();
+    }
+
+    public IEnumerator MakesMovesToGetOutOfHomeToTradeShovelWithSafi()
+    {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+
+        yield return QuokeTestUtils.Press("wwwww", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        yield return QuokeTestUtils.Press(">>> ", playerKeyboard, null, strategicMapKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        yield return QuokeTestUtils.Press("wwwwwddddd>  ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        yield return QuokeTestUtils.Press(" <<< ~``", playerKeyboard, cheatKeyboard);
+        Assert.AreEqual("Canned Food(Clone)", inventory.items[0].name);
+    }
+
+
     [UnityTest, Timeout(300000)]
     public IEnumerator CompletesPlaythrough()
     {
@@ -735,5 +788,6 @@ public class TestWalkthrough
         yield return MakesMovesToGoToRainerToTradeTent();
         yield return MakesMovesToGoToSafiToCompleteActions();
         yield return MakesMovesToGoToCompleteLatrine();
+        yield return MakesMovesToGetOutOfHomeToTradeShovelWithSafi();
     }
 }
