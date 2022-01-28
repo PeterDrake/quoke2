@@ -20,15 +20,14 @@ public class TestWalkthrough
     private PlayerKeyboardManager playerKeyboard;
     private StrategicMapKeyboardController strategicMapKeyboard;
     private CheatKeyboardController cheatKeyboard;
-    private LayerMask gasValve, waterHeater; 
+    private LayerMask gasValve, waterHeater;
 
 
-    
     // A Test behaves as an ordinary method
     [UnitySetUp]
     public IEnumerator Setup()
     {
-        SceneManager.LoadScene("PreQuakeHouse"); 
+        SceneManager.LoadScene("PreQuakeHouse");
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
@@ -37,7 +36,7 @@ public class TestWalkthrough
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
         quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
-        
+
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -59,10 +58,11 @@ public class TestWalkthrough
         {
             Object.Destroy(obj);
         }
+
         yield return null;
     }
 
-    
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
     // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
@@ -80,6 +80,7 @@ public class TestWalkthrough
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGetToQuake();
     }
+
     public IEnumerator MakesMovesToGetToQuake()
     {
         yield return new WaitForSeconds(0.5f);
@@ -90,8 +91,7 @@ public class TestWalkthrough
         Assert.AreEqual("QuakeHouse", SceneManager.GetActiveScene().name);
     }
 
-    
-        
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
     // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
@@ -108,21 +108,22 @@ public class TestWalkthrough
         GlobalControls.Reset();
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>(); 
+        sceneManagement = referenceManager.sceneManagement.GetComponent<SceneManagement>();
         quakeManager = GameObject.Find("Quake Event Manager").GetComponent<QuakeManager>();
         quakeSafeZoneManager = GameObject.Find("Interactables").GetComponentInChildren<QuakeSafeZoneManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         yield return new WaitForSeconds(0.5f);
-        
-        GlobalItemList.UpdateItemList("Book", "QuakeHouse", new Vector3(0,0,0), "Shed 1");
-        GlobalItemList.UpdateItemList("Dirty Water Bottle", "QuakeHouse", new Vector3(-2.5f,0.5f,-8.5f), "Shed 2");
-        
+
+        GlobalItemList.UpdateItemList("Book", "QuakeHouse", new Vector3(0, 0, 0), "Shed 1");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "QuakeHouse", new Vector3(-2.5f, 0.5f, -8.5f), "Shed 2");
+
         itemLoader.LoadItems("QuakeHouse");
         gameStateManager.Start();
         quakeManager.ResetQuake();
         GlobalControls.TurnNumber = -5;
         yield return MakesMovesToGetOutsideAfterQuake();
     }
+
     public IEnumerator MakesMovesToGetOutsideAfterQuake()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -151,9 +152,8 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("aaawwwwaa", playerKeyboard);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
-    
-    
-        
+
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
     // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
@@ -168,14 +168,15 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-        GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-3.5f,1.5f,-8.5f), "Shed 1");
-        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,0.5f,-8.5f), "Shed 2");
+        GlobalItemList.UpdateItemList("Book", "Yard", new Vector3(-3.5f, 1.5f, -8.5f), "Shed 1");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f, 0.5f, -8.5f), "Shed 2");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
         GlobalControls.ResetNPCInteracted();
 
         yield return MakesMovesToPickUpBookAndLeaveYard();
     }
+
     public IEnumerator MakesMovesToPickUpBookAndLeaveYard()
     {
         yield return new WaitForSeconds(0.5f);
@@ -187,7 +188,7 @@ public class TestWalkthrough
         Assert.AreEqual("Book(Clone)", inventory.items[0].name);
         yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwww", playerKeyboard);
         Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
-        
+
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -198,9 +199,8 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
     }
-    
-    
-        
+
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
     // Demetrius Inventory: Bleach,         Tent,           Dog Crate,          Rubber Chicken
@@ -215,13 +215,14 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        GlobalItemList.UpdateItemList("Book", "Inventory", new Vector3(0,0,0), "Player");
+        GlobalItemList.UpdateItemList("Book", "Inventory", new Vector3(0, 0, 0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("WaterfrontPark");
 
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToTradeBleach();
     }
+
     public IEnumerator MakesMovesToTradeBleach()
     {
         yield return new WaitForSeconds(0.5f);
@@ -235,16 +236,16 @@ public class TestWalkthrough
 
         // Check that the items were traded successfully 
         Assert.True(referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
-            .inventories[(int)InventoryE.NPC].items[0].name == "Book(Clone)");
+            .inventories[(int) InventoryE.NPC].items[0].name == "Book(Clone)");
         Inventory playerInventory = referenceManager.tradeCanvas.GetComponent<TradeManagerUI>()
-            .inventories[(int)InventoryE.Player];
+            .inventories[(int) InventoryE.Player];
         Assert.True(playerInventory.items[0].name == "Bleach(Clone)");
-        
+
         yield return QuokeTestUtils.Press("``", playerKeyboard, cheatKeyboard);
         yield return QuokeTestUtils.Press("ddddwwwwwwwwwwwwwww", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
-        
+
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
@@ -254,11 +255,9 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
-        
     }
 
 
-        
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     Tarp,           Blanket,        Radio,              Knife
     // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
@@ -276,14 +275,15 @@ public class TestWalkthrough
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
-        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f,1.5f,-8.5f), "Shed 2");
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Dirty Water Bottle", "Yard", new Vector3(-2.5f, 1.5f, -8.5f), "Shed 2");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
         GlobalControls.ResetNPCInteracted();
         GlobalControls.globalControlsProperties.Remove("waterTaskCompleted");
         yield return MakesMovesToPurifyWater();
     }
+
     public IEnumerator MakesMovesToPurifyWater()
     {
         yield return new WaitForSeconds(0.5f);
@@ -308,7 +308,6 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
-
     }
 
 
@@ -328,13 +327,14 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0, 0, 0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("PioneerCourthouseSquare");
         GlobalControls.ResetNPCInteracted();
-        
+
         yield return MakesMovesToGoToAnnetteToTradeBleach();
     }
+
     public IEnumerator MakesMovesToGoToAnnetteToTradeBleach()
     {
         yield return new WaitForSeconds(0.5f);
@@ -356,7 +356,6 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("PSU", SceneManager.GetActiveScene().name);
-
     }
 
 
@@ -376,12 +375,13 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("First Aid Kit", "Inventory", new Vector3(0,0,0), "Player");
+        GlobalItemList.UpdateItemList("First Aid Kit", "Inventory", new Vector3(0, 0, 0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("PSU");
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGoToAngieAndCarlosToTrade();
     }
+
     public IEnumerator MakesMovesToGoToAngieAndCarlosToTrade()
     {
         yield return new WaitForSeconds(0.5f);
@@ -396,7 +396,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Radio(Clone)", inventory.items[0].name);
         Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        
+
         // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
         // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
         // Demetrius Inventory: BOOK,           Tent,           Dog Crate,          Rubber Chicken
@@ -420,7 +420,6 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("< ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
-
     }
 
 
@@ -441,15 +440,15 @@ public class TestWalkthrough
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-        
-        GlobalItemList.UpdateItemList("Leash", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
-        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
 
-        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(0,0,0), "Annette");
-        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(1,0,0), "Annette");
-        GlobalItemList.UpdateItemList("Fire Extinguisher", "Inventory", new Vector3(2,0,0), "Annette");
-        GlobalItemList.UpdateItemList("N95 Mask", "Inventory", new Vector3(3,0,0), "Annette");
+        GlobalItemList.UpdateItemList("Leash", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0), "Player");
+
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(0, 0, 0), "Annette");
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(1, 0, 0), "Annette");
+        GlobalItemList.UpdateItemList("Fire Extinguisher", "Inventory", new Vector3(2, 0, 0), "Annette");
+        GlobalItemList.UpdateItemList("N95 Mask", "Inventory", new Vector3(3, 0, 0), "Annette");
 
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("PioneerCourthouseSquare");
@@ -457,6 +456,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
         yield return MakesMovesToGoToAnnetteToTradeDogLeash();
     }
+
     public IEnumerator MakesMovesToGoToAnnetteToTradeDogLeash()
     {
         yield return new WaitForSeconds(0.5f);
@@ -475,7 +475,7 @@ public class TestWalkthrough
         Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
         Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
-        
+
         yield return QuokeTestUtils.Press("aaassssssssssss", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -484,10 +484,8 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press(">> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
-
     }
-    
-    
+
 
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
@@ -505,15 +503,16 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
-        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
-        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3,0,0), "Player");
+        GlobalItemList.UpdateItemList("Bleach", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("WaterfrontPark");
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGoToDemToTradeBleachForTent();
     }
+
     public IEnumerator MakesMovesToGoToDemToTradeBleachForTent()
     {
         yield return new WaitForSeconds(0.5f);
@@ -532,7 +531,7 @@ public class TestWalkthrough
         Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
         Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
-        
+
         yield return QuokeTestUtils.Press("dddwwwwwwwwwwwwwwwwww", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -541,10 +540,9 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("<< ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
-
     }
-    
-    
+
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
     // Demetrius Inventory: BOOK,           BLEACH,         Dog Crate,          Rubber Chicken
@@ -561,15 +559,16 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("Tent", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
-        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
-        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3,0,0), "Player");
+        GlobalItemList.UpdateItemList("Tent", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0), "Player");
         GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("WaterfrontPark");
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGoToRainerToTradeTent();
     }
+
     public IEnumerator MakesMovesToGoToRainerToTradeTent()
     {
         yield return new WaitForSeconds(0.5f);
@@ -596,10 +595,9 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press(">> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
-
     }
-    
-    
+
+
     // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
     // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
     // Demetrius Inventory: BOOK,           BLEACH,         Dog Crate,          Rubber Chicken
@@ -616,15 +614,17 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("Wrench", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
-        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
-        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3,0,0), "Player");
-        GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4,0,0), "Player");        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalItemList.UpdateItemList("Wrench", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("WaterfrontPark");
         GlobalControls.ResetNPCInteracted();
         yield return MakesMovesToGoToSafiToCompleteActions();
     }
+
     public IEnumerator MakesMovesToGoToSafiToCompleteActions()
     {
         yield return new WaitForSeconds(0.5f);
@@ -656,7 +656,7 @@ public class TestWalkthrough
         Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
         yield return QuokeTestUtils.Press("    <<<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        
+
         Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
         Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
         Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
@@ -671,7 +671,6 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
-
     }
 
     // Safi Inventory:      WRENCH,         Canned Food,    Gloves,             Playing Cards
@@ -690,18 +689,20 @@ public class TestWalkthrough
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
-        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0,0,0), "Water Purifying Table");
+        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
 
-        GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0,0,0), "Player");
-        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1,0,0), "Player");
-        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2,0,0), "Player");
-        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3,0,0), "Player");
-        GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4,0,0), "Player");        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Tarp", "Inventory", new Vector3(1, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Plywood", "Inventory", new Vector3(2, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Rope", "Inventory", new Vector3(3, 0, 0), "Player");
+        GlobalItemList.UpdateItemList("Toilet Paper", "Inventory", new Vector3(4, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
         itemLoader.LoadItems("Yard");
         GlobalControls.ResetNPCInteracted();
         GlobalControls.globalControlsProperties.Remove("poopTaskCompleted");
         yield return MakesMovesToGoToCompleteLatrine();
     }
+
     public IEnumerator MakesMovesToGoToCompleteLatrine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -714,35 +715,7 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("cccccccc", playerKeyboard);
         Assert.AreEqual(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"),
             true);
-
-    }
-
-    [UnityTest]
-    public IEnumerator GetOutOfHomeToTradeShovelWithSafi()
-    {
-        SceneManager.LoadScene("Yard");
-        yield return new WaitForSeconds(0.5f);
-
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
-
-        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
-        GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0), "Player");
-        itemLoader.LoadItems("Yard");
-        GlobalControls.ResetNPCInteracted();
-
-        yield return MakesMovesToGetOutOfHomeToTradeShovelWithSafi();
-    }
-
-    public IEnumerator MakesMovesToGetOutOfHomeToTradeShovelWithSafi()
-    {
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
-        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-
+        
         yield return QuokeTestUtils.Press("wwwww", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
 
@@ -757,6 +730,34 @@ public class TestWalkthrough
         yield return new WaitForSeconds(0.5f);
 
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
+    }
+
+    [UnityTest]
+    public IEnumerator GetOutOfHomeToTradeShovelWithSafi()
+    {
+        SceneManager.LoadScene("WaterfrontPark");
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
+        GlobalItemList.UpdateItemList("Shovel", "Inventory", new Vector3(0, 0, 0), "Player");
+        itemLoader.LoadItems("WaterfrontPark");
+        GlobalControls.ResetNPCInteracted();
+
+        yield return MakesMovesToGetOutOfHomeToTradeShovelWithSafi();
+    }
+
+    public IEnumerator MakesMovesToGetOutOfHomeToTradeShovelWithSafi()
+    {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        
         yield return new WaitForSeconds(0.5f);
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -772,10 +773,442 @@ public class TestWalkthrough
     }
 
 
+    [UnityTest]
+    public IEnumerator TradeCannedFoodForDogCrate()
+    {
+        SceneManager.LoadScene("WaterfrontPark");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Canned Food", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("WaterfrontPark");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeCannedFoodForDogCrate();
+    }
+
+    public IEnumerator MakesMovesToTradeCannedFoodForDogCrate()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("aaaaaaaaaaaaaaaaaa   ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("<< < ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Dog Crate(Clone)", inventory.items[0].name);
+        yield return QuokeTestUtils.Press("wwwwwwwwwwwdddwwww", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("<< ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator TradeDogCrateWithAnnette()
+    {
+        SceneManager.LoadScene("PioneerCourthouseSquare");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Dog Crate", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PioneerCourthouseSquare");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeDogCrateWithAnnette();
+    }
+
+    public IEnumerator MakesMovesToTradeDogCrateWithAnnette()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("dddddd   ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(" < < ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Fire Extinguisher(Clone)", inventory.items[0].name);
+        yield return QuokeTestUtils.Press("ssssssssssssss", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PSU", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator TradeUselessStuffWithAngieForBlanket()
+    {
+        SceneManager.LoadScene("PSU");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Fire Extinguisher", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PSU");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeUselessStuffWithAngieForBlanket();
+    }
+
+    public IEnumerator MakesMovesToTradeUselessStuffWithAngieForBlanket()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa>  ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(" << ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Blanket(Clone)", inventory.items[0].name);
+        yield return QuokeTestUtils.Press("dddssssssssssssssssssssssssssssssss", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("< ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator TradeBlanketWithRainer()
+    {
+        SceneManager.LoadScene("PioneerCourthouseSquare");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Blanket", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PioneerCourthouseSquare");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeBlanketWithRainer();
+    }
+
+    public IEnumerator MakesMovesToTradeBlanketWithRainer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("aaaaaaaaasss>  ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(" << < ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Epi Pen(Clone)", inventory.items[0].name);
+        yield return QuokeTestUtils.Press("ddssssssssss", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PSU", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator TradeEpiPenWithAngie()
+    {
+        SceneManager.LoadScene("PSU");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Epi Pen", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PSU");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeEpiPenWithAngie();
+    }
+
+    public IEnumerator MakesMovesToTradeEpiPenWithAngie()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa>   ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(" < << ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Batteries(Clone)", inventory.items[3].name);
+        yield return QuokeTestUtils.Press("ssssssssssssdsssssssssssssssssaa   ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(">>> <<<<<< ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Can Opener(Clone)", inventory.items[3].name);
+        yield return QuokeTestUtils.Press("ddsss", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator TradeCanOpenerWithDem()
+    {
+        SceneManager.LoadScene("WaterfrontPark");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Can Opener", "Inventory", new Vector3(0, 0, 0), "Player");
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("WaterfrontPark");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToTradeCanOpenerWithDem();
+    }
+
+    public IEnumerator MakesMovesToTradeCanOpenerWithDem()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaa  ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press(">>> <<<< ~``", playerKeyboard, cheatKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Rubber Chicken(Clone)", inventory.items[3].name);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("a>>  >  ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwdddww", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("> ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
+    }
+
+
+    [UnityTest]
+    public IEnumerator GrabWater()
+    {
+        SceneManager.LoadScene("Yard");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
+
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("Yard");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToGrabWater();
+    }
+
+    public IEnumerator MakesMovesToGrabWater()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("aassssssss wwwwwwwwaaaaa ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Water Bottle Clean(Clone)", inventory.items[0].name);
+        yield return QuokeTestUtils.Press("dwwwwwww", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press(">> ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PSU", SceneManager.GetActiveScene().name);
+    }
+
+    [UnityTest]
+    public IEnumerator GiveWater()
+    {
+        SceneManager.LoadScene("PSU");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GlobalItemList.UpdateItemList("Water Bottle Clean", "Inventory", new Vector3(0, 0, 0), "Player");
+
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        itemLoader.LoadItems("PSU");
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToGiveWater();
+    }
+
+    public IEnumerator MakesMovesToGiveWater()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa    ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("dssssssssssssssssssssssssaasssss      ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("dddssss", playerKeyboard);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("< ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
+    }
+
+    [UnityTest]
+    public IEnumerator HelpRainer()
+    {
+        SceneManager.LoadScene("PioneerCourthouseSquare");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToHelpRainer();
+    }
+
+    public IEnumerator MakesMovesToHelpRainer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("aaaaaaaaasss >    ", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+        yield return QuokeTestUtils.Press("dssssssssss", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+        Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
+        yield return QuokeTestUtils.Press("< ", playerKeyboard, null, strategicMapKeyboard);
+
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
+    }
+
+    [UnityTest]
+    public IEnumerator Win()
+    {
+        SceneManager.LoadScene("Yard");
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
+
+        GameObject.Find("Inventory Canvas").GetComponent<Inventory>().Clear();
+        GlobalControls.ResetNPCInteracted();
+        yield return MakesMovesToWin();
+    }
+
+    public IEnumerator MakesMovesToWin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
+        strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
+
+        yield return QuokeTestUtils.Press("aaasssssaaaa", playerKeyboard);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+
     [UnityTest, Timeout(300000)]
-    public IEnumerator CompletesPlaythrough()
+    public IEnumerator CompletesPlayerNeeds()
     {
         SceneManager.LoadScene("PreQuakeHouse");
+        Debug.Log("Starting Tests");
         yield return MakesMovesToGetToQuake();
         yield return MakesMovesToGetOutsideAfterQuake();
         yield return MakesMovesToPickUpBookAndLeaveYard();
@@ -788,6 +1221,33 @@ public class TestWalkthrough
         yield return MakesMovesToGoToRainerToTradeTent();
         yield return MakesMovesToGoToSafiToCompleteActions();
         yield return MakesMovesToGoToCompleteLatrine();
+    }
+    
+    [UnityTest, Timeout(300000)]
+    public IEnumerator CompletesNpcNeeds()
+    {
+        SceneManager.LoadScene("WaterfrontPark");
         yield return MakesMovesToGetOutOfHomeToTradeShovelWithSafi();
+        yield return MakesMovesToTradeCannedFoodForDogCrate();
+        yield return MakesMovesToTradeDogCrateWithAnnette();
+        yield return MakesMovesToTradeUselessStuffWithAngieForBlanket();
+        yield return MakesMovesToTradeBlanketWithRainer();
+        Debug.Log("Running Epi Pen Angie");
+        yield return MakesMovesToTradeEpiPenWithAngie();
+        yield return MakesMovesToTradeCanOpenerWithDem();
+        yield return MakesMovesToGrabWater();
+        yield return MakesMovesToGiveWater();
+        yield return MakesMovesToHelpRainer();
+        yield return MakesMovesToWin();
+
+    }
+
+    
+
+    [UnityTest, Timeout(600000)]
+    public IEnumerator CompletesPlaythrough()
+    {
+        yield return CompletesPlayerNeeds();
+        yield return CompletesNpcNeeds();
     }
 }
