@@ -93,17 +93,17 @@ public class StrategicMapKeyboardController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
             else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
-            else if (Input.GetKeyDown(KeyCode.Comma)) keyDown = KeyCode.Comma;
-            else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
+            else if (Input.GetKeyDown(KeyCode.E)) keyDown = KeyCode.E;
+            else if (Input.GetKeyDown(KeyCode.Q)) keyDown = KeyCode.Q;
         }
         
         
         // Change the player's location with < and >
-        if (keyDown.Equals(KeyCode.Comma))  // Move left with < key
+        if (keyDown.Equals(KeyCode.Q))  // Move left with < key
         {
             playerLocation = (playerLocation - 1 + locations.Length) % locations.Length;
         }
-        if (keyDown.Equals(KeyCode.Period))  // Move right with > key
+        if (keyDown.Equals(KeyCode.E))  // Move right with > key
         {
             playerLocation = (playerLocation + 1) % locations.Length;
         }

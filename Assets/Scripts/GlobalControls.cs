@@ -102,10 +102,10 @@ public static class GlobalControls
 
         keybinds = new Dictionary<string, string>()
         {
-            {"Exploring", "WASD to Move Character \nSPACE to Drop/Interact \n< > to Move slots \n[ ] to Switch inventory"},
+            {"Exploring", "WASD to Move Character \nSPACE to Drop/Interact \nQ and E to Move slots"},
             {"Trading", "Q and E to select slot. \nSPACE to add item. \n Tab to change selected inventory. \nENTER to confirm. \nESC to leave interaction."},
-            {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
-            {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
+            {"Conversing", "W and A, or Arrow keys to Switch Option \nSPACE to Select Option \nESC to Leave Interaction"},
+            {"StrategicMap", "Q and E to Move Locations \nSPACE to Travel to Location"}
         };
         
         globalControlsProperties.Add("metersEnabled");
