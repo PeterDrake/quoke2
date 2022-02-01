@@ -444,15 +444,17 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private void UpdateTrading()
     {
-        if (keyDown.Equals(KeyCode.Comma))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             cursorLocation--;
         }
 
-        if (keyDown.Equals(KeyCode.Period))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             cursorLocation++;
         }
+        
+
 
         if (cursorLocation > -1 && cursorLocation < 5)
         {
@@ -487,7 +489,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (inventoryNumber == 2) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 10);
         else if (inventoryNumber == 3) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 14);
 
-        if (keyDown.Equals(KeyCode.LeftBracket))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
@@ -498,7 +500,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (inventoryNumber == 3) cursorLocation = 14;
         }
 
-        if (keyDown.Equals(KeyCode.RightBracket))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             inventoryNumber++;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
