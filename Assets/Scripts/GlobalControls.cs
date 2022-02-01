@@ -102,8 +102,8 @@ public static class GlobalControls
 
         keybinds = new Dictionary<string, string>()
         {
-            {"Exploring", "WASD => Move Character \nSPACE => Drop/Interact \n< > => Move slots \n[ ] => Switch inventory"},
-            {"Trading", "< > => select slot. \nSPACE => add item. \n[ ] => change selected inventory. \nENTER => confirm. \nESC => leave interaction."},
+            {"Exploring", "WASD to Move Character \nSPACE to Drop/Interact \n< > to Move slots \n[ ] to Switch inventory"},
+            {"Trading", "Q and E to select slot. \nSPACE to add item. \n Tab to change selected inventory. \nENTER to confirm. \nESC to leave interaction."},
             {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };

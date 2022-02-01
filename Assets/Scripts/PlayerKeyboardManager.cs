@@ -104,26 +104,28 @@ public class PlayerKeyboardManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Space)) keyDown = KeyCode.Space;
             else if (Input.GetKeyDown(KeyCode.Escape)) keyDown = KeyCode.Escape;
             else if (Input.GetKeyDown(KeyCode.Return)) keyDown = KeyCode.Return;
-            else if (Input.GetKeyDown(KeyCode.Comma)) keyDown = KeyCode.Comma;
-            else if (Input.GetKeyDown(KeyCode.Period)) keyDown = KeyCode.Period;
-            else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.LeftBracket;
-            else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.RightBracket;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.W)) keyDown = KeyCode.W;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.A)) keyDown = KeyCode.A;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.S)) keyDown = KeyCode.S;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.D)) keyDown = KeyCode.D;
+            else if (Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
+            else if (Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
+            else if (Input.GetKeyDown(KeyCode.LeftBracket)) keyDown = KeyCode.A;
+            else if (Input.GetKeyDown(KeyCode.RightBracket)) keyDown = KeyCode.D;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.W)) keyDown = KeyCode.UpArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.A)) keyDown = KeyCode.LeftArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.S)) keyDown = KeyCode.DownArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.D)) keyDown = KeyCode.RightArrow;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.W)) keyDown = KeyCode.W;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.A)) keyDown = KeyCode.A;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.S)) keyDown = KeyCode.S;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.D)) keyDown = KeyCode.D;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.W;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.A;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.S;
-            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.UpArrow)) keyDown = KeyCode.UpArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.LeftArrow)) keyDown = KeyCode.LeftArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.DownArrow)) keyDown = KeyCode.DownArrow;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKey(KeyCode.RightArrow)) keyDown = KeyCode.RightArrow;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.UpArrow)) keyDown = KeyCode.W;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.LeftArrow)) keyDown = KeyCode.A;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.DownArrow)) keyDown = KeyCode.S;
             else if (currentGamemode == Gamemode.Conversing && Input.GetKeyDown(KeyCode.RightArrow)) keyDown = KeyCode.D;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKeyDown(KeyCode.Q)) keyDown = KeyCode.Q;
+            else if (currentGamemode != Gamemode.Conversing && Input.GetKeyDown(KeyCode.E)) keyDown = KeyCode.E;
             foreach (var key in validInputs)
             {
                 if (Input.GetKeyDown(key))
@@ -169,7 +171,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void UpdateConversing()
     {
         // Change the cursor's location with < and >
-        if (keyDown.Equals(KeyCode.Comma) || keyDown.Equals(KeyCode.W))
+        if (keyDown.Equals(KeyCode.Q))
         {
             cursorLocation--;
             if (cursorLocation < 0)
@@ -196,7 +198,7 @@ public class PlayerKeyboardManager : MonoBehaviour
             }
         }
 
-        if (keyDown.Equals(KeyCode.Period) || keyDown.Equals(KeyCode.S))
+        if (keyDown.Equals(KeyCode.E))
         {
             cursorLocation++;
             if (cursorLocation > dialogueManager.buttons.Length - 1)
@@ -255,10 +257,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     private void MovePlayer()
     {
         // Move (wasd)
-        if (keyDown.Equals(KeyCode.W)) player.StartMoving(new Vector3(0, 0, 1));
-        else if (keyDown.Equals(KeyCode.A)) player.StartMoving(new Vector3(-1, 0, 0));
-        else if (keyDown.Equals(KeyCode.S)) player.StartMoving(new Vector3(0, 0, -1));
-        else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1, 0, 0));
+        if (keyDown.Equals(KeyCode.UpArrow)) player.StartMoving(new Vector3(0, 0, 1));
+        else if (keyDown.Equals(KeyCode.LeftArrow)) player.StartMoving(new Vector3(-1, 0, 0));
+        else if (keyDown.Equals(KeyCode.DownArrow)) player.StartMoving(new Vector3(0, 0, -1));
+        else if (keyDown.Equals(KeyCode.RightArrow)) player.StartMoving(new Vector3(1, 0, 0));
     }
 
     private void SelectSlotsInventory()
@@ -424,13 +426,13 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventory.PickUpOrDrop();
 
         if (inventory && npcInteractedCanvas.activeSelf &&
-            (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
+            (keyDown.Equals(KeyCode.Tab)))
             MoveBetweenInventories();
 
-        if (inventory && keyDown.Equals(KeyCode.Period))
+        if (inventory && keyDown.Equals(KeyCode.E))
             InventoryDown();
 
-        if (inventory && keyDown.Equals(KeyCode.Comma))
+        if (inventory && keyDown.Equals(KeyCode.Q))
             InventoryUp();
     }
 
@@ -444,12 +446,12 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private void UpdateTrading()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             cursorLocation--;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             cursorLocation++;
         }
@@ -489,21 +491,11 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (inventoryNumber == 2) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 10);
         else if (inventoryNumber == 3) tradeManager.SelectSlot(inventoryNumber, cursorLocation - 14);
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryNumber--;
             inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
 
-            if (inventoryNumber == 0) cursorLocation = 0;
-            else if (inventoryNumber == 1) cursorLocation = 5;
-            else if (inventoryNumber == 2) cursorLocation = 10;
-            else if (inventoryNumber == 3) cursorLocation = 14;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            inventoryNumber++;
-            inventoryNumber = tradeManager.ChangeSelectedInventory(inventoryNumber);
             if (inventoryNumber == 0) cursorLocation = 0;
             else if (inventoryNumber == 1) cursorLocation = 5;
             else if (inventoryNumber == 2) cursorLocation = 10;
