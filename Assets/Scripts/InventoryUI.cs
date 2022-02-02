@@ -173,7 +173,7 @@ public class InventoryUI : MonoBehaviour
 
     public void RemoveFromSlot(int slot)
     {
-        if (slot >= 0 && !(slot >= slotContents.Length))
+        if (slot >= 0 && slot < slotContents.Length && slotContents[slot].activeSelf)
         {
             slotContents[slot].SetActive(false);
             if (tooltipText.gameObject.activeSelf)

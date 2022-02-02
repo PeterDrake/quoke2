@@ -12,6 +12,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private Inventory inventory;
     private InventoryUI inventoryUI;
     private bool crouchFlag;
+    // TODO Can we get rid of virtualKeyboard?
     public bool virtualKeyboard;
 
     private Gamemode currentGamemode;
@@ -158,7 +159,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         keyDown = KeyCode.JoystickButton0;
     }
 
-    private void UpdateSegue()
+    public void UpdateSegue()
     {
         if (keyDown.Equals(KeyCode.Space))
         {

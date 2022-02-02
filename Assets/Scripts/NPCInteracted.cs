@@ -68,13 +68,11 @@ public class NPCInteracted : MonoBehaviour
             //Debug.Log("NPC SATISFACTION = " + npc.satisfaction);
             if(npc.satisfaction >= i)
             {
-                Debug.Log(npc.name + " satisfaction up!");
                 stars[i].gameObject.SetActive(true);
 
             }
             else
             {
-                Debug.Log(npc.name + " satisfaction down...");
                 stars[i].gameObject.SetActive(false);
             }
 
@@ -83,7 +81,6 @@ public class NPCInteracted : MonoBehaviour
     }
     public void UpdateNPCInteracted(string name)
     {
-        Debug.Log("name: " + name);
         NPC npc = GlobalControls.npcList[name];
         int i = Array.IndexOf(GlobalControls.npcNames, name);
         // Update display of how satisfied this NPC is

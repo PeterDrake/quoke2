@@ -31,25 +31,26 @@ public class QuakeManager : MonoBehaviour
     [Tooltip("How many moves can the player make before the earthquake goes off?")]
     public int turnsTillQuakeStart = 5;
     private int initialTurn;
-    private int quakeStartTurn;
-    private bool isQuakeTime = false;
-    private bool firstQuakeCompleted = false;
+    public int quakeStartTurn;
+    public bool isQuakeTime = false;
+    public bool firstQuakeCompleted = false;
 
     [Tooltip("How many moves can the player make during the earthquake before they die?")]
     public int turnsTillDeath = 5;
-    private int underCoverTurn;
+
+    public int underCoverTurn;
     [Tooltip("How many seconds should the earthquake last after the player has reached cover?")]
     public float secondsUnderCover = 5f;
-    private bool isUnderCover = false;
-    private bool hasBeenUnderCover = false;
+
+    public bool isUnderCover = false;
+    public bool hasBeenUnderCover = false;
 
     [Tooltip("How many moves can the player make after the earthquake before they die?")]
     public int turnsTillAftershock = 5;
     private int exitHouseTurn;
-    private bool isAftershockTime = false;
+    public bool isAftershockTime = false;
     [Tooltip("Should an aftershock trigger and kill the player if they step into the house?")]
     public bool automaticAftershock = false;
-
 
     // door shaking objects
     private GameObject[] doors;
@@ -72,6 +73,21 @@ public class QuakeManager : MonoBehaviour
     // so, when implemented, we will subscribe sound/other effects to this event
     public UnityEvent OnQuake;
 
+    public void ResetQuake()
+    {
+        turnsTillQuakeStart = 5;
+        initialTurn = 0;
+        quakeStartTurn = 0;
+        isQuakeTime = false;
+        firstQuakeCompleted = false;
+        turnsTillDeath = 5;
+        underCoverTurn = 0;
+        isUnderCover = false;
+        hasBeenUnderCover = false;
+        turnsTillAftershock = 8;
+        isAftershockTime = false;
+        automaticAftershock = false;
+    }
 
     private void Awake()
     {

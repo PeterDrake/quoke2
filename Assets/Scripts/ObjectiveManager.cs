@@ -23,7 +23,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         SetCurrentObjective(GlobalControls.CurrentObjective);
         if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
-        {
+        { 
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))
             {
                 if (image && image.gameObject.name.Equals("Objectives"))
@@ -35,7 +35,7 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
     
-    private void SetCurrentObjective(int objective)
+    public void SetCurrentObjective(int objective)
     {
         switch (objective)
         {
