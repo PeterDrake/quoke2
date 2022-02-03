@@ -2,6 +2,9 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// poop and water meter at the top of the screen
+/// </summary>
 public class Meters : MonoBehaviour
 {
     public int poopTimeLeft;

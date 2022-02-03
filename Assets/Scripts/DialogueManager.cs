@@ -41,11 +41,11 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueUI.LoadNPC(GlobalControls.CurrentNPC);
 
-        //Paste the path of the xml file you want to look at here
+        // Paste the path of the xml file you want to look at here
         TextAsset text = Resources.Load<TextAsset>(GlobalControls.CurrentNPC);
         convoFile.LoadXml(text.text);
 
-        //looks through all the npc nodes instead of looking at just the <convoForest> tag
+        // looks through all the npc nodes instead of looking at just the <convoForest> tag
         foreach (XmlNode node in convoFile.LastChild)
         {
             if (!forest.ContainsKey(node.Name))
@@ -54,33 +54,35 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // This is where the we let the NPC talk to the code. The npc we run into will pass back something like
-        // "theirName0" to get to the appropriate starting node
+        // This is where the we let the NPC talk to the code. When we run into an NPC, tbey will start at the
+        // appropriate starting node.
         Debug.Log(GlobalControls.npcList[GlobalControls.CurrentNPC].node);
         currentNode = forest[GlobalControls.npcList[GlobalControls.CurrentNPC].node];
 
         for (int c = 0; c < currentNode.playerArray.Count; c++)
         {
             buttons[c].gameObject.SetActive(true);
-            //This displays the initial nodes player text
+            //This displays the initial node's player text
             buttons[c].GetComponentInChildren<Text>().text = currentNode.playerArray[c];
 
-            //Turns a button off if there is no text in the button
+            // Turns a button off if there is no text in the button
             if (buttons[c].GetComponentInChildren<Text>().text.Equals(""))
             {
                 buttons[c].gameObject.SetActive(false);
             }
         }
 
-        //If the player leaves a trading session...
         if (keyboardManager.leftTrading)
         {
             keyboardManager.leftTrading = false;
 
+            // Angie was used for testing the dialogue system, and does *not* follow latest conventions for dialogue.
+            // (that's why it's so long)
             if (GlobalControls.CurrentNPC.Contains("Angie"))
             {
-                //If Angie is given the first aid kit and the epi pen at the same time, update globalControlsProperties to
-                //say Angie has the first aid kit and the epi pen. Move to the appropriate dialogue node
+                // If Angie is given the first aid kit and the epi pen at the same time, update
+                // globalControlsProperties to say Angie has the first aid kit and the epi pen. Move to the appropriate
+                // dialogue node
                 if (!GlobalControls.globalControlsProperties.Contains("angieHasEpiPen") &&
                     !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit") &&
                     GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") &&
@@ -101,8 +103,8 @@ public class DialogueManager : MonoBehaviour
                         GlobalControls.globalControlsProperties.Add("angieHasEpiPen");
                     }
 
-                //If Angie is given the first aid kit, update globalControlsProperties to say Angie has the first aid kit
-                //Move to the appropriate dialogue node
+                // If Angie is given the first aid kit, update globalControlsProperties to say Angie has the first
+                // aid kit Move to the appropriate dialogue node
                 else if (GlobalItemList.ItemList["First Aid Kit"].containerName.Equals("Angie") &&
                          !GlobalControls.globalControlsProperties.Contains("angieHasFirstAidKit"))
 
@@ -118,8 +120,8 @@ public class DialogueManager : MonoBehaviour
                         currentNode = forest["leave_angie_1.4"];
                         GlobalControls.globalControlsProperties.Add("angieHasFirstAidKit");
                     }
-                //If Angie is given the epi pen (we assume that she already has the first aid kit),
-                //update globalControlsProperties to say Angie has the epi pen. Move to the appropriate dialogue node
+                // If Angie is given the epi pen (we assume that she already has the first aid kit),
+                // update globalControlsProperties to say Angie has the epi pen. Move to the appropriate dialogue node
                 else if (GlobalItemList.ItemList["Epi Pen"].containerName.Equals("Angie") &&
                          !GlobalControls.globalControlsProperties.Contains("angieHasEpiPen"))
 
@@ -143,10 +145,12 @@ public class DialogueManager : MonoBehaviour
                 else
                     currentNode = forest["leave_error"];
             }
+            // Safi needs no items (only actions), so she requires only the following code
             else if (GlobalControls.CurrentNPC.Equals("Safi"))
             {
                 currentNode = forest["leave_safi_0"];
             }
+            // Everyone other than Safi needs more code
             else
             {
                 // Current NPC is *not* Safi
@@ -196,6 +200,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Current Node A: " + currentNode.nodeName);
         }
 
+        // Safi has specific actions do be done instead of trading, so handle that here
         if (GlobalControls.CurrentNPC.Equals("Safi"))
         {
             if (GlobalControls.globalControlsProperties.Contains("safiGasDone") &&
@@ -210,13 +215,13 @@ public class DialogueManager : MonoBehaviour
             }            
         }
 
-        //Go through all the buttons and put that node's text into the buttons.
+        // Go through all the buttons and put that node's text into the buttons.
         for (int i = 0; i < currentNode.playerArray.Count; i++)
         {
             buttons[i].gameObject.SetActive(true);
             buttons[i].GetComponentInChildren<Text>().text = currentNode.playerArray[i];
 
-            //Turns a button off if there is no text in the button
+            // Turns a button off if there is no text in the button
             if (buttons[i].GetComponentInChildren<Text>().text.Equals(""))
             {
                 buttons[i].gameObject.SetActive(false);
@@ -233,7 +238,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        //This displays the initial nodes npc text
+        //This displays the initial node's npc text
         dialogueUI.AddDialogue(currentNode.npcText, GlobalControls.npcList[GlobalControls.CurrentNPC].name);
 
         if (cursorLocation > buttons.Length - 1)
@@ -299,11 +304,12 @@ public class DialogueManager : MonoBehaviour
             return cursorLocation;
         }
 
-        //This will change the node you're looking at
+        // This will change the node you're looking at
         dialogueUI.AddDialogue(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc");
         GlobalControls.npcList[GlobalControls.CurrentNPC].dialogueList
             .Add(new DialogueNode(buttons[cursorLocation].GetComponentInChildren<Text>().text, "Duc"));
         string nextNode = currentNode.nextNode[cursorLocation];
+        // dynamic options change the dialogue tree on later conversations
         if (nextNode.Contains("dynamic_option"))
         {
             switch (GlobalControls.CurrentNPC)
@@ -457,9 +463,9 @@ public class DialogueManager : MonoBehaviour
                         buttons[i].gameObject.SetActive(false);
                     }
                 }
-                //This checks the itemList for the item that the npc needs at the index specified in the key name
-                //need0_angie_12.2
-                //Here the index is 0
+                // This checks the itemList for the item that the npc needs at the index specified in the key name
+                // need0_angie_12.2
+                // Here the index is 0
                 else if (!GlobalItemList.ItemList[
                         GlobalControls.npcList[GlobalControls.CurrentNPC].needs[
                             Int32.Parse(node.Substring(node.IndexOf("need") + 4, 1))]]
@@ -481,7 +487,7 @@ public class DialogueManager : MonoBehaviour
                     buttons[i].gameObject.SetActive(false);
                 }
             }
-            // If the player has doesn't have the item needed to complete an action, don't let them
+            // If the player doesn't have the item needed to complete an action, don't let them
             else if (node.Contains("success"))
             {
                 if (!GlobalControls.npcList[GlobalControls.CurrentNPC]

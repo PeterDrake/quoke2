@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// latrine object responsible for knowing what's stored in the latrine
+/// </summary>
 public class LatrineStorage : MonoBehaviour
 {
 

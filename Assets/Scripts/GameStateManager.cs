@@ -16,6 +16,10 @@ public enum Gamemode
 
 public class GameStateManager : MonoBehaviour
 {
+    /// <summary>
+    /// Manages and changes the state of the game, such as trading, exploring, talking, etc.
+    /// </summary>
+
     private ReferenceManager referenceManager;
     private TooltipManager tooltipManager;
     private PlayerKeyboardManager keyboardManager;

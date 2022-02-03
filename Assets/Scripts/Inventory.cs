@@ -77,6 +77,10 @@ public class Inventory : MonoBehaviour
         if(items.Length > 0) SelectSlotNumber(0);
     }
 
+    /// <summary>
+    /// controls the amount of inventory space the player has (e.g. 1 slot before quake, 2 during, 5 after)
+    /// </summary>
+    /// <param name="numSlots"></param>
     public void SetAvailableSlots(int numSlots)
     {
         inventoryUI.SetAvailableSlots(numSlots);
@@ -133,6 +137,8 @@ public class Inventory : MonoBehaviour
                 GlobalItemList.UpdateItemList(items[i].name, SceneManager.GetActiveScene().name,
                     items[i].transform.position, container.name);
 
+                // If these items are in a storage container, then the player doesn't have them
+                // update globalControlsProperties accordingly.
                 if (items[i].name.Equals("Water Bottle Clean(Clone)"))
                     GlobalControls.globalControlsProperties.Remove("playerHasCleanWater");
 
@@ -155,6 +161,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When interacting with the latrine, remove single-use items from the players inventory (and puts them into
+    /// the latrine)
+    /// </summary>
+    /// <param name="i"></param>
     void RemoveLatrineItem(int i)
     {
         latrineStorage.contents = items[i];
@@ -171,6 +182,9 @@ public class Inventory : MonoBehaviour
         latrineStorage.contents = null;
     }
     
+    /// <summary>
+    /// Dictates what order you have to use the items in to make the latrine.
+    /// </summary>
     void InteractWithLatrine()
     {
         int i = 0;
@@ -246,6 +260,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// latrine, but for apartment condition
+    /// </summary>
     void InteractWithTwoBucket()
     {
         int x = 0;
@@ -310,7 +327,10 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    
+    /// <summary>
+    /// same as RemoveLatrineItem but for bucket (apartment condition)
+    /// </summary>
+    /// <param name="i"></param>
     void RemoveBucketItem(int i)
     {
         twoBucket.contents = items[i];
@@ -351,6 +371,8 @@ public class Inventory : MonoBehaviour
             // Remove item from the world
             item.SetActive(false);
 
+            // If you pick up these items, that means the player has them.
+            // Update globalControlsProperties accordingly.
             if (item.name.Equals("Water Bottle Clean(Clone)"))
             {
                 Debug.Log("Player Has Water!");
@@ -381,6 +403,7 @@ public class Inventory : MonoBehaviour
 
     /// <summary>
     /// Returns the index of the first empty slot, or -1 if all slots are full.
+    /// </summary>
     /// <returns></returns>
     private int FirstEmptySlot()
     {
@@ -404,8 +427,6 @@ public class Inventory : MonoBehaviour
         {
             GameObject container = player.ObjectAhead(storageContainerLayers);
             GameObject latrine = player.ObjectAhead(latrineContainerLayers);
-            GameObject heater = player.ObjectAhead(WaterHeaterLayers);
-            GameObject gas = player.ObjectAhead(GasValveLayers);
             if (container)
             {
                 if (container.name.Equals("Water Purifying Table"))
@@ -422,18 +443,9 @@ public class Inventory : MonoBehaviour
             {
                 InteractWithTwoBucket();
             }
-            else if (heater || gas)
-            {
-                InteractWithWaterHeaterOrGasValve();
-            }
         }
     }
-
-    private void InteractWithWaterHeaterOrGasValve()
-    {
-        
-
-    }
+    
 
     private void InteractWithWaterPurifyingTable(StorageContainer container)
     {
@@ -502,7 +514,6 @@ public class Inventory : MonoBehaviour
     /** Only used by ItemLoader.cs */
     public void PickUpAtSlot(int slot, GameObject item)
     {
-        // Debug.Log(slotContents.Length + " slotcontents length");
         int i = slot;
         if (i >= 0)
         {
