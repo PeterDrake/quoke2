@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// controls actions for Safi
+/// </summary>
 public class WaterHeaterOrGasValve : MonoBehaviour
 {
 

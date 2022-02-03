@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles flavor text for all the items (both player and NPC), as well as descriptions for the NPCs themselves
+/// </summary>
 public class TooltipManager : MonoBehaviour
 {
     private ReferenceManager referenceManager;

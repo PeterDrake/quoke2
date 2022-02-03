@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
+/// <summary>
+/// keeps track of how the player can die, and kills them when necessary
+/// </summary>
 public class PlayerDeath : MonoBehaviour
 {
     private Text DeathText;

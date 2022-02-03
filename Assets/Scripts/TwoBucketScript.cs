@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// latrine equivalent for apartment condition
+/// </summary>
 public class TwoBucketScript : MonoBehaviour
 {
     

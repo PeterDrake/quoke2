@@ -6,6 +6,9 @@ using Cinemachine;
 using UnityEditor;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Triggers the quake on certain conditions
+/// </summary>
 public class QuakeManager : MonoBehaviour
 {
     public static QuakeManager Instance;
@@ -270,9 +273,7 @@ public class QuakeManager : MonoBehaviour
         firstQuakeCompleted = true;
 
         OnQuake.Invoke(); // every function subscribed to OnQuake is called here
-
-        //_informationCanvas.ChangeText(textOnQuake);
-
+        
         StartCoroutine(ShakeIt());
     }
 
@@ -296,12 +297,6 @@ public class QuakeManager : MonoBehaviour
         
         GlobalControls.CurrentObjective = 4;
         GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
-
-        //_informationCanvas.ChangeText(textAfterQuake);
-        //Systems.Objectives.Satisfy("SURVIVEQUAKE");
-        //Systems.Objectives.Register(QuakeManager.Instance.leaveHouse, () => _leaveSatisfied = true);
-
-        //enableDoors.SetActive(false); // allow player to exit house
     }
 
     public void ShakeCamera(float duration, float amplitude, float frequency)

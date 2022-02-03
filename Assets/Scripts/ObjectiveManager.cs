@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
+/// <summary>
+/// keeps track of what the current objective is
+/// </summary>
 public class ObjectiveManager : MonoBehaviour
 {
     private string currentObjective;

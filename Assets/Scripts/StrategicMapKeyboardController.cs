@@ -2,6 +2,9 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// controls the map marker for the strategic map
+/// </summary>
 public class StrategicMapKeyboardController : MonoBehaviour
 {
     public GameObject player;

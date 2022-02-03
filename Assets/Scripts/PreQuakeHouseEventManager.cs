@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// checks if the shed is full in the PreQuakeHouse scene. If so, move on to the QuakeHouse scene
+/// </summary>
 public class PreQuakeHouseEventManager : MonoBehaviour
 {
     public StorageContainer[] containers;
