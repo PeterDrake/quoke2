@@ -45,37 +45,37 @@ public class PlayerDeath : MonoBehaviour
             case 0:
                 DeathText.text = "You got crushed!";
                 TipsText.text = "Get under a solid structure during the earthquake!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["crusheddeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["crusheddeath"]).ToString();
                 break;
             case 1:
                 DeathText.text = "You died in an aftershock!";
                 TipsText.text = "Exit buildings as soon as the earthquake ends";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["aftershockdeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["aftershockdeath"]).ToString();
                 break;
             case 2:
                 DeathText.text = "You died of thirst!";
                 TipsText.text = "Regular access to clean water is vital!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["diedrate"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["diedrate"]).ToString();
                 break;
             case 3:
                 DeathText.text = "You got crushed!";
                 TipsText.text = "Don't go through doors during the earthquake!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["crusheddeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["crusheddeath"]).ToString();
                 break;
             case 4:
                 DeathText.text = "You died of unhygienic ways!";
                 TipsText.text = "Staying sanitary is important!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["sanitationdeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["sanitationdeath"]).ToString();
                 break;
             case 5:
                 DeathText.text = "You got crushed!";
                 TipsText.text = "Stay under cover until earthquake ends!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["crusheddeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["crusheddeath"]).ToString();
                 break;
             case 6:
                 DeathText.text = "You died in an aftershock!";
                 TipsText.text = "Don't re-enter unstable buildings!";
-                ScoreText.text = (GlobalControls.CurrentPoints + GlobalControls.Points["enteringbuildingdeath"]).ToString();
+                ScoreText.text = (GlobalControls.currentPoints + GlobalControls.points["enteringbuildingdeath"]).ToString();
                 break;
         }
     }

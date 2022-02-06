@@ -75,7 +75,7 @@ public class PlayerMover : MonoBehaviour
                 }
                 else
                 {
-                    GlobalControls.CurrentNPC = ahead.name;
+                    GlobalControls.currentNpc = ahead.name;
                     referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
                     transform.LookAt(transform.position + direction, transform.up);
                     referenceManager.gameStateManager.GetComponent<GameStateManager>().SetConversing();
@@ -87,7 +87,7 @@ public class PlayerMover : MonoBehaviour
             // than checking for null, because destroyed GameObjects might not be null.
             else if (!ObjectAhead(obstacleLayers)){
                 destination.position += direction;
-                GlobalControls.TurnNumber++;
+                GlobalControls.turnNumber++;
             }
         }
     }

@@ -76,7 +76,7 @@ public class TooltipManager : MonoBehaviour
                 }
             }
 
-            pointsText.text = GlobalControls.CurrentPoints.ToString();
+            pointsText.text = GlobalControls.currentPoints.ToString();
         }
     }
 

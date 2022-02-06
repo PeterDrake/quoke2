@@ -41,8 +41,8 @@ public class StrategicMapKeyboardController : MonoBehaviour
         }
         
         // Set the player location to the scene we just left
-        playerLocation = GlobalControls.CurrentScene;
-        if (GlobalControls.CurrentScene < 0 || GlobalControls.CurrentScene > 3)
+        playerLocation = GlobalControls.currentScene;
+        if (GlobalControls.currentScene < 0 || GlobalControls.currentScene > 3)
         {
             playerLocation = 0;
         }
@@ -73,7 +73,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
         if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             references.keybinds.SetActive(true);
-            references.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["StrategicMap"];
+            references.keybinds.GetComponentInChildren<Text>().text = GlobalControls.keybinds["StrategicMap"];
         }
         else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled")) references.keybinds.SetActive(false);
 

@@ -52,10 +52,9 @@ public class WaterHeaterOrGasValve : MonoBehaviour
         {
             GlobalControls.globalControlsProperties.Add("safi" + interactable + "Done");
             GlobalControls.npcList["Safi"].satisfaction++;
-            GlobalControls.CurrentPoints += GlobalControls.Points["favors"];
+            GlobalControls.currentPoints += GlobalControls.points["favors"];
             npcCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Safi");
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
-
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         }
     }
     

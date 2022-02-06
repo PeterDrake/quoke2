@@ -32,12 +32,12 @@ public class LatrineStorage : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         meters = referenceManager.metersCanvas.GetComponent<Meters>();
-        shovelingDone = GlobalControls.PoopTaskProgress[0];
-        plywoodDone = GlobalControls.PoopTaskProgress[1];
-        ropeDone = GlobalControls.PoopTaskProgress[2];
-        tarpDone = GlobalControls.PoopTaskProgress[3];
-        toiletPaperDone = GlobalControls.PoopTaskProgress[4];
-        timesShoveled = GlobalControls.TimesShoveled;
+        shovelingDone = GlobalControls.poopTaskProgress[0];
+        plywoodDone = GlobalControls.poopTaskProgress[1];
+        ropeDone = GlobalControls.poopTaskProgress[2];
+        tarpDone = GlobalControls.poopTaskProgress[3];
+        toiletPaperDone = GlobalControls.poopTaskProgress[4];
+        timesShoveled = GlobalControls.timesShoveled;
         holes = new GameObject[4];
 
         int i = 0;
@@ -59,11 +59,11 @@ public class LatrineStorage : MonoBehaviour
 
     public void UpdateVisuals()
     {
-        if (GlobalControls.TimesShoveled != 0)
+        if (GlobalControls.timesShoveled != 0)
         {
             for (int i = 0; i < holes.Length; i++)
             {
-                if(i == GlobalControls.TimesShoveled - 1) holes[i].SetActive(true);
+                if(i == GlobalControls.timesShoveled - 1) holes[i].SetActive(true);
                 else holes[i].SetActive(false);
             }
         }

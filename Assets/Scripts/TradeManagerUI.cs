@@ -85,7 +85,7 @@ public class TradeManagerUI : MonoBehaviour
     
     public void BeginTrading()
     {
-        npcName = GlobalControls.CurrentNPC;
+        npcName = GlobalControls.currentNpc;
 
         List<int> playerSlotsUsed = new List<int>();
         List<int> npcSlotsUsed = new List<int>();
@@ -218,7 +218,7 @@ public class TradeManagerUI : MonoBehaviour
             if (playerOffers.Contains(need))
             {
                 playerTradePoints++; //add an extra trade point if offered a need
-                GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
+                GlobalControls.currentPoints += GlobalControls.points["tradeneeds"];
             }
         }
 
@@ -243,7 +243,7 @@ public class TradeManagerUI : MonoBehaviour
         }
         
         button.interactable = false;
-        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         CheckForNeededItemInNPCInventory();
     }
 

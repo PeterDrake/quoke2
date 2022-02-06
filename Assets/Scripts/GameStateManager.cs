@@ -77,7 +77,7 @@ public class GameStateManager : MonoBehaviour
             inventory.SetAvailableSlots(2);
             pointsInScene = false;
             npcInteractedInScene = false;
-            GlobalControls.CurrentObjective = 3;
+            GlobalControls.currentObjective = 3;
             SetSegue();
         }
         else if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
@@ -88,9 +88,9 @@ public class GameStateManager : MonoBehaviour
             npcInteractedInScene = false;
             pointsInScene = false;
             if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
-                GlobalControls.CurrentObjective = 2;
+                GlobalControls.currentObjective = 2;
             else if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
-                GlobalControls.CurrentObjective = 1;
+                GlobalControls.currentObjective = 1;
             SetExploring();
         }
         else if (SceneManager.GetActiveScene().name.Equals("StrategicMap"))
@@ -98,9 +98,9 @@ public class GameStateManager : MonoBehaviour
             keyboardManager.EnableStrategicMapKeyboard();
             enabled = false;
         }
-        else if (GlobalControls.CurrentObjective <= 4)
+        else if (GlobalControls.currentObjective <= 4)
         {
-            GlobalControls.CurrentObjective = 5;
+            GlobalControls.currentObjective = 5;
             SetExploring();
         }
         else SetExploring();
@@ -109,7 +109,7 @@ public class GameStateManager : MonoBehaviour
             GlobalControls.globalControlsProperties.Contains("metersEnabled"))
         {
             if (!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted") &&
-                GlobalControls.PoopTimeLeft == 0)
+                GlobalControls.poopTimeLeft == 0)
             {
                 Debug.Log("You died by poop meter going to zero!!");
                 referenceManager.deathManager.GetComponent<PlayerDeath>()
@@ -117,7 +117,7 @@ public class GameStateManager : MonoBehaviour
             }
 
             if (!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted") &&
-                GlobalControls.WaterTimeLeft == 0)
+                GlobalControls.waterTimeLeft == 0)
             {
                 Debug.Log("You died of thirst!");
                 referenceManager.deathManager.GetComponent<PlayerDeath>()
@@ -171,7 +171,7 @@ public class GameStateManager : MonoBehaviour
         if (pointsInScene)
         {
             referenceManager.pointsText.gameObject.SetActive(true);
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         }
         else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
         
@@ -186,7 +186,7 @@ public class GameStateManager : MonoBehaviour
         if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
-            string exploringText = GlobalControls.Keybinds["Exploring"];
+            string exploringText = GlobalControls.keybinds["Exploring"];
             if (!npcInteractedInScene) exploringText = exploringText.Replace("\n[ ] => Switch inventory", "");
             if (inventoryInScene)
             {
@@ -232,7 +232,7 @@ public class GameStateManager : MonoBehaviour
         if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
-            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Conversing"];
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.keybinds["Conversing"];
         }
         else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
             referenceManager.keybinds.SetActive(false);
@@ -244,7 +244,7 @@ public class GameStateManager : MonoBehaviour
         if (pointsInScene)
         {
             referenceManager.pointsText.gameObject.SetActive(true);
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         }
         else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
     }
@@ -275,7 +275,7 @@ public class GameStateManager : MonoBehaviour
         if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             referenceManager.keybinds.SetActive(true);
-            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.Keybinds["Trading"];
+            referenceManager.keybinds.GetComponentInChildren<Text>().text = GlobalControls.keybinds["Trading"];
         }
         else if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
             referenceManager.keybinds.SetActive(false);
@@ -291,7 +291,7 @@ public class GameStateManager : MonoBehaviour
         if (pointsInScene)
         {
             referenceManager.pointsText.gameObject.SetActive(true);
-            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+            referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         }
         else if (!pointsInScene) referenceManager.pointsText.gameObject.SetActive(false);
 

@@ -118,7 +118,7 @@ public class TestWalkthrough
         itemLoader.LoadItems("QuakeHouse");
         gameStateManager.Start();
         quakeManager.ResetQuake();
-        GlobalControls.TurnNumber = -5;
+        GlobalControls.turnNumber = -5;
         yield return MakesMovesToGetOutsideAfterQuake();
     }
 
@@ -342,7 +342,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Annette", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("                   d>   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("First Aid Kit(Clone)", inventory.items[0].name);
@@ -389,7 +389,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Angie", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Angie", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("        <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Radio(Clone)", inventory.items[0].name);
@@ -404,7 +404,7 @@ public class TestWalkthrough
         // Player Inventory:    RADIO           TARP            None                None            None
         yield return QuokeTestUtils.Press("ssssssssssssdsssssssssssssssssaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Carlos", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Carlos", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("           << << ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Leash(Clone)", inventory.items[0].name);
@@ -465,7 +465,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Annette", GlobalControls.currentNpc);
         dialogueManager.currentNode = dialogueManager.forest["basic_annette_1.0"];
         yield return QuokeTestUtils.Press("    <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
@@ -521,7 +521,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Dem", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Dem", GlobalControls.currentNpc);
         dialogueManager.currentNode = dialogueManager.forest["basic_dem_2.0"];
         yield return QuokeTestUtils.Press("   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
@@ -576,7 +576,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("sssaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Rainer", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Rainer", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("     < <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Wrench(Clone)", inventory.items[0].name);
@@ -633,7 +633,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("      ", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         yield return QuokeTestUtils.Press("1ssd", playerKeyboard);
@@ -642,7 +642,7 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("wwd", playerKeyboard);
 
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("   ", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         yield return QuokeTestUtils.Press("1ssssd ", playerKeyboard);
@@ -651,7 +651,7 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("wwwwd", playerKeyboard);
 
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("    <<<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
 

@@ -197,17 +197,17 @@ public class Inventory : MonoBehaviour
                 && !latrineStorage.plywoodDone)
             {
                 latrineStorage.timesShoveled++;
-                GlobalControls.TimesShoveled++;
+                GlobalControls.timesShoveled++;
                 Debug.Log("Time shoveled: " + latrineStorage.timesShoveled);
                 if (latrineStorage.ShovelingComplete())
                 {
-                    GlobalControls.PoopTaskProgress[0] = true;
+                    GlobalControls.poopTaskProgress[0] = true;
                     latrineStorage.shovelingDone = true;
                 }else if (latrineStorage.timesShoveled > 4)
                 {
                     Debug.Log("Resetting shoveling");
                     latrineStorage.timesShoveled = 0;
-                    GlobalControls.TimesShoveled = 0;
+                    GlobalControls.timesShoveled = 0;
                     latrineStorage.shovelingDone = false;
                 }
             }
@@ -232,25 +232,25 @@ public class Inventory : MonoBehaviour
                     case 2:
                         RemoveLatrineItem(i);
                         latrineStorage.plywoodDone = true;
-                        GlobalControls.PoopTaskProgress[1] = true;
+                        GlobalControls.poopTaskProgress[1] = true;
                         Debug.Log("Plywood Complete");
                         break;
                     case 3:
                         RemoveLatrineItem(i);
                         latrineStorage.ropeDone = true;
-                        GlobalControls.PoopTaskProgress[2] = true;
+                        GlobalControls.poopTaskProgress[2] = true;
                         Debug.Log("Rope Complete");
                         break;
                     case 4:
                         RemoveLatrineItem(i);
                         latrineStorage.tarpDone = true;
-                        GlobalControls.PoopTaskProgress[3] = true;
+                        GlobalControls.poopTaskProgress[3] = true;
                         Debug.Log("Tarp Complete");
                         break;
                     case 5:
                         RemoveLatrineItem(i);
                         latrineStorage.toiletPaperDone = true;
-                        GlobalControls.PoopTaskProgress[4] = true;
+                        GlobalControls.poopTaskProgress[4] = true;
                         Debug.Log("Toilet Paper Complete");
                         latrineStorage.LatrineComplete();
                         break;
@@ -293,31 +293,31 @@ public class Inventory : MonoBehaviour
                     case 1:
                         RemoveBucketItem(i);
                         twoBucket.bucketDone = true;
-                        GlobalControls.PoopTaskProgress[0] = true;
+                        GlobalControls.poopTaskProgress[0] = true;
                         Debug.Log("Bucket Complete");
                         break;
                     case 2:
                         RemoveBucketItem(i);
                         twoBucket.bucketTwoDone = true;
-                        GlobalControls.PoopTaskProgress[1] = true;
+                        GlobalControls.poopTaskProgress[1] = true;
                         Debug.Log("Bucket two Complete");
                         break;
                     case 3:
                         RemoveBucketItem(i);
                         twoBucket.bagDone = true;
-                        GlobalControls.PoopTaskProgress[2] = true;
+                        GlobalControls.poopTaskProgress[2] = true;
                         Debug.Log("Bag Complete");
                         break;
                     case 4:
                         RemoveBucketItem(i);
                         twoBucket.toiletPaperDone = true;
-                        GlobalControls.PoopTaskProgress[3] = true;
+                        GlobalControls.poopTaskProgress[3] = true;
                         Debug.Log("Toilet Paper Complete");
                         break;
                     case 5:
                         RemoveBucketItem(i);
                         twoBucket.woodChipsDone = true;
-                        GlobalControls.PoopTaskProgress[4] = true;
+                        GlobalControls.poopTaskProgress[4] = true;
                         Debug.Log("Wood Chips Complete");
                         twoBucket.TwoBucketComplete();
                         break;
