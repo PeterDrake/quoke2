@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// the brain behind the start button of the game
+/// </summary>
 public class StartButton : MonoBehaviour
 {
     

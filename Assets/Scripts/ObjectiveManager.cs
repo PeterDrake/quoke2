@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
+/// <summary>
+/// keeps track of what the current objective is
+/// </summary>
 public class ObjectiveManager : MonoBehaviour
 {
     private string currentObjective;
@@ -21,7 +24,7 @@ public class ObjectiveManager : MonoBehaviour
     
     public void UpdateObjectiveBanner()
     {
-        SetCurrentObjective(GlobalControls.CurrentObjective);
+        SetCurrentObjective(GlobalControls.currentObjective);
         if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         { 
             foreach (Image image in referenceManager.tooltipCanvas.GetComponentsInChildren<Image>(true))

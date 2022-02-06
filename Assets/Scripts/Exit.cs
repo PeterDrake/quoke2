@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
+    // giant red box that exits to the strategic map when the player enters
 
     public string sceneToLoad;
 

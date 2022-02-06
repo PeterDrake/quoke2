@@ -52,6 +52,7 @@ public class CheatKeyboardController : MonoBehaviour
         {
             if (!virtualKeyboard)
             {
+                // Set keyDown to a specific cheat
                 if (Input.GetKeyDown(preQuakeTeleport)) keyDown = preQuakeTeleport;
                 else if (Input.GetKeyDown(quakeTeleport)) keyDown = quakeTeleport;
                 else if (Input.GetKeyDown(strategicMapTeleport)) keyDown = strategicMapTeleport;

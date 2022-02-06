@@ -6,6 +6,9 @@ using Cinemachine;
 using UnityEditor;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Triggers the quake on certain conditions
+/// </summary>
 public class QuakeManager : MonoBehaviour
 {
     public static QuakeManager Instance;
@@ -109,7 +112,7 @@ public class QuakeManager : MonoBehaviour
         
         virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
-        initialTurn = GlobalControls.TurnNumber;
+        initialTurn = GlobalControls.turnNumber;
     }
 
     void Update()
@@ -216,7 +219,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForQuakeStart()
     {
-        if (GlobalControls.TurnNumber >= initialTurn + turnsTillQuakeStart)
+        if (GlobalControls.turnNumber >= initialTurn + turnsTillQuakeStart)
         {
             isQuakeTime = true;
             Debug.Log("Earthquake!");
@@ -238,7 +241,7 @@ public class QuakeManager : MonoBehaviour
     
     public void CheckForQuakeDeath()
     {
-        if (GlobalControls.TurnNumber >= quakeStartTurn + turnsTillDeath && !quakeSafeZoneManager.playerInSafeZone)
+        if (GlobalControls.turnNumber >= quakeStartTurn + turnsTillDeath && !quakeSafeZoneManager.playerInSafeZone)
         {
             //TODO kill player
             Debug.Log("You were crushed by a falling object!");
@@ -249,7 +252,7 @@ public class QuakeManager : MonoBehaviour
 
     public void CheckForAftershockStart()
     {
-        if (GlobalControls.TurnNumber >= underCoverTurn + turnsTillAftershock || automaticAftershock)
+        if (GlobalControls.turnNumber >= underCoverTurn + turnsTillAftershock || automaticAftershock)
         {
             isAftershockTime = true;
             Debug.Log("Aftershock!");
@@ -266,13 +269,11 @@ public class QuakeManager : MonoBehaviour
 
         quaking = true;
 
-        quakeStartTurn = GlobalControls.TurnNumber;
+        quakeStartTurn = GlobalControls.turnNumber;
         firstQuakeCompleted = true;
 
         OnQuake.Invoke(); // every function subscribed to OnQuake is called here
-
-        //_informationCanvas.ChangeText(textOnQuake);
-
+        
         StartCoroutine(ShakeIt());
     }
 
@@ -287,21 +288,15 @@ public class QuakeManager : MonoBehaviour
         quaking = false;
 
         StopCoroutine(nameof(ShakeIt));
-        underCoverTurn = GlobalControls.TurnNumber;
+        underCoverTurn = GlobalControls.turnNumber;
 
         foreach (Clobberer c in clobberers)
         {
             c.enabled = false;
         }
         
-        GlobalControls.CurrentObjective = 4;
+        GlobalControls.currentObjective = 4;
         GameObject.Find("Managers").GetComponent<ReferenceManager>().objectiveManager.UpdateObjectiveBanner();
-
-        //_informationCanvas.ChangeText(textAfterQuake);
-        //Systems.Objectives.Satisfy("SURVIVEQUAKE");
-        //Systems.Objectives.Register(QuakeManager.Instance.leaveHouse, () => _leaveSatisfied = true);
-
-        //enableDoors.SetActive(false); // allow player to exit house
     }
 
     public void ShakeCamera(float duration, float amplitude, float frequency)

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// latrine equivalent for apartment condition
+/// </summary>
 public class TwoBucketScript : MonoBehaviour
 {
     
@@ -26,11 +29,11 @@ public class TwoBucketScript : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         meters = referenceManager.metersCanvas.GetComponent<Meters>();
-        bucketDone = GlobalControls.PoopTaskProgress[0];
-        bucketTwoDone = GlobalControls.PoopTaskProgress[1];
-        bagDone = GlobalControls.PoopTaskProgress[2];
-        toiletPaperDone = GlobalControls.PoopTaskProgress[3];
-        woodChipsDone = GlobalControls.PoopTaskProgress[4];
+        bucketDone = GlobalControls.poopTaskProgress[0];
+        bucketTwoDone = GlobalControls.poopTaskProgress[1];
+        bagDone = GlobalControls.poopTaskProgress[2];
+        toiletPaperDone = GlobalControls.poopTaskProgress[3];
+        woodChipsDone = GlobalControls.poopTaskProgress[4];
         
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
         {

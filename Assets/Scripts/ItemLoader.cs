@@ -14,6 +14,10 @@ public class ItemLoader : MonoBehaviour
         LoadItems(SceneManager.GetActiveScene().name);
     }
 
+    /// <summary>
+    /// loads the item into a scene
+    /// </summary>
+    /// <param name="sceneName"></param>
     public void LoadItems(string sceneName) {
         List<Item> itemsToChange = new List<Item>();
         if (sceneName.Equals("PreQuakeApartment"))

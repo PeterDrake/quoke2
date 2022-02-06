@@ -97,6 +97,9 @@ public class InventoryUI : MonoBehaviour
         UpdateTooltip();
     }
 
+    /// <summary>
+    /// updates the visual indicator (tooltip) of which item is selected
+    /// </summary>
     public void UpdateTooltip()
     {
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
@@ -124,6 +127,10 @@ public class InventoryUI : MonoBehaviour
             referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.SetActive(false);
     }
     
+    /// <summary>
+    /// visualizes how many inventory slots the player has access to (1 before quake, 2 during, 5 after)
+    /// </summary>
+    /// <param name="numSlots"></param>
     public void SetAvailableSlots(int numSlots)
     {
         GameObject[] tempSlotFrames = new GameObject[numSlots];
@@ -180,7 +187,7 @@ public class InventoryUI : MonoBehaviour
                 tooltipText.gameObject.GetComponentInParent<Image>(true).gameObject.SetActive(false);
         }
     }
-
+    
     public void DisableSelectedSlot()
     {
         selectedSlotSpriteInUse = unselectedSlotSprite;

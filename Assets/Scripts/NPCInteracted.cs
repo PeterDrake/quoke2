@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// keeps track of which NPC's the player has visited, and each NPC's satisfaction
+/// </summary>
 public class NPCInteracted : MonoBehaviour
 {
     private ReferenceManager referenceManager;
@@ -108,11 +111,5 @@ public class NPCInteracted : MonoBehaviour
             selectedSlotNumber = slotNumber;
         }
 
-        // UpdateTooltip();
-    }
-
-    public void UpdateTooltip()
-    {
-        
     }
 }

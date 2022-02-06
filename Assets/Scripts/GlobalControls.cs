@@ -6,43 +6,19 @@ using UnityEngine.SceneManagement;
 
 public static class GlobalControls
 {
-    private static int noStoredWaterTime = 2;
-    /* poopTimeLeft and waterTimeLeft should be set to initial values after the quake,
-       if the player has stored water, they should have the default 12 hours on the water meter, if not
-       only 3; then the meters should be enabled in this script*/
-    // metersEnabled is currently set to true for testing purposes
-    
-    private static bool[] poopTaskProgress;
-    private static int currentObjective;
-    private static int currentPoints = 0;
-    private static int poopTimeLeft = 24;
-    private static int waterTimeLeft = 12;
-    private static int timesShoveled;
-    private static int currentScene;
+    public static int poopTimeLeft = 24;  // 24 after the quake
+
+    public static int waterTimeLeft = 12;  // 12 after the quake, or 3 if no water was stored
 
     private static int npcTotalSatisfaction = 3;
-    private static int turnNumber = 0;
-    private static string currentNPC;
 
-    public static string[] npcNames = { "Safi","Dem","Rainer","Annette","Carlos","Angie" };
-    // public static HashSet<string> interacted;
-    
-    public static Dictionary<string, string> namesList = new Dictionary<string, string>
-    {
-        {"Safi","Safi"},
-        {"Rainer","Rainer"},
-        {"Carlos","Carlos"},
-        {"Annette","Annette"},
-        {"Angie","Angie"},
-        {"Demitrius","Demitrius"},
-    };
+    public static string[] npcNames = {"Safi", "Dem", "Rainer", "Annette", "Carlos", "Angie" };
 
     public static HashSet<string> globalControlsProperties = new HashSet<string>();
-    
-    public static Dictionary<string, NPC> npcList;
-    private static Dictionary<string, string> keybinds;
 
-    private static Dictionary<string, int> points = new Dictionary<string, int>
+    public static Dictionary<string, NPC> npcList;
+
+    public static Dictionary<string, int> points = new Dictionary<string, int>
     {
         {"safirescue", 10},
         {"favors", 5},
@@ -54,62 +30,69 @@ public static class GlobalControls
         {"diedrate", -7},
         {"aftershockdeath", -5},
     };
+
+    public static int noStoredWaterTime;
+
+    public static int currentPoints;
+
+    public static int currentObjective;
+
+    public static bool[] poopTaskProgress;
+
+    public static Dictionary<string, string> keybinds;
+
+    public static int timesShoveled;
+
+    public static int turnNumber = 0;
+
+    public static string currentNpc;
+
+    public static int currentScene;
+
     static GlobalControls()
     {
         Debug.Log("Starting Global Controls");
         Reset();
     }
 
-
+    /// <summary>
+    /// Resets all of the NPCs to their state before meeting the PC.
+    /// </summary>
     public static void ResetNPCInteracted()
     {
         npcList = new Dictionary<string, NPC>
             {
-                {"Safi", new NPC(namesList["Safi"], "Park",
+                {"Safi", new NPC("Safi", "Park",
                     new List<string>{""}, new List<bool>{}, "basic_safi_0", 
                     0, false, "Safi needs you to turn off her Gas and Water.", npcTotalSatisfaction,
                     0, new bool[3], new List<string>{"","Wrench","Wrench"})},
-                {"Dem", new NPC(namesList["Demitrius"], "Park",
+                {"Dem", new NPC("Demitrius", "Park",
                     new List<string>{"Canned Food", "Can Opener"}, new List<bool>{false, false}, "basic_dem_0",
                     0, false, "Demitrius needs a Can Opener and Canned Food", npcTotalSatisfaction,
                     0, new bool[1], new List<string>{""})},
-                {"Annette", new NPC(namesList["Annette"], "School",
+                {"Annette", new NPC("Annette", "School",
                     new List<string>{"Leash", "Dog Crate"}, new List<bool>{false, false}, "basic_annette_0", 
                     0, false, "Annette needs a leash and Dog Crate", npcTotalSatisfaction,
                     0, new bool[1], new List<string>{""})},
-                {"Rainer", new NPC(namesList["Rainer"], "School",
+                {"Rainer", new NPC("Rainer", "School",
                     new List<string>{"Tent", "Blanket"}, new List<bool>{false, false}, "basic_rainer_0",
                     0, false, "Rainer needs a Tent and Blanket", npcTotalSatisfaction,
                     0, new bool[1], new List<string>{""})},
-                {"Carlos", new NPC(namesList["Carlos"], "Garden",
+                {"Carlos", new NPC("Carlos", "Garden",
                     new List<string> {"Radio", "Batteries"}, new List<bool>{false, false}, "basic_carlos_0",
                     0, false, "Carlos needs a Radio and Batteries", npcTotalSatisfaction,
                     0, new bool[1], new List<string>{"Water Bottle Clean"})},
-                {"Angie", new NPC(namesList["Angie"], "Garden",
+                {"Angie", new NPC("Angie", "Garden",
                     new List<string> {"First Aid Kit", "Epi Pen"}, new List<bool>{false, false}, "basic_angie_0",
                     0, false, "Angie needs a First Aid Kit and Epi Pen", npcTotalSatisfaction,
                     0, new bool[1], new List<string>{"Water Bottle Clean"})},
-                
             };
-        foreach (string name in npcNames)
-        {
-            npcList[name].interacted = false;
-        }
     }
-    
+
     public static void Reset()
     {
         ResetNPCInteracted();
-        
-        if (globalControlsProperties.Contains("apartmentCondition"))
-        {
-            currentObjective = 2;
-        }
-        else
-        {
-            currentObjective = 1;
-        }
-
+        currentObjective = globalControlsProperties.Contains("apartmentCondition") ? 2 : 1;
         keybinds = new Dictionary<string, string>()
         {
             {"Exploring", "WASD => Move Character \nSPACE => Drop/Interact \n< > => Move slots \n[ ] => Switch inventory"},
@@ -117,127 +100,26 @@ public static class GlobalControls
             {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
-        
-        globalControlsProperties.Add("tooltipsEnabled");
-        globalControlsProperties.Add("objectivesEnabled");
-        globalControlsProperties.Add("keybindsEnabled");
-       
         poopTimeLeft = 24;
-        waterTimeLeft = 12;
-
-        globalControlsProperties.Remove("poopTaskCompleted");
-        globalControlsProperties.Remove("waterTaskCompleted");
-        
+        waterTimeLeft = 12;        
         poopTaskProgress = new bool[5];
         timesShoveled = 0;
         currentScene = -1;
-        globalControlsProperties.Remove("isStrategicMap");
         currentPoints = 0;
-
+        noStoredWaterTime = 2;
         turnNumber = 0;
-        currentNPC = "";
-        
+        currentNpc = "";
+        globalControlsProperties.Clear();
+        globalControlsProperties.Add("tooltipsEnabled");
+        globalControlsProperties.Add("objectivesEnabled");
+        globalControlsProperties.Add("keybindsEnabled");
         globalControlsProperties.Add("adminMode");
-        
-        globalControlsProperties.Remove("demActionDone");
-        globalControlsProperties.Remove("demDrinkDone");
-        
-        globalControlsProperties.Remove("safiWaterActionDone");
-        globalControlsProperties.Remove("safiGasActionDone");
-        globalControlsProperties.Remove("safiRescued");
-        
-        globalControlsProperties.Remove("angieDrinkDone");
-        
-        globalControlsProperties.Remove("carlosDrinkDone");
-        
-        globalControlsProperties.Remove("rainerActionDone");
-        globalControlsProperties.Remove("rainerDrinkDone");
-        
-        globalControlsProperties.Remove("annetteActionDone");
-        globalControlsProperties.Remove("annetteHasLeash");
-        globalControlsProperties.Remove("annetteHasDogCrate");
-      
-        globalControlsProperties.Remove("playerHasCleanWater");
-        globalControlsProperties.Remove("playerHasFirstAidKit");
-        globalControlsProperties.Remove("playerHasEpiPen");
-        globalControlsProperties.Remove("playerHasWrench");
+     }
 
-        globalControlsProperties.Remove("angieHasFirstAidKit");
-        globalControlsProperties.Remove("angieSeriousDialogue");
-        globalControlsProperties.Remove("angieHasEpiPen");
-    }
-
-    public static Dictionary<string,int> Points
-    {
-        get => points;
-    }
-    
-    public static int NoStoredWaterTime
-    {
-        get => noStoredWaterTime;
-        set => noStoredWaterTime = value;
-    }
-    
-    public static int CurrentPoints
-    {
-        get => currentPoints;
-        set => currentPoints = value;
-    }
-
-    public static int CurrentObjective
-    {
-        get => currentObjective;
-        set => currentObjective = value;
-    }
-
-    public static bool[] PoopTaskProgress
-    {
-        get => poopTaskProgress;
-        set => poopTaskProgress = value;
-    }
-    
-    public static Dictionary<string, string> Keybinds => keybinds;
-
-    public static int PoopTimeLeft
-    {
-        get => poopTimeLeft;
-        set => poopTimeLeft = value;
-    }
-    
-    public static int TimesShoveled
-    {
-        get => timesShoveled;
-        set => timesShoveled = value;
-    }
-
-    public static int WaterTimeLeft
-    {
-        get => waterTimeLeft;
-        set => waterTimeLeft = value;
-    }
-    
-
-    public static int TurnNumber
-    {
-        get => turnNumber;
-        set => turnNumber = value;
-    }
-
-    public static string CurrentNPC
-    {
-        get => currentNPC;
-        set => currentNPC = value;
-    }
-    
-
-    public static int CurrentScene
-    {
-        get => currentScene;
-        set => currentScene = value;
-    }
+    // TODO Shouldn't this be in the NPC class?
     public static void SetCheckpoint(string nodeName)
     {
-        npcList[currentNPC].node = nodeName;
+        npcList[currentNpc].node = nodeName;
     }
 }
 

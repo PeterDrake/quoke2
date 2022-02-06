@@ -85,7 +85,7 @@ public class TradeManagerUI : MonoBehaviour
     
     public void BeginTrading()
     {
-        npcName = GlobalControls.CurrentNPC;
+        npcName = GlobalControls.currentNpc;
 
         List<int> playerSlotsUsed = new List<int>();
         List<int> npcSlotsUsed = new List<int>();
@@ -116,7 +116,10 @@ public class TradeManagerUI : MonoBehaviour
 
     }
 
-    
+    /// <summary>
+    /// If the NPC owes you additional items (because you gave them an essential item), but you don't have enough
+    /// inventory space, use an IOU to prevent item loss.
+    /// </summary>
     public void ActivateIOU()
     {
         //Load IOU inventory
@@ -179,7 +182,6 @@ public class TradeManagerUI : MonoBehaviour
     }
     public void CompleteTrade()
     {
-        //StartCoroutine(SelectButton());
         button.Select();
         
         List<int> numContents = new List<int>{0,0,0};    
@@ -188,8 +190,8 @@ public class TradeManagerUI : MonoBehaviour
         tradeLogic.increaseNumContent(numContents, InventoryE.NPCBin, 1);
         tradeLogic.increaseNumContent(numContents, InventoryE.IOU, 2);
 
-        List<string> playerOffers = new List<string>(); //list of names of items player offered
-        //fill lists of names
+        List<string> playerOffers = new List<string>(); // list of names of items player offered
+        // fill lists of names
         foreach (GameObject item in inventories[(int) InventoryE.PlayerBin].items)
         {
             if (item)
@@ -216,7 +218,7 @@ public class TradeManagerUI : MonoBehaviour
             if (playerOffers.Contains(need))
             {
                 playerTradePoints++; //add an extra trade point if offered a need
-                GlobalControls.CurrentPoints += GlobalControls.Points["tradeneeds"];
+                GlobalControls.currentPoints += GlobalControls.points["tradeneeds"];
             }
         }
 
@@ -241,7 +243,7 @@ public class TradeManagerUI : MonoBehaviour
         }
         
         button.interactable = false;
-        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.CurrentPoints.ToString();
+        referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         CheckForNeededItemInNPCInventory();
     }
 
@@ -329,7 +331,11 @@ public class TradeManagerUI : MonoBehaviour
         gameStateManager.SetConversing();
     }
 
-    
+    /// <summary>
+    /// changes what the space button does depending on several conditions (e.g. if the item's in a bin, put it back
+    /// into the specific inventory)
+    /// </summary>
+    /// <param name="location"></param>
     public void EncapsulateSpace(int location)
     {
         cursorLocation = location;

@@ -37,7 +37,7 @@ public class SceneManagement : MonoBehaviour
     public void ChangeScene(string sceneToLoad)
     {
         // Set GlobalControls to current scene
-        GlobalControls.CurrentScene = Array.IndexOf(previousScenes, SceneManager.GetActiveScene().name);
+        GlobalControls.currentScene = Array.IndexOf(previousScenes, SceneManager.GetActiveScene().name);
 
         if (sceneToLoad.Equals("StrategicMap"))
         {
@@ -55,8 +55,8 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.globalControlsProperties.Add("metersEnabled");
             GlobalControls.globalControlsProperties.Remove("isStrategicMap");
-            if(!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted")) GlobalControls.PoopTimeLeft--;
-            if(!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted")) GlobalControls.WaterTimeLeft--;
+            if(!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted")) GlobalControls.poopTimeLeft--;
+            if(!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted")) GlobalControls.waterTimeLeft--;
         }
 
        
@@ -88,7 +88,7 @@ public class SceneManagement : MonoBehaviour
 
             if (noStoredWater)
             {
-                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
+                GlobalControls.waterTimeLeft = GlobalControls.noStoredWaterTime;
             }
         }
         else if (sceneToLoad.Equals("QuakeHouse") && SceneManager.GetActiveScene().name.Equals("PreQuakeHouse"))
@@ -148,7 +148,7 @@ public class SceneManagement : MonoBehaviour
             }
             if (noStoredWater || inventoryCount != 2)
             {
-                GlobalControls.WaterTimeLeft = GlobalControls.NoStoredWaterTime;
+                GlobalControls.waterTimeLeft = GlobalControls.noStoredWaterTime;
             }
         }
         SceneManager.LoadSceneAsync(sceneToLoad);

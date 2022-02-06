@@ -70,7 +70,6 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    None            None            None                None            None
-    [UnityTest]
     public IEnumerator GetsToQuake()
     {
         SceneManager.LoadScene("PreQuakeHouse");
@@ -99,7 +98,6 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    None            None            None                None            None
-    [UnityTest]
     public IEnumerator GetsOutsideAfterQuake()
     {
         sceneManagement.ChangeScene("QuakeHouse");
@@ -120,7 +118,7 @@ public class TestWalkthrough
         itemLoader.LoadItems("QuakeHouse");
         gameStateManager.Start();
         quakeManager.ResetQuake();
-        GlobalControls.TurnNumber = -5;
+        GlobalControls.turnNumber = -5;
         yield return MakesMovesToGetOutsideAfterQuake();
     }
 
@@ -161,7 +159,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    None            None            None                None            None
-    [UnityTest]
+    
     public IEnumerator PicksUpBookAndLeavesYard()
     {
         SceneManager.LoadScene("Yard");
@@ -208,7 +206,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    BOOK            None            None                None            None
-    [UnityTest]
+    
     public IEnumerator TradesBleach()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -265,7 +263,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    BLEACH          None            None                None            None
-    [UnityTest]
+    
     public IEnumerator PurifiesWater()
     {
         SceneManager.LoadScene("Yard");
@@ -318,7 +316,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           First Aid Kit,  Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    BLEACH          None            None                None            None
-    [UnityTest]
+    
     public IEnumerator GoToAnnetteToTradeBleach()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -344,7 +342,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Annette", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("                   d>   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("First Aid Kit(Clone)", inventory.items[0].name);
@@ -366,7 +364,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           BLEACH,         Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    FIRST AID KIT   None            None                None            None
-    [UnityTest]
+    
     public IEnumerator GoToAngieAndCarlosToTrade()
     {
         SceneManager.LoadScene("PSU");
@@ -391,7 +389,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Angie", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Angie", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("        <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Radio(Clone)", inventory.items[0].name);
@@ -406,7 +404,7 @@ public class TestWalkthrough
         // Player Inventory:    RADIO           TARP            None                None            None
         yield return QuokeTestUtils.Press("ssssssssssssdsssssssssssssssssaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Carlos", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Carlos", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("           << << ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Leash(Clone)", inventory.items[0].name);
@@ -430,7 +428,7 @@ public class TestWalkthrough
     // Annette Inventory:   Rope,           BLEACH,         Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    LEASH           TARP            PLYWOOD             None            None
-    [UnityTest]
+    
     public IEnumerator GoToAnnetteToTradeDogLeash()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -467,7 +465,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Annette", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Annette", GlobalControls.currentNpc);
         dialogueManager.currentNode = dialogueManager.forest["basic_annette_1.0"];
         yield return QuokeTestUtils.Press("    <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
@@ -494,7 +492,7 @@ public class TestWalkthrough
     // Annette Inventory:   LEASH,          NONE,           Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    BLEACH          TARP            PLYWOOD             ROPE            None
-    [UnityTest]
+    
     public IEnumerator GoToDemToTradeBleachForTent()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -523,7 +521,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Dem", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Dem", GlobalControls.currentNpc);
         dialogueManager.currentNode = dialogueManager.forest["basic_dem_2.0"];
         yield return QuokeTestUtils.Press("   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
@@ -550,7 +548,7 @@ public class TestWalkthrough
     // Annette Inventory:   LEASH,          NONE,           Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    Toilet Paper,   Batteries,      Epi Pen,            Wrench
     // Player Inventory:    TENT            TARP            PLYWOOD             ROPE            None
-    [UnityTest]
+    
     public IEnumerator GoToRainerToTradeTent()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -578,7 +576,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("sssaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Rainer", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Rainer", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("     < <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         Assert.AreEqual("Wrench(Clone)", inventory.items[0].name);
@@ -605,7 +603,7 @@ public class TestWalkthrough
     // Annette Inventory:   LEASH,          NONE,           Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    TENT,           Batteries,      Epi Pen,            NONE
     // Player Inventory:    WRENCH          TARP            PLYWOOD             ROPE            TOILET PAPER
-    [UnityTest]
+    
     public IEnumerator GoToSafiToCompleteActions()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -635,7 +633,7 @@ public class TestWalkthrough
 
         yield return QuokeTestUtils.Press("wwwwwddddd", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("      ", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         yield return QuokeTestUtils.Press("1ssd", playerKeyboard);
@@ -644,7 +642,7 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("wwd", playerKeyboard);
 
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("   ", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
         yield return QuokeTestUtils.Press("1ssssd ", playerKeyboard);
@@ -653,7 +651,7 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("wwwwd", playerKeyboard);
 
         yield return new WaitForSeconds(0.5f);
-        Assert.AreEqual("Safi", GlobalControls.CurrentNPC);
+        Assert.AreEqual("Safi", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("    <<<< ~``", playerKeyboard);
         yield return new WaitForSeconds(0.5f);
 
@@ -680,7 +678,7 @@ public class TestWalkthrough
     // Annette Inventory:   LEASH,          NONE,           Fire Extinguisher,  N95 Mask
     // Rainer Inventory:    TENT,           Batteries,      Epi Pen,            NONE
     // Player Inventory:    SHOVEL          TARP            PLYWOOD             ROPE            TOILET PAPER
-    [UnityTest]
+    
     public IEnumerator GoToCompleteLatrine()
     {
         SceneManager.LoadScene("Yard");
@@ -732,7 +730,7 @@ public class TestWalkthrough
         Assert.AreEqual("WaterfrontPark", SceneManager.GetActiveScene().name);
     }
 
-    [UnityTest]
+    
     public IEnumerator GetOutOfHomeToTradeShovelWithSafi()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -773,7 +771,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeCannedFoodForDogCrate()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -818,7 +816,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeDogCrateWithAnnette()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -863,7 +861,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeUselessStuffWithAngieForBlanket()
     {
         SceneManager.LoadScene("PSU");
@@ -908,7 +906,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeBlanketWithRainer()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -953,7 +951,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeEpiPenWithAngie()
     {
         SceneManager.LoadScene("PSU");
@@ -1003,7 +1001,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator TradeCanOpenerWithDem()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -1051,7 +1049,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest]
+    
     public IEnumerator GrabWater()
     {
         SceneManager.LoadScene("Yard");
@@ -1094,7 +1092,7 @@ public class TestWalkthrough
         Assert.AreEqual("PSU", SceneManager.GetActiveScene().name);
     }
 
-    [UnityTest]
+    
     public IEnumerator GiveWater()
     {
         SceneManager.LoadScene("PSU");
@@ -1137,7 +1135,7 @@ public class TestWalkthrough
         Assert.AreEqual("PioneerCourthouseSquare", SceneManager.GetActiveScene().name);
     }
 
-    [UnityTest]
+    
     public IEnumerator HelpRainer()
     {
         SceneManager.LoadScene("PioneerCourthouseSquare");
@@ -1176,7 +1174,7 @@ public class TestWalkthrough
         Assert.AreEqual("Yard", SceneManager.GetActiveScene().name);
     }
 
-    [UnityTest]
+    
     public IEnumerator Win()
     {
         SceneManager.LoadScene("Yard");
@@ -1204,7 +1202,7 @@ public class TestWalkthrough
     }
 
 
-    [UnityTest, Timeout(300000)]
+    [UnityTest, Timeout(300000)]  // Timeout is needed because this takes several minutes and would otherwise fail
     public IEnumerator CompletesPlayerNeeds()
     {
         SceneManager.LoadScene("PreQuakeHouse");
@@ -1223,7 +1221,6 @@ public class TestWalkthrough
         yield return MakesMovesToGoToCompleteLatrine();
     }
     
-    [UnityTest, Timeout(300000)]
     public IEnumerator CompletesNpcNeeds()
     {
         SceneManager.LoadScene("WaterfrontPark");
@@ -1244,7 +1241,7 @@ public class TestWalkthrough
 
     
 
-    [UnityTest, Timeout(600000)]
+    [UnityTest, Timeout(600000)]  // Timeout is needed because this takes sevaral minutes and would otherwise fail
     public IEnumerator CompletesPlaythrough()
     {
         yield return CompletesPlayerNeeds();
