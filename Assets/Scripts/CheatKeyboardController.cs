@@ -50,28 +50,39 @@ public class CheatKeyboardController : MonoBehaviour
     {
         if (GlobalControls.globalControlsProperties.Contains("adminMode"))
         {
-            if (!virtualKeyboard)
-            {
-                if (Input.GetKeyDown(preQuakeTeleport)) keyDown = preQuakeTeleport;
-                else if (Input.GetKeyDown(quakeTeleport)) keyDown = quakeTeleport;
-                else if (Input.GetKeyDown(strategicMapTeleport)) keyDown = strategicMapTeleport;
-                else if (Input.GetKeyDown(completeWater)) keyDown = completeWater;
-                else if (Input.GetKeyDown(completePoop)) keyDown = completePoop;
-                else if (Input.GetKeyDown(restart)) keyDown = restart;
-                else if (Input.GetKeyDown(loadPoopItems)) keyDown = loadPoopItems;
-                else if (Input.GetKeyDown(loadWaterItems)) keyDown = loadWaterItems;
-                else if (Input.GetKeyDown(loadPreQuakeItems)) keyDown = loadPreQuakeItems;
-                else if (Input.GetKeyDown(changeCondition)) keyDown = changeCondition;
-                else if (Input.GetKeyDown(angieItems)) keyDown = angieItems;
-                else if (Input.GetKeyDown(carlosItems)) keyDown = carlosItems;
-                else if (Input.GetKeyDown(demItems)) keyDown = demItems;
-                else if (Input.GetKeyDown(annetteItems)) keyDown = annetteItems;
-                else if (Input.GetKeyDown(safiItems)) keyDown = safiItems;
-                else if (Input.GetKeyDown(rainerItems)) keyDown = rainerItems;
 
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                if (!virtualKeyboard)
+                {
+                    if (Input.GetKeyDown(preQuakeTeleport)) keyDown = preQuakeTeleport;
+                    else if (Input.GetKeyDown(quakeTeleport)) keyDown = quakeTeleport;
+                    else if (Input.GetKeyDown(strategicMapTeleport)) keyDown = strategicMapTeleport;
+                    else if (Input.GetKeyDown(completeWater)) keyDown = completeWater;
+                    else if (Input.GetKeyDown(completePoop)) keyDown = completePoop;
+                    else if (Input.GetKeyDown(restart)) keyDown = restart;
+                    else if (Input.GetKeyDown(loadPoopItems)) keyDown = loadPoopItems;
+                    else if (Input.GetKeyDown(loadWaterItems)) keyDown = loadWaterItems;
+                    else if (Input.GetKeyDown(loadPreQuakeItems)) keyDown = loadPreQuakeItems;
+                    else if (Input.GetKeyDown(changeCondition)) keyDown = changeCondition;
+                    else if (Input.GetKeyDown(angieItems)) keyDown = angieItems;
+                    else if (Input.GetKeyDown(carlosItems)) keyDown = carlosItems;
+                    else if (Input.GetKeyDown(demItems)) keyDown = demItems;
+                    else if (Input.GetKeyDown(annetteItems)) keyDown = annetteItems;
+                    else if (Input.GetKeyDown(safiItems)) keyDown = safiItems;
+                    else if (Input.GetKeyDown(rainerItems)) keyDown = rainerItems;
+
+                }
+                ListenForCheats();
             }
             
-            if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
+    }
+}
+
+    void ListenForCheats()
+    {
+        if (keyDown.Equals(preQuakeTeleport))//Load PreQuakeHouse
             {
                 if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
                 {
@@ -238,4 +249,3 @@ public class CheatKeyboardController : MonoBehaviour
             keyDown = KeyCode.JoystickButton0;
         }
     }
-}
