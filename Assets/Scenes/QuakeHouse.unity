@@ -271,9 +271,16 @@ MonoBehaviour:
   ShakeAmplitude: 5
   ShakeFrequency: 5
   turnsTillQuakeStart: 10
+  quakeStartTurn: 0
+  isQuakeTime: 0
+  firstQuakeCompleted: 0
   turnsTillDeath: 5
+  underCoverTurn: 0
   secondsUnderCover: 5
+  isUnderCover: 0
+  hasBeenUnderCover: 0
   turnsTillAftershock: 10
+  isAftershockTime: 0
   automaticAftershock: 0
   OnQuake:
     m_PersistentCalls:
@@ -942,6 +949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1299424174}
   - component: {fileID: 1299424173}
+  - component: {fileID: 1299424175}
   m_Layer: 0
   m_Name: Quake Camera
   m_TagString: Untagged
@@ -999,6 +1007,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!114 &1299424175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299424172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Camera go shake shake during quake quake (shaking caused by Quake Event
+    Manager)
 --- !u!4 &1311662064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8598206352755387089, guid: c699be9587ffd4d4689af2cb871300d5,
