@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1382858079044367407}
   - component: {fileID: 4014912357064303730}
+  - component: {fileID: 7909056090638234183}
   m_Layer: 0
   m_Name: Game State Manager
   m_TagString: Untagged
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGamemode: 0
+--- !u!114 &7909056090638234183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254560567177373477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Changes the gamemode based on what the player's doing (trading, walking
+    around, talking, dead, etc.)
 --- !u!1 &7045846560039234988
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045846560039234990}
   - component: {fileID: 7045846560039234991}
+  - component: {fileID: 5765361116027707869}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -112,6 +128,20 @@ MonoBehaviour:
   gameStateManager: {fileID: 0}
   pointsText: {fileID: 0}
   itemLoader: {fileID: 0}
+--- !u!114 &5765361116027707869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045846560039234988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Container GameObject for all the managers. Also has the ReferenceManager
+    script, which is in charge of keeping track of individual managers
 --- !u!1 &7045846560117927036
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045846560117927039}
   - component: {fileID: 7045846560117927038}
+  - component: {fileID: 1206824845836533062}
   m_Layer: 0
   m_Name: Item Manager
   m_TagString: Untagged
@@ -155,6 +186,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9bec8f594e7ec4d865b39e5479c3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1206824845836533062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045846560117927036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Places items into the scene after its loaded.
 --- !u!1 &7045846560338470066
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045846560338470029}
   - component: {fileID: 7045846560338470028}
+  - component: {fileID: 4124348397048588068}
   m_Layer: 0
   m_Name: Death Manager
   m_TagString: Untagged
@@ -199,6 +244,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeath: 0
+--- !u!114 &4124348397048588068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045846560338470066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Kills the player
 --- !u!1 &7045846560509495179
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,9 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: 'Named Scene Manageemnt because Unity claims SceneManager as a keyword.
-
-    HELLO.'
+  notes: Named Scene Management because Unity claims SceneManager as a keyword.
 --- !u!114 &7045846561144210656
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,9 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: For a smaller inventory, disable some of the frames that are children of
-    this object. Also remove them from the Slot Frames and Slot Contents arrays associated
-    with the Inventory script instance attached to this object.
+  notes: 'Shows an icon above the player bin if the NPC owes the player an item.
+
+
+    For
+    a smaller inventory, disable some of the frames that are children of this object.
+    Also remove them from the Slot Frames and Slot Contents arrays associated with
+    the Inventory script instance attached to this object.'
 --- !u!223 &129728784949136390
 Canvas:
   m_ObjectHideFlags: 0
@@ -480,7 +484,7 @@ GameObject:
   - component: {fileID: 129728784993622108}
   - component: {fileID: 129728784993622115}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Dialogue Option 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3419,6 +3423,7 @@ GameObject:
   - component: {fileID: 129728785394128174}
   - component: {fileID: 129728785394128173}
   - component: {fileID: 129728785394128172}
+  - component: {fileID: 7318189378071488168}
   m_Layer: 5
   m_Name: Meters Canvas
   m_TagString: Untagged
@@ -3522,6 +3527,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poopTimeLeft: 24
   waterTimeLeft: 3
+--- !u!114 &7318189378071488168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728785394128178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Graphics for the water and poop meters
 --- !u!1 &129728785397195491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,6 +4607,7 @@ GameObject:
   - component: {fileID: 129728785581336381}
   - component: {fileID: 129728785581336380}
   - component: {fileID: 1062009340694651273}
+  - component: {fileID: 8289108644344302380}
   m_Layer: 5
   m_Name: Tooltip Canvas
   m_TagString: Untagged
@@ -4694,6 +4713,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsText: {fileID: 0}
+--- !u!114 &8289108644344302380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728785581336386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Responsible for all the tooltips in the game (item description, objective,
+    keybinds)
 --- !u!1 &129728785611990049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,9 +5013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: For a smaller inventory, disable some of the frames that are children of
-    this object. Also remove them from the Slot Frames and Slot Contents arrays associated
-    with the Inventory script instance attached to this object.
+  notes: 'Bin for items the player will trade to an NPC
+
+
+    For a smaller inventory,
+    disable some of the frames that are children of this object. Also remove them
+    from the Slot Frames and Slot Contents arrays associated with the Inventory script
+    instance attached to this object.'
 --- !u!223 &129728785664050504
 Canvas:
   m_ObjectHideFlags: 0
@@ -5391,6 +5428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 129728785712210862}
+  - component: {fileID: 3067491827340356233}
   m_Layer: 0
   m_Name: Canvases
   m_TagString: Untagged
@@ -5421,6 +5459,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.513}
+--- !u!114 &3067491827340356233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728785712210861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Contains all 2D graphics (canvases) for the game
 --- !u!1 &129728785718036460
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,6 +6169,7 @@ GameObject:
   - component: {fileID: 129728785786826078}
   - component: {fileID: 129728785786826077}
   - component: {fileID: 129728785786826076}
+  - component: {fileID: 8742059556802011795}
   m_Layer: 5
   m_Name: Dialogue UI
   m_TagString: Untagged
@@ -6215,6 +6267,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8742059556802011795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728785786826082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: All dialogue text appears here
 --- !u!1 &129728785787079893
 GameObject:
   m_ObjectHideFlags: 0
@@ -8172,7 +8237,7 @@ GameObject:
   - component: {fileID: 129728786088689613}
   - component: {fileID: 129728786088689612}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Dialogue Option 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8648,6 +8713,7 @@ GameObject:
   - component: {fileID: 129728786126667139}
   - component: {fileID: 129728786126667138}
   - component: {fileID: 129728786126667137}
+  - component: {fileID: 7202827780347846523}
   m_Layer: 5
   m_Name: Death Canvas
   m_TagString: Untagged
@@ -8742,6 +8808,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7202827780347846523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728786126667143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Shows player score, reason why they died, and a restart button.
 --- !u!1 &129728786134401728
 GameObject:
   m_ObjectHideFlags: 0
@@ -9096,7 +9175,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129728785262642543}
   m_HandleRect: {fileID: 129728785262642542}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9830,6 +9909,7 @@ GameObject:
   - component: {fileID: 129728786313038983}
   - component: {fileID: 129728786313038982}
   - component: {fileID: 129728786313038981}
+  - component: {fileID: 6436440074694023047}
   m_Layer: 5
   m_Name: NPC Interacted Canvas
   m_TagString: Untagged
@@ -9943,6 +10023,19 @@ MonoBehaviour:
     type: 3}
   selectedSlotSpriteInUse: {fileID: 21300000, guid: 1c04ab9e0a9453e46b78649da35cae23,
     type: 3}
+--- !u!114 &6436440074694023047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728786313038987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Shows all NPCs and info (what they need, current satisfaction, etc.)
 --- !u!1 &129728786313639829
 GameObject:
   m_ObjectHideFlags: 0
@@ -9956,7 +10049,7 @@ GameObject:
   - component: {fileID: 129728786313639824}
   - component: {fileID: 129728786313639831}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Dialogue Option 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10582,9 +10675,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: For a smaller inventory, disable some of the frames that are children of
-    this object. Also remove them from the Slot Frames and Slot Contents arrays associated
-    with the Inventory script instance attached to this object.
+  notes: 'Bin for items the NPC will trade to the player.
+
+
+    For a smaller inventory,
+    disable some of the frames that are children of this object. Also remove them
+    from the Slot Frames and Slot Contents arrays associated with the Inventory script
+    instance attached to this object.'
 --- !u!223 &129728786414060467
 Canvas:
   m_ObjectHideFlags: 0
@@ -12487,6 +12584,7 @@ GameObject:
   - component: {fileID: 129728786687746983}
   - component: {fileID: 129728786687746982}
   - component: {fileID: 129728786687746981}
+  - component: {fileID: 932414029285169742}
   m_Layer: 5
   m_Name: Segue Canvas
   m_TagString: Untagged
@@ -12576,6 +12674,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &932414029285169742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129728786687746987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b6f9b4d92da4b2090642fd40bd9b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: Only used once, when transitioning from PreQuakeHouse to QuakeHouse
 --- !u!1 &129728786690948081
 GameObject:
   m_ObjectHideFlags: 0
@@ -13658,7 +13769,7 @@ GameObject:
   - component: {fileID: 129728786862601902}
   - component: {fileID: 129728786862601901}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Confirm Trade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
