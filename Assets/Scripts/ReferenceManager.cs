@@ -27,6 +27,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject keybinds;
     public ObjectiveManager objectiveManager;
     public TooltipManager tooltipManager;
+    public HelpManager helpManager;
     public GameObject gameStateManager;
     public GameObject pointsText;
 
@@ -72,6 +73,8 @@ public class ReferenceManager : MonoBehaviour
             }
         }
 
+        helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
+        
         keyboardManager = GameObject.Find("Keyboard Manager");
         deathManager = GameObject.Find("Death Manager");
         player = GameObject.Find("Player");

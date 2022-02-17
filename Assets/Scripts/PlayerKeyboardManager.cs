@@ -23,6 +23,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private TooltipManager tooltipManager;
     private GameStateManager gameStateManager;
     private GameObject npcInteractedCanvas;
+    private HelpManager helpManager;
 
     public bool leftTrading = false;
 
@@ -61,6 +62,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        helpManager = referenceManager.helpManager;
     }
 
     
@@ -154,6 +156,11 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (currentGamemode == Gamemode.Trading) //if trading with an npc
         {
             UpdateTrading();
+        }
+
+        if (keyDown.Equals(KeyCode.Escape))
+        {
+            helpManager.EnableHelpMenu();
         }
 
         keyDown = KeyCode.JoystickButton0;
