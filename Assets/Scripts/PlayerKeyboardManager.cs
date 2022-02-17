@@ -52,6 +52,8 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private KeyCode keyDown = KeyCode.JoystickButton0;
 
+    private KeyCode keyDownToExitHelpMenu = KeyCode.JoystickButton0;
+
     void InitalizeManagers()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -136,8 +138,28 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
             }
         }
-
-        if (currentGamemode == Gamemode.Segue)
+        
+        // handle opening and closing the help menu
+        if (helpManager.IsCanvasEnabled())
+        {
+            if (!keyDown.Equals(KeyCode.JoystickButton0))
+            {
+                helpManager.DisableHelpMenu();
+                keyDownToExitHelpMenu = keyDown;
+            }
+        }
+        else if (keyDown.Equals(KeyCode.Escape))
+        {
+            helpManager.EnableHelpMenu();
+        }
+        else if (!keyDownToExitHelpMenu.Equals(KeyCode.JoystickButton0)) // if a key was used to exit the help menu
+        {
+            if (Input.GetKeyUp(keyDownToExitHelpMenu)) // see if that key has been unpressed
+            {
+                keyDownToExitHelpMenu = KeyCode.JoystickButton0; // unlock our ability to enter other input
+            }
+        }
+        else if (currentGamemode == Gamemode.Segue)
         {
             UpdateSegue();
         }
@@ -158,12 +180,8 @@ public class PlayerKeyboardManager : MonoBehaviour
             UpdateTrading();
         }
 
-        if (keyDown.Equals(KeyCode.Escape))
-        {
-            helpManager.EnableHelpMenu();
-        }
 
-        keyDown = KeyCode.JoystickButton0;
+        keyDown = KeyCode.JoystickButton0; // since KeyCode cannot be null, JoystickButton0 is our default value
     }
 
     public void UpdateSegue()

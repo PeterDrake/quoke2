@@ -15,12 +15,6 @@ public class HelpManager : MonoBehaviour
         DisableHelpMenu();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void EnableHelpMenu()
     {
         helpCanvas.SetActive(true);
@@ -29,5 +23,10 @@ public class HelpManager : MonoBehaviour
 	public void DisableHelpMenu()
     {
         helpCanvas.SetActive(false);
+    }
+
+    public bool IsCanvasEnabled()
+    {
+        return helpCanvas.activeSelf;
     }
 }
