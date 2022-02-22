@@ -100,6 +100,7 @@ public class InventoryUI : MonoBehaviour
     /// <summary>
     /// updates the visual indicator (tooltip) of which item is selected
     /// </summary>
+    /// this is what it makes it in the box
     public void UpdateTooltip()
     {
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
