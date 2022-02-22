@@ -40,15 +40,15 @@ public class Meters : MonoBehaviour
         }
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
-            if (child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<Text>();
+            if (child.name.Equals("Poop Value") || child.name.Equals("Poop Value Text (TMP)")) poopLevelNumber = child.gameObject.GetComponent<Text>();
             else if (child.name.Equals("Water Value")) waterLevelNumber = child.gameObject.GetComponent<Text>();
             else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
             else if (child.name.Equals("Water Done")) waterDoneIndicator = child.gameObject;
-            else if (child.name.Equals("Poop Back")) poopDoneImage = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Poop Back") || child.name.Equals("Poop Icon Background")) poopDoneImage = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Back")) waterDoneImage = child.gameObject.GetComponent<Image>();
-            else if (child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
+            else if (child.name.Equals("Poop Progress") || child.name.Equals("Poop Fill Slider")) poopProgressObject = child.gameObject;
             else if (child.name.Equals("Water Progress")) waterProgressObject = child.gameObject;
-            else if (child.name.Equals("Poop Background")) poopProgressFill = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Poop Background") || child.name.Equals("Poop Icon Mask")) poopProgressFill = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
         }
         
