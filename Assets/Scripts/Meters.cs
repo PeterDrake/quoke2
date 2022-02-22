@@ -41,7 +41,7 @@ public class Meters : MonoBehaviour
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
             if (child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<Text>();
-            else if (child.name.Equals("Water Value") || child.name.Equals("Water Value Text")) waterLevelNumber = child.gameObject.GetComponent<Text>();
+            else if (child.name.Equals("Water Value") || child.name.Equals("Water Value Text (TMP)")) waterLevelNumber = child.gameObject.GetComponent<Text>();
             else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
             else if (child.name.Equals("Water Done") || child.name.Equals("Water Done Text")) waterDoneIndicator = child.gameObject;
             else if (child.name.Equals("Poop Back")) poopDoneImage = child.gameObject.GetComponent<Image>();
