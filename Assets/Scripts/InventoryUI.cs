@@ -30,8 +30,8 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         inventory = this.gameObject.GetComponent<Inventory>();
-        slotFrames = new GameObject[5];
-        slotContents = new GameObject[5];
+        slotFrames = new GameObject[6];
+        slotContents = new GameObject[6];
         int frameCounter = 0;
         int contentsCounter = 0;
         foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
