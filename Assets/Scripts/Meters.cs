@@ -20,6 +20,7 @@ public class Meters : MonoBehaviour
     private Image waterProgressFill;
     private GameObject poopProgressObject;
     private GameObject waterProgressObject;
+    private GameObject poopTooltip;
     
     private Text poopLevelNumber;
     private Text waterLevelNumber;
@@ -53,6 +54,7 @@ public class Meters : MonoBehaviour
             else if (child.name.Equals("Water Progress")) waterProgressObject = child.gameObject;
             else if (child.name.Equals("Poop Background") || child.name.Equals("Poop Icon Mask")) poopProgressFill = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Poop Tooltip")) poopTooltip = child.gameObject;
         }
         
         poopTimeLeft = GlobalControls.poopTimeLeft;
@@ -95,12 +97,18 @@ public class Meters : MonoBehaviour
         if (poopLevelNumberTMP) poopLevelNumberTMP.text = poopTimeLeft.ToString();
         waterLevelNumber.text = waterTimeLeft.ToString();
 
+        if (poopTimeLeft <= 3)
+        {
+            poopTooltip.SetActive(true);
+        }
+
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
             poopDoneIndicator.SetActive(true);
             poopDoneImage.color = Color.yellow;
             poopProgressFill.color = Color.yellow;
             if (poopLevelNumberTMP) poopLevelNumberTMP.text = "Done!";
+            poopTooltip.SetActive(false);
         }
         else
         {
