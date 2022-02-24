@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// poop and water meter at the top of the screen
@@ -22,6 +23,8 @@ public class Meters : MonoBehaviour
     
     private Text poopLevelNumber;
     private Text waterLevelNumber;
+    
+    private TMP_Text poopLevelNumberTMP;
 
     private ReferenceManager referenceManager;
 
@@ -88,7 +91,8 @@ public class Meters : MonoBehaviour
 
     private void UpdateVisualText()
     {
-        poopLevelNumber.text = poopTimeLeft.ToString();
+        if (poopLevelNumber) poopLevelNumber.text = poopTimeLeft.ToString();
+        if (poopLevelNumberTMP) poopLevelNumberTMP.text = poopTimeLeft.ToString();
         waterLevelNumber.text = waterTimeLeft.ToString();
 
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
@@ -96,6 +100,7 @@ public class Meters : MonoBehaviour
             poopDoneIndicator.SetActive(true);
             poopDoneImage.color = Color.yellow;
             poopProgressFill.color = Color.yellow;
+            if (poopLevelNumberTMP) poopLevelNumberTMP.text = "Done!";
         }
         else
         {
