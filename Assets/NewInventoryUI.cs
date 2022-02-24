@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
-public class InventoryUI : MonoBehaviour
+public class NewInventoryUI : MonoBehaviour
 {
     public int selectedSlotNumber;
     public Sprite unselectedSlotSprite;
@@ -30,13 +30,13 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         inventory = this.gameObject.GetComponent<Inventory>();
-        slotFrames = new GameObject[6];
-        slotContents = new GameObject[6];
+        slotFrames = new GameObject[5];
+        slotContents = new GameObject[5];
         int frameCounter = 0;
         int contentsCounter = 0;
         foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
         {
-            if (child.gameObject.name.Contains("Frame"))
+            if (child.gameObject.name.Contains("ItemBox"))
             {
                 slotFrames[frameCounter] = child.gameObject;
                 frameCounter++;
@@ -56,8 +56,6 @@ public class InventoryUI : MonoBehaviour
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
-            Debug.Log("frame: " + frame);
-            Debug.Log("image: " + frame.GetComponent<Image>());
             frame.GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
         }
         foreach (GameObject item in slotContents)

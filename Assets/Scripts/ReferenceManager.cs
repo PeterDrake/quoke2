@@ -38,11 +38,13 @@ public class ReferenceManager : MonoBehaviour
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
         {
-            if (canvas.gameObject.name.Equals("Inventory Canvas"))
+            Debug.Log("Found a canvas: " + canvas.gameObject.name);
+            if (canvas.gameObject.name.Equals("New UI Canvas"))
             {
                 inventoryCanvas = canvas.gameObject;
             }
-            else if (canvas.gameObject.name.Equals("Meters Canvas"))
+            else 
+            if (canvas.gameObject.name.Equals("Meters Canvas"))
             {
                 metersCanvas = canvas.gameObject;
             }
