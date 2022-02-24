@@ -1513,8 +1513,8 @@ GameObject:
   - component: {fileID: 4932800058868292731}
   - component: {fileID: 4932800058868292729}
   - component: {fileID: 4932800058868292730}
-  - component: {fileID: 4932800058868292679}
   - component: {fileID: 4932800058868292728}
+  - component: {fileID: 6510545577544281264}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -1585,26 +1585,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4932800058868292679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4932800058868292732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5a52f5b31c94192accfb4ddd9a8959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  unselectedSlotSprite: {fileID: 0}
-  selectedSlotSprite: {fileID: 0}
-  unselectedSlotSpriteInUse: {fileID: 0}
-  selectedSlotSpriteInUse: {fileID: 0}
-  grayscaleOverlay: {fileID: 0}
-  slotFrames: []
-  slotContents: []
 --- !u!114 &4932800058868292728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,6 +1600,26 @@ MonoBehaviour:
   selectedSlotNumber: 0
   player: {fileID: 0}
   items: []
+--- !u!114 &6510545577544281264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932800058868292732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00bd04083480b8d45b252834e190d61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSlotNumber: 0
+  unselectedSlotSprite: {fileID: 0}
+  selectedSlotSprite: {fileID: 0}
+  unselectedSlotSpriteInUse: {fileID: 0}
+  selectedSlotSpriteInUse: {fileID: 0}
+  grayscaleOverlay: {fileID: 0}
+  slotFrames: []
+  slotContents: []
 --- !u!1 &4932800059106854159
 GameObject:
   m_ObjectHideFlags: 0
