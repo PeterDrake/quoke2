@@ -56,6 +56,8 @@ public class InventoryUI : MonoBehaviour
         // Set initial state of all the arrays
         foreach (GameObject frame in slotFrames)
         {
+            Debug.Log("frame: " + frame);
+            Debug.Log("image: " + frame.GetComponent<Image>());
             frame.GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
         }
         foreach (GameObject item in slotContents)
