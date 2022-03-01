@@ -25,5 +25,10 @@ public class InventoryController : MonoBehaviour
     {
         inventoryUI.AddToSlot(slot, item);
     }
+
+    public void ClearUI()
+    {
+        inventoryUI.Clear();
+    }
    
 }

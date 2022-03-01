@@ -217,4 +217,15 @@ public class NewInventoryUI : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Sets the inventory to contain no items, with slot 0 selected.
+    /// </summary>
+    public void Clear()
+    {
+        for (int i = 0; i < slotContents.Length; i++)
+        {
+            RemoveFromSlot(i);
+        }
+    }
 }

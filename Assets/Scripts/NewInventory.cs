@@ -8,8 +8,7 @@ public class NewInventory
 
     // These are the actual 3D GameObjects that the player has picked up.
     public GameObject[] items;
-
-    private InventoryUI inventoryUI;
+    
     private InventoryController inventoryController;
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall)
@@ -29,8 +28,6 @@ public class NewInventory
     //Awake not start because Inventory must load first
     void Awake()
     {
-        inventoryUI = this.gameObject.GetComponent<InventoryUI>();
-
         if (SceneManager.GetActiveScene().name.Equals("Yard"))
         {
             latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
@@ -60,10 +57,7 @@ public class NewInventory
     {
         items = new GameObject[5];
         selectedSlotNumber = 0;
-        for (int i = 0; i < inventoryUI.slotContents.Length; i++)
-        {
-            inventoryUI.RemoveFromSlot(i);
-        }
+        inventoryController.ClearUI();
     }
     
     private void Start()
