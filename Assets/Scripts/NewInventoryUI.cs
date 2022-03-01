@@ -166,8 +166,9 @@ public class NewInventoryUI : MonoBehaviour
         return slotContents[i].activeSelf;
     }
 
-    public void AddToSlot(int slot, Sprite sprite)
+    public void AddToSlot(int slot, GameObject item)
     {
+        Sprite sprite = item.GetComponent<Collectible>().sprite;
         if (slot >= 0 && !(slot >= slotContents.Length))
         {
             // Display the sprite for this item

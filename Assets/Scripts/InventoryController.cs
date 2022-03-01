@@ -21,10 +21,9 @@ public class InventoryController : MonoBehaviour
     }
 
     // model to UI
-    public void UpdateUIWithPickup(GameObject item)
+    public void UpdateUIWithPickup(int slot, GameObject item)
     {
-        inventoryUI.AddToSlot(i, item);
-
+        inventoryUI.AddToSlot(slot, item);
     }
    
 }

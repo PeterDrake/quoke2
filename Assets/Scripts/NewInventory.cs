@@ -10,6 +10,7 @@ public class NewInventory
     public GameObject[] items;
 
     private InventoryUI inventoryUI;
+    private InventoryController inventoryController;
     
     private int dropObstructionLayers;  // You cannot drop an item if something in one of theses layers (e.g., a wall)
                                         // is in front of you.
@@ -358,6 +359,7 @@ public class NewInventory
         if (i >= 0)
         {
             inventoryUI.AddToSlot(i, item.GetComponent<Collectible>().sprite);
+            inventoryController.UpdateUIWithPickup(i, item);
 
             // Add item to the items array
             items[i] = item;
