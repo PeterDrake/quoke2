@@ -15,7 +15,7 @@ using UnityEngine.Serialization;
 public class Collectible : MonoBehaviour
 {
     public Sprite sprite;
-    public Inventory inventory;
+    public InventoryController inventoryController;
     public bool inStorageContainer;
     public bool inLatrine;
 
@@ -53,7 +53,7 @@ public class Collectible : MonoBehaviour
         // When the player runs into it, add it to inventory
         if (other.CompareTag("Player") && (!inStorageContainer || !inLatrine))
         {
-            inventory.PickUp(this.gameObject);
+            inventoryController.PickUp(this.gameObject);
         }
     }
 }

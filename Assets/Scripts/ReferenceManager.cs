@@ -31,6 +31,8 @@ public class ReferenceManager : MonoBehaviour
     public GameObject pointsText;
 
     public GameObject itemLoader;
+
+    public GameObject inventoryController;
     
     private void Awake()
     {
