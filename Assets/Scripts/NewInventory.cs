@@ -100,8 +100,8 @@ public class NewInventory
             inventoryUI.SelectSlotNumber(slotNumber);
             selectedSlotNumber = slotNumber;
         }
-
-        inventoryUI.UpdateTooltip();
+        
+        inventoryController.UpdateUITooltip();
     }
 
     /// <summary>
@@ -352,7 +352,6 @@ public class NewInventory
         int i = FirstEmptySlot();
         if (i >= 0)
         {
-            inventoryUI.AddToSlot(i, item.GetComponent<Collectible>().sprite);
             inventoryController.UpdateUIWithPickup(i, item);
 
             // Add item to the items array

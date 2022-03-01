@@ -30,5 +30,18 @@ public class InventoryController : MonoBehaviour
     {
         inventoryUI.Clear();
     }
+
+    public void UpdateUITooltip()
+    {
+        inventoryUI.UpdateTooltip();
+    }
+
+    /// <summary>
+    /// General function that should be called whenever any change has been made to the Inventory.
+    /// </summary>
+    public void UpdateUI()
+    {
+        
+    }
    
 }
