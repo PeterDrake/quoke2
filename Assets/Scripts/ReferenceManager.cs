@@ -42,12 +42,13 @@ public class ReferenceManager : MonoBehaviour
             if (canvas.gameObject.name.Equals("New UI Canvas"))
             {
                 inventoryCanvas = canvas.gameObject;
-            }
-            else 
-            if (canvas.gameObject.name.Equals("Meters Canvas"))
-            {
                 metersCanvas = canvas.gameObject;
             }
+            // else 
+            // if (canvas.gameObject.name.Equals("Meters Canvas"))
+            // {
+            //     metersCanvas = canvas.gameObject;
+            // }
             else if (canvas.gameObject.name.Equals("Dialogue Canvas"))
             {
                 dialogueCanvas = canvas.gameObject;

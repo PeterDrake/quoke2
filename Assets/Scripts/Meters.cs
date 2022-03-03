@@ -45,23 +45,23 @@ public class Meters : MonoBehaviour
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
             if (child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<Text>();
-            else if (child.name.Equals("Water Value") || child.name.Equals("Water Value Text (TMP)")) waterLevelNumber = child.gameObject.GetComponent<Text>();
+            else if (child.name.Equals("Water Value Text (TMP)") || child.name.Equals("Water Value")) waterLevelNumber = child.gameObject.GetComponent<Text>();
             else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
             else if (child.name.Equals("Water Done")) waterDoneIndicator = child.gameObject;
             else if (child.name.Equals("Poop Back")) poopDoneImage = child.gameObject.GetComponent<Image>();
-            else if (child.name.Equals("Water Back") || child.name.Equals("Water Icon Background")) waterDoneImage = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Water Icon Background") || child.name.Equals("Water Back")) waterDoneImage = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
-            else if (child.name.Equals("Water Progress") || child.name.Equals("Water Fill Slider")) waterProgressObject = child.gameObject;
+            else if (child.name.Equals("Water Fill Slider") || child.name.Equals("Water Progress")) waterProgressObject = child.gameObject;
             else if (child.name.Equals("Poop Background")) poopProgressFill = child.gameObject.GetComponent<Image>();
-            else if (child.name.Equals("Water Background") || child.name.Equals("Water Icon Mask")) waterProgressFill = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Water Icon Mask") || child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
 			else if (child.name.Equals("Water Tooltip")) waterTooltip = child.gameObject;
         }
         
         poopTimeLeft = GlobalControls.poopTimeLeft;
         waterTimeLeft = GlobalControls.waterTimeLeft;
 
-        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
-        waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
+//        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
+//       waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
 
         UpdateVisualText();
     }
