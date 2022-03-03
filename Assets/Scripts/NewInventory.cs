@@ -78,8 +78,6 @@ public class NewInventory
     /// <param name="numSlots"></param>
     public void SetAvailableSlots(int numSlots)
     {
-        inventoryUI.SetAvailableSlots(numSlots);
-
         GameObject[] tempItems = new GameObject[numSlots];
         
         for (int i = 0; i < numSlots; i++)
@@ -88,6 +86,8 @@ public class NewInventory
         }
 
         items = tempItems;
+        
+        inventoryController.UpdateUI();
     }
     
     
@@ -97,10 +97,10 @@ public class NewInventory
 
         if (selectedSlotNumber != slotNumber)
         {
-            inventoryUI.SelectSlotNumber(slotNumber);
             selectedSlotNumber = slotNumber;
         }
         
+        inventoryController.UpdateUI();
         inventoryController.UpdateUITooltip();
     }
 
@@ -151,7 +151,7 @@ public class NewInventory
                 
                 // Remove item from inventory
                 items[i] = null;
-                inventoryUI.RemoveFromSlot(i);
+                inventoryController.UpdateUI();
             }
         }
     }
@@ -173,8 +173,8 @@ public class NewInventory
         GameObject.Find(items[i].name).SetActive(false);
         // Remove item from inventory
         items[i] = null;
-        inventoryUI.RemoveFromSlot(i);
         latrineStorage.contents = null;
+        inventoryController.UpdateUI();
     }
     
     /// <summary>
@@ -338,8 +338,8 @@ public class NewInventory
         GameObject.Find(items[i].name).SetActive(false);
         // Remove item from inventory
         items[i] = null;
-        inventoryUI.RemoveFromSlot(i);
         twoBucket.contents = null;
+        inventoryController.UpdateUI();
     }
     
     private bool SlotIsOccupied(int i)
@@ -352,8 +352,6 @@ public class NewInventory
         int i = FirstEmptySlot();
         if (i >= 0)
         {
-            inventoryController.UpdateUIWithPickup(i, item);
-
             // Add item to the items array
             items[i] = item;
 
@@ -394,6 +392,7 @@ public class NewInventory
         }
         //reselect slot to current slot number to update tooltip if necessary
         SelectSlotNumber(selectedSlotNumber);
+        inventoryController.UpdateUI();
     }
 
     /// <summary>
@@ -461,7 +460,7 @@ public class NewInventory
                 
                 // Remove item from inventory
                 items[selectedSlotNumber] = null;
-                inventoryUI.RemoveFromSlot(selectedSlotNumber);
+                inventoryController.UpdateUI();
             }
         }
         else if (container.contents && SlotIsOccupied(selectedSlotNumber))
@@ -512,8 +511,6 @@ public class NewInventory
         int i = slot;
         if (i >= 0)
         {
-            inventoryUI.AddToSlot(slot, item.GetComponent<Collectible>().sprite);
-            
             // Add item to the items array
             items[i] = item;
             if (item.name.Equals("Water Bottle Clean(Clone)"))
@@ -528,6 +525,16 @@ public class NewInventory
             // Remove item from the world
             item.SetActive(false);
         }
-        
+        inventoryController.UpdateUI();
+    }
+
+    public int GetSelectedSlotNumber()
+    {
+        return selectedSlotNumber;
+    }
+
+    public GameObject GetItemInSlot(int slotNumber)
+    {
+        return items[slotNumber];
     }
 }

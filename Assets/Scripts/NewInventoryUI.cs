@@ -13,8 +13,8 @@ public class NewInventoryUI : MonoBehaviour
     public Sprite selectedSlotSprite;
     public Sprite unselectedSlotSpriteInUse;
     public Sprite selectedSlotSpriteInUse;
-
-    private Inventory inventory;
+    
+    private InventoryController inventoryController;
 
     [SerializeField] private GameObject grayscaleOverlay;
     
@@ -29,7 +29,6 @@ public class NewInventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        inventory = this.gameObject.GetComponent<Inventory>();
         slotFrames = new GameObject[5];
         slotContents = new GameObject[5];
         int frameCounter = 0;
@@ -103,6 +102,7 @@ public class NewInventoryUI : MonoBehaviour
     /// this is what it makes it in the box
     public void UpdateTooltip()
     {
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
             && slotContents[selectedSlotNumber].activeSelf)
         {
@@ -110,9 +110,10 @@ public class NewInventoryUI : MonoBehaviour
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
                     .gameObject.SetActive(true);
             {
-                if (inventory.items[selectedSlotNumber])
+                GameObject item = inventoryController.GetItemInSlot(selectedSlotNumber);
+                if (item)
                 {
-                    Comment comment = inventory.items[selectedSlotNumber].GetComponent<Comment>();
+                    Comment comment = item.GetComponent<Comment>();
                     if (comment)
                         referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text =
                             comment.notes;
@@ -227,5 +228,14 @@ public class NewInventoryUI : MonoBehaviour
         {
             RemoveFromSlot(i);
         }
+    }
+
+    public void UpdateUI()
+    {
+        Clear();
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
+        // Update to correct number of slots
+        // iterate through each slot and set it to have the correct slot
+        SelectSlotNumber(selectedSlotNumber);
     }
 }

@@ -41,7 +41,17 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     public void UpdateUI()
     {
-        
+        inventoryUI.UpdateUI();
+    }
+
+    public int GetSelectedSlotNumber()
+    {
+        return inventory.GetSelectedSlotNumber();
+    }
+
+    public GameObject GetItemInSlot(int slotNumber)
+    {
+        return inventory.GetItemInSlot(slotNumber);
     }
    
 }
