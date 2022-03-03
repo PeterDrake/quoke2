@@ -32,8 +32,10 @@ public class Collectible : MonoBehaviour
         this.prefab = prefab;
         this.scene = scene;
     }
-
-    private void Awake()
+    
+    // This was changed from Awake to Start in order to allow prefabs of items to be placed into the scenes manually.
+    // If something is breaking later related to Collectibles, this may be the cause.
+    private void Start()
     {
         if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
