@@ -15,6 +15,7 @@ using UnityEngine.Serialization;
 public class Collectible : MonoBehaviour
 {
     public Sprite sprite;
+    public Inventory inventory;
     public InventoryController inventoryController;
     public bool inStorageContainer;
     public bool inLatrine;
@@ -44,6 +45,7 @@ public class Collectible : MonoBehaviour
                     inventory = obj;
                 }
             }
+            inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
             // inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponent<Inventory>();
         }
     }

@@ -50,21 +50,21 @@ public class GameStateManager : MonoBehaviour
         segueCanvas = referenceManager.segueCanvas;
         metersCanvas = referenceManager.metersCanvas;
 
-        foreach (Inventory obj in referenceManager.inventoryCanvas.GetComponentsInChildren<Inventory>())
-        {
-            Debug.Log("obj: " + obj);
-            if (obj.gameObject.name.Equals("Inventory"))
-            {
-                inventory = obj;
-            }
-        }
-        foreach (InventoryUI obj in referenceManager.inventoryCanvas.GetComponentsInChildren<InventoryUI>())
-        {
-            if (obj.gameObject.name.Equals("Inventory"))
-            {
-                inventoryUI = obj;
-            }
-        }        
+        // foreach (Inventory obj in referenceManager.inventoryCanvas.GetComponentsInChildren<Inventory>())
+        // {
+        //     Debug.Log("obj: " + obj);
+        //     if (obj.gameObject.name.Equals("Inventory"))
+        //     {
+        //         inventory = obj;
+        //     }
+        // }
+        // foreach (InventoryUI obj in referenceManager.inventoryCanvas.GetComponentsInChildren<InventoryUI>())
+        // {
+        //     if (obj.gameObject.name.Equals("Inventory"))
+        //     {
+        //         inventoryUI = obj;
+        //     }
+        // }        
         // foreach (GameObject obj in referenceManager.inventoryCanvas.GetComponents())
         // {
         //     if (obj.gameObject.name.Equals("Inventory"))
@@ -72,8 +72,8 @@ public class GameStateManager : MonoBehaviour
         //         inventoryObject = obj;
         //     }
         // }
-        // inventory = inventoryObject.GetComponent<Inventory>();
-        // inventoryUI = inventoryObject.GetComponent<InventoryUI>();
+        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
 
         tooltipManager.HandleTooltip();
 

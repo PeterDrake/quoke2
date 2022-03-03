@@ -8,7 +8,6 @@ using Image = UnityEngine.UI.Image;
 
 public class NewInventoryUI : MonoBehaviour
 {
-    public int selectedSlotNumber;
     public Sprite unselectedSlotSprite;
     public Sprite selectedSlotSprite;
     public Sprite unselectedSlotSpriteInUse;
@@ -29,13 +28,13 @@ public class NewInventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        slotFrames = new GameObject[5];
-        slotContents = new GameObject[5];
+        slotFrames = new GameObject[6];
+        slotContents = new GameObject[6];
         int frameCounter = 0;
         int contentsCounter = 0;
         foreach (Image child in this.gameObject.GetComponentsInChildren<Image>())
         {
-            if (child.gameObject.name.Contains("ItemBox"))
+            if (child.gameObject.name.Contains("Frame"))
             {
                 slotFrames[frameCounter] = child.gameObject;
                 frameCounter++;
@@ -48,6 +47,8 @@ public class NewInventoryUI : MonoBehaviour
         }
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
+        Debug.Log("Awake: " + inventoryController);
         
         unselectedSlotSpriteInUse = unselectedSlotSprite;
         selectedSlotSpriteInUse = selectedSlotSprite;
@@ -61,10 +62,6 @@ public class NewInventoryUI : MonoBehaviour
         {
             item.SetActive(false);
         }
-
-        // Select the first slot
-        selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 
     // Start is called before the first frame update
@@ -81,18 +78,12 @@ public class NewInventoryUI : MonoBehaviour
             }
         }
 
-        SelectSlotNumber(0);
+        //SelectSlotNumber(0);
     }
     
     public void SelectSlotNumber(int slotNumber)
     {
-        if (selectedSlotNumber != slotNumber)
-        {
-            slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
-            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
-            selectedSlotNumber = slotNumber;
-        }
-
+        slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
         UpdateTooltip();
     }
 
@@ -154,11 +145,7 @@ public class NewInventoryUI : MonoBehaviour
         
         slotContents = tempSlotContents;
         slotFrames = tempSlotFrames;
-
-
-        // Select the first slot
-        selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+        
         SelectSlotNumber(0);
     }
     
@@ -177,8 +164,7 @@ public class NewInventoryUI : MonoBehaviour
             slotContents[slot].GetComponent<Image>().sprite = sprite;
         }
 
-        //reselect slot to current slot number to update tooltip if necessary
-        SelectSlotNumber(selectedSlotNumber);
+        UpdateTooltip();
     }
 
     public void RemoveFromSlot(int slot)
@@ -194,12 +180,14 @@ public class NewInventoryUI : MonoBehaviour
     public void DisableSelectedSlot()
     {
         selectedSlotSpriteInUse = unselectedSlotSprite;
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
     
     public void EnableSelectedSlot()
     {
         selectedSlotSpriteInUse = selectedSlotSprite;
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 
@@ -235,7 +223,17 @@ public class NewInventoryUI : MonoBehaviour
         Clear();
         int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         // Update to correct number of slots
+        int numberOfSlots = inventoryController.GetNumberOfSlots();
+        SetAvailableSlots(numberOfSlots);
         // iterate through each slot and set it to have the correct slot
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            GameObject item = inventoryController.GetItemInSlot(i);
+            if (item)
+            {
+                AddToSlot(i, item);
+            }
+        }
         SelectSlotNumber(selectedSlotNumber);
     }
 }

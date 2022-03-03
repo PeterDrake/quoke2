@@ -862,8 +862,7 @@ GameObject:
   - component: {fileID: 7917933415268721175}
   - component: {fileID: 1186139370403526672}
   - component: {fileID: 8011030466595699499}
-  - component: {fileID: 9081797072337019128}
-  - component: {fileID: 7664637955561500703}
+  - component: {fileID: 3592749100746748168}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Inventory
@@ -934,7 +933,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9081797072337019128
+--- !u!114 &3592749100746748168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -943,22 +942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1278931698240703866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0c66d4381c96e488022dcb96080b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSlotNumber: 0
-  player: {fileID: 0}
-  items: []
---- !u!114 &7664637955561500703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278931698240703866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00bd04083480b8d45b252834e190d61c, type: 3}
+  m_Script: {fileID: 11500000, guid: bf5a52f5b31c94192accfb4ddd9a8959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSlotNumber: 0

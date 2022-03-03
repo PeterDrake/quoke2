@@ -9,31 +9,13 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        inventory = new NewInventory();
         inventoryUI = GameObject.Find("Inventory").GetComponent<NewInventoryUI>();
-        
+        inventory = new NewInventory(this);
     }
     
-    // player/game to model
     public void PickUp(GameObject item)
     {
         inventory.PickUp(item);
-    }
-
-    // model to UI
-    public void UpdateUIWithPickup(int slot, GameObject item)
-    {
-        inventoryUI.AddToSlot(slot, item);
-    }
-
-    public void ClearUI()
-    {
-        inventoryUI.Clear();
-    }
-
-    public void UpdateUITooltip()
-    {
-        inventoryUI.UpdateTooltip();
     }
 
     /// <summary>
@@ -53,5 +35,9 @@ public class InventoryController : MonoBehaviour
     {
         return inventory.GetItemInSlot(slotNumber);
     }
-   
+
+    public int GetNumberOfSlots()
+    {
+        return inventory.GetNumberOfSlots();
+    }
 }

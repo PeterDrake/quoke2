@@ -24,6 +24,13 @@ public class NewInventory
 
     private LatrineStorage latrineStorage;
     private TwoBucketScript twoBucket;
+
+    public NewInventory(InventoryController inventoryController)
+    {
+        this.inventoryController = inventoryController;
+        items = new GameObject[6];
+        selectedSlotNumber = 0;
+    }
     // Start is called before the first frame update
     //Awake not start because Inventory must load first
     void Awake()
@@ -55,9 +62,9 @@ public class NewInventory
     /// </summary>
     public void Clear()
     {
-        items = new GameObject[5];
+        items = new GameObject[6];
         selectedSlotNumber = 0;
-        inventoryController.ClearUI();
+        inventoryController.UpdateUI();
     }
     
     private void Start()
@@ -101,7 +108,6 @@ public class NewInventory
         }
         
         inventoryController.UpdateUI();
-        inventoryController.UpdateUITooltip();
     }
 
     /// <summary>
@@ -484,10 +490,11 @@ public class NewInventory
                 GlobalControls.globalControlsProperties.Add("waterPurified");
                     
                 GameObject prefab = (GameObject) Resources.Load("Water Bottle Clean", typeof(GameObject));
-                GameObject waterBottleClean = Instantiate(prefab,
+                /*GameObject waterBottleClean = Instantiate(prefab,
                     player.destination.transform.position + player.transform.forward + Vector3.up,
                     Quaternion.identity);
-                container.contents = waterBottleClean;
+                container.contents = waterBottleClean;*/
+                // TODO: Instantiate currently throws an error, so commenting it out to test
             }
         }
         else
@@ -536,5 +543,10 @@ public class NewInventory
     public GameObject GetItemInSlot(int slotNumber)
     {
         return items[slotNumber];
+    }
+    
+    public int GetNumberOfSlots()
+    {
+        return items.Length;
     }
 }
