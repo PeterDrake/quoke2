@@ -188,7 +188,10 @@ public class PlayerKeyboardManager : MonoBehaviour
     {
         if (keyDown.Equals(KeyCode.Space))
         {
-            gameStateManager.SetExploring();
+            if (!SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+            {
+                gameStateManager.SetExploring();
+            }
         }
     }
 

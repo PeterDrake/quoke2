@@ -36,6 +36,8 @@ public class GameStateManager : MonoBehaviour
     private Inventory inventory;
     private InventoryUI inventoryUI;
 
+    private GameObject inventoryObject;
+    
     // Start is called before the first frame update
     public void Start()
     {
@@ -48,6 +50,28 @@ public class GameStateManager : MonoBehaviour
         segueCanvas = referenceManager.segueCanvas;
         metersCanvas = referenceManager.metersCanvas;
 
+        // foreach (Inventory obj in referenceManager.inventoryCanvas.GetComponentsInChildren<Inventory>())
+        // {
+        //     Debug.Log("obj: " + obj);
+        //     if (obj.gameObject.name.Equals("Inventory"))
+        //     {
+        //         inventory = obj;
+        //     }
+        // }
+        // foreach (InventoryUI obj in referenceManager.inventoryCanvas.GetComponentsInChildren<InventoryUI>())
+        // {
+        //     if (obj.gameObject.name.Equals("Inventory"))
+        //     {
+        //         inventoryUI = obj;
+        //     }
+        // }        
+        // foreach (GameObject obj in referenceManager.inventoryCanvas.GetComponents())
+        // {
+        //     if (obj.gameObject.name.Equals("Inventory"))
+        //     {
+        //         inventoryObject = obj;
+        //     }
+        // }
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
 
@@ -97,6 +121,15 @@ public class GameStateManager : MonoBehaviour
         {
             keyboardManager.EnableStrategicMapKeyboard();
             enabled = false;
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+        {
+            /*if (!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
+            inventory.SetAvailableSlots(2);
+            pointsInScene = false;
+            npcInteractedInScene = false;
+            GlobalControls.currentObjective = 3;*/
+            SetSegue();
         }
         else if (GlobalControls.currentObjective <= 4)
         {
@@ -312,7 +345,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.npcInteractedCanvas.SetActive(false);
 
         deathCanvas.SetActive(false);
-        segueCanvas.SetActive(true);
+        if (!SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+        {
+            segueCanvas.SetActive(true);
+        }
         referenceManager.pointsText.gameObject.SetActive(false);
     }
     

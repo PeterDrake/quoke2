@@ -6,15 +6,14 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
-public class InventoryUI : MonoBehaviour
+public class NewInventoryUI : MonoBehaviour
 {
-    public int selectedSlotNumber;
     public Sprite unselectedSlotSprite;
     public Sprite selectedSlotSprite;
     public Sprite unselectedSlotSpriteInUse;
     public Sprite selectedSlotSpriteInUse;
-
-    private Inventory inventory;
+    
+    private InventoryController inventoryController;
 
     [SerializeField] private GameObject grayscaleOverlay;
     
@@ -29,7 +28,6 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        inventory = this.gameObject.GetComponent<Inventory>();
         slotFrames = new GameObject[6];
         slotContents = new GameObject[6];
         int frameCounter = 0;
@@ -49,6 +47,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
         
         unselectedSlotSpriteInUse = unselectedSlotSprite;
         selectedSlotSpriteInUse = selectedSlotSprite;
@@ -62,10 +61,6 @@ public class InventoryUI : MonoBehaviour
         {
             item.SetActive(false);
         }
-
-        // Select the first slot
-        selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 
     // Start is called before the first frame update
@@ -82,18 +77,12 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        SelectSlotNumber(0);
+        //SelectSlotNumber(0);
     }
     
     public void SelectSlotNumber(int slotNumber)
     {
-        if (selectedSlotNumber != slotNumber)
-        {
-            slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
-            slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = unselectedSlotSpriteInUse;
-            selectedSlotNumber = slotNumber;
-        }
-
+        slotFrames[slotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
         UpdateTooltip();
     }
 
@@ -103,6 +92,7 @@ public class InventoryUI : MonoBehaviour
     /// this is what it makes it in the box
     public void UpdateTooltip()
     {
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
             && slotContents[selectedSlotNumber].activeSelf)
         {
@@ -110,9 +100,10 @@ public class InventoryUI : MonoBehaviour
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
                     .gameObject.SetActive(true);
             {
-                if (inventory.items[selectedSlotNumber])
+                GameObject item = inventoryController.GetItemInSlot(selectedSlotNumber);
+                if (item)
                 {
-                    Comment comment = inventory.items[selectedSlotNumber].GetComponent<Comment>();
+                    Comment comment = item.GetComponent<Comment>();
                     if (comment)
                         referenceManager.tooltipCanvas.GetComponentInChildren<Text>(true).text =
                             comment.notes;
@@ -153,11 +144,7 @@ public class InventoryUI : MonoBehaviour
         
         slotContents = tempSlotContents;
         slotFrames = tempSlotFrames;
-
-
-        // Select the first slot
-        selectedSlotNumber = 0;
-        slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
+        
         SelectSlotNumber(0);
     }
     
@@ -166,8 +153,9 @@ public class InventoryUI : MonoBehaviour
         return slotContents[i].activeSelf;
     }
 
-    public void AddToSlot(int slot, Sprite sprite)
+    public void AddToSlot(int slot, GameObject item)
     {
+        Sprite sprite = item.GetComponent<Collectible>().sprite;
         if (slot >= 0 && !(slot >= slotContents.Length))
         {
             // Display the sprite for this item
@@ -175,8 +163,7 @@ public class InventoryUI : MonoBehaviour
             slotContents[slot].GetComponent<Image>().sprite = sprite;
         }
 
-        //reselect slot to current slot number to update tooltip if necessary
-        SelectSlotNumber(selectedSlotNumber);
+        UpdateTooltip();
     }
 
     public void RemoveFromSlot(int slot)
@@ -192,12 +179,14 @@ public class InventoryUI : MonoBehaviour
     public void DisableSelectedSlot()
     {
         selectedSlotSpriteInUse = unselectedSlotSprite;
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
     
     public void EnableSelectedSlot()
     {
         selectedSlotSpriteInUse = selectedSlotSprite;
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         slotFrames[selectedSlotNumber].GetComponent<Image>().sprite = selectedSlotSpriteInUse;
     }
 
@@ -215,5 +204,35 @@ public class InventoryUI : MonoBehaviour
                 if (child.name.Replace("(Clone)", "").Trim() == grayscaleOverlay.name) Destroy(child);
             }
         }
+    }
+    
+    /// <summary>
+    /// Sets the inventory to contain no items, with slot 0 selected.
+    /// </summary>
+    public void Clear()
+    {
+        for (int i = 0; i < slotContents.Length; i++)
+        {
+            RemoveFromSlot(i);
+        }
+    }
+
+    public void UpdateUI()
+    {
+        Clear();
+        int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
+        // Update to correct number of slots
+        int numberOfSlots = inventoryController.GetNumberOfSlots();
+        SetAvailableSlots(numberOfSlots);
+        // iterate through each slot and set it to have the correct slot
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            GameObject item = inventoryController.GetItemInSlot(i);
+            if (item)
+            {
+                AddToSlot(i, item);
+            }
+        }
+        SelectSlotNumber(selectedSlotNumber);
     }
 }
