@@ -4,11 +4,11 @@ using UnityEngine;
 public class MetersController : MonoBehaviour
 {
     
-    private NewMeters meters;
+    private Meters meters;
 
     void Start()
     { 
-        meters = new NewMeters();
+        meters = new Meters();
        meters.UpdateVisualText();
     }
 
@@ -21,5 +21,10 @@ public class MetersController : MonoBehaviour
     public void UpdateVisualText()
     {
         meters.UpdateVisualText();
+    }
+
+    public void setStartingValues()
+    {
+        meters.setStartingValues();
     }
 }

@@ -8,6 +8,9 @@ using TMPro;
 /// </summary>
 public class Meters : MonoBehaviour
 {
+
+    private MetersController metersController;
+    
     public int poopTimeLeft;
     public int waterTimeLeft;
 
@@ -88,14 +91,17 @@ public class Meters : MonoBehaviour
         
         Debug.Log("Water objects: " + waterTooltipText.ToString());
         waterTooltip.SetActive(false);
-        
-        poopTimeLeft = GlobalControls.poopTimeLeft;
-        waterTimeLeft = GlobalControls.waterTimeLeft;
 
 //        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
 //       waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
 
         UpdateVisualText();
+    }
+    
+    public void setStartingValues()
+    {
+        poopTimeLeft = GlobalControls.poopTimeLeft;
+        waterTimeLeft = GlobalControls.waterTimeLeft;
     }
     
     //Used to check off meter on canvas & reset meter
@@ -123,15 +129,17 @@ public class Meters : MonoBehaviour
         UpdateVisualText();
     }
 
-    private void UpdateVisualText()
+    public void UpdateVisualText()
     {
+        //Start();
+        
 		if (waterLevelNumber) waterLevelNumber.text = waterTimeLeft.ToString();
 		if (waterLevelNumberTMP) waterLevelNumberTMP.text = waterTimeLeft.ToString();
 //        poopLevelNumber.text = poopTimeLeft.ToString();
 
 		if (waterTimeLeft <= 3)
 		{
-			waterTooltip.SetActive(true);
+            waterTooltip.SetActive(true);
 		}
 
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))

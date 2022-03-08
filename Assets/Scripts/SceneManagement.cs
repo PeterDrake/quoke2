@@ -8,6 +8,7 @@ public class SceneManagement : MonoBehaviour
     private string[] previousScenes; 
     private ReferenceManager referenceManager;
     private ObjectiveManager objectiveManager;
+    private MetersController metersController;
 
     
     private void Start()
@@ -55,8 +56,16 @@ public class SceneManagement : MonoBehaviour
         {
             GlobalControls.globalControlsProperties.Add("metersEnabled");
             GlobalControls.globalControlsProperties.Remove("isStrategicMap");
-            if(!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted")) GlobalControls.poopTimeLeft--;
-            if(!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted")) GlobalControls.waterTimeLeft--;
+            if (!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
+            {
+                GlobalControls.poopTimeLeft--;
+                metersController.UpdateVisualText();
+            }
+            if (!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"))
+            {
+                GlobalControls.waterTimeLeft--;
+                metersController.UpdateVisualText();
+            }
         }
 
        
