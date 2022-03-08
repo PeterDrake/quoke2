@@ -21,6 +21,7 @@ public class Meters : MonoBehaviour
     private GameObject poopProgressObject;
     private GameObject waterProgressObject;
 	private GameObject waterTooltip;
+    private GameObject waterTooltipText;
     private GameObject waterMeter;
 
     private Meters meters;
@@ -71,12 +72,22 @@ public class Meters : MonoBehaviour
             else if (child.name.Equals("Water Fill Slider") || child.name.Equals("Water Progress")) waterProgressObject = child.gameObject;
             else if (child.name.Equals("Poop Background")) poopProgressFill = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Icon Mask") || child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
-			else if (child.name.Equals("Water Tooltip")) waterTooltip = child.gameObject;
+			else if (child.name.Equals("Water Tooltip"))
+            {
+
+                Debug.Log("found water tooltip");
+                waterTooltip = child.gameObject;
+                foreach (TextMeshProUGUI obj in child.GetComponentsInChildren<TextMeshProUGUI>())
+                {
+                    if (obj.name.Equals("Text (TMP)")) waterTooltipText = obj.gameObject;
+                }
+            }
             
             
         }
         
-        //Debug.Log("Water objects: " + waterDoneImage.ToString());
+        Debug.Log("Water objects: " + waterTooltipText.ToString());
+        waterTooltip.SetActive(false);
         
         poopTimeLeft = GlobalControls.poopTimeLeft;
         waterTimeLeft = GlobalControls.waterTimeLeft;
