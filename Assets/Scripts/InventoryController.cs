@@ -11,6 +11,7 @@ public class InventoryController : MonoBehaviour
     {
         inventoryUI = GameObject.Find("Inventory").GetComponent<NewInventoryUI>();
         inventory = new NewInventory(this);
+        UpdateUI();
     }
     
     public void PickUp(GameObject item)
