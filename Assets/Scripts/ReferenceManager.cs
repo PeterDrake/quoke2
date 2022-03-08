@@ -31,6 +31,8 @@ public class ReferenceManager : MonoBehaviour
     public GameObject pointsText;
 
     public GameObject itemLoader;
+
+    public GameObject inventoryController;
     
     private void Awake()
     {
@@ -38,8 +40,7 @@ public class ReferenceManager : MonoBehaviour
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
         {
-            Debug.Log("Found a canvas: " + canvas.gameObject.name);
-            if (canvas.gameObject.name.Equals("New UI Canvas"))
+            if (canvas.gameObject.name.Equals("Inventory Canvas"))
             {
                 inventoryCanvas = canvas.gameObject;
             }

@@ -58,14 +58,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         tooltipManager = referenceManager.tooltipManager;
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        // inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        foreach (Inventory obj in referenceManager.inventoryCanvas.GetComponentsInChildren<Inventory>())
-        {
-            if (obj.gameObject.name.Equals("Inventory"))
-            {
-                inventory = obj;
-            }
-        }
+        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
     }

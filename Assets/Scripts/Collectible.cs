@@ -16,6 +16,7 @@ public class Collectible : MonoBehaviour
 {
     public Sprite sprite;
     public Inventory inventory;
+    public InventoryController inventoryController;
     public bool inStorageContainer;
     public bool inLatrine;
 
@@ -31,19 +32,21 @@ public class Collectible : MonoBehaviour
         this.prefab = prefab;
         this.scene = scene;
     }
-
-    private void Awake()
+    
+    // This was changed from Awake to Start in order to allow prefabs of items to be placed into the scenes manually.
+    // If something is breaking later related to Collectibles, this may be the cause.
+    private void Start()
     {
         if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             foreach (Inventory obj in GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponentsInChildren<Inventory>())
             {
-                Debug.Log("obj: " + obj);
                 if (obj.gameObject.name.Equals("Inventory"))
                 {
                     inventory = obj;
                 }
             }
+            inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
             // inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponent<Inventory>();
         }
     }
@@ -53,7 +56,7 @@ public class Collectible : MonoBehaviour
         // When the player runs into it, add it to inventory
         if (other.CompareTag("Player") && (!inStorageContainer || !inLatrine))
         {
-            inventory.PickUp(this.gameObject);
+            inventoryController.PickUp(this.gameObject);
         }
     }
 }
