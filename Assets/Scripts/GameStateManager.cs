@@ -122,6 +122,15 @@ public class GameStateManager : MonoBehaviour
             keyboardManager.EnableStrategicMapKeyboard();
             enabled = false;
         }
+        else if (SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+        {
+            /*if (!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
+            inventory.SetAvailableSlots(2);
+            pointsInScene = false;
+            npcInteractedInScene = false;
+            GlobalControls.currentObjective = 3;*/
+            SetSegue();
+        }
         else if (GlobalControls.currentObjective <= 4)
         {
             GlobalControls.currentObjective = 5;
@@ -336,7 +345,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.npcInteractedCanvas.SetActive(false);
 
         deathCanvas.SetActive(false);
-        segueCanvas.SetActive(true);
+        if (!SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+        {
+            segueCanvas.SetActive(true);
+        }
         referenceManager.pointsText.gameObject.SetActive(false);
     }
     
