@@ -41,7 +41,6 @@ public class Collectible : MonoBehaviour
         {
             foreach (Inventory obj in GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponentsInChildren<Inventory>())
             {
-                Debug.Log("obj: " + obj);
                 if (obj.gameObject.name.Equals("Inventory"))
                 {
                     inventory = obj;

@@ -31,32 +31,7 @@ public class NewInventory
         items = new GameObject[6];
         selectedSlotNumber = 0;
     }
-    // Start is called before the first frame update
-    //Awake not start because Inventory must load first
-    void Awake()
-    {
-        if (SceneManager.GetActiveScene().name.Equals("Yard"))
-        {
-            latrineStorage = GameObject.Find("Latrine Hole").GetComponent<LatrineStorage>();
-        }
-        else if (SceneManager.GetActiveScene().name.Equals("Street"))
-        {
-            twoBucket = GameObject.Find("Two Bucket Spot").GetComponent<TwoBucketScript>();
-        }
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-
-        Clear();
-
-        // Find layers for various interactions
-        dropObstructionLayers = LayerMask.GetMask("Wall", "NPC", "Table", "Exit", "StorageContainer",
-            "LatrineContainer", "WaterPurifying", "GasValve", "WaterHeater");
-        storageContainerLayers = LayerMask.GetMask("StorageContainer");
-        latrineContainerLayers = LayerMask.GetMask("LatrineContainer");
-        GasValveLayers = LayerMask.GetMask("GasValve");
-        WaterHeaterLayers = LayerMask.GetMask("WaterHeater");
-        waterLayer = LayerMask.GetMask("Water");
-    }
-
+    
     /// <summary>
     /// Sets the inventory to contain no items, with slot 0 selected.
     /// </summary>
@@ -67,18 +42,6 @@ public class NewInventory
         inventoryController.UpdateUI();
     }
     
-    private void Start()
-    {
-        player = referenceManager.player.GetComponent<PlayerMover>();
-
-        SelectSlotNumber(0);
-    }
-
-    private void OnEnable()
-    {
-        if(items.Length > 0) SelectSlotNumber(0);
-    }
-
     /// <summary>
     /// controls the amount of inventory space the player has (e.g. 1 slot before quake, 2 during, 5 after)
     /// </summary>
@@ -96,8 +59,7 @@ public class NewInventory
         
         inventoryController.UpdateUI();
     }
-    
-    
+
     public void SelectSlotNumber(int slotNumber)
     {
         if (slotNumber < 0 || slotNumber >= items.Length) return;

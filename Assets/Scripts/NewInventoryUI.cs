@@ -48,7 +48,6 @@ public class NewInventoryUI : MonoBehaviour
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
-        Debug.Log("Awake: " + inventoryController);
         
         unselectedSlotSpriteInUse = unselectedSlotSprite;
         selectedSlotSpriteInUse = selectedSlotSprite;
