@@ -20,6 +20,9 @@ public class ReferenceManager : MonoBehaviour
     public GameObject npcInteractedCanvas;
     public GameObject tooltipCanvas;
 
+    public InventoryController inventoryController;
+    public NPCInteractedController npcInteractedController;
+
     public GameObject player;
     public GameObject keyboardManager;
     public GameObject deathManager;
@@ -33,8 +36,6 @@ public class ReferenceManager : MonoBehaviour
 
     public GameObject itemLoader;
 
-    public GameObject inventoryController;
-    
     private void Awake()
     {
         canvases = GameObject.Find("Canvases");
@@ -78,6 +79,9 @@ public class ReferenceManager : MonoBehaviour
         }
 
         helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
+        
+        inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
+        npcInteractedController = GameObject.Find("NPC Interacted Controller").GetComponent<NPCInteractedController>();
         
         keyboardManager = GameObject.Find("Keyboard Manager");
         deathManager = GameObject.Find("Death Manager");

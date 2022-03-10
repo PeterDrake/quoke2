@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     private PlayerKeyboardManager keyboardManager;
     private GameStateManager gameStateManager;
     private DialogueUI dialogueUI;
-    private GameObject npcInteractedCanvas;
+    private NPCInteractedController npcInteractedController;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        npcInteractedController = referenceManager.npcInteractedController;
     }
 
     public void BeginConversation()
@@ -195,7 +195,7 @@ public class DialogueManager : MonoBehaviour
                 }
             }
 
-            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.currentNpc);
+            npcInteractedController.UpdateNPCInteracted(GlobalControls.currentNpc);
 
             Debug.Log("Current Node A: " + currentNode.nodeName);
         }
@@ -300,7 +300,7 @@ public class DialogueManager : MonoBehaviour
         {
             buttons[cursorLocation].Select();
             gameStateManager.SetExploring();
-            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.currentNpc);
+            npcInteractedController.UpdateNPCInteracted(GlobalControls.currentNpc);
             return cursorLocation;
         }
 

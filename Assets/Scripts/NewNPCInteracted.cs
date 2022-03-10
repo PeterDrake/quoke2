@@ -82,7 +82,7 @@ public class NewNPCInteracted : MonoBehaviour
         //Text owes = panels[i].Find("Owes").Find("Number").GetComponent<Text>();
         //owes.text = npc.owes.ToString();
         // Activate components
-        GameObject image = panels[i].Find("Frame").Find("Image").gameObject;
+        GameObject image = panels[i].Find("Image").gameObject;
         image.SetActive(npc.interacted);
         //satisfaction.gameObject.SetActive(true);
         //UpdateSatisfactionStars(npc, i);

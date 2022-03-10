@@ -19,7 +19,9 @@ public class PlayerMover : MonoBehaviour
 
     private int interactableLayers;  // Player interacts with objects in these layers by moving into them
     private int obstacleLayers;  // Player cannot move into objects in these layers
+    
     private ReferenceManager referenceManager;
+    private NPCInteractedController npcInteractedController;
     
     void Start()
     {
@@ -27,6 +29,8 @@ public class PlayerMover : MonoBehaviour
         obstacleLayers = LayerMask.GetMask("Wall", "NPC", "Table", "StorageContainer", "LatrineContainer", "WaterPurifying", "GasValve", "WaterHeater");
         destination.parent = null; // So that moving player doesn't move its child Destination
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+
+        npcInteractedController = referenceManager.npcInteractedController;
     }
 
     /// <summary>
@@ -76,7 +80,7 @@ public class PlayerMover : MonoBehaviour
                 else
                 {
                     GlobalControls.currentNpc = ahead.name;
-                    referenceManager.npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(ahead.name);
+                    npcInteractedController.UpdateNPCInteracted(ahead.name);
                     transform.LookAt(transform.position + direction, transform.up);
                     referenceManager.gameStateManager.GetComponent<GameStateManager>().SetConversing();
                 }
