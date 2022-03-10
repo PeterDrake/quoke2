@@ -72,8 +72,8 @@ public class GameStateManager : MonoBehaviour
         //         inventoryObject = obj;
         //     }
         // }
-        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+//        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        //inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
 
         tooltipManager.HandleTooltip();
 
@@ -197,8 +197,8 @@ public class GameStateManager : MonoBehaviour
             keyboardManager.SetCursorLocation(0);
 
             //Update to show Inventory selected
-            inventoryUI.EnableSelectedSlot();
-            inventory.SelectSlotNumber(0);
+            // inventoryUI.EnableSelectedSlot();
+            // inventory.SelectSlotNumber(0);
         }
 
         if (pointsInScene)
@@ -223,15 +223,15 @@ public class GameStateManager : MonoBehaviour
             if (!npcInteractedInScene) exploringText = exploringText.Replace("\n[ ] => Switch inventory", "");
             if (inventoryInScene)
             {
-                Image[] images = inventory.gameObject.GetComponentsInChildren<Image>(true);
-                foreach (Image image in images)
-                {
-                    if (image.gameObject.name.Equals("Frame 1") && !image.gameObject.activeSelf)
-                    {
-                        exploringText = exploringText.Replace("\n< > => Move slots", "");
-                        break;
-                    }
-                }
+              // Image[] images = inventory.gameObject.GetComponentsInChildren<Image>(true);
+              //   foreach (Image image in images)
+              //   {
+              //       if (image.gameObject.name.Equals("Frame 1") && !image.gameObject.activeSelf)
+              //       {
+              //           exploringText = exploringText.Replace("\n< > => Move slots", "");
+              //           break;
+              //       }
+              //   }
             }
 
             referenceManager.keybinds.GetComponentInChildren<Text>().text = exploringText;

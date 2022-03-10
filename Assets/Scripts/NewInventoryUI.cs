@@ -59,7 +59,7 @@ public class NewInventoryUI : MonoBehaviour
         }
         foreach (GameObject item in slotContents)
         {
-            item.SetActive(false);
+//            item.SetActive(false);
         }
     }
 
@@ -73,6 +73,7 @@ public class NewInventoryUI : MonoBehaviour
                 if (image.gameObject.name.Equals("Tooltip"))
                 {
                     tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
+                    Debug.Log("tooltipText: " + tooltipText);
                 }
             }
         }
@@ -219,7 +220,7 @@ public class NewInventoryUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        Clear();
+//        Clear();
         int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         // Update to correct number of slots
         int numberOfSlots = inventoryController.GetNumberOfSlots();

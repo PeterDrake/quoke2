@@ -78,20 +78,21 @@ public class ReferenceManager : MonoBehaviour
                 tooltipCanvas = canvas.gameObject;
             }
 
-            foreach (Transform bar in inventoryCanvas.GetComponentsInChildren<Transform>())
-            {
-                if (bar.gameObject.name.Equals("TopBar"))
-                {
-                    foreach (Meters meter in bar.GetComponentsInChildren<Meters>())
-                    {
-                        meters = meter.gameObject;
-                    }
-                }
-            }
+            // foreach (Transform bar in inventoryCanvas.GetComponentsInChildren<Transform>())
+            // {
+            //     if (bar.gameObject.name.Equals("TopBar"))
+            //     {
+            //         foreach (Meters meter in bar.GetComponentsInChildren<Meters>())
+            //         {
+            //             meters = meter.gameObject;
+            //         }
+            //     }
+            // }
             
             
         }
 
+        meters = GameObject.Find("Meters").gameObject;
         metersCanvas = GameObject.Find("New UI Canvas").gameObject;
         inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
         helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();

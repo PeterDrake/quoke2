@@ -141,14 +141,14 @@ public class Meters : MonoBehaviour
 
 		if (waterTimeLeft <= 3)
 		{
-            waterTooltip.SetActive(true);
+            waterTooltipText.SetActive(true);
 		}
 
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
-            poopDoneIndicator.SetActive(true);
-            poopDoneImage.color = Color.yellow;
-            poopProgressFill.color = Color.yellow;
+            //poopDoneIndicator.SetActive(true);
+            //poopDoneImage.color = Color.yellow;
+            //poopProgressFill.color = Color.yellow;
         }
         else
         {

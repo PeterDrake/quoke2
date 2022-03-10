@@ -8,7 +8,7 @@ public class MetersController : MonoBehaviour
 
     void Start()
     { 
-        meters = new Meters();
+        meters = GameObject.Find("Meters").GetComponent<Meters>();
        meters.UpdateVisualText();
     }
 
