@@ -33,7 +33,9 @@ public class ReferenceManager : MonoBehaviour
 
     public GameObject itemLoader;
 
-    public GameObject inventoryController;
+    public InventoryController inventoryController;
+    public GameObject metersController;
+    public GameObject meters;
     
     private void Awake()
     {
@@ -44,13 +46,13 @@ public class ReferenceManager : MonoBehaviour
             if (canvas.gameObject.name.Equals("Inventory Canvas"))
             {
                 inventoryCanvas = canvas.gameObject;
+                //metersCanvas = canvas.gameObject;
+            }
+            else 
+            if (canvas.gameObject.name.Equals("New UI Canvas"))
+            {
                 metersCanvas = canvas.gameObject;
             }
-            // else 
-            // if (canvas.gameObject.name.Equals("Meters Canvas"))
-            // {
-            //     metersCanvas = canvas.gameObject;
-            // }
             else if (canvas.gameObject.name.Equals("Dialogue Canvas"))
             {
                 dialogueCanvas = canvas.gameObject;
@@ -75,8 +77,23 @@ public class ReferenceManager : MonoBehaviour
             {
                 tooltipCanvas = canvas.gameObject;
             }
+
+            foreach (Transform bar in inventoryCanvas.GetComponentsInChildren<Transform>())
+            {
+                if (bar.gameObject.name.Equals("TopBar"))
+                {
+                    foreach (Meters meter in bar.GetComponentsInChildren<Meters>())
+                    {
+                        meters = meter.gameObject;
+                    }
+                }
+            }
+            
+            
         }
 
+        metersCanvas = GameObject.Find("New UI Canvas").gameObject;
+        inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
         helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
         
         keyboardManager = GameObject.Find("Keyboard Manager");

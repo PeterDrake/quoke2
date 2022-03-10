@@ -86,6 +86,8 @@ public class Meters : MonoBehaviour
                 }
             }
             
+            setStartingValues();
+            
             
         }
         
