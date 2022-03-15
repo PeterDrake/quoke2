@@ -38,21 +38,16 @@ public class ReferenceManager : MonoBehaviour
 
     private void Awake()
     {
-        canvases = GameObject.Find("Canvases");
+        canvases = GameObject.Find("Canvases (Detached)");
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
         {
-            if (canvas.gameObject.name.Equals("Inventory Canvas"))
-            {
-                inventoryCanvas = canvas.gameObject;
-                metersCanvas = canvas.gameObject;
-            }
             // else 
             // if (canvas.gameObject.name.Equals("Meters Canvas"))
             // {
             //     metersCanvas = canvas.gameObject;
             // }
-            else if (canvas.gameObject.name.Equals("Dialogue Canvas"))
+            if (canvas.gameObject.name.Equals("Dialogue Canvas"))
             {
                 dialogueCanvas = canvas.gameObject;
             }

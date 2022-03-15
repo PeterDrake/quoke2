@@ -91,6 +91,7 @@ public class NewNPCInteracted : MonoBehaviour
 
     public void NewInteraction(string name)
     {
+        Debug.Log(GlobalControls.npcList[name]);
         GlobalControls.npcList[name].interacted = true;
         UpdateNPCInteracted(name);
         

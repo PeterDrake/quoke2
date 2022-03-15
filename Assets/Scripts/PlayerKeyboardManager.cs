@@ -3,14 +3,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum CursorDirection
+{
+    Up = 1,
+    Down = 2,
+    Left = 3,
+    Right = 4
+};
+
 /// <summary>
 /// Handles keyboard input related to moving the player.
 /// </summary>
 public class PlayerKeyboardManager : MonoBehaviour
 {
     private PlayerMover player;
-    private Inventory inventory;
-    private InventoryUI inventoryUI;
+    private InventoryController inventoryController;
     private bool crouchFlag;
     // TODO Can we get rid of virtualKeyboard?
     public bool virtualKeyboard;
@@ -61,8 +68,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         tooltipManager = referenceManager.tooltipManager;
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+        inventoryController = referenceManager.inventoryController;
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
         helpManager = referenceManager.helpManager;
     }
@@ -290,177 +296,31 @@ public class PlayerKeyboardManager : MonoBehaviour
         else if (keyDown.Equals(KeyCode.D)) player.StartMoving(new Vector3(1, 0, 0));
     }
 
-    private void SelectSlotsInventory()
-    {
-        for (int i = 0; i < validInputs.Length; i++)
-        {
-            if (keyDown.Equals(validInputs[i]))
-            {
-                inventory.SelectSlotNumber(i);
-                cursorLocation = i;
-            }
-        }
-    }
-
-    private void SelectSlotsNPCInteracted()
-    {
-        for (int i = 0; i < validNPCInputs.Length; i++)
-        {
-            if (keyDown.Equals(validNPCInputs[i]))
-            {
-                cursorLocation = inventory.items.Length + i;
-
-                npcInteractedCanvas.GetComponent<NPCInteracted>().SelectSlotNumber(i);
-                
-                tooltipManager.UpdateTooltipWithNPCInteracted(npcList[i]);
-                // didnt include SetNPCInventoryTooltipInactive();
-            }
-        }
-    }
-    
-
-    private void MoveBetweenInventories()
-    {
-        if (cursorLocation > inventory.items.Length - 1)
-        {
-            npcFrames[cursorLocation - inventory.items.Length].GetComponent<Image>().sprite = unselected;
-            inventoryUI.EnableSelectedSlot();
-            cursorLocation = 0;
-            inventory.SelectSlotNumber(cursorLocation);
-
-            tooltipManager.SetNPCInventoryTooltipInactive();
-        }
-        else
-        {
-            npcFrames[0].GetComponent<Image>().sprite = selected;
-            inventoryUI.DisableSelectedSlot();
-            cursorLocation = inventory.items.Length;
-            inventory.SelectSlotNumber(2);
-
-            tooltipManager.UpdateTooltipWithNPCInteracted(npcList[0]);
-            // didnt include SetNPCInventoryTooltipInactive();
-        }
-    }
-
-    private void InventoryDown()
-    {
-        cursorLocation++;
-        if (npcInteractedCanvas.activeSelf && cursorLocation >= inventory.items.Length + npcFrames.Length)
-        {
-            cursorLocation = 0;
-            inventoryUI.EnableSelectedSlot();
-            inventory.SelectSlotNumber(0);
-
-            for (int i = 0; i < validNPCInputs.Length; i++)
-            {
-                npcFrames[i].GetComponent<Image>().sprite = unselected;
-            }
-        }
-        else if (!npcInteractedCanvas.activeSelf && cursorLocation >= inventory.items.Length)
-        {
-            cursorLocation = 0;
-            inventory.SelectSlotNumber(cursorLocation);
-        }
-
-        if (cursorLocation >= inventory.items.Length)
-        {
-            if (npcInteractedCanvas.activeSelf)
-            {
-                inventoryUI.DisableSelectedSlot();
-                inventory.SelectSlotNumber(1);
-
-                npcFrames[cursorLocation - inventory.items.Length].GetComponent<Image>().sprite = selected;
-                if (cursorLocation - inventory.items.Length > 0)
-                    npcFrames[cursorLocation - inventory.items.Length - 1].GetComponent<Image>().sprite =
-                        unselected;
-
-                tooltipManager.UpdateTooltipWithNPCInteracted(npcList[cursorLocation - inventory.items.Length]);
-            }
-            else
-            {
-                cursorLocation = 0;
-                inventory.SelectSlotNumber(0);
-                tooltipManager.SetNPCInventoryTooltipInactive();
-            }
-        }
-        else
-        {
-            inventory.SelectSlotNumber(cursorLocation);
-            tooltipManager.SetNPCInventoryTooltipInactive();
-        }
-    }
-
-    private void InventoryUp()
-    {
-        cursorLocation--;
-        if (cursorLocation < 0)
-        {
-            if (npcInteractedCanvas.activeSelf)
-            {
-                cursorLocation = inventory.items.Length + npcFrames.Length - 1;
-            }
-            else
-            {
-                cursorLocation = inventory.items.Length - 1;
-            }
-        }
-
-        if (cursorLocation >= inventory.items.Length)
-        {
-            if (npcInteractedCanvas.activeSelf)
-            {
-                inventoryUI.DisableSelectedSlot();
-                inventory.SelectSlotNumber(1);
-
-                npcFrames[cursorLocation - inventory.items.Length].GetComponent<Image>().sprite = selected;
-                if (cursorLocation != inventory.items.Length + npcFrames.Length - 1)
-                    npcFrames[cursorLocation - inventory.items.Length + 1].GetComponent<Image>().sprite =
-                        unselected;
-
-                tooltipManager.UpdateTooltipWithNPCInteracted(npcList[cursorLocation - inventory.items.Length]);
-            }
-            else
-            {
-                cursorLocation = 0;
-                tooltipManager.SetNPCInventoryTooltipInactive();
-                inventory.SelectSlotNumber(0);
-            }
-        }
-        else
-        {
-            if (cursorLocation.Equals(inventory.items.Length - 1))
-            {
-                npcFrames[0].GetComponent<Image>().sprite = unselected;
-            }
-
-            tooltipManager.SetNPCInventoryTooltipInactive();
-            inventoryUI.EnableSelectedSlot();
-            inventory.SelectSlotNumber(cursorLocation);
-        }
-    }
-    
     private void UpdateExploring()
     {
         Crouch();
         MovePlayer();
-        
-        if (cursorLocation < inventory.items.Length && inventory)
-            SelectSlotsInventory();
-        else if (cursorLocation >= inventory.items.Length && npcInteractedCanvas.activeSelf)
-            SelectSlotsNPCInteracted();
 
-        if (gameStateManager.InventoryInScene() && cursorLocation < inventory.items.Length && keyDown.Equals(KeyCode.Space))
-            inventory.PickUpOrDrop();
+        if (gameStateManager.InventoryInScene() && keyDown.Equals(KeyCode.Space))
+            inventoryController.PickUpOrDrop();
 
-        if (inventory && npcInteractedCanvas.activeSelf &&
-            (keyDown.Equals(KeyCode.RightBracket) || keyDown.Equals(KeyCode.LeftBracket)))
-            MoveBetweenInventories();
-
-        if (inventory && keyDown.Equals(KeyCode.Period))
-            InventoryDown();
-
-        if (inventory && keyDown.Equals(KeyCode.Comma))
-            InventoryUp();
+        if (!inventoryController.UIIsActive()) return;
+        if (keyDown.Equals(KeyCode.I))
+        {
+            inventoryController.MoveCursor(CursorDirection.Up);
+        }
+        else if (keyDown.Equals(KeyCode.J))
+        {
+            inventoryController.MoveCursor(CursorDirection.Left);
+        }
+        else if (keyDown.Equals(KeyCode.K))
+        {
+            inventoryController.MoveCursor(CursorDirection.Down);
+        }
+        else if (keyDown.Equals(KeyCode.L))
+        {
+            inventoryController.MoveCursor(CursorDirection.Right);
+        }
     }
 
     private void UpdateDeath()

@@ -32,9 +32,8 @@ public class GameStateManager : MonoBehaviour
     private bool inventoryInScene = true; //Set to false if no inventory in scene (Ex. QuakeHouse)
     private bool npcInteractedInScene = true;
     private bool pointsInScene = true;
-    
-    private Inventory inventory;
-    private InventoryUI inventoryUI;
+
+    private InventoryController inventoryController;
 
     private GameObject inventoryObject;
     
@@ -72,8 +71,7 @@ public class GameStateManager : MonoBehaviour
         //         inventoryObject = obj;
         //     }
         // }
-        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+        inventoryController = referenceManager.inventoryController;
 
         tooltipManager.HandleTooltip();
 
@@ -97,8 +95,7 @@ public class GameStateManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name.Equals("QuakeApartment") ||
                  SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
-            if (!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
-            inventory.SetAvailableSlots(2);
+            if (!inventoryController.UIIsActive()) inventoryController.EnableUI();
             pointsInScene = false;
             npcInteractedInScene = false;
             GlobalControls.currentObjective = 3;
@@ -107,8 +104,7 @@ public class GameStateManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
                  SceneManager.GetActiveScene().name.Equals("PreQuakeApartment"))
         {
-            if (!inventory.gameObject.activeSelf) inventory.gameObject.SetActive(true);
-            inventory.SetAvailableSlots(1);
+            if (!inventoryController.UIIsActive()) inventoryController.EnableUI();
             npcInteractedInScene = false;
             pointsInScene = false;
             if (GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
@@ -197,8 +193,7 @@ public class GameStateManager : MonoBehaviour
             keyboardManager.SetCursorLocation(0);
 
             //Update to show Inventory selected
-            inventoryUI.EnableSelectedSlot();
-            inventory.SelectSlotNumber(0);
+            inventoryController.SelectSlotNumber(0);
         }
 
         if (pointsInScene)
@@ -223,14 +218,19 @@ public class GameStateManager : MonoBehaviour
             if (!npcInteractedInScene) exploringText = exploringText.Replace("\n[ ] => Switch inventory", "");
             if (inventoryInScene)
             {
-                Image[] images = inventory.gameObject.GetComponentsInChildren<Image>(true);
-                foreach (Image image in images)
+                // Image[] images = inventory.gameObject.GetComponentsInChildren<Image>(true);
+                // foreach (Image image in images)
+                // {
+                //     if (image.gameObject.name.Equals("Frame 1") && !image.gameObject.activeSelf)
+                //     {
+                //         exploringText = exploringText.Replace("\n< > => Move slots", "");
+                //         break;
+                //     }
+                // }
+                // replaces the above ^
+                if (!inventoryController.IsFrame1Enabled())
                 {
-                    if (image.gameObject.name.Equals("Frame 1") && !image.gameObject.activeSelf)
-                    {
-                        exploringText = exploringText.Replace("\n< > => Move slots", "");
-                        break;
-                    }
+                    exploringText = exploringText.Replace("\n< > => Move slots", "");
                 }
             }
 

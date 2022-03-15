@@ -13,6 +13,7 @@ public class NPCInteractedController : MonoBehaviour
 
     public void UpdateNPCInteracted(string name)
     {
+        Debug.Log(name);
         npcInteracted.NewInteraction(name);
     }
 }

@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class npcscript : MonoBehaviour
 {
+    private ReferenceManager referenceManager;
     private DialogueManager interactor;
 
     private void Start()
     {
-        interactor = GameObject.Find("Canvases").GetComponentInChildren<DialogueManager>(true);
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        interactor = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
         // interactor = GameObject.Find("Interactor").GetComponent<DialogueManager>();
     }
 

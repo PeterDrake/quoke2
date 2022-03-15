@@ -41,4 +41,38 @@ public class InventoryController : MonoBehaviour
     {
         return inventory.GetNumberOfSlots();
     }
+
+    public bool UIIsActive()
+    {
+        return inventoryUI.enabled;
+    }
+
+    public void EnableUI()
+    {
+        return;
+    }
+
+    public void SelectSlotNumber(int slot)
+    {
+        return;
+    }
+
+    public bool IsFrame1Enabled()
+    {
+        return false;
+    }
+
+    public void PickUpOrDrop()
+    {
+        return;
+    }
+
+    /// <summary>
+    /// Moves the selected slot cursor in the specified direction. Returns -1 if the cursor is somewhere in the
+    /// inventory. Returns the slot number of the Neighbors grid to select if the cursor is outside the inventory.
+    /// </summary>
+    public int MoveCursor(CursorDirection direction)
+    {
+        return -1;
+    }
 }
