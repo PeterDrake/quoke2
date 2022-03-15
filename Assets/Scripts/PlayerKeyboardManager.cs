@@ -305,22 +305,32 @@ public class PlayerKeyboardManager : MonoBehaviour
             inventoryController.PickUpOrDrop();
 
         if (!inventoryController.UIIsActive()) return;
+
+        CursorDirection direction;
         if (keyDown.Equals(KeyCode.I))
         {
-            inventoryController.MoveCursor(CursorDirection.Up);
+            direction = CursorDirection.Up;
         }
         else if (keyDown.Equals(KeyCode.J))
         {
-            inventoryController.MoveCursor(CursorDirection.Left);
+            direction = CursorDirection.Left;
         }
         else if (keyDown.Equals(KeyCode.K))
         {
-            inventoryController.MoveCursor(CursorDirection.Down);
+            direction = CursorDirection.Down;
         }
         else if (keyDown.Equals(KeyCode.L))
         {
-            inventoryController.MoveCursor(CursorDirection.Right);
+            direction = CursorDirection.Right;
         }
+        else
+        {
+            return;
+        }
+
+        int cursorSlot = inventoryController.MoveCursor(direction);
+        // if (cursorSlot != -1) NPCInteractedController.MoveCursor(cursorSlot);
+
     }
 
     private void UpdateDeath()
