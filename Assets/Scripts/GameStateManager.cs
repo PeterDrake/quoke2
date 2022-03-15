@@ -34,6 +34,7 @@ public class GameStateManager : MonoBehaviour
     private bool pointsInScene = true;
 
     private InventoryController inventoryController;
+    private NPCInteractedController npcInteractedController;
 
     private GameObject inventoryObject;
     
@@ -188,7 +189,7 @@ public class GameStateManager : MonoBehaviour
         if (inventoryInScene)
         {
             referenceManager.tooltipCanvas.SetActive(true);
-            referenceManager.inventoryCanvas.SetActive(true);
+            referenceManager.inventoryController.EnableUI();
 
             keyboardManager.SetCursorLocation(0);
 
@@ -205,9 +206,9 @@ public class GameStateManager : MonoBehaviour
         
         if (npcInteractedInScene)
         {
-            keyboardManager.EnableNPCInteracted();
+            npcInteractedController.EnableUI();
         }
-        else referenceManager.npcInteractedCanvas.SetActive(false);
+        else npcInteractedController.DisableUI();
 
         tooltipManager.SetNPCInventoryTooltipInactive();
 
@@ -250,10 +251,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
-        referenceManager.inventoryCanvas.SetActive(false);
+        inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.npcInteractedCanvas.SetActive(false);
+        npcInteractedController.DisableUI();
         if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
         {
             tooltipManager.SetObjectivesActive();
@@ -293,10 +294,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
-        referenceManager.inventoryCanvas.SetActive(false);
+        inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
-        referenceManager.npcInteractedCanvas.SetActive(false);
+        npcInteractedController.DisableUI();
         tooltipManager.SetObjectivesInactive();
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled"))
         {
@@ -339,10 +340,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
-        referenceManager.inventoryCanvas.SetActive(false);
+        inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.npcInteractedCanvas.SetActive(false);
+        npcInteractedController.DisableUI();
 
         deathCanvas.SetActive(false);
         if (!SceneManager.GetActiveScene().name.Equals("TitleScreen"))
@@ -359,10 +360,10 @@ public class GameStateManager : MonoBehaviour
         referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
         referenceManager.metersCanvas.SetActive(false);
-        referenceManager.inventoryCanvas.SetActive(false);
+        inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
-        referenceManager.npcInteractedCanvas.SetActive(false);
+        npcInteractedController.DisableUI();
 
         deathCanvas.SetActive(true);
         segueCanvas.SetActive(false);

@@ -45,11 +45,11 @@ public class TestPreQuakeHouse
     public IEnumerator PicksUpAnItem()
     {
         // Find some objects
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         // Take some steps
         yield return QuokeTestUtils.Press("wwdd", playerKeyboard, cheatKeyboard);
         // Verify that the sunscreen was picked up
-        Assert.AreEqual("Sunscreen(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Sunscreen(Clone)", inventoryController.GetNameOfItemInSlot(0));
     }
     
     [UnityTest]
@@ -70,9 +70,9 @@ public class TestPreQuakeHouse
     {
         yield return QuokeTestUtils.Press("l", playerKeyboard, cheatKeyboard);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[1].name);
+        InventoryController inventoryController = referenceManager.inventoryController;
+        Assert.AreEqual("Shovel(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(1));
     }
     
 }

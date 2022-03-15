@@ -43,16 +43,7 @@ public class Collectible : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
-            foreach (Inventory obj in GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponentsInChildren<Inventory>())
-            {
-                if (obj.gameObject.name.Equals("Inventory"))
-                {
-                    inventory = obj;
-                }
-            }
-
             inventoryController = referenceManager.inventoryController;
-            // inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponent<Inventory>();
         }
     }
 

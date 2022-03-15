@@ -180,10 +180,10 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("aaassssssss ", playerKeyboard);
-        Assert.AreEqual("Book(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Book(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("wwwwwwwwwwwwwwww", playerKeyboard);
         Assert.AreEqual("StrategicMap", SceneManager.GetActiveScene().name);
 
@@ -287,11 +287,11 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("aassssssss ", playerKeyboard);
-        Assert.AreEqual("Bleach(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Dirty Water Bottle(Clone)", inventory.items[1].name);
+        Assert.AreEqual("Bleach(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Dirty Water Bottle(Clone)", inventoryController.GetNameOfItemInSlot(1));
         yield return QuokeTestUtils.Press("wwwwwwwwaaaaaaa", playerKeyboard);
         yield return QuokeTestUtils.Press("> < ", playerKeyboard);
         Assert.AreEqual(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"),
@@ -338,14 +338,14 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         Assert.AreEqual("Annette", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("                   d>   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("First Aid Kit(Clone)", inventory.items[0].name);
+        Assert.AreEqual("First Aid Kit(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("aaassssssssssss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -385,15 +385,15 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("wwwwwwwaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         Assert.AreEqual("Angie", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("        <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Radio(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
+        Assert.AreEqual("Radio(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
 
         // Safi Inventory:      Shovel,         Canned Food,    Gloves,             Playing Cards
         // Angie Inventory:     FIRST AID KIT,  Blanket,        NONE,               Knife
@@ -407,9 +407,9 @@ public class TestWalkthrough
         Assert.AreEqual("Carlos", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("           << << ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Leash(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
+        Assert.AreEqual("Leash(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(2));
         yield return QuokeTestUtils.Press("ddsss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -460,7 +460,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
 
         yield return QuokeTestUtils.Press("dddddd", playerKeyboard);
@@ -469,10 +469,10 @@ public class TestWalkthrough
         dialogueManager.currentNode = dialogueManager.forest["basic_annette_1.0"];
         yield return QuokeTestUtils.Press("    <<< < ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Bleach(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
-        Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
+        Assert.AreEqual("Bleach(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(2));
+        Assert.AreEqual("Rope(Clone)", inventoryController.GetNameOfItemInSlot(3));
 
         yield return QuokeTestUtils.Press("aaassssssssssss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -517,7 +517,7 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         dialogueManager = referenceManager.dialogueCanvas.GetComponent<DialogueManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("wwwwwaaaaaaaaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -525,10 +525,10 @@ public class TestWalkthrough
         dialogueManager.currentNode = dialogueManager.forest["basic_dem_2.0"];
         yield return QuokeTestUtils.Press("   <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Tent(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
-        Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
+        Assert.AreEqual("Tent(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(2));
+        Assert.AreEqual("Rope(Clone)", inventoryController.GetNameOfItemInSlot(3));
 
         yield return QuokeTestUtils.Press("dddwwwwwwwwwwwwwwwwww", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -572,18 +572,18 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("sssaaaaaaaaa", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         Assert.AreEqual("Rainer", GlobalControls.currentNpc);
         yield return QuokeTestUtils.Press("     < <<< ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Wrench(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
-        Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
-        Assert.AreEqual("Toilet Paper(Clone)", inventory.items[4].name);
+        Assert.AreEqual("Wrench(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(2));
+        Assert.AreEqual("Rope(Clone)", inventoryController.GetNameOfItemInSlot(3));
+        Assert.AreEqual("Toilet Paper(Clone)", inventoryController.GetNameOfItemInSlot(4));
 
         yield return QuokeTestUtils.Press("ssssssssds", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -628,7 +628,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         waterHeaterOrGasValve = GameObject.Find("Interactables").GetComponentInChildren<WaterHeaterOrGasValve>();
 
         yield return QuokeTestUtils.Press("wwwwwddddd", playerKeyboard);
@@ -655,11 +655,11 @@ public class TestWalkthrough
         yield return QuokeTestUtils.Press("    <<<< ~``", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
-        Assert.AreEqual("Shovel(Clone)", inventory.items[0].name);
-        Assert.AreEqual("Tarp(Clone)", inventory.items[1].name);
-        Assert.AreEqual("Plywood(Clone)", inventory.items[2].name);
-        Assert.AreEqual("Rope(Clone)", inventory.items[3].name);
-        Assert.AreEqual("Toilet Paper(Clone)", inventory.items[4].name);
+        Assert.AreEqual("Shovel(Clone)", inventoryController.GetNameOfItemInSlot(0));
+        Assert.AreEqual("Tarp(Clone)", inventoryController.GetNameOfItemInSlot(1));
+        Assert.AreEqual("Plywood(Clone)", inventoryController.GetNameOfItemInSlot(2));
+        Assert.AreEqual("Rope(Clone)", inventoryController.GetNameOfItemInSlot(3));
+        Assert.AreEqual("Toilet Paper(Clone)", inventoryController.GetNameOfItemInSlot(4));
 
         yield return QuokeTestUtils.Press("wwwwwwwwwwwwaaaawww", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -706,7 +706,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
 
         yield return QuokeTestUtils.Press("wwaaaaawa  >> > << >>> ", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -723,7 +723,7 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        //inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         yield return QuokeTestUtils.Press(">>> ", playerKeyboard, null, strategicMapKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -738,7 +738,7 @@ public class TestWalkthrough
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         itemLoader = referenceManager.itemLoader.GetComponent<ItemLoader>();
 
         GlobalItemList.UpdateItemList("Water Bottle Clean", "Yard", new Vector3(0, 0, 0), "Water Purifying Table");
@@ -754,20 +754,20 @@ public class TestWalkthrough
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         
         yield return new WaitForSeconds(1.0f);
 
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        //inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         yield return QuokeTestUtils.Press("wwwwwddddd>  ", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
         yield return QuokeTestUtils.Press(" <<< ~``", playerKeyboard, cheatKeyboard);
-        Assert.AreEqual("Canned Food(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Canned Food(Clone)", inventoryController.GetNameOfItemInSlot(0));
     }
 
 
@@ -792,7 +792,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -800,7 +800,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press("<< < ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Dog Crate(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Dog Crate(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("wwwwwwwwwwwdddwwww", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -837,7 +837,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -845,7 +845,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(" < < ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Fire Extinguisher(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Fire Extinguisher(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("ssssssssssssss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -882,7 +882,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -890,7 +890,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(" << ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Blanket(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Blanket(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("dddssssssssssssssssssssssssssssssss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -927,7 +927,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -935,7 +935,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(" << < ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Epi Pen(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Epi Pen(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("ddssssssssss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -972,7 +972,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -980,12 +980,12 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(" < << ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Batteries(Clone)", inventory.items[3].name);
+        Assert.AreEqual("Batteries(Clone)", inventoryController.GetNameOfItemInSlot(3));
         yield return QuokeTestUtils.Press("ssssssssssssdsssssssssssssssssaa   ", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(">>> <<<<<< ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Can Opener(Clone)", inventory.items[3].name);
+        Assert.AreEqual("Can Opener(Clone)", inventoryController.GetNameOfItemInSlot(3));
         yield return QuokeTestUtils.Press("ddsss", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
 
@@ -1022,7 +1022,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -1030,7 +1030,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press(">>> <<<< ~``", playerKeyboard, cheatKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Rubber Chicken(Clone)", inventory.items[3].name);
+        Assert.AreEqual("Rubber Chicken(Clone)", inventoryController.GetNameOfItemInSlot(3));
         yield return new WaitForSeconds(1.0f);
         yield return QuokeTestUtils.Press("a>>  >  ", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
@@ -1071,13 +1071,13 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
         yield return QuokeTestUtils.Press("aassssssss wwwwwwwwaaaaa ", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
-        Assert.AreEqual("Water Bottle Clean(Clone)", inventory.items[0].name);
+        Assert.AreEqual("Water Bottle Clean(Clone)", inventoryController.GetNameOfItemInSlot(0));
         yield return QuokeTestUtils.Press("dwwwwwww", playerKeyboard);
         yield return new WaitForSeconds(1.0f);
         
@@ -1114,7 +1114,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -1154,7 +1154,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 
@@ -1193,7 +1193,7 @@ public class TestWalkthrough
         yield return new WaitForSeconds(1.0f);
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         playerKeyboard = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        Inventory inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        InventoryController inventoryController = referenceManager.inventoryController;
         cheatKeyboard = referenceManager.keyboardManager.GetComponent<CheatKeyboardController>();
         strategicMapKeyboard = referenceManager.keyboardManager.GetComponent<StrategicMapKeyboardController>();
 

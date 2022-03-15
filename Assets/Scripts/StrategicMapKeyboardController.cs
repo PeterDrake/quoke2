@@ -14,7 +14,7 @@ public class StrategicMapKeyboardController : MonoBehaviour
     public int playerLocation;
     private KeyCode keyDown = KeyCode.JoystickButton0;
     public bool virtualKeyboard;
-    
+
     private void Start()
     {
         if (!GlobalControls.globalControlsProperties.Contains("apartmentCondition"))
@@ -66,10 +66,10 @@ public class StrategicMapKeyboardController : MonoBehaviour
         player = references.player;
         references.deathCanvas.SetActive(false);
         references.segueCanvas.SetActive(false);
-        references.inventoryCanvas.SetActive(false);
+        references.inventoryController.DisableUI();
         references.dialogueCanvas.SetActive(false);
         references.tradeCanvas.SetActive(false);
-        references.npcInteractedCanvas.SetActive(false);
+        references.npcInteractedController.DisableUI();
         if (GlobalControls.globalControlsProperties.Contains("keybindsEnabled"))
         {
             references.keybinds.SetActive(true);

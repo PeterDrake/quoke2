@@ -76,8 +76,8 @@ public class TradeManagerUI : MonoBehaviour
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        inventories[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<Inventory>();
-        inventoryUIs[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
+        //inventories[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<Inventory>();
+        //inventoryUIs[(int)InventoryE.Parent] = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         selected = Resources.Load<Sprite>("SelectedSlot 1");
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
     }
@@ -296,37 +296,35 @@ public class TradeManagerUI : MonoBehaviour
         }
 
         GlobalControls.npcList[npcName].owes = counter;
-        referenceManager.inventoryCanvas.SetActive(true);
-        if (referenceManager.inventoryCanvas)
+        referenceManager.inventoryController.EnableUI();
+        
+        //overwrite parent inventory with inventory here
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.Player].slotContents.Length; i++)
         {
-            //overwrite parent inventory with inventory here
-            for (int i = 0; i < inventoryUIs[(int)InventoryE.Player].slotContents.Length; i++)
+            if (inventoryUIs[(int)InventoryE.Player].slotContents[i].activeSelf)
             {
-                if (inventoryUIs[(int)InventoryE.Player].slotContents[i].activeSelf)
-                {
-                    inventories[(int)InventoryE.Parent].items[i] = null;
-                    inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
-                    tradeLogic.TransferItem(InventoryE.Player, InventoryE.Parent, i);
-                    
-                }
-                else if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf)
-                {
-                    inventories[(int)InventoryE.Parent].items[i] = null;
-                    inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
-                }
+                inventories[(int)InventoryE.Parent].items[i] = null;
+                inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
+                tradeLogic.TransferItem(InventoryE.Player, InventoryE.Parent, i);
+                
             }
-            
-            for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
+            else if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf)
             {
-                if(inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) inventories[(int)InventoryE.Parent].items[i].GetComponent<Collectible>().inventory = inventories[(int)InventoryE.Parent];
+                inventories[(int)InventoryE.Parent].items[i] = null;
+                inventoryUIs[(int)InventoryE.Parent].slotContents[i].SetActive(false);
             }
-            
-            for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
-            {
-                if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) 
-                    GlobalItemList.UpdateItemList(inventories[(int)InventoryE.Parent].items[i].name, "Inventory", 
-                        new Vector3(i, 0, 0), "Player");
-            }  
+        }
+        
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
+        {
+            if(inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) inventories[(int)InventoryE.Parent].items[i].GetComponent<Collectible>().inventory = inventories[(int)InventoryE.Parent];
+        }
+        
+        for (int i = 0; i < inventoryUIs[(int)InventoryE.Parent].slotContents.Length; i++)
+        {
+            if (inventoryUIs[(int)InventoryE.Parent].slotContents[i].activeSelf) 
+                GlobalItemList.UpdateItemList(inventories[(int)InventoryE.Parent].items[i].name, "Inventory", 
+                    new Vector3(i, 0, 0), "Player");
         }
         gameStateManager.SetConversing();
     }

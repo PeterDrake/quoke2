@@ -11,13 +11,11 @@ public class ReferenceManager : MonoBehaviour
 
     public GameObject canvases;
     
-    public GameObject inventoryCanvas;
     public GameObject metersCanvas;
     public GameObject dialogueCanvas;
     public GameObject tradeCanvas;
     public GameObject deathCanvas;
     public GameObject segueCanvas;
-    public GameObject npcInteractedCanvas;
     public GameObject tooltipCanvas;
 
     public InventoryController inventoryController;
@@ -62,10 +60,6 @@ public class ReferenceManager : MonoBehaviour
             else if (canvas.gameObject.name.Equals("Segue Canvas"))
             {
                 segueCanvas = canvas.gameObject;
-            }
-            else if (canvas.gameObject.name.Equals("NPC Interacted Canvas"))
-            {
-                npcInteractedCanvas = canvas.gameObject;
             }
             else if (canvas.gameObject.name.Equals("Tooltip Canvas"))
             {

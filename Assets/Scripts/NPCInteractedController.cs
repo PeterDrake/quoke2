@@ -16,4 +16,14 @@ public class NPCInteractedController : MonoBehaviour
         Debug.Log(name);
         npcInteracted.NewInteraction(name);
     }
+
+    public void EnableUI()
+    {
+        return;
+    }
+    
+    public void DisableUI()
+    {
+        return;
+    }
 }

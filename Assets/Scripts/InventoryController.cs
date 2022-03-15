@@ -52,6 +52,11 @@ public class InventoryController : MonoBehaviour
         return;
     }
 
+    public void DisableUI()
+    {
+        return;
+    }
+
     public void SelectSlotNumber(int slot)
     {
         return;
@@ -74,5 +79,10 @@ public class InventoryController : MonoBehaviour
     public int MoveCursor(CursorDirection direction)
     {
         return -1;
+    }
+
+    public string GetNameOfItemInSlot(int slot)
+    {
+        return "";
     }
 }

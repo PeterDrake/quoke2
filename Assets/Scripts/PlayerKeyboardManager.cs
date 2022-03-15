@@ -29,7 +29,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private DialogueManager dialogueManager;
     private TooltipManager tooltipManager;
     private GameStateManager gameStateManager;
-    private GameObject npcInteractedCanvas;
+    private NPCInteractedController npcInteractedController;
     private HelpManager helpManager;
 
     public bool leftTrading = false;
@@ -69,7 +69,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         tooltipManager = referenceManager.tooltipManager;
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         inventoryController = referenceManager.inventoryController;
-        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        npcInteractedController = referenceManager.npcInteractedController;
         helpManager = referenceManager.helpManager;
     }
 
@@ -84,16 +84,6 @@ public class PlayerKeyboardManager : MonoBehaviour
 
         unselected = Resources.Load<Sprite>("UnselectedSlot 1");
         selected = Resources.Load<Sprite>("SelectedSlot 1");
-
-        int index = 0;
-        foreach (Transform child in npcInteractedCanvas.GetComponentsInChildren<Transform>(true))
-        {
-            if (child.name.EndsWith("Panel"))
-            {
-                npcFrames[index] = child.Find("Frame").gameObject;
-                index++;
-            }
-        }
     }
 
     /// <summary>
@@ -466,18 +456,18 @@ public class PlayerKeyboardManager : MonoBehaviour
         gameObject.GetComponent<StrategicMapKeyboardController>().enabled = false;
     }
 
-    public void EnableNPCInteracted()
-    {
-        // GameStateManager will call this method once before PlayerKeyboardManager has run it's start method
-        // This check is to prevent that from throwing an error
-        if (referenceManager)
-        {
-            referenceManager.npcInteractedCanvas.SetActive(true);
-            
-            for (int i = 0; i < validNPCInputs.Length; i++)
-            {
-                npcFrames[i].GetComponent<Image>().sprite = unselected;
-            }
-        }
-    }
+    // public void EnableNPCInteracted()
+    // {
+    //     // GameStateManager will call this method once before PlayerKeyboardManager has run it's start method
+    //     // This check is to prevent that from throwing an error
+    //     if (referenceManager)
+    //     {
+    //         referenceManager.npcInteractedCanvas.SetActive(true);
+    //         
+    //         for (int i = 0; i < validNPCInputs.Length; i++)
+    //         {
+    //             npcFrames[i].GetComponent<Image>().sprite = unselected;
+    //         }
+    //     }
+    // }
 }
