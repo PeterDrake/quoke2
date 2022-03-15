@@ -15,6 +15,10 @@ public class SceneManagement : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
+        
+        metersController = GameObject.Find("Meters Controller").GetComponent<MetersController>();
+        Debug.Log("meter controller" + metersController);
+        
 
         if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PSU", "WaterfrontPark", "Street", "PioneerCourthouseSquare"};
         else previousScenes = new []{ "PSU", "WaterfrontPark", "Yard", "PioneerCourthouseSquare" };
