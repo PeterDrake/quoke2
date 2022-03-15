@@ -40,11 +40,10 @@ public class ReferenceManager : MonoBehaviour
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
         {
-            // else 
-            // if (canvas.gameObject.name.Equals("Meters Canvas"))
-            // {
-            //     metersCanvas = canvas.gameObject;
-            // }
+            if (canvas.gameObject.name.Equals("Meters Canvas"))
+            {
+                metersCanvas = canvas.gameObject;
+            }
             if (canvas.gameObject.name.Equals("Dialogue Canvas"))
             {
                 dialogueCanvas = canvas.gameObject;

@@ -73,6 +73,7 @@ public class GameStateManager : MonoBehaviour
         //     }
         // }
         inventoryController = referenceManager.inventoryController;
+        npcInteractedController = referenceManager.npcInteractedController;
 
         tooltipManager.HandleTooltip();
 
