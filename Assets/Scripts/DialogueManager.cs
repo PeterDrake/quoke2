@@ -23,14 +23,24 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
+        //keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
+    }
+    
+    private void Awake()
+    {
+        Debug.Log("awake in dialogue manager");
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        Debug.Log("reference manager " + referenceManager);
+        Debug.Log("referfernce.keyboard " + referenceManager.keyboardManager);
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
     }
 
     private void OnEnable()
     {
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;

@@ -39,6 +39,7 @@ public class ReferenceManager : MonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("awake in reference manager");
         canvases = GameObject.Find("Canvases");
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
