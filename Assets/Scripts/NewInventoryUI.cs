@@ -98,7 +98,8 @@ public class NewInventoryUI : MonoBehaviour
         Debug.Log("Global Controls: " + GlobalControls.globalControlsProperties);
         Debug.Log("Slotcontent: " + slotContents[selectedSlotNumber]);
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
-            && slotContents[selectedSlotNumber].activeSelf) //selected slot is null
+            && slotContents[selectedSlotNumber].activeSelf) 
+            //selected slot is null
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
