@@ -21,14 +21,6 @@ public class DialogueManager : MonoBehaviour
     private DialogueUI dialogueUI;
     private NPCInteractedController npcInteractedController;
 
-    private void Start()
-    {
-
-        //keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
-        dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
-    }
-    
     private void Awake()
     {
         Debug.Log("awake in dialogue manager");
@@ -36,7 +28,8 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("reference manager " + referenceManager);
         Debug.Log("referfernce.keyboard " + referenceManager.keyboardManager);
         keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
-
+        gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
+        dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
     }
 
     private void OnEnable()
@@ -49,6 +42,7 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginConversation()
     {
+        Debug.Log(dialogueUI);
         dialogueUI.LoadNPC(GlobalControls.currentNpc);
 
         // Paste the path of the xml file you want to look at here

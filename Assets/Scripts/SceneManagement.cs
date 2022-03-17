@@ -8,17 +8,11 @@ public class SceneManagement : MonoBehaviour
     private string[] previousScenes; 
     private ReferenceManager referenceManager;
     private ObjectiveManager objectiveManager;
-    private MetersController metersController;
-
     
     private void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         objectiveManager = referenceManager.objectiveManager.GetComponent<ObjectiveManager>();
-        
-        metersController = GameObject.Find("Meters Controller").GetComponent<MetersController>();
-        Debug.Log("meter controller" + metersController);
-        
 
         if(GlobalControls.globalControlsProperties.Contains("apartmentCondition")) previousScenes = new []{"PSU", "WaterfrontPark", "Street", "PioneerCourthouseSquare"};
         else previousScenes = new []{ "PSU", "WaterfrontPark", "Yard", "PioneerCourthouseSquare" };
@@ -63,12 +57,12 @@ public class SceneManagement : MonoBehaviour
             if (!GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
             {
                 GlobalControls.poopTimeLeft--;
-                metersController.UpdateVisualText();
+                referenceManager.metersController.UpdateVisualText();
             }
             if (!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"))
             {
                 GlobalControls.waterTimeLeft--;
-                metersController.UpdateVisualText();
+                referenceManager.metersController.UpdateVisualText();
             }
         }
 

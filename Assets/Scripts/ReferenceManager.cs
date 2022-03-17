@@ -32,7 +32,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject itemLoader;
 
     public InventoryController inventoryController;
-    public GameObject metersController;
+    public MetersController metersController;
     public GameObject meters;
     public NPCInteractedController npcInteractedController;
     
@@ -85,6 +85,8 @@ public class ReferenceManager : MonoBehaviour
         meters = GameObject.Find("Meters").gameObject;
         metersCanvas = GameObject.Find("New UI Canvas").gameObject;
         inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
+        npcInteractedController = GameObject.Find("NPC Interacted Controller").GetComponent<NPCInteractedController>();
+        metersController = GameObject.Find("Meters Controller").GetComponent<MetersController>();
         helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
         
         keyboardManager = GameObject.Find("Keyboard Manager");

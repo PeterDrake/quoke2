@@ -35,6 +35,7 @@ public class Meters : MonoBehaviour
     private TMP_Text waterLevelNumberTMP;
 
     private ReferenceManager referenceManager;
+    private int testValue;
 
 
     void Start()
@@ -52,19 +53,19 @@ public class Meters : MonoBehaviour
 
         foreach (Transform obj in gameObject.GetComponentsInChildren<Transform>())
         {
-            Debug.Log("obj: " + obj + " obj name: <" + obj.name + ">");
+            //Debug.Log("obj: " + obj + " obj name: <" + obj.name + ">");
             if (obj.name.Equals("WaterMeter"))
             {
-                Debug.Log("Obj: " + obj.gameObject);
+                //Debug.Log("Obj: " + obj.gameObject);
                 waterMeter = obj.gameObject;
-                Debug.Log(" water meter set: " + waterMeter);
+                //Debug.Log(" water meter set: " + waterMeter);
             }
             
         }
 
         foreach (Transform child in waterMeter.GetComponentsInChildren<Transform>())
         {
-            Debug.Log("Child: " + child.name);
+            //Debug.Log("Child: " + child.name);
             if (child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<Text>();
             else if (child.name.Equals("Water Value Text (TMP)") || child.name.Equals("Water Value")) waterLevelNumber = child.gameObject.GetComponent<TextMeshProUGUI>();
             else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
@@ -77,8 +78,6 @@ public class Meters : MonoBehaviour
             else if (child.name.Equals("Water Icon Mask") || child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
 			else if (child.name.Equals("Water Tooltip"))
             {
-
-                Debug.Log("found water tooltip");
                 waterTooltip = child.gameObject;
                 foreach (TextMeshProUGUI obj in child.GetComponentsInChildren<TextMeshProUGUI>())
                 {
@@ -90,8 +89,6 @@ public class Meters : MonoBehaviour
             
             
         }
-        
-        Debug.Log("Water objects: " + waterTooltipText.ToString());
         waterTooltip.SetActive(false);
 
 //        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
@@ -133,15 +130,15 @@ public class Meters : MonoBehaviour
 
     public void UpdateVisualText()
     {
-        //Start();
-        
-		if (waterLevelNumber) waterLevelNumber.text = waterTimeLeft.ToString();
+
+        if (waterLevelNumber) waterLevelNumber.text = waterTimeLeft.ToString();
 		if (waterLevelNumberTMP) waterLevelNumberTMP.text = waterTimeLeft.ToString();
 //        poopLevelNumber.text = poopTimeLeft.ToString();
 
 		if (waterTimeLeft <= 3)
 		{
-            waterTooltipText.SetActive(true);
+            Debug.Log(waterTooltip);
+            waterTooltip.SetActive(true);
 		}
 
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
