@@ -119,7 +119,9 @@ public class Meters : MonoBehaviour
         }
         
         Debug.Log("Water objects: " + waterTooltipText.ToString());
+        Debug.Log("Poop objects " + poopTooltipText.ToString());
         waterTooltip.SetActive(false);
+        poopTooltip.SetActive(false);
 
 //        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
 //       waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
@@ -173,6 +175,11 @@ public class Meters : MonoBehaviour
             waterTooltipText.SetActive(true);
 		}
 
+        if (poopTimeLeft <= 3)
+        {
+            poopTooltipText.SetActive(true);
+        }
+
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
             //poopDoneIndicator.SetActive(true);
@@ -200,7 +207,7 @@ public class Meters : MonoBehaviour
             waterProgressFill.color = Color.white;
         }
         
-//        poopProgressObject.GetComponent<Slider>().value = poopTimeLeft / 24f;
+        poopProgressObject.GetComponent<Slider>().value = poopTimeLeft / 24f;
         waterProgressObject.GetComponent<Slider>().value = waterTimeLeft / 24f;
         
         if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled") && 
