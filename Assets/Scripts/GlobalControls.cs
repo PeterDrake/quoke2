@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public static class GlobalControls
 {
-    public static int poopTimeLeft = 24;  // 24 after the quake
+    public static int poopTimeLeft = 23;  // 24 after the quake
+    
+    //setting this to 23 temp so can tell if its working
 
     public static int waterTimeLeft = 12;  // 12 after the quake, or 3 if no water was stored
 
@@ -100,7 +102,7 @@ public static class GlobalControls
             {"Conversing", "< > => Switch Option \nSPACE => Select Option \nESC => Leave Interaction"},
             {"StrategicMap", "< > => Move Locations \nSPACE => Travel to Location"}
         };
-        poopTimeLeft = 24;
+        poopTimeLeft = 23;
         waterTimeLeft = 12;        
         poopTaskProgress = new bool[5];
         timesShoveled = 0;

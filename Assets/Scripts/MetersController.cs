@@ -9,7 +9,7 @@ public class MetersController : MonoBehaviour
     void Start()
     { 
         meters = GameObject.Find("Meters").GetComponent<Meters>();
-       meters.UpdateVisualText();
+       //meters.UpdateVisualText();
     }
 
     //Used to check off meter on canvas & reset meter
