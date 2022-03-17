@@ -15,8 +15,11 @@ using UnityEngine.Serialization;
 public class Collectible : MonoBehaviour
 {
     public Sprite sprite;
+    
+    public ReferenceManager referenceManager;
     public Inventory inventory;
     public InventoryController inventoryController;
+    
     public bool inStorageContainer;
     public bool inLatrine;
 
@@ -37,6 +40,7 @@ public class Collectible : MonoBehaviour
     // If something is breaking later related to Collectibles, this may be the cause.
     private void Start()
     {
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         if (!SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
         {
             foreach (Inventory obj in GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponentsInChildren<Inventory>())
@@ -46,7 +50,8 @@ public class Collectible : MonoBehaviour
                     inventory = obj;
                 }
             }
-            inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
+
+            inventoryController = referenceManager.inventoryController;
             // inventory = GameObject.Find("Managers").GetComponent<ReferenceManager>().inventoryCanvas.GetComponent<Inventory>();
         }
     }
