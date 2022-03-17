@@ -37,6 +37,7 @@ public class Meters : MonoBehaviour
     private TextMeshProUGUI waterLevelNumber;
 
     private TMP_Text waterLevelNumberTMP;
+    private TMP_Text poopLevelNumberTMP;
 
     private ReferenceManager referenceManager;
 
@@ -63,22 +64,23 @@ public class Meters : MonoBehaviour
                 waterMeter = obj.gameObject;
                 Debug.Log(" water meter set: " + waterMeter);
             }
+            else if (obj.name.Equals("PoopMeter"))
+            {
+                Debug.Log("Obj: " + obj.gameObject);
+                poopMeter = obj.gameObject;
+                Debug.Log(" poop meter set: " + poopMeter);
+            }
 
         }
 
         foreach (Transform child in waterMeter.GetComponentsInChildren<Transform>())
         {
             Debug.Log("Child: " + child.name);
-            if (child.name.Equals("Poop Value Text (TMP)") || child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<TextMeshProUGUI>();
-            else if (child.name.Equals("Water Value Text (TMP)") || child.name.Equals("Water Value")) waterLevelNumber = child.gameObject.GetComponent<TextMeshProUGUI>();
-            else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
+
+            if (child.name.Equals("Water Value Text (TMP)") || child.name.Equals("Water Value")) waterLevelNumber = child.gameObject.GetComponent<TextMeshProUGUI>();
             else if (child.name.Equals("Water Done")) waterDoneIndicator = child.gameObject;
-            else if (child.name.Equals("Poop Icon Background")) poopDoneImage = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Icon Background") || child.name.Equals("Water Back")) waterDoneImage = child.gameObject.GetComponent<Image>();
-            else if (child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
             else if (child.name.Equals("Water Fill Slider") || child.name.Equals("Water Progress")) waterProgressObject = child.gameObject;
-            else if (child.name.Equals("Poop Fill Slider") || child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
-            else if (child.name.Equals("Poop Icon Mask")) poopProgressFill = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Water Icon Mask") || child.name.Equals("Water Background")) waterProgressFill = child.gameObject.GetComponent<Image>();
 			else if (child.name.Equals("Water Tooltip"))
             {
@@ -90,6 +92,21 @@ public class Meters : MonoBehaviour
                     if (obj.name.Equals("Text (TMP)")) waterTooltipText = obj.gameObject;
                 }
             }
+            
+            
+            setStartingValues();
+            
+            
+        }
+
+        foreach (Transform child in poopMeter.GetComponentsInChildren<Transform>())
+        {
+            if (child.name.Equals("Poop Value Text (TMP)") || child.name.Equals("Poop Value")) poopLevelNumber = child.gameObject.GetComponent<TextMeshProUGUI>();
+            else if (child.name.Equals("Poop Done")) poopDoneIndicator = child.gameObject;
+            else if (child.name.Equals("Poop Icon Background")) poopDoneImage = child.gameObject.GetComponent<Image>();
+            else if (child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
+            else if (child.name.Equals("Poop Fill Slider") || child.name.Equals("Poop Progress")) poopProgressObject = child.gameObject;
+            else if (child.name.Equals("Poop Icon Mask")) poopProgressFill = child.gameObject.GetComponent<Image>();
             else if (child.name.Equals("Poop Tooltip"))
             {
                 Debug.Log("found Poop tooltip");
@@ -99,10 +116,6 @@ public class Meters : MonoBehaviour
                     if (obj.name.Equals("Text (TMP)")) poopTooltipText = obj.gameObject;
                 }
             }
-            
-            setStartingValues();
-            
-            
         }
         
         Debug.Log("Water objects: " + waterTooltipText.ToString());
@@ -152,6 +165,8 @@ public class Meters : MonoBehaviour
 		if (waterLevelNumber) waterLevelNumber.text = waterTimeLeft.ToString();
 		if (waterLevelNumberTMP) waterLevelNumberTMP.text = waterTimeLeft.ToString();
 //        poopLevelNumber.text = poopTimeLeft.ToString();
+        if (poopLevelNumber) poopLevelNumber.text = poopTimeLeft.ToString();
+        if (poopLevelNumberTMP) poopLevelNumberTMP.text = poopTimeLeft.ToString();
 
 		if (waterTimeLeft <= 3)
 		{
