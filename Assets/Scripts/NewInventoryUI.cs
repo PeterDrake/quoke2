@@ -28,6 +28,7 @@ public class NewInventoryUI : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("awake in new inventory");
         slotFrames = new GameObject[6];
         slotContents = new GameObject[6];
         int frameCounter = 0;
@@ -59,7 +60,7 @@ public class NewInventoryUI : MonoBehaviour
         }
         foreach (GameObject item in slotContents)
         {
-            item.SetActive(false);
+            //item.SetActive(false);
         }
     }
 
@@ -73,6 +74,7 @@ public class NewInventoryUI : MonoBehaviour
                 if (image.gameObject.name.Equals("Tooltip"))
                 {
                     tooltipText = image.gameObject.GetComponentInChildren<Text>(true);
+                    Debug.Log("tooltipText: " + tooltipText);
                 }
             }
         }
@@ -93,8 +95,11 @@ public class NewInventoryUI : MonoBehaviour
     public void UpdateTooltip()
     {
         int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
+        Debug.Log("Global Controls: " + GlobalControls.globalControlsProperties);
+        Debug.Log("Slotcontent: " + slotContents[selectedSlotNumber]);
         if (GlobalControls.globalControlsProperties.Contains("tooltipsEnabled")
-            && slotContents[selectedSlotNumber].activeSelf)
+            && slotContents[selectedSlotNumber].activeSelf) 
+            //selected slot is null
         {
             if(!referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true).gameObject.activeSelf)
                 referenceManager.tooltipCanvas.GetComponentInChildren<Image>(true)
@@ -219,7 +224,7 @@ public class NewInventoryUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        Clear();
+//        Clear();
         int selectedSlotNumber = inventoryController.GetSelectedSlotNumber();
         // Update to correct number of slots
         int numberOfSlots = inventoryController.GetNumberOfSlots();

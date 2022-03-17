@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
@@ -6,11 +6,8 @@ using TMPro;
 /// <summary>
 /// poop and water meter at the top of the screen
 /// </summary>
-public class Meters : MonoBehaviour
+public class NewMeters : MonoBehaviour
 {
-
-    private MetersController metersController;
-    
     public int poopTimeLeft;
     public int waterTimeLeft;
 
@@ -86,24 +83,16 @@ public class Meters : MonoBehaviour
                 }
             }
             
-            setStartingValues();
-            
             
         }
         
         Debug.Log("Water objects: " + waterTooltipText.ToString());
         waterTooltip.SetActive(false);
-
-//        poopDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"));
-//       waterDoneIndicator.SetActive(GlobalControls.globalControlsProperties.Contains("waterTaskCompleted"));
-
-        UpdateVisualText();
-    }
-    
-    public void setStartingValues()
-    {
+        
         poopTimeLeft = GlobalControls.poopTimeLeft;
         waterTimeLeft = GlobalControls.waterTimeLeft;
+
+        UpdateVisualText();
     }
     
     //Used to check off meter on canvas & reset meter
@@ -133,22 +122,20 @@ public class Meters : MonoBehaviour
 
     public void UpdateVisualText()
     {
-        //Start();
-        
 		if (waterLevelNumber) waterLevelNumber.text = waterTimeLeft.ToString();
 		if (waterLevelNumberTMP) waterLevelNumberTMP.text = waterTimeLeft.ToString();
 //        poopLevelNumber.text = poopTimeLeft.ToString();
 
 		if (waterTimeLeft <= 3)
 		{
-            waterTooltipText.SetActive(true);
+			waterTooltip.SetActive(true);
 		}
 
         if (GlobalControls.globalControlsProperties.Contains("poopTaskCompleted"))
         {
-            //poopDoneIndicator.SetActive(true);
-            //poopDoneImage.color = Color.yellow;
-            //poopProgressFill.color = Color.yellow;
+            poopDoneIndicator.SetActive(true);
+            poopDoneImage.color = Color.yellow;
+            poopProgressFill.color = Color.yellow;
         }
         else
         {
