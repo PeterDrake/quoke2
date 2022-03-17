@@ -19,22 +19,32 @@ public class DialogueManager : MonoBehaviour
     private PlayerKeyboardManager keyboardManager;
     private GameStateManager gameStateManager;
     private DialogueUI dialogueUI;
-    private GameObject npcInteractedCanvas;
+    private NPCInteractedController npcInteractedController;
 
     private void Start()
     {
-        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
+        //keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
         gameStateManager = referenceManager.gameStateManager.GetComponent<GameStateManager>();
         dialogueUI = referenceManager.dialogueCanvas.GetComponentInChildren<DialogueUI>(true);
+    }
+    
+    private void Awake()
+    {
+        Debug.Log("awake in dialogue manager");
+        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
+        Debug.Log("reference manager " + referenceManager);
+        Debug.Log("referfernce.keyboard " + referenceManager.keyboardManager);
+        keyboardManager = referenceManager.keyboardManager.GetComponent<PlayerKeyboardManager>();
+
     }
 
     private void OnEnable()
     {
-        referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         forest = new Dictionary<string, ConvoNode>();
         convoFile = new XmlDocument();
         cursorLocation = 0;
-        npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        npcInteractedController = referenceManager.npcInteractedController;
     }
 
     public void BeginConversation()
@@ -195,7 +205,7 @@ public class DialogueManager : MonoBehaviour
                 }
             }
 
-            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.currentNpc);
+            npcInteractedController.UpdateNPCInteracted(GlobalControls.currentNpc);
 
             Debug.Log("Current Node A: " + currentNode.nodeName);
         }
@@ -300,7 +310,7 @@ public class DialogueManager : MonoBehaviour
         {
             buttons[cursorLocation].Select();
             gameStateManager.SetExploring();
-            npcInteractedCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted(GlobalControls.currentNpc);
+            npcInteractedController.UpdateNPCInteracted(GlobalControls.currentNpc);
             return cursorLocation;
         }
 

@@ -23,6 +23,7 @@ public class PlayerKeyboardManager : MonoBehaviour
     private TooltipManager tooltipManager;
     private GameStateManager gameStateManager;
     private GameObject npcInteractedCanvas;
+    private HelpManager helpManager;
 
     public bool leftTrading = false;
 
@@ -51,6 +52,8 @@ public class PlayerKeyboardManager : MonoBehaviour
 
     private KeyCode keyDown = KeyCode.JoystickButton0;
 
+    private KeyCode keyDownToExitHelpMenu = KeyCode.JoystickButton0;
+
     void InitalizeManagers()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
@@ -61,6 +64,7 @@ public class PlayerKeyboardManager : MonoBehaviour
         inventory = referenceManager.inventoryCanvas.GetComponent<Inventory>();
         inventoryUI = referenceManager.inventoryCanvas.GetComponent<InventoryUI>();
         npcInteractedCanvas = referenceManager.npcInteractedCanvas;
+        helpManager = referenceManager.helpManager;
     }
 
     
@@ -134,8 +138,28 @@ public class PlayerKeyboardManager : MonoBehaviour
                 }
             }
         }
-
-        if (currentGamemode == Gamemode.Segue)
+        
+        // handle opening and closing the help menu
+        if (helpManager.IsCanvasEnabled())
+        {
+            if (!keyDown.Equals(KeyCode.JoystickButton0))
+            {
+                helpManager.DisableHelpMenu();
+                keyDownToExitHelpMenu = keyDown;
+            }
+        }
+        else if (keyDown.Equals(KeyCode.Escape))
+        {
+            helpManager.EnableHelpMenu();
+        }
+        else if (!keyDownToExitHelpMenu.Equals(KeyCode.JoystickButton0)) // if a key was used to exit the help menu
+        {
+            if (Input.GetKeyUp(keyDownToExitHelpMenu)) // see if that key has been unpressed
+            {
+                keyDownToExitHelpMenu = KeyCode.JoystickButton0; // unlock our ability to enter other input
+            }
+        }
+        else if (currentGamemode == Gamemode.Segue)
         {
             UpdateSegue();
         }
@@ -156,14 +180,18 @@ public class PlayerKeyboardManager : MonoBehaviour
             UpdateTrading();
         }
 
-        keyDown = KeyCode.JoystickButton0;
+
+        keyDown = KeyCode.JoystickButton0; // since KeyCode cannot be null, JoystickButton0 is our default value
     }
 
     public void UpdateSegue()
     {
         if (keyDown.Equals(KeyCode.Space))
         {
-            gameStateManager.SetExploring();
+            if (!SceneManager.GetActiveScene().name.Equals("TitleScreen"))
+            {
+                gameStateManager.SetExploring();
+            }
         }
     }
 

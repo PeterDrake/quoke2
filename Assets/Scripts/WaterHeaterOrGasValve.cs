@@ -12,7 +12,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
     private ReferenceManager referenceManager;
     private PlayerMover player;
     private LayerMask gasValve, waterHeater; 
-    private GameObject npcCanvas;
+    private NPCInteractedController npcInteractedController;
 
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
         player = referenceManager.player.GetComponent<PlayerMover>();
-        npcCanvas = referenceManager.npcInteractedCanvas;
+        npcInteractedController = referenceManager.npcInteractedController;
         gasValve = LayerMask.GetMask("GasValve");
         waterHeater = LayerMask.GetMask("WaterHeater");
 
@@ -53,7 +53,7 @@ public class WaterHeaterOrGasValve : MonoBehaviour
             GlobalControls.globalControlsProperties.Add("safi" + interactable + "Done");
             GlobalControls.npcList["Safi"].satisfaction++;
             GlobalControls.currentPoints += GlobalControls.points["favors"];
-            npcCanvas.GetComponent<NPCInteracted>().UpdateNPCInteracted("Safi");
+            npcInteractedController.UpdateNPCInteracted("Safi");
             referenceManager.pointsText.GetComponentInChildren<Text>().text = GlobalControls.currentPoints.ToString();
         }
     }

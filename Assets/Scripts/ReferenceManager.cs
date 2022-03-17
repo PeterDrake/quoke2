@@ -27,13 +27,20 @@ public class ReferenceManager : MonoBehaviour
     public GameObject keybinds;
     public ObjectiveManager objectiveManager;
     public TooltipManager tooltipManager;
+    public HelpManager helpManager;
     public GameObject gameStateManager;
     public GameObject pointsText;
 
     public GameObject itemLoader;
+
+    public InventoryController inventoryController;
+    public GameObject metersController;
+    public GameObject meters;
+    public NPCInteractedController npcInteractedController;
     
     private void Awake()
     {
+        Debug.Log("awake in reference manager");
         canvases = GameObject.Find("Canvases");
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
@@ -41,8 +48,10 @@ public class ReferenceManager : MonoBehaviour
             if (canvas.gameObject.name.Equals("Inventory Canvas"))
             {
                 inventoryCanvas = canvas.gameObject;
+                //metersCanvas = canvas.gameObject;
             }
-            else if (canvas.gameObject.name.Equals("Meters Canvas"))
+            else 
+            if (canvas.gameObject.name.Equals("New UI Canvas"))
             {
                 metersCanvas = canvas.gameObject;
             }
@@ -70,8 +79,26 @@ public class ReferenceManager : MonoBehaviour
             {
                 tooltipCanvas = canvas.gameObject;
             }
+
+            // foreach (Transform bar in inventoryCanvas.GetComponentsInChildren<Transform>())
+            // {
+            //     if (bar.gameObject.name.Equals("TopBar"))
+            //     {
+            //         foreach (Meters meter in bar.GetComponentsInChildren<Meters>())
+            //         {
+            //             meters = meter.gameObject;
+            //         }
+            //     }
+            // }
+            
+            
         }
 
+        meters = GameObject.Find("Meters").gameObject;
+        metersCanvas = GameObject.Find("New UI Canvas").gameObject;
+        inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
+        helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
+        
         keyboardManager = GameObject.Find("Keyboard Manager");
         deathManager = GameObject.Find("Death Manager");
         player = GameObject.Find("Player");
