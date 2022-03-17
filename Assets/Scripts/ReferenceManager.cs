@@ -18,9 +18,6 @@ public class ReferenceManager : MonoBehaviour
     public GameObject segueCanvas;
     public GameObject tooltipCanvas;
 
-    public InventoryController inventoryController;
-    public NPCInteractedController npcInteractedController;
-
     public GameObject player;
     public GameObject keyboardManager;
     public GameObject deathManager;
@@ -34,8 +31,14 @@ public class ReferenceManager : MonoBehaviour
 
     public GameObject itemLoader;
 
+    public InventoryController inventoryController;
+    public GameObject metersController;
+    public GameObject meters;
+    public NPCInteractedController npcInteractedController;
+    
     private void Awake()
     {
+
         canvases = GameObject.Find("Canvases (Detached)");
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
@@ -64,12 +67,25 @@ public class ReferenceManager : MonoBehaviour
             {
                 tooltipCanvas = canvas.gameObject;
             }
+
+            // foreach (Transform bar in inventoryCanvas.GetComponentsInChildren<Transform>())
+            // {
+            //     if (bar.gameObject.name.Equals("TopBar"))
+            //     {
+            //         foreach (Meters meter in bar.GetComponentsInChildren<Meters>())
+            //         {
+            //             meters = meter.gameObject;
+            //         }
+            //     }
+            // }
+            
+            
         }
 
-        helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
-        
+        meters = GameObject.Find("Meters").gameObject;
+        metersCanvas = GameObject.Find("New UI Canvas").gameObject;
         inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
-        npcInteractedController = GameObject.Find("NPC Interacted Controller").GetComponent<NPCInteractedController>();
+        helpManager = GameObject.Find("Help Canvas").GetComponent<HelpManager>();
         
         keyboardManager = GameObject.Find("Keyboard Manager");
         deathManager = GameObject.Find("Death Manager");
