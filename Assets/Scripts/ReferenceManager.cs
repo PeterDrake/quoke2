@@ -36,6 +36,7 @@ public class ReferenceManager : MonoBehaviour
     public InventoryController inventoryController;
     public GameObject metersController;
     public GameObject meters;
+    public NPCInteractedController npcInteractedController;
     
     private void Awake()
     {
