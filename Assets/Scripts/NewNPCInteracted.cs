@@ -23,13 +23,13 @@ public class NewNPCInteracted : MonoBehaviour
     
     void Start()
     {
-        if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
-            SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
-        {
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
+        // if (SceneManager.GetActiveScene().name.Equals("PreQuakeHouse") ||
+        //     SceneManager.GetActiveScene().name.Equals("QuakeHouse"))
+        // {
+        //     this.gameObject.SetActive(false);
+        // }
+        // else
+        // {
             panels = new List<Transform>();
             foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
             {
@@ -44,7 +44,7 @@ public class NewNPCInteracted : MonoBehaviour
                 string name = GlobalControls.npcNames[i];
                 UpdateNPCInteracted(name);
             }
-        }
+        // }
     }
 
     private void UpdateSatisfactionStars(NPC npc, int index)

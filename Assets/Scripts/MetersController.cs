@@ -26,4 +26,14 @@ public class MetersController : MonoBehaviour
     {
         meters.setStartingValues();
     }
+
+    public void EnableUI()
+    {
+        return;
+    }
+    
+    public void DisableUI()
+    {
+        return;
+    }
 }

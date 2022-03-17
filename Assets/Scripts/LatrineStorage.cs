@@ -25,13 +25,13 @@ public class LatrineStorage : MonoBehaviour
     private GameObject tarp;
     private GameObject toiletPaper;
 
-    public Meters meters;
+    public MetersController metersController;
     public ReferenceManager referenceManager;
 
     public void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        meters = referenceManager.metersCanvas.GetComponent<Meters>();
+        metersController = referenceManager.metersController;
         shovelingDone = GlobalControls.poopTaskProgress[0];
         plywoodDone = GlobalControls.poopTaskProgress[1];
         ropeDone = GlobalControls.poopTaskProgress[2];
@@ -136,7 +136,7 @@ public class LatrineStorage : MonoBehaviour
         if (!tarpDone) return false;
         if (!toiletPaperDone) return false;
         Debug.Log("Completed latrine uwu");
-        meters.MarkTaskAsDone("poop");
+        metersController.MarkTaskAsDone("poop");
         return true;
     }
     

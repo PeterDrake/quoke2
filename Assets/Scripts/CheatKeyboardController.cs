@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 public class CheatKeyboardController : MonoBehaviour
 {
     // For scenes with no meters (before and during the quake), this can remain null
-    public Meters meters;
     public SceneManagement sceneManagement;
     private string currentScene;
     public bool virtualKeyboard;
@@ -28,11 +27,13 @@ public class CheatKeyboardController : MonoBehaviour
     public KeyCode annetteItems = KeyCode.B;
     public KeyCode safiItems = KeyCode.N;
     public KeyCode rainerItems = KeyCode.M;
+
+    private MetersController metersController;
     
 
     void Start()
     {
-        meters = GameObject.Find("Managers").GetComponent<ReferenceManager>().metersCanvas.GetComponent<Meters>();
+        metersController = GameObject.Find("Managers").GetComponent<ReferenceManager>().metersController;
         sceneManagement = GameObject.Find("Managers").GetComponent<ReferenceManager>().sceneManagement.GetComponent<SceneManagement>();
         currentScene = SceneManager.GetActiveScene().name;
     }
@@ -98,13 +99,13 @@ public class CheatKeyboardController : MonoBehaviour
             {
                 sceneManagement.ChangeScene("StrategicMap");
             }
-            if (meters && keyDown.Equals(completeWater)) //Complete Water
+            if (metersController && keyDown.Equals(completeWater)) //Complete Water
             {
-                meters.MarkTaskAsDone("water");
+                metersController.MarkTaskAsDone("water");
             }
-            if (meters && keyDown.Equals(completePoop)) //Complete Poop
+            if (metersController && keyDown.Equals(completePoop)) //Complete Poop
             {
-                meters.MarkTaskAsDone("poop");
+                metersController.MarkTaskAsDone("poop");
             }
             if (keyDown.Equals(restart)) //Restart Game
             {

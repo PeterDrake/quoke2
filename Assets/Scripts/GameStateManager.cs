@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
     private PlayerKeyboardManager keyboardManager;
     private GameObject deathCanvas;
     private GameObject segueCanvas;
-    private GameObject metersCanvas;
+    private MetersController metersController;
 
     public Gamemode currentGamemode;
 
@@ -48,7 +48,7 @@ public class GameStateManager : MonoBehaviour
         deathCanvas = referenceManager.deathCanvas;
         deathCanvas.SetActive(false);
         segueCanvas = referenceManager.segueCanvas;
-        metersCanvas = referenceManager.metersCanvas;
+        metersController = referenceManager.metersController;
 
         // foreach (Inventory obj in referenceManager.inventoryCanvas.GetComponentsInChildren<Inventory>())
         // {
@@ -143,16 +143,16 @@ public class GameStateManager : MonoBehaviour
                 GlobalControls.poopTimeLeft == 0)
             {
                 Debug.Log("You died by poop meter going to zero!!");
-                referenceManager.deathManager.GetComponent<PlayerDeath>()
-                    .KillPlayer(metersCanvas, 4);
+                //referenceManager.deathManager.GetComponent<PlayerDeath>()
+                    //.KillPlayer(metersCanvas, 4);
             }
 
             if (!GlobalControls.globalControlsProperties.Contains("waterTaskCompleted") &&
                 GlobalControls.waterTimeLeft == 0)
             {
                 Debug.Log("You died of thirst!");
-                referenceManager.deathManager.GetComponent<PlayerDeath>()
-                    .KillPlayer(metersCanvas, 2);
+                //referenceManager.deathManager.GetComponent<PlayerDeath>()
+                    //.KillPlayer(metersCanvas, 2);
             }
         }
     }
@@ -166,9 +166,9 @@ public class GameStateManager : MonoBehaviour
         referenceManager.player.GetComponent<PlayerMover>().enabled = true;
         
         if (GlobalControls.globalControlsProperties.Contains("metersEnabled"))
-            referenceManager.metersCanvas.SetActive(true);
+            referenceManager.metersController.EnableUI();
         else if (!GlobalControls.globalControlsProperties.Contains("metersEnabled"))
-            referenceManager.metersCanvas.SetActive(false);
+            referenceManager.metersController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
         if (GlobalControls.globalControlsProperties.Contains("objectivesEnabled"))
@@ -251,7 +251,7 @@ public class GameStateManager : MonoBehaviour
         segueCanvas.SetActive(false);
         referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
-        referenceManager.metersCanvas.SetActive(false);
+        referenceManager.metersController.DisableUI();
         inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(true);
         referenceManager.tradeCanvas.SetActive(false);
@@ -294,7 +294,7 @@ public class GameStateManager : MonoBehaviour
         segueCanvas.SetActive(false);
         referenceManager.tooltipCanvas.SetActive(true);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
-        referenceManager.metersCanvas.SetActive(false);
+        referenceManager.metersController.DisableUI();
         inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(true);
@@ -340,7 +340,7 @@ public class GameStateManager : MonoBehaviour
 
         referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
-        referenceManager.metersCanvas.SetActive(false);
+        referenceManager.metersController.DisableUI();
         inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);
@@ -360,7 +360,7 @@ public class GameStateManager : MonoBehaviour
 
         referenceManager.tooltipCanvas.SetActive(false);
         referenceManager.player.GetComponent<PlayerMover>().enabled = false;
-        referenceManager.metersCanvas.SetActive(false);
+        referenceManager.metersController.DisableUI();
         inventoryController.DisableUI();
         referenceManager.dialogueCanvas.SetActive(false);
         referenceManager.tradeCanvas.SetActive(false);

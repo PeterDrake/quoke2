@@ -11,7 +11,6 @@ public class ReferenceManager : MonoBehaviour
 
     public GameObject canvases;
     
-    public GameObject metersCanvas;
     public GameObject dialogueCanvas;
     public GameObject tradeCanvas;
     public GameObject deathCanvas;
@@ -43,10 +42,6 @@ public class ReferenceManager : MonoBehaviour
 
         foreach (Canvas canvas in canvases.GetComponentsInChildren<Canvas>(true))
         {
-            if (canvas.gameObject.name.Equals("Meters Canvas"))
-            {
-                metersCanvas = canvas.gameObject;
-            }
             if (canvas.gameObject.name.Equals("Dialogue Canvas"))
             {
                 dialogueCanvas = canvas.gameObject;
@@ -82,8 +77,6 @@ public class ReferenceManager : MonoBehaviour
             
         }
 
-        meters = GameObject.Find("Meters").gameObject;
-        metersCanvas = GameObject.Find("New UI Canvas").gameObject;
         inventoryController = GameObject.Find("Inventory Controller").GetComponent<InventoryController>();
         npcInteractedController = GameObject.Find("NPC Interacted Controller").GetComponent<NPCInteractedController>();
         metersController = GameObject.Find("Meters Controller").GetComponent<MetersController>();

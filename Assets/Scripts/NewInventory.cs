@@ -20,7 +20,7 @@ public class NewInventory
     private int waterLayer;
 
     private ReferenceManager referenceManager;
-    private Meters meters;
+    private MetersController metersController;
 
     private LatrineStorage latrineStorage;
     private TwoBucketScript twoBucket;
@@ -437,8 +437,8 @@ public class NewInventory
             {
                 Debug.Log("Using bleach");
 
-                meters = referenceManager.metersCanvas.GetComponent<Meters>();
-                meters.MarkTaskAsDone("water");
+                metersController = referenceManager.metersController;
+                metersController.MarkTaskAsDone("water");
                     
                 GlobalItemList.UpdateItemList("Dirty Water Bottle",
                     "",

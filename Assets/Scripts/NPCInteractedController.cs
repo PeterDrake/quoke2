@@ -6,7 +6,7 @@ public class NPCInteractedController : MonoBehaviour
 {
     private NewNPCInteracted npcInteracted;
 
-    void Start()
+    void Awake()
     {
         npcInteracted = GameObject.Find("Neighbors").GetComponent<NewNPCInteracted>();
     }

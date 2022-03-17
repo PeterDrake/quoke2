@@ -22,13 +22,13 @@ public class TwoBucketScript : MonoBehaviour
     public GameObject woodChips;
     public GameObject toiletPaper;
 
-    public Meters meters;
+    public MetersController metersController;
     public ReferenceManager referenceManager;
 
     public void Start()
     {
         referenceManager = GameObject.Find("Managers").GetComponent<ReferenceManager>();
-        meters = referenceManager.metersCanvas.GetComponent<Meters>();
+        metersController = referenceManager.metersController;
         bucketDone = GlobalControls.poopTaskProgress[0];
         bucketTwoDone = GlobalControls.poopTaskProgress[1];
         bagDone = GlobalControls.poopTaskProgress[2];
@@ -102,7 +102,7 @@ public class TwoBucketScript : MonoBehaviour
         if (!toiletPaperDone) return false;
         if (!woodChipsDone) return false;
         Debug.Log("Completed Two Bucket System uwu");
-        meters.MarkTaskAsDone("poop");
+        metersController.MarkTaskAsDone("poop");
         return true;
     }
 }
